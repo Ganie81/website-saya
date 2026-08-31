@@ -1,1 +1,215 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Produksi</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f2f4f7;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .dashboard {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background: grey;
+            padding: 20px;
+            border-radius: 12px;
+            width: 120px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .angka {
+            font-size: 24px;
+            font-weight: bold;
+        }
+              table {
+            width: 100%;
+            margin-top: 20px;
+            background: white;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Dashboard Produksi</h1>
+
+    <div class="dashboard">
+
+        <div class="card">
+            <p>Produksi</p>
+            <div class="angka">125.000</div>
+            <small>meter</small>
+        </div>
+
+        <div class="card">
+            <p>Reject</p>
+            <div class="angka">2.350</div>
+            <small>meter</small>
+        </div>
+
+        <div class="card">
+            <p>Efisiensi</p>
+            <div class="angka">94,2%</div>
+        </div>
+
+    </div>
+<h2>Data Produksi Mesin</h2>
+
+<table>
+    <tr>
+        <th>Mesin</th>
+        <th>Produksi</th>
+        <th>Reject</th>
+        <th>Efisiensi</th>
+    </tr>
+
+    <tr>
+        <td>Flat 1</td>
+        <td>30.000 m</td>
+        <td>300 m</td>
+        <td>95%</td>
+    </tr>
+
+    <tr>
+        <td>Flat 2</td>
+        <td>27.000 m</td>
+        <td>450 m</td>
+        <td>93%</td>
+    </tr>
+
+    <tr>
+        <td>Flat 3</td>
+        <td>24.000 m</td>
+        <td>500 m</td>
+        <td>91%</td>
+    </tr>
+
+    <tr>
+        <td>Flat 4</td>
+        <td>22.000 m</td>
+        <td>250 m</td>
+        <td>94%</td>
+    </tr>
+
+    <tr>
+        <td>Flat 5</td>
+        <td>22.000 m</td>
+        <td>180 m</td>
+        <td>96%</td>
+    </tr>
+</table>
+  <h2>Kalkulator Efisiensi</h2>
+
+<div class="card" style="width:auto;">
+
+    <p>Produksi</p>
+    <input type="number" id="produksi" value="30000">
+
+    <p>Reject</p>
+    <input type="number" id="reject" value="300">
+
+    <br><br>
+
+    <button onclick="hitungEfisiensi()">
+        HITUNG
+    </button>
+
+    <h3 id="hasil">Efisiensi: -</h3>
+
+</div>
+
+<script>
+function hitungEfisiensi() {
+
+    let produksi = Number(
+        document.getElementById("produksi").value
+    );
+
+    let reject = Number(
+        document.getElementById("reject").value
+    );
+
+    let hasil = ((produksi - reject) / produksi) * 100;
+
+    document.getElementById("hasil").innerHTML =
+        "Efisiensi: " + hasil.toFixed(2) + "%";
+}
+</script>
+</body>
+</html>
+<h2>Data Mesin Otomatis</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Mesin</th>
+            <th>Produksi</th>
+            <th>Reject</th>
+            <th>Efisiensi</th>
+        </tr>
+    </thead>
+
+    <tbody id="dataMesin"></tbody>
+</table>
+
+<script>
+
+let mesin = [
+    {nama: "Flat 1", produksi: 30000, reject: 300},
+    {nama: "Flat 2", produksi: 27000, reject: 450},
+    {nama: "Flat 3", produksi: 24000, reject: 500},
+    {nama: "Flat 4", produksi: 22000, reject: 250},
+    {nama: "Flat 5", produksi: 22000, reject: 180}
+];
+
+let tabel = "";
+
+mesin.forEach(function(data) {
+
+    let efisiensi =
+        ((data.produksi - data.reject) / data.produksi) * 100;
+
+    tabel += `
+        <tr>
+            <td>${data.nama}</td>
+            <td>${data.produksi.toLocaleString()} m</td>
+            <td>${data.reject.toLocaleString()} m</td>
+            <td>${efisiensi.toFixed(2)}%</td>
+        </tr>
+    `;
+
+});
+
+document.getElementById("dataMesin").innerHTML = tabel;
+
+</script>
