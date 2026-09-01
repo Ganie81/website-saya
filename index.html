@@ -221,6 +221,13 @@ document.getElementById("dataMesin").innerHTML = tabel;
         <option value="">Semua Shift</option>
     </select>
 </div>
+<div style="margin:15px 0;">
+    <label><b>Filter Grup:</b></label>
+
+    <select id="filterGrup" onchange="filterData()">
+        <option value="">Semua Grup</option>
+    </select>
+</div>
 <div style="overflow-x:auto;">
 <table>
     <thead>
@@ -259,6 +266,7 @@ fetch(URL_APPS_SCRIPT)
 
         // Membuat daftar Shift
         let daftarShift = [];
+        let daftarGrup = [];
 
         semuaData.forEach(function(row) {
             if (row[0] && !daftarShift.includes(row[0])) {
@@ -274,7 +282,20 @@ fetch(URL_APPS_SCRIPT)
             option.textContent = shift;
             filter.appendChild(option);
         });
+        semuaData.forEach(function(row) {
+    if (row[1] && !daftarGrup.includes(row[1])) {
+        daftarGrup.push(row[1]);
+    }
+});
 
+let filterGrup = document.getElementById("filterGrup");
+
+daftarGrup.forEach(function(grup) {
+    let option = document.createElement("option");
+    option.value = grup;
+    option.textContent = grup;
+    filterGrup.appendChild(option);
+});
         tampilkanData(semuaData);
 
     })
@@ -291,12 +312,12 @@ fetch(URL_APPS_SCRIPT)
 function filterData() {
 
     let shift = document.getElementById("filterShift").value;
+    let grup = document.getElementById("filterGrup").value;
 
     let hasil = semuaData.filter(function(row) {
 
-        return shift === "" || row[0] == shift;
-
-    });
+        return (shift === "" || row[0] == shift) &&
+       (grup === "" || row[1] == grup);
 
     tampilkanData(hasil);
 }
