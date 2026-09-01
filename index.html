@@ -5,132 +5,145 @@
 
 <style>
 
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-        background: #f2f4f7;
-    }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f2f4f7;
+}
 
-    h1 {
-        text-align: center;
-        margin-bottom: 25px;
-    }
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
 
-    h2 {
-        margin-top: 30px;
-    }
+h2 {
+    margin-top: 30px;
+}
 
-    /* =========================
-       DASHBOARD CARD
-       ========================= */
+/* =========================
+   DASHBOARD CARD
+   ========================= */
 
-    .dashboard {
-        display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+.dashboard {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
-    .card {
-        background: grey;
-        padding: 20px;
-        border-radius: 12px;
-        width: 120px;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+.card {
+    background: grey;
+    padding: 20px;
+    border-radius: 12px;
+    width: 120px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
 
-    .angka {
-        font-size: 24px;
-        font-weight: bold;
-    }
+.angka {
+    font-size: 24px;
+    font-weight: bold;
+}
 
-    /* =========================
-       INPUT & BUTTON
-       ========================= */
+/* =========================
+   INPUT & BUTTON
+   ========================= */
 
-    input,
-    select,
-    button {
-        padding: 8px;
-        margin-top: 5px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-    }
+input,
+select,
+button {
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
 
-    button {
-        cursor: pointer;
-        background: #333;
-        color: white;
-        border: none;
-    }
+button {
+    cursor: pointer;
+    background: #333;
+    color: white;
+    border: none;
+}
 
-    button:hover {
-        background: #555;
-    }
+button:hover {
+    background: #555;
+}
 
-    /* =========================
-       TABLE
-       ========================= */
+/* =========================
+   TABLE
+   ========================= */
 
-    table {
-        width: 100%;
-        margin-top: 20px;
-        background: white;
-        border-collapse: collapse;
-    }
+table {
+    width: 100%;
+    margin-top: 20px;
+    background: white;
+    border-collapse: collapse;
+}
 
-    th,
-    td {
-        padding: 12px;
-        border-bottom: 1px solid #ddd;
-        text-align: center;
-        white-space: nowrap;
-    }
+th,
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    white-space: nowrap;
+}
 
-    th {
-        background: #333;
-        color: white;
-    }
+th {
+    background: #333;
+    color: white;
+}
 
-    /* =========================
-       FILTER
-       ========================= */
+/* =========================
+   FILTER
+   ========================= */
 
-    .filter-box {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin: 15px 0;
-    }
+.filter-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
 
-    .filter-item {
-        display: flex;
-        flex-direction: column;
-    }
+.filter-item {
+    display: flex;
+    flex-direction: column;
+}
 
-    .filter-item label {
-        margin-bottom: 3px;
-    }
+.filter-item label {
+    margin-bottom: 3px;
+}
 
-    .filter-item select {
-        min-width: 140px;
-    }
+/* MULTI SELECT */
 
-    /* =========================
-       STATUS DATA
-       ========================= */
+.filter-item select {
+    min-width: 170px;
+    height: 100px;
+}
 
-    .status {
-        margin: 10px 0;
-        font-weight: bold;
-    }
+/* Tombol reset */
 
-</style>
+.reset-button {
+    height: 38px;
+    margin-top: 21px;
+    background: #d32f2f;
+}
 
-</head><body><!-- =====================================================
+.reset-button:hover {
+    background: #b71c1c;
+}
+
+/* =========================
+   STATUS DATA
+   ========================= */
+
+.status {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+</style></head><body><!-- =====================================================
      JUDUL
      ===================================================== --><h1>Dashboard Produksi</h1><!-- =====================================================
      DASHBOARD
@@ -172,74 +185,37 @@
 
 </div><!-- =====================================================
      DATA PRODUKSI MESIN
-     ===================================================== --><h2>Data Produksi Mesin</h2><table><thead>
+     ===================================================== --><h2>Data Produksi Mesin</h2><table><thead><tr><th>Mesin</th>
+<th>Produksi</th>
+<th>Reject</th>
+<th>Efisiensi</th>
 
-    <tr>
+</tr></thead><tbody><tr><td>Flat 1</td>
+<td>30.000 m</td>
+<td>300 m</td>
+<td>95%</td>
 
-        <th>Mesin</th>
-        <th>Produksi</th>
-        <th>Reject</th>
-        <th>Efisiensi</th>
+</tr><tr><td>Flat 2</td>
+<td>27.000 m</td>
+<td>450 m</td>
+<td>93%</td>
 
-    </tr>
+</tr><tr><td>Flat 3</td>
+<td>24.000 m</td>
+<td>500 m</td>
+<td>91%</td>
 
-</thead>
+</tr><tr><td>Flat 4</td>
+<td>22.000 m</td>
+<td>250 m</td>
+<td>94%</td>
 
+</tr><tr><td>Flat 5</td>
+<td>22.000 m</td>
+<td>180 m</td>
+<td>96%</td>
 
-<tbody>
-
-    <tr>
-
-        <td>Flat 1</td>
-        <td>30.000 m</td>
-        <td>300 m</td>
-        <td>95%</td>
-
-    </tr>
-
-
-    <tr>
-
-        <td>Flat 2</td>
-        <td>27.000 m</td>
-        <td>450 m</td>
-        <td>93%</td>
-
-    </tr>
-
-
-    <tr>
-
-        <td>Flat 3</td>
-        <td>24.000 m</td>
-        <td>500 m</td>
-        <td>91%</td>
-
-    </tr>
-
-
-    <tr>
-
-        <td>Flat 4</td>
-        <td>22.000 m</td>
-        <td>250 m</td>
-        <td>94%</td>
-
-    </tr>
-
-
-    <tr>
-
-        <td>Flat 5</td>
-        <td>22.000 m</td>
-        <td>180 m</td>
-        <td>96%</td>
-
-    </tr>
-
-</tbody>
-
-</table><!-- =====================================================
+</tr></tbody></table><!-- =====================================================
      KALKULATOR EFISIENSI
      ===================================================== --><h2>Kalkulator Efisiensi</h2><div class="card" style="width:auto;"><p>Produksi</p>
 
@@ -277,25 +253,12 @@
 
 </div><!-- =====================================================
      DATA MESIN OTOMATIS
-     ===================================================== --><h2>Data Mesin Otomatis</h2><table><thead>
+     ===================================================== --><h2>Data Mesin Otomatis</h2><table><thead><tr><th>Mesin</th>
+<th>Produksi</th>
+<th>Reject</th>
+<th>Efisiensi</th>
 
-    <tr>
-
-        <th>Mesin</th>
-        <th>Produksi</th>
-        <th>Reject</th>
-        <th>Efisiensi</th>
-
-    </tr>
-
-</thead>
-
-
-<tbody id="dataMesin">
-
-</tbody>
-
-</table><!-- =====================================================
+</tr></thead><tbody id="dataMesin"></tbody></table><!-- =====================================================
      DATA GOOGLE SHEETS
      ===================================================== --><h2>Data Google Sheets</h2><div
     class="status"
@@ -303,7 +266,7 @@
 
 </div><!-- =====================================================
      FILTER
-     
+
      A = Shift
      B = Grup
      C = Kode Produk
@@ -317,40 +280,23 @@
     id="filterContainer"
     class="filter-box"></div><!-- =====================================================
      TABEL DATA GOOGLE SHEETS
-     ===================================================== --><div style="overflow-x:auto;"><table><thead>
+     ===================================================== --><div style="overflow-x:auto;"><table><thead><tr><th>Shift</th>
+<th>Grup</th>
+<th>Kode Produk</th>
+<th>Warna Ground</th>
+<th>Motif</th>
+<th>Qty</th>
+<th>Mc</th>
+<th>Tanggal</th>
+<th>Jenis Print</th>
 
-    <tr>
+</tr></thead><tbody id="dataSheets"><tr><td colspan="9">
 
-        <th>Shift</th>
-        <th>Grup</th>
-        <th>Kode Produk</th>
-        <th>Warna Ground</th>
-        <th>Motif</th>
-        <th>Qty</th>
-        <th>Mc</th>
-        <th>Tanggal</th>
-        <th>Jenis Print</th>
+    Memuat data...
 
-    </tr>
+</td>
 
-</thead>
-
-
-<tbody id="dataSheets">
-
-    <tr>
-
-        <td colspan="9">
-
-            Memuat data...
-
-        </td>
-
-    </tr>
-
-</tbody>
-
-</table></div><script>
+</tr></tbody></table></div><script>
 
 
 // =====================================================
@@ -636,7 +582,7 @@ fetch(URL_APPS_SCRIPT)
 
 
 // =====================================================
-// MEMBUAT FILTER
+// MEMBUAT FILTER MULTI-SELECT
 // =====================================================
 
 function buatFilter() {
@@ -688,24 +634,16 @@ function buatFilter() {
                 + filterInfo.index;
 
 
-            let optionSemua =
-                document.createElement(
-                    "option"
-                );
+            // =========================================
+            // MULTI SELECT
+            // =========================================
+
+            select.multiple = true;
 
 
-            optionSemua.value = "";
+            // Tinggi dropdown
 
-
-            optionSemua.textContent =
-                "Semua "
-                + filterInfo.nama;
-
-
-            select.appendChild(
-                optionSemua
-            );
-
+            select.size = 5;
 
 
             // =========================================
@@ -771,7 +709,36 @@ function buatFilter() {
 
 
             // =========================================
-            // MASUKKAN KE DROPDOWN
+            // PILIHAN SEMUA
+            // =========================================
+
+            let optionSemua =
+                document.createElement(
+                    "option"
+                );
+
+
+            optionSemua.value =
+                "";
+
+
+            optionSemua.textContent =
+                "Semua "
+                + filterInfo.nama;
+
+
+            optionSemua.selected =
+                true;
+
+
+            select.appendChild(
+                optionSemua
+            );
+
+
+
+            // =========================================
+            // MASUKKAN DATA KE DROPDOWN
             // =========================================
 
             daftar.forEach(
@@ -805,8 +772,39 @@ function buatFilter() {
             // SAAT FILTER BERUBAH
             // =========================================
 
-            select.onchange =
-                filterData;
+            select.addEventListener(
+                "change",
+                function() {
+
+                    // Kalau memilih "Semua",
+                    // hapus pilihan lainnya
+
+                    if (
+                        Array.from(
+                            select.selectedOptions
+                        ).some(
+                            option =>
+                                option.value === ""
+                        )
+                    ) {
+
+                        Array.from(
+                            select.options
+                        ).forEach(
+                            function(option) {
+
+                                option.selected =
+                                    option.value === "";
+
+                            }
+                        );
+
+                    }
+
+                    filterData();
+
+                }
+            );
 
 
 
@@ -827,12 +825,39 @@ function buatFilter() {
         }
     );
 
+
+    // =========================================
+    // TOMBOL RESET
+    // =========================================
+
+    let tombolReset =
+        document.createElement(
+            "button"
+        );
+
+
+    tombolReset.className =
+        "reset-button";
+
+
+    tombolReset.textContent =
+        "RESET FILTER";
+
+
+    tombolReset.onclick =
+        resetFilter;
+
+
+    container.appendChild(
+        tombolReset
+    );
+
 }
 
 
 
 // =====================================================
-// FILTER DATA
+// FILTER DATA MULTI PILIH
 // =====================================================
 
 function filterData() {
@@ -854,22 +879,43 @@ function filterData() {
                             );
 
 
+                        // Ambil SEMUA pilihan
+
                         let pilihan =
-                            select.value;
+                            Array.from(
+                                select.selectedOptions
+                            )
+                            .map(
+                                option =>
+                                    option.value
+                            )
+                            .filter(
+                                value =>
+                                    value !== ""
+                            );
 
 
-                        return (
+                        // Tidak ada pilihan
+                        // berarti semua data
 
-                            pilihan === ""
+                        if (
+                            pilihan.length === 0
+                        ) {
 
-                            ||
+                            return true;
 
+                        }
+
+
+                        // Data masuk jika nilainya
+                        // cocok dengan SALAH SATU pilihan
+
+                        return pilihan.includes(
                             String(
                                 row[
                                     filterInfo.index
                                 ]
-                            ) === pilihan
-
+                            )
                         );
 
                     }
@@ -892,6 +938,63 @@ function filterData() {
 
         "Menampilkan "
         + hasil.length.toLocaleString()
+        + " dari "
+        + semuaData.length.toLocaleString()
+        + " baris";
+
+}
+
+
+
+// =====================================================
+// RESET SEMUA FILTER
+// =====================================================
+
+function resetFilter() {
+
+
+    filterConfig.forEach(
+        function(filterInfo) {
+
+
+            let select =
+                document.getElementById(
+                    "filter_"
+                    + filterInfo.index
+                );
+
+
+            if (!select) {
+                return;
+            }
+
+
+            Array.from(
+                select.options
+            ).forEach(
+                function(option) {
+
+                    option.selected =
+                        option.value === "";
+
+                }
+            );
+
+        }
+    );
+
+
+    tampilkanData(
+        semuaData
+    );
+
+
+    document.getElementById(
+        "statusData"
+    ).innerHTML =
+
+        "Menampilkan "
+        + semuaData.length.toLocaleString()
         + " dari "
         + semuaData.length.toLocaleString()
         + " baris";
@@ -995,7 +1098,6 @@ function tampilkanData(data) {
         tabel;
 
 }
-
 
 </script></body>
 </html>
