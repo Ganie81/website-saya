@@ -214,7 +214,13 @@ document.getElementById("dataMesin").innerHTML = tabel;
 
 </script>
 <h2>Data Google Sheets</h2>
+<div style="margin:15px 0;">
+    <label><b>Filter Shift:</b></label>
 
+    <select id="filterShift" onchange="filterData()">
+        <option value="">Semua Shift</option>
+    </select>
+</div>
 <div style="overflow-x:auto;">
 <table>
     <thead>
@@ -243,32 +249,33 @@ document.getElementById("dataMesin").innerHTML = tabel;
 
 const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbyIVCEUVB-vmepbtaOZvUwFGpMZD0rWBoAn4VrjoLq7JmBLTlhtifMOuYNTbaCKi4Q_qA/exec";
 
+let semuaData = [];
+
 fetch(URL_APPS_SCRIPT)
     .then(response => response.json())
     .then(data => {
 
-        let tabel = "";
+        semuaData = data.slice(1);
 
-        // Lewati baris pertama karena merupakan header
-        data.slice(1).forEach(function(row) {
+        // Membuat daftar Shift
+        let daftarShift = [];
 
-            tabel += `
-                <tr>
-                    <td>${row[0]}</td>
-                    <td>${row[1]}</td>
-                    <td>${row[2]}</td>
-                    <td>${row[3]}</td>
-                    <td>${row[4]}</td>
-                    <td>${row[5]}</td>
-                    <td>${row[6]}</td>
-                    <td>${row[7]}</td>
-                    <td>${row[8]}</td>
-                </tr>
-            `;
-
+        semuaData.forEach(function(row) {
+            if (row[0] && !daftarShift.includes(row[0])) {
+                daftarShift.push(row[0]);
+            }
         });
 
-        document.getElementById("dataSheets").innerHTML = tabel;
+        let filter = document.getElementById("filterShift");
+
+        daftarShift.forEach(function(shift) {
+            let option = document.createElement("option");
+            option.value = shift;
+            option.textContent = shift;
+            filter.appendChild(option);
+        });
+
+        tampilkanData(semuaData);
 
     })
     .catch(error => {
@@ -279,5 +286,46 @@ fetch(URL_APPS_SCRIPT)
         console.error(error);
 
     });
+
+
+function filterData() {
+
+    let shift = document.getElementById("filterShift").value;
+
+    let hasil = semuaData.filter(function(row) {
+
+        return shift === "" || row[0] == shift;
+
+    });
+
+    tampilkanData(hasil);
+}
+
+
+function tampilkanData(data) {
+
+    let tabel = "";
+
+    data.forEach(function(row) {
+
+        tabel += `
+            <tr>
+                <td>${row[0]}</td>
+                <td>${row[1]}</td>
+                <td>${row[2]}</td>
+                <td>${row[3]}</td>
+                <td>${row[4]}</td>
+                <td>${row[5]}</td>
+                <td>${row[6]}</td>
+                <td>${row[7]}</td>
+                <td>${row[8]}</td>
+            </tr>
+        `;
+
+    });
+
+    document.getElementById("dataSheets").innerHTML = tabel;
+
+}
 
 </script>
