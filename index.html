@@ -213,3 +213,71 @@ mesin.forEach(function(data) {
 document.getElementById("dataMesin").innerHTML = tabel;
 
 </script>
+<h2>Data Google Sheets</h2>
+
+<div style="overflow-x:auto;">
+<table>
+    <thead>
+        <tr>
+            <th>Shift</th>
+            <th>Grup</th>
+            <th>Kode Produk</th>
+            <th>Warna Blok</th>
+            <th>Motif</th>
+            <th>Qty</th>
+            <th>Mc</th>
+            <th>Tanggal</th>
+            <th>Jenis Print</th>
+        </tr>
+    </thead>
+
+    <tbody id="dataSheets">
+        <tr>
+            <td colspan="9">Memuat data...</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<script>
+
+const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbyIVCEUVB-vmepbtaOZvUwFGpMZD0rWBoAn4VrjoLq7JmBLTlhtifMOuYNTbaCKi4Q_qA/exec";
+
+fetch(URL_APPS_SCRIPT)
+    .then(response => response.json())
+    .then(data => {
+
+        let tabel = "";
+
+        // Lewati baris pertama karena merupakan header
+        data.slice(1).forEach(function(row) {
+
+            tabel += `
+                <tr>
+                    <td>${row[0]}</td>
+                    <td>${row[1]}</td>
+                    <td>${row[2]}</td>
+                    <td>${row[3]}</td>
+                    <td>${row[4]}</td>
+                    <td>${row[5]}</td>
+                    <td>${row[6]}</td>
+                    <td>${row[7]}</td>
+                    <td>${row[8]}</td>
+                </tr>
+            `;
+
+        });
+
+        document.getElementById("dataSheets").innerHTML = tabel;
+
+    })
+    .catch(error => {
+
+        document.getElementById("dataSheets").innerHTML =
+            `<tr><td colspan="9">Gagal mengambil data</td></tr>`;
+
+        console.error(error);
+
+    });
+
+</script>
