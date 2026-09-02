@@ -26,10 +26,6 @@ body {
     min-height: 100vh;
 }
 
-/* =========================
-   JUDUL UTAMA
-========================= */
-
 h1 {
     text-align: center;
     margin: 0 0 18px 0;
@@ -535,7 +531,7 @@ select:focus {
 
     text-align: center;
 
-    min-height: 145px;
+    min-height: 150px;
 }
 
 
@@ -610,25 +606,6 @@ select:focus {
         );
 }
 
-.group-card.group-a h3 {
-
-    background:
-        linear-gradient(
-            180deg,
-            #00a878,
-            #087f5b
-        );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-
-    text-shadow:
-        1px 1px 0 rgba(255,255,255,.8),
-        2px 3px 3px rgba(0,100,70,.22);
-}
-
 
 /* =========================
    GRUP B
@@ -661,25 +638,6 @@ select:focus {
             #f57c00,
             #ffd166
         );
-}
-
-.group-card.group-b h3 {
-
-    background:
-        linear-gradient(
-            180deg,
-            #ff9800,
-            #d66b00
-        );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-
-    text-shadow:
-        1px 1px 0 rgba(255,255,255,.8),
-        2px 3px 3px rgba(150,80,0,.22);
 }
 
 
@@ -716,28 +674,10 @@ select:focus {
         );
 }
 
-.group-card.group-c h3 {
-
-    background:
-        linear-gradient(
-            180deg,
-            #7950f2,
-            #512da8
-        );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-
-    text-shadow:
-        1px 1px 0 rgba(255,255,255,.8),
-        2px 3px 3px rgba(65,40,130,.22);
-}
-
 
 /* =========================
    JUDUL GRUP
+   WARNA TUA + AKSEN 3D
 ========================= */
 
 .group-card h3 {
@@ -755,7 +695,85 @@ select:focus {
     font-weight: 1000;
 
     letter-spacing: 1px;
+
+    display: inline-block;
+
+    padding: 3px 12px;
+
+    border-radius: 8px;
+
+    text-shadow:
+        1px 1px 0 rgba(255,255,255,.75),
+        2px 2px 0 rgba(0,0,0,.18),
+        3px 4px 5px rgba(0,0,0,.22);
 }
+
+
+/* Judul A - hijau tua */
+
+.group-card.group-a h3 {
+
+    color: #075c43;
+
+    background:
+        linear-gradient(
+            145deg,
+            #c8f7e4,
+            #86e0be
+        );
+
+    border: 1px solid #55bd96;
+
+    box-shadow:
+        0 3px 0 #3a9f79,
+        0 5px 9px rgba(0,80,55,.20),
+        inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+
+/* Judul B - orange tua */
+
+.group-card.group-b h3 {
+
+    color: #8a4500;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffe7ad,
+            #ffc85c
+        );
+
+    border: 1px solid #e6a52e;
+
+    box-shadow:
+        0 3px 0 #c78216,
+        0 5px 9px rgba(120,70,0,.20),
+        inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+
+/* Judul C - ungu tua */
+
+.group-card.group-c h3 {
+
+    color: #45208a;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e5dcff,
+            #c4b2ff
+        );
+
+    border: 1px solid #9b83df;
+
+    box-shadow:
+        0 3px 0 #7558bc,
+        0 5px 9px rgba(60,35,130,.20),
+        inset 0 1px 0 rgba(255,255,255,.9);
+}
+
 
 .group-production {
 
@@ -931,15 +949,124 @@ tbody tr:nth-child(even) {
 .data-wrapper table {
 
     min-width: 1100px;
+
+    table-layout: fixed;
 }
 
-.data-wrapper thead th {
 
-    position: sticky;
+/*
+   Lebar kolom Data Produksi
 
-    top: 0;
+   Motif dan Jenis Print
+   dibuat sama dengan
+   Warna Ground.
 
-    z-index: 2;
+   Tulisan panjang akan
+   turun ke bawah.
+*/
+
+.data-wrapper table th:nth-child(1),
+.data-wrapper table td:nth-child(1) {
+    width: 100px;
+}
+
+.data-wrapper table th:nth-child(2),
+.data-wrapper table td:nth-child(2) {
+    width: 70px;
+}
+
+.data-wrapper table th:nth-child(3),
+.data-wrapper table td:nth-child(3) {
+    width: 70px;
+}
+
+.data-wrapper table th:nth-child(4),
+.data-wrapper table td:nth-child(4) {
+    width: 140px;
+}
+
+
+/* WARNA GROUND */
+
+.data-wrapper table th:nth-child(5),
+.data-wrapper table td:nth-child(5) {
+
+    width: 180px;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+
+    word-break: break-word;
+
+    line-height: 1.35;
+}
+
+
+/* MOTIF = SAMA DENGAN WARNA GROUND */
+
+.data-wrapper table th:nth-child(6),
+.data-wrapper table td:nth-child(6) {
+
+    width: 180px;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+
+    word-break: break-word;
+
+    line-height: 1.35;
+}
+
+
+/* QTY */
+
+.data-wrapper table th:nth-child(7),
+.data-wrapper table td:nth-child(7) {
+
+    width: 90px;
+}
+
+
+/* MC */
+
+.data-wrapper table th:nth-child(8),
+.data-wrapper table td:nth-child(8) {
+
+    width: 80px;
+}
+
+
+/* JENIS PRINT = SAMA DENGAN WARNA GROUND */
+
+.data-wrapper table th:nth-child(9),
+.data-wrapper table td:nth-child(9) {
+
+    width: 180px;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+
+    word-break: break-word;
+
+    line-height: 1.35;
+}
+
+
+/*
+   Header Motif dan Jenis Print
+   boleh turun baris jika diperlukan
+*/
+
+.data-wrapper table th:nth-child(5),
+.data-wrapper table th:nth-child(6),
+.data-wrapper table th:nth-child(9) {
+
+    white-space: normal;
+
+    line-height: 1.25;
 }
 
 
@@ -1101,7 +1228,7 @@ body.screenshot-mode .group-percent {
 
     .group-card {
 
-        min-height: 135px;
+        min-height: 140px;
     }
 
     .table-card {
@@ -1175,6 +1302,7 @@ body.screenshot-mode .group-percent {
 
 <h1>📊 DASHBOARD PRODUKSI</h1>
 
+
 <!-- =========================
      TOMBOL
 ========================= -->
@@ -1243,6 +1371,7 @@ body.screenshot-mode .group-percent {
 
         </div>
 
+
         <div
             class="filter-group"
             id="tahunArea">
@@ -1262,6 +1391,7 @@ body.screenshot-mode .group-percent {
             </select>
 
         </div>
+
 
         <div
             class="filter-group"
@@ -1297,6 +1427,7 @@ body.screenshot-mode .group-percent {
         </div>
 
     </div>
+
 
     <div
         class="filter-row"
@@ -1436,7 +1567,7 @@ body.screenshot-mode .group-percent {
         <div
             class="group-production"
             id="produksiA">
-            0
+            0 Pcs
         </div>
 
         <div
@@ -1457,7 +1588,7 @@ body.screenshot-mode .group-percent {
         <div
             class="group-production"
             id="produksiB">
-            0
+            0 Pcs
         </div>
 
         <div
@@ -1478,7 +1609,7 @@ body.screenshot-mode .group-percent {
         <div
             class="group-production"
             id="produksiC">
-            0
+            0 Pcs
         </div>
 
         <div
@@ -1511,7 +1642,7 @@ body.screenshot-mode .group-percent {
                 <tr>
 
                     <th>Grup</th>
-                    <th>Produksi (pcs)</th>
+                    <th>Produksi (Pcs)</th>
                     <th>Produksi (Kodi)</th>
                     <th>Pencapaian %</th>
 
@@ -1589,7 +1720,7 @@ body.screenshot-mode .group-percent {
 
                 <tr>
 
-                    <!-- TANGGAL TETAP PALING PERTAMA -->
+                    <!-- TANGGAL TETAP PERTAMA -->
 
                     <th>Tanggal</th>
                     <th>Shift</th>
@@ -1597,7 +1728,7 @@ body.screenshot-mode .group-percent {
                     <th>Kode Produk</th>
                     <th>Warna Ground</th>
                     <th>Motif</th>
-                    <th>Qty</th>
+                    <th>Qty (Pcs)</th>
                     <th>Mc</th>
                     <th>Jenis Print</th>
 
@@ -2313,10 +2444,6 @@ function terapkanSemuaFilter() {
         semuaData.filter(
             row => {
 
-                /* =====================
-                   FILTER PERIODE
-                ===================== */
-
                 if (
                     periode !== "semua"
                 ) {
@@ -2375,10 +2502,6 @@ function terapkanSemuaFilter() {
 
                 }
 
-
-                /* =====================
-                   FILTER MULTI SELECT
-                ===================== */
 
                 for (
                     const filter
@@ -2753,17 +2876,17 @@ function updatePencapaianGrup() {
     document.getElementById(
         "produksiA"
     ).textContent =
-        formatAngka(A);
+        formatAngka(A) + " Pcs";
 
     document.getElementById(
         "produksiB"
     ).textContent =
-        formatAngka(B);
+        formatAngka(B) + " Pcs";
 
     document.getElementById(
         "produksiC"
     ).textContent =
-        formatAngka(C);
+        formatAngka(C) + " Pcs";
 
 
     document.getElementById(
@@ -2831,7 +2954,7 @@ function updatePencapaianGrup() {
                 <td>${item[0]}</td>
 
                 <td>
-                    ${formatAngka(item[1])}
+                    ${formatAngka(item[1])} Pcs
                 </td>
 
                 <td>
@@ -2867,7 +2990,7 @@ function updatePencapaianGrup() {
         <td>TOTAL</td>
 
         <td>
-            ${formatAngka(total)}
+            ${formatAngka(total)} Pcs
         </td>
 
         <td>
@@ -3737,7 +3860,6 @@ async function ambilData() {
 
         loading.textContent =
             "❌ Gagal mengambil data. Periksa koneksi Apps Script.";
-
 
     }
 
