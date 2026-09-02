@@ -1531,7 +1531,9 @@ function buatFilter(
 
                     .map(
                         v =>
-                            String(v)
+                            kolom === 7
+                                ? formatTanggal(v)
+                                : String(v)
                     )
 
             )
