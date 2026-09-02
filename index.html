@@ -1,242 +1,415 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Dashboard Produksi</title>
 
+
 <style>
 
+/* =====================================================
+   BODY
+   ===================================================== */
+
 body {
+
     font-family: Arial, sans-serif;
+
     margin: 0;
+
     padding: 20px;
+
     background: #f2f4f7;
+
 }
+
 
 h1 {
+
     text-align: center;
+
     margin-bottom: 25px;
+
 }
+
 
 h2 {
+
     margin-top: 30px;
+
 }
 
-/* =========================
-   DASHBOARD CARD
-   ========================= */
+
+/* =====================================================
+   DASHBOARD
+   ===================================================== */
 
 .dashboard {
+
     display: flex;
+
     gap: 15px;
+
     flex-wrap: wrap;
+
     justify-content: center;
+
 }
+
 
 .card {
+
     background: grey;
+
     padding: 20px;
+
     border-radius: 12px;
+
     width: 150px;
+
     text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.1);
+
 }
+
 
 .angka {
+
     font-size: 24px;
+
     font-weight: bold;
+
 }
 
-/* =========================
+
+/* =====================================================
    INPUT & BUTTON
-   ========================= */
+   ===================================================== */
 
 input,
 select,
 button {
+
     padding: 8px;
+
     margin-top: 5px;
+
     border-radius: 5px;
+
     border: 1px solid #ccc;
+
     box-sizing: border-box;
+
 }
+
 
 button {
+
     cursor: pointer;
+
     background: #333;
+
     color: white;
+
     border: none;
+
 }
+
 
 button:hover {
+
     background: #555;
+
 }
 
-/* =========================
+
+/* =====================================================
    TABLE
-   ========================= */
+   ===================================================== */
 
 .table-container {
+
     overflow-x: auto;
+
 }
 
+
 table {
+
     width: 100%;
+
     margin-top: 20px;
+
     background: white;
+
     border-collapse: collapse;
+
 }
+
 
 th,
 td {
+
     padding: 12px;
-    border-bottom: 1px solid #ddd;
+
+    border-bottom:
+        1px solid #ddd;
+
     text-align: center;
+
     white-space: nowrap;
+
 }
+
 
 th {
+
     background: #333;
+
     color: white;
+
 }
 
-/* =========================
+
+/* =====================================================
    FILTER
-   ========================= */
+   ===================================================== */
 
 .filter-box {
+
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 10px;
+
     margin: 15px 0;
+
 }
+
 
 .filter-item {
+
     display: flex;
+
     flex-direction: column;
+
 }
+
 
 .filter-item label {
+
     margin-bottom: 3px;
+
 }
+
 
 .filter-item select {
+
     min-width: 170px;
+
     height: 100px;
+
 }
 
-/* =========================
+
+/* =====================================================
    RESET
-   ========================= */
+   ===================================================== */
 
 .reset-button {
+
     height: 38px;
+
     margin-top: 21px;
+
     background: #d32f2f;
+
 }
+
 
 .reset-button:hover {
+
     background: #b71c1c;
+
 }
 
-/* =========================
+
+/* =====================================================
    STATUS
-   ========================= */
+   ===================================================== */
 
 .status {
+
     margin: 10px 0;
+
     font-weight: bold;
+
 }
 
-/* =========================
+
+/* =====================================================
    KALKULATOR
-   ========================= */
+   ===================================================== */
 
 .kalkulator {
+
     background: white;
+
     padding: 20px;
+
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.1);
+
     max-width: 500px;
+
 }
+
 
 .kalkulator input {
+
     width: 100%;
+
 }
 
+
 .hasil-kalkulator {
+
     font-size: 22px;
+
     font-weight: bold;
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<h1>Dashboard Produksi</h1>
+
+<!-- =====================================================
+     JUDUL
+     ===================================================== -->
+
+<h1>
+Dashboard Produksi
+</h1>
 
 
 <!-- =====================================================
      DASHBOARD
-     SEMUA DATA DARI SPREADSHEET
      ===================================================== -->
 
 <div class="dashboard">
 
-    <div class="card">
-        <p>Total Produksi</p>
 
-        <div class="angka" id="totalQty">
+    <div class="card">
+
+        <p>
+            Total Qty
+        </p>
+
+        <div
+            class="angka"
+            id="totalQty">
+
             0
+
         </div>
 
-        <small>pcs</small>
+        <small>
+            pcs
+        </small>
+
     </div>
 
 
     <div class="card">
-        <p>Total Data</p>
 
-        <div class="angka" id="totalData">
+        <p>
+            Total Data
+        </p>
+
+        <div
+            class="angka"
+            id="totalData">
+
             0
+
         </div>
 
-        <small>baris</small>
+        <small>
+            baris
+        </small>
+
     </div>
 
 
     <div class="card">
-        <p>Jumlah Mesin</p>
 
-        <div class="angka" id="totalMesin">
+        <p>
+            Jumlah Mesin
+        </p>
+
+        <div
+            class="angka"
+            id="totalMesin">
+
             0
+
         </div>
 
-        <small>mesin</small>
+        <small>
+            mesin
+        </small>
+
     </div>
 
 
     <div class="card">
-        <p>Jumlah Grup</p>
 
-        <div class="angka" id="totalGrup">
+        <p>
+            Jumlah Grup
+        </p>
+
+        <div
+            class="angka"
+            id="totalGrup">
+
             0
+
         </div>
 
-        <small>grup</small>
+        <small>
+            grup
+        </small>
+
     </div>
+
 
 </div>
 
 
+
 <!-- =====================================================
-     DATA PRODUKSI MESIN
+     REKAP MESIN
      ===================================================== -->
 
-<h2>Data Produksi Mesin</h2>
+<h2>
+Data Produksi Mesin
+</h2>
+
 
 <div class="table-container">
 
@@ -246,13 +419,22 @@ th {
 
 <tr>
 
-<th>Mesin</th>
-<th>Produksi</th>
-<th>Data</th>
+<th>
+Mesin
+</th>
+
+<th>
+Total Qty
+</th>
+
+<th>
+Jumlah Data
+</th>
 
 </tr>
 
 </thead>
+
 
 <tbody id="dataMesinRingkas">
 
@@ -271,51 +453,76 @@ Memuat data...
 </div>
 
 
+
 <!-- =====================================================
      KALKULATOR EFISIENSI
      ===================================================== -->
 
-<h2>Kalkulator Efisiensi</h2>
+<h2>
+Kalkulator Efisiensi
+</h2>
+
 
 <div class="kalkulator">
 
-    <p>Produksi</p>
 
-    <input
-        type="number"
-        id="produksi"
-        placeholder="Masukkan produksi"
-    >
+<p>
+Produksi
+</p>
 
-    <p>Reject</p>
 
-    <input
-        type="number"
-        id="reject"
-        placeholder="Masukkan reject"
-    >
+<input
+    type="number"
+    id="produksi"
+    placeholder="Masukkan produksi"
+>
 
-    <br><br>
 
-    <button onclick="hitungEfisiensi()">
-        HITUNG
-    </button>
+<p>
+Reject
+</p>
 
-    <h3
-        id="hasil"
-        class="hasil-kalkulator"
-    >
-        Efisiensi: -
-    </h3>
+
+<input
+    type="number"
+    id="reject"
+    placeholder="Masukkan reject"
+>
+
+
+<br>
+<br>
+
+
+<button
+    onclick="hitungEfisiensi()">
+
+    HITUNG
+
+</button>
+
+
+<h3
+    id="hasil"
+    class="hasil-kalkulator">
+
+    Efisiensi: -
+
+</h3>
+
 
 </div>
+
 
 
 <!-- =====================================================
      DATA MESIN OTOMATIS
      ===================================================== -->
 
-<h2>Data Mesin Otomatis</h2>
+<h2>
+Data Mesin Otomatis
+</h2>
+
 
 <div class="table-container">
 
@@ -325,13 +532,22 @@ Memuat data...
 
 <tr>
 
-<th>Mesin</th>
-<th>Produksi</th>
-<th>Jumlah Data</th>
+<th>
+Mesin
+</th>
+
+<th>
+Produksi
+</th>
+
+<th>
+Jumlah Data
+</th>
 
 </tr>
 
 </thead>
+
 
 <tbody id="dataMesin">
 
@@ -350,24 +566,28 @@ Memuat data...
 </div>
 
 
+
 <!-- =====================================================
      DATA GOOGLE SHEETS
      ===================================================== -->
 
-<h2>Data Google Sheets</h2>
+<h2>
+Data Google Sheets
+</h2>
+
 
 <div
     class="status"
-    id="statusData"
->
+    id="statusData">
+
     Memuat data Google Sheets...
+
 </div>
+
 
 
 <!-- =====================================================
      FILTER
-
-     SUMBER SPREADSHEET:
 
      A = Shift
      B = Grup
@@ -380,6 +600,7 @@ Memuat data...
      I = Jenis Print
 
      FILTER:
+
      Shift
      Grup
      Kode Produk
@@ -389,20 +610,23 @@ Memuat data...
      Tanggal
 
      TIDAK ADA FILTER:
+
      Qty
      Jenis Print
      ===================================================== -->
 
 <div
     id="filterContainer"
-    class="filter-box"
-></div>
+    class="filter-box">
+
+</div>
+
 
 
 <!-- =====================================================
-     TABEL DATA
+     TABEL UTAMA
 
-     TAMPILAN HTML:
+     TAMPILAN:
 
      Tanggal
      Shift
@@ -413,8 +637,6 @@ Memuat data...
      Qty
      Mc
      Jenis Print
-
-     Tanggal tetap mengambil data kolom H.
      ===================================================== -->
 
 <div class="table-container">
@@ -425,19 +647,46 @@ Memuat data...
 
 <tr>
 
-<th>Tanggal</th>
-<th>Shift</th>
-<th>Grup</th>
-<th>Kode Produk</th>
-<th>Warna Ground</th>
-<th>Motif</th>
-<th>Qty</th>
-<th>Mc</th>
-<th>Jenis Print</th>
+<th>
+Tanggal
+</th>
+
+<th>
+Shift
+</th>
+
+<th>
+Grup
+</th>
+
+<th>
+Kode Produk
+</th>
+
+<th>
+Warna Ground
+</th>
+
+<th>
+Motif
+</th>
+
+<th>
+Qty
+</th>
+
+<th>
+Mc
+</th>
+
+<th>
+Jenis Print
+</th>
 
 </tr>
 
 </thead>
+
 
 <tbody id="dataSheets">
 
@@ -456,6 +705,7 @@ Memuat data...
 </div>
 
 
+
 <script>
 
 
@@ -468,7 +718,7 @@ const URL_APPS_SCRIPT =
 
 
 // =====================================================
-// PENYIMPANAN DATA
+// DATA
 // =====================================================
 
 let semuaData = [];
@@ -477,9 +727,7 @@ let dataTampil = [];
 
 
 // =====================================================
-// KONFIGURASI KOLOM
-//
-// ARRAY JAVASCRIPT:
+// INDEX KOLOM
 //
 // A = 0 Shift
 // B = 1 Grup
@@ -492,45 +740,6 @@ let dataTampil = [];
 // I = 8 Jenis Print
 // =====================================================
 
-const filterConfig = [
-
-    {
-        nama: "Shift",
-        index: 0
-    },
-
-    {
-        nama: "Grup",
-        index: 1
-    },
-
-    {
-        nama: "Kode Produk",
-        index: 2
-    },
-
-    {
-        nama: "Warna Ground",
-        index: 3
-    },
-
-    {
-        nama: "Motif",
-        index: 4
-    },
-
-    {
-        nama: "Mc",
-        index: 6
-    },
-
-    {
-        nama: "Tanggal",
-        index: 7
-    }
-
-];
-
 
 // =====================================================
 // FORMAT ANGKA
@@ -538,11 +747,18 @@ const filterConfig = [
 
 function formatAngka(nilai) {
 
-    let angka = Number(nilai);
+    let angka =
+        Number(nilai);
 
-    if (isNaN(angka)) {
+
+    if (
+        isNaN(angka)
+    ) {
+
         return "0";
+
     }
+
 
     return angka.toLocaleString(
         "id-ID"
@@ -552,22 +768,125 @@ function formatAngka(nilai) {
 
 
 // =====================================================
-// KONVERSI QTY
+// FORMAT TANGGAL
+//
+// Contoh:
+//
+// 2024-01-01T17:00:00.000Z
+//
+// menjadi:
+//
+// 02/01/2024
 // =====================================================
 
-function ambilQty(row) {
-
-    let nilai = row[5];
+function formatTanggal(nilai) {
 
     if (
         nilai === undefined ||
         nilai === null ||
         nilai === ""
     ) {
-        return 0;
+
+        return "";
+
     }
 
-    // Jika angka langsung
+
+    let teks =
+        String(nilai);
+
+
+    // Jika format ISO
+
+    if (
+        teks.includes("T") &&
+        teks.includes("Z")
+    ) {
+
+        let tanggal =
+            new Date(teks);
+
+
+        if (
+            !isNaN(
+                tanggal.getTime()
+            )
+        ) {
+
+            let hari =
+                String(
+                    tanggal.getDate()
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            let bulan =
+                String(
+                    tanggal.getMonth() + 1
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            let tahun =
+                tanggal.getFullYear();
+
+
+            return (
+                hari
+                +
+                "/"
+                +
+                bulan
+                +
+                "/"
+                +
+                tahun
+            );
+
+        }
+
+    }
+
+
+    // Kalau bukan ISO,
+    // tampilkan apa adanya
+
+    return teks;
+
+}
+
+
+// =====================================================
+// QTY
+//
+// Mendukung:
+//
+// 186
+// 186 pcs
+// 1.078 pcs
+// 1,078 pcs
+// =====================================================
+
+function ambilQty(row) {
+
+    let nilai =
+        row[5];
+
+
+    if (
+        nilai === undefined ||
+        nilai === null ||
+        nilai === ""
+    ) {
+
+        return 0;
+
+    }
+
 
     if (
         typeof nilai === "number"
@@ -577,19 +896,82 @@ function ambilQty(row) {
 
     }
 
-    // Bersihkan format angka
 
     let teks =
         String(nilai)
-        .replace(/\./g, "")
-        .replace(/,/g, ".");
+        .trim()
+        .toLowerCase();
+
+
+    // Hilangkan pcs
+
+    teks =
+        teks.replace(
+            /pcs/g,
+            ""
+        )
+        .trim();
+
+
+    // Jika format Indonesia
+    // contoh 1.078
+
+    if (
+        teks.includes(".") &&
+        !teks.includes(",")
+    ) {
+
+        teks =
+            teks.replace(
+                /\./g,
+                ""
+            );
+
+    }
+
+    // Jika ada koma
+
+    else {
+
+        teks =
+            teks.replace(
+                /\./g,
+                ""
+            )
+            .replace(
+                /,/g,
+                "."
+            );
+
+    }
+
 
     let angka =
         Number(teks);
 
+
     return isNaN(angka)
         ? 0
         : angka;
+
+}
+
+
+// =====================================================
+// TAMPILKAN QTY
+// =====================================================
+
+function formatQty(row) {
+
+    let qty =
+        ambilQty(row);
+
+
+    return (
+        formatAngka(qty)
+        +
+        " pcs"
+    );
 
 }
 
@@ -645,7 +1027,9 @@ function hitungEfisiensi() {
         (
             (produksi - reject)
             / produksi
-        ) * 100;
+        )
+        *
+        100;
 
 
     document.getElementById(
@@ -653,8 +1037,10 @@ function hitungEfisiensi() {
     ).innerHTML =
 
         "Efisiensi: "
-        + hasil.toFixed(2)
-        + "%";
+        +
+        hasil.toFixed(2)
+        +
+        "%";
 
 }
 
@@ -663,116 +1049,180 @@ function hitungEfisiensi() {
 // AMBIL DATA GOOGLE SHEETS
 // =====================================================
 
-fetch(URL_APPS_SCRIPT)
+fetch(
+    URL_APPS_SCRIPT
+)
 
-.then(function(response) {
+.then(
+    function(response) {
 
-    if (!response.ok) {
 
-        throw new Error(
-            "Gagal mengakses Apps Script"
-        );
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "Gagal mengakses Apps Script"
+            );
+
+        }
+
+
+        return response.json();
 
     }
-
-    return response.json();
-
-})
+)
 
 
-.then(function(data) {
-
-    console.log(
-        "Data Spreadsheet:",
-        data
-    );
+.then(
+    function(data) {
 
 
-    // Buang header
-
-    semuaData =
-        data.slice(1);
-
-
-    dataTampil =
-        [...semuaData];
+        console.log(
+            "Data Spreadsheet:",
+            data
+        );
 
 
-    // Buat filter
+        // Buang header
 
-    buatFilter();
-
-
-    // Tampilkan data
-
-    tampilkanData(
-        dataTampil
-    );
+        semuaData =
+            data.slice(1);
 
 
-    // Update dashboard
-
-    updateDashboard(
-        dataTampil
-    );
-
-
-    // Update mesin
-
-    updateDataMesin(
-        dataTampil
-    );
+        dataTampil =
+            [
+                ...semuaData
+            ];
 
 
-    // Status
+        // Buat filter
 
-    document.getElementById(
-        "statusData"
-    ).innerHTML =
-
-        "Data berhasil dimuat: "
-        +
-        semuaData.length.toLocaleString(
-            "id-ID"
-        )
-        +
-        " baris";
-
-})
+        buatFilter();
 
 
-.catch(function(error) {
+        // Tampilkan tabel
 
-    console.error(error);
-
-
-    document.getElementById(
-        "statusData"
-    ).innerHTML =
-        "Gagal mengambil data Google Sheets.";
+        tampilkanData(
+            dataTampil
+        );
 
 
-    document.getElementById(
-        "dataSheets"
-    ).innerHTML = `
+        // Dashboard
 
-        <tr>
+        updateDashboard(
+            dataTampil
+        );
 
-            <td colspan="9">
 
-                Gagal mengambil data
+        // Mesin
 
-            </td>
+        updateDataMesin(
+            dataTampil
+        );
 
-        </tr>
 
-    `;
+        // Status
 
-});
+        document.getElementById(
+            "statusData"
+        ).innerHTML =
+
+            "Data berhasil dimuat: "
+            +
+            semuaData.length
+                .toLocaleString(
+                    "id-ID"
+                )
+            +
+            " baris";
+
+    }
+)
+
+
+.catch(
+    function(error) {
+
+
+        console.error(
+            error
+        );
+
+
+        document.getElementById(
+            "statusData"
+        ).innerHTML =
+
+            "Gagal mengambil data Google Sheets.";
+
+
+        document.getElementById(
+            "dataSheets"
+        ).innerHTML = `
+
+            <tr>
+
+                <td colspan="9">
+
+                    Gagal mengambil data
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+);
 
 
 // =====================================================
-// MEMBUAT FILTER
+// FILTER CONFIG
+// =====================================================
+
+const filterConfig = [
+
+    {
+        nama: "Shift",
+        index: 0
+    },
+
+    {
+        nama: "Grup",
+        index: 1
+    },
+
+    {
+        nama: "Kode Produk",
+        index: 2
+    },
+
+    {
+        nama: "Warna Ground",
+        index: 3
+    },
+
+    {
+        nama: "Motif",
+        index: 4
+    },
+
+    {
+        nama: "Mc",
+        index: 6
+    },
+
+    {
+        nama: "Tanggal",
+        index: 7
+    }
+
+];
+
+
+// =====================================================
+// BUAT FILTER
 // =====================================================
 
 function buatFilter() {
@@ -826,18 +1276,19 @@ function buatFilter() {
                 filterInfo.index;
 
 
-            // Multi select
-
-            select.multiple = true;
-
-
-            select.size = 5;
+            select.multiple =
+                true;
 
 
-            // Daftar nilai unik
+            select.size =
+                5;
 
-            let daftar = [];
 
+            let daftar =
+                [];
+
+
+            // Ambil nilai unik
 
             semuaData.forEach(
                 function(row) {
@@ -847,6 +1298,22 @@ function buatFilter() {
                         row[
                             filterInfo.index
                         ];
+
+
+                    // Untuk tanggal,
+                    // gunakan tampilan
+                    // tanggal yang sudah diformat
+
+                    if (
+                        filterInfo.index === 7
+                    ) {
+
+                        nilai =
+                            formatTanggal(
+                                nilai
+                            );
+
+                    }
 
 
                     if (
@@ -890,7 +1357,7 @@ function buatFilter() {
             );
 
 
-            // Pilihan Semua
+            // Pilihan semua
 
             let optionSemua =
                 document.createElement(
@@ -898,7 +1365,8 @@ function buatFilter() {
                 );
 
 
-            optionSemua.value = "";
+            optionSemua.value =
+                "";
 
 
             optionSemua.textContent =
@@ -944,7 +1412,7 @@ function buatFilter() {
             );
 
 
-            // Saat berubah
+            // Saat filter berubah
 
             select.addEventListener(
                 "change",
@@ -958,7 +1426,9 @@ function buatFilter() {
                         .some(
                             function(option) {
 
-                                return option.value === "";
+                                return (
+                                    option.value === ""
+                                );
 
                             }
                         );
@@ -1007,9 +1477,7 @@ function buatFilter() {
     );
 
 
-    // =================================================
-    // TOMBOL RESET
-    // =================================================
+    // Tombol reset
 
     let tombolReset =
         document.createElement(
@@ -1059,7 +1527,9 @@ function filterData() {
                             );
 
 
-                        if (!select) {
+                        if (
+                            !select
+                        ) {
 
                             return true;
 
@@ -1086,8 +1556,6 @@ function filterData() {
                             );
 
 
-                        // Tidak ada pilihan
-
                         if (
                             pilihan.length === 0
                         ) {
@@ -1097,11 +1565,29 @@ function filterData() {
                         }
 
 
+                        let nilaiData =
+                            row[
+                                filterInfo.index
+                            ];
+
+
+                        // Khusus tanggal
+
+                        if (
+                            filterInfo.index === 7
+                        ) {
+
+                            nilaiData =
+                                formatTanggal(
+                                    nilaiData
+                                );
+
+                        }
+
+
                         return pilihan.includes(
                             String(
-                                row[
-                                    filterInfo.index
-                                ]
+                                nilaiData
                             )
                         );
 
@@ -1116,21 +1602,15 @@ function filterData() {
         hasil;
 
 
-    // Tampilkan tabel
-
     tampilkanData(
         hasil
     );
 
 
-    // Update dashboard
-
     updateDashboard(
         hasil
     );
 
-
-    // Update mesin
 
     updateDataMesin(
         hasil
@@ -1176,7 +1656,9 @@ function resetFilter() {
                 );
 
 
-            if (!select) {
+            if (
+                !select
+            ) {
 
                 return;
 
@@ -1200,7 +1682,9 @@ function resetFilter() {
 
 
     dataTampil =
-        [...semuaData];
+        [
+            ...semuaData
+        ];
 
 
     tampilkanData(
@@ -1240,12 +1724,13 @@ function resetFilter() {
 
 
 // =====================================================
-// TAMPILKAN DATA GOOGLE SHEETS
+// TAMPILKAN DATA
 // =====================================================
 
 function tampilkanData(data) {
 
-    let tabel = "";
+    let tabel =
+        "";
 
 
     if (
@@ -1258,7 +1743,8 @@ function tampilkanData(data) {
 
                 <td colspan="9">
 
-                    Tidak ada data yang sesuai filter
+                    Tidak ada data
+                    yang sesuai filter
 
                 </td>
 
@@ -1271,92 +1757,74 @@ function tampilkanData(data) {
 
     else {
 
+
         data.forEach(
             function(row) {
-
-
-                // =================================================
-                // SUMBER DATA TETAP:
-                //
-                // row[0] = Shift
-                // row[1] = Grup
-                // row[2] = Kode Produk
-                // row[3] = Warna Ground
-                // row[4] = Motif
-                // row[5] = Qty
-                // row[6] = Mc
-                // row[7] = Tanggal
-                // row[8] = Jenis Print
-                //
-                // HANYA URUTAN TAMPILAN YANG DIUBAH
-                // =================================================
-
-
-                let qty =
-                    ambilQty(row);
 
 
                 tabel += `
 
                     <tr>
 
-                        <!-- Tanggal -->
+                        <!-- TANGGAL -->
 
                         <td>
-                            ${row[7] ?? ""}
+                            ${formatTanggal(
+                                row[7]
+                            )}
                         </td>
 
 
-                        <!-- Shift -->
+                        <!-- SHIFT -->
 
                         <td>
                             ${row[0] ?? ""}
                         </td>
 
 
-                        <!-- Grup -->
+                        <!-- GRUP -->
 
                         <td>
                             ${row[1] ?? ""}
                         </td>
 
 
-                        <!-- Kode Produk -->
+                        <!-- KODE PRODUK -->
 
                         <td>
                             ${row[2] ?? ""}
                         </td>
 
 
-                        <!-- Warna Ground -->
+                        <!-- WARNA GROUND -->
 
                         <td>
                             ${row[3] ?? ""}
                         </td>
 
 
-                        <!-- Motif -->
+                        <!-- MOTIF -->
 
                         <td>
                             ${row[4] ?? ""}
                         </td>
 
 
-                        <!-- Qty -->
+                        <!-- QTY -->
 
                         <td>
-                            ${formatAngka(qty)} pcs
+                            ${formatQty(row)}
                         </td>
 
 
-                        <!-- Mc -->
+                        <!-- MC -->
 
                         <td>
                             ${row[6] ?? ""}
                         </td>
 
 
-                        <!-- Jenis Print -->
+                        <!-- JENIS PRINT -->
 
                         <td>
                             ${row[8] ?? ""}
@@ -1386,9 +1854,12 @@ function tampilkanData(data) {
 
 function updateDashboard(data) {
 
-    // Total Qty
+    // =================================================
+    // TOTAL QTY
+    // =================================================
 
-    let totalQty = 0;
+    let totalQty =
+        0;
 
 
     data.forEach(
@@ -1404,10 +1875,14 @@ function updateDashboard(data) {
     document.getElementById(
         "totalQty"
     ).innerHTML =
-        formatAngka(totalQty);
+        formatAngka(
+            totalQty
+        );
 
 
-    // Total data
+    // =================================================
+    // TOTAL DATA
+    // =================================================
 
     document.getElementById(
         "totalData"
@@ -1417,13 +1892,17 @@ function updateDashboard(data) {
         );
 
 
-    // Jumlah mesin
+    // =================================================
+    // JUMLAH MESIN
+    // =================================================
 
-    let daftarMesin = [];
+    let daftarMesin =
+        [];
 
 
     data.forEach(
         function(row) {
+
 
             let mesin =
                 String(
@@ -1432,8 +1911,13 @@ function updateDashboard(data) {
 
 
             if (
+
                 mesin !== "" &&
-                !daftarMesin.includes(mesin)
+
+                !daftarMesin.includes(
+                    mesin
+                )
+
             ) {
 
                 daftarMesin.push(
@@ -1452,13 +1936,17 @@ function updateDashboard(data) {
         daftarMesin.length;
 
 
-    // Jumlah grup
+    // =================================================
+    // JUMLAH GRUP
+    // =================================================
 
-    let daftarGrup = [];
+    let daftarGrup =
+        [];
 
 
     data.forEach(
         function(row) {
+
 
             let grup =
                 String(
@@ -1467,8 +1955,13 @@ function updateDashboard(data) {
 
 
             if (
+
                 grup !== "" &&
-                !daftarGrup.includes(grup)
+
+                !daftarGrup.includes(
+                    grup
+                )
+
             ) {
 
                 daftarGrup.push(
@@ -1491,21 +1984,12 @@ function updateDashboard(data) {
 
 // =====================================================
 // DATA MESIN OTOMATIS
-//
-// Mc berasal dari kolom G / index 6
-//
-// Karena Spreadsheet tidak mempunyai kolom
-// Produksi dan Reject, tabel mesin otomatis
-// menghitung Qty per mesin.
-//
-// Jadi:
-// Produksi = total Qty
-// Jumlah Data = jumlah baris
 // =====================================================
 
 function updateDataMesin(data) {
 
-    let mesinMap = {};
+    let mesinMap =
+        {};
 
 
     data.forEach(
@@ -1543,11 +2027,15 @@ function updateDataMesin(data) {
             }
 
 
-            mesinMap[namaMesin].produksi +=
+            mesinMap[
+                namaMesin
+            ].produksi +=
                 ambilQty(row);
 
 
-            mesinMap[namaMesin].jumlahData++;
+            mesinMap[
+                namaMesin
+            ].jumlahData++;
 
         }
     );
@@ -1574,82 +2062,12 @@ function updateDataMesin(data) {
     );
 
 
-    let tabel = "";
-
-
-    if (
-        daftarMesin.length === 0
-    ) {
-
-        tabel = `
-
-            <tr>
-
-                <td colspan="3">
-
-                    Tidak ada data mesin
-
-                </td>
-
-            </tr>
-
-        `;
-
-    }
-
-
-    else {
-
-
-        daftarMesin.forEach(
-            function(namaMesin) {
-
-
-                let info =
-                    mesinMap[namaMesin];
-
-
-                tabel += `
-
-                    <tr>
-
-                        <td>
-                            ${namaMesin}
-                        </td>
-
-                        <td>
-                            ${formatAngka(
-                                info.produksi
-                            )} pcs
-                        </td>
-
-                        <td>
-                            ${info.jumlahData.toLocaleString(
-                                "id-ID"
-                            )}
-                        </td>
-
-                    </tr>
-
-                `;
-
-            }
-        );
-
-    }
-
-
-    document.getElementById(
-        "dataMesin"
-    ).innerHTML =
-        tabel;
-
-
     // =================================================
-    // TABEL RINGKAS
+    // TABEL MESIN
     // =================================================
 
-    let ringkas = "";
+    let tabel =
+        "";
 
 
     daftarMesin.forEach(
@@ -1657,10 +2075,12 @@ function updateDataMesin(data) {
 
 
             let info =
-                mesinMap[namaMesin];
+                mesinMap[
+                    namaMesin
+                ];
 
 
-            ringkas += `
+            tabel += `
 
                 <tr>
 
@@ -1689,15 +2109,17 @@ function updateDataMesin(data) {
 
 
     if (
-        ringkas === ""
+        tabel === ""
     ) {
 
-        ringkas = `
+        tabel = `
 
             <tr>
 
                 <td colspan="3">
-                    Tidak ada data
+
+                    Tidak ada data mesin
+
                 </td>
 
             </tr>
@@ -1708,6 +2130,20 @@ function updateDataMesin(data) {
 
 
     document.getElementById(
+        "dataMesin"
+    ).innerHTML =
+        tabel;
+
+
+    // =================================================
+    // TABEL RINGKAS
+    // =================================================
+
+    let ringkas =
+        tabel;
+
+
+    document.getElementById(
         "dataMesinRingkas"
     ).innerHTML =
         ringkas;
@@ -1715,6 +2151,7 @@ function updateDataMesin(data) {
 }
 
 </script>
+
 
 </body>
 </html>
