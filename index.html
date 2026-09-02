@@ -189,6 +189,20 @@ button {
 
     margin-bottom: 25px;
 }
+      /* TABEL DATA PRODUKSI - 6 BARIS + SCROLL */
+
+.data-produksi-scroll {
+    max-height: 375px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 8px;
+}
+
+.data-produksi-scroll thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
 
 table {
     width: 100%;
@@ -929,6 +943,8 @@ tbody tr:hover {
 
 <div class="table-container">
 
+<div class="data-produksi-scroll">
+
 <table>
 
 <thead>
@@ -982,6 +998,7 @@ tbody tr:hover {
 
 </div>
 
+</div>
 
 
 <script>
