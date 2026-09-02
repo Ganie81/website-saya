@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Dashboard Produksi</title>
 
 <style>
+
+/* ==============================
+   DASAR
+============================== */
 
 * {
     box-sizing: border-box;
@@ -29,6 +37,7 @@ h2 {
     margin-top: 30px;
 }
 
+
 /* ==============================
    FILTER
 ============================== */
@@ -49,7 +58,9 @@ h2 {
 
 .filter-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+
     gap: 12px;
 }
 
@@ -95,6 +106,7 @@ button {
     background: #c9302c;
 }
 
+
 /* ==============================
    PERIODE
 ============================== */
@@ -114,9 +126,12 @@ button {
 
 .periode-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+
     gap: 10px;
 }
+
 
 /* ==============================
    DASHBOARD
@@ -124,7 +139,9 @@ button {
 
 .dashboard {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+
     gap: 15px;
     margin-bottom: 25px;
 }
@@ -134,7 +151,9 @@ button {
     padding: 18px;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.08);
 }
 
 .card-title {
@@ -154,6 +173,7 @@ button {
     margin-top: 3px;
 }
 
+
 /* ==============================
    TABLE
 ============================== */
@@ -163,7 +183,10 @@ button {
     padding: 15px;
     border-radius: 12px;
     overflow-x: auto;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.08);
+
     margin-bottom: 25px;
 }
 
@@ -195,6 +218,35 @@ tbody tr:hover {
     background: #e9f3ff;
 }
 
+
+/* ==============================
+   PENCAPAIAN GRUP
+============================== */
+
+.pencapaian-box {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.08);
+
+    margin-bottom: 25px;
+}
+
+.pencapaian-info {
+    background: #f1f8ff;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.persen {
+    font-weight: bold;
+}
+
+
 /* ==============================
    STATUS
 ============================== */
@@ -207,8 +259,9 @@ tbody tr:hover {
     font-weight: bold;
 }
 
+
 /* ==============================
-   CALCULATOR
+   KALKULATOR
 ============================== */
 
 .calculator {
@@ -216,12 +269,16 @@ tbody tr:hover {
     padding: 18px;
     border-radius: 12px;
     margin-top: 25px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.08);
 }
 
 .calc-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+
     gap: 12px;
 }
 
@@ -253,6 +310,7 @@ tbody tr:hover {
     font-weight: bold;
 }
 
+
 /* ==============================
    MOBILE
 ============================== */
@@ -274,9 +332,12 @@ tbody tr:hover {
 }
 
 </style>
+
 </head>
 
+
 <body>
+
 
 <h1>📊 DASHBOARD PRODUKSI</h1>
 
@@ -291,54 +352,115 @@ tbody tr:hover {
         📅 Filter Periode Dashboard
     </div>
 
+
     <div class="periode-box">
 
         <div class="periode-grid">
+
 
             <div class="filter-item">
 
                 <label>Periode</label>
 
                 <select id="periodeMode">
-                    <option value="semua">Semua</option>
-                    <option value="tahun">Per Tahun</option>
-                    <option value="bulan">Per Bulan</option>
+
+                    <option value="semua">
+                        Semua
+                    </option>
+
+                    <option value="tahun">
+                        Per Tahun
+                    </option>
+
+                    <option value="bulan">
+                        Per Bulan
+                    </option>
+
                 </select>
 
             </div>
 
 
-            <div class="filter-item" id="tahunBox" style="display:none;">
+            <div
+                class="filter-item"
+                id="tahunBox"
+                style="display:none;"
+            >
 
                 <label>Tahun</label>
 
                 <select id="periodeTahun">
-                    <option value="">Semua Tahun</option>
+
+                    <option value="">
+                        Semua Tahun
+                    </option>
+
                 </select>
 
             </div>
 
 
-            <div class="filter-item" id="bulanBox" style="display:none;">
+            <div
+                class="filter-item"
+                id="bulanBox"
+                style="display:none;"
+            >
 
                 <label>Bulan</label>
 
                 <select id="periodeBulan">
 
-                    <option value="">Semua Bulan</option>
+                    <option value="">
+                        Semua Bulan
+                    </option>
 
-                    <option value="1">Januari</option>
-                    <option value="2">Februari</option>
-                    <option value="3">Maret</option>
-                    <option value="4">April</option>
-                    <option value="5">Mei</option>
-                    <option value="6">Juni</option>
-                    <option value="7">Juli</option>
-                    <option value="8">Agustus</option>
-                    <option value="9">September</option>
-                    <option value="10">Oktober</option>
-                    <option value="11">November</option>
-                    <option value="12">Desember</option>
+                    <option value="1">
+                        Januari
+                    </option>
+
+                    <option value="2">
+                        Februari
+                    </option>
+
+                    <option value="3">
+                        Maret
+                    </option>
+
+                    <option value="4">
+                        April
+                    </option>
+
+                    <option value="5">
+                        Mei
+                    </option>
+
+                    <option value="6">
+                        Juni
+                    </option>
+
+                    <option value="7">
+                        Juli
+                    </option>
+
+                    <option value="8">
+                        Agustus
+                    </option>
+
+                    <option value="9">
+                        September
+                    </option>
+
+                    <option value="10">
+                        Oktober
+                    </option>
+
+                    <option value="11">
+                        November
+                    </option>
+
+                    <option value="12">
+                        Desember
+                    </option>
 
                 </select>
 
@@ -356,53 +478,100 @@ tbody tr:hover {
 
     <div class="filter-grid">
 
+
         <div class="filter-item">
+
             <label>Shift</label>
-            <select id="filterShift" multiple></select>
+
+            <select
+                id="filterShift"
+                multiple
+            ></select>
+
         </div>
 
 
         <div class="filter-item">
+
             <label>Grup</label>
-            <select id="filterGrup" multiple></select>
+
+            <select
+                id="filterGrup"
+                multiple
+            ></select>
+
         </div>
 
 
         <div class="filter-item">
+
             <label>Kode Produk</label>
-            <select id="filterKode" multiple></select>
+
+            <select
+                id="filterKode"
+                multiple
+            ></select>
+
         </div>
 
 
         <div class="filter-item">
+
             <label>Warna Ground</label>
-            <select id="filterGround" multiple></select>
+
+            <select
+                id="filterGround"
+                multiple
+            ></select>
+
         </div>
 
 
         <div class="filter-item">
+
             <label>Motif</label>
-            <select id="filterMotif" multiple></select>
+
+            <select
+                id="filterMotif"
+                multiple
+            ></select>
+
         </div>
 
 
         <div class="filter-item">
+
             <label>Mc</label>
-            <select id="filterMc" multiple></select>
+
+            <select
+                id="filterMc"
+                multiple
+            ></select>
+
         </div>
 
 
         <div class="filter-item">
+
             <label>Tanggal</label>
-            <select id="filterTanggal" multiple></select>
+
+            <select
+                id="filterTanggal"
+                multiple
+            ></select>
+
         </div>
+
 
     </div>
 
 
     <div class="filter-buttons">
 
-        <button class="btn-reset" onclick="resetFilter()">
+        <button
+            class="btn-reset"
+            onclick="resetFilter()"
+        >
             🔄 Reset Semua Filter
         </button>
 
@@ -415,16 +584,20 @@ tbody tr:hover {
      STATUS
 ========================================== -->
 
-<div class="status" id="status">
+<div
+    class="status"
+    id="status"
+>
     Mengambil data...
 </div>
 
 
 <!-- ==========================================
-     DASHBOARD
+     DASHBOARD UTAMA
 ========================================== -->
 
 <div class="dashboard">
+
 
     <div class="card">
 
@@ -432,7 +605,10 @@ tbody tr:hover {
             Total Produksi
         </div>
 
-        <div class="card-value" id="totalQty">
+        <div
+            class="card-value"
+            id="totalQty"
+        >
             0
         </div>
 
@@ -449,7 +625,10 @@ tbody tr:hover {
             Total Produksi
         </div>
 
-        <div class="card-value" id="totalKodi">
+        <div
+            class="card-value"
+            id="totalKodi"
+        >
             0
         </div>
 
@@ -466,7 +645,10 @@ tbody tr:hover {
             Total Data
         </div>
 
-        <div class="card-value" id="totalData">
+        <div
+            class="card-value"
+            id="totalData"
+        >
             0
         </div>
 
@@ -483,7 +665,10 @@ tbody tr:hover {
             Jumlah Mesin
         </div>
 
-        <div class="card-value" id="jumlahMesin">
+        <div
+            class="card-value"
+            id="jumlahMesin"
+        >
             0
         </div>
 
@@ -500,7 +685,10 @@ tbody tr:hover {
             Jumlah Grup
         </div>
 
-        <div class="card-value" id="jumlahGrup">
+        <div
+            class="card-value"
+            id="jumlahGrup"
+        >
             0
         </div>
 
@@ -510,14 +698,78 @@ tbody tr:hover {
 
     </div>
 
+
 </div>
 
 
 <!-- ==========================================
-     DATA PRODUKSI PER MESIN
+     PENCAPAIAN PER GRUP
 ========================================== -->
 
-<h2>📈 Data Produksi Mesin</h2>
+<h2>
+    🎯 Pencapaian Produksi per Grup
+</h2>
+
+
+<div class="pencapaian-box">
+
+
+    <div
+        class="pencapaian-info"
+        id="infoPencapaian"
+    >
+        Pencapaian berdasarkan data yang sedang difilter.
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Grup
+                    </th>
+
+                    <th>
+                        Produksi (pcs)
+                    </th>
+
+                    <th>
+                        Produksi (Kodi)
+                    </th>
+
+                    <th>
+                        Pencapaian
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody
+                id="tabelPencapaianGrup"
+            ></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     DATA PRODUKSI MESIN
+========================================== -->
+
+<h2>
+    📈 Data Produksi Mesin
+</h2>
+
 
 <div class="table-container">
 
@@ -526,16 +778,29 @@ tbody tr:hover {
 <thead>
 
 <tr>
-    <th>Mesin</th>
-    <th>Total Produksi (pcs)</th>
-    <th>Total Produksi (Kodi)</th>
-    <th>Jumlah Data</th>
+
+    <th>
+        Mesin
+    </th>
+
+    <th>
+        Total Produksi (pcs)
+    </th>
+
+    <th>
+        Total Produksi (Kodi)
+    </th>
+
+    <th>
+        Jumlah Data
+    </th>
+
 </tr>
 
 </thead>
 
-<tbody id="tabelMesin">
-</tbody>
+
+<tbody id="tabelMesin"></tbody>
 
 </table>
 
@@ -543,18 +808,24 @@ tbody tr:hover {
 
 
 <!-- ==========================================
-     KALKULATOR EFISIENSI MANUAL
+     KALKULATOR
 ========================================== -->
 
 <div class="calculator">
 
-<h2>🧮 Kalkulator Produksi</h2>
+<h2>
+    🧮 Kalkulator Produksi
+</h2>
+
 
 <div class="calc-grid">
 
+
     <div class="calc-item">
 
-        <label>Produksi</label>
+        <label>
+            Produksi
+        </label>
 
         <input
             type="number"
@@ -567,7 +838,9 @@ tbody tr:hover {
 
     <div class="calc-item">
 
-        <label>Reject</label>
+        <label>
+            Reject
+        </label>
 
         <input
             type="number"
@@ -576,6 +849,7 @@ tbody tr:hover {
         >
 
     </div>
+
 
 </div>
 
@@ -595,6 +869,7 @@ tbody tr:hover {
     Hasil akan tampil di sini
 </div>
 
+
 </div>
 
 
@@ -602,7 +877,10 @@ tbody tr:hover {
      DATA MESIN OTOMATIS
 ========================================== -->
 
-<h2>🏭 Data Mesin Otomatis</h2>
+<h2>
+    🏭 Data Mesin Otomatis
+</h2>
+
 
 <div class="table-container">
 
@@ -611,16 +889,29 @@ tbody tr:hover {
 <thead>
 
 <tr>
-    <th>Mesin</th>
-    <th>Produksi (pcs)</th>
-    <th>Produksi (Kodi)</th>
-    <th>Jumlah Data</th>
+
+    <th>
+        Mesin
+    </th>
+
+    <th>
+        Produksi (pcs)
+    </th>
+
+    <th>
+        Produksi (Kodi)
+    </th>
+
+    <th>
+        Jumlah Data
+    </th>
+
 </tr>
 
 </thead>
 
-<tbody id="dataMesin">
-</tbody>
+
+<tbody id="dataMesin"></tbody>
 
 </table>
 
@@ -628,10 +919,13 @@ tbody tr:hover {
 
 
 <!-- ==========================================
-     DATA GOOGLE SHEETS
+     DATA PRODUKSI
 ========================================== -->
 
-<h2>📋 Data Produksi</h2>
+<h2>
+    📋 Data Produksi
+</h2>
+
 
 <div class="table-container">
 
@@ -640,32 +934,61 @@ tbody tr:hover {
 <thead>
 
 <tr>
-    <th>Tanggal</th>
-    <th>Shift</th>
-    <th>Grup</th>
-    <th>Kode Produk</th>
-    <th>Warna Ground</th>
-    <th>Motif</th>
-    <th>Qty</th>
-    <th>Mc</th>
-    <th>Jenis Print</th>
+
+    <th>
+        Tanggal
+    </th>
+
+    <th>
+        Shift
+    </th>
+
+    <th>
+        Grup
+    </th>
+
+    <th>
+        Kode Produk
+    </th>
+
+    <th>
+        Warna Ground
+    </th>
+
+    <th>
+        Motif
+    </th>
+
+    <th>
+        Qty
+    </th>
+
+    <th>
+        Mc
+    </th>
+
+    <th>
+        Jenis Print
+    </th>
+
 </tr>
 
 </thead>
 
-<tbody id="tabelData">
-</tbody>
+
+<tbody id="tabelData"></tbody>
 
 </table>
 
 </div>
 
 
+
 <script>
 
 
 /* ==========================================
-   KONFIGURASI
+   URL APPS SCRIPT
 ========================================== */
 
 const URL_API =
@@ -673,21 +996,22 @@ const URL_API =
 
 
 let semuaData = [];
+
 let dataTampil = [];
 
 
 /* ==========================================
-   INDEX KOLOM GOOGLE SHEETS
+   INDEX KOLOM
 
-   A = Shift          0
-   B = Grup           1
-   C = Kode Produk    2
-   D = Warna Ground   3
-   E = Motif          4
-   F = Qty            5
-   G = Mc             6
-   H = Tanggal        7
-   I = Jenis Print    8
+   A = Shift       0
+   B = Grup        1
+   C = Kode Produk 2
+   D = Ground      3
+   E = Motif       4
+   F = Qty         5
+   G = Mc          6
+   H = Tanggal     7
+   I = Jenis Print 8
 ========================================== */
 
 const filterConfig = [
@@ -737,24 +1061,31 @@ const filterConfig = [
 
 function formatAngka(nilai) {
 
-    return Number(nilai || 0).toLocaleString("id-ID");
+    return Number(nilai || 0)
+        .toLocaleString("id-ID");
 
 }
 
 
 /* ==========================================
-   AMBIL BAGIAN TANGGAL WIB
+   BAGIAN TANGGAL WIB
 ========================================== */
 
 function getTanggalParts(nilai) {
 
-    if (!nilai) return null;
+    if (!nilai) {
+        return null;
+    }
 
-    const d = new Date(nilai);
+
+    const d =
+        new Date(nilai);
+
 
     if (isNaN(d.getTime())) {
         return null;
     }
+
 
     const parts =
         new Intl.DateTimeFormat(
@@ -769,6 +1100,7 @@ function getTanggalParts(nilai) {
 
 
     let hasil = {};
+
 
     parts.forEach(p => {
 
@@ -797,20 +1129,41 @@ function getTanggalParts(nilai) {
 
 function formatTanggal(nilai) {
 
-    const p = getTanggalParts(nilai);
+    const p =
+        getTanggalParts(nilai);
+
 
     if (!p) {
-        return String(nilai || "");
+
+        return String(
+            nilai || ""
+        );
+
     }
 
+
     return (
-        String(p.day).padStart(2, "0")
-        + "/"
+
+        String(p.day)
+            .padStart(2,"0")
+
         +
-        String(p.month).padStart(2, "0")
-        + "/"
+
+        "/"
+
         +
+
+        String(p.month)
+            .padStart(2,"0")
+
+        +
+
+        "/"
+
+        +
+
         p.year
+
     );
 
 }
@@ -818,28 +1171,28 @@ function formatTanggal(nilai) {
 
 /* ==========================================
    AMBIL QTY
-
-   Contoh:
-   186 pcs  → 186
-   194 pcs  → 194
-   1.078 pcs → 1078
-   2.407 pcs → 2407
 ========================================== */
 
 function ambilQty(row) {
 
-    let nilai = row[5];
+    let nilai =
+        row[5];
+
 
     if (
         nilai === null ||
         nilai === undefined ||
         nilai === ""
     ) {
+
         return 0;
+
     }
 
 
-    if (typeof nilai === "number") {
+    if (
+        typeof nilai === "number"
+    ) {
 
         return nilai;
 
@@ -848,10 +1201,10 @@ function ambilQty(row) {
 
     let s =
         String(nilai)
-        .trim()
-        .toLowerCase()
-        .replace(/pcs/g, "")
-        .trim();
+            .trim()
+            .toLowerCase()
+            .replace(/pcs/g,"")
+            .trim();
 
 
     if (
@@ -861,36 +1214,49 @@ function ambilQty(row) {
 
         s =
             s
-            .replace(/\./g, "")
+            .replace(/\./g,"")
             .replace(",", ".");
 
     }
 
-    else if (s.includes(".")) {
+
+    else if (
+        s.includes(".")
+    ) {
 
         const bagian =
             s.split(".").pop();
 
-        if (bagian.length === 3) {
+
+        if (
+            bagian.length === 3
+        ) {
 
             s =
-                s.replace(/\./g, "");
+                s.replace(/\./g,"");
 
         }
 
     }
 
-    else if (s.includes(",")) {
+
+    else if (
+        s.includes(",")
+    ) {
 
         const bagian =
             s.split(",").pop();
 
-        if (bagian.length === 3) {
+
+        if (
+            bagian.length === 3
+        ) {
 
             s =
-                s.replace(/,/g, "");
+                s.replace(/,/g,"");
 
         }
+
         else {
 
             s =
@@ -901,7 +1267,9 @@ function ambilQty(row) {
     }
 
 
-    const hasil = Number(s);
+    const hasil =
+        Number(s);
+
 
     return isNaN(hasil)
         ? 0
@@ -916,9 +1284,13 @@ function ambilQty(row) {
 
 function formatQty(row) {
 
-    return formatAngka(
-        ambilQty(row)
-    ) + " pcs";
+    return (
+        formatAngka(
+            ambilQty(row)
+        )
+        +
+        " pcs"
+    );
 
 }
 
@@ -929,88 +1301,120 @@ function formatQty(row) {
 
 function buatFilter() {
 
-    filterConfig.forEach(config => {
-
-        const select =
-            document.getElementById(config.id);
-
-        select.innerHTML = "";
+    filterConfig.forEach(
+        config => {
 
 
-        let nilaiUnik = [];
+            const select =
+                document.getElementById(
+                    config.id
+                );
 
 
-        semuaData.forEach(row => {
-
-            let nilai;
+            select.innerHTML = "";
 
 
-            if (config.tanggal) {
+            let nilaiUnik = [];
 
-                nilai =
-                    formatTanggal(
-                        row[config.index]
+
+            semuaData.forEach(
+                row => {
+
+
+                    let nilai;
+
+
+                    if (
+                        config.tanggal
+                    ) {
+
+                        nilai =
+                            formatTanggal(
+                                row[
+                                    config.index
+                                ]
+                            );
+
+                    }
+
+                    else {
+
+                        nilai =
+                            String(
+                                row[
+                                    config.index
+                                ] ?? ""
+                            ).trim();
+
+                    }
+
+
+                    if (
+                        nilai !== "" &&
+                        !nilaiUnik.includes(nilai)
+                    ) {
+
+                        nilaiUnik.push(
+                            nilai
+                        );
+
+                    }
+
+                }
+            );
+
+
+            nilaiUnik.sort(
+                (a,b) =>
+                    a.localeCompare(
+                        b,
+                        "id",
+                        {
+                            numeric: true
+                        }
+                    )
+            );
+
+
+            nilaiUnik.forEach(
+                nilai => {
+
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+
+                    option.value =
+                        nilai;
+
+
+                    option.textContent =
+                        nilai;
+
+
+                    select.appendChild(
+                        option
                     );
 
-            }
-            else {
-
-                nilai =
-                    String(
-                        row[config.index] ?? ""
-                    ).trim();
-
-            }
-
-
-            if (
-                nilai !== "" &&
-                !nilaiUnik.includes(nilai)
-            ) {
-
-                nilaiUnik.push(nilai);
-
-            }
-
-        });
-
-
-        nilaiUnik.sort((a,b) =>
-            a.localeCompare(
-                b,
-                "id",
-                {
-                    numeric: true
                 }
-            )
-        );
+            );
 
 
-        nilaiUnik.forEach(nilai => {
+            select.addEventListener(
+                "change",
+                terapkanSemuaFilter
+            );
 
-            const option =
-                document.createElement("option");
-
-            option.value = nilai;
-            option.textContent = nilai;
-
-            select.appendChild(option);
-
-        });
-
-
-        select.addEventListener(
-            "change",
-            terapkanSemuaFilter
-        );
-
-    });
+        }
+    );
 
 }
 
 
 /* ==========================================
-   BUAT FILTER TAHUN
+   BUAT TAHUN
 ========================================== */
 
 function buatFilterPeriode() {
@@ -1028,46 +1432,68 @@ function buatFilterPeriode() {
     let tahunUnik = [];
 
 
-    semuaData.forEach(row => {
-
-        const p =
-            getTanggalParts(row[7]);
+    semuaData.forEach(
+        row => {
 
 
-        if (
-            p &&
-            !tahunUnik.includes(p.year)
-        ) {
+            const p =
+                getTanggalParts(
+                    row[7]
+                );
 
-            tahunUnik.push(p.year);
+
+            if (
+                p &&
+                !tahunUnik.includes(
+                    p.year
+                )
+            ) {
+
+                tahunUnik.push(
+                    p.year
+                );
+
+            }
 
         }
-
-    });
-
-
-    tahunUnik.sort(
-        (a,b) => b - a
     );
 
 
-    tahunUnik.forEach(tahun => {
+    tahunUnik.sort(
+        (a,b) => b-a
+    );
 
-        const option =
-            document.createElement("option");
 
-        option.value = tahun;
-        option.textContent = tahun;
+    tahunUnik.forEach(
+        tahun => {
 
-        selectTahun.appendChild(option);
 
-    });
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                tahun;
+
+
+            option.textContent =
+                tahun;
+
+
+            selectTahun.appendChild(
+                option
+            );
+
+        }
+    );
 
 }
 
 
 /* ==========================================
-   CEK FILTER PERIODE
+   FILTER PERIODE
 ========================================== */
 
 function lolosFilterPeriode(row) {
@@ -1078,7 +1504,9 @@ function lolosFilterPeriode(row) {
         ).value;
 
 
-    if (mode === "semua") {
+    if (
+        mode === "semua"
+    ) {
 
         return true;
 
@@ -1086,7 +1514,9 @@ function lolosFilterPeriode(row) {
 
 
     const p =
-        getTanggalParts(row[7]);
+        getTanggalParts(
+            row[7]
+        );
 
 
     if (!p) {
@@ -1108,9 +1538,9 @@ function lolosFilterPeriode(row) {
         ).value;
 
 
-    /* PER TAHUN */
-
-    if (mode === "tahun") {
+    if (
+        mode === "tahun"
+    ) {
 
         if (!tahun) {
 
@@ -1118,18 +1548,26 @@ function lolosFilterPeriode(row) {
 
         }
 
-        return String(p.year) === tahun;
+
+        return (
+            String(p.year)
+            ===
+            String(tahun)
+        );
 
     }
 
 
-    /* PER BULAN */
+    if (
+        mode === "bulan"
+    ) {
 
-    if (mode === "bulan") {
 
         if (
             tahun &&
-            String(p.year) !== tahun
+            String(p.year)
+            !==
+            String(tahun)
         ) {
 
             return false;
@@ -1139,7 +1577,9 @@ function lolosFilterPeriode(row) {
 
         if (
             bulan &&
-            String(p.month) !== bulan
+            String(p.month)
+            !==
+            String(bulan)
         ) {
 
             return false;
@@ -1164,85 +1604,96 @@ function lolosFilterPeriode(row) {
 function terapkanSemuaFilter() {
 
     dataTampil =
-        semuaData.filter(row => {
-
-
-            /* FILTER PERIODE */
-
-            if (
-                !lolosFilterPeriode(row)
-            ) {
-
-                return false;
-
-            }
-
-
-            /* FILTER LAINNYA */
-
-            for (
-                const config of filterConfig
-            ) {
-
-                const select =
-                    document.getElementById(
-                        config.id
-                    );
-
-
-                const pilihan =
-                    Array.from(
-                        select.selectedOptions
-                    ).map(
-                        option =>
-                            option.value
-                    );
+        semuaData.filter(
+            row => {
 
 
                 if (
-                    pilihan.length === 0
-                ) {
-
-                    continue;
-
-                }
-
-
-                let nilai;
-
-
-                if (config.tanggal) {
-
-                    nilai =
-                        formatTanggal(
-                            row[config.index]
-                        );
-
-                }
-                else {
-
-                    nilai =
-                        String(
-                            row[config.index] ?? ""
-                        ).trim();
-
-                }
-
-
-                if (
-                    !pilihan.includes(nilai)
+                    !lolosFilterPeriode(
+                        row
+                    )
                 ) {
 
                     return false;
 
                 }
 
+
+                for (
+                    const config
+                    of filterConfig
+                ) {
+
+
+                    const select =
+                        document.getElementById(
+                            config.id
+                        );
+
+
+                    const pilihan =
+                        Array.from(
+                            select.selectedOptions
+                        ).map(
+                            option =>
+                                option.value
+                        );
+
+
+                    if (
+                        pilihan.length === 0
+                    ) {
+
+                        continue;
+
+                    }
+
+
+                    let nilai;
+
+
+                    if (
+                        config.tanggal
+                    ) {
+
+                        nilai =
+                            formatTanggal(
+                                row[
+                                    config.index
+                                ]
+                            );
+
+                    }
+
+                    else {
+
+                        nilai =
+                            String(
+                                row[
+                                    config.index
+                                ] ?? ""
+                            ).trim();
+
+                    }
+
+
+                    if (
+                        !pilihan.includes(
+                            nilai
+                        )
+                    ) {
+
+                        return false;
+
+                    }
+
+                }
+
+
+                return true;
+
             }
-
-
-            return true;
-
-        });
+        );
 
 
     tampilkanData();
@@ -1251,11 +1702,13 @@ function terapkanSemuaFilter() {
 
     updateDataMesin();
 
+    updatePencapaianGrup();
+
 }
 
 
 /* ==========================================
-   TAMPILKAN DATA UTAMA
+   TAMPILKAN DATA
 ========================================== */
 
 function tampilkanData() {
@@ -1269,60 +1722,81 @@ function tampilkanData() {
     tbody.innerHTML = "";
 
 
-    dataTampil.forEach(row => {
-
-        const tr =
-            document.createElement("tr");
+    dataTampil.forEach(
+        row => {
 
 
-        const kolom = [
-
-            formatTanggal(row[7]),
-
-            row[0],
-
-            row[1],
-
-            row[2],
-
-            row[3],
-
-            row[4],
-
-            formatQty(row),
-
-            row[6],
-
-            row[8]
-
-        ];
+            const tr =
+                document.createElement(
+                    "tr"
+                );
 
 
-        kolom.forEach(nilai => {
+            const kolom = [
 
-            const td =
-                document.createElement("td");
+                formatTanggal(row[7]),
 
-            td.textContent =
-                nilai ?? "";
+                row[0],
 
-            tr.appendChild(td);
+                row[1],
 
-        });
+                row[2],
+
+                row[3],
+
+                row[4],
+
+                formatQty(row),
+
+                row[6],
+
+                row[8]
+
+            ];
 
 
-        tbody.appendChild(tr);
+            kolom.forEach(
+                nilai => {
 
-    });
+
+                    const td =
+                        document.createElement(
+                            "td"
+                        );
+
+
+                    td.textContent =
+                        nilai ?? "";
+
+
+                    tr.appendChild(td);
+
+                }
+            );
+
+
+            tbody.appendChild(tr);
+
+        }
+    );
 
 
     document.getElementById(
         "status"
     ).textContent =
+
         "Menampilkan " +
-        formatAngka(dataTampil.length) +
+
+        formatAngka(
+            dataTampil.length
+        ) +
+
         " data dari " +
-        formatAngka(semuaData.length) +
+
+        formatAngka(
+            semuaData.length
+        ) +
+
         " data.";
 
 }
@@ -1336,43 +1810,54 @@ function updateDashboard() {
 
     let totalQty = 0;
 
-    const mesin = new Set();
 
-    const grup = new Set();
-
-
-    dataTampil.forEach(row => {
-
-        totalQty +=
-            ambilQty(row);
+    const mesin =
+        new Set();
 
 
-        const namaMesin =
-            String(
-                row[6] ?? ""
-            ).trim();
+    const grup =
+        new Set();
 
 
-        const namaGrup =
-            String(
-                row[1] ?? ""
-            ).trim();
+    dataTampil.forEach(
+        row => {
 
 
-        if (namaMesin) {
+            totalQty +=
+                ambilQty(row);
 
-            mesin.add(namaMesin);
+
+            const namaMesin =
+                String(
+                    row[6] ?? ""
+                ).trim();
+
+
+            const namaGrup =
+                String(
+                    row[1] ?? ""
+                ).trim();
+
+
+            if (namaMesin) {
+
+                mesin.add(
+                    namaMesin
+                );
+
+            }
+
+
+            if (namaGrup) {
+
+                grup.add(
+                    namaGrup
+                );
+
+            }
 
         }
-
-
-        if (namaGrup) {
-
-            grup.add(namaGrup);
-
-        }
-
-    });
+    );
 
 
     const totalKodi =
@@ -1382,7 +1867,9 @@ function updateDashboard() {
     document.getElementById(
         "totalQty"
     ).textContent =
-        formatAngka(totalQty);
+        formatAngka(
+            totalQty
+        );
 
 
     document.getElementById(
@@ -1424,6 +1911,342 @@ function updateDashboard() {
 
 
 /* ==========================================
+   PENCAPAIAN PER GRUP
+========================================== */
+
+function updatePencapaianGrup() {
+
+    const tbody =
+        document.getElementById(
+            "tabelPencapaianGrup"
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    let dataGrup = {};
+
+
+    let totalQty = 0;
+
+
+    /* HITUNG TOTAL */
+
+    dataTampil.forEach(
+        row => {
+
+            totalQty +=
+                ambilQty(row);
+
+        }
+    );
+
+
+    /* HITUNG PER GRUP */
+
+    dataTampil.forEach(
+        row => {
+
+
+            const grup =
+                String(
+                    row[1] ?? ""
+                ).trim();
+
+
+            if (!grup) {
+
+                return;
+
+            }
+
+
+            if (
+                !dataGrup[grup]
+            ) {
+
+                dataGrup[grup] = 0;
+
+            }
+
+
+            dataGrup[grup] +=
+                ambilQty(row);
+
+        }
+    );
+
+
+    const daftarGrup =
+        Object.keys(dataGrup)
+            .sort(
+                (a,b) =>
+                    a.localeCompare(
+                        b,
+                        "id",
+                        {
+                            numeric: true
+                        }
+                    )
+            );
+
+
+    daftarGrup.forEach(
+        grup => {
+
+
+            const qty =
+                dataGrup[grup];
+
+
+            const kodi =
+                qty / 20;
+
+
+            let persen = 0;
+
+
+            if (
+                totalQty > 0
+            ) {
+
+                persen =
+                    (qty / totalQty)
+                    * 100;
+
+            }
+
+
+            const tr =
+                document.createElement(
+                    "tr"
+                );
+
+
+            tr.innerHTML = `
+
+                <td>
+                    ${grup}
+                </td>
+
+                <td>
+                    ${formatAngka(qty)}
+                    pcs
+                </td>
+
+                <td>
+                    ${kodi.toLocaleString(
+                        "id-ID",
+                        {
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 2
+                        }
+                    )}
+                    Kodi
+                </td>
+
+                <td class="persen">
+
+                    ${persen.toLocaleString(
+                        "id-ID",
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }
+                    )}
+                    %
+
+                </td>
+
+            `;
+
+
+            tbody.appendChild(tr);
+
+        }
+    );
+
+
+    /* ======================================
+       BARIS TOTAL
+    ====================================== */
+
+    const totalTr =
+        document.createElement(
+            "tr"
+        );
+
+
+    const totalKodi =
+        totalQty / 20;
+
+
+    totalTr.style.fontWeight =
+        "bold";
+
+
+    totalTr.style.background =
+        "#e9ecef";
+
+
+    totalTr.innerHTML = `
+
+        <td>
+            TOTAL
+        </td>
+
+        <td>
+            ${formatAngka(totalQty)}
+            pcs
+        </td>
+
+        <td>
+            ${totalKodi.toLocaleString(
+                "id-ID",
+                {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                }
+            )}
+            Kodi
+        </td>
+
+        <td>
+            100%
+        </td>
+
+    `;
+
+
+    tbody.appendChild(
+        totalTr
+    );
+
+
+    /* ======================================
+       INFORMASI PERIODE
+    ====================================== */
+
+    const mode =
+        document.getElementById(
+            "periodeMode"
+        ).value;
+
+
+    const tahun =
+        document.getElementById(
+            "periodeTahun"
+        ).value;
+
+
+    const bulanSelect =
+        document.getElementById(
+            "periodeBulan"
+        );
+
+
+    const bulan =
+        bulanSelect.options[
+            bulanSelect.selectedIndex
+        ]?.text || "";
+
+
+    let info =
+        "Pencapaian berdasarkan ";
+
+
+    if (
+        mode === "semua"
+    ) {
+
+        info +=
+            "semua periode";
+
+    }
+
+
+    else if (
+        mode === "tahun"
+    ) {
+
+        if (tahun) {
+
+            info +=
+                "tahun " + tahun;
+
+        }
+
+        else {
+
+            info +=
+                "semua tahun";
+
+        }
+
+    }
+
+
+    else if (
+        mode === "bulan"
+    ) {
+
+        if (
+            tahun &&
+            bulan &&
+            bulan !== "Semua Bulan"
+        ) {
+
+            info +=
+                bulan +
+                " " +
+                tahun;
+
+        }
+
+        else if (
+            bulan &&
+            bulan !== "Semua Bulan"
+        ) {
+
+            info +=
+                "bulan " +
+                bulan +
+                " semua tahun";
+
+        }
+
+        else if (tahun) {
+
+            info +=
+                "semua bulan tahun " +
+                tahun;
+
+        }
+
+        else {
+
+            info +=
+                "semua periode";
+
+        }
+
+    }
+
+
+    info +=
+        ".";
+
+
+    document.getElementById(
+        "infoPencapaian"
+    ).textContent =
+        info;
+
+}
+
+
+/* ==========================================
    DATA MESIN
 ========================================== */
 
@@ -1432,41 +2255,46 @@ function updateDataMesin() {
     const hasil = {};
 
 
-    dataTampil.forEach(row => {
-
-        const mesin =
-            String(
-                row[6] ?? ""
-            ).trim();
+    dataTampil.forEach(
+        row => {
 
 
-        if (!mesin) {
+            const mesin =
+                String(
+                    row[6] ?? ""
+                ).trim();
 
-            return;
+
+            if (!mesin) {
+
+                return;
+
+            }
+
+
+            if (
+                !hasil[mesin]
+            ) {
+
+                hasil[mesin] = {
+
+                    qty: 0,
+
+                    data: 0
+
+                };
+
+            }
+
+
+            hasil[mesin].qty +=
+                ambilQty(row);
+
+
+            hasil[mesin].data++;
 
         }
-
-
-        if (!hasil[mesin]) {
-
-            hasil[mesin] = {
-
-                qty: 0,
-
-                data: 0
-
-            };
-
-        }
-
-
-        hasil[mesin].qty +=
-            ambilQty(row);
-
-
-        hasil[mesin].data++;
-
-    });
+    );
 
 
     const tbody =
@@ -1497,131 +2325,159 @@ function updateDataMesin() {
                     }
                 )
         )
-        .forEach(mesin => {
+        .forEach(
+            mesin => {
 
 
-            const qty =
-                hasil[mesin].qty;
+                const qty =
+                    hasil[mesin].qty;
 
 
-            const kodi =
-                qty / 20;
+                const kodi =
+                    qty / 20;
 
 
-            /* TABEL DATA PRODUKSI MESIN */
+                /* TABEL 1 */
 
-            const tr =
-                document.createElement("tr");
-
-
-            tr.innerHTML = `
-
-                <td>${mesin}</td>
-
-                <td>
-                    ${formatAngka(qty)} pcs
-                </td>
-
-                <td>
-                    ${kodi.toLocaleString(
-                        "id-ID",
-                        {
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 2
-                        }
-                    )} Kodi
-                </td>
-
-                <td>
-                    ${formatAngka(
-                        hasil[mesin].data
-                    )}
-                </td>
-
-            `;
+                const tr =
+                    document.createElement(
+                        "tr"
+                    );
 
 
-            tbody.appendChild(tr);
+                tr.innerHTML = `
+
+                    <td>
+                        ${mesin}
+                    </td>
+
+                    <td>
+                        ${formatAngka(qty)}
+                        pcs
+                    </td>
+
+                    <td>
+                        ${kodi.toLocaleString(
+                            "id-ID",
+                            {
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 2
+                            }
+                        )}
+                        Kodi
+                    </td>
+
+                    <td>
+                        ${formatAngka(
+                            hasil[mesin].data
+                        )}
+                    </td>
+
+                `;
 
 
-            /* TABEL DATA MESIN OTOMATIS */
-
-            const tr2 =
-                document.createElement("tr");
-
-
-            tr2.innerHTML = `
-
-                <td>${mesin}</td>
-
-                <td>
-                    ${formatAngka(qty)} pcs
-                </td>
-
-                <td>
-                    ${kodi.toLocaleString(
-                        "id-ID",
-                        {
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 2
-                        }
-                    )} Kodi
-                </td>
-
-                <td>
-                    ${formatAngka(
-                        hasil[mesin].data
-                    )}
-                </td>
-
-            `;
+                tbody.appendChild(
+                    tr
+                );
 
 
-            tbody2.appendChild(tr2);
+                /* TABEL 2 */
 
-        });
+                const tr2 =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                tr2.innerHTML = `
+
+                    <td>
+                        ${mesin}
+                    </td>
+
+                    <td>
+                        ${formatAngka(qty)}
+                        pcs
+                    </td>
+
+                    <td>
+                        ${kodi.toLocaleString(
+                            "id-ID",
+                            {
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 2
+                            }
+                        )}
+                        Kodi
+                    </td>
+
+                    <td>
+                        ${formatAngka(
+                            hasil[mesin].data
+                        )}
+                    </td>
+
+                `;
+
+
+                tbody2.appendChild(
+                    tr2
+                );
+
+            }
+        );
 
 }
 
 
 /* ==========================================
-   RESET FILTER
+   RESET
 ========================================== */
 
 function resetFilter() {
 
-    filterConfig.forEach(config => {
 
-        const select =
-            document.getElementById(
-                config.id
+    filterConfig.forEach(
+        config => {
+
+
+            const select =
+                document.getElementById(
+                    config.id
+                );
+
+
+            Array.from(
+                select.options
+            ).forEach(
+                option => {
+
+                    option.selected =
+                        false;
+
+                }
             );
 
-
-        Array.from(
-            select.options
-        ).forEach(option => {
-
-            option.selected = false;
-
-        });
-
-    });
+        }
+    );
 
 
     document.getElementById(
         "periodeMode"
-    ).value = "semua";
+    ).value =
+        "semua";
 
 
     document.getElementById(
         "periodeTahun"
-    ).value = "";
+    ).value =
+        "";
 
 
     document.getElementById(
         "periodeBulan"
-    ).value = "";
+    ).value =
+        "";
 
 
     tampilkanKontrolPeriode();
@@ -1656,7 +2512,9 @@ function tampilkanKontrolPeriode() {
         );
 
 
-    if (mode === "semua") {
+    if (
+        mode === "semua"
+    ) {
 
         tahunBox.style.display =
             "none";
@@ -1667,7 +2525,9 @@ function tampilkanKontrolPeriode() {
     }
 
 
-    else if (mode === "tahun") {
+    else if (
+        mode === "tahun"
+    ) {
 
         tahunBox.style.display =
             "block";
@@ -1678,7 +2538,9 @@ function tampilkanKontrolPeriode() {
     }
 
 
-    else if (mode === "bulan") {
+    else if (
+        mode === "bulan"
+    ) {
 
         tahunBox.style.display =
             "block";
@@ -1747,7 +2609,9 @@ function hitungEfisiensi() {
         ) || 0;
 
 
-    if (produksi <= 0) {
+    if (
+        produksi <= 0
+    ) {
 
         document.getElementById(
             "hasilEfisiensi"
@@ -1760,14 +2624,20 @@ function hitungEfisiensi() {
 
 
     const hasil =
-        ((produksi - reject) /
-        produksi) * 100;
+        (
+            (produksi - reject)
+            /
+            produksi
+        )
+        * 100;
 
 
     document.getElementById(
         "hasilEfisiensi"
     ).textContent =
+
         "Efisiensi: " +
+
         hasil.toLocaleString(
             "id-ID",
             {
@@ -1775,97 +2645,115 @@ function hitungEfisiensi() {
                 maximumFractionDigits: 2
             }
         ) +
+
         "%";
 
 }
 
 
 /* ==========================================
-   AMBIL DATA DARI GOOGLE SHEETS
+   AMBIL DATA GOOGLE SHEETS
 ========================================== */
 
 fetch(URL_API)
 
-.then(response => {
-
-    if (!response.ok) {
-
-        throw new Error(
-            "Gagal mengambil data."
-        );
-
-    }
-
-    return response.json();
-
-})
+.then(
+    response => {
 
 
-.then(data => {
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "Gagal mengambil data."
+            );
+
+        }
 
 
-    if (
-        !Array.isArray(data) ||
-        data.length === 0
-    ) {
-
-        throw new Error(
-            "Data kosong."
-        );
+        return response.json();
 
     }
+)
 
 
-    /*
-       Baris pertama dianggap HEADER
-    */
-
-    semuaData =
-        data.slice(1);
+.then(
+    data => {
 
 
-    dataTampil =
-        [...semuaData];
+        if (
+            !Array.isArray(data) ||
+            data.length === 0
+        ) {
+
+            throw new Error(
+                "Data kosong."
+            );
+
+        }
 
 
-    /* BUAT FILTER */
+        /*
+           BARIS PERTAMA = HEADER
+        */
 
-    buatFilter();
-
-
-    buatFilterPeriode();
-
-
-    /* TAMPILKAN DATA */
-
-    tampilkanData();
-
-    updateDashboard();
-
-    updateDataMesin();
+        semuaData =
+            data.slice(1);
 
 
-    /* KONTROL PERIODE */
-
-    tampilkanKontrolPeriode();
-
-})
+        dataTampil =
+            [...semuaData];
 
 
-.catch(error => {
+        /* FILTER */
 
-    console.error(error);
+        buatFilter();
 
 
-    document.getElementById(
-        "status"
-    ).textContent =
-        "❌ Gagal mengambil data: " +
-        error.message;
+        buatFilterPeriode();
 
-});
+
+        /* TAMPILKAN */
+
+        tampilkanData();
+
+        updateDashboard();
+
+        updateDataMesin();
+
+        updatePencapaianGrup();
+
+
+        /* PERIODE */
+
+        tampilkanKontrolPeriode();
+
+    }
+)
+
+
+.catch(
+    error => {
+
+
+        console.error(error);
+
+
+        document.getElementById(
+            "status"
+        ).textContent =
+
+            "❌ Gagal mengambil data: " +
+
+            error.message;
+
+    }
+);
+
 
 </script>
 
 </body>
+
 </html>
