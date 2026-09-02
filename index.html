@@ -1087,7 +1087,82 @@ tbody tr:nth-child(even) {
 
     line-height: 1.25;
 }
+    
+/* =====================================================
+   PENCAPAIAN GRUP & DATA MESIN
+   TULISAN BESAR, TEBAL DAN JELAS
+===================================================== */
 
+/* HEADER PENCAPAIAN GRUP */
+.table-card:has(#tabelGrup) th {
+    font-size: 17px;
+    font-weight: 900;
+    padding: 11px 10px;
+}
+
+/* ISI PENCAPAIAN GRUP */
+#tabelGrup td {
+    font-size: 18px;
+    font-weight: 800;
+    padding: 11px 10px;
+}
+
+/* TOTAL PENCAPAIAN GRUP */
+#tabelGrup .total-row td {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+
+/* HEADER DATA MESIN */
+.table-card:has(#tabelMesin) th {
+    font-size: 17px;
+    font-weight: 900;
+    padding: 11px 10px;
+}
+
+/* ISI DATA MESIN */
+#tabelMesin td {
+    font-size: 18px;
+    font-weight: 800;
+    padding: 11px 10px;
+}
+
+/* TOTAL DATA MESIN */
+#tabelMesin .total-row td {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+
+/* =====================================================
+   MOBILE
+   TETAP BESAR DAN MUDAH DIBACA
+===================================================== */
+
+@media (max-width: 700px) {
+
+    #tabelGrup td,
+    #tabelMesin td {
+        font-size: 18px;
+        font-weight: 800;
+        padding: 11px 9px;
+    }
+
+    .table-card:has(#tabelGrup) th,
+    .table-card:has(#tabelMesin) th {
+        font-size: 16px;
+        font-weight: 900;
+        padding: 10px 9px;
+    }
+
+    #tabelGrup .total-row td,
+    #tabelMesin .total-row td {
+        font-size: 19px;
+        font-weight: 900;
+    }
+
+}
 
 /* =========================
    LOADING
