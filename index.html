@@ -239,9 +239,7 @@ table {
     min-width: 650px;
 }
 
-/* =========================
-   HEADER SEMUA TABEL
-========================= */
+/* HEADER SEMUA TABEL */
 
 th {
     background: #123b66;
@@ -288,7 +286,7 @@ tr:nth-child(even) {
 }
 
 /* =========================
-   MESIN
+   DATA MESIN SCROLL
 ========================= */
 
 .mesin-scroll {
@@ -342,6 +340,7 @@ tr:nth-child(even) {
         grid-template-columns: 1fr;
     }
 }
+
 </style>
 </head>
 
@@ -606,7 +605,7 @@ tr:nth-child(even) {
 
 
 <!-- =========================
-     DATA MESIN
+     DATA MESIN OTOMATIS
 ========================= -->
 
 <h2>🏭 Data Mesin Otomatis</h2>
@@ -618,12 +617,15 @@ tr:nth-child(even) {
         <table>
 
             <thead>
+
                 <tr>
                     <th>Mc</th>
-                    <th>Produksi (pcs)</th>
-                    <th>Produksi (Kodi)</th>
+                    <th>Grup A (Pcs)</th>
+                    <th>Grup B (Pcs)</th>
+                    <th>Grup C (Pcs)</th>
                     <th>Pencapaian %</th>
                 </tr>
+
             </thead>
 
             <tbody id="dataMesin"></tbody>
@@ -648,6 +650,7 @@ tr:nth-child(even) {
         <table>
 
             <thead>
+
                 <tr>
                     <th>Shift</th>
                     <th>Grup</th>
@@ -659,6 +662,7 @@ tr:nth-child(even) {
                     <th>Tanggal</th>
                     <th>Jenis Print</th>
                 </tr>
+
             </thead>
 
             <tbody id="tabelData"></tbody>
@@ -690,7 +694,8 @@ let dataTampil = [];
 
 function formatAngka(angka) {
 
-    return Number(angka || 0).toLocaleString("id-ID");
+    return Number(angka || 0)
+        .toLocaleString("id-ID");
 
 }
 
@@ -701,24 +706,35 @@ function formatAngka(angka) {
 
 function ambilQty(value) {
 
-    if (value === null || value === undefined) {
+    if (
+        value === null ||
+        value === undefined
+    ) {
         return 0;
     }
+
 
     let text = String(value)
         .replace(/pcs/gi, "")
         .trim();
 
+
     if (!text) {
         return 0;
     }
 
+
     text = text.replace(/\./g, "");
     text = text.replace(/,/g, ".");
 
-    let hasil = parseFloat(text);
 
-    return isNaN(hasil) ? 0 : hasil;
+    let hasil =
+        parseFloat(text);
+
+
+    return isNaN(hasil)
+        ? 0
+        : hasil;
 
 }
 
@@ -729,7 +745,9 @@ function ambilQty(value) {
 
 function formatQty(value) {
 
-    return formatAngka(ambilQty(value)) + " pcs";
+    return formatAngka(
+        ambilQty(value)
+    ) + " pcs";
 
 }
 
@@ -744,52 +762,86 @@ function getTanggalParts(value) {
         return null;
     }
 
+
     let date;
 
+
     if (value instanceof Date) {
+
         date = value;
+
     } else {
+
         date = new Date(value);
+
     }
+
 
     if (isNaN(date.getTime())) {
 
-        let text = String(value).trim();
+        let text =
+            String(value).trim();
 
-        let parts = text.split(/[\/\-]/);
+        let parts =
+            text.split(/[\/\-]/);
+
 
         if (parts.length === 3) {
 
-            let d = parseInt(parts[0]);
-            let m = parseInt(parts[1]) - 1;
-            let y = parseInt(parts[2]);
+            let d =
+                parseInt(parts[0]);
 
-            date = new Date(y, m, d);
+            let m =
+                parseInt(parts[1]) - 1;
+
+            let y =
+                parseInt(parts[2]);
+
+
+            date =
+                new Date(y, m, d);
 
         }
 
     }
 
+
     if (isNaN(date.getTime())) {
         return null;
     }
 
+
     return {
 
-        day: date.toLocaleString("en-US", {
-            timeZone: "Asia/Jakarta",
-            day: "2-digit"
-        }),
+        day:
+            date.toLocaleString(
+                "en-US",
+                {
+                    timeZone:
+                        "Asia/Jakarta",
+                    day: "2-digit"
+                }
+            ),
 
-        month: date.toLocaleString("en-US", {
-            timeZone: "Asia/Jakarta",
-            month: "2-digit"
-        }),
+        month:
+            date.toLocaleString(
+                "en-US",
+                {
+                    timeZone:
+                        "Asia/Jakarta",
+                    month: "2-digit"
+                }
+            ),
 
-        year: date.toLocaleString("en-US", {
-            timeZone: "Asia/Jakarta",
-            year: "numeric"
-        })
+        year:
+            date.toLocaleString(
+                "en-US",
+                {
+                    timeZone:
+                        "Asia/Jakarta",
+                    year: "numeric"
+                }
+            )
 
     };
 
@@ -806,11 +858,15 @@ function formatTanggal(value) {
         return "";
     }
 
-    let parts = getTanggalParts(value);
+
+    let parts =
+        getTanggalParts(value);
+
 
     if (!parts) {
         return value;
     }
+
 
     return parts.day + "/" +
            parts.month + "/" +
@@ -869,13 +925,18 @@ const filterConfig = [
 
 function buatFilter(id, index) {
 
-    const select = document.getElementById(id);
+    const select =
+        document.getElementById(id);
+
 
     if (!select) {
         return;
     }
 
-    const nilai = new Set();
+
+    const nilai =
+        new Set();
+
 
     semuaData.forEach(row => {
 
@@ -885,31 +946,46 @@ function buatFilter(id, index) {
             String(row[index]).trim() !== ""
         ) {
 
-            let value = row[index];
+            let value =
+                row[index];
+
 
             if (index === 7) {
-                value = formatTanggal(value);
+                value =
+                    formatTanggal(value);
             }
 
-            nilai.add(String(value));
+
+            nilai.add(
+                String(value)
+            );
 
         }
 
     });
 
-    const sorted = Array.from(nilai).sort(
-        (a, b) => a.localeCompare(b, "id")
-    );
+
+    const sorted =
+        Array.from(nilai).sort(
+            (a, b) =>
+                a.localeCompare(b, "id")
+        );
+
 
     select.innerHTML = "";
+
 
     sorted.forEach(value => {
 
         const option =
-            document.createElement("option");
+            document.createElement(
+                "option"
+            );
+
 
         option.value = value;
         option.textContent = value;
+
 
         select.appendChild(option);
 
@@ -925,35 +1001,51 @@ function buatFilter(id, index) {
 function buatFilterPeriode() {
 
     const selectTahun =
-        document.getElementById("filterTahun");
+        document.getElementById(
+            "filterTahun"
+        );
 
-    const tahunSet = new Set();
+
+    const tahunSet =
+        new Set();
+
 
     semuaData.forEach(row => {
 
         const parts =
             getTanggalParts(row[7]);
 
+
         if (parts) {
-            tahunSet.add(parts.year);
+            tahunSet.add(
+                parts.year
+            );
         }
 
     });
 
+
     selectTahun.innerHTML =
         '<option value="">Pilih Tahun</option>';
+
 
     Array.from(tahunSet)
         .sort()
         .forEach(tahun => {
 
             const option =
-                document.createElement("option");
+                document.createElement(
+                    "option"
+                );
+
 
             option.value = tahun;
             option.textContent = tahun;
 
-            selectTahun.appendChild(option);
+
+            selectTahun.appendChild(
+                option
+            );
 
         });
 
@@ -971,10 +1063,12 @@ function lolosFilterPeriode(row) {
             "filterPeriode"
         ).value;
 
+
     const tahun =
         document.getElementById(
             "filterTahun"
         ).value;
+
 
     const bulan =
         document.getElementById(
@@ -1002,6 +1096,7 @@ function lolosFilterPeriode(row) {
             return true;
         }
 
+
         return parts.year === tahun;
 
     }
@@ -1016,6 +1111,7 @@ function lolosFilterPeriode(row) {
             return false;
         }
 
+
         if (
             bulan &&
             parseInt(parts.month) !==
@@ -1023,6 +1119,7 @@ function lolosFilterPeriode(row) {
         ) {
             return false;
         }
+
 
         return true;
 
@@ -1043,51 +1140,74 @@ function terapkanSemuaFilter() {
     dataTampil =
         semuaData.filter(row => {
 
-            if (!lolosFilterPeriode(row)) {
+
+            if (
+                !lolosFilterPeriode(row)
+            ) {
                 return false;
             }
 
 
-            for (const config of filterConfig) {
+            for (
+                const config
+                of filterConfig
+            ) {
 
                 const select =
                     document.getElementById(
                         config.id
                     );
 
+
                 const selected =
                     Array.from(
                         select.selectedOptions
                     ).map(
-                        option => option.value
+                        option =>
+                            option.value
                     );
 
 
-                if (selected.length > 0) {
+                if (
+                    selected.length > 0
+                ) {
 
                     let value =
                         row[config.index];
 
 
-                    if (config.index === 7) {
+                    if (
+                        config.index === 7
+                    ) {
+
                         value =
-                            formatTanggal(value);
+                            formatTanggal(
+                                value
+                            );
+
                     }
 
 
                     value =
-                        String(value ?? "");
+                        String(
+                            value ?? ""
+                        );
 
 
                     if (
-                        !selected.includes(value)
+                        !selected.includes(
+                            value
+                        )
                     ) {
+
                         return false;
+
                     }
 
                 }
 
             }
+
 
             return true;
 
@@ -1113,13 +1233,16 @@ function tampilkanData() {
             "tabelData"
         );
 
+
     tbody.innerHTML = "";
 
 
     dataTampil.forEach(row => {
 
         const tr =
-            document.createElement("tr");
+            document.createElement(
+                "tr"
+            );
 
 
         tr.innerHTML = `
@@ -1134,11 +1257,15 @@ function tampilkanData() {
 
             <td>${row[4] ?? ""}</td>
 
-            <td>${formatQty(row[5])}</td>
+            <td>${formatQty(
+                row[5]
+            )}</td>
 
             <td>${row[6] ?? ""}</td>
 
-            <td>${formatTanggal(row[7])}</td>
+            <td>${formatTanggal(
+                row[7]
+            )}</td>
 
             <td>${row[8] ?? ""}</td>
 
@@ -1160,8 +1287,11 @@ function updateDashboard() {
 
     let totalProduksi = 0;
 
-    const mesinSet = new Set();
-    const grupSet = new Set();
+    const mesinSet =
+        new Set();
+
+    const grupSet =
+        new Set();
 
 
     dataTampil.forEach(row => {
@@ -1205,13 +1335,17 @@ function updateDashboard() {
     document.getElementById(
         "totalProduksi"
     ).textContent =
-        formatAngka(totalProduksi);
+        formatAngka(
+            totalProduksi
+        );
 
 
     document.getElementById(
         "totalKodi"
     ).textContent =
-        formatAngka(totalKodi);
+        formatAngka(
+            totalKodi
+        );
 
 
     document.getElementById(
@@ -1254,7 +1388,10 @@ function updatePencapaianGrup() {
     dataTampil.forEach(row => {
 
         const grup =
-            String(row[1] ?? "").trim();
+            String(
+                row[1] ?? ""
+            ).trim();
+
 
         const qty =
             ambilQty(row[5]);
@@ -1277,9 +1414,7 @@ function updatePencapaianGrup() {
     });
 
 
-    /* =========================
-       KARTU A B C
-    ========================= */
+    /* KARTU A B C */
 
     const grupABC =
         ["A", "B", "C"];
@@ -1294,11 +1429,15 @@ function updatePencapaianGrup() {
         let persen = 0;
 
 
-        if (totalProduksi > 0) {
+        if (
+            totalProduksi > 0
+        ) {
 
             persen =
-                (produksi /
-                 totalProduksi) * 100;
+                (
+                    produksi /
+                    totalProduksi
+                ) * 100;
 
         }
 
@@ -1306,8 +1445,9 @@ function updatePencapaianGrup() {
         document.getElementById(
             "produksiGrup" + grup
         ).textContent =
-            formatAngka(produksi) +
-            " pcs";
+            formatAngka(
+                produksi
+            ) + " pcs";
 
 
         document.getElementById(
@@ -1318,9 +1458,7 @@ function updatePencapaianGrup() {
     });
 
 
-    /* =========================
-       TABEL GRUP
-    ========================= */
+    /* TABEL GRUP */
 
     const tbody =
         document.getElementById(
@@ -1334,7 +1472,10 @@ function updatePencapaianGrup() {
     const grupList =
         Object.keys(hasil).sort(
             (a, b) =>
-                a.localeCompare(b, "id")
+                a.localeCompare(
+                    b,
+                    "id"
+                )
         );
 
 
@@ -1351,28 +1492,40 @@ function updatePencapaianGrup() {
         let persen = 0;
 
 
-        if (totalProduksi > 0) {
+        if (
+            totalProduksi > 0
+        ) {
 
             persen =
-                (produksi /
-                 totalProduksi) * 100;
+                (
+                    produksi /
+                    totalProduksi
+                ) * 100;
 
         }
 
 
         const tr =
-            document.createElement("tr");
+            document.createElement(
+                "tr"
+            );
 
 
         tr.innerHTML = `
 
             <td>${grup}</td>
 
-            <td>${formatAngka(produksi)}</td>
+            <td>${formatAngka(
+                produksi
+            )}</td>
 
-            <td>${formatAngka(kodi)}</td>
+            <td>${formatAngka(
+                kodi
+            )}</td>
 
-            <td>${persen.toFixed(2)}%</td>
+            <td>${persen.toFixed(
+                2
+            )}%</td>
 
         `;
 
@@ -1382,12 +1535,12 @@ function updatePencapaianGrup() {
     });
 
 
-    /* =========================
-       TOTAL
-    ========================= */
+    /* TOTAL */
 
     const trTotal =
-        document.createElement("tr");
+        document.createElement(
+            "tr"
+        );
 
 
     trTotal.className =
@@ -1398,7 +1551,9 @@ function updatePencapaianGrup() {
 
         <td>TOTAL</td>
 
-        <td>${formatAngka(totalProduksi)}</td>
+        <td>${formatAngka(
+            totalProduksi
+        )}</td>
 
         <td>${formatAngka(
             totalProduksi / 20
@@ -1409,13 +1564,16 @@ function updatePencapaianGrup() {
     `;
 
 
-    tbody.appendChild(trTotal);
+    tbody.appendChild(
+        trTotal
+    );
 
 }
 
 
 /* =====================================================
    DATA MESIN OTOMATIS
+   Mc | Grup A | Grup B | Grup C | Pencapaian
 ===================================================== */
 
 function updateDataMesin() {
@@ -1428,7 +1586,16 @@ function updateDataMesin() {
     dataTampil.forEach(row => {
 
         const mesin =
-            String(row[6] ?? "").trim();
+            String(
+                row[6] ?? ""
+            ).trim();
+
+
+        const grup =
+            String(
+                row[1] ?? ""
+            ).trim();
+
 
         const qty =
             ambilQty(row[5]);
@@ -1440,11 +1607,43 @@ function updateDataMesin() {
 
 
         if (!hasil[mesin]) {
-            hasil[mesin] = 0;
+
+            hasil[mesin] = {
+                A: 0,
+                B: 0,
+                C: 0,
+                total: 0
+            };
+
         }
 
 
-        hasil[mesin] += qty;
+        if (
+            grup.toUpperCase() === "A"
+        ) {
+
+            hasil[mesin].A += qty;
+
+        }
+
+        else if (
+            grup.toUpperCase() === "B"
+        ) {
+
+            hasil[mesin].B += qty;
+
+        }
+
+        else if (
+            grup.toUpperCase() === "C"
+        ) {
+
+            hasil[mesin].C += qty;
+
+        }
+
+
+        hasil[mesin].total += qty;
 
         totalProduksi += qty;
 
@@ -1463,45 +1662,60 @@ function updateDataMesin() {
     const mesinList =
         Object.keys(hasil).sort(
             (a, b) =>
-                a.localeCompare(b, "id")
+                a.localeCompare(
+                    b,
+                    "id"
+                )
         );
 
 
     mesinList.forEach(mesin => {
 
-        const produksi =
+        const data =
             hasil[mesin];
-
-
-        const kodi =
-            produksi / 20;
 
 
         let persen = 0;
 
 
-        if (totalProduksi > 0) {
+        if (
+            totalProduksi > 0
+        ) {
 
             persen =
-                (produksi /
-                 totalProduksi) * 100;
+                (
+                    data.total /
+                    totalProduksi
+                ) * 100;
 
         }
 
 
         const tr =
-            document.createElement("tr");
+            document.createElement(
+                "tr"
+            );
 
 
         tr.innerHTML = `
 
             <td>${mesin}</td>
 
-            <td>${formatAngka(produksi)}</td>
+            <td>${formatAngka(
+                data.A
+            )}</td>
 
-            <td>${formatAngka(kodi)}</td>
+            <td>${formatAngka(
+                data.B
+            )}</td>
 
-            <td>${persen.toFixed(2)}%</td>
+            <td>${formatAngka(
+                data.C
+            )}</td>
+
+            <td>${persen.toFixed(
+                2
+            )}%</td>
 
         `;
 
@@ -1511,8 +1725,27 @@ function updateDataMesin() {
     });
 
 
+    /* TOTAL */
+
+    let totalA = 0;
+    let totalB = 0;
+    let totalC = 0;
+
+
+    Object.values(hasil)
+        .forEach(data => {
+
+            totalA += data.A;
+            totalB += data.B;
+            totalC += data.C;
+
+        });
+
+
     const trTotal =
-        document.createElement("tr");
+        document.createElement(
+            "tr"
+        );
 
 
     trTotal.className =
@@ -1523,10 +1756,16 @@ function updateDataMesin() {
 
         <td>TOTAL</td>
 
-        <td>${formatAngka(totalProduksi)}</td>
+        <td>${formatAngka(
+            totalA
+        )}</td>
 
         <td>${formatAngka(
-            totalProduksi / 20
+            totalB
+        )}</td>
+
+        <td>${formatAngka(
+            totalC
         )}</td>
 
         <td>100%</td>
@@ -1534,7 +1773,9 @@ function updateDataMesin() {
     `;
 
 
-    tbody.appendChild(trTotal);
+    tbody.appendChild(
+        trTotal
+    );
 
 }
 
@@ -1560,22 +1801,28 @@ function resetFilter() {
     ).value = "";
 
 
-    filterConfig.forEach(config => {
+    filterConfig.forEach(
+        config => {
 
-        const select =
-            document.getElementById(
-                config.id
+            const select =
+                document.getElementById(
+                    config.id
+                );
+
+
+            Array.from(
+                select.options
+            ).forEach(
+                option => {
+
+                    option.selected =
+                        false;
+
+                }
             );
 
-
-        Array.from(select.options)
-            .forEach(option => {
-
-                option.selected = false;
-
-            });
-
-    });
+        }
+    );
 
 
     tampilkanKontrolPeriode();
@@ -1609,26 +1856,39 @@ function tampilkanKontrolPeriode() {
         );
 
 
-    if (periode === "semua") {
+    if (
+        periode === "semua"
+    ) {
 
-        tahun.style.display = "none";
-        bulan.style.display = "none";
+        tahun.style.display =
+            "none";
 
-    }
-
-
-    else if (periode === "tahun") {
-
-        tahun.style.display = "block";
-        bulan.style.display = "none";
+        bulan.style.display =
+            "none";
 
     }
 
+    else if (
+        periode === "tahun"
+    ) {
 
-    else if (periode === "bulan") {
+        tahun.style.display =
+            "block";
 
-        tahun.style.display = "block";
-        bulan.style.display = "block";
+        bulan.style.display =
+            "none";
+
+    }
+
+    else if (
+        periode === "bulan"
+    ) {
+
+        tahun.style.display =
+            "block";
+
+        bulan.style.display =
+            "block";
 
     }
 
@@ -1639,16 +1899,18 @@ function tampilkanKontrolPeriode() {
    EVENT FILTER
 ===================================================== */
 
-filterConfig.forEach(config => {
+filterConfig.forEach(
+    config => {
 
-    document.getElementById(
-        config.id
-    ).addEventListener(
-        "change",
-        terapkanSemuaFilter
-    );
+        document.getElementById(
+            config.id
+        ).addEventListener(
+            "change",
+            terapkanSemuaFilter
+        );
 
-});
+    }
+);
 
 
 document.getElementById(
@@ -1687,87 +1949,88 @@ document.getElementById(
 
 fetch(URL_API)
 
-    .then(response => {
+.then(response => {
 
-        if (!response.ok) {
+    if (!response.ok) {
 
-            throw new Error(
-                "Gagal mengambil data"
+        throw new Error(
+            "Gagal mengambil data"
+        );
+
+    }
+
+
+    return response.json();
+
+})
+
+
+.then(data => {
+
+    /*
+     * BARIS PERTAMA = HEADER
+     * DATA DIMULAI BARIS KEDUA
+     */
+
+    semuaData =
+        data.slice(1);
+
+
+    dataTampil =
+        [...semuaData];
+
+
+    /* BUAT FILTER */
+
+    filterConfig.forEach(
+        config => {
+
+            buatFilter(
+                config.id,
+                config.index
             );
 
         }
-
-        return response.json();
-
-    })
+    );
 
 
-    .then(data => {
+    buatFilterPeriode();
 
-        /*
-         * BARIS PERTAMA = HEADER
-         * DATA DIMULAI BARIS KEDUA
-         */
+    tampilkanKontrolPeriode();
 
-        semuaData =
-            data.slice(1);
+    tampilkanData();
 
+    updateDashboard();
 
-        dataTampil =
-            [...semuaData];
+    updatePencapaianGrup();
+
+    updateDataMesin();
 
 
-        /* BUAT FILTER */
+    document.getElementById(
+        "status"
+    ).textContent =
+        "✅ Data berhasil dimuat: " +
+        formatAngka(
+            semuaData.length
+        ) +
+        " baris";
 
-        filterConfig.forEach(
-            config => {
-
-                buatFilter(
-                    config.id,
-                    config.index
-                );
-
-            }
-        );
+})
 
 
-        buatFilterPeriode();
+.catch(error => {
 
-        tampilkanKontrolPeriode();
-
-        tampilkanData();
-
-        updateDashboard();
-
-        updatePencapaianGrup();
-
-        updateDataMesin();
+    console.error(error);
 
 
-        document.getElementById(
-            "status"
-        ).textContent =
-            "✅ Data berhasil dimuat: " +
-            formatAngka(
-                semuaData.length
-            ) +
-            " baris";
+    document.getElementById(
+        "status"
+    ).textContent =
+        "❌ Gagal mengambil data. " +
+        "Periksa koneksi Apps Script.";
 
-    })
-
-
-    .catch(error => {
-
-        console.error(error);
-
-
-        document.getElementById(
-            "status"
-        ).textContent =
-            "❌ Gagal mengambil data. " +
-            "Periksa koneksi Apps Script.";
-
-    });
+});
 
 </script>
 
