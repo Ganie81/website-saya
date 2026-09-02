@@ -189,20 +189,6 @@ button {
 
     margin-bottom: 25px;
 }
-      /* TABEL DATA PRODUKSI - 6 BARIS + SCROLL */
-
-.data-produksi-scroll {
-    max-height: 375px;
-    overflow-y: auto;
-    overflow-x: auto;
-    border-radius: 8px;
-}
-
-.data-produksi-scroll thead th {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-}
 
 table {
     width: 100%;
@@ -230,6 +216,25 @@ tbody tr:nth-child(even) {
 
 tbody tr:hover {
     background: #e9f3ff;
+}
+
+
+/* ==============================
+   TABEL DATA PRODUKSI
+   6 BARIS + SCROLL
+============================== */
+
+.data-produksi-scroll {
+    max-height: 375px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 8px;
+}
+
+.data-produksi-scroll thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
 
@@ -428,53 +433,18 @@ tbody tr:hover {
                         Semua Bulan
                     </option>
 
-                    <option value="1">
-                        Januari
-                    </option>
-
-                    <option value="2">
-                        Februari
-                    </option>
-
-                    <option value="3">
-                        Maret
-                    </option>
-
-                    <option value="4">
-                        April
-                    </option>
-
-                    <option value="5">
-                        Mei
-                    </option>
-
-                    <option value="6">
-                        Juni
-                    </option>
-
-                    <option value="7">
-                        Juli
-                    </option>
-
-                    <option value="8">
-                        Agustus
-                    </option>
-
-                    <option value="9">
-                        September
-                    </option>
-
-                    <option value="10">
-                        Oktober
-                    </option>
-
-                    <option value="11">
-                        November
-                    </option>
-
-                    <option value="12">
-                        Desember
-                    </option>
+                    <option value="1">Januari</option>
+                    <option value="2">Februari</option>
+                    <option value="3">Maret</option>
+                    <option value="4">April</option>
+                    <option value="5">Mei</option>
+                    <option value="6">Juni</option>
+                    <option value="7">Juli</option>
+                    <option value="8">Agustus</option>
+                    <option value="9">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
 
                 </select>
 
@@ -744,21 +714,13 @@ tbody tr:hover {
 
                 <tr>
 
-                    <th>
-                        Grup
-                    </th>
+                    <th>Grup</th>
 
-                    <th>
-                        Produksi (pcs)
-                    </th>
+                    <th>Produksi (pcs)</th>
 
-                    <th>
-                        Produksi (Kodi)
-                    </th>
+                    <th>Produksi (Kodi)</th>
 
-                    <th>
-                        Pencapaian
-                    </th>
+                    <th>Pencapaian</th>
 
                 </tr>
 
@@ -772,51 +734,6 @@ tbody tr:hover {
         </table>
 
     </div>
-
-</div>
-
-
-<!-- ==========================================
-     DATA PRODUKSI MESIN
-========================================== -->
-
-<h2>
-    📈 Data Produksi Mesin
-</h2>
-
-
-<div class="table-container">
-
-<table>
-
-<thead>
-
-<tr>
-
-    <th>
-        Mesin
-    </th>
-
-    <th>
-        Total Produksi (pcs)
-    </th>
-
-    <th>
-        Total Produksi (Kodi)
-    </th>
-
-    <th>
-        Jumlah Data
-    </th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="tabelMesin"></tbody>
-
-</table>
 
 </div>
 
@@ -951,41 +868,23 @@ tbody tr:hover {
 
 <tr>
 
-    <th>
-        Tanggal
-    </th>
+    <th>Tanggal</th>
 
-    <th>
-        Shift
-    </th>
+    <th>Shift</th>
 
-    <th>
-        Grup
-    </th>
+    <th>Grup</th>
 
-    <th>
-        Kode Produk
-    </th>
+    <th>Kode Produk</th>
 
-    <th>
-        Warna Ground
-    </th>
+    <th>Warna Ground</th>
 
-    <th>
-        Motif
-    </th>
+    <th>Motif</th>
 
-    <th>
-        Qty
-    </th>
+    <th>Qty</th>
 
-    <th>
-        Mc
-    </th>
+    <th>Mc</th>
 
-    <th>
-        Jenis Print
-    </th>
+    <th>Jenis Print</th>
 
 </tr>
 
@@ -993,6 +892,7 @@ tbody tr:hover {
 
 
 <tbody id="tabelData"></tbody>
+
 
 </table>
 
@@ -1019,16 +919,6 @@ let dataTampil = [];
 
 /* ==========================================
    INDEX KOLOM
-
-   A = Shift       0
-   B = Grup        1
-   C = Kode Produk 2
-   D = Ground      3
-   E = Motif       4
-   F = Qty         5
-   G = Mc          6
-   H = Tanggal     7
-   I = Jenis Print 8
 ========================================== */
 
 const filterConfig = [
@@ -1085,7 +975,7 @@ function formatAngka(nilai) {
 
 
 /* ==========================================
-   BAGIAN TANGGAL WIB
+   TANGGAL WIB
 ========================================== */
 
 function getTanggalParts(nilai) {
@@ -1948,8 +1838,6 @@ function updatePencapaianGrup() {
     let totalQty = 0;
 
 
-    /* HITUNG TOTAL */
-
     dataTampil.forEach(
         row => {
 
@@ -1959,8 +1847,6 @@ function updatePencapaianGrup() {
         }
     );
 
-
-    /* HITUNG PER GRUP */
 
     dataTampil.forEach(
         row => {
@@ -2085,10 +1971,6 @@ function updatePencapaianGrup() {
     );
 
 
-    /* ======================================
-       BARIS TOTAL
-    ====================================== */
-
     const totalTr =
         document.createElement(
             "tr"
@@ -2140,10 +2022,6 @@ function updatePencapaianGrup() {
         totalTr
     );
 
-
-    /* ======================================
-       INFORMASI PERIODE
-    ====================================== */
 
     const mode =
         document.getElementById(
@@ -2264,7 +2142,7 @@ function updatePencapaianGrup() {
 
 
 /* ==========================================
-   DATA MESIN
+   DATA MESIN OTOMATIS
 ========================================== */
 
 function updateDataMesin() {
@@ -2316,19 +2194,11 @@ function updateDataMesin() {
 
     const tbody =
         document.getElementById(
-            "tabelMesin"
-        );
-
-
-    const tbody2 =
-        document.getElementById(
             "dataMesin"
         );
 
 
     tbody.innerHTML = "";
-
-    tbody2.innerHTML = "";
 
 
     Object.keys(hasil)
@@ -2353,8 +2223,6 @@ function updateDataMesin() {
                 const kodi =
                     qty / 20;
 
-
-                /* TABEL 1 */
 
                 const tr =
                     document.createElement(
@@ -2397,50 +2265,6 @@ function updateDataMesin() {
                     tr
                 );
 
-
-                /* TABEL 2 */
-
-                const tr2 =
-                    document.createElement(
-                        "tr"
-                    );
-
-
-                tr2.innerHTML = `
-
-                    <td>
-                        ${mesin}
-                    </td>
-
-                    <td>
-                        ${formatAngka(qty)}
-                        pcs
-                    </td>
-
-                    <td>
-                        ${kodi.toLocaleString(
-                            "id-ID",
-                            {
-                                minimumFractionDigits: 0,
-                                maximumFractionDigits: 2
-                            }
-                        )}
-                        Kodi
-                    </td>
-
-                    <td>
-                        ${formatAngka(
-                            hasil[mesin].data
-                        )}
-                    </td>
-
-                `;
-
-
-                tbody2.appendChild(
-                    tr2
-                );
-
             }
         );
 
@@ -2452,7 +2276,6 @@ function updateDataMesin() {
 ========================================== */
 
 function resetFilter() {
-
 
     filterConfig.forEach(
         config => {
@@ -2677,7 +2500,6 @@ fetch(URL_API)
 .then(
     response => {
 
-
         if (
             !response.ok
         ) {
@@ -2711,10 +2533,6 @@ fetch(URL_API)
         }
 
 
-        /*
-           BARIS PERTAMA = HEADER
-        */
-
         semuaData =
             data.slice(1);
 
@@ -2723,15 +2541,11 @@ fetch(URL_API)
             [...semuaData];
 
 
-        /* FILTER */
-
         buatFilter();
 
 
         buatFilterPeriode();
 
-
-        /* TAMPILKAN */
 
         tampilkanData();
 
@@ -2741,8 +2555,6 @@ fetch(URL_API)
 
         updatePencapaianGrup();
 
-
-        /* PERIODE */
 
         tampilkanKontrolPeriode();
 
