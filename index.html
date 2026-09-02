@@ -933,73 +933,45 @@ tbody tr:nth-child(even) {
 }
 
 
-/* =========================
-   DATA PRODUKSI
-========================= */
-
-.data-wrapper {
-
-    max-height: 350px;
-
-    overflow: auto;
-
-    border-radius: 10px;
-
-    /*
-       Area scroll khusus Data Produksi.
-       Header akan tetap berada di atas
-       saat data di-scroll.
-    */
-}
-
-
 /* =====================================================
-   HEADER DATA PRODUKSI STICKY
+   DATA PRODUKSI
 ===================================================== */
 
-.data-wrapper thead th {
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 20;
-
-    background:
-        linear-gradient(
-            145deg,
-            #1c5a88,
-            #123b63
-        );
-
-    color: white;
-}
-
-
-/*
-   Supaya bagian header tetap memiliki
-   batas bawah yang jelas saat sticky.
-*/
-
-.data-wrapper thead {
-
+.data-wrapper {
+    max-height: 350px;
+    overflow-x: auto;
+    overflow-y: auto;
+    border-radius: 10px;
     position: relative;
-
-    z-index: 20;
 }
 
-
-/*
-   Tabel Data Produksi
-*/
+/* =====================================================
+   HEADER DATA PRODUKSI TETAP DI ATAS SAAT SCROLL
+===================================================== */
 
 .data-wrapper table {
-
     min-width: 1100px;
-
     table-layout: fixed;
+
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
+.data-wrapper thead th {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+
+    background: linear-gradient(
+        145deg,
+        #1c5a88,
+        #123b63
+    );
+
+    color: white;
+
+    box-shadow: 0 2px 0 #0b2b49;
+}
 
 /*
    Lebar kolom Data Produksi
