@@ -944,7 +944,54 @@ tbody tr:nth-child(even) {
     overflow: auto;
 
     border-radius: 10px;
+
+    /*
+       Area scroll khusus Data Produksi.
+       Header akan tetap berada di atas
+       saat data di-scroll.
+    */
 }
+
+
+/* =====================================================
+   HEADER DATA PRODUKSI STICKY
+===================================================== */
+
+.data-wrapper thead th {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 20;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1c5a88,
+            #123b63
+        );
+
+    color: white;
+}
+
+
+/*
+   Supaya bagian header tetap memiliki
+   batas bawah yang jelas saat sticky.
+*/
+
+.data-wrapper thead {
+
+    position: relative;
+
+    z-index: 20;
+}
+
+
+/*
+   Tabel Data Produksi
+*/
 
 .data-wrapper table {
 
@@ -1215,10 +1262,7 @@ body.screenshot-mode .group-percent {
     .cards {
 
         grid-template-columns:
-            repeat(
-                2,
-                minmax(140px, 1fr)
-            );
+            repeat(2, minmax(140px, 1fr));
     }
 
     .group-cards {
