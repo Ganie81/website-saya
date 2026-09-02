@@ -1332,110 +1332,111 @@ function formatQty(value) {
 
 function getTanggalParts(value) {
 
-    if (!value)
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
         return null;
+    }
 
+    const text = String(value).trim();
 
-    if (
-        value instanceof Date
-    ) {
+    /*
+       FORMAT DARI APPS SCRIPT:
+       2024-01-17T17:00:00.000Z
+
+       Karena Indonesia UTC+7,
+       maka 17:00 UTC = 00:00 WIB
+       dan tanggalnya menjadi 18/01/2024.
+    */
+
+    let match = text.match(
+        /^(\d{4})-(\d{1,2})-(\d{1,2})T/
+    );
+
+    if (match) {
+
+        const tahunUTC = Number(match[1]);
+        const bulanUTC = Number(match[2]);
+        const tanggalUTC = Number(match[3]);
+
+        const date = new Date(value);
+
+        if (!isNaN(date.getTime())) {
+
+            return {
+                tahun: date.getFullYear(),
+                bulan: date.getMonth() + 1,
+                tanggal: date.getDate()
+            };
+
+        }
 
         return {
-
-            tahun:
-                value.getFullYear(),
-
-            bulan:
-                value.getMonth() + 1,
-
-            tanggal:
-                value.getDate()
-
+            tahun: tahunUTC,
+            bulan: bulanUTC,
+            tanggal: tanggalUTC
         };
-
     }
 
 
-    const text =
-        String(value).trim();
+    /*
+       FORMAT YYYY-MM-DD
+    */
 
-
-    let match =
-        text.match(
-            /^(\d{4})[-/](\d{1,2})[-/](\d{1,2})/
-        );
-
+    match = text.match(
+        /^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/
+    );
 
     if (match) {
 
         return {
-
-            tahun:
-                Number(match[1]),
-
-            bulan:
-                Number(match[2]),
-
-            tanggal:
-                Number(match[3])
-
+            tahun: Number(match[1]),
+            bulan: Number(match[2]),
+            tanggal: Number(match[3])
         };
 
     }
 
 
-    match =
-        text.match(
-            /^(\d{1,2})[-/](\d{1,2})[-/](\d{4})/
-        );
+    /*
+       FORMAT DD-MM-YYYY / DD/MM/YYYY
+    */
 
+    match = text.match(
+        /^(\d{1,2})[-/](\d{1,2})[-/](\d{4})$/
+    );
 
     if (match) {
 
         return {
-
-            tahun:
-                Number(match[3]),
-
-            bulan:
-                Number(match[2]),
-
-            tanggal:
-                Number(match[1])
-
+            tahun: Number(match[3]),
+            bulan: Number(match[2]),
+            tanggal: Number(match[1])
         };
 
     }
 
 
-    const date =
-        new Date(value);
+    /*
+       FORMAT DATE BIASA
+    */
 
+    const date = new Date(value);
 
-    if (
-        !isNaN(
-            date.getTime()
-        )
-    ) {
+    if (!isNaN(date.getTime())) {
 
         return {
-
-            tahun:
-                date.getFullYear(),
-
-            bulan:
-                date.getMonth() + 1,
-
-            tanggal:
-                date.getDate()
-
+            tahun: date.getFullYear(),
+            bulan: date.getMonth() + 1,
+            tanggal: date.getDate()
         };
 
     }
 
 
     return null;
-
 }
 
 
