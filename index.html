@@ -158,6 +158,49 @@ select {
 }
 
 /* =====================================================
+   RINGKASAN FILTER AKTIF
+===================================================== */
+
+.filter-summary {
+    background: white;
+    padding: 11px 13px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+
+    border: 2px solid #123b6d;
+
+    box-shadow:
+        0 4px 9px rgba(0,0,0,0.15),
+        0 2px 3px rgba(0,0,0,0.08);
+}
+
+.filter-summary-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #123b6d;
+    margin-bottom: 8px;
+}
+
+.filter-summary-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.filter-tag {
+    background: #eef3f8;
+    border: 1px solid #b9c4cf;
+    border-radius: 6px;
+    padding: 5px 9px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.filter-tag span {
+    color: #123b6d;
+}
+
+/* =====================================================
    DASHBOARD CARD
 ===================================================== */
 
@@ -364,7 +407,35 @@ body.screenshot-mode .filter-area {
     display: none !important;
 }
 
-/* Dashboard card tetap punya pembatas */
+/* =====================================================
+   RINGKASAN FILTER SAAT SCREENSHOT
+===================================================== */
+
+body.screenshot-mode .filter-summary {
+    border: 3px solid #123b6d;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+
+    box-shadow:
+        0 5px 11px rgba(0,0,0,0.20),
+        0 2px 4px rgba(0,0,0,0.10);
+}
+
+body.screenshot-mode .filter-summary-title {
+    font-size: 17px;
+    font-weight: 900;
+}
+
+body.screenshot-mode .filter-tag {
+    font-size: 14px;
+    font-weight: 800;
+    padding: 6px 9px;
+    border: 1px solid #8995a1;
+}
+
+/* =====================================================
+   DASHBOARD CARD SCREENSHOT
+===================================================== */
 
 body.screenshot-mode .dashboard-cards {
     grid-template-columns: repeat(2, 1fr);
@@ -376,7 +447,7 @@ body.screenshot-mode .card {
     padding: 13px 7px;
     border-radius: 11px;
 
-    border: 1px solid #b8bec6;
+    border: 2px solid #aeb6bf;
 
     box-shadow:
         0 4px 9px rgba(0,0,0,0.18),
@@ -384,15 +455,19 @@ body.screenshot-mode .card {
 }
 
 body.screenshot-mode .card h3 {
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 800;
     margin-bottom: 6px;
 }
 
 body.screenshot-mode .card .value {
-    font-size: 21px;
+    font-size: 23px;
+    font-weight: 900;
 }
 
-/* Grup tetap ada efek 3D */
+/* =====================================================
+   GRUP SCREENSHOT
+===================================================== */
 
 body.screenshot-mode .grup-container {
     grid-template-columns: 1fr;
@@ -404,7 +479,7 @@ body.screenshot-mode .grup-card {
     padding: 14px;
     border-radius: 12px;
 
-    border: 1px solid rgba(0,0,0,0.18);
+    border: 2px solid rgba(0,0,0,0.18);
 
     box-shadow:
         0 5px 11px rgba(0,0,0,0.18),
@@ -412,64 +487,97 @@ body.screenshot-mode .grup-card {
 }
 
 body.screenshot-mode .grup-card h3 {
-    font-size: 24px;
+    font-size: 25px;
+    font-weight: 900;
     margin-bottom: 5px;
 }
 
 body.screenshot-mode .grup-card .produksi {
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: 900;
     margin-bottom: 3px;
 }
 
 body.screenshot-mode .grup-card .pencapaian {
-    font-size: 27px;
+    font-size: 29px;
+    font-weight: 900;
 }
 
-/* Section screenshot */
+/* =====================================================
+   SECTION SCREENSHOT
+===================================================== */
 
 body.screenshot-mode .section {
     padding: 10px;
     margin-bottom: 13px;
     border-radius: 11px;
 
-    border: 1px solid #c4c9cf;
+    border: 2px solid #b0b7bf;
 
     box-shadow:
-        0 4px 9px rgba(0,0,0,0.14),
+        0 4px 9px rgba(0,0,0,0.16),
         0 2px 3px rgba(0,0,0,0.08);
 }
 
 body.screenshot-mode .section h2 {
-    font-size: 17px;
+    font-size: 19px;
+    font-weight: 900;
     margin-bottom: 8px;
 }
 
-/* Table screenshot */
+/* =====================================================
+   SEMUA TABEL SCREENSHOT
+   DIPERBESAR + BOLD
+===================================================== */
 
 body.screenshot-mode table {
     min-width: 0;
     width: 100%;
-    font-size: 11px;
+    font-size: 14px;
+    font-weight: 800;
 }
 
-body.screenshot-mode th,
+body.screenshot-mode th {
+    font-size: 15px;
+    font-weight: 900;
+    padding: 9px 6px;
+
+    border: 2px solid #6f7b88;
+}
+
 body.screenshot-mode td {
-    padding: 6px 4px;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 8px 5px;
+
+    border: 2px solid #8995a1;
 }
 
-/* Data produksi screenshot */
+/* =====================================================
+   DATA PRODUKSI SCREENSHOT
+===================================================== */
 
 body.screenshot-mode .data-produksi-wrapper {
     max-height: 330px;
 }
 
 body.screenshot-mode #dataProduksiTable {
-    font-size: 10px;
+    min-width: 0;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 800;
 }
 
-body.screenshot-mode #dataProduksiTable th,
+body.screenshot-mode #dataProduksiTable th {
+    font-size: 14px;
+    font-weight: 900;
+    padding: 8px 4px;
+}
+
 body.screenshot-mode #dataProduksiTable td {
-    padding: 5px 3px;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 8px 4px;
 }
 
 /* =====================================================
@@ -531,6 +639,37 @@ body.screenshot-mode #dataProduksiTable td {
     .data-produksi-wrapper {
         max-height: 330px;
     }
+
+    /* Ringkasan filter HP */
+    .filter-summary-title {
+        font-size: 14px;
+    }
+
+    .filter-tag {
+        font-size: 12px;
+        padding: 5px 7px;
+    }
+
+    body.screenshot-mode .filter-summary-title {
+        font-size: 16px;
+    }
+
+    body.screenshot-mode .filter-tag {
+        font-size: 13px;
+    }
+
+    body.screenshot-mode table {
+        font-size: 13px;
+    }
+
+    body.screenshot-mode th {
+        font-size: 14px;
+    }
+
+    body.screenshot-mode td {
+        font-size: 13px;
+    }
+
 }
 </style>
 </head>
@@ -707,6 +846,37 @@ body.screenshot-mode #dataProduksiTable td {
         🔄 Reset Filter
 
     </button>
+
+</div>
+
+
+<!-- =====================================================
+     RINGKASAN FILTER AKTIF
+===================================================== -->
+
+<div class="filter-summary">
+
+    <div class="filter-summary-title">
+        🔎 FILTER DATA YANG DITAMPILKAN
+    </div>
+
+    <div
+        id="filterSummaryContent"
+        class="filter-summary-content">
+
+        <div class="filter-tag">
+            <span>Filter:</span> Semua
+        </div>
+
+        <div class="filter-tag">
+            <span>Tahun:</span> Semua
+        </div>
+
+        <div class="filter-tag">
+            <span>Bulan:</span> Semua
+        </div>
+
+    </div>
 
 </div>
 
@@ -1722,6 +1892,243 @@ function terapkanSemuaFilter() {
 
     updateDataMesin();
 
+    /* TAMBAHAN:
+       update tulisan filter yang sedang aktif */
+    updateFilterSummary();
+
+}
+
+
+/* =====================================================
+   RINGKASAN FILTER AKTIF
+===================================================== */
+
+function updateFilterSummary() {
+
+    const area =
+        document.getElementById(
+            "filterSummaryContent"
+        );
+
+
+    const periode =
+        document.getElementById(
+            "periode"
+        ).value;
+
+
+    const tahun =
+        document.getElementById(
+            "tahun"
+        ).value;
+
+
+    const bulan =
+        document.getElementById(
+            "bulan"
+        ).value;
+
+
+    const namaBulan = {
+
+        "1": "Januari",
+        "2": "Februari",
+        "3": "Maret",
+        "4": "April",
+        "5": "Mei",
+        "6": "Juni",
+        "7": "Juli",
+        "8": "Agustus",
+        "9": "September",
+        "10": "Oktober",
+        "11": "November",
+        "12": "Desember"
+
+    };
+
+
+    let namaFilter =
+        "Semua";
+
+
+    if (
+        periode === "tahun"
+    ) {
+
+        namaFilter =
+            "Per Tahun";
+
+    }
+
+
+    else if (
+        periode === "bulan"
+    ) {
+
+        namaFilter =
+            "Per Bulan";
+
+    }
+
+
+    let html = `
+
+        <div class="filter-tag">
+            <span>Filter:</span>
+            ${namaFilter}
+        </div>
+
+    `;
+
+
+    /*
+       Tahun hanya ditampilkan sebagai
+       pilihan filter jika mode tahun/bulan.
+    */
+
+    if (
+        periode === "tahun" ||
+        periode === "bulan"
+    ) {
+
+        html += `
+
+            <div class="filter-tag">
+                <span>Tahun:</span>
+                ${tahun || "Semua"}
+            </div>
+
+        `;
+
+    } else {
+
+        html += `
+
+            <div class="filter-tag">
+                <span>Tahun:</span>
+                Semua
+            </div>
+
+        `;
+
+    }
+
+
+    /*
+       Bulan
+    */
+
+    if (
+        periode === "bulan"
+    ) {
+
+        html += `
+
+            <div class="filter-tag">
+                <span>Bulan:</span>
+                ${namaBulan[bulan] || "Semua"}
+            </div>
+
+        `;
+
+    } else {
+
+        html += `
+
+            <div class="filter-tag">
+                <span>Bulan:</span>
+                Semua
+            </div>
+
+        `;
+
+    }
+
+
+    /*
+       Filter multi-select
+    */
+
+    const filters = [
+
+        {
+            nama: "Shift",
+            id: "filterShift"
+        },
+
+        {
+            nama: "Grup",
+            id: "filterGrup"
+        },
+
+        {
+            nama: "Kode Produk",
+            id: "filterKode"
+        },
+
+        {
+            nama: "Warna Ground",
+            id: "filterWarna"
+        },
+
+        {
+            nama: "Motif",
+            id: "filterMotif"
+        },
+
+        {
+            nama: "Mc",
+            id: "filterMc"
+        },
+
+        {
+            nama: "Tanggal",
+            id: "filterTanggal"
+        }
+
+    ];
+
+
+    filters.forEach(
+        filter => {
+
+            const checked =
+                document.querySelectorAll(
+                    `#${filter.id} input:checked`
+                );
+
+
+            if (
+                checked.length > 0
+            ) {
+
+                const values =
+                    [
+                        ...checked
+                    ].map(
+                        input =>
+                            input.value
+                    );
+
+
+                html += `
+
+                    <div class="filter-tag">
+                        <span>${filter.nama}:</span>
+                        ${values.join(", ")}
+                    </div>
+
+                `;
+
+            }
+
+        }
+    );
+
+
+    area.innerHTML =
+        html;
+
 }
 
 
@@ -2558,6 +2965,10 @@ fetch(URL)
         updatePencapaianGrup();
 
         updateDataMesin();
+
+        /* TAMBAHAN:
+           tampilkan kondisi filter awal */
+        updateFilterSummary();
 
     }
 )
