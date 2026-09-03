@@ -94,25 +94,28 @@ body {
 
     margin: 0;
 
-    font-size: 32px;
+    /* DIPERBESAR */
+    font-size: 38px;
 
+    /* LEBIH TEBAL */
     font-weight: 900;
 
     letter-spacing: .3px;
 
-    color: #172033;
+    color: #111827;
 
     text-shadow:
         0 1px 0 #ffffff,
-        0 2px 0 rgba(255,255,255,.7),
-        0 3px 4px rgba(0,0,0,.22),
-        0 6px 10px rgba(0,0,0,.12);
+        0 2px 0 rgba(255,255,255,.9),
+        0 3px 0 rgba(0,0,0,.10),
+        0 5px 5px rgba(0,0,0,.18),
+        0 8px 12px rgba(0,0,0,.10);
 }
 
 
 .header-title p {
 
-    margin: 6px 0 0;
+    margin: 7px 0 0;
 
     font-size: 13px;
 
@@ -520,7 +523,7 @@ body {
 
     grid-template-columns: repeat(5, 1fr);
 
-    gap: 16px;
+    gap: 17px;
 
     margin-bottom: 20px;
 }
@@ -532,18 +535,19 @@ body {
 
     overflow: hidden;
 
-    min-height: 135px;
+    min-height: 145px;
 
-    padding: 18px 18px 16px 21px;
+    padding: 20px 18px 17px 23px;
 
-    border-radius: 18px;
+    border-radius: 20px;
 
-    border: 1px solid rgba(255,255,255,.9);
+    border: 1px solid rgba(255,255,255,.80);
 
     box-shadow:
-        0 7px 12px rgba(15,23,42,.07),
-        0 17px 28px rgba(15,23,42,.07),
-        inset 0 1px 0 rgba(255,255,255,.95);
+        0 8px 14px rgba(15,23,42,.10),
+        0 18px 30px rgba(15,23,42,.09),
+        0 3px 5px rgba(15,23,42,.05),
+        inset 0 1px 0 rgba(255,255,255,.90);
 
     transition:
         transform .25s ease,
@@ -553,11 +557,11 @@ body {
 
 .kpi:hover {
 
-    transform: translateY(-5px);
+    transform: translateY(-6px);
 
     box-shadow:
-        0 12px 18px rgba(15,23,42,.10),
-        0 25px 40px rgba(15,23,42,.10),
+        0 13px 20px rgba(15,23,42,.14),
+        0 25px 40px rgba(15,23,42,.12),
         inset 0 1px 0 #ffffff;
 }
 
@@ -574,13 +578,13 @@ body {
 
     left: 0;
 
-    top: 12px;
+    top: 10px;
 
-    bottom: 12px;
+    bottom: 10px;
 
-    width: 6px;
+    width: 7px;
 
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 9px 9px 0;
 }
 
 
@@ -594,20 +598,20 @@ body {
 
     position: absolute;
 
-    width: 95px;
+    width: 105px;
 
-    height: 95px;
+    height: 105px;
 
-    right: -38px;
+    right: -42px;
 
-    bottom: -42px;
+    bottom: -45px;
 
     border-radius: 50%;
 
-    opacity: .32;
+    opacity: .38;
 
     box-shadow:
-        inset 0 0 0 12px rgba(255,255,255,.4);
+        inset 0 0 0 12px rgba(255,255,255,.42);
 
     pointer-events: none;
 }
@@ -622,21 +626,21 @@ body {
     background:
         linear-gradient(
             145deg,
-            #ffffff 0%,
-            #eef6ff 100%
+            #dceeff 0%,
+            #c8e2f8 100%
         );
 }
 
 
 .kpi.total::before {
 
-    background: #78acd8;
+    background: #5794c5;
 }
 
 
 .kpi.total::after {
 
-    background: #bfdbfe;
+    background: #9fc8e7;
 }
 
 
@@ -649,21 +653,21 @@ body {
     background:
         linear-gradient(
             145deg,
-            #ffffff 0%,
-            #edf9f1 100%
+            #dcf6e5 0%,
+            #c7ecd4 100%
         );
 }
 
 
 .kpi.layak::before {
 
-    background: #72c291;
+    background: #58aa76;
 }
 
 
 .kpi.layak::after {
 
-    background: #bbf7d0;
+    background: #9ed9b4;
 }
 
 
@@ -676,21 +680,21 @@ body {
     background:
         linear-gradient(
             145deg,
-            #ffffff 0%,
-            #fff1f1 100%
+            #ffe1e1 0%,
+            #f8cccc 100%
         );
 }
 
 
 .kpi.tidak::before {
 
-    background: #df9090;
+    background: #cf7777;
 }
 
 
 .kpi.tidak::after {
 
-    background: #fecaca;
+    background: #eaa5a5;
 }
 
 
@@ -704,21 +708,21 @@ body {
     background:
         linear-gradient(
             145deg,
-            #ffffff 0%,
-            #edf9f1 100%
+            #dcf6e5 0%,
+            #c7ecd4 100%
         );
 }
 
 
 .kpi.persen-layak::before {
 
-    background: #72c291;
+    background: #58aa76;
 }
 
 
 .kpi.persen-layak::after {
 
-    background: #bbf7d0;
+    background: #9ed9b4;
 }
 
 
@@ -732,26 +736,26 @@ body {
     background:
         linear-gradient(
             145deg,
-            #ffffff 0%,
-            #fff1f1 100%
+            #ffe1e1 0%,
+            #f8cccc 100%
         );
 }
 
 
 .kpi.persen-tidak::before {
 
-    background: #df9090;
+    background: #cf7777;
 }
 
 
 .kpi.persen-tidak::after {
 
-    background: #fecaca;
+    background: #eaa5a5;
 }
 
 
 /* =====================================================
-   KPI TEXT
+   KPI LABEL
 ===================================================== */
 
 .kpi-label {
@@ -760,17 +764,63 @@ body {
 
     z-index: 2;
 
-    font-size: 11px;
+    /* DIBESARKAN */
+    font-size: 17px;
 
-    font-weight: 800;
+    /* DIBOLD */
+    font-weight: 900;
 
-    letter-spacing: .5px;
+    letter-spacing: .4px;
 
-    color: #64748b;
+    color: #334155;
 
-    margin-bottom: 9px;
+    margin-bottom: 11px;
+
+    line-height: 1.2;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.85),
+        0 2px 2px rgba(15,23,42,.08);
 }
 
+
+/* KHUSUS LAYAK */
+
+.kpi.layak .kpi-label,
+.kpi.persen-layak .kpi-label {
+
+    color: #236b42;
+
+    font-size: 19px;
+
+    font-weight: 900;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.9),
+        0 2px 3px rgba(35,107,66,.12);
+}
+
+
+/* KHUSUS TIDAK LAYAK */
+
+.kpi.tidak .kpi-label,
+.kpi.persen-tidak .kpi-label {
+
+    color: #a94848;
+
+    font-size: 19px;
+
+    font-weight: 900;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.9),
+        0 2px 3px rgba(169,72,72,.12);
+}
+
+
+/* =====================================================
+   KPI VALUE
+===================================================== */
 
 .kpi-value {
 
@@ -778,41 +828,41 @@ body {
 
     z-index: 2;
 
-    font-size: 30px;
+    font-size: 38px;
 
     font-weight: 900;
 
-    line-height: 1.1;
+    line-height: 1.05;
 
-    letter-spacing: -.5px;
+    letter-spacing: -.7px;
 
     text-shadow:
-        0 1px 0 rgba(255,255,255,.9),
-        0 2px 3px rgba(15,23,42,.10);
+        0 1px 0 rgba(255,255,255,.90),
+        0 3px 4px rgba(15,23,42,.12);
 }
 
 
 .kpi-value.blue {
 
-    color: #4f83b8;
+    color: #25659a;
 }
 
 
 .kpi-value.green {
 
-    color: #4d9b6d;
+    color: #28764a;
 }
 
 
 .kpi-value.red {
 
-    color: #c96f6f;
+    color: #ad4f4f;
 }
 
 
 .kpi-value.orange {
 
-    color: #c96f6f;
+    color: #ad4f4f;
 }
 
 
@@ -824,9 +874,11 @@ body {
 
     font-size: 11px;
 
-    color: #94a3b8;
+    color: #64748b;
 
-    margin-top: 8px;
+    margin-top: 9px;
+
+    font-weight: 600;
 }
 
 
@@ -1138,7 +1190,7 @@ tbody tr:hover {
 
     .header-title h1 {
 
-        font-size: 27px;
+        font-size: 31px;
 
     }
 
@@ -1163,7 +1215,22 @@ tbody tr:hover {
 
     .kpi-value {
 
-        font-size: 26px;
+        font-size: 30px;
+
+    }
+
+    .kpi-label {
+
+        font-size: 16px;
+
+    }
+
+    .kpi.layak .kpi-label,
+    .kpi.persen-layak .kpi-label,
+    .kpi.tidak .kpi-label,
+    .kpi.persen-tidak .kpi-label {
+
+        font-size: 18px;
 
     }
 
