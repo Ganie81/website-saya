@@ -1,7 +1,12 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Dashboard Produksi</title><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard Produksi</title>
+
+<style>
 
 * {
     box-sizing: border-box;
@@ -210,7 +215,8 @@ button:active {
     color: #315b78;
 }
 
-select {
+select,
+input[type="date"] {
 
     width: 100%;
 
@@ -232,7 +238,8 @@ select {
         inset 0 2px 4px rgba(0,0,0,.05);
 }
 
-select:focus {
+select:focus,
+input[type="date"]:focus {
 
     border-color: #3187c8;
 
@@ -320,6 +327,39 @@ select:focus {
 
 
 /* =========================
+   FILTER TANGGAL
+========================= */
+
+.tanggal-range {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(160px, 1fr));
+
+    gap: 13px;
+
+    margin-bottom: 15px;
+}
+
+.tanggal-range .filter-group {
+
+    min-width: 0;
+}
+
+.tanggal-info {
+
+    margin-top: 7px;
+
+    font-size: 12px;
+
+    color: #527189;
+
+    font-weight: 600;
+}
+
+
+/* =========================
    FILTER SUMMARY
 ========================= */
 
@@ -383,29 +423,6 @@ select:focus {
     font-weight: 800;
 
     color: #275a7d;
-}
-
-
-/* =========================
-   PERIODE
-========================= */
-
-.periode-area {
-
-    display: flex;
-
-    gap: 11px;
-
-    flex-wrap: wrap;
-
-    margin-bottom: 15px;
-}
-
-.periode-area .filter-group {
-
-    flex: 1;
-
-    min-width: 160px;
 }
 
 
@@ -1076,6 +1093,10 @@ tbody tr:nth-child(even) {
         font-weight: 900;
     }
 
+    .tanggal-range {
+        grid-template-columns: 1fr;
+    }
+
 }
 
 
@@ -1301,7 +1322,16 @@ body.screenshot-mode .group-percent {
     }
 }
 
-</style></head><body><h1>📊 DASHBOARD PRODUKSI</h1><div class="mode-buttons"><button
+</style>
+</head>
+
+<body>
+
+<h1>📊 DASHBOARD PRODUKSI</h1>
+
+<div class="mode-buttons">
+
+<button
     class="btn-filter"
     id="btnFilter"
     onclick="toggleFilter()">
@@ -1320,92 +1350,351 @@ body.screenshot-mode .group-percent {
     📸 Mode Screenshot
 </button>
 
-</div><div
+</div>
+
+
+<!-- =====================================================
+     FILTER PANEL
+===================================================== -->
+
+<div
     class="filter-panel"
-    id="filterPanel"><div class="filter-title">
-    🔎 FILTER DATA
+    id="filterPanel">
+
+    <div class="filter-title">
+        🔎 FILTER DATA
+    </div>
+
+
+    <!-- =========================
+         FILTER TANGGAL
+    ========================== -->
+
+    <div class="tanggal-range">
+
+        <div class="filter-group">
+
+            <label class="title">
+                📅 Tanggal Dari
+            </label>
+
+            <input
+                type="date"
+                id="tanggalDari"
+                onchange="terapkanSemuaFilter()">
+
+        </div>
+
+
+        <div class="filter-group">
+
+            <label class="title">
+                📅 Tanggal Sampai
+            </label>
+
+            <input
+                type="date"
+                id="tanggalSampai"
+                onchange="terapkanSemuaFilter()">
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FILTER LAIN
+    ========================== -->
+
+    <div
+        class="filter-row"
+        id="filterContainer">
+    </div>
+
 </div>
 
-<div class="periode-area">
 
-    <div class="filter-group">
+<!-- =====================================================
+     FILTER SUMMARY
+===================================================== -->
 
-        <label class="title">
-            Periode
-        </label>
+<div class="filter-summary">
 
-        <select
-            id="periode"
-            onchange="ubahPeriode()">
+    <div class="filter-summary-title">
+        🔎 FILTER DATA YANG DITAMPILKAN
+    </div>
 
-            <option value="semua">
-                Semua
-            </option>
+    <div
+        id="filterSummaryContent"
+        class="filter-summary-content">
 
-            <option value="tahun">
-                Per Tahun
-            </option>
+        <div class="filter-tag">
+            <span>Tanggal:</span> Semua
+        </div>
 
-            <option value="bulan">
-                Per Bulan
-            </option>
+    </div>
 
-        </select>
+</div>
+
+
+<!-- =====================================================
+     DASHBOARD CARDS
+===================================================== -->
+
+<div class="cards">
+
+    <div class="card">
+
+        <div class="card-title">
+            Total Produksi (pcs)
+        </div>
+
+        <div
+            class="card-value"
+            id="totalProduksi">
+            0
+        </div>
 
     </div>
 
 
-    <div
-        class="filter-group"
-        id="tahunArea">
+    <div class="card">
 
-        <label class="title">
-            Tahun
-        </label>
+        <div class="card-title">
+            Total Produksi (kodi)
+        </div>
 
-        <select
-            id="tahun"
-            onchange="terapkanSemuaFilter()">
-
-            <option value="">
-                Semua
-            </option>
-
-        </select>
+        <div
+            class="card-value"
+            id="totalKodi">
+            0
+        </div>
 
     </div>
 
 
+    <div class="card">
+
+        <div class="card-title">
+            Total Data (baris)
+        </div>
+
+        <div
+            class="card-value"
+            id="totalData">
+            0
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-title">
+            Jumlah Mesin
+        </div>
+
+        <div
+            class="card-value"
+            id="jumlahMesin">
+            0
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-title">
+            Jumlah Grup
+        </div>
+
+        <div
+            class="card-value"
+            id="jumlahGrup">
+            0
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     GRUP
+===================================================== -->
+
+<div class="group-cards">
+
+    <div class="group-card group-a">
+
+        <h3>
+            GRUP A
+        </h3>
+
+        <div
+            class="group-production"
+            id="produksiA">
+            0 Pcs
+        </div>
+
+        <div
+            class="group-percent"
+            id="persenA">
+            0%
+        </div>
+
+    </div>
+
+
+    <div class="group-card group-b">
+
+        <h3>
+            GRUP B
+        </h3>
+
+        <div
+            class="group-production"
+            id="produksiB">
+            0 Pcs
+        </div>
+
+        <div
+            class="group-percent"
+            id="persenB">
+            0%
+        </div>
+
+    </div>
+
+
+    <div class="group-card group-c">
+
+        <h3>
+            GRUP C
+        </h3>
+
+        <div
+            class="group-production"
+            id="produksiC">
+            0 Pcs
+        </div>
+
+        <div
+            class="group-percent"
+            id="persenC">
+            0%
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PENCAPAIAN GRUP
+===================================================== -->
+
+<div class="table-card">
+
+    <div class="table-title">
+        📈 Pencapaian Grup
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Grup</th>
+                    <th>Produksi (Pcs)</th>
+                    <th>Produksi (Kodi)</th>
+                    <th>Pencapaian %</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="tabelGrup"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     DATA MESIN
+===================================================== -->
+
+<div class="table-card">
+
+    <div class="table-title">
+        ⚙️ Data Mesin
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Mc</th>
+                    <th>Grup A (Pcs)</th>
+                    <th>Grup B (Pcs)</th>
+                    <th>Grup C (Pcs)</th>
+                    <th>Total (Pcs)</th>
+                    <th>Pencapaian %</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="tabelMesin"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     DATA PRODUKSI
+===================================================== -->
+
+<div class="table-card">
+
+    <div class="table-title">
+        📋 Data Produksi
+    </div>
+
     <div
-        class="filter-group"
-        id="bulanArea">
+        class="table-wrapper data-wrapper">
 
-        <label class="title">
-            Bulan
-        </label>
+        <table>
 
-        <select
-            id="bulan"
-            onchange="terapkanSemuaFilter()">
+            <thead>
 
-            <option value="">
-                Semua
-            </option>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Shift</th>
+                    <th>Grup</th>
+                    <th>Kode Produk</th>
+                    <th>Warna Ground</th>
+                    <th>Motif</th>
+                    <th>Qty (Pcs)</th>
+                    <th>Mc</th>
+                    <th>Jenis Print</th>
+                </tr>
 
-            <option value="1">Januari</option>
-            <option value="2">Februari</option>
-            <option value="3">Maret</option>
-            <option value="4">April</option>
-            <option value="5">Mei</option>
-            <option value="6">Juni</option>
-            <option value="7">Juli</option>
-            <option value="8">Agustus</option>
-            <option value="9">September</option>
-            <option value="10">Oktober</option>
-            <option value="11">November</option>
-            <option value="12">Desember</option>
+            </thead>
 
-        </select>
+            <tbody id="tabelData"></tbody>
+
+        </table>
 
     </div>
 
@@ -1413,246 +1702,13 @@ body.screenshot-mode .group-percent {
 
 
 <div
-    class="filter-row"
-    id="filterContainer">
-</div>
-
-</div><div class="filter-summary"><div class="filter-summary-title">
-    🔎 FILTER DATA YANG DITAMPILKAN
-</div>
-
-<div
-    id="filterSummaryContent"
-    class="filter-summary-content">
-
-    <div class="filter-tag">
-        <span>Filter:</span> Semua
-    </div>
-
-    <div class="filter-tag">
-        <span>Tahun:</span> Semua
-    </div>
-
-    <div class="filter-tag">
-        <span>Bulan:</span> Semua
-    </div>
-
-</div>
-
-</div><div class="cards"><div class="card">
-    <div class="card-title">
-        Total Produksi (pcs)
-    </div>
-
-    <div
-        class="card-value"
-        id="totalProduksi">
-        0
-    </div>
-</div>
-
-
-<div class="card">
-    <div class="card-title">
-        Total Produksi (kodi)
-    </div>
-
-    <div
-        class="card-value"
-        id="totalKodi">
-        0
-    </div>
-</div>
-
-
-<div class="card">
-    <div class="card-title">
-        Total Data (baris)
-    </div>
-
-    <div
-        class="card-value"
-        id="totalData">
-        0
-    </div>
-</div>
-
-
-<div class="card">
-    <div class="card-title">
-        Jumlah Mesin
-    </div>
-
-    <div
-        class="card-value"
-        id="jumlahMesin">
-        0
-    </div>
-</div>
-
-
-<div class="card">
-    <div class="card-title">
-        Jumlah Grup
-    </div>
-
-    <div
-        class="card-value"
-        id="jumlahGrup">
-        0
-    </div>
-</div>
-
-</div><div class="group-cards"><div class="group-card group-a">
-
-    <h3>
-        GRUP A
-    </h3>
-
-    <div
-        class="group-production"
-        id="produksiA">
-        0 Pcs
-    </div>
-
-    <div
-        class="group-percent"
-        id="persenA">
-        0%
-    </div>
-
-</div>
-
-
-<div class="group-card group-b">
-
-    <h3>
-        GRUP B
-    </h3>
-
-    <div
-        class="group-production"
-        id="produksiB">
-        0 Pcs
-    </div>
-
-    <div
-        class="group-percent"
-        id="persenB">
-        0%
-    </div>
-
-</div>
-
-
-<div class="group-card group-c">
-
-    <h3>
-        GRUP C
-    </h3>
-
-    <div
-        class="group-production"
-        id="produksiC">
-        0 Pcs
-    </div>
-
-    <div
-        class="group-percent"
-        id="persenC">
-        0%
-    </div>
-
-</div>
-
-</div><div class="table-card"><div class="table-title">
-    📈 Pencapaian Grup
-</div>
-
-<div class="table-wrapper">
-
-    <table>
-
-        <thead>
-
-            <tr>
-                <th>Grup</th>
-                <th>Produksi (Pcs)</th>
-                <th>Produksi (Kodi)</th>
-                <th>Pencapaian %</th>
-            </tr>
-
-        </thead>
-
-        <tbody id="tabelGrup"></tbody>
-
-    </table>
-
-</div>
-
-</div><div class="table-card"><div class="table-title">
-    ⚙️ Data Mesin
-</div>
-
-<div class="table-wrapper">
-
-    <table>
-
-        <thead>
-
-            <tr>
-                <th>Mc</th>
-                <th>Grup A (Pcs)</th>
-                <th>Grup B (Pcs)</th>
-                <th>Grup C (Pcs)</th>
-                <th>Total (Pcs)</th>
-                <th>Pencapaian %</th>
-            </tr>
-
-        </thead>
-
-        <tbody id="tabelMesin"></tbody>
-
-    </table>
-
-</div>
-
-</div><div class="table-card"><div class="table-title">
-    📋 Data Produksi
-</div>
-
-<div
-    class="table-wrapper data-wrapper">
-
-    <table>
-
-        <thead>
-
-            <tr>
-                <th>Tanggal</th>
-                <th>Shift</th>
-                <th>Grup</th>
-                <th>Kode Produk</th>
-                <th>Warna Ground</th>
-                <th>Motif</th>
-                <th>Qty (Pcs)</th>
-                <th>Mc</th>
-                <th>Jenis Print</th>
-            </tr>
-
-        </thead>
-
-        <tbody id="tabelData"></tbody>
-
-    </table>
-
-</div>
-
-</div><div
     class="loading"
     id="loading">
     ⏳ Mengambil data...
-</div><script>
+</div>
+
+
+<script>
 
 /* =====================================================
    URL APPS SCRIPT
@@ -1667,6 +1723,7 @@ const URL =
 ===================================================== */
 
 let semuaData = [];
+
 let dataTampil = [];
 
 let sedangMemulihkanFilter = false;
@@ -1751,10 +1808,12 @@ function getTanggalParts(value) {
     const text =
         String(value).trim();
 
+
     let match =
         text.match(
             /^(\d{4})-(\d{1,2})-(\d{1,2})T/
         );
+
 
     if (match) {
 
@@ -1801,10 +1860,12 @@ function getTanggalParts(value) {
 
     }
 
+
     match =
         text.match(
             /^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/
         );
+
 
     if (match) {
 
@@ -1823,10 +1884,12 @@ function getTanggalParts(value) {
 
     }
 
+
     match =
         text.match(
             /^(\d{1,2})[-/](\d{1,2})[-/](\d{4})$/
         );
+
 
     if (match) {
 
@@ -1845,8 +1908,10 @@ function getTanggalParts(value) {
 
     }
 
+
     const date =
         new Date(value);
+
 
     if (
         !isNaN(
@@ -1869,10 +1934,37 @@ function getTanggalParts(value) {
 
     }
 
+
     return null;
 
 }
 
+
+/* =====================================================
+   KEY TANGGAL
+   YYYYMMDD
+===================================================== */
+
+function getTanggalKey(value) {
+
+    const p =
+        getTanggalParts(value);
+
+    if (!p)
+        return null;
+
+    return (
+        p.tahun * 10000 +
+        p.bulan * 100 +
+        p.tanggal
+    );
+
+}
+
+
+/* =====================================================
+   FORMAT TANGGAL
+===================================================== */
 
 function formatTanggal(value) {
 
@@ -1900,6 +1992,40 @@ function formatTanggal(value) {
 
 
 /* =====================================================
+   FORMAT TANGGAL INPUT
+===================================================== */
+
+function formatTanggalInput(value) {
+
+    if (
+        !value
+    ) {
+        return "";
+    }
+
+    const match =
+        String(value).match(
+            /^(\d{4})-(\d{2})-(\d{2})$/
+        );
+
+    if (match) {
+
+        return (
+            match[3] +
+            "/" +
+            match[2] +
+            "/" +
+            match[1]
+        );
+
+    }
+
+    return value;
+
+}
+
+
+/* =====================================================
    FILTER PANEL
 ===================================================== */
 
@@ -1915,9 +2041,11 @@ function toggleFilter() {
             "btnFilter"
         );
 
+
     panel.classList.toggle(
         "show"
     );
+
 
     if (
         panel.classList.contains(
@@ -1928,78 +2056,14 @@ function toggleFilter() {
         button.textContent =
             "🔼 Sembunyikan Filter";
 
-    } else {
+    }
+
+    else {
 
         button.textContent =
             "🔽 Tampilkan Filter";
 
     }
-
-}
-
-
-/* =====================================================
-   PERIODE
-===================================================== */
-
-function ubahPeriode(
-    simpan = true
-) {
-
-    const periode =
-        document.getElementById(
-            "periode"
-        ).value;
-
-    const tahunArea =
-        document.getElementById(
-            "tahunArea"
-        );
-
-    const bulanArea =
-        document.getElementById(
-            "bulanArea"
-        );
-
-    if (
-        periode === "semua"
-    ) {
-
-        tahunArea.style.display =
-            "none";
-
-        bulanArea.style.display =
-            "none";
-
-    }
-
-    else if (
-        periode === "tahun"
-    ) {
-
-        tahunArea.style.display =
-            "block";
-
-        bulanArea.style.display =
-            "none";
-
-    }
-
-    else if (
-        periode === "bulan"
-    ) {
-
-        tahunArea.style.display =
-            "block";
-
-        bulanArea.style.display =
-            "block";
-
-    }
-
-    terapkanSemuaFilter(
-        simpan
-    );
 
 }
 
@@ -2019,6 +2083,7 @@ function buatFilter(
             "filterContainer"
         );
 
+
     const group =
         document.createElement(
             "div"
@@ -2026,6 +2091,7 @@ function buatFilter(
 
     group.className =
         "filter-group";
+
 
     const title =
         document.createElement(
@@ -2037,6 +2103,7 @@ function buatFilter(
 
     title.textContent =
         nama;
+
 
     group.appendChild(
         title
@@ -2053,7 +2120,6 @@ function buatFilter(
 
 
     if (
-        kolom === 7 ||
         kolom === 4 ||
         kolom === 3
     ) {
@@ -2069,26 +2135,25 @@ function buatFilter(
         search.className =
             "filter-search";
 
-        if (kolom === 7) {
 
-            search.placeholder =
-                "🔍 Cari tanggal...";
-
-        }
-
-        else if (kolom === 4) {
+        if (
+            kolom === 4
+        ) {
 
             search.placeholder =
                 "🔍 Cari motif...";
 
         }
 
-        else if (kolom === 3) {
+        else if (
+            kolom === 3
+        ) {
 
             search.placeholder =
                 "🔍 Cari warna blok...";
 
         }
+
 
         search.oninput =
             function() {
@@ -2099,6 +2164,7 @@ function buatFilter(
                 );
 
             };
+
 
         box.appendChild(
             search
@@ -2139,9 +2205,7 @@ function buatFilter(
 
                     .map(
                         v =>
-                            kolom === 7
-                                ? formatTanggal(v)
-                                : String(v)
+                            String(v)
                     )
 
             )
@@ -2169,6 +2233,7 @@ function buatFilter(
                     "label"
                 );
 
+
             const checkbox =
                 document.createElement(
                     "input"
@@ -2180,6 +2245,7 @@ function buatFilter(
             checkbox.value =
                 value;
 
+
             checkbox.onchange =
                 function() {
 
@@ -2187,15 +2253,18 @@ function buatFilter(
 
                 };
 
+
             label.appendChild(
                 checkbox
             );
+
 
             label.appendChild(
                 document.createTextNode(
                     value
                 )
             );
+
 
             options.appendChild(
                 label
@@ -2209,9 +2278,11 @@ function buatFilter(
         options
     );
 
+
     group.appendChild(
         box
     );
+
 
     container.appendChild(
         group
@@ -2242,6 +2313,7 @@ function cariPilihan(
             filterId
         );
 
+
     if (!area)
         return;
 
@@ -2259,6 +2331,7 @@ function cariPilihan(
                 label.textContent
                 .toLowerCase();
 
+
             if (
                 text.includes(
                     keyword
@@ -2268,7 +2341,9 @@ function cariPilihan(
                 label.style.display =
                     "block";
 
-            } else {
+            }
+
+            else {
 
                 label.style.display =
                     "none";
@@ -2289,19 +2364,14 @@ function ambilStateFilter() {
 
     const state = {
 
-        periode:
+        tanggalDari:
             document.getElementById(
-                "periode"
-            )?.value || "semua",
-
-        tahun:
-            document.getElementById(
-                "tahun"
+                "tanggalDari"
             )?.value || "",
 
-        bulan:
+        tanggalSampai:
             document.getElementById(
-                "bulan"
+                "tanggalSampai"
             )?.value || "",
 
         selections: {}
@@ -2315,8 +2385,7 @@ function ambilStateFilter() {
         "filterKode",
         "filterWarna",
         "filterMotif",
-        "filterMc",
-        "filterTanggal"
+        "filterMc"
 
     ];
 
@@ -2448,7 +2517,7 @@ async function simpanFilterTerakhir() {
 
 
 /* =====================================================
-   AMBIL FILTER TERAKHIR DARI APPS SCRIPT
+   AMBIL FILTER TERAKHIR
 ===================================================== */
 
 async function ambilFilterTersimpan() {
@@ -2520,57 +2589,36 @@ function terapkanFilterTersimpan(
 
     try {
 
-        const periode =
+        const tanggalDari =
             document.getElementById(
-                "periode"
+                "tanggalDari"
             );
 
+
+        const tanggalSampai =
+            document.getElementById(
+                "tanggalSampai"
+            );
+
+
         if (
-            periode &&
-            state.periode !== undefined
+            tanggalDari
         ) {
 
-            periode.value =
-                state.periode;
+            tanggalDari.value =
+                state.tanggalDari || "";
 
         }
 
 
-        const tahun =
-            document.getElementById(
-                "tahun"
-            );
-
         if (
-            tahun &&
-            state.tahun !== undefined
+            tanggalSampai
         ) {
 
-            tahun.value =
-                state.tahun;
+            tanggalSampai.value =
+                state.tanggalSampai || "";
 
         }
-
-
-        const bulan =
-            document.getElementById(
-                "bulan"
-            );
-
-        if (
-            bulan &&
-            state.bulan !== undefined
-        ) {
-
-            bulan.value =
-                state.bulan;
-
-        }
-
-
-        ubahPeriode(
-            false
-        );
 
 
         if (
@@ -2582,10 +2630,26 @@ function terapkanFilterTersimpan(
             ).forEach(
                 id => {
 
+                    /*
+                       filterTanggal dari versi lama
+                       sengaja diabaikan karena sekarang
+                       menggunakan rentang tanggal.
+                    */
+
+                    if (
+                        id === "filterTanggal"
+                    ) {
+
+                        return;
+
+                    }
+
+
                     const container =
                         document.getElementById(
                             id
                         );
+
 
                     if (!container)
                         return;
@@ -2636,20 +2700,55 @@ function terapkanSemuaFilter(
     simpan = true
 ) {
 
-    const periode =
+    const tanggalDari =
         document.getElementById(
-            "periode"
+            "tanggalDari"
         ).value;
 
-    const tahun =
+
+    const tanggalSampai =
         document.getElementById(
-            "tahun"
+            "tanggalSampai"
         ).value;
 
-    const bulan =
-        document.getElementById(
-            "bulan"
-        ).value;
+
+    /*
+       Jika tanggal terbalik,
+       jangan tampilkan data.
+    */
+
+    if (
+        tanggalDari &&
+        tanggalSampai &&
+        tanggalDari >
+        tanggalSampai
+    ) {
+
+        dataTampil = [];
+
+        tampilkanData();
+
+        updateDashboard();
+
+        updatePencapaianGrup();
+
+        updateDataMesin();
+
+        updateFilterSummary();
+
+
+        if (
+            simpan &&
+            !sedangMemulihkanFilter
+        ) {
+
+            jadwalkanSimpanFilter();
+
+        }
+
+        return;
+
+    }
 
 
     const filters = [
@@ -2677,80 +2776,92 @@ function terapkanSemuaFilter(
         {
             kolom: 6,
             id: "filterMc"
-        },
-
-        {
-            kolom: 7,
-            id: "filterTanggal"
         }
 
     ];
+
+
+    const keyDari =
+        tanggalDari
+            ? Number(
+                tanggalDari.replaceAll(
+                    "-",
+                    ""
+                )
+              )
+            : null;
+
+
+    const keySampai =
+        tanggalSampai
+            ? Number(
+                tanggalSampai.replaceAll(
+                    "-",
+                    ""
+                )
+              )
+            : null;
 
 
     dataTampil =
         semuaData.filter(
             row => {
 
+                /*
+                   =========================
+                   FILTER RENTANG TANGGAL
+                   =========================
+                */
+
                 if (
-                    periode !== "semua"
+                    keyDari !== null ||
+                    keySampai !== null
                 ) {
 
-                    const p =
-                        getTanggalParts(
+                    const keyTanggal =
+                        getTanggalKey(
                             row[7]
                         );
 
 
-                    if (!p)
-                        return false;
-
-
                     if (
-                        periode === "tahun"
+                        keyTanggal === null
                     ) {
 
-                        if (
-                            tahun &&
-                            p.tahun !==
-                                Number(tahun)
-                        ) {
-
-                            return false;
-
-                        }
+                        return false;
 
                     }
 
 
                     if (
-                        periode === "bulan"
+                        keyDari !== null &&
+                        keyTanggal <
+                        keyDari
                     ) {
 
-                        if (
-                            tahun &&
-                            p.tahun !==
-                                Number(tahun)
-                        ) {
+                        return false;
 
-                            return false;
-
-                        }
+                    }
 
 
-                        if (
-                            bulan &&
-                            p.bulan !==
-                                Number(bulan)
-                        ) {
+                    if (
+                        keySampai !== null &&
+                        keyTanggal >
+                        keySampai
+                    ) {
 
-                            return false;
-
-                        }
+                        return false;
 
                     }
 
                 }
 
+
+                /*
+                   =========================
+                   FILTER LAIN
+                   =========================
+                */
 
                 for (
                     const filter
@@ -2781,32 +2892,13 @@ function terapkanSemuaFilter(
                         );
 
 
-                    let value =
-                        row[
-                            filter.kolom
-                        ];
-
-
-                    if (
-                        filter.kolom === 7
-                    ) {
-
-                        value =
-                            formatTanggal(
-                                value
-                            );
-
-                    }
-
-                    else {
-
-                        value =
-                            String(
-                                value ??
-                                ""
-                            );
-
-                    }
+                    const value =
+                        String(
+                            row[
+                                filter.kolom
+                            ] ??
+                            ""
+                        );
 
 
                     if (
@@ -2862,6 +2954,7 @@ function tampilkanData() {
             "tabelData"
         );
 
+
     tbody.innerHTML =
         "";
 
@@ -2904,11 +2997,14 @@ function tampilkanData() {
                             "td"
                         );
 
+
                     td.textContent =
                         value ?? "";
 
+
                     td.style.textAlign =
                         "center";
+
 
                     tr.appendChild(
                         td
@@ -2935,22 +3031,28 @@ function tampilkanData() {
                 "tr"
             );
 
+
         const td =
             document.createElement(
                 "td"
             );
 
+
         td.colSpan = 9;
+
 
         td.textContent =
             "Tidak ada data";
 
+
         td.style.textAlign =
             "center";
+
 
         tr.appendChild(
             td
         );
+
 
         tbody.appendChild(
             tr
@@ -2970,8 +3072,10 @@ function updateDashboard() {
     let total =
         0;
 
+
     const mesin =
         new Set();
+
 
     const grup =
         new Set();
@@ -3082,6 +3186,7 @@ function updatePencapaianGrup() {
                     row[5]
                 ) || 0;
 
+
             const grup =
                 normalisasiGrup(
                     row[1]
@@ -3125,10 +3230,12 @@ function updatePencapaianGrup() {
             ? A / total * 100
             : 0;
 
+
     const persenB =
         total > 0
             ? B / total * 100
             : 0;
+
 
     const persenC =
         total > 0
@@ -3176,6 +3283,7 @@ function updatePencapaianGrup() {
         document.getElementById(
             "tabelGrup"
         );
+
 
     tbody.innerHTML =
         "";
@@ -3247,6 +3355,7 @@ function updatePencapaianGrup() {
         document.createElement(
             "tr"
         );
+
 
     totalRow.className =
         "total-row";
@@ -3381,6 +3490,7 @@ function updateDataMesin() {
             "tabelMesin"
         );
 
+
     tbody.innerHTML =
         "";
 
@@ -3456,6 +3566,7 @@ function updateDataMesin() {
             const row =
                 tbody.children[index];
 
+
             const total =
                 mesinData[mc].A +
                 mesinData[mc].B +
@@ -3482,6 +3593,7 @@ function updateDataMesin() {
         document.createElement(
             "tr"
         );
+
 
     totalRow.className =
         "total-row";
@@ -3556,133 +3668,88 @@ function updateFilterSummary() {
         );
 
 
-    const periode =
+    const tanggalDari =
         document.getElementById(
-            "periode"
+            "tanggalDari"
         ).value;
 
 
-    const tahun =
+    const tanggalSampai =
         document.getElementById(
-            "tahun"
+            "tanggalSampai"
         ).value;
 
 
-    const bulan =
-        document.getElementById(
-            "bulan"
-        ).value;
+    let html = "";
 
 
-    const namaBulan = {
+    /*
+       =========================
+       SUMMARY TANGGAL
+       =========================
+    */
 
-        "1": "Januari",
-        "2": "Februari",
-        "3": "Maret",
-        "4": "April",
-        "5": "Mei",
-        "6": "Juni",
-        "7": "Juli",
-        "8": "Agustus",
-        "9": "September",
-        "10": "Oktober",
-        "11": "November",
-        "12": "Desember"
-
-    };
-
-
-    let namaFilter =
+    let teksTanggal =
         "Semua";
 
 
     if (
-        periode === "tahun"
+        tanggalDari &&
+        tanggalSampai
     ) {
 
-        namaFilter =
-            "Per Tahun";
+        teksTanggal =
+            formatTanggalInput(
+                tanggalDari
+            )
+            +
+            " s/d " +
+            formatTanggalInput(
+                tanggalSampai
+            );
 
     }
 
     else if (
-        periode === "bulan"
+        tanggalDari
     ) {
 
-        namaFilter =
-            "Per Bulan";
+        teksTanggal =
+            "Mulai " +
+            formatTanggalInput(
+                tanggalDari
+            );
+
+    }
+
+    else if (
+        tanggalSampai
+    ) {
+
+        teksTanggal =
+            "Sampai " +
+            formatTanggalInput(
+                tanggalSampai
+            );
 
     }
 
 
-    let html = `
+    html += `
 
         <div class="filter-tag">
-            <span>Filter:</span>
-            ${namaFilter}
+            <span>Tanggal:</span>
+            ${teksTanggal}
         </div>
 
     `;
 
 
-    if (
-        periode === "tahun" ||
-        periode === "bulan"
-    ) {
-
-        html += `
-
-            <div class="filter-tag">
-                <span>Tahun:</span>
-                ${tahun || "Semua"}
-            </div>
-
-        `;
-
-    }
-
-    else {
-
-        html += `
-
-            <div class="filter-tag">
-                <span>Tahun:</span>
-                Semua
-            </div>
-
-        `;
-
-    }
-
-
-    if (
-        periode === "bulan"
-    ) {
-
-        html += `
-
-            <div class="filter-tag">
-                <span>Bulan:</span>
-                ${namaBulan[bulan] || "Semua"}
-            </div>
-
-        `;
-
-    }
-
-    else {
-
-        html += `
-
-            <div class="filter-tag">
-                <span>Bulan:</span>
-                Semua
-            </div>
-
-        `;
-
-    }
-
+    /*
+       =========================
+       FILTER LAIN
+       =========================
+    */
 
     const filters = [
 
@@ -3709,11 +3776,6 @@ function updateFilterSummary() {
         {
             nama: "Mc",
             id: "filterMc"
-        },
-
-        {
-            nama: "Tanggal",
-            id: "filterTanggal"
         }
 
     ];
@@ -3744,10 +3806,13 @@ function updateFilterSummary() {
                 html += `
 
                     <div class="filter-tag">
+
                         <span>
                             ${filter.nama}:
                         </span>
+
                         ${values.join(", ")}
+
                     </div>
 
                 `;
@@ -3765,7 +3830,7 @@ function updateFilterSummary() {
 
 
 /* =====================================================
-   RESET FILTER GLOBAL
+   RESET FILTER
 ===================================================== */
 
 async function resetFilter() {
@@ -3782,19 +3847,13 @@ async function resetFilter() {
     try {
 
         document.getElementById(
-            "periode"
-        ).value =
-            "semua";
-
-
-        document.getElementById(
-            "tahun"
+            "tanggalDari"
         ).value =
             "";
 
 
         document.getElementById(
-            "bulan"
+            "tanggalSampai"
         ).value =
             "";
 
@@ -3847,7 +3906,6 @@ async function resetFilter() {
 
             }
         );
-
 
     }
 
@@ -3906,7 +3964,7 @@ async function resetFilter() {
     }
 
 
-    ubahPeriode(
+    terapkanSemuaFilter(
         false
     );
 
@@ -3927,86 +3985,6 @@ function toggleScreenshotMode() {
 
 
 /* =====================================================
-   ISI TAHUN
-===================================================== */
-
-function isiTahun() {
-
-    const select =
-        document.getElementById(
-            "tahun"
-        );
-
-
-    const tahunSet =
-        new Set();
-
-
-    semuaData.forEach(
-        row => {
-
-            const p =
-                getTanggalParts(
-                    row[7]
-                );
-
-
-            if (p) {
-
-                tahunSet.add(
-                    p.tahun
-                );
-
-            }
-
-        }
-    );
-
-
-    const tahunArray =
-        [
-            ...tahunSet
-        ]
-        .sort(
-            (a, b) =>
-                b - a
-        );
-
-
-    select.innerHTML = `
-
-        <option value="">
-            Semua
-        </option>
-
-    `;
-
-
-    tahunArray.forEach(
-        tahun => {
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-            option.value =
-                tahun;
-
-            option.textContent =
-                tahun;
-
-            select.appendChild(
-                option
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
    INISIALISASI FILTER
 ===================================================== */
 
@@ -4016,6 +3994,7 @@ function inisialisasiFilter() {
         document.getElementById(
             "filterContainer"
         );
+
 
     container.innerHTML =
         "";
@@ -4053,18 +4032,6 @@ function inisialisasiFilter() {
         "Mc",
         6,
         "filterMc"
-    );
-
-
-    buatFilter(
-        "Tanggal",
-        7,
-        "filterTanggal"
-    );
-
-
-    ubahPeriode(
-        false
     );
 
 }
@@ -4130,8 +4097,6 @@ async function ambilData() {
             ];
 
 
-        isiTahun();
-
         inisialisasiFilter();
 
 
@@ -4196,5 +4161,7 @@ async function ambilData() {
 
 ambilData();
 
-</script></body>
+</script>
+
+</body>
 </html>
