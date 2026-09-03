@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,54 +21,56 @@ body {
     background:
         radial-gradient(circle at top left, #e0f2fe, transparent 35%),
         radial-gradient(circle at bottom right, #dbeafe, transparent 35%),
-        #f8fafc;
+        #f4f7fb;
 }
 
 /* ================= HEADER ================= */
 
 .header {
-    background: linear-gradient(135deg, #075985, #0284c7);
+    background: linear-gradient(135deg, #2563eb, #0ea5e9);
     color: white;
-    padding: 22px;
+    padding: 20px 24px;
     border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(0,0,0,.12);
-    margin-bottom: 18px;
-}
-
-.header-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 15px;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, .20);
+    margin-bottom: 18px;
 }
 
-.title-area {
+.header-left {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
 .washing-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 16px;
+    width: 58px;
+    height: 58px;
     background: rgba(255,255,255,.18);
-
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    font-size: 38px;
+    flex-shrink: 0;
 }
 
-.header h1 {
+.washing-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.header-title h1 {
     margin: 0;
-    font-size: 28px;
+    font-size: 25px;
 }
 
-.header p {
+.header-title p {
     margin: 5px 0 0;
     opacity: .9;
+    font-size: 13px;
 }
 
 /* ================= NAV ================= */
@@ -76,486 +78,410 @@ body {
 .nav {
     display: flex;
     gap: 8px;
-    margin-top: 18px;
     flex-wrap: wrap;
 }
 
-.nav button {
-    border: none;
-    padding: 10px 18px;
-    border-radius: 10px;
-    cursor: pointer;
-
-    font-weight: bold;
-
-    background: rgba(255,255,255,.15);
+.nav a {
+    text-decoration: none;
     color: white;
+    padding: 9px 15px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.15);
+    font-size: 13px;
+    font-weight: bold;
+    transition: .2s;
 }
 
-.nav button:hover {
+.nav a:hover {
     background: rgba(255,255,255,.28);
 }
 
-.nav .active {
+.nav a.active {
     background: white;
-    color: #0369a1;
+    color: #2563eb;
 }
 
 /* ================= FILTER ================= */
 
-.filter-panel {
-    background: white;
-    border-radius: 16px;
+.card {
+    background: rgba(255,255,255,.95);
+    border-radius: 17px;
     padding: 18px;
-
-    box-shadow: 0 5px 18px rgba(0,0,0,.07);
-
+    box-shadow: 0 8px 25px rgba(15,23,42,.07);
     margin-bottom: 18px;
+    border: 1px solid rgba(148,163,184,.15);
 }
 
-.filter-title {
-    font-size: 18px;
+.card-title {
+    font-size: 17px;
     font-weight: bold;
     margin-bottom: 15px;
+    color: #0f172a;
 }
 
-.date-area {
+.filter-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
-
-    margin-bottom: 15px;
 }
 
-.date-box label {
+.filter-item label {
     display: block;
-
     font-size: 12px;
     font-weight: bold;
-
+    color: #64748b;
     margin-bottom: 6px;
-
-    color: #475569;
 }
 
-input,
-select {
+.filter-item input,
+.filter-item select {
     width: 100%;
-
-    padding: 10px 12px;
-
+    height: 40px;
     border: 1px solid #cbd5e1;
-    border-radius: 9px;
-
+    border-radius: 10px;
+    padding: 0 11px;
     background: white;
-
-    font-size: 14px;
-
     outline: none;
+    font-size: 13px;
 }
 
-input:focus,
-select:focus {
-    border-color: #0284c7;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(2,132,199,.12);
+.filter-item input:focus,
+.filter-item select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,.10);
 }
 
-/* ================= FILTER DROPDOWN ================= */
+/* ================= MULTI SELECT ================= */
 
-.filters {
-    display: grid;
-
-    grid-template-columns:
-        repeat(5, 1fr);
-
-    gap: 10px;
-}
-
-.filter-item {
+.multi-select {
     position: relative;
 }
 
-.filter-button {
+.multi-select-btn {
     width: 100%;
-
-    background: #f8fafc;
-
+    height: 40px;
     border: 1px solid #cbd5e1;
-
-    border-radius: 9px;
-
-    padding: 10px;
-
+    border-radius: 10px;
+    background: white;
+    padding: 0 11px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     cursor: pointer;
-
-    text-align: left;
-
     font-size: 13px;
 }
 
-.filter-button:hover {
-    border-color: #0284c7;
+.multi-select-btn:hover {
+    border-color: #60a5fa;
 }
 
-.dropdown {
-    display: none;
-
+.multi-select-menu {
     position: absolute;
-
-    z-index: 100;
-
-    top: 100%;
     left: 0;
-
-    width: 100%;
-
+    right: 0;
+    top: 44px;
     background: white;
-
     border: 1px solid #cbd5e1;
-
     border-radius: 10px;
-
     padding: 8px;
-
+    z-index: 1000;
     max-height: 230px;
-
     overflow-y: auto;
-
-    box-shadow:
-        0 8px 25px
-        rgba(0,0,0,.15);
+    box-shadow: 0 12px 30px rgba(15,23,42,.15);
+    display: none;
 }
 
-.dropdown.show {
+.multi-select-menu.show {
     display: block;
 }
 
-.dropdown-search {
-    margin-bottom: 8px;
+.multi-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 5px;
+    font-size: 13px;
+    border-radius: 7px;
+    cursor: pointer;
 }
 
-.option {
-    padding: 7px 5px;
+.multi-option:hover {
+    background: #eff6ff;
+}
+
+.multi-option input {
+    width: auto;
+    height: auto;
+}
+
+/* ================= BUTTON ================= */
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 17px;
+    cursor: pointer;
+    font-weight: bold;
     font-size: 13px;
 }
 
-.option:hover {
-    background: #f1f5f9;
+.btn-reset {
+    background: #e2e8f0;
+    color: #334155;
 }
 
-.option label {
-    cursor: pointer;
+.btn-reset:hover {
+    background: #cbd5e1;
 }
 
-.reset-btn {
-    margin-top: 14px;
-
-    border: none;
-
-    background: #ef4444;
-
+.btn-primary {
+    background: #2563eb;
     color: white;
-
-    padding: 10px 18px;
-
-    border-radius: 9px;
-
-    cursor: pointer;
-
-    font-weight: bold;
 }
 
-.reset-btn:hover {
-    background: #dc2626;
+.btn-primary:hover {
+    background: #1d4ed8;
 }
 
-.summary {
+/* ================= SUMMARY ================= */
+
+.summary-tags {
     display: flex;
-
-    flex-wrap: wrap;
-
     gap: 8px;
-
+    flex-wrap: wrap;
     margin-top: 14px;
 }
 
-.tag {
-    background: #e0f2fe;
-
-    color: #075985;
-
-    padding: 7px 11px;
-
+.summary-tag {
+    background: #eff6ff;
+    color: #1d4ed8;
+    padding: 6px 10px;
     border-radius: 20px;
-
-    font-size: 12px;
-
+    font-size: 11px;
     font-weight: bold;
 }
 
-/* ================= SEARCH ROLL ================= */
+/* ================= SEARCH ================= */
 
-.roll-search {
-    background: white;
-
-    padding: 16px;
-
-    border-radius: 15px;
-
-    box-shadow:
-        0 5px 18px
-        rgba(0,0,0,.07);
-
-    margin-bottom: 18px;
-}
-
-.search-title {
-    font-size: 17px;
-    font-weight: bold;
-
-    margin-bottom: 10px;
-}
-
-.search-row {
+.search-box {
     display: flex;
     gap: 10px;
 }
 
-.search-row input {
+.search-box input {
     flex: 1;
+    height: 42px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 0 12px;
+    outline: none;
 }
 
-.search-btn {
-    border: none;
-
-    background: #0284c7;
-
-    color: white;
-
-    padding: 10px 20px;
-
-    border-radius: 9px;
-
-    font-weight: bold;
-
-    cursor: pointer;
+.search-box input:focus {
+    border-color: #3b82f6;
 }
 
 /* ================= KPI ================= */
 
 .kpi-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
+    grid-template-columns: repeat(5, 1fr);
     gap: 14px;
-
     margin-bottom: 18px;
 }
 
 .kpi {
-    background: white;
-
-    border-radius: 16px;
-
-    padding: 18px;
-
-    box-shadow:
-        0 5px 18px
-        rgba(0,0,0,.07);
-
     position: relative;
-
     overflow: hidden;
+    background: rgba(255,255,255,.97);
+    border-radius: 16px;
+    padding: 17px;
+    min-height: 125px;
+    border: 1px solid rgba(148,163,184,.16);
+    box-shadow: 0 7px 22px rgba(15,23,42,.07);
+    transition: .25s;
 }
 
-.kpi::after {
+.kpi:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(15,23,42,.12);
+}
+
+.kpi::before {
     content: "";
-
     position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: #2563eb;
+}
 
-    width: 75px;
-    height: 75px;
+.kpi.total::before {
+    background: #2563eb;
+}
 
-    border-radius: 50%;
+.kpi.layak::before {
+    background: #16a34a;
+}
 
-    right: -25px;
-    top: -25px;
+.kpi.tidak::before {
+    background: #dc2626;
+}
 
-    background: #e0f2fe;
+.kpi.persen-layak::before {
+    background: #0ea5e9;
+}
+
+.kpi.persen-tidak::before {
+    background: #f97316;
 }
 
 .kpi-label {
-    color: #64748b;
-
-    font-size: 13px;
-
+    font-size: 11px;
     font-weight: bold;
+    color: #64748b;
+    margin-bottom: 8px;
 }
 
 .kpi-value {
-    font-size: 30px;
-
-    font-weight: bold;
-
-    margin-top: 8px;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #0f172a;
 }
 
-.kpi-sub {
-    font-size: 12px;
-
-    color: #64748b;
-
-    margin-top: 5px;
-}
-
-.layak {
+.kpi-value.green {
     color: #16a34a;
 }
 
-.tidak {
+.kpi-value.red {
     color: #dc2626;
 }
 
-.persen {
-    color: #0284c7;
+.kpi-value.blue {
+    color: #2563eb;
 }
 
-/* ================= CONTENT ================= */
+.kpi-value.orange {
+    color: #ea580c;
+}
 
-.grid-2 {
+.kpi-sub {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 7px;
+}
+
+/* ================= ANALYSIS ================= */
+
+.analysis-grid {
     display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
-
-    margin-bottom: 18px;
 }
 
-.card {
-    background: white;
-
+.analysis-box {
+    background: rgba(255,255,255,.95);
     border-radius: 16px;
-
-    padding: 18px;
-
-    box-shadow:
-        0 5px 18px
-        rgba(0,0,0,.07);
+    padding: 17px;
+    box-shadow: 0 7px 22px rgba(15,23,42,.06);
+    border: 1px solid rgba(148,163,184,.15);
 }
 
-.card-title {
-    font-size: 17px;
-
+.analysis-title {
     font-weight: bold;
-
-    margin-bottom: 15px;
-}
-
-/* ================= BAR ================= */
-
-.bar-row {
+    color: #0f172a;
     margin-bottom: 13px;
+    font-size: 15px;
 }
 
-.bar-head {
+.analysis-row {
     display: flex;
-
     justify-content: space-between;
-
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid #f1f5f9;
     font-size: 13px;
-
-    margin-bottom: 5px;
 }
 
-.bar-bg {
-    height: 10px;
-
-    background: #e2e8f0;
-
-    border-radius: 20px;
-
-    overflow: hidden;
+.analysis-row:last-child {
+    border-bottom: none;
 }
 
-.bar-fill {
-    height: 100%;
+.analysis-name {
+    color: #475569;
+}
 
-    border-radius: 20px;
+.analysis-value {
+    font-weight: bold;
+    color: #0f172a;
+}
 
-    background: #0284c7;
+.status-layak {
+    color: #16a34a;
+}
+
+.status-tidak {
+    color: #dc2626;
+}
+
+.status-lain {
+    color: #64748b;
 }
 
 /* ================= TABLE ================= */
 
 .table-card {
-    background: white;
-
-    border-radius: 16px;
-
-    padding: 18px;
-
-    box-shadow:
-        0 5px 18px
-        rgba(0,0,0,.07);
-
+    background: rgba(255,255,255,.96);
+    border-radius: 17px;
+    padding: 17px;
+    box-shadow: 0 8px 25px rgba(15,23,42,.07);
     overflow: hidden;
 }
 
-.table-wrap {
+.table-wrapper {
     overflow-x: auto;
 }
 
 table {
     width: 100%;
-
     border-collapse: collapse;
-
     min-width: 1100px;
 }
 
 th {
-    background: #075985;
-
-    color: white;
-
-    padding: 11px 8px;
-
+    background: #eff6ff;
+    color: #1e40af;
     font-size: 12px;
-
+    padding: 11px 9px;
     text-align: left;
-
     white-space: nowrap;
 }
 
 td {
-    padding: 10px 8px;
-
-    border-bottom:
-        1px solid #e2e8f0;
-
+    padding: 10px 9px;
+    border-bottom: 1px solid #e2e8f0;
     font-size: 12px;
-
     white-space: nowrap;
 }
 
-tr:hover td {
+tbody tr:hover {
     background: #f8fafc;
 }
 
 .badge {
-    padding: 5px 9px;
-
+    display: inline-block;
+    padding: 4px 8px;
     border-radius: 15px;
-
-    font-size: 11px;
-
+    font-size: 10px;
     font-weight: bold;
 }
 
@@ -569,255 +495,238 @@ tr:hover td {
     color: #991b1b;
 }
 
-.badge-netral {
-    background: #e2e8f0;
+.badge-lain {
+    background: #f1f5f9;
     color: #475569;
 }
 
+/* ================= LOADING ================= */
+
 .loading {
     text-align: center;
-
-    padding: 30px;
-
+    padding: 25px;
     color: #64748b;
+    font-size: 13px;
 }
 
 .empty {
     text-align: center;
-
     padding: 25px;
-
-    color: #64748b;
+    color: #94a3b8;
+    font-size: 13px;
 }
 
 /* ================= RESPONSIVE ================= */
 
-@media(max-width:1000px) {
-
-    .filters {
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
+@media(max-width: 1100px) {
     .kpi-grid {
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
-    .grid-2 {
-        grid-template-columns:1fr;
+    .filter-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media(max-width:600px) {
-
+@media(max-width: 800px) {
     body {
-        padding: 10px;
+        padding: 12px;
     }
 
-    .header h1 {
-        font-size: 22px;
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .washing-icon {
-        width: 52px;
-        height: 52px;
-
-        font-size: 30px;
+    .nav {
+        width: 100%;
     }
 
-    .date-area {
-        grid-template-columns:1fr;
+    .nav a {
+        flex: 1;
+        text-align: center;
     }
 
-    .filters {
-        grid-template-columns:1fr;
+    .filter-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 600px) {
     .kpi-grid {
-        grid-template-columns:
-            1fr 1fr;
-
-        gap: 8px;
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .kpi {
-        padding: 13px;
+    .filter-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-title h1 {
+        font-size: 21px;
     }
 
     .kpi-value {
         font-size: 24px;
-    }
-
-    .search-row {
-        flex-direction: column;
     }
 }
 
 </style>
 </head>
 
-
 <body>
 
-
-<!-- ==================================================
-     HEADER
-================================================== -->
+<!-- ================= HEADER ================= -->
 
 <div class="header">
 
-    <div class="header-top">
+    <div class="header-left">
 
-        <div class="title-area">
+        <div class="washing-icon">
 
-            <div class="washing-icon">
-                🧺
-            </div>
+            <!-- ICON MESIN WASHING -->
+            <svg viewBox="0 0 64 64" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
 
-            <div>
+                <rect x="8" y="5" width="48" height="54"
+                      rx="7"
+                      stroke="white"
+                      stroke-width="3"/>
 
-                <h1>
-                    Dashboard Cuci
-                </h1>
+                <rect x="14" y="12" width="36" height="7"
+                      rx="3"
+                      fill="white"
+                      opacity=".9"/>
 
-                <p>
-                    Monitoring & Analisa Proses Washing
-                </p>
+                <circle cx="20" cy="15.5" r="1.5" fill="#2563eb"/>
+                <circle cx="27" cy="15.5" r="1.5" fill="#2563eb"/>
 
-            </div>
+                <circle cx="32" cy="38" r="13"
+                        stroke="white"
+                        stroke-width="3"/>
 
+                <circle cx="32" cy="38" r="7"
+                        stroke="white"
+                        stroke-width="2"
+                        opacity=".75"/>
+
+                <path d="M23 38C25 34 28 32 32 32"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      opacity=".75"/>
+
+            </svg>
+
+        </div>
+
+        <div class="header-title">
+            <h1>Dashboard Cuci</h1>
+            <p>Monitoring hasil uji proses washing</p>
         </div>
 
     </div>
 
-
     <div class="nav">
-
-        <button
-            onclick="location.href='index.html'">
-
-            🏭 Produksi
-
-        </button>
-
-
-        <button class="active">
-
-            🧺 Cuci
-
-        </button>
-
-
-        <button
-            onclick="location.href='defect.html'">
-
-            🔧 Defect
-
-        </button>
-
+        <a href="index.html">Produksi</a>
+        <a href="cuci.html" class="active">Cuci</a>
+        <a href="defect.html">Defect</a>
     </div>
 
 </div>
 
 
+<!-- ================= FILTER ================= -->
 
-<!-- ==================================================
-     FILTER
-================================================== -->
+<div class="card">
 
-<div class="filter-panel">
-
-    <div class="filter-title">
+    <div class="card-title">
         🔎 Filter Data Cuci
     </div>
 
+    <div class="filter-grid">
 
-    <div class="date-area">
-
-        <div class="date-box">
-
-            <label>
-                DARI TANGGAL
-            </label>
-
-            <input
-                type="date"
-                id="tanggalDari"
-                onchange="terapkanFilter()">
-
+        <div class="filter-item">
+            <label>Dari Tanggal</label>
+            <input type="date" id="tanggalDari">
         </div>
 
+        <div class="filter-item">
+            <label>Sampai Tanggal</label>
+            <input type="date" id="tanggalSampai">
+        </div>
 
-        <div class="date-box">
+        <div class="filter-item">
+            <label>Grup Washing</label>
+            <div class="multi-select" id="filterGrup"></div>
+        </div>
 
-            <label>
-                SAMPAI TANGGAL
-            </label>
+        <div class="filter-item">
+            <label>Kode Produk</label>
+            <div class="multi-select" id="filterKode"></div>
+        </div>
 
-            <input
-                type="date"
-                id="tanggalSampai"
-                onchange="terapkanFilter()">
+        <div class="filter-item">
+            <label>No Roll</label>
+            <div class="multi-select" id="filterRoll"></div>
+        </div>
 
+        <div class="filter-item">
+            <label>Motif</label>
+            <div class="multi-select" id="filterMotif"></div>
+        </div>
+
+        <div class="filter-item">
+            <label>Warna Blok</label>
+            <div class="multi-select" id="filterWarna"></div>
+        </div>
+
+        <div class="filter-item">
+            <label>Mesin Washing</label>
+            <div class="multi-select" id="filterMesin"></div>
         </div>
 
     </div>
 
+    <div class="filter-buttons">
 
-    <div
-        class="filters"
-        id="filterContainer">
-    </div>
+        <button class="btn btn-primary" onclick="applyFilter()">
+            🔍 Terapkan Filter
+        </button>
 
-
-    <button
-        class="reset-btn"
-        onclick="resetFilter()">
-
-        ↻ Reset Filter
-
-    </button>
-
-
-    <div
-        class="summary"
-        id="filterSummary">
+        <button class="btn btn-reset" onclick="resetFilter()">
+            ↺ Reset Filter
+        </button>
 
     </div>
+
+    <div class="summary-tags" id="summaryTags"></div>
 
 </div>
 
 
+<!-- ================= SEARCH NO ROLL ================= -->
 
-<!-- ==================================================
-     SEARCH NO ROLL
-================================================== -->
+<div class="card">
 
-<div class="roll-search">
-
-    <div class="search-title">
-
+    <div class="card-title">
         🔎 Telusur No Roll
-
     </div>
 
-
-    <div class="search-row">
+    <div class="search-box">
 
         <input
             type="text"
             id="searchRoll"
             placeholder="Masukkan No Roll..."
-            oninput="terapkanFilter()">
+            oninput="applyFilter()"
+        >
 
-
-        <button
-            class="search-btn"
-            onclick="terapkanFilter()">
-
-            Cari
-
+        <button class="btn btn-primary" onclick="applyFilter()">
+            Telusur
         </button>
 
     </div>
@@ -825,183 +734,94 @@ tr:hover td {
 </div>
 
 
-
-<!-- ==================================================
-     KPI
-================================================== -->
+<!-- ================= KPI ================= -->
 
 <div class="kpi-grid">
 
-
-    <div class="kpi">
-
-        <div class="kpi-label">
-            TOTAL DATA
-        </div>
-
-        <div
-            class="kpi-value"
-            id="totalData">
-
-            0
-
-        </div>
-
-        <div class="kpi-sub">
-            Data hasil washing
-        </div>
-
+    <div class="kpi total">
+        <div class="kpi-label">TOTAL DATA</div>
+        <div class="kpi-value blue" id="totalData">0</div>
+        <div class="kpi-sub">Jumlah data hasil filter</div>
     </div>
 
-
-    <div class="kpi">
-
-        <div class="kpi-label">
-            LAYAK
-        </div>
-
-        <div
-            class="kpi-value layak"
-            id="totalLayak">
-
-            0
-
-        </div>
-
-        <div class="kpi-sub">
-            Hasil yang layak
-        </div>
-
+    <div class="kpi layak">
+        <div class="kpi-label">LAYAK</div>
+        <div class="kpi-value green" id="totalLayak">0</div>
+        <div class="kpi-sub">Hasil uji layak</div>
     </div>
 
-
-    <div class="kpi">
-
-        <div class="kpi-label">
-            TIDAK LAYAK
-        </div>
-
-        <div
-            class="kpi-value tidak"
-            id="totalTidakLayak">
-
-            0
-
-        </div>
-
-        <div class="kpi-sub">
-            Hasil yang tidak layak
-        </div>
-
+    <div class="kpi tidak">
+        <div class="kpi-label">TIDAK LAYAK</div>
+        <div class="kpi-value red" id="totalTidakLayak">0</div>
+        <div class="kpi-sub">Hasil uji tidak layak</div>
     </div>
 
+    <div class="kpi persen-layak">
+        <div class="kpi-label">% LAYAK</div>
+        <div class="kpi-value blue" id="persenLayak">0%</div>
+        <div class="kpi-sub">Persentase layak</div>
+    </div>
 
-    <div class="kpi">
-
-        <div class="kpi-label">
-            % LAYAK
-        </div>
-
-        <div
-            class="kpi-value persen"
-            id="persenLayak">
-
-            0%
-
-        </div>
-
-        <div class="kpi-sub">
-            Persentase kelayakan
-        </div>
-
+    <div class="kpi persen-tidak">
+        <div class="kpi-label">% TIDAK LAYAK</div>
+        <div class="kpi-value orange" id="persenTidakLayak">0%</div>
+        <div class="kpi-sub">Persentase tidak layak</div>
     </div>
 
 </div>
 
 
+<!-- ================= ANALYSIS ================= -->
 
-<!-- ==================================================
-     ANALISA GRUP & MESIN
-================================================== -->
+<div class="analysis-grid">
 
-<div class="grid-2">
+    <div class="analysis-box">
 
-
-    <div class="card">
-
-        <div class="card-title">
+        <div class="analysis-title">
             👥 Analisa Grup Washing
         </div>
 
         <div id="analisaGrup">
-
-            <div class="loading">
-                Memuat data...
-            </div>
-
+            <div class="loading">Menunggu data...</div>
         </div>
 
     </div>
 
 
+    <div class="analysis-box">
 
-    <div class="card">
-
-        <div class="card-title">
-            🧺 Analisa Mesin Washing
+        <div class="analysis-title">
+            ⚙️ Analisa Mesin Washing
         </div>
 
         <div id="analisaMesin">
-
-            <div class="loading">
-                Memuat data...
-            </div>
-
+            <div class="loading">Menunggu data...</div>
         </div>
 
     </div>
 
-</div>
 
+    <div class="analysis-box">
 
-
-<!-- ==================================================
-     ANALISA HASIL UJI & KEBIJAKAN
-================================================== -->
-
-<div class="grid-2">
-
-
-    <div class="card">
-
-        <div class="card-title">
+        <div class="analysis-title">
             🧪 Hasil Uji
         </div>
 
-        <div id="analisaUji">
-
-            <div class="loading">
-                Memuat data...
-            </div>
-
+        <div id="analisaHasil">
+            <div class="loading">Menunggu data...</div>
         </div>
 
     </div>
 
 
+    <div class="analysis-box">
 
-    <div class="card">
-
-        <div class="card-title">
+        <div class="analysis-title">
             📋 Kebijakan
         </div>
 
         <div id="analisaKebijakan">
-
-            <div class="loading">
-                Memuat data...
-            </div>
-
+            <div class="loading">Menunggu data...</div>
         </div>
 
     </div>
@@ -1009,87 +829,42 @@ tr:hover td {
 </div>
 
 
+<!-- ================= DETAIL ================= -->
 
-<!-- ==================================================
-     TABLE
-================================================== -->
-
-<div class="table-card">
+<div class="table-card" style="margin-top:18px;">
 
     <div class="card-title">
-        📊 Detail Data Cuci
+        📋 Detail Data Cuci
     </div>
 
-
-    <div class="table-wrap">
+    <div class="table-wrapper">
 
         <table>
 
             <thead>
 
                 <tr>
-
-                    <th>
-                        Tanggal
-                    </th>
-
-                    <th>
-                        Grup Washing
-                    </th>
-
-                    <th>
-                        Shift
-                    </th>
-
-                    <th>
-                        Kode Produk
-                    </th>
-
-                    <th>
-                        No Roll
-                    </th>
-
-                    <th>
-                        Motif
-                    </th>
-
-                    <th>
-                        Warna Blok
-                    </th>
-
-                    <th>
-                        Mesin Washing
-                    </th>
-
-                    <th>
-                        PCS Ke-
-                    </th>
-
-                    <th>
-                        Hasil Uji
-                    </th>
-
-                    <th>
-                        Kebijakan
-                    </th>
-
+                    <th>Timestamp</th>
+                    <th>Grup Washing</th>
+                    <th>Shift</th>
+                    <th>Kode Produk</th>
+                    <th>No Roll</th>
+                    <th>Motif</th>
+                    <th>Warna Blok</th>
+                    <th>Mesin Washing</th>
+                    <th>PCS Ke-</th>
+                    <th>Hasil Uji</th>
+                    <th>Kebijakan</th>
                 </tr>
 
             </thead>
 
-
             <tbody id="tableBody">
 
                 <tr>
-
-                    <td
-                        colspan="11"
-                        class="loading">
-
-                        ⏳ Memuat data...
-
+                    <td colspan="11" class="loading">
+                        Memuat data...
                     </td>
-
                 </tr>
 
             </tbody>
@@ -1101,1576 +876,1180 @@ tr:hover td {
 </div>
 
 
-
 <script>
 
-
-/* ==================================================
-   URL APPS SCRIPT
-================================================== */
+/* =====================================================
+   APPS SCRIPT
+===================================================== */
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbyIVCEUVB-vmepbtaOZvUwFGpMZD0rWBoAn4VrjoLq7JmBLTlhtifMOuYNTbaCKi4Q_qA/exec?action=cuci";
 
 
-/* ==================================================
+/* =====================================================
    DATA
-================================================== */
+===================================================== */
 
-let dataAsli = [];
+let allData = [];
+let filteredData = [];
 
-let dataTampil = [];
 
+/* =====================================================
+   FILTER
+===================================================== */
 
-/* ==================================================
-   INDEX KOLOM SHEET CUCI
-==================================================
+const FILTERS = {
 
-A Timestamp       = 0
-B GRUP WASHING    = 1
-C SHIFT            = 2
-D KODE PRODUK      = 3
-E NO ROLL          = 4
-F MOTIF            = 5
-G WARNA BLOK      = 6
-H MESIN WASHING    = 7
-I PCS KE-          = 8
-J HASIL UJI        = 9
-K KEBIJAKAN        = 10
-
-================================================== */
-
-const FILTERS = [
-
-    {
-        nama: "Grup Washing",
-        kolom: 1,
-        id: "grupWashing"
+    filterGrup: {
+        index: 1,
+        label: "Grup Washing"
     },
 
-    {
-        nama: "Kode Produk",
-        kolom: 3,
-        id: "kodeProduk"
+    filterKode: {
+        index: 3,
+        label: "Kode Produk"
     },
 
-    {
-        nama: "Warna Blok",
-        kolom: 6,
-        id: "warnaBlok"
+    filterRoll: {
+        index: 4,
+        label: "No Roll"
     },
 
-    {
-        nama: "Motif",
-        kolom: 5,
-        id: "motif"
+    filterMotif: {
+        index: 5,
+        label: "Motif"
     },
 
-    {
-        nama: "Mesin Washing",
-        kolom: 7,
-        id: "mesinWashing"
+    filterWarna: {
+        index: 6,
+        label: "Warna Blok"
+    },
+
+    filterMesin: {
+        index: 7,
+        label: "Mesin Washing"
     }
 
-];
+};
 
 
-/* ==================================================
+/* =====================================================
    LOAD DATA
-================================================== */
+===================================================== */
 
 async function loadData() {
 
     try {
 
-        const response =
-            await fetch(API_URL);
+        document.getElementById("tableBody").innerHTML =
+            `<tr>
+                <td colspan="11" class="loading">
+                    ⏳ Memuat data...
+                </td>
+            </tr>`;
 
+        const response = await fetch(API_URL);
 
         if (!response.ok) {
+            throw new Error("Gagal mengambil data");
+        }
 
-            throw new Error(
-                "Gagal mengambil data"
-            );
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+            throw new Error("Format data tidak valid");
+        }
+
+        /*
+          Jika Apps Script mengembalikan:
+          [header, data1, data2, ...]
+        */
+
+        if (
+            data.length > 0 &&
+            Array.isArray(data[0]) &&
+            String(data[0][0]).toLowerCase().includes("timestamp")
+        ) {
+
+            allData = data.slice(1);
+
+        } else {
+
+            allData = data;
 
         }
 
+        filteredData = [...allData];
 
-        const json =
-            await response.json();
+        buildFilters();
 
-
-        dataAsli =
-            normalisasiData(json);
-
-
-        buatSemuaFilter();
-
-
-        terapkanFilter();
-
+        updateDashboard();
 
     } catch (error) {
 
         console.error(error);
 
-
-        document.getElementById(
-            "tableBody"
-        ).innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="11"
-                    class="empty">
-
-                    ❌ Data gagal dimuat.
-
+        document.getElementById("tableBody").innerHTML =
+            `<tr>
+                <td colspan="11" class="empty">
+                    ❌ Data tidak dapat dimuat.
                     <br><br>
-
-                    Periksa Apps Script.
-
+                    Periksa Apps Script dan parameter <b>?action=cuci</b>.
                 </td>
+            </tr>`;
 
-            </tr>
+    }
 
+}
+
+
+/* =====================================================
+   BUILD FILTER
+===================================================== */
+
+function buildFilters() {
+
+    Object.keys(FILTERS).forEach(id => {
+
+        const config = FILTERS[id];
+
+        const container = document.getElementById(id);
+
+        const values = [
+            ...new Set(
+                allData
+                    .map(row => row[config.index])
+                    .filter(v => String(v ?? "").trim() !== "")
+                    .map(v => String(v).trim())
+            )
+        ].sort((a,b) =>
+            a.localeCompare(b, undefined, {
+                numeric: true,
+                sensitivity: "base"
+            })
+        );
+
+        container.innerHTML = `
+
+            <div
+                class="multi-select-btn"
+                onclick="toggleMenu('${id}')"
+            >
+
+                <span id="${id}Text">
+                    Semua
+                </span>
+
+                <span>▼</span>
+
+            </div>
+
+            <div
+                class="multi-select-menu"
+                id="${id}Menu"
+            >
+
+                <label class="multi-option">
+
+                    <input
+                        type="checkbox"
+                        value="__ALL__"
+                        checked
+                        onchange="selectAllFilter('${id}')"
+                    >
+
+                    <span>Semua</span>
+
+                </label>
+
+                ${values.map(value => `
+
+                    <label class="multi-option">
+
+                        <input
+                            type="checkbox"
+                            value="${escapeHtml(value)}"
+                            onchange="filterSelectionChanged('${id}')"
+                        >
+
+                        <span>${escapeHtml(value)}</span>
+
+                    </label>
+
+                `).join("")}
+
+            </div>
         `;
 
-    }
+    });
 
 }
 
 
-/* ==================================================
-   NORMALISASI
-================================================== */
-
-function normalisasiData(data) {
-
-    if (!Array.isArray(data)) {
-
-        return [];
-
-    }
-
-
-    return data.filter(
-        (row, index) => {
-
-            if (!Array.isArray(row)) {
-
-                return false;
-
-            }
-
-
-            if (index === 0) {
-
-                const teks =
-                    row.join(" ")
-                    .toUpperCase();
-
-
-                if (
-                    teks.includes("TIMESTAMP") ||
-                    teks.includes("GRUP WASHING")
-                ) {
-
-                    return false;
-
-                }
-
-            }
-
-
-            return row.length >= 11;
-
-        }
-    );
-
-}
-
-
-/* ==================================================
-   TANGGAL
-================================================== */
-
-function getTanggalParts(value) {
-
-    if (
-        value === null ||
-        value === undefined
-    ) {
-
-        return null;
-
-    }
-
-
-    const text =
-        String(value).trim();
-
-
-    if (!text) {
-
-        return null;
-
-    }
-
-
-    let match =
-        text.match(
-            /^(\d{4})-(\d{2})-(\d{2})/
-        );
-
-
-    if (match) {
-
-        return {
-
-            tahun:
-                Number(match[1]),
-
-            bulan:
-                Number(match[2]),
-
-            tanggal:
-                Number(match[3])
-
-        };
-
-    }
-
-
-    match =
-        text.match(
-            /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/
-        );
-
-
-    if (match) {
-
-        return {
-
-            tahun:
-                Number(match[3]),
-
-            bulan:
-                Number(match[2]),
-
-            tanggal:
-                Number(match[1])
-
-        };
-
-    }
-
-
-    return null;
-
-}
-
-
-/* ==================================================
-   TANGGAL KEY
-================================================== */
-
-function tanggalKey(value) {
-
-    const p =
-        getTanggalParts(value);
-
-
-    if (!p) {
-
-        return null;
-
-    }
-
-
-    return (
-        p.tahun * 10000 +
-        p.bulan * 100 +
-        p.tanggal
-    );
-
-}
-
-
-/* ==================================================
-   FORMAT TANGGAL
-================================================== */
-
-function formatTanggal(value) {
-
-    const p =
-        getTanggalParts(value);
-
-
-    if (!p) {
-
-        return value || "";
-
-    }
-
-
-    return (
-        String(p.tanggal)
-            .padStart(2,"0")
-        + "/" +
-        String(p.bulan)
-            .padStart(2,"0")
-        + "/" +
-        p.tahun
-    );
-
-}
-
-
-/* ==================================================
-   FORMAT VALUE
-================================================== */
-
-function bersihkan(value) {
-
-    if (
-        value === null ||
-        value === undefined
-    ) {
-
-        return "";
-
-    }
-
-
-    return String(value).trim();
-
-}
-
-
-/* ==================================================
+/* =====================================================
    ESCAPE HTML
-================================================== */
+===================================================== */
 
 function escapeHtml(value) {
 
     return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
 
-/* ==================================================
-   BUAT FILTER
-================================================== */
+/* =====================================================
+   TOGGLE MENU
+===================================================== */
 
-function buatSemuaFilter() {
+function toggleMenu(id) {
 
-    const container =
-        document.getElementById(
-            "filterContainer"
-        );
-
-
-    container.innerHTML = "";
-
-
-    FILTERS.forEach(filter => {
-
-        const item =
-            document.createElement(
-                "div"
-            );
-
-
-        item.className =
-            "filter-item";
-
-
-        item.innerHTML = `
-
-            <button
-                class="filter-button"
-                onclick="toggleDropdown('${filter.id}')">
-
-                ${filter.nama} ▾
-
-            </button>
-
-
-            <div
-                class="dropdown"
-                id="drop-${filter.id}">
-
-                <input
-                    class="dropdown-search"
-                    type="text"
-                    placeholder="Cari ${filter.nama}..."
-                    oninput="cariOption('${filter.id}', this.value)">
-
-
-                <div
-                    id="options-${filter.id}">
-                </div>
-
-            </div>
-
-        `;
-
-
-        container.appendChild(item);
-
-
-        isiOptions(filter);
-
-    });
+    document
+        .getElementById(id + "Menu")
+        .classList.toggle("show");
 
 }
 
 
-/* ==================================================
-   ISI OPTION
-================================================== */
+/* =====================================================
+   CLOSE MENU OUTSIDE
+===================================================== */
 
-function isiOptions(filter) {
+document.addEventListener("click", function(e) {
 
-    const values = [
+    document.querySelectorAll(".multi-select-menu")
+        .forEach(menu => {
 
-        ...new Set(
+            if (!menu.parentElement.contains(e.target)) {
 
-            dataAsli
+                menu.classList.remove("show");
 
-                .map(
-                    row =>
-                    bersihkan(
-                        row[filter.kolom]
-                    )
-                )
-
-                .filter(Boolean)
-
-        )
-
-    ];
-
-
-    values.sort(
-        (a,b) =>
-        a.localeCompare(
-            b,
-            undefined,
-            {
-                numeric:true
             }
-        )
+
+        });
+
+});
+
+
+/* =====================================================
+   SELECT ALL
+===================================================== */
+
+function selectAllFilter(id) {
+
+    const menu = document.getElementById(id + "Menu");
+
+    const checks = menu.querySelectorAll(
+        'input[type="checkbox"]'
     );
 
+    checks.forEach((check, index) => {
 
-    const box =
-        document.getElementById(
-            "options-" +
-            filter.id
-        );
-
-
-    box.innerHTML = "";
-
-
-    values.forEach(value => {
-
-        const div =
-            document.createElement(
-                "div"
-            );
-
-
-        div.className =
-            "option";
-
-
-        div.dataset.value =
-            value.toLowerCase();
-
-
-        div.innerHTML = `
-
-            <label>
-
-                <input
-                    type="checkbox"
-                    value="${escapeHtml(value)}"
-                    data-filter="${filter.id}"
-                    onchange="terapkanFilter()">
-
-                ${escapeHtml(value)}
-
-            </label>
-
-        `;
-
-
-        box.appendChild(div);
+        check.checked = index === 0;
 
     });
 
-}
+    updateFilterText(id);
 
-
-/* ==================================================
-   DROPDOWN
-================================================== */
-
-function toggleDropdown(id) {
-
-    document
-        .querySelectorAll(".dropdown")
-        .forEach(drop => {
-
-            if (
-                drop.id !==
-                "drop-" + id
-            ) {
-
-                drop.classList.remove(
-                    "show"
-                );
-
-            }
-
-        });
-
-
-    document
-        .getElementById(
-            "drop-" + id
-        )
-        .classList.toggle(
-            "show"
-        );
+    applyFilter();
 
 }
 
 
-document.addEventListener(
-    "click",
-    function(e) {
+/* =====================================================
+   FILTER CHANGE
+===================================================== */
 
-        if (
-            !e.target.closest(
-                ".filter-item"
-            )
-        ) {
+function filterSelectionChanged(id) {
 
-            document
-                .querySelectorAll(
-                    ".dropdown"
-                )
-                .forEach(drop => {
+    const menu = document.getElementById(id + "Menu");
 
-                    drop.classList.remove(
-                        "show"
-                    );
+    const checks = [...menu.querySelectorAll(
+        'input[type="checkbox"]'
+    )];
 
-                });
+    const all = checks[0];
 
-        }
+    const selected = checks.slice(1)
+        .filter(c => c.checked);
+
+    if (selected.length === 0) {
+
+        all.checked = true;
+
+    } else {
+
+        all.checked = false;
 
     }
-);
 
+    updateFilterText(id);
 
-/* ==================================================
-   CARI OPTION
-================================================== */
-
-function cariOption(
-    id,
-    keyword
-) {
-
-    keyword =
-        String(keyword)
-            .toLowerCase()
-            .trim();
-
-
-    const drop =
-        document.getElementById(
-            "drop-" + id
-        );
-
-
-    drop
-        .querySelectorAll(".option")
-        .forEach(option => {
-
-            option.style.display =
-                option.dataset.value
-                    .includes(keyword)
-                    ? ""
-                    : "none";
-
-        });
+    applyFilter();
 
 }
 
 
-/* ==================================================
+/* =====================================================
+   FILTER TEXT
+===================================================== */
+
+function updateFilterText(id) {
+
+    const menu = document.getElementById(id + "Menu");
+
+    const checks = [...menu.querySelectorAll(
+        'input[type="checkbox"]'
+    )];
+
+    const selected = checks.slice(1)
+        .filter(c => c.checked)
+        .map(c => c.value);
+
+    const text = document.getElementById(id + "Text");
+
+    if (selected.length === 0) {
+
+        text.textContent = "Semua";
+
+    } else if (selected.length === 1) {
+
+        text.textContent = selected[0];
+
+    } else {
+
+        text.textContent =
+            `${selected.length} dipilih`;
+
+    }
+
+}
+
+
+/* =====================================================
    GET SELECTED
-================================================== */
+===================================================== */
 
-function getSelected(
-    filterId
-) {
+function getSelected(id) {
 
-    return [
+    const menu = document.getElementById(id + "Menu");
 
-        ...document.querySelectorAll(
-            `input[data-filter="${filterId}"]:checked`
-        )
+    if (!menu) return [];
 
-    ].map(
-        el => el.value
+    return [...menu.querySelectorAll(
+        'input[type="checkbox"]'
+    )]
+    .slice(1)
+    .filter(c => c.checked)
+    .map(c => c.value);
+
+}
+
+
+/* =====================================================
+   DATE PARSER
+===================================================== */
+
+function parseDate(value) {
+
+    if (!value) return null;
+
+    if (value instanceof Date) {
+        return value;
+    }
+
+    const str = String(value).trim();
+
+    if (!str) return null;
+
+    /*
+      yyyy-mm-dd
+    */
+
+    let match = str.match(
+        /^(\d{4})-(\d{1,2})-(\d{1,2})/
+    );
+
+    if (match) {
+
+        return new Date(
+            Number(match[1]),
+            Number(match[2]) - 1,
+            Number(match[3])
+        );
+
+    }
+
+    /*
+      dd/mm/yyyy
+    */
+
+    match = str.match(
+        /^(\d{1,2})\/(\d{1,2})\/(\d{4})/
+    );
+
+    if (match) {
+
+        return new Date(
+            Number(match[3]),
+            Number(match[2]) - 1,
+            Number(match[1])
+        );
+
+    }
+
+    /*
+      yyyy/mm/dd
+    */
+
+    match = str.match(
+        /^(\d{4})\/(\d{1,2})\/(\d{1,2})/
+    );
+
+    if (match) {
+
+        return new Date(
+            Number(match[1]),
+            Number(match[2]) - 1,
+            Number(match[3])
+        );
+
+    }
+
+    const date = new Date(str);
+
+    return isNaN(date.getTime())
+        ? null
+        : date;
+
+}
+
+
+/* =====================================================
+   DATE ONLY
+===================================================== */
+
+function dateOnly(date) {
+
+    return new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate()
     );
 
 }
 
 
-/* ==================================================
-   TERAPKAN FILTER
-================================================== */
+/* =====================================================
+   FORMAT DATE
+===================================================== */
 
-function terapkanFilter() {
+function formatDate(value) {
 
-    const dari =
-        document.getElementById(
-            "tanggalDari"
-        ).value;
+    const date = parseDate(value);
 
+    if (!date) return value || "";
 
-    const sampai =
-        document.getElementById(
-            "tanggalSampai"
-        ).value;
+    const d = String(date.getDate()).padStart(2, "0");
 
+    const m = String(
+        date.getMonth() + 1
+    ).padStart(2, "0");
 
-    let dariKey = null;
+    const y = date.getFullYear();
 
-    let sampaiKey = null;
-
-
-    if (dari) {
-
-        const p =
-            getTanggalParts(dari);
-
-
-        if (p) {
-
-            dariKey =
-                p.tahun * 10000 +
-                p.bulan * 100 +
-                p.tanggal;
-
-        }
-
-    }
-
-
-    if (sampai) {
-
-        const p =
-            getTanggalParts(sampai);
-
-
-        if (p) {
-
-            sampaiKey =
-                p.tahun * 10000 +
-                p.bulan * 100 +
-                p.tanggal;
-
-        }
-
-    }
-
-
-    dataTampil =
-        dataAsli.filter(row => {
-
-
-            /* DATE */
-
-            const keyTanggal =
-                tanggalKey(row[0]);
-
-
-            if (
-                dariKey !== null &&
-                (
-                    keyTanggal === null ||
-                    keyTanggal < dariKey
-                )
-            ) {
-
-                return false;
-
-            }
-
-
-            if (
-                sampaiKey !== null &&
-                (
-                    keyTanggal === null ||
-                    keyTanggal > sampaiKey
-                )
-            ) {
-
-                return false;
-
-            }
-
-
-            /* FILTER CHECKBOX */
-
-            for (
-                const filter
-                of FILTERS
-            ) {
-
-                const selected =
-                    getSelected(
-                        filter.id
-                    );
-
-
-                if (
-                    selected.length > 0 &&
-                    !selected.includes(
-                        bersihkan(
-                            row[filter.kolom]
-                        )
-                    )
-                ) {
-
-                    return false;
-
-                }
-
-            }
-
-
-            /* SEARCH NO ROLL */
-
-            const searchRoll =
-                document
-                    .getElementById(
-                        "searchRoll"
-                    )
-                    .value
-                    .trim()
-                    .toLowerCase();
-
-
-            if (
-                searchRoll &&
-                !bersihkan(row[4])
-                    .toLowerCase()
-                    .includes(searchRoll)
-            ) {
-
-                return false;
-
-            }
-
-
-            return true;
-
-        });
-
-
-    updateDashboard();
-
-    updateFilterSummary();
+    return `${d}/${m}/${y}`;
 
 }
 
 
-/* ==================================================
+/* =====================================================
    STATUS
-================================================== */
+===================================================== */
 
-function tentukanStatus(
-    hasil,
-    kebijakan
-) {
+function getStatus(row) {
 
-    const teks =
-        (
-            hasil +
-            " " +
-            kebijakan
-        ).toLowerCase();
+    const hasil =
+        String(row[9] ?? "")
+        .trim()
+        .toLowerCase();
 
+    const kebijakan =
+        String(row[10] ?? "")
+        .trim()
+        .toLowerCase();
+
+    const teks = hasil + " " + kebijakan;
+
+    /*
+      Tidak Layak
+    */
 
     if (
-        teks.includes(
-            "tidak layak"
-        ) ||
-        teks.includes(
-            "tidak_layak"
-        ) ||
-        teks.includes(
-            "reject"
-        ) ||
-        teks.includes(
-            "tl"
-        )
+        teks.includes("tidak layak") ||
+        teks.includes("tidak_layak") ||
+        teks.includes("reject") ||
+        teks === "tl" ||
+        hasil === "tl" ||
+        kebijakan === "tl"
     ) {
 
         return "tidak";
 
     }
 
+    /*
+      Layak
+    */
 
     if (
-        teks.includes(
-            "layak"
-        ) ||
-        teks.includes(
-            "pass"
-        ) ||
-        teks.includes(
-            "approve"
-        ) ||
-        teks === "ok"
+        teks.includes("layak") ||
+        teks.includes("pass") ||
+        teks.includes("approve") ||
+        hasil === "ok" ||
+        kebijakan === "ok"
     ) {
 
         return "layak";
 
     }
 
-
     return "lain";
 
 }
 
 
-/* ==================================================
-   UPDATE DASHBOARD
-================================================== */
-
-function updateDashboard() {
-
-    const total =
-        dataTampil.length;
-
-
-    let layak = 0;
-
-    let tidakLayak = 0;
-
-
-    dataTampil.forEach(row => {
-
-        const status =
-            tentukanStatus(
-                bersihkan(row[9]),
-                bersihkan(row[10])
-            );
-
-
-        if (
-            status === "layak"
-        ) {
-
-            layak++;
-
-        }
-
-
-        if (
-            status === "tidak"
-        ) {
-
-            tidakLayak++;
-
-        }
-
-    });
-
-
-    document.getElementById(
-        "totalData"
-    ).textContent =
-        formatNumber(total);
-
-
-    document.getElementById(
-        "totalLayak"
-    ).textContent =
-        formatNumber(layak);
-
-
-    document.getElementById(
-        "totalTidakLayak"
-    ).textContent =
-        formatNumber(tidakLayak);
-
-
-    const persen =
-        total > 0
-        ? (layak / total) * 100
-        : 0;
-
-
-    document.getElementById(
-        "persenLayak"
-    ).textContent =
-        persen.toFixed(1) + "%";
-
-
-    buatAnalisa(
-        "analisaGrup",
-        dataTampil,
-        1
-    );
-
-
-    buatAnalisa(
-        "analisaMesin",
-        dataTampil,
-        7
-    );
-
-
-    buatAnalisaStatus(
-        "analisaUji",
-        dataTampil,
-        9
-    );
-
-
-    buatAnalisaStatus(
-        "analisaKebijakan",
-        dataTampil,
-        10
-    );
-
-
-    tampilkanTable();
-
-}
-
-
-/* ==================================================
-   ANALISA
-================================================== */
-
-function buatAnalisa(
-    elementId,
-    data,
-    kolom
-) {
-
-    const box =
-        document.getElementById(
-            elementId
-        );
-
-
-    if (!data.length) {
-
-        box.innerHTML =
-            `<div class="empty">
-                Tidak ada data
-             </div>`;
-
-        return;
-
-    }
-
-
-    const map = {};
-
-
-    data.forEach(row => {
-
-        const value =
-            bersihkan(
-                row[kolom]
-            ) ||
-            "(Kosong)";
-
-
-        map[value] =
-            (map[value] || 0) + 1;
-
-    });
-
-
-    const entries =
-        Object.entries(map)
-            .sort(
-                (a,b) =>
-                b[1] - a[1]
-            );
-
-
-    const max =
-        entries.length
-        ? entries[0][1]
-        : 1;
-
-
-    box.innerHTML =
-        entries
-            .slice(0,15)
-            .map(
-                ([name,count]) => {
-
-                    const percent =
-                        (count / max) * 100;
-
-
-                    return `
-
-                        <div class="bar-row">
-
-                            <div class="bar-head">
-
-                                <span>
-                                    ${escapeHtml(name)}
-                                </span>
-
-                                <strong>
-                                    ${formatNumber(count)}
-                                </strong>
-
-                            </div>
-
-
-                            <div class="bar-bg">
-
-                                <div
-                                    class="bar-fill"
-                                    style="width:${percent}%">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }
-            )
-            .join("");
-
-}
-
-
-/* ==================================================
-   ANALISA STATUS
-================================================== */
-
-function buatAnalisaStatus(
-    elementId,
-    data,
-    kolom
-) {
-
-    const box =
-        document.getElementById(
-            elementId
-        );
-
-
-    if (!data.length) {
-
-        box.innerHTML =
-            `<div class="empty">
-                Tidak ada data
-             </div>`;
-
-        return;
-
-    }
-
-
-    const map = {};
-
-
-    data.forEach(row => {
-
-        const value =
-            bersihkan(
-                row[kolom]
-            ) ||
-            "(Kosong)";
-
-
-        map[value] =
-            (map[value] || 0) + 1;
-
-    });
-
-
-    const entries =
-        Object.entries(map)
-            .sort(
-                (a,b) =>
-                b[1] - a[1]
-            );
-
-
-    box.innerHTML =
-        entries
-            .map(
-                ([name,count]) => {
-
-                    const status =
-                        tentukanStatus(
-                            name,
-                            ""
-                        );
-
-
-                    let badge =
-                        "badge-netral";
-
-
-                    if (
-                        status ===
-                        "layak"
-                    ) {
-
-                        badge =
-                            "badge-layak";
-
-                    }
-
-
-                    if (
-                        status ===
-                        "tidak"
-                    ) {
-
-                        badge =
-                            "badge-tidak";
-
-                    }
-
-
-                    return `
-
-                        <div style="
-                            display:flex;
-                            justify-content:space-between;
-                            align-items:center;
-                            padding:10px 0;
-                            border-bottom:1px solid #e2e8f0;
-                        ">
-
-                            <span>
-
-                                <span
-                                    class="badge ${badge}">
-
-                                    ${escapeHtml(name)}
-
-                                </span>
-
-                            </span>
-
-
-                            <strong>
-
-                                ${formatNumber(count)}
-
-                            </strong>
-
-                        </div>
-
-                    `;
-
-                }
-            )
-            .join("");
-
-}
-
-
-/* ==================================================
-   TABLE
-================================================== */
-
-function tampilkanTable() {
-
-    const body =
-        document.getElementById(
-            "tableBody"
-        );
-
-
-    if (!dataTampil.length) {
-
-        body.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="11"
-                    class="empty">
-
-                    Tidak ada data
-                    sesuai filter.
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
-
-    }
-
-
-    body.innerHTML =
-        dataTampil
-            .map(row => {
-
-                const status =
-                    tentukanStatus(
-                        bersihkan(row[9]),
-                        bersihkan(row[10])
-                    );
-
-
-                let badge =
-                    "badge-netral";
-
-
-                if (
-                    status === "layak"
-                ) {
-
-                    badge =
-                        "badge-layak";
-
-                }
-
-
-                if (
-                    status === "tidak"
-                ) {
-
-                    badge =
-                        "badge-tidak";
-
-                }
-
-
-                return `
-
-                    <tr>
-
-                        <td>
-                            ${escapeHtml(
-                                formatTanggal(row[0])
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                bersihkan(row[1])
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                bersihkan(row[2])
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                bersihkan(row[3])
-                            )}
-                        </td>
-
-                        <td>
-
-                            <strong>
-                                ${escapeHtml(
-                                    bersihkan(row[4])
-                                )}
-                            </strong>
-
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                bersihkan(row[5])
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                bersihkan(row[6])
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                bersihkan(row[7])
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                bersihkan(row[8])
-                            )}
-                        </td>
-
-                        <td>
-
-                            <span
-                                class="badge ${badge}">
-
-                                ${escapeHtml(
-                                    bersihkan(row[9])
-                                )}
-
-                            </span>
-
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                bersihkan(row[10])
-                            )}
-                        </td>
-
-                    </tr>
-
-                `;
-
-            })
-            .join("");
-
-}
-
-
-/* ==================================================
-   SUMMARY
-================================================== */
-
-function updateFilterSummary() {
-
-    const summary =
-        document.getElementById(
-            "filterSummary"
-        );
-
-
-    const tags = [];
-
+/* =====================================================
+   APPLY FILTER
+===================================================== */
+
+function applyFilter() {
 
     const dari =
-        document.getElementById(
-            "tanggalDari"
-        ).value;
-
+        document.getElementById("tanggalDari").value;
 
     const sampai =
-        document.getElementById(
-            "tanggalSampai"
-        ).value;
+        document.getElementById("tanggalSampai").value;
+
+    const search =
+        document.getElementById("searchRoll")
+        .value
+        .trim()
+        .toLowerCase();
 
 
-    if (
-        dari &&
-        sampai
-    ) {
+    const selectedGrup =
+        getSelected("filterGrup");
 
-        tags.push(
-            "📅 " +
-            formatInputDate(dari) +
-            " s/d " +
-            formatInputDate(sampai)
-        );
+    const selectedKode =
+        getSelected("filterKode");
 
-    }
-    else if (dari) {
+    const selectedRoll =
+        getSelected("filterRoll");
 
-        tags.push(
-            "📅 Mulai " +
-            formatInputDate(dari)
-        );
+    const selectedMotif =
+        getSelected("filterMotif");
 
-    }
-    else if (sampai) {
+    const selectedWarna =
+        getSelected("filterWarna");
 
-        tags.push(
-            "📅 Sampai " +
-            formatInputDate(sampai)
-        );
-
-    }
+    const selectedMesin =
+        getSelected("filterMesin");
 
 
-    FILTERS.forEach(
-        filter => {
+    const startDate = dari
+        ? dateOnly(parseDate(dari))
+        : null;
 
-            const selected =
-                getSelected(
-                    filter.id
-                );
+    const endDate = sampai
+        ? dateOnly(parseDate(sampai))
+        : null;
 
+
+    filteredData = allData.filter(row => {
+
+        /* DATE */
+
+        if (startDate || endDate) {
+
+            const rowDate = parseDate(row[0]);
+
+            if (!rowDate) return false;
+
+            const currentDate = dateOnly(rowDate);
 
             if (
-                selected.length
+                startDate &&
+                currentDate < startDate
             ) {
+                return false;
+            }
 
-                tags.push(
-                    filter.nama +
-                    ": " +
-                    selected.length
-                );
+            if (
+                endDate &&
+                currentDate > endDate
+            ) {
+                return false;
+            }
+
+        }
+
+
+        /* GRUP */
+
+        if (
+            selectedGrup.length > 0 &&
+            !selectedGrup.includes(
+                String(row[1] ?? "").trim()
+            )
+        ) {
+            return false;
+        }
+
+
+        /* KODE */
+
+        if (
+            selectedKode.length > 0 &&
+            !selectedKode.includes(
+                String(row[3] ?? "").trim()
+            )
+        ) {
+            return false;
+        }
+
+
+        /* ROLL */
+
+        if (
+            selectedRoll.length > 0 &&
+            !selectedRoll.includes(
+                String(row[4] ?? "").trim()
+            )
+        ) {
+            return false;
+        }
+
+
+        /* MOTIF */
+
+        if (
+            selectedMotif.length > 0 &&
+            !selectedMotif.includes(
+                String(row[5] ?? "").trim()
+            )
+        ) {
+            return false;
+        }
+
+
+        /* WARNA */
+
+        if (
+            selectedWarna.length > 0 &&
+            !selectedWarna.includes(
+                String(row[6] ?? "").trim()
+            )
+        ) {
+            return false;
+        }
+
+
+        /* MESIN */
+
+        if (
+            selectedMesin.length > 0 &&
+            !selectedMesin.includes(
+                String(row[7] ?? "").trim()
+            )
+        ) {
+            return false;
+        }
+
+
+        /* SEARCH ROLL */
+
+        if (search) {
+
+            const roll =
+                String(row[4] ?? "")
+                .toLowerCase();
+
+            if (!roll.includes(search)) {
+
+                return false;
 
             }
 
         }
-    );
 
 
-    const searchRoll =
-        document.getElementById(
-            "searchRoll"
-        ).value.trim();
+        return true;
+
+    });
 
 
-    if (searchRoll) {
-
-        tags.push(
-            "🔎 No Roll: " +
-            searchRoll
-        );
-
-    }
-
-
-    summary.innerHTML =
-        tags.length
-
-        ? tags
-            .map(
-                tag =>
-                `<span class="tag">
-                    ${escapeHtml(tag)}
-                 </span>`
-            )
-            .join("")
-
-        : `<span class="tag">
-                Semua Data
-           </span>`;
+    updateDashboard();
 
 }
 
 
-/* ==================================================
-   FORMAT INPUT DATE
-================================================== */
-
-function formatInputDate(value) {
-
-    const p =
-        getTanggalParts(value);
-
-
-    if (!p) {
-
-        return value;
-
-    }
-
-
-    return (
-        String(p.tanggal)
-            .padStart(2,"0")
-        + "/" +
-        String(p.bulan)
-            .padStart(2,"0")
-        + "/" +
-        p.tahun
-    );
-
-}
-
-
-/* ==================================================
-   NUMBER
-================================================== */
-
-function formatNumber(value) {
-
-    return Number(value || 0)
-        .toLocaleString("id-ID");
-
-}
-
-
-/* ==================================================
-   RESET
-================================================== */
+/* =====================================================
+   RESET FILTER
+===================================================== */
 
 function resetFilter() {
 
-    document.getElementById(
-        "tanggalDari"
-    ).value = "";
+    document.getElementById("tanggalDari").value = "";
+
+    document.getElementById("tanggalSampai").value = "";
+
+    document.getElementById("searchRoll").value = "";
 
 
-    document.getElementById(
-        "tanggalSampai"
-    ).value = "";
+    Object.keys(FILTERS).forEach(id => {
+
+        const menu =
+            document.getElementById(id + "Menu");
+
+        if (!menu) return;
+
+        const checks =
+            menu.querySelectorAll(
+                'input[type="checkbox"]'
+            );
+
+        checks.forEach((check, index) => {
+
+            check.checked = index === 0;
+
+        });
+
+        updateFilterText(id);
+
+    });
 
 
-    document.getElementById(
-        "searchRoll"
-    ).value = "";
+    filteredData = [...allData];
 
-
-    document
-        .querySelectorAll(
-            'input[type="checkbox"]'
-        )
-        .forEach(
-            cb =>
-            cb.checked = false
-        );
-
-
-    terapkanFilter();
+    updateDashboard();
 
 }
 
 
-/* ==================================================
+/* =====================================================
+   UPDATE DASHBOARD
+===================================================== */
+
+function updateDashboard() {
+
+    const total = filteredData.length;
+
+    let layak = 0;
+    let tidakLayak = 0;
+
+
+    filteredData.forEach(row => {
+
+        const status = getStatus(row);
+
+        if (status === "layak") {
+            layak++;
+        }
+
+        if (status === "tidak") {
+            tidakLayak++;
+        }
+
+    });
+
+
+    /*
+      PERSENTASE
+    */
+
+    const persenLayak =
+        total > 0
+            ? (layak / total) * 100
+            : 0;
+
+    const persenTidakLayak =
+        total > 0
+            ? (tidakLayak / total) * 100
+            : 0;
+
+
+    document.getElementById("totalData")
+        .textContent = total.toLocaleString("id-ID");
+
+    document.getElementById("totalLayak")
+        .textContent = layak.toLocaleString("id-ID");
+
+    document.getElementById("totalTidakLayak")
+        .textContent = tidakLayak.toLocaleString("id-ID");
+
+    document.getElementById("persenLayak")
+        .textContent =
+        persenLayak.toFixed(1) + "%";
+
+    document.getElementById("persenTidakLayak")
+        .textContent =
+        persenTidakLayak.toFixed(1) + "%";
+
+
+    updateSummary();
+
+    renderAnalysis();
+
+    renderTable();
+
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+function updateSummary() {
+
+    const total =
+        filteredData.length;
+
+    const tanggalDari =
+        document.getElementById("tanggalDari").value;
+
+    const tanggalSampai =
+        document.getElementById("tanggalSampai").value;
+
+    const tags = [];
+
+
+    if (tanggalDari) {
+
+        tags.push(
+            "Dari: " + formatDate(tanggalDari)
+        );
+
+    }
+
+
+    if (tanggalSampai) {
+
+        tags.push(
+            "Sampai: " + formatDate(tanggalSampai)
+        );
+
+    }
+
+
+    Object.keys(FILTERS).forEach(id => {
+
+        const selected =
+            getSelected(id);
+
+        if (selected.length > 0) {
+
+            tags.push(
+                FILTERS[id].label +
+                ": " +
+                selected.length
+            );
+
+        }
+
+    });
+
+
+    tags.push(
+        "Data: " +
+        total.toLocaleString("id-ID")
+    );
+
+
+    document.getElementById("summaryTags")
+        .innerHTML =
+        tags.map(tag =>
+            `<span class="summary-tag">
+                ${escapeHtml(tag)}
+            </span>`
+        ).join("");
+
+}
+
+
+/* =====================================================
+   ANALYSIS
+===================================================== */
+
+function renderAnalysis() {
+
+    renderGroupAnalysis(
+        "analisaGrup",
+        1
+    );
+
+    renderGroupAnalysis(
+        "analisaMesin",
+        7
+    );
+
+    renderGroupAnalysis(
+        "analisaHasil",
+        9
+    );
+
+    renderGroupAnalysis(
+        "analisaKebijakan",
+        10
+    );
+
+}
+
+
+/* =====================================================
+   GROUP ANALYSIS
+===================================================== */
+
+function renderGroupAnalysis(
+    elementId,
+    columnIndex
+) {
+
+    const container =
+        document.getElementById(elementId);
+
+
+    if (!filteredData.length) {
+
+        container.innerHTML =
+            `<div class="empty">
+                Tidak ada data
+            </div>`;
+
+        return;
+
+    }
+
+
+    const groups = {};
+
+
+    filteredData.forEach(row => {
+
+        const key =
+            String(row[columnIndex] ?? "")
+            .trim() || "(Kosong)";
+
+        if (!groups[key]) {
+
+            groups[key] = {
+                total: 0,
+                layak: 0,
+                tidak: 0,
+                lain: 0
+            };
+
+        }
+
+
+        groups[key].total++;
+
+
+        const status =
+            getStatus(row);
+
+
+        if (status === "layak") {
+
+            groups[key].layak++;
+
+        } else if (status === "tidak") {
+
+            groups[key].tidak++;
+
+        } else {
+
+            groups[key].lain++;
+
+        }
+
+    });
+
+
+    const entries =
+        Object.entries(groups)
+        .sort((a,b) =>
+            b[1].total - a[1].total
+        );
+
+
+    container.innerHTML =
+        entries.map(([name, value]) => {
+
+            return `
+
+                <div class="analysis-row">
+
+                    <span class="analysis-name">
+                        ${escapeHtml(name)}
+                    </span>
+
+                    <span class="analysis-value">
+
+                        ${value.total}
+
+                        <span class="status-layak">
+                            ✓ ${value.layak}
+                        </span>
+
+                        <span class="status-tidak">
+                            ✕ ${value.tidak}
+                        </span>
+
+                    </span>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+function renderTable() {
+
+    const tbody =
+        document.getElementById("tableBody");
+
+
+    if (!filteredData.length) {
+
+        tbody.innerHTML =
+            `<tr>
+                <td colspan="11"
+                    class="empty">
+                    Tidak ada data yang sesuai filter.
+                </td>
+            </tr>`;
+
+        return;
+
+    }
+
+
+    tbody.innerHTML =
+        filteredData.map(row => {
+
+            const status =
+                getStatus(row);
+
+
+            let badgeClass =
+                "badge-lain";
+
+            let badgeText =
+                "Lain";
+
+
+            if (status === "layak") {
+
+                badgeClass =
+                    "badge-layak";
+
+                badgeText =
+                    "LAYAK";
+
+            }
+
+
+            if (status === "tidak") {
+
+                badgeClass =
+                    "badge-tidak";
+
+                badgeText =
+                    "TIDAK LAYAK";
+
+            }
+
+
+            return `
+
+                <tr>
+
+                    <td>
+                        ${escapeHtml(
+                            formatDate(row[0])
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(row[1] ?? "")}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(row[2] ?? "")}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(row[3] ?? "")}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(row[4] ?? "")}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(row[5] ?? "")}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(row[6] ?? "")}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(row[7] ?? "")}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(row[8] ?? "")}
+                    </td>
+
+                    <td>
+                        <span class="badge ${badgeClass}">
+                            ${escapeHtml(row[9] ?? "")}
+                        </span>
+                    </td>
+
+                    <td>
+                        ${escapeHtml(row[10] ?? "")}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =====================================================
    START
-================================================== */
+===================================================== */
 
 loadData();
 
 </script>
 
 </body>
-  </html>
+</html>
