@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Dashboard Produksi</title>
-
-<style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Dashboard Produksi</title><style>
 
 * {
     box-sizing: border-box;
@@ -534,9 +529,6 @@ select:focus {
     min-height: 150px;
 }
 
-
-/* garis atas */
-
 .group-card::before {
 
     content: "";
@@ -549,9 +541,6 @@ select:focus {
 
     height: 7px;
 }
-
-
-/* efek cahaya */
 
 .group-card::after {
 
@@ -571,11 +560,6 @@ select:focus {
 
     pointer-events: none;
 }
-
-
-/* =========================
-   GRUP A
-========================= */
 
 .group-card.group-a {
 
@@ -606,11 +590,6 @@ select:focus {
         );
 }
 
-
-/* =========================
-   GRUP B
-========================= */
-
 .group-card.group-b {
 
     background:
@@ -639,11 +618,6 @@ select:focus {
             #ffd166
         );
 }
-
-
-/* =========================
-   GRUP C
-========================= */
 
 .group-card.group-c {
 
@@ -674,12 +648,6 @@ select:focus {
         );
 }
 
-
-/* =========================
-   JUDUL GRUP
-   WARNA TUA + AKSEN 3D
-========================= */
-
 .group-card h3 {
 
     position: relative;
@@ -708,9 +676,6 @@ select:focus {
         3px 4px 5px rgba(0,0,0,.22);
 }
 
-
-/* Judul A - hijau tua */
-
 .group-card.group-a h3 {
 
     color: #075c43;
@@ -729,9 +694,6 @@ select:focus {
         0 5px 9px rgba(0,80,55,.20),
         inset 0 1px 0 rgba(255,255,255,.9);
 }
-
-
-/* Judul B - orange tua */
 
 .group-card.group-b h3 {
 
@@ -752,9 +714,6 @@ select:focus {
         inset 0 1px 0 rgba(255,255,255,.9);
 }
 
-
-/* Judul C - ungu tua */
-
 .group-card.group-c h3 {
 
     color: #45208a;
@@ -773,7 +732,6 @@ select:focus {
         0 5px 9px rgba(60,35,130,.20),
         inset 0 1px 0 rgba(255,255,255,.9);
 }
-
 
 .group-production {
 
@@ -809,7 +767,7 @@ select:focus {
 
 
 /* =========================
-   TABLE CONTAINER
+   TABLE
 ========================= */
 
 .table-card {
@@ -933,9 +891,9 @@ tbody tr:nth-child(even) {
 }
 
 
-/* =====================================================
+/* =========================
    DATA PRODUKSI
-===================================================== */
+========================= */
 
 .data-wrapper {
     max-height: 350px;
@@ -944,10 +902,6 @@ tbody tr:nth-child(even) {
     border-radius: 10px;
     position: relative;
 }
-
-/* =====================================================
-   HEADER DATA PRODUKSI TETAP DI ATAS SAAT SCROLL
-===================================================== */
 
 .data-wrapper table {
     min-width: 1100px;
@@ -973,17 +927,6 @@ tbody tr:nth-child(even) {
     box-shadow: 0 2px 0 #0b2b49;
 }
 
-/*
-   Lebar kolom Data Produksi
-
-   Motif dan Jenis Print
-   dibuat sama dengan
-   Warna Ground.
-
-   Tulisan panjang akan
-   turun ke bawah.
-*/
-
 .data-wrapper table th:nth-child(1),
 .data-wrapper table td:nth-child(1) {
     width: 100px;
@@ -1004,9 +947,6 @@ tbody tr:nth-child(even) {
     width: 140px;
 }
 
-
-/* WARNA GROUND */
-
 .data-wrapper table th:nth-child(5),
 .data-wrapper table td:nth-child(5) {
 
@@ -1020,9 +960,6 @@ tbody tr:nth-child(even) {
 
     line-height: 1.35;
 }
-
-
-/* MOTIF = SAMA DENGAN WARNA GROUND */
 
 .data-wrapper table th:nth-child(6),
 .data-wrapper table td:nth-child(6) {
@@ -1038,26 +975,17 @@ tbody tr:nth-child(even) {
     line-height: 1.35;
 }
 
-
-/* QTY */
-
 .data-wrapper table th:nth-child(7),
 .data-wrapper table td:nth-child(7) {
 
     width: 90px;
 }
 
-
-/* MC */
-
 .data-wrapper table th:nth-child(8),
 .data-wrapper table td:nth-child(8) {
 
     width: 80px;
 }
-
-
-/* JENIS PRINT = SAMA DENGAN WARNA GROUND */
 
 .data-wrapper table th:nth-child(9),
 .data-wrapper table td:nth-child(9) {
@@ -1073,12 +1001,6 @@ tbody tr:nth-child(even) {
     line-height: 1.35;
 }
 
-
-/*
-   Header Motif dan Jenis Print
-   boleh turun baris jika diperlukan
-*/
-
 .data-wrapper table th:nth-child(5),
 .data-wrapper table th:nth-child(6),
 .data-wrapper table th:nth-child(9) {
@@ -1087,58 +1009,50 @@ tbody tr:nth-child(even) {
 
     line-height: 1.25;
 }
-    
-/* =====================================================
-   PENCAPAIAN GRUP & DATA MESIN
-   TULISAN BESAR, TEBAL DAN JELAS
-===================================================== */
 
-/* HEADER PENCAPAIAN GRUP */
+
+/* =========================
+   PENCAPAIAN GRUP & MESIN
+========================= */
+
 .table-card:has(#tabelGrup) th {
     font-size: 17px;
     font-weight: 900;
     padding: 11px 10px;
 }
 
-/* ISI PENCAPAIAN GRUP */
 #tabelGrup td {
     font-size: 18px;
     font-weight: 800;
     padding: 11px 10px;
 }
 
-/* TOTAL PENCAPAIAN GRUP */
 #tabelGrup .total-row td {
     font-size: 20px;
     font-weight: 900;
 }
 
-
-/* HEADER DATA MESIN */
 .table-card:has(#tabelMesin) th {
     font-size: 17px;
     font-weight: 900;
     padding: 11px 10px;
 }
 
-/* ISI DATA MESIN */
 #tabelMesin td {
     font-size: 18px;
     font-weight: 800;
     padding: 11px 10px;
 }
 
-/* TOTAL DATA MESIN */
 #tabelMesin .total-row td {
     font-size: 20px;
     font-weight: 900;
 }
 
 
-/* =====================================================
+/* =========================
    MOBILE
-   TETAP BESAR DAN MUDAH DIBACA
-===================================================== */
+========================= */
 
 @media (max-width: 700px) {
 
@@ -1163,6 +1077,7 @@ tbody tr:nth-child(even) {
     }
 
 }
+
 
 /* =========================
    LOADING
@@ -1355,7 +1270,7 @@ body.screenshot-mode .group-percent {
 
 
 /* =========================
-   ANIMASI MUNCUL
+   ANIMASI
 ========================= */
 
 .card,
@@ -1386,452 +1301,111 @@ body.screenshot-mode .group-percent {
     }
 }
 
-</style>
-</head>
+</style></head><body><h1>📊 DASHBOARD PRODUKSI</h1><div class="mode-buttons"><button
+    class="btn-filter"
+    id="btnFilter"
+    onclick="toggleFilter()">
+    🔽 Tampilkan Filter
+</button>
 
-<body>
+<button
+    class="btn-reset"
+    onclick="resetFilter()">
+    🔄 Reset Filter
+</button>
 
-<h1>📊 DASHBOARD PRODUKSI</h1>
+<button
+    class="btn-screenshot"
+    onclick="toggleScreenshotMode()">
+    📸 Mode Screenshot
+</button>
 
-
-<!-- =========================
-     TOMBOL
-========================= -->
-
-<div class="mode-buttons">
-
-    <button
-        class="btn-filter"
-        id="btnFilter"
-        onclick="toggleFilter()">
-        🔽 Tampilkan Filter
-    </button>
-
-    <button
-        class="btn-reset"
-        onclick="resetFilter()">
-        🔄 Reset Filter
-    </button>
-
-    <button
-        class="btn-screenshot"
-        onclick="toggleScreenshotMode()">
-        📸 Mode Screenshot
-    </button>
-
-</div>
-
-
-<!-- =========================
-     FILTER PANEL
-========================= -->
-
-<div
+</div><div
     class="filter-panel"
-    id="filterPanel">
+    id="filterPanel"><div class="filter-title">
+    🔎 FILTER DATA
+</div>
 
-    <div class="filter-title">
-        🔎 FILTER DATA
-    </div>
+<div class="periode-area">
 
-    <div class="periode-area">
+    <div class="filter-group">
 
-        <div class="filter-group">
+        <label class="title">
+            Periode
+        </label>
 
-            <label class="title">
-                Periode
-            </label>
+        <select
+            id="periode"
+            onchange="ubahPeriode()">
 
-            <select
-                id="periode"
-                onchange="ubahPeriode()">
+            <option value="semua">
+                Semua
+            </option>
 
-                <option value="semua">
-                    Semua
-                </option>
+            <option value="tahun">
+                Per Tahun
+            </option>
 
-                <option value="tahun">
-                    Per Tahun
-                </option>
+            <option value="bulan">
+                Per Bulan
+            </option>
 
-                <option value="bulan">
-                    Per Bulan
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div
-            class="filter-group"
-            id="tahunArea">
-
-            <label class="title">
-                Tahun
-            </label>
-
-            <select
-                id="tahun"
-                onchange="terapkanSemuaFilter()">
-
-                <option value="">
-                    Semua
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div
-            class="filter-group"
-            id="bulanArea">
-
-            <label class="title">
-                Bulan
-            </label>
-
-            <select
-                id="bulan"
-                onchange="terapkanSemuaFilter()">
-
-                <option value="">
-                    Semua
-                </option>
-
-                <option value="1">Januari</option>
-                <option value="2">Februari</option>
-                <option value="3">Maret</option>
-                <option value="4">April</option>
-                <option value="5">Mei</option>
-                <option value="6">Juni</option>
-                <option value="7">Juli</option>
-                <option value="8">Agustus</option>
-                <option value="9">September</option>
-                <option value="10">Oktober</option>
-                <option value="11">November</option>
-                <option value="12">Desember</option>
-
-            </select>
-
-        </div>
+        </select>
 
     </div>
 
 
     <div
-        class="filter-row"
-        id="filterContainer">
+        class="filter-group"
+        id="tahunArea">
+
+        <label class="title">
+            Tahun
+        </label>
+
+        <select
+            id="tahun"
+            onchange="terapkanSemuaFilter()">
+
+            <option value="">
+                Semua
+            </option>
+
+        </select>
+
     </div>
 
-</div>
-
-
-<!-- =========================
-     FILTER SUMMARY
-========================= -->
-
-<div class="filter-summary">
-
-    <div class="filter-summary-title">
-        🔎 FILTER DATA YANG DITAMPILKAN
-    </div>
 
     <div
-        id="filterSummaryContent"
-        class="filter-summary-content">
-
-        <div class="filter-tag">
-            <span>Filter:</span> Semua
-        </div>
-
-        <div class="filter-tag">
-            <span>Tahun:</span> Semua
-        </div>
-
-        <div class="filter-tag">
-            <span>Bulan:</span> Semua
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     CARDS
-========================= -->
-
-<div class="cards">
-
-    <div class="card">
-
-        <div class="card-title">
-            Total Produksi (pcs)
-        </div>
-
-        <div
-            class="card-value"
-            id="totalProduksi">
-            0
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-title">
-            Total Produksi (kodi)
-        </div>
-
-        <div
-            class="card-value"
-            id="totalKodi">
-            0
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-title">
-            Total Data (baris)
-        </div>
-
-        <div
-            class="card-value"
-            id="totalData">
-            0
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-title">
-            Jumlah Mesin
-        </div>
-
-        <div
-            class="card-value"
-            id="jumlahMesin">
-            0
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-title">
-            Jumlah Grup
-        </div>
-
-        <div
-            class="card-value"
-            id="jumlahGrup">
-            0
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     GROUP CARDS
-========================= -->
-
-<div class="group-cards">
-
-
-    <div class="group-card group-a">
-
-        <h3>
-            GRUP A
-        </h3>
-
-        <div
-            class="group-production"
-            id="produksiA">
-            0 Pcs
-        </div>
-
-        <div
-            class="group-percent"
-            id="persenA">
-            0%
-        </div>
-
-    </div>
-
-
-    <div class="group-card group-b">
-
-        <h3>
-            GRUP B
-        </h3>
-
-        <div
-            class="group-production"
-            id="produksiB">
-            0 Pcs
-        </div>
-
-        <div
-            class="group-percent"
-            id="persenB">
-            0%
-        </div>
-
-    </div>
-
-
-    <div class="group-card group-c">
-
-        <h3>
-            GRUP C
-        </h3>
-
-        <div
-            class="group-production"
-            id="produksiC">
-            0 Pcs
-        </div>
-
-        <div
-            class="group-percent"
-            id="persenC">
-            0%
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     PENCAPAIAN GRUP
-========================= -->
-
-<div class="table-card">
-
-    <div class="table-title">
-        📈 Pencapaian Grup
-    </div>
-
-    <div class="table-wrapper">
-
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th>Grup</th>
-                    <th>Produksi (Pcs)</th>
-                    <th>Produksi (Kodi)</th>
-                    <th>Pencapaian %</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="tabelGrup">
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     DATA MESIN
-========================= -->
-
-<div class="table-card">
-
-    <div class="table-title">
-        ⚙️ Data Mesin
-    </div>
-
-    <div class="table-wrapper">
-
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th>Mc</th>
-                    <th>Grup A (Pcs)</th>
-                    <th>Grup B (Pcs)</th>
-                    <th>Grup C (Pcs)</th>
-                    <th>Total (Pcs)</th>
-                    <th>Pencapaian %</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="tabelMesin">
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     DATA PRODUKSI
-========================= -->
-
-<div class="table-card">
-
-    <div class="table-title">
-        📋 Data Produksi
-    </div>
-
-    <div
-        class="table-wrapper data-wrapper">
-
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <!-- TANGGAL TETAP PERTAMA -->
-
-                    <th>Tanggal</th>
-                    <th>Shift</th>
-                    <th>Grup</th>
-                    <th>Kode Produk</th>
-                    <th>Warna Ground</th>
-                    <th>Motif</th>
-                    <th>Qty (Pcs)</th>
-                    <th>Mc</th>
-                    <th>Jenis Print</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="tabelData">
-
-            </tbody>
-
-        </table>
+        class="filter-group"
+        id="bulanArea">
+
+        <label class="title">
+            Bulan
+        </label>
+
+        <select
+            id="bulan"
+            onchange="terapkanSemuaFilter()">
+
+            <option value="">
+                Semua
+            </option>
+
+            <option value="1">Januari</option>
+            <option value="2">Februari</option>
+            <option value="3">Maret</option>
+            <option value="4">April</option>
+            <option value="5">Mei</option>
+            <option value="6">Juni</option>
+            <option value="7">Juli</option>
+            <option value="8">Agustus</option>
+            <option value="9">September</option>
+            <option value="10">Oktober</option>
+            <option value="11">November</option>
+            <option value="12">Desember</option>
+
+        </select>
 
     </div>
 
@@ -1839,13 +1413,246 @@ body.screenshot-mode .group-percent {
 
 
 <div
+    class="filter-row"
+    id="filterContainer">
+</div>
+
+</div><div class="filter-summary"><div class="filter-summary-title">
+    🔎 FILTER DATA YANG DITAMPILKAN
+</div>
+
+<div
+    id="filterSummaryContent"
+    class="filter-summary-content">
+
+    <div class="filter-tag">
+        <span>Filter:</span> Semua
+    </div>
+
+    <div class="filter-tag">
+        <span>Tahun:</span> Semua
+    </div>
+
+    <div class="filter-tag">
+        <span>Bulan:</span> Semua
+    </div>
+
+</div>
+
+</div><div class="cards"><div class="card">
+    <div class="card-title">
+        Total Produksi (pcs)
+    </div>
+
+    <div
+        class="card-value"
+        id="totalProduksi">
+        0
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-title">
+        Total Produksi (kodi)
+    </div>
+
+    <div
+        class="card-value"
+        id="totalKodi">
+        0
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-title">
+        Total Data (baris)
+    </div>
+
+    <div
+        class="card-value"
+        id="totalData">
+        0
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-title">
+        Jumlah Mesin
+    </div>
+
+    <div
+        class="card-value"
+        id="jumlahMesin">
+        0
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-title">
+        Jumlah Grup
+    </div>
+
+    <div
+        class="card-value"
+        id="jumlahGrup">
+        0
+    </div>
+</div>
+
+</div><div class="group-cards"><div class="group-card group-a">
+
+    <h3>
+        GRUP A
+    </h3>
+
+    <div
+        class="group-production"
+        id="produksiA">
+        0 Pcs
+    </div>
+
+    <div
+        class="group-percent"
+        id="persenA">
+        0%
+    </div>
+
+</div>
+
+
+<div class="group-card group-b">
+
+    <h3>
+        GRUP B
+    </h3>
+
+    <div
+        class="group-production"
+        id="produksiB">
+        0 Pcs
+    </div>
+
+    <div
+        class="group-percent"
+        id="persenB">
+        0%
+    </div>
+
+</div>
+
+
+<div class="group-card group-c">
+
+    <h3>
+        GRUP C
+    </h3>
+
+    <div
+        class="group-production"
+        id="produksiC">
+        0 Pcs
+    </div>
+
+    <div
+        class="group-percent"
+        id="persenC">
+        0%
+    </div>
+
+</div>
+
+</div><div class="table-card"><div class="table-title">
+    📈 Pencapaian Grup
+</div>
+
+<div class="table-wrapper">
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Grup</th>
+                <th>Produksi (Pcs)</th>
+                <th>Produksi (Kodi)</th>
+                <th>Pencapaian %</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="tabelGrup"></tbody>
+
+    </table>
+
+</div>
+
+</div><div class="table-card"><div class="table-title">
+    ⚙️ Data Mesin
+</div>
+
+<div class="table-wrapper">
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Mc</th>
+                <th>Grup A (Pcs)</th>
+                <th>Grup B (Pcs)</th>
+                <th>Grup C (Pcs)</th>
+                <th>Total (Pcs)</th>
+                <th>Pencapaian %</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="tabelMesin"></tbody>
+
+    </table>
+
+</div>
+
+</div><div class="table-card"><div class="table-title">
+    📋 Data Produksi
+</div>
+
+<div
+    class="table-wrapper data-wrapper">
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Tanggal</th>
+                <th>Shift</th>
+                <th>Grup</th>
+                <th>Kode Produk</th>
+                <th>Warna Ground</th>
+                <th>Motif</th>
+                <th>Qty (Pcs)</th>
+                <th>Mc</th>
+                <th>Jenis Print</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="tabelData"></tbody>
+
+    </table>
+
+</div>
+
+</div><div
     class="loading"
     id="loading">
     ⏳ Mengambil data...
-</div>
-
-
-<script>
+</div><script>
 
 /* =====================================================
    URL APPS SCRIPT
@@ -1861,6 +1668,26 @@ const URL =
 
 let semuaData = [];
 let dataTampil = [];
+
+/*
+   STATUS PEMULIHAN FILTER
+
+   true = sedang mengambil filter lama
+   false = user sedang menggunakan dashboard
+*/
+
+let sedangMemulihkanFilter = false;
+
+
+/*
+   TIMER SIMPAN FILTER
+
+   Dipakai supaya ketika user mencentang
+   beberapa checkbox tidak mengirim request
+   berkali-kali secara cepat.
+*/
+
+let timerSimpanFilter = null;
 
 
 /* =====================================================
@@ -2131,7 +1958,9 @@ function toggleFilter() {
    PERIODE
 ===================================================== */
 
-function ubahPeriode() {
+function ubahPeriode(
+    simpan = true
+) {
 
     const periode =
         document.getElementById(
@@ -2184,7 +2013,9 @@ function ubahPeriode() {
 
     }
 
-    terapkanSemuaFilter();
+    terapkanSemuaFilter(
+        simpan
+    );
 
 }
 
@@ -2236,13 +2067,6 @@ function buatFilter(
     box.className =
         "multi-box";
 
-
-    /*
-       SEARCH KHUSUS:
-       TANGGAL
-       MOTIF
-       WARNA GROUND / WARNA BLOK
-    */
 
     if (
         kolom === 7 ||
@@ -2373,7 +2197,11 @@ function buatFilter(
                 value;
 
             checkbox.onchange =
-                terapkanSemuaFilter;
+                function() {
+
+                    terapkanSemuaFilter();
+
+                };
 
             label.appendChild(
                 checkbox
@@ -2470,10 +2298,365 @@ function cariPilihan(
 
 
 /* =====================================================
+   AMBIL KONDISI FILTER SAAT INI
+===================================================== */
+
+function ambilStateFilter() {
+
+    const state = {
+
+        periode:
+            document.getElementById(
+                "periode"
+            )?.value || "semua",
+
+        tahun:
+            document.getElementById(
+                "tahun"
+            )?.value || "",
+
+        bulan:
+            document.getElementById(
+                "bulan"
+            )?.value || "",
+
+        selections: {}
+
+    };
+
+
+    const daftarFilter = [
+
+        "filterShift",
+        "filterGrup",
+        "filterKode",
+        "filterWarna",
+        "filterMotif",
+        "filterMc",
+        "filterTanggal"
+
+    ];
+
+
+    daftarFilter.forEach(
+        id => {
+
+            state.selections[id] =
+                Array.from(
+
+                    document.querySelectorAll(
+                        "#" +
+                        id +
+                        " input[type='checkbox']:checked"
+                    )
+
+                ).map(
+                    checkbox =>
+                        checkbox.value
+                );
+
+        }
+    );
+
+
+    return state;
+
+}
+
+
+/* =====================================================
+   JADWALKAN SIMPAN FILTER
+===================================================== */
+
+function jadwalkanSimpanFilter() {
+
+    if (
+        sedangMemulihkanFilter
+    ) {
+        return;
+    }
+
+
+    clearTimeout(
+        timerSimpanFilter
+    );
+
+
+    timerSimpanFilter =
+        setTimeout(
+            function() {
+
+                simpanFilterTerakhir();
+
+            },
+            500
+        );
+
+}
+
+
+/* =====================================================
+   SIMPAN FILTER KE APPS SCRIPT
+===================================================== */
+
+async function simpanFilterTerakhir() {
+
+    if (
+        sedangMemulihkanFilter
+    ) {
+        return;
+    }
+
+
+    try {
+
+        const state =
+            ambilStateFilter();
+
+
+        await fetch(
+            URL,
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type":
+                        "text/plain;charset=utf-8"
+
+                },
+
+                body:
+                    JSON.stringify({
+
+                        action:
+                            "saveFilter",
+
+                        sheet:
+                            "FLAT",
+
+                        filter:
+                            state
+
+                    })
+
+            }
+        );
+
+
+        console.log(
+            "Filter terakhir tersimpan."
+        );
+
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "Gagal menyimpan filter:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   AMBIL FILTER TERAKHIR DARI APPS SCRIPT
+===================================================== */
+
+async function ambilFilterTersimpan() {
+
+    try {
+
+        const response =
+            await fetch(
+                URL +
+                "?action=getFilter&sheet=FLAT"
+            );
+
+
+        if (
+            !response.ok
+        ) {
+
+            return null;
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            result &&
+            result.success &&
+            result.filter
+        ) {
+
+            return result.filter;
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "Gagal mengambil filter terakhir:",
+            error
+        );
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =====================================================
+   TERAPKAN FILTER TERSIMPAN
+===================================================== */
+
+function terapkanFilterTersimpan(
+    state
+) {
+
+    if (!state)
+        return;
+
+
+    sedangMemulihkanFilter =
+        true;
+
+
+    try {
+
+        const periode =
+            document.getElementById(
+                "periode"
+            );
+
+        if (
+            periode &&
+            state.periode !== undefined
+        ) {
+
+            periode.value =
+                state.periode;
+
+        }
+
+
+        const tahun =
+            document.getElementById(
+                "tahun"
+            );
+
+        if (
+            tahun &&
+            state.tahun !== undefined
+        ) {
+
+            tahun.value =
+                state.tahun;
+
+        }
+
+
+        const bulan =
+            document.getElementById(
+                "bulan"
+            );
+
+        if (
+            bulan &&
+            state.bulan !== undefined
+        ) {
+
+            bulan.value =
+                state.bulan;
+
+        }
+
+
+        /*
+           Tampilkan area tahun/bulan
+           sesuai filter yang tersimpan.
+        */
+
+        ubahPeriode(
+            false
+        );
+
+
+        if (
+            state.selections
+        ) {
+
+            Object.keys(
+                state.selections
+            ).forEach(
+                id => {
+
+                    const container =
+                        document.getElementById(
+                            id
+                        );
+
+                    if (!container)
+                        return;
+
+
+                    const nilaiTersimpan =
+                        state.selections[id] ||
+                        [];
+
+
+                    container
+                        .querySelectorAll(
+                            "input[type='checkbox']"
+                        )
+                        .forEach(
+                            checkbox => {
+
+                                checkbox.checked =
+                                    nilaiTersimpan.includes(
+                                        checkbox.value
+                                    );
+
+                            }
+                        );
+
+                }
+            );
+
+        }
+
+    }
+
+    finally {
+
+        sedangMemulihkanFilter =
+            false;
+
+    }
+
+}
+
+
+/* =====================================================
    TERAPKAN SEMUA FILTER
 ===================================================== */
 
-function terapkanSemuaFilter() {
+function terapkanSemuaFilter(
+    simpan = true
+) {
 
     const periode =
         document.getElementById(
@@ -2544,6 +2727,7 @@ function terapkanSemuaFilter() {
                             row[7]
                         );
 
+
                     if (!p)
                         return false;
 
@@ -2579,6 +2763,7 @@ function terapkanSemuaFilter() {
 
                         }
 
+
                         if (
                             bulan &&
                             p.bulan !==
@@ -2608,7 +2793,9 @@ function terapkanSemuaFilter() {
                     if (
                         checked.length === 0
                     ) {
+
                         continue;
+
                     }
 
 
@@ -2636,7 +2823,9 @@ function terapkanSemuaFilter() {
                                 value
                             );
 
-                    } else {
+                    }
+
+                    else {
 
                         value =
                             String(
@@ -2675,6 +2864,21 @@ function terapkanSemuaFilter() {
     updateDataMesin();
 
     updateFilterSummary();
+
+
+    /*
+       Simpan filter setelah proses
+       filtering selesai.
+    */
+
+    if (
+        simpan &&
+        !sedangMemulihkanFilter
+    ) {
+
+        jadwalkanSimpanFilter();
+
+    }
 
 }
 
@@ -2969,10 +3173,12 @@ function updatePencapaianGrup() {
     ).textContent =
         formatAngka(A) + " Pcs";
 
+
     document.getElementById(
         "produksiB"
     ).textContent =
         formatAngka(B) + " Pcs";
+
 
     document.getElementById(
         "produksiC"
@@ -2985,10 +3191,12 @@ function updatePencapaianGrup() {
     ).textContent =
         persenA.toFixed(2) + "%";
 
+
     document.getElementById(
         "persenB"
     ).textContent =
         persenB.toFixed(2) + "%";
+
 
     document.getElementById(
         "persenC"
@@ -3594,79 +3802,168 @@ function updateFilterSummary() {
 
 
 /* =====================================================
-   RESET FILTER
+   RESET FILTER GLOBAL
 ===================================================== */
 
-function resetFilter() {
+async function resetFilter() {
 
-    document.getElementById(
-        "periode"
-    ).value =
-        "semua";
+    /*
+       Batalkan penyimpanan otomatis
+       yang mungkin masih menunggu.
+    */
 
-
-    document.getElementById(
-        "tahun"
-    ).value =
-        "";
-
-
-    document.getElementById(
-        "bulan"
-    ).value =
-        "";
-
-
-    document.querySelectorAll(
-        ".multi-options input"
-    ).forEach(
-        checkbox => {
-
-            checkbox.checked =
-                false;
-
-        }
+    clearTimeout(
+        timerSimpanFilter
     );
 
 
-    document.querySelectorAll(
-        ".filter-search"
-    ).forEach(
-        input => {
+    /*
+       Tandai bahwa dashboard sedang reset.
+    */
 
-            input.value =
-                "";
-
-            const area =
-                input
-                .parentElement
-                .querySelector(
-                    ".multi-options"
-                );
+    sedangMemulihkanFilter =
+        true;
 
 
-            if (area) {
+    try {
 
-                area
-                    .querySelectorAll(
-                        "label"
-                    )
-                    .forEach(
-                        label => {
+        document.getElementById(
+            "periode"
+        ).value =
+            "semua";
 
-                            label.style.display =
-                                "block";
 
-                        }
-                    );
+        document.getElementById(
+            "tahun"
+        ).value =
+            "";
+
+
+        document.getElementById(
+            "bulan"
+        ).value =
+            "";
+
+
+        document.querySelectorAll(
+            ".multi-options input"
+        ).forEach(
+            checkbox => {
+
+                checkbox.checked =
+                    false;
 
             }
+        );
 
-        }
+
+        document.querySelectorAll(
+            ".filter-search"
+        ).forEach(
+            input => {
+
+                input.value =
+                    "";
+
+
+                const area =
+                    input
+                    .parentElement
+                    .querySelector(
+                        ".multi-options"
+                    );
+
+
+                if (area) {
+
+                    area
+                        .querySelectorAll(
+                            "label"
+                        )
+                        .forEach(
+                            label => {
+
+                                label.style.display =
+                                    "block";
+
+                            }
+                        );
+
+                }
+
+            }
+        );
+
+
+    }
+
+    finally {
+
+        sedangMemulihkanFilter =
+            false;
+
+    }
+
+
+    /*
+       HAPUS FILTER GLOBAL DI SERVER
+    */
+
+    try {
+
+        await fetch(
+            URL,
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type":
+                        "text/plain;charset=utf-8"
+
+                },
+
+                body:
+                    JSON.stringify({
+
+                        action:
+                            "resetFilter",
+
+                        sheet:
+                            "FLAT"
+
+                    })
+
+            }
+        );
+
+
+        console.log(
+            "Filter global berhasil dihapus."
+        );
+
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "Gagal menghapus filter global:",
+            error
+        );
+
+    }
+
+
+    /*
+       Terapkan kondisi kosong
+       tanpa menyimpan kembali.
+    */
+
+    ubahPeriode(
+        false
     );
-
-
-    ubahPeriode();
 
 }
 
@@ -3779,30 +4076,6 @@ function inisialisasiFilter() {
         "";
 
 
-    /*
-       A. Shift
-       B. Grup
-       C. Kode Produk
-       D. Warna Ground
-       E. Motif
-       F. Qty
-       G. Mc
-       H. Tanggal
-       I. Jenis Print
-
-       Filter:
-       Shift
-       Grup
-       Kode Produk
-       Warna Ground
-       Motif
-       Mc
-       Tanggal
-
-       Qty dan Jenis Print TIDAK diberi filter.
-    */
-
-
     buatFilter(
         "Shift",
         0,
@@ -3852,7 +4125,14 @@ function inisialisasiFilter() {
     );
 
 
-    ubahPeriode();
+    /*
+       Jangan menyimpan kondisi
+       saat proses awal.
+    */
+
+    ubahPeriode(
+        false
+    );
 
 }
 
@@ -3921,19 +4201,66 @@ async function ambilData() {
             ];
 
 
+        /*
+           Buat tahun dan filter.
+        */
+
         isiTahun();
 
         inisialisasiFilter();
 
-        tampilkanData();
 
-        updateDashboard();
+        /*
+           AMBIL FILTER GLOBAL TERAKHIR
+        */
 
-        updatePencapaianGrup();
+        const filterTersimpan =
+            await ambilFilterTersimpan();
 
-        updateDataMesin();
 
-        updateFilterSummary();
+        if (
+            filterTersimpan
+        ) {
+
+            /*
+               Terapkan checkbox dan periode
+               dari server.
+            */
+
+            terapkanFilterTersimpan(
+                filterTersimpan
+            );
+
+
+            /*
+               Jalankan filtering tanpa
+               menyimpan ulang.
+            */
+
+            terapkanSemuaFilter(
+                false
+            );
+
+        }
+
+        else {
+
+            /*
+               Tidak ada filter tersimpan.
+               Tampilkan semua data.
+            */
+
+            tampilkanData();
+
+            updateDashboard();
+
+            updatePencapaianGrup();
+
+            updateDataMesin();
+
+            updateFilterSummary();
+
+        }
 
 
         loading.style.display =
@@ -3958,12 +4285,10 @@ async function ambilData() {
 
 
 /* =====================================================
-   JALANKAN
+   JALANKAN DASHBOARD
 ===================================================== */
 
 ambilData();
 
-</script>
-
-</body>
+</script></body>
 </html>
