@@ -1,0 +1,3621 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Dashboard Defect Flat</title><style>
+
+*{
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#edf2f7;
+    --card:#ffffff;
+    --text:#1e293b;
+    --muted:#64748b;
+    --border:#d8e1ea;
+
+    /* WARNA FOKUS */
+    --blue:#b9d8ed;
+    --blue-dark:#477da3;
+
+    --purple:#c9bce4;
+    --purple-dark:#715d96;
+
+    --green:#b9dcc8;
+    --green-dark:#4d8063;
+
+    --shadow:
+        0 10px 24px rgba(30,41,59,.10),
+        0 3px 7px rgba(30,41,59,.06);
+
+    --shadow3d:
+        0 12px 22px rgba(30,41,59,.13),
+        0 4px 7px rgba(30,41,59,.07),
+        inset 0 2px 0 rgba(255,255,255,.65),
+        inset 0 -2px 0 rgba(0,0,0,.035);
+
+}
+
+
+/* =====================================================
+   BODY
+===================================================== */
+
+body{
+
+    margin:0;
+    padding:18px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:var(--text);
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #ffffff 0,
+            #f4f7fa 30%,
+            transparent 58%
+        ),
+        linear-gradient(
+            135deg,
+            #eaf0f5,
+            #f7f9fb
+        );
+
+    min-height:100vh;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    position:relative;
+
+    background:rgba(255,255,255,.95);
+
+    border:1px solid rgba(255,255,255,.9);
+
+    border-radius:20px;
+
+    padding:21px 23px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:14px;
+
+    overflow:hidden;
+
+}
+
+
+.header:before{
+
+    content:"";
+
+    position:absolute;
+
+    width:210px;
+    height:210px;
+
+    border-radius:50%;
+
+    background:#d9e9f6;
+
+    right:-90px;
+    top:-120px;
+
+    opacity:.55;
+
+}
+
+
+.header-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.title{
+
+    margin:0;
+
+    font-size:31px;
+
+    font-weight:900;
+
+    letter-spacing:.2px;
+
+}
+
+
+.subtitle{
+
+    margin:5px 0 0;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+
+/* =====================================================
+   NAV
+===================================================== */
+
+.nav{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin-top:17px;
+
+}
+
+
+.nav button{
+
+    border:0;
+
+    padding:10px 17px;
+
+    border-radius:11px;
+
+    background:#eef2f6;
+
+    color:#526273;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    box-shadow:
+        0 3px 7px rgba(30,41,59,.08),
+        inset 0 1px 0 rgba(255,255,255,.8);
+
+}
+
+
+.nav button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+.nav button.active{
+
+    background:#b9d8ed;
+
+    color:#365f7c;
+
+}
+
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.toolbar{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-bottom:14px;
+
+}
+
+
+.toolbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.filter-button{
+
+    border:0;
+
+    height:42px;
+
+    padding:0 18px;
+
+    border-radius:12px;
+
+    background:#ffffff;
+
+    color:#425466;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid var(--border);
+
+    transition:.2s;
+
+}
+
+
+.filter-button:hover{
+
+    transform:translateY(-1px);
+
+}
+
+
+.filter-button.active{
+
+    background:#dcecf7;
+
+    color:#396783;
+
+}
+
+
+.active-count{
+
+    display:none;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:7px 11px;
+
+    border-radius:10px;
+
+    background:#ffffff;
+
+    border:1px solid var(--border);
+
+    color:#667788;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    box-shadow:0 3px 8px rgba(30,41,59,.05);
+
+}
+
+
+.active-count.show{
+
+    display:flex;
+
+}
+
+
+/* =====================================================
+   FILTER PANEL
+===================================================== */
+
+.filter-card{
+
+    display:none;
+
+    background:#ffffff;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:16px;
+
+    animation:filterOpen .18s ease;
+
+}
+
+
+.filter-card.show{
+
+    display:block;
+
+}
+
+
+@keyframes filterOpen{
+
+    from{
+        opacity:0;
+        transform:translateY(-5px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+.filter-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:14px;
+
+}
+
+
+.filter-title{
+
+    font-size:17px;
+
+    font-weight:900;
+
+}
+
+
+.close-filter{
+
+    border:0;
+
+    width:34px;
+    height:34px;
+
+    border-radius:9px;
+
+    background:#f1f4f7;
+
+    color:#667788;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    font-weight:900;
+
+}
+
+
+.filter-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(150px,1fr));
+
+    gap:12px;
+
+}
+
+
+.field{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+
+.field label{
+
+    font-size:11px;
+
+    font-weight:900;
+
+    color:#607080;
+
+}
+
+
+.field input,
+.field select{
+
+    width:100%;
+
+    height:40px;
+
+    border:1px solid #d7e0e8;
+
+    border-radius:10px;
+
+    padding:0 11px;
+
+    background:#fafcfd;
+
+    color:#263645;
+
+    outline:none;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+
+.field input:focus,
+.field select:focus{
+
+    border-color:#8fb6d2;
+
+    box-shadow:
+        0 0 0 3px rgba(83,137,173,.10);
+
+}
+
+
+.search-wrap{
+
+    position:relative;
+
+}
+
+
+.search-wrap input{
+
+    padding-right:35px;
+
+}
+
+
+.search-icon{
+
+    position:absolute;
+
+    right:11px;
+
+    top:10px;
+
+    color:#7c8b99;
+
+    font-size:17px;
+
+}
+
+
+.filter-actions{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-top:14px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.btn{
+
+    border:0;
+
+    height:39px;
+
+    padding:0 16px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:900;
+
+}
+
+
+.btn-primary{
+
+    background:#c4ddec;
+
+    color:#3f6e8d;
+
+    box-shadow:
+        0 4px 8px rgba(30,41,59,.09),
+        inset 0 1px 0 rgba(255,255,255,.65);
+
+}
+
+
+.btn-reset{
+
+    background:#eef2f5;
+
+    color:#607080;
+
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(150px,1fr));
+
+    gap:13px;
+
+    margin-bottom:17px;
+
+}
+
+
+.summary-card{
+
+    background:#ffffff;
+
+    border:1px solid var(--border);
+
+    border-radius:17px;
+
+    padding:16px;
+
+    box-shadow:var(--shadow);
+
+    min-height:105px;
+
+}
+
+
+.summary-label{
+
+    font-size:11px;
+
+    font-weight:900;
+
+    color:#718096;
+
+}
+
+
+.summary-value{
+
+    margin-top:8px;
+
+    font-size:27px;
+
+    font-weight:900;
+
+}
+
+
+.summary-unit{
+
+    margin-top:2px;
+
+    font-size:11px;
+
+    color:#7b8997;
+
+    font-weight:700;
+
+}
+
+
+/* =====================================================
+   FOCUS TITLE
+===================================================== */
+
+.focus-title{
+
+    margin:8px 0 12px;
+
+    font-size:20px;
+
+    font-weight:900;
+
+    letter-spacing:.2px;
+
+}
+
+
+/* =====================================================
+   FOCUS GRID
+===================================================== */
+
+.focus-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(220px,1fr));
+
+    gap:16px;
+
+    margin-bottom:18px;
+
+}
+
+
+/* =====================================================
+   FOCUS CARD
+===================================================== */
+
+.focus-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-height:245px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(0,0,0,.07);
+
+    box-shadow:var(--shadow3d);
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+
+}
+
+
+.focus-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 27px rgba(30,41,59,.16),
+        0 4px 8px rgba(30,41,59,.07),
+        inset 0 2px 0 rgba(255,255,255,.7);
+
+}
+
+
+/* CIRCLE 3D */
+
+.focus-card:before{
+
+    content:"";
+
+    position:absolute;
+
+    width:175px;
+    height:175px;
+
+    border-radius:50%;
+
+    right:-70px;
+    top:-85px;
+
+    opacity:.55;
+
+}
+
+
+.focus-card:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:110px;
+    height:110px;
+
+    border-radius:50%;
+
+    left:-70px;
+    bottom:-65px;
+
+    opacity:.22;
+
+}
+
+
+/* BLUE */
+
+.focus-card.blue{
+
+    background:
+        linear-gradient(
+            145deg,
+            #d0e6f4,
+            #b8d4e7
+        );
+
+    color:#3f6f91;
+
+}
+
+
+.focus-card.blue:before{
+
+    background:#9fc7df;
+
+}
+
+
+.focus-card.blue:after{
+
+    background:#ffffff;
+
+}
+
+
+/* PURPLE */
+
+.focus-card.purple{
+
+    background:
+        linear-gradient(
+            145deg,
+            #ded5ed,
+            #c6b8df
+        );
+
+    color:#6d598e;
+
+}
+
+
+.focus-card.purple:before{
+
+    background:#af9dcc;
+
+}
+
+
+.focus-card.purple:after{
+
+    background:#ffffff;
+
+}
+
+
+/* GREEN */
+
+.focus-card.green{
+
+    background:
+        linear-gradient(
+            145deg,
+            #cee6d7,
+            #b7d5c3
+        );
+
+    color:#4d7d61;
+
+}
+
+
+.focus-card.green:before{
+
+    background:#9fc8ad;
+
+}
+
+
+.focus-card.green:after{
+
+    background:#ffffff;
+
+}
+
+
+/* =====================================================
+   FOCUS HEAD
+===================================================== */
+
+.focus-head{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+.focus-name{
+
+    font-size:22px;
+
+    font-weight:900;
+
+    letter-spacing:.3px;
+
+}
+
+
+.focus-icon{
+
+    width:43px;
+    height:43px;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(255,255,255,.48);
+
+    font-size:20px;
+
+    box-shadow:
+        0 4px 9px rgba(0,0,0,.09),
+        inset 0 1px 0 rgba(255,255,255,.8);
+
+}
+
+
+/* =====================================================
+   FOCUS NUMBERS
+===================================================== */
+
+.focus-total{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:19px;
+
+    font-size:31px;
+
+    font-weight:900;
+
+}
+
+
+.focus-percent{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:3px;
+
+    font-size:18px;
+
+    font-weight:900;
+
+}
+
+
+.focus-desc{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:4px;
+
+    color:rgba(45,55,65,.62);
+
+    font-size:11px;
+
+    font-weight:800;
+
+}
+
+
+.focus-list{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:13px;
+
+    max-height:73px;
+
+    overflow:auto;
+
+}
+
+
+.mini-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:5px 0;
+
+    border-bottom:1px dashed rgba(70,80,90,.20);
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+
+.mini-row:last-child{
+
+    border-bottom:0;
+
+}
+
+
+.empty{
+
+    text-align:center;
+
+    padding:20px;
+
+    color:#7d8b99;
+
+    font-size:12px;
+
+    font-weight:800;
+
+}
+
+
+/* =====================================================
+   ANALYSIS
+===================================================== */
+
+.analysis-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(300px,1fr));
+
+    gap:16px;
+
+    margin-bottom:18px;
+
+}
+
+
+.panel{
+
+    background:#ffffff;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.panel-title{
+
+    font-size:17px;
+
+    font-weight:900;
+
+    margin-bottom:15px;
+
+}
+
+
+.rank-row{
+
+    display:grid;
+
+    grid-template-columns:
+        34px 1fr 80px;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:11px;
+
+}
+
+
+.rank-number{
+
+    width:28px;
+    height:28px;
+
+    border-radius:9px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#eef2f5;
+
+    color:#5f7080;
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+
+.rank-name{
+
+    font-size:12px;
+
+    font-weight:900;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+
+.bar-wrap{
+
+    height:7px;
+
+    margin-top:5px;
+
+    background:#edf1f4;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+.bar{
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:#91b9d2;
+
+}
+
+
+.rank-value{
+
+    text-align:right;
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-panel{
+
+    background:#ffffff;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+}
+
+
+.table-header{
+
+    padding:17px 18px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.table-title{
+
+    font-size:18px;
+
+    font-weight:900;
+
+}
+
+
+.quick-search{
+
+    width:230px;
+
+    height:38px;
+
+    border:1px solid #d8e1e8;
+
+    border-radius:10px;
+
+    padding:0 11px;
+
+    outline:none;
+
+    background:#fafcfd;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+
+.table-wrap{
+
+    width:100%;
+
+    overflow-x:auto;
+
+}
+
+
+table{
+
+    width:100%;
+
+    min-width:1100px;
+
+    border-collapse:collapse;
+
+}
+
+
+thead th{
+
+    background:#edf2f6;
+
+    color:#536576;
+
+    padding:11px 10px;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    text-align:left;
+
+    white-space:nowrap;
+
+    cursor:pointer;
+
+}
+
+
+tbody td{
+
+    padding:10px;
+
+    border-top:1px solid #edf1f4;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+}
+
+
+tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+
+.qty{
+
+    text-align:right;
+
+    font-weight:900;
+
+}
+
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+.pagination{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:13px 18px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.page-info{
+
+    color:#7a8997;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+.page-buttons{
+
+    display:flex;
+
+    gap:5px;
+
+}
+
+
+.page-buttons button{
+
+    border:0;
+
+    min-width:31px;
+
+    height:31px;
+
+    border-radius:8px;
+
+    background:#eef2f5;
+
+    color:#617181;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+
+.page-buttons button.active{
+
+    background:#bfd9eb;
+
+    color:#3d6681;
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status{
+
+    position:fixed;
+
+    right:16px;
+    bottom:16px;
+
+    background:#ffffff;
+
+    border:1px solid var(--border);
+
+    border-radius:11px;
+
+    padding:9px 13px;
+
+    box-shadow:var(--shadow);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    color:#667788;
+
+    z-index:50;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1000px){
+
+    .filter-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .summary-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .focus-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .analysis-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    body{
+
+        padding:10px;
+
+    }
+
+    .title{
+
+        font-size:25px;
+
+    }
+
+    .filter-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .summary-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:9px;
+
+    }
+
+    .summary-card{
+
+        padding:13px;
+
+    }
+
+    .summary-value{
+
+        font-size:22px;
+
+    }
+
+    .focus-name{
+
+        font-size:20px;
+
+    }
+
+    .focus-total{
+
+        font-size:28px;
+
+    }
+
+    .quick-search{
+
+        width:100%;
+
+    }
+
+}
+
+
+@media(max-width:420px){
+
+    .summary-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .nav button{
+
+        flex:1;
+
+    }
+
+}
+
+</style></head><body><!-- =====================================================
+     HEADER
+===================================================== --><div class="header"><div class="header-content">
+
+    <h1 class="title">
+        DASHBOARD DEFECT FLAT
+    </h1>
+
+    <div class="subtitle">
+        Monitoring & Analisa Defect Printing Flat
+    </div>
+
+
+    <div class="nav">
+
+        <button onclick="goPage('produksi')">
+            🏭 PRODUKSI
+        </button>
+
+        <button onclick="goPage('cuci')">
+            🧺 CUCI
+        </button>
+
+        <button class="active"
+                onclick="goPage('defect')">
+            ⚠️ DEFECT
+        </button>
+
+    </div>
+
+</div>
+
+</div><!-- =====================================================
+     TOOLBAR
+===================================================== --><div class="toolbar"><div class="toolbar-left">
+
+    <button
+        class="filter-button"
+        id="filterButton"
+        onclick="toggleFilter()">
+
+        🔎 FILTER
+
+    </button>
+
+
+    <div
+        class="active-count"
+        id="activeCount">
+
+        Filter aktif:
+        <span id="activeCountNumber">0</span>
+
+    </div>
+
+</div>
+
+</div><!-- =====================================================
+     FILTER
+===================================================== --><div
+    class="filter-card"
+    id="filterCard"><div class="filter-top">
+
+    <div class="filter-title">
+        🔎 FILTER DATA DEFECT
+    </div>
+
+    <button
+        class="close-filter"
+        onclick="toggleFilter()">
+
+        ×
+
+    </button>
+
+</div>
+
+
+<div class="filter-grid">
+
+
+    <!-- TANGGAL DARI -->
+
+    <div class="field">
+
+        <label>
+            TANGGAL DARI
+        </label>
+
+        <input
+            type="date"
+            id="dateFrom">
+
+    </div>
+
+
+    <!-- TANGGAL KE -->
+
+    <div class="field">
+
+        <label>
+            TANGGAL KE
+        </label>
+
+        <input
+            type="date"
+            id="dateTo">
+
+    </div>
+
+
+    <!-- KODE PRODUK -->
+
+    <div class="field">
+
+        <label>
+            KODE PRODUK
+        </label>
+
+        <select id="kodeProduk">
+
+            <option value="">
+                Semua Kode Produk
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- MOTIF -->
+
+    <div class="field">
+
+        <label>
+            MOTIF
+        </label>
+
+        <select id="motif">
+
+            <option value="">
+                Semua Motif
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- JENIS DEFECT -->
+
+    <div class="field">
+
+        <label>
+            JENIS DEFECT
+        </label>
+
+        <select id="jenisDefect">
+
+            <option value="">
+                Semua Jenis Defect
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- MESIN -->
+
+    <div class="field">
+
+        <label>
+            MESIN
+        </label>
+
+        <select id="mesin">
+
+            <option value="">
+                Semua Mesin
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- GRUP SEARCH -->
+
+    <div class="field">
+
+        <label>
+            GRUP — PENCARIAN
+        </label>
+
+        <div class="search-wrap">
+
+            <input
+                type="text"
+                id="grup"
+                placeholder="Ketik grup...">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ROLL ID SEARCH -->
+
+    <div class="field">
+
+        <label>
+            ROLL ID — PENCARIAN
+        </label>
+
+        <div class="search-wrap">
+
+            <input
+                type="text"
+                id="rollId"
+                placeholder="Ketik Roll ID...">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div class="filter-actions">
+
+    <button
+        class="btn btn-primary"
+        onclick="applyFilter()">
+
+        🔍 TERAPKAN FILTER
+
+    </button>
+
+
+    <button
+        class="btn btn-reset"
+        onclick="resetFilter()">
+
+        ↻ RESET
+
+    </button>
+
+</div>
+
+</div><!-- =====================================================
+     SUMMARY
+===================================================== --><div class="summary-grid"><div class="summary-card">
+
+    <div class="summary-label">
+        TOTAL DEFECT
+    </div>
+
+    <div
+        class="summary-value"
+        id="totalPcs">
+
+        0
+
+    </div>
+
+    <div class="summary-unit">
+        Pcs
+    </div>
+
+</div>
+
+
+<div class="summary-card">
+
+    <div class="summary-label">
+        TOTAL ROLL
+    </div>
+
+    <div
+        class="summary-value"
+        id="totalRoll">
+
+        0
+
+    </div>
+
+    <div class="summary-unit">
+        Roll
+    </div>
+
+</div>
+
+
+<div class="summary-card">
+
+    <div class="summary-label">
+        JENIS DEFECT
+    </div>
+
+    <div
+        class="summary-value"
+        id="totalJenis">
+
+        0
+
+    </div>
+
+    <div class="summary-unit">
+        Jenis
+    </div>
+
+</div>
+
+
+<div class="summary-card">
+
+    <div class="summary-label">
+        DATA TERFILTER
+    </div>
+
+    <div
+        class="summary-value"
+        id="totalData">
+
+        0
+
+    </div>
+
+    <div class="summary-unit">
+        Baris
+    </div>
+
+</div>
+
+</div><!-- =====================================================
+     FOCUS
+===================================================== --><div class="focus-title">
+    🎯 FOKUS UTAMA DEFECT
+</div><div class="focus-grid"><!-- JENIS DEFECT -->
+
+<div class="focus-card blue">
+
+    <div class="focus-head">
+
+        <div class="focus-name">
+            JENIS DEFECT
+        </div>
+
+        <div class="focus-icon">
+            ⚠️
+        </div>
+
+    </div>
+
+
+    <div
+        class="focus-total"
+        id="focusDefectPcs">
+
+        0 Pcs
+
+    </div>
+
+
+    <div
+        class="focus-percent"
+        id="focusDefectPercent">
+
+        0%
+
+    </div>
+
+
+    <div class="focus-desc">
+        Kontribusi defect terbesar
+    </div>
+
+
+    <div
+        class="focus-list"
+        id="defectMiniList">
+
+        <div class="empty">
+            Belum ada data
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MESIN -->
+
+<div class="focus-card purple">
+
+    <div class="focus-head">
+
+        <div class="focus-name">
+            MESIN
+        </div>
+
+        <div class="focus-icon">
+            ⚙️
+        </div>
+
+    </div>
+
+
+    <div
+        class="focus-total"
+        id="focusMesinPcs">
+
+        0 Pcs
+
+    </div>
+
+
+    <div
+        class="focus-percent"
+        id="focusMesinPercent">
+
+        0%
+
+    </div>
+
+
+    <div class="focus-desc">
+        Kontribusi mesin terbesar
+    </div>
+
+
+    <div
+        class="focus-list"
+        id="mesinMiniList">
+
+        <div class="empty">
+            Belum ada data
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- GRUP -->
+
+<div class="focus-card green">
+
+    <div class="focus-head">
+
+        <div class="focus-name">
+            GRUP
+        </div>
+
+        <div class="focus-icon">
+            👥
+        </div>
+
+    </div>
+
+
+    <div
+        class="focus-total"
+        id="focusGrupPcs">
+
+        0 Pcs
+
+    </div>
+
+
+    <div
+        class="focus-percent"
+        id="focusGrupPercent">
+
+        0%
+
+    </div>
+
+
+    <div class="focus-desc">
+        Kontribusi grup terbesar
+    </div>
+
+
+    <div
+        class="focus-list"
+        id="grupMiniList">
+
+        <div class="empty">
+            Belum ada data
+        </div>
+
+    </div>
+
+</div>
+
+</div><!-- =====================================================
+     ANALYSIS
+===================================================== --><div class="analysis-grid"><div class="panel">
+
+    <div class="panel-title">
+        🏆 RANKING JENIS DEFECT
+    </div>
+
+    <div id="defectRanking">
+
+        <div class="empty">
+            Belum ada data
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="panel">
+
+    <div class="panel-title">
+        ⚙️ RANKING MESIN
+    </div>
+
+    <div id="mesinRanking">
+
+        <div class="empty">
+            Belum ada data
+        </div>
+
+    </div>
+
+</div>
+
+</div><!-- =====================================================
+     TABLE
+===================================================== --><div class="table-panel"><div class="table-header">
+
+    <div class="table-title">
+        📋 DETAIL DATA DEFECT
+    </div>
+
+
+    <input
+        class="quick-search"
+        id="quickSearch"
+        placeholder="Cari seluruh data..."
+        oninput="quickSearch()">
+
+</div>
+
+
+<div class="table-wrap">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th onclick="sortTable('tgl')">
+                    TGL FLAT ↕
+                </th>
+
+                <th onclick="sortTable('roll')">
+                    ROLL ID ↕
+                </th>
+
+                <th onclick="sortTable('kode')">
+                    KODE PROD ↕
+                </th>
+
+                <th onclick="sortTable('qty')">
+                    JUMLAH (Pcs) ↕
+                </th>
+
+                <th onclick="sortTable('defect')">
+                    JENIS DEFECT ↕
+                </th>
+
+                <th onclick="sortTable('mesin')">
+                    MESIN ↕
+                </th>
+
+                <th onclick="sortTable('motif')">
+                    MOTIF ↕
+                </th>
+
+                <th>
+                    BLOK + ISIAN
+                </th>
+
+                <th onclick="sortTable('grup')">
+                    GRUP ↕
+                </th>
+
+                <th>
+                    OPERATOR
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody id="tableBody">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<div class="pagination">
+
+    <div
+        class="page-info"
+        id="pageInfo">
+
+        Belum ada data
+
+    </div>
+
+
+    <div
+        class="page-buttons"
+        id="pageButtons">
+
+    </div>
+
+</div>
+
+</div><!-- =====================================================
+     STATUS
+===================================================== --><div
+    class="status"
+    id="status">Dashboard siap
+
+</div><script>
+
+
+/* =====================================================
+   DATA
+===================================================== */
+
+let allData = [];
+
+let filteredData = [];
+
+let currentPage = 1;
+
+const rowsPerPage = 15;
+
+let sortColumn = "";
+
+let sortDirection = 1;
+
+
+/* =====================================================
+   FORMAT ANGKA
+===================================================== */
+
+function formatNumber(number){
+
+    return Number(number || 0)
+        .toLocaleString("id-ID");
+
+}
+
+
+/* =====================================================
+   FORMAT TANGGAL
+===================================================== */
+
+function formatDate(value){
+
+    if(!value)
+        return "";
+
+    const d = new Date(value);
+
+    if(isNaN(d))
+        return value;
+
+    return d.toLocaleDateString(
+        "id-ID",
+        {
+            day:"2-digit",
+            month:"2-digit",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function setStatus(text){
+
+    document.getElementById("status")
+        .textContent = text;
+
+}
+
+
+/* =====================================================
+   FILTER TOGGLE
+===================================================== */
+
+function toggleFilter(){
+
+    const card =
+        document.getElementById("filterCard");
+
+    const button =
+        document.getElementById("filterButton");
+
+    const open =
+        card.classList.toggle("show");
+
+    button.classList.toggle(
+        "active",
+        open
+    );
+
+}
+
+
+/* =====================================================
+   INIT
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        filteredData = [...allData];
+
+        populateFilters();
+
+        renderDashboard();
+
+    }
+);
+
+
+/* =====================================================
+   POPULATE FILTER
+===================================================== */
+
+function populateFilters(){
+
+    const kodeSet = new Set();
+
+    const defectSet = new Set();
+
+    const mesinSet = new Set();
+
+    const motifSet = new Set();
+
+
+    allData.forEach(row => {
+
+        if(row.kode)
+            kodeSet.add(row.kode);
+
+        if(row.defect)
+            defectSet.add(row.defect);
+
+        if(row.mesin)
+            mesinSet.add(row.mesin);
+
+        if(row.motif)
+            motifSet.add(row.motif);
+
+    });
+
+
+    fillSelect(
+        "kodeProduk",
+        [...kodeSet].sort()
+    );
+
+
+    fillSelect(
+        "jenisDefect",
+        [...defectSet].sort()
+    );
+
+
+    fillSelect(
+        "mesin",
+        [...mesinSet].sort()
+    );
+
+
+    fillSelect(
+        "motif",
+        [...motifSet].sort()
+    );
+
+}
+
+
+/* =====================================================
+   FILL SELECT
+===================================================== */
+
+function fillSelect(id,items){
+
+    const select =
+        document.getElementById(id);
+
+    const first =
+        select.options[0];
+
+    select.innerHTML = "";
+
+    select.appendChild(first);
+
+
+    items.forEach(item => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = item;
+
+        option.textContent = item;
+
+        select.appendChild(option);
+
+    });
+
+}
+
+
+/* =====================================================
+   APPLY FILTER
+===================================================== */
+
+function applyFilter(){
+
+    filteredData =
+        getCurrentFilterData();
+
+
+    const search =
+        document.getElementById("quickSearch")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    if(search){
+
+        filteredData =
+            filteredData.filter(row => {
+
+                return Object.values(row)
+                    .join(" ")
+                    .toLowerCase()
+                    .includes(search);
+
+            });
+
+    }
+
+
+    currentPage = 1;
+
+    renderDashboard();
+
+    updateFilterStatus();
+
+    closeFilter();
+
+    setStatus(
+        "Filter diterapkan • " +
+        formatNumber(filteredData.length) +
+        " baris"
+    );
+
+}
+
+
+/* =====================================================
+   GET FILTER DATA
+===================================================== */
+
+function getCurrentFilterData(){
+
+    const dateFrom =
+        document.getElementById("dateFrom")
+        .value;
+
+    const dateTo =
+        document.getElementById("dateTo")
+        .value;
+
+    const kode =
+        document.getElementById("kodeProduk")
+        .value;
+
+    const defect =
+        document.getElementById("jenisDefect")
+        .value;
+
+    const mesin =
+        document.getElementById("mesin")
+        .value;
+
+    const motif =
+        document.getElementById("motif")
+        .value;
+
+    const grup =
+        document.getElementById("grup")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const roll =
+        document.getElementById("rollId")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    return allData.filter(row => {
+
+
+        if(
+            dateFrom &&
+            String(row.tgl || "") < dateFrom
+        )
+            return false;
+
+
+        if(
+            dateTo &&
+            String(row.tgl || "") > dateTo
+        )
+            return false;
+
+
+        if(
+            kode &&
+            row.kode !== kode
+        )
+            return false;
+
+
+        if(
+            defect &&
+            row.defect !== defect
+        )
+            return false;
+
+
+        if(
+            mesin &&
+            row.mesin !== mesin
+        )
+            return false;
+
+
+        if(
+            motif &&
+            row.motif !== motif
+        )
+            return false;
+
+
+        if(
+            grup &&
+            !String(row.grup || "")
+                .toLowerCase()
+                .includes(grup)
+        )
+            return false;
+
+
+        if(
+            roll &&
+            !String(row.roll || "")
+                .toLowerCase()
+                .includes(roll)
+        )
+            return false;
+
+
+        return true;
+
+    });
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetFilter(){
+
+    document.getElementById("dateFrom")
+        .value = "";
+
+    document.getElementById("dateTo")
+        .value = "";
+
+    document.getElementById("kodeProduk")
+        .value = "";
+
+    document.getElementById("jenisDefect")
+        .value = "";
+
+    document.getElementById("mesin")
+        .value = "";
+
+    document.getElementById("motif")
+        .value = "";
+
+    document.getElementById("grup")
+        .value = "";
+
+    document.getElementById("rollId")
+        .value = "";
+
+    document.getElementById("quickSearch")
+        .value = "";
+
+
+    filteredData =
+        [...allData];
+
+    currentPage = 1;
+
+    renderDashboard();
+
+    updateFilterStatus();
+
+    setStatus("Filter direset");
+
+}
+
+
+/* =====================================================
+   CLOSE FILTER
+===================================================== */
+
+function closeFilter(){
+
+    document.getElementById("filterCard")
+        .classList.remove("show");
+
+    document.getElementById("filterButton")
+        .classList.remove("active");
+
+}
+
+
+/* =====================================================
+   FILTER STATUS
+===================================================== */
+
+function updateFilterStatus(){
+
+    const ids = [
+
+        "dateFrom",
+        "dateTo",
+        "kodeProduk",
+        "jenisDefect",
+        "mesin",
+        "motif",
+        "grup",
+        "rollId"
+
+    ];
+
+
+    let count = 0;
+
+
+    ids.forEach(id => {
+
+        const value =
+            document.getElementById(id)
+            .value;
+
+        if(value)
+            count++;
+
+    });
+
+
+    const box =
+        document.getElementById("activeCount");
+
+    const number =
+        document.getElementById(
+            "activeCountNumber"
+        );
+
+
+    number.textContent = count;
+
+
+    box.classList.toggle(
+        "show",
+        count > 0
+    );
+
+}
+
+
+/* =====================================================
+   QUICK SEARCH
+===================================================== */
+
+function quickSearch(){
+
+    const text =
+        document.getElementById("quickSearch")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    let data =
+        getCurrentFilterData();
+
+
+    if(text){
+
+        data =
+            data.filter(row => {
+
+                return Object.values(row)
+                    .join(" ")
+                    .toLowerCase()
+                    .includes(text);
+
+            });
+
+    }
+
+
+    filteredData = data;
+
+    currentPage = 1;
+
+    renderDashboard();
+
+}
+
+
+/* =====================================================
+   RENDER DASHBOARD
+===================================================== */
+
+function renderDashboard(){
+
+    renderSummary();
+
+    renderFocusCards();
+
+    renderRanking();
+
+    renderTable();
+
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+function renderSummary(){
+
+    let totalPcs = 0;
+
+    const rolls =
+        new Set();
+
+    const defects =
+        new Set();
+
+
+    filteredData.forEach(row => {
+
+        totalPcs +=
+            Number(row.qty || 0);
+
+
+        if(row.roll)
+            rolls.add(row.roll);
+
+
+        if(row.defect)
+            defects.add(row.defect);
+
+    });
+
+
+    document.getElementById(
+        "totalPcs"
+    ).textContent =
+        formatNumber(totalPcs);
+
+
+    document.getElementById(
+        "totalRoll"
+    ).textContent =
+        formatNumber(rolls.size);
+
+
+    document.getElementById(
+        "totalJenis"
+    ).textContent =
+        formatNumber(defects.size);
+
+
+    document.getElementById(
+        "totalData"
+    ).textContent =
+        formatNumber(filteredData.length);
+
+}
+
+
+/* =====================================================
+   GROUP DATA
+===================================================== */
+
+function groupBy(field){
+
+    const result = {};
+
+
+    filteredData.forEach(row => {
+
+        const name =
+            row[field] ||
+            "Tidak diketahui";
+
+
+        if(!result[name])
+            result[name] = 0;
+
+
+        result[name] +=
+            Number(row.qty || 0);
+
+    });
+
+
+    return result;
+
+}
+
+
+/* =====================================================
+   FOCUS
+===================================================== */
+
+function renderFocusCards(){
+
+    const total =
+        filteredData.reduce(
+            (sum,row) =>
+                sum + Number(row.qty || 0),
+            0
+        );
+
+
+    renderFocus(
+        "defect",
+        groupBy("defect"),
+        total
+    );
+
+
+    renderFocus(
+        "mesin",
+        groupBy("mesin"),
+        total
+    );
+
+
+    renderFocus(
+        "grup",
+        groupBy("grup"),
+        total
+    );
+
+}
+
+
+/* =====================================================
+   RENDER FOCUS
+===================================================== */
+
+function renderFocus(
+    type,
+    data,
+    total
+){
+
+    const entries =
+        Object.entries(data)
+            .sort(
+                (a,b) =>
+                    b[1] - a[1]
+            );
+
+
+    const top =
+        entries.length
+            ? entries[0]
+            : ["-",0];
+
+
+    const percent =
+        total > 0
+            ? top[1] / total * 100
+            : 0;
+
+
+    let pcsId;
+    let percentId;
+    let listId;
+
+
+    if(type === "defect"){
+
+        pcsId =
+            "focusDefectPcs";
+
+        percentId =
+            "focusDefectPercent";
+
+        listId =
+            "defectMiniList";
+
+    }
+
+
+    if(type === "mesin"){
+
+        pcsId =
+            "focusMesinPcs";
+
+        percentId =
+            "focusMesinPercent";
+
+        listId =
+            "mesinMiniList";
+
+    }
+
+
+    if(type === "grup"){
+
+        pcsId =
+            "focusGrupPcs";
+
+        percentId =
+            "focusGrupPercent";
+
+        listId =
+            "grupMiniList";
+
+    }
+
+
+    document.getElementById(
+        pcsId
+    ).textContent =
+        formatNumber(top[1]) +
+        " Pcs";
+
+
+    document.getElementById(
+        percentId
+    ).textContent =
+        percent.toFixed(1) +
+        "%";
+
+
+    const list =
+        document.getElementById(
+            listId
+        );
+
+
+    if(!entries.length){
+
+        list.innerHTML =
+            '<div class="empty">Belum ada data</div>';
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        entries
+            .slice(0,4)
+            .map(
+                (item,index) => {
+
+                    const p =
+                        total > 0
+                            ? item[1] /
+                              total *
+                              100
+                            : 0;
+
+
+                    return `
+                        <div class="mini-row">
+
+                            <span>
+                                ${index+1}.
+                                ${escapeHtml(item[0])}
+                            </span>
+
+                            <span>
+                                ${formatNumber(item[1])}
+                                (${p.toFixed(1)}%)
+                            </span>
+
+                        </div>
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   RANKING
+===================================================== */
+
+function renderRanking(){
+
+    renderRankPanel(
+        "defectRanking",
+        groupBy("defect")
+    );
+
+
+    renderRankPanel(
+        "mesinRanking",
+        groupBy("mesin")
+    );
+
+}
+
+
+/* =====================================================
+   RANK PANEL
+===================================================== */
+
+function renderRankPanel(
+    id,
+    data
+){
+
+    const container =
+        document.getElementById(id);
+
+
+    const entries =
+        Object.entries(data)
+            .sort(
+                (a,b) =>
+                    b[1] - a[1]
+            );
+
+
+    if(!entries.length){
+
+        container.innerHTML =
+            '<div class="empty">Belum ada data</div>';
+
+        return;
+
+    }
+
+
+    const max =
+        entries[0][1] || 1;
+
+
+    container.innerHTML =
+        entries
+            .slice(0,8)
+            .map(
+                (item,index) => {
+
+                    const width =
+                        item[1] /
+                        max *
+                        100;
+
+
+                    return `
+                        <div class="rank-row">
+
+                            <div class="rank-number">
+                                ${index+1}
+                            </div>
+
+                            <div>
+
+                                <div class="rank-name">
+                                    ${escapeHtml(item[0])}
+                                </div>
+
+                                <div class="bar-wrap">
+
+                                    <div
+                                        class="bar"
+                                        style="width:${width}%">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="rank-value">
+                                ${formatNumber(item[1])}
+                                Pcs
+                            </div>
+
+                        </div>
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+function renderTable(){
+
+    const tbody =
+        document.getElementById(
+            "tableBody"
+        );
+
+
+    let data =
+        [...filteredData];
+
+
+    if(sortColumn){
+
+        data.sort(
+            (a,b) => {
+
+                let A =
+                    a[sortColumn] ?? "";
+
+                let B =
+                    b[sortColumn] ?? "";
+
+
+                if(sortColumn === "qty"){
+
+                    A =
+                        Number(A || 0);
+
+                    B =
+                        Number(B || 0);
+
+                }
+
+                else{
+
+                    A =
+                        String(A)
+                            .toLowerCase();
+
+                    B =
+                        String(B)
+                            .toLowerCase();
+
+                }
+
+
+                if(A < B)
+                    return -1 *
+                        sortDirection;
+
+
+                if(A > B)
+                    return 1 *
+                        sortDirection;
+
+
+                return 0;
+
+            }
+        );
+
+    }
+
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                data.length /
+                rowsPerPage
+            )
+        );
+
+
+    if(currentPage >
+       totalPages){
+
+        currentPage =
+            totalPages;
+
+    }
+
+
+    const start =
+        (currentPage - 1) *
+        rowsPerPage;
+
+
+    const pageData =
+        data.slice(
+            start,
+            start + rowsPerPage
+        );
+
+
+    if(!pageData.length){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="10">
+
+                    <div class="empty">
+                        Tidak ada data
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        renderPagination(0,0);
+
+        return;
+
+    }
+
+
+    tbody.innerHTML =
+        pageData
+            .map(
+                row => {
+
+                    return `
+
+                        <tr>
+
+                            <td>
+                                ${formatDate(row.tgl)}
+                            </td>
+
+                            <td>
+                                ${escapeHtml(row.roll)}
+                            </td>
+
+                            <td>
+                                ${escapeHtml(row.kode)}
+                            </td>
+
+                            <td class="qty">
+                                ${formatNumber(row.qty)}
+                            </td>
+
+                            <td>
+                                ${escapeHtml(row.defect)}
+                            </td>
+
+                            <td>
+                                ${escapeHtml(row.mesin)}
+                            </td>
+
+                            <td>
+                                ${escapeHtml(row.motif)}
+                            </td>
+
+                            <td>
+                                ${escapeHtml(row.blok)}
+                            </td>
+
+                            <td>
+                                ${escapeHtml(row.grup)}
+                            </td>
+
+                            <td>
+                                ${escapeHtml(row.operator)}
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    renderPagination(
+        data.length,
+        totalPages
+    );
+
+}
+
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+function renderPagination(
+    total,
+    totalPages
+){
+
+    const info =
+        document.getElementById(
+            "pageInfo"
+        );
+
+
+    const buttons =
+        document.getElementById(
+            "pageButtons"
+        );
+
+
+    if(!total){
+
+        info.textContent =
+            "Tidak ada data";
+
+        buttons.innerHTML =
+            "";
+
+        return;
+
+    }
+
+
+    const start =
+        (currentPage - 1) *
+        rowsPerPage + 1;
+
+
+    const end =
+        Math.min(
+            currentPage *
+            rowsPerPage,
+            total
+        );
+
+
+    info.textContent =
+        "Menampilkan " +
+        start +
+        "-" +
+        end +
+        " dari " +
+        formatNumber(total) +
+        " data";
+
+
+    let html = "";
+
+
+    if(currentPage > 1){
+
+        html += `
+
+            <button
+                onclick="changePage(${currentPage-1})">
+
+                ‹
+
+            </button>
+
+        `;
+
+    }
+
+
+    const maxButtons = 7;
+
+
+    let first =
+        Math.max(
+            1,
+            currentPage -
+            Math.floor(
+                maxButtons / 2
+            )
+        );
+
+
+    let last =
+        Math.min(
+            totalPages,
+            first +
+            maxButtons - 1
+        );
+
+
+    if(
+        last - first <
+        maxButtons - 1
+    ){
+
+        first =
+            Math.max(
+                1,
+                last -
+                maxButtons + 1
+            );
+
+    }
+
+
+    for(
+        let i=first;
+        i<=last;
+        i++
+    ){
+
+        html += `
+
+            <button
+                class="${i === currentPage ? "active" : ""}"
+                onclick="changePage(${i})">
+
+                ${i}
+
+            </button>
+
+        `;
+
+    }
+
+
+    if(currentPage < totalPages){
+
+        html += `
+
+            <button
+                onclick="changePage(${currentPage+1})">
+
+                ›
+
+            </button>
+
+        `;
+
+    }
+
+
+    buttons.innerHTML =
+        html;
+
+}
+
+
+/* =====================================================
+   CHANGE PAGE
+===================================================== */
+
+function changePage(page){
+
+    currentPage =
+        page;
+
+    renderTable();
+
+}
+
+
+/* =====================================================
+   SORT
+===================================================== */
+
+function sortTable(column){
+
+    if(sortColumn === column){
+
+        sortDirection *= -1;
+
+    }
+
+    else{
+
+        sortColumn =
+            column;
+
+        sortDirection =
+            1;
+
+    }
+
+
+    renderTable();
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goPage(page){
+
+    const currentUrl =
+        window.location.href
+            .split("?")[0];
+
+
+    if(page === "produksi"){
+
+        window.location.href =
+            currentUrl +
+            "?page=produksi";
+
+    }
+
+
+    else if(page === "cuci"){
+
+        window.location.href =
+            currentUrl +
+            "?page=cuci";
+
+    }
+
+
+    else if(page === "defect"){
+
+        window.location.href =
+            currentUrl +
+            "?page=defect";
+
+    }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(value){
+
+    if(
+        value === null ||
+        value === undefined
+    )
+        return "";
+
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   FUNGSI PENERIMA DATA DARI CODE.GS
+===================================================== */
+
+function setDefectData(data){
+
+    if(!Array.isArray(data))
+        data = [];
+
+
+    allData =
+        data.map(
+            row => {
+
+                return {
+
+                    tgl:
+                        row.tgl || "",
+
+                    roll:
+                        row.roll || "",
+
+                    kode:
+                        row.kode || "",
+
+                    qty:
+                        Number(
+                            row.qty || 0
+                        ),
+
+                    defect:
+                        row.defect || "",
+
+                    mesin:
+                        row.mesin || "",
+
+                    motif:
+                        row.motif || "",
+
+                    blok:
+                        row.blok || "",
+
+                    grup:
+                        row.grup || "",
+
+                    operator:
+                        row.operator || ""
+
+                };
+
+            }
+        );
+
+
+    filteredData =
+        [...allData];
+
+
+    populateFilters();
+
+    renderDashboard();
+
+    setStatus(
+        "Data berhasil dimuat • " +
+        formatNumber(
+            allData.length
+        ) +
+        " baris"
+    );
+
+}
+
+
+/* =====================================================
+   SIAP UNTUK CODE.GS
+===================================================== */
+
+/*
+
+NANTI SORE:
+
+google.script.run
+    .withSuccessHandler(setDefectData)
+    .getDefectData();
+
+*/
+
+
+</script></body>
+</html>
