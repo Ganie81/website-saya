@@ -358,9 +358,7 @@ body{
     border-color:#60a5fa;
 }
 
-/* =====================================================
-   KPI
-===================================================== */
+/* KPI */
 
 .kpi-grid{
     display:grid;
@@ -545,9 +543,7 @@ body{
     color:#a94848;
 }
 
-/* =====================================================
-   ANALYSIS
-===================================================== */
+/* ANALYSIS */
 
 .analysis-grid{
     display:grid;
@@ -639,9 +635,7 @@ body{
     color:#64748b;
 }
 
-/* =====================================================
-   PIE PER GRUP / MESIN
-===================================================== */
+/* PIE PER GRUP / MESIN */
 
 .status-analysis-row{
     display:flex;
@@ -706,9 +700,7 @@ body{
     line-height:1.2;
 }
 
-/* =====================================================
-   DONAT 3D
-===================================================== */
+/* DONAT 3D */
 
 .status-pie{
     width:88px;
@@ -784,6 +776,122 @@ body{
     font-size:8px;
     color:#475569;
     margin-top:2px;
+    font-weight:900;
+}
+
+/* =====================================================
+   HASIL UJI - PIE BESAR
+===================================================== */
+
+.result-analysis{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+    min-height:190px;
+}
+
+.result-info{
+    flex:1;
+    min-width:0;
+}
+
+.result-count{
+    font-size:25px;
+    font-weight:900;
+    line-height:1.35;
+    margin:10px 0;
+}
+
+.result-count.layak{
+    color:#15803d;
+}
+
+.result-count.tidak{
+    color:#dc2626;
+}
+
+.result-total{
+    color:#64748b;
+    font-size:12px;
+    font-weight:700;
+    margin-top:12px;
+}
+
+.result-pie{
+    width:175px;
+    height:175px;
+    min-width:175px;
+    border-radius:50%;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+        0 10px 15px rgba(15,23,42,.25),
+        0 18px 30px rgba(15,23,42,.16),
+        inset 3px 3px 6px rgba(255,255,255,.68),
+        inset -5px -6px 10px rgba(15,23,42,.25);
+
+    border:1px solid rgba(255,255,255,.8);
+
+    transform:translateY(-1px);
+}
+
+.result-pie::before{
+    content:"";
+    position:absolute;
+    width:72%;
+    height:72%;
+    border-radius:50%;
+    top:7%;
+    left:14%;
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.45),
+        rgba(255,255,255,0)
+    );
+    pointer-events:none;
+}
+
+.result-pie::after{
+    content:"";
+    position:absolute;
+    width:82px;
+    height:82px;
+    border-radius:50%;
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff,
+            #f8fafc 55%,
+            #dbe3ec 100%
+        );
+
+    box-shadow:
+        inset 3px 3px 6px rgba(255,255,255,.95),
+        inset -3px -3px 6px rgba(15,23,42,.16),
+        0 3px 8px rgba(15,23,42,.18);
+}
+
+.result-pie-center{
+    position:relative;
+    z-index:3;
+    text-align:center;
+    font-size:25px;
+    font-weight:900;
+    color:#0f172a;
+    text-shadow:
+        0 1px 0 #fff,
+        0 2px 3px rgba(15,23,42,.12);
+}
+
+.result-pie-center small{
+    display:block;
+    font-size:11px;
+    color:#475569;
+    margin-top:3px;
     font-weight:900;
 }
 
@@ -1014,6 +1122,34 @@ tbody tr:hover td{
     .status-name{
         font-size:25px;
     }
+
+    .result-analysis{
+        gap:15px;
+        min-height:170px;
+    }
+
+    .result-count{
+        font-size:21px;
+    }
+
+    .result-pie{
+        width:145px;
+        height:145px;
+        min-width:145px;
+    }
+
+    .result-pie::after{
+        width:68px;
+        height:68px;
+    }
+
+    .result-pie-center{
+        font-size:20px;
+    }
+
+    .result-pie-center small{
+        font-size:9px;
+    }
 }
 
 @media(max-width:500px){
@@ -1055,6 +1191,34 @@ tbody tr:hover td{
     .status-bad{
         font-size:11px;
         padding:5px 7px;
+    }
+
+    .result-analysis{
+        gap:10px;
+        min-height:150px;
+    }
+
+    .result-count{
+        font-size:18px;
+    }
+
+    .result-pie{
+        width:115px;
+        height:115px;
+        min-width:115px;
+    }
+
+    .result-pie::after{
+        width:54px;
+        height:54px;
+    }
+
+    .result-pie-center{
+        font-size:17px;
+    }
+
+    .result-pie-center small{
+        font-size:8px;
     }
 }
 
@@ -2236,9 +2400,9 @@ renderStatusAnalysis(
 7
 );
 
-renderGroupAnalysis(
-"analisaHasil",
-9
+/* HASIL UJI KHUSUS */
+renderResultAnalysis(
+"analisaHasil"
 );
 
 renderGroupAnalysis(
@@ -2336,13 +2500,6 @@ classified>0
 ?(value.tidak/classified)*100
 :0;
 
-
-/*
-   PIE:
-   HIJAU = LAYAK
-   MERAH = TIDAK LAYAK
-*/
-
 let pieBackground;
 
 if(classified===0){
@@ -2428,7 +2585,128 @@ ${persenLayak.toFixed(0)}%
 
 
 /* =====================================================
-   ANALISA HASIL UJI & KEBIJAKAN
+   HASIL UJI - TOTAL LAYAK / TIDAK LAYAK + PIE BESAR
+===================================================== */
+
+function renderResultAnalysis(elementId){
+
+const container=
+document.getElementById(elementId);
+
+if(!filteredData.length){
+
+container.innerHTML=`
+<div class="empty">
+Tidak ada data
+</div>
+`;
+
+return;
+
+}
+
+let layak=0;
+let tidak=0;
+
+filteredData.forEach(row=>{
+
+const status=getStatus(row);
+
+if(status==="layak")
+layak++;
+
+else if(status==="tidak")
+tidak++;
+
+});
+
+const classified=
+layak+tidak;
+
+const persenLayak=
+classified>0
+?(layak/classified)*100
+:0;
+
+const persenTidak=
+classified>0
+?(tidak/classified)*100
+:0;
+
+let pieBackground;
+
+if(classified===0){
+
+pieBackground="#cbd5e1";
+
+}else if(layak===0){
+
+pieBackground="#dc2626";
+
+}else if(tidak===0){
+
+pieBackground="#16a34a";
+
+}else{
+
+pieBackground=
+`conic-gradient(
+    #16a34a 0 ${persenLayak}%,
+    #dc2626 ${persenLayak}% 100%
+)`;
+
+}
+
+container.innerHTML=`
+
+<div class="result-analysis">
+
+<div class="result-info">
+
+<div class="result-count layak">
+Layak : ${layak.toLocaleString("id-ID")}
+</div>
+
+<div class="result-count tidak">
+Tidak Layak : ${tidak.toLocaleString("id-ID")}
+</div>
+
+<div class="result-total">
+Total Data : ${filteredData.length.toLocaleString("id-ID")}
+</div>
+
+</div>
+
+
+<div>
+
+<div
+class="result-pie"
+style="background:${pieBackground};"
+title="Layak ${persenLayak.toFixed(1)}% | Tidak Layak ${persenTidak.toFixed(1)}%"
+>
+
+<div class="result-pie-center">
+
+${persenLayak.toFixed(0)}%
+
+<small>LAYAK</small>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+   ANALISA KEBIJAKAN
 ===================================================== */
 
 function renderGroupAnalysis(
