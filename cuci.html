@@ -664,8 +664,10 @@ body{
 .status-name{
     color:#334155;
     font-weight:900;
-    font-size:15px;
+    font-size:27px;
+    line-height:1.1;
     word-break:break-word;
+    margin-bottom:4px;
 }
 
 .status-total{
@@ -677,30 +679,36 @@ body{
 
 .status-counts{
     display:flex;
-    gap:6px;
+    gap:7px;
     flex-wrap:wrap;
-    margin-top:7px;
+    margin-top:8px;
 }
 
 .status-good{
     color:#236b42;
     background:#dcf6e5;
     border:1px solid #c4ead1;
-    padding:5px 8px;
+    padding:6px 9px;
     border-radius:15px;
-    font-size:10px;
+    font-size:13px;
     font-weight:900;
+    line-height:1.2;
 }
 
 .status-bad{
     color:#a94848;
     background:#ffe1e1;
     border:1px solid #f7caca;
-    padding:5px 8px;
+    padding:6px 9px;
     border-radius:15px;
-    font-size:10px;
+    font-size:13px;
     font-weight:900;
+    line-height:1.2;
 }
+
+/* =====================================================
+   DONAT 3D
+===================================================== */
 
 .status-pie{
     width:88px;
@@ -711,9 +719,32 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
+
     box-shadow:
-        0 5px 12px rgba(15,23,42,.15),
-        inset 0 1px 2px rgba(255,255,255,.8);
+        0 8px 12px rgba(15,23,42,.25),
+        0 14px 22px rgba(15,23,42,.15),
+        inset 2px 2px 4px rgba(255,255,255,.65),
+        inset -3px -4px 7px rgba(15,23,42,.25);
+
+    border:1px solid rgba(255,255,255,.75);
+
+    transform:translateY(-1px);
+}
+
+.status-pie::before{
+    content:"";
+    position:absolute;
+    width:70%;
+    height:70%;
+    border-radius:50%;
+    top:8%;
+    left:15%;
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.42),
+        rgba(255,255,255,0)
+    );
+    pointer-events:none;
 }
 
 .status-pie::after{
@@ -722,46 +753,38 @@ body{
     width:40px;
     height:40px;
     border-radius:50%;
-    background:#fff;
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff,
+            #f8fafc 55%,
+            #dbe3ec 100%
+        );
+
     box-shadow:
-        0 2px 7px rgba(15,23,42,.12),
-        inset 0 1px 2px rgba(15,23,42,.05);
+        inset 2px 2px 4px rgba(255,255,255,.95),
+        inset -2px -2px 4px rgba(15,23,42,.16),
+        0 2px 5px rgba(15,23,42,.18);
 }
 
 .status-pie-center{
     position:relative;
-    z-index:2;
+    z-index:3;
     text-align:center;
     font-weight:900;
     color:#0f172a;
     font-size:12px;
+    text-shadow:
+        0 1px 0 #fff,
+        0 1px 2px rgba(15,23,42,.12);
 }
 
 .status-pie-center small{
     display:block;
     font-size:8px;
-    color:#64748b;
+    color:#475569;
     margin-top:2px;
-}
-
-.status-legend{
-    display:flex;
-    gap:5px;
-    margin-top:5px;
-    flex-wrap:wrap;
-}
-
-.status-legend-item{
-    font-size:9px;
-    font-weight:800;
-}
-
-.status-legend-layak{
-    color:#236b42;
-}
-
-.status-legend-tidak{
-    color:#a94848;
+    font-weight:900;
 }
 
 /* DETAIL TABLE */
@@ -979,13 +1002,17 @@ tbody tr:hover td{
     }
 
     .status-counts{
-        gap:4px;
+        gap:5px;
     }
 
     .status-good,
     .status-bad{
-        font-size:9px;
-        padding:4px 6px;
+        font-size:12px;
+        padding:5px 7px;
+    }
+
+    .status-name{
+        font-size:25px;
     }
 }
 
@@ -1018,6 +1045,16 @@ tbody tr:hover td{
     .status-pie::after{
         width:30px;
         height:30px;
+    }
+
+    .status-name{
+        font-size:23px;
+    }
+
+    .status-good,
+    .status-bad{
+        font-size:11px;
+        padding:5px 7px;
     }
 }
 
@@ -2314,13 +2351,11 @@ pieBackground="#cbd5e1";
 
 }else if(value.layak===0){
 
-pieBackground=
-"#dc2626";
+pieBackground="#dc2626";
 
 }else if(value.tidak===0){
 
-pieBackground=
-"#16a34a";
+pieBackground="#16a34a";
 
 }else{
 
@@ -2350,13 +2385,11 @@ Total Data: ${value.total.toLocaleString("id-ID")}
 <div class="status-counts">
 
 <span class="status-good">
-✓ Layak ${value.layak.toLocaleString("id-ID")}
-(${persenLayak.toFixed(1)}%)
+✓ Layak : ${value.layak.toLocaleString("id-ID")}
 </span>
 
 <span class="status-bad">
-✕ Tidak Layak ${value.tidak.toLocaleString("id-ID")}
-(${persenTidak.toFixed(1)}%)
+✕ Tidak Layak : ${value.tidak.toLocaleString("id-ID")}
 </span>
 
 </div>
