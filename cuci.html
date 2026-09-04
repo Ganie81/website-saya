@@ -94,10 +94,8 @@ body {
 
     margin: 0;
 
-    /* DIPERBESAR */
     font-size: 38px;
 
-    /* LEBIH TEBAL */
     font-weight: 900;
 
     letter-spacing: .3px;
@@ -212,6 +210,79 @@ body {
     margin-bottom: 15px;
 
     color: #0f172a;
+}
+
+
+/* =====================================================
+   FILTER HEADER / TOGGLE
+===================================================== */
+
+.filter-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    cursor: pointer;
+
+    user-select: none;
+
+}
+
+
+.filter-header .card-title {
+
+    margin-bottom: 0;
+}
+
+
+.filter-toggle {
+
+    border: none;
+
+    background: #4f83b8;
+
+    color: white;
+
+    border-radius: 9px;
+
+    padding: 8px 13px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 7px rgba(79,131,184,.20);
+}
+
+
+.filter-toggle:hover {
+
+    background: #3f72a7;
+
+}
+
+
+.filter-content {
+
+    display: none;
+
+    margin-top: 16px;
+
+}
+
+
+.filter-content.show {
+
+    display: block;
+
 }
 
 
@@ -451,6 +522,20 @@ body {
    SUMMARY
 ===================================================== */
 
+.summary-title {
+
+    margin-top: 16px;
+
+    margin-bottom: 8px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    color: #64748b;
+}
+
+
 .summary-tags {
 
     display: flex;
@@ -459,7 +544,6 @@ body {
 
     flex-wrap: wrap;
 
-    margin-top: 14px;
 }
 
 
@@ -476,6 +560,8 @@ body {
     font-size: 11px;
 
     font-weight: bold;
+
+    border: 1px solid #dbeafe;
 }
 
 
@@ -566,10 +652,6 @@ body {
 }
 
 
-/* =====================================================
-   AKSEN SAMPING
-===================================================== */
-
 .kpi::before {
 
     content: "";
@@ -587,10 +669,6 @@ body {
     border-radius: 0 9px 9px 0;
 }
 
-
-/* =====================================================
-   DEKORASI
-===================================================== */
 
 .kpi::after {
 
@@ -617,10 +695,6 @@ body {
 }
 
 
-/* =====================================================
-   TOTAL
-===================================================== */
-
 .kpi.total {
 
     background:
@@ -643,10 +717,6 @@ body {
     background: #9fc8e7;
 }
 
-
-/* =====================================================
-   LAYAK
-===================================================== */
 
 .kpi.layak {
 
@@ -671,10 +741,6 @@ body {
 }
 
 
-/* =====================================================
-   TIDAK LAYAK
-===================================================== */
-
 .kpi.tidak {
 
     background:
@@ -697,11 +763,6 @@ body {
     background: #eaa5a5;
 }
 
-
-/* =====================================================
-   % LAYAK
-   WARNA SAMA DENGAN LAYAK
-===================================================== */
 
 .kpi.persen-layak {
 
@@ -726,11 +787,6 @@ body {
 }
 
 
-/* =====================================================
-   % TIDAK LAYAK
-   WARNA SAMA DENGAN TIDAK LAYAK
-===================================================== */
-
 .kpi.persen-tidak {
 
     background:
@@ -754,20 +810,14 @@ body {
 }
 
 
-/* =====================================================
-   KPI LABEL
-===================================================== */
-
 .kpi-label {
 
     position: relative;
 
     z-index: 2;
 
-    /* DIBESARKAN */
     font-size: 17px;
 
-    /* DIBOLD */
     font-weight: 900;
 
     letter-spacing: .4px;
@@ -784,8 +834,6 @@ body {
 }
 
 
-/* KHUSUS LAYAK */
-
 .kpi.layak .kpi-label,
 .kpi.persen-layak .kpi-label {
 
@@ -801,8 +849,6 @@ body {
 }
 
 
-/* KHUSUS TIDAK LAYAK */
-
 .kpi.tidak .kpi-label,
 .kpi.persen-tidak .kpi-label {
 
@@ -817,10 +863,6 @@ body {
         0 2px 3px rgba(169,72,72,.12);
 }
 
-
-/* =====================================================
-   KPI VALUE
-===================================================== */
 
 .kpi-value {
 
@@ -1003,6 +1045,27 @@ body {
 .table-wrapper {
 
     overflow-x: auto;
+
+    overflow-y: hidden;
+}
+
+
+/* =====================================================
+   DETAIL DATA CUCI
+   MAKSIMAL 6 BARIS + SCROLL
+===================================================== */
+
+.table-card .table-wrapper {
+
+    max-height: 300px;
+
+    overflow-y: auto;
+
+    overflow-x: auto;
+
+    border-radius: 10px;
+
+    position: relative;
 }
 
 
@@ -1016,19 +1079,37 @@ table {
 }
 
 
-th {
+/* =====================================================
+   HEADER TABEL DETAIL
+   BIRU TUA + TULISAN PUTIH + PEMBATAS PUTIH
+===================================================== */
 
-    background: #eff6ff;
+.table-card table thead th {
 
-    color: #1e40af;
+    background: #123b63;
+
+    color: #ffffff;
 
     font-size: 12px;
+
+    font-weight: 800;
 
     padding: 11px 9px;
 
     text-align: left;
 
     white-space: nowrap;
+
+    border: 1px solid #ffffff;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 20;
+
+    box-shadow:
+        0 2px 0 rgba(0,0,0,.15);
 }
 
 
@@ -1041,12 +1122,20 @@ td {
     font-size: 12px;
 
     white-space: nowrap;
+
+    background: #ffffff;
 }
 
 
 tbody tr:hover {
 
     background: #f8fafc;
+}
+
+
+.table-card table tbody tr:nth-child(even) td {
+
+    background: #f8fbff;
 }
 
 
@@ -1249,6 +1338,57 @@ tbody tr:hover {
 
 
 /* =====================================================
+   FILTER MOBILE
+===================================================== */
+
+@media(max-width: 500px) {
+
+    .filter-header {
+
+        align-items: flex-start;
+
+    }
+
+    .filter-toggle {
+
+        flex-shrink: 0;
+
+        padding: 7px 10px;
+
+        font-size: 11px;
+
+    }
+
+}
+
+
+/* =====================================================
+   SCROLLBAR DETAIL DATA
+===================================================== */
+
+.table-card .table-wrapper::-webkit-scrollbar {
+
+    width: 9px;
+
+    height: 9px;
+}
+
+
+.table-card .table-wrapper::-webkit-scrollbar-thumb {
+
+    background: #7fa6c7;
+
+    border-radius: 10px;
+}
+
+
+.table-card .table-wrapper::-webkit-scrollbar-track {
+
+    background: #e8f1f8;
+}
+
+
+/* =====================================================
    SCRIPT
 ===================================================== */
 
@@ -1268,8 +1408,6 @@ tbody tr:hover {
     <div class="header-left">
 
         <div class="washing-icon">
-
-            <!-- MESIN WASHING SVG -->
 
             <svg
                 viewBox="0 0 64 64"
@@ -1343,8 +1481,6 @@ tbody tr:hover {
     </div>
 
 
-    <!-- NAV -->
-
     <div class="nav">
 
         <a href="index.html">
@@ -1370,158 +1506,21 @@ tbody tr:hover {
 
 <div class="card">
 
-    <div class="card-title">
-        🔎 Filter Data Cuci
-    </div>
+    <div
+        class="filter-header"
+        onclick="toggleFilterPanel()">
 
-
-    <div class="filter-grid">
-
-
-        <!-- TANGGAL DARI -->
-
-        <div class="filter-item">
-
-            <label>
-                Dari Tanggal
-            </label>
-
-            <input
-                type="date"
-                id="tanggalDari">
-
+        <div class="card-title">
+            🔎 Filter Data Cuci
         </div>
-
-
-        <!-- TANGGAL SAMPAI -->
-
-        <div class="filter-item">
-
-            <label>
-                Sampai Tanggal
-            </label>
-
-            <input
-                type="date"
-                id="tanggalSampai">
-
-        </div>
-
-
-        <!-- GRUP -->
-
-        <div class="filter-item">
-
-            <label>
-                Grup Washing
-            </label>
-
-            <div
-                class="multi-select"
-                id="filterGrup">
-            </div>
-
-        </div>
-
-
-        <!-- KODE -->
-
-        <div class="filter-item">
-
-            <label>
-                Kode Produk
-            </label>
-
-            <div
-                class="multi-select"
-                id="filterKode">
-            </div>
-
-        </div>
-
-
-        <!-- NO ROLL -->
-
-        <div class="filter-item">
-
-            <label>
-                No Roll
-            </label>
-
-            <div
-                class="multi-select"
-                id="filterRoll">
-            </div>
-
-        </div>
-
-
-        <!-- MOTIF -->
-
-        <div class="filter-item">
-
-            <label>
-                Motif
-            </label>
-
-            <div
-                class="multi-select"
-                id="filterMotif">
-            </div>
-
-        </div>
-
-
-        <!-- WARNA -->
-
-        <div class="filter-item">
-
-            <label>
-                Warna Blok
-            </label>
-
-            <div
-                class="multi-select"
-                id="filterWarna">
-            </div>
-
-        </div>
-
-
-        <!-- MESIN -->
-
-        <div class="filter-item">
-
-            <label>
-                Mesin Washing
-            </label>
-
-            <div
-                class="multi-select"
-                id="filterMesin">
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="filter-buttons">
 
         <button
-            class="btn btn-primary"
-            onclick="applyFilter()">
+            type="button"
+            class="filter-toggle"
+            id="filterToggleBtn"
+            onclick="event.stopPropagation(); toggleFilterPanel();">
 
-            🔍 Terapkan Filter
-
-        </button>
-
-
-        <button
-            class="btn btn-reset"
-            onclick="resetFilter()">
-
-            ↺ Reset Filter
+            🔽 Buka Filter
 
         </button>
 
@@ -1529,8 +1528,168 @@ tbody tr:hover {
 
 
     <div
+        class="filter-content"
+        id="filterContent">
+
+
+        <div class="filter-grid">
+
+
+            <div class="filter-item">
+
+                <label>
+                    Dari Tanggal
+                </label>
+
+                <input
+                    type="date"
+                    id="tanggalDari"
+                    onchange="applyFilter()">
+
+            </div>
+
+
+            <div class="filter-item">
+
+                <label>
+                    Sampai Tanggal
+                </label>
+
+                <input
+                    type="date"
+                    id="tanggalSampai"
+                    onchange="applyFilter()">
+
+            </div>
+
+
+            <div class="filter-item">
+
+                <label>
+                    Grup Washing
+                </label>
+
+                <div
+                    class="multi-select"
+                    id="filterGrup">
+                </div>
+
+            </div>
+
+
+            <div class="filter-item">
+
+                <label>
+                    Kode Produk
+                </label>
+
+                <div
+                    class="multi-select"
+                    id="filterKode">
+                </div>
+
+            </div>
+
+
+            <div class="filter-item">
+
+                <label>
+                    No Roll
+                </label>
+
+                <div
+                    class="multi-select"
+                    id="filterRoll">
+                </div>
+
+            </div>
+
+
+            <div class="filter-item">
+
+                <label>
+                    Motif
+                </label>
+
+                <div
+                    class="multi-select"
+                    id="filterMotif">
+                </div>
+
+            </div>
+
+
+            <div class="filter-item">
+
+                <label>
+                    Warna Blok
+                </label>
+
+                <div
+                    class="multi-select"
+                    id="filterWarna">
+                </div>
+
+            </div>
+
+
+            <div class="filter-item">
+
+                <label>
+                    Mesin Washing
+                </label>
+
+                <div
+                    class="multi-select"
+                    id="filterMesin">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="filter-buttons">
+
+            <button
+                class="btn btn-primary"
+                onclick="applyFilter()">
+
+                🔍 Terapkan Filter
+
+            </button>
+
+
+            <button
+                class="btn btn-reset"
+                onclick="resetFilter()">
+
+                ↺ Reset Filter
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- HASIL FILTER TETAP TERLIHAT -->
+
+    <div class="summary-title">
+
+        📌 Hasil Filter Aktif
+
+    </div>
+
+
+    <div
         class="summary-tags"
         id="summaryTags">
+
+        <span class="summary-tag">
+            Semua Data
+        </span>
+
     </div>
 
 </div>
@@ -1576,8 +1735,6 @@ tbody tr:hover {
 <div class="kpi-grid">
 
 
-    <!-- TOTAL -->
-
     <div class="kpi total">
 
         <div class="kpi-label">
@@ -1598,8 +1755,6 @@ tbody tr:hover {
 
     </div>
 
-
-    <!-- LAYAK -->
 
     <div class="kpi layak">
 
@@ -1622,8 +1777,6 @@ tbody tr:hover {
     </div>
 
 
-    <!-- TIDAK LAYAK -->
-
     <div class="kpi tidak">
 
         <div class="kpi-label">
@@ -1645,8 +1798,6 @@ tbody tr:hover {
     </div>
 
 
-    <!-- PERSENTASE LAYAK -->
-
     <div class="kpi persen-layak">
 
         <div class="kpi-label">
@@ -1667,8 +1818,6 @@ tbody tr:hover {
 
     </div>
 
-
-    <!-- PERSENTASE TIDAK LAYAK -->
 
     <div class="kpi persen-tidak">
 
@@ -1700,8 +1849,6 @@ tbody tr:hover {
 <div class="analysis-grid">
 
 
-    <!-- GRUP -->
-
     <div class="analysis-box">
 
         <div class="analysis-title">
@@ -1718,8 +1865,6 @@ tbody tr:hover {
 
     </div>
 
-
-    <!-- MESIN -->
 
     <div class="analysis-box">
 
@@ -1738,8 +1883,6 @@ tbody tr:hover {
     </div>
 
 
-    <!-- HASIL UJI -->
-
     <div class="analysis-box">
 
         <div class="analysis-title">
@@ -1756,8 +1899,6 @@ tbody tr:hover {
 
     </div>
 
-
-    <!-- KEBIJAKAN -->
 
     <div class="analysis-box">
 
@@ -1799,49 +1940,27 @@ tbody tr:hover {
 
                 <tr>
 
-                    <th>
-                        Timestamp
-                    </th>
+                    <th>Timestamp</th>
 
-                    <th>
-                        Grup Washing
-                    </th>
+                    <th>Grup Washing</th>
 
-                    <th>
-                        Shift
-                    </th>
+                    <th>Shift</th>
 
-                    <th>
-                        Kode Produk
-                    </th>
+                    <th>Kode Produk</th>
 
-                    <th>
-                        No Roll
-                    </th>
+                    <th>No Roll</th>
 
-                    <th>
-                        Motif
-                    </th>
+                    <th>Motif</th>
 
-                    <th>
-                        Warna Blok
-                    </th>
+                    <th>Warna Blok</th>
 
-                    <th>
-                        Mesin Washing
-                    </th>
+                    <th>Mesin Washing</th>
 
-                    <th>
-                        PCS Ke-
-                    </th>
+                    <th>PCS Ke-</th>
 
-                    <th>
-                        Hasil Uji
-                    </th>
+                    <th>Hasil Uji</th>
 
-                    <th>
-                        Kebijakan
-                    </th>
+                    <th>Kebijakan</th>
 
                 </tr>
 
@@ -1930,6 +2049,44 @@ const FILTERS = {
 
 
 /* =====================================================
+   FILTER PANEL TOGGLE
+===================================================== */
+
+function toggleFilterPanel() {
+
+    const content =
+        document.getElementById(
+            "filterContent"
+        );
+
+
+    const button =
+        document.getElementById(
+            "filterToggleBtn"
+        );
+
+
+    content.classList.toggle("show");
+
+
+    if (
+        content.classList.contains("show")
+    ) {
+
+        button.textContent =
+            "🔼 Tutup Filter";
+
+    } else {
+
+        button.textContent =
+            "🔽 Buka Filter";
+
+    }
+
+}
+
+
+/* =====================================================
    LOAD DATA
 ===================================================== */
 
@@ -1978,11 +2135,6 @@ async function loadData() {
 
         }
 
-
-        /*
-          Jika Apps Script mengembalikan
-          header pada baris pertama
-        */
 
         if (
 
@@ -2189,7 +2341,7 @@ function escapeHtml(value) {
 
 
 /* =====================================================
-   TOGGLE
+   TOGGLE MENU
 ===================================================== */
 
 function toggleMenu(id) {
@@ -2590,10 +2742,6 @@ function getStatus(row) {
         hasil + " " + kebijakan;
 
 
-    /*
-      TIDAK LAYAK
-    */
-
     if (
 
         teks.includes("tidak layak") ||
@@ -2612,10 +2760,6 @@ function getStatus(row) {
 
     }
 
-
-    /*
-      LAYAK
-    */
 
     if (
 
@@ -2724,8 +2868,6 @@ function applyFilter() {
         allData.filter(row => {
 
 
-            /* DATE */
-
             if (
                 startDate ||
                 endDate
@@ -2765,8 +2907,6 @@ function applyFilter() {
             }
 
 
-            /* GRUP */
-
             if (
 
                 selectedGrup.length > 0 &&
@@ -2785,8 +2925,6 @@ function applyFilter() {
 
             }
 
-
-            /* KODE */
 
             if (
 
@@ -2807,8 +2945,6 @@ function applyFilter() {
             }
 
 
-            /* ROLL */
-
             if (
 
                 selectedRoll.length > 0 &&
@@ -2827,8 +2963,6 @@ function applyFilter() {
 
             }
 
-
-            /* MOTIF */
 
             if (
 
@@ -2849,8 +2983,6 @@ function applyFilter() {
             }
 
 
-            /* WARNA */
-
             if (
 
                 selectedWarna.length > 0 &&
@@ -2870,8 +3002,6 @@ function applyFilter() {
             }
 
 
-            /* MESIN */
-
             if (
 
                 selectedMesin.length > 0 &&
@@ -2890,8 +3020,6 @@ function applyFilter() {
 
             }
 
-
-            /* SEARCH ROLL */
 
             if (search) {
 
@@ -3162,6 +3290,22 @@ function updateSummary() {
             }
 
         });
+
+
+    const search =
+        document.getElementById(
+            "searchRoll"
+        ).value.trim();
+
+
+    if (search) {
+
+        tags.push(
+            "Telusur Roll: " +
+            search
+        );
+
+    }
 
 
     tags.push(
