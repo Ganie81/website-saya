@@ -6,12 +6,11 @@
 <meta charset="UTF-8">
 
 <meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>Dashboard Defect Flat</title>
-
 
 <style>
 
@@ -22,7 +21,6 @@
 *{
     box-sizing:border-box;
 }
-
 
 :root{
 
@@ -43,7 +41,6 @@
     --border:#dbe3ec;
 
 }
-
 
 body{
 
@@ -68,7 +65,6 @@ body{
 
 }
 
-
 .container{
 
     width:100%;
@@ -78,7 +74,6 @@ body{
     margin:auto;
 
 }
-
 
 /* =====================================================
    HEADER
@@ -107,7 +102,6 @@ body{
 
 }
 
-
 .header-top{
 
     display:flex;
@@ -122,7 +116,6 @@ body{
 
 }
 
-
 .title{
 
     font-size:26px;
@@ -130,7 +123,6 @@ body{
     font-weight:800;
 
 }
-
 
 .subtitle{
 
@@ -142,6 +134,9 @@ body{
 
 }
 
+/* =====================================================
+   NAV
+===================================================== */
 
 .nav{
 
@@ -152,7 +147,6 @@ body{
     flex-wrap:wrap;
 
 }
-
 
 .nav a{
 
@@ -172,8 +166,9 @@ body{
 
     font-weight:700;
 
-}
+    cursor:pointer;
 
+}
 
 .nav a:hover{
 
@@ -182,6 +177,12 @@ body{
 
 }
 
+.nav a.active{
+
+    background:
+        rgba(255,255,255,.30);
+
+}
 
 /* =====================================================
    STATUS
@@ -201,7 +202,6 @@ body{
     font-size:12px;
 
 }
-
 
 /* =====================================================
    BUTTON
@@ -224,7 +224,6 @@ body{
 
 }
 
-
 .btn-primary{
 
     background:
@@ -234,7 +233,6 @@ body{
 
 }
 
-
 .btn-primary:hover{
 
     background:
@@ -242,17 +240,13 @@ body{
 
 }
 
-
 .btn-danger{
 
-    background:
-        #fee2e2;
+    background:#fee2e2;
 
-    color:
-        #991b1b;
+    color:#991b1b;
 
 }
-
 
 .btn-light{
 
@@ -261,7 +255,6 @@ body{
     color:#334155;
 
 }
-
 
 /* =====================================================
    FILTER
@@ -281,7 +274,6 @@ body{
 
 }
 
-
 .filter-title{
 
     font-size:17px;
@@ -289,7 +281,6 @@ body{
     font-weight:800;
 
 }
-
 
 .filter-card{
 
@@ -311,7 +302,6 @@ body{
 
 }
 
-
 .filter-grid{
 
     display:grid;
@@ -323,7 +313,6 @@ body{
 
 }
 
-
 .field{
 
     display:flex;
@@ -334,7 +323,6 @@ body{
 
 }
 
-
 .field label{
 
     font-size:12px;
@@ -344,7 +332,6 @@ body{
     color:var(--muted);
 
 }
-
 
 .field input,
 .field select{
@@ -369,7 +356,6 @@ body{
 
 }
 
-
 .field input:focus,
 .field select:focus{
 
@@ -381,7 +367,6 @@ body{
         rgba(37,99,235,.10);
 
 }
-
 
 .filter-actions{
 
@@ -395,7 +380,6 @@ body{
 
 }
 
-
 .filter-chips{
 
     display:flex;
@@ -407,7 +391,6 @@ body{
     margin-top:12px;
 
 }
-
 
 .chip{
 
@@ -426,6 +409,73 @@ body{
 
 }
 
+/* =====================================================
+   FILTER STATUS DI LUAR PANEL
+===================================================== */
+
+.filter-status-outside{
+
+    display:none;
+
+    align-items:center;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin:
+        -7px 0 15px;
+
+    padding:
+        9px 12px;
+
+    background:#ffffff;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:12px;
+
+    box-shadow:
+        0 4px 14px
+        rgba(15,23,42,.05);
+
+    font-size:11px;
+
+    color:var(--muted);
+
+}
+
+.filter-status-outside.active{
+
+    display:flex;
+
+}
+
+.filter-status-title{
+
+    font-weight:900;
+
+    color:#334155;
+
+}
+
+.filter-status-chip{
+
+    background:#eff6ff;
+
+    color:#1d4ed8;
+
+    padding:
+        5px 8px;
+
+    border-radius:999px;
+
+    font-size:10px;
+
+    font-weight:800;
+
+}
 
 /* =====================================================
    SUMMARY
@@ -443,7 +493,6 @@ body{
     margin-bottom:18px;
 
 }
-
 
 .card{
 
@@ -463,7 +512,6 @@ body{
 
 }
 
-
 .summary-card{
 
     position:relative;
@@ -471,7 +519,6 @@ body{
     overflow:hidden;
 
 }
-
 
 .summary-card::after{
 
@@ -494,7 +541,6 @@ body{
 
 }
 
-
 .summary-label{
 
     color:var(--muted);
@@ -504,7 +550,6 @@ body{
     font-weight:700;
 
 }
-
 
 .summary-value{
 
@@ -516,7 +561,6 @@ body{
 
 }
 
-
 .summary-small{
 
     font-size:11px;
@@ -526,7 +570,6 @@ body{
     margin-top:4px;
 
 }
-
 
 /* =====================================================
    FOCUS
@@ -543,7 +586,6 @@ body{
 
 }
 
-
 .focus-grid{
 
     display:grid;
@@ -557,13 +599,11 @@ body{
 
 }
 
-
 .focus-card{
 
     min-height:180px;
 
 }
-
 
 .focus-head{
 
@@ -577,7 +617,6 @@ body{
 
 }
 
-
 .focus-name{
 
     font-size:13px;
@@ -587,7 +626,6 @@ body{
     font-weight:800;
 
 }
-
 
 .focus-number{
 
@@ -599,7 +637,6 @@ body{
 
 }
 
-
 .focus-percent{
 
     font-size:12px;
@@ -608,13 +645,11 @@ body{
 
 }
 
-
 .mini-list{
 
     margin-top:13px;
 
 }
-
 
 .mini-row{
 
@@ -634,20 +669,17 @@ body{
 
 }
 
-
 .mini-row:last-child{
 
     border-bottom:0;
 
 }
 
-
 .mini-row strong{
 
     font-weight:800;
 
 }
-
 
 /* =====================================================
    RANKING
@@ -666,7 +698,6 @@ body{
 
 }
 
-
 .ranking-item{
 
     display:flex;
@@ -682,13 +713,11 @@ body{
 
 }
 
-
 .ranking-item:last-child{
 
     border-bottom:0;
 
 }
-
 
 .rank{
 
@@ -712,7 +741,6 @@ body{
 
 }
 
-
 .rank-1{
 
     background:#fee2e2;
@@ -720,7 +748,6 @@ body{
     color:#b91c1c;
 
 }
-
 
 .rank-2{
 
@@ -730,7 +757,6 @@ body{
 
 }
 
-
 .rank-3{
 
     background:#dcfce7;
@@ -738,7 +764,6 @@ body{
     color:#15803d;
 
 }
-
 
 .rank-name{
 
@@ -750,7 +775,6 @@ body{
 
 }
 
-
 .rank-value{
 
     font-size:12px;
@@ -758,7 +782,6 @@ body{
     font-weight:900;
 
 }
-
 
 /* =====================================================
    TABLE
@@ -769,7 +792,6 @@ body{
     overflow:hidden;
 
 }
-
 
 .table-toolbar{
 
@@ -787,7 +809,6 @@ body{
 
 }
 
-
 .table-title{
 
     font-size:17px;
@@ -796,14 +817,12 @@ body{
 
 }
 
-
 .search-box{
 
     width:
         min(320px,100%);
 
 }
-
 
 .search-box input{
 
@@ -823,7 +842,6 @@ body{
 
 }
 
-
 .table-wrap{
 
     overflow-x:auto;
@@ -835,7 +853,6 @@ body{
 
 }
 
-
 table{
 
     width:100%;
@@ -846,13 +863,11 @@ table{
 
 }
 
-
 thead{
 
     background:#f8fafc;
 
 }
-
 
 th{
 
@@ -874,7 +889,6 @@ th{
 
 }
 
-
 td{
 
     padding:
@@ -889,20 +903,17 @@ td{
 
 }
 
-
 tbody tr:hover{
 
     background:#f8fafc;
 
 }
 
-
 .qty{
 
     font-weight:900;
 
 }
-
 
 .defect-badge{
 
@@ -922,7 +933,6 @@ tbody tr:hover{
     font-weight:800;
 
 }
-
 
 /* =====================================================
    PAGINATION
@@ -944,7 +954,6 @@ tbody tr:hover{
 
 }
 
-
 .page-info{
 
     font-size:12px;
@@ -952,7 +961,6 @@ tbody tr:hover{
     color:var(--muted);
 
 }
-
 
 .page-buttons{
 
@@ -963,7 +971,6 @@ tbody tr:hover{
     flex-wrap:wrap;
 
 }
-
 
 .page-btn{
 
@@ -985,7 +992,6 @@ tbody tr:hover{
 
 }
 
-
 .page-btn.active{
 
     background:
@@ -998,7 +1004,6 @@ tbody tr:hover{
 
 }
 
-
 .page-btn:disabled{
 
     opacity:.45;
@@ -1006,7 +1011,6 @@ tbody tr:hover{
     cursor:not-allowed;
 
 }
-
 
 /* =====================================================
    EMPTY
@@ -1024,6 +1028,17 @@ tbody tr:hover{
 
 }
 
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading-small{
+
+    opacity:.75;
+
+    font-size:11px;
+
+}
 
 /* =====================================================
    MOBILE
@@ -1047,7 +1062,6 @@ tbody tr:hover{
 
 }
 
-
 @media(max-width:800px){
 
     body{
@@ -1055,7 +1069,6 @@ tbody tr:hover{
         padding:10px;
 
     }
-
 
     .header{
 
@@ -1065,13 +1078,11 @@ tbody tr:hover{
 
     }
 
-
     .title{
 
         font-size:21px;
 
     }
-
 
     .filter-grid{
 
@@ -1080,13 +1091,11 @@ tbody tr:hover{
 
     }
 
-
     .focus-grid{
 
         grid-template-columns:1fr;
 
     }
-
 
     .ranking-grid{
 
@@ -1096,7 +1105,6 @@ tbody tr:hover{
 
 }
 
-
 @media(max-width:520px){
 
     .filter-grid{
@@ -1105,13 +1113,11 @@ tbody tr:hover{
 
     }
 
-
     .summary-grid{
 
         grid-template-columns:1fr 1fr;
 
     }
-
 
     .summary-value{
 
@@ -1119,13 +1125,11 @@ tbody tr:hover{
 
     }
 
-
     .nav{
 
         width:100%;
 
     }
-
 
     .nav a{
 
@@ -1136,7 +1140,6 @@ tbody tr:hover{
     }
 
 }
-
 
 /* =====================================================
    PRINT
@@ -1152,16 +1155,15 @@ tbody tr:hover{
 
     }
 
-
     .nav,
     .filter-card,
+    .filter-status-outside,
     .table-toolbar,
     .pagination{
 
         display:none !important;
 
     }
-
 
     .header{
 
@@ -1175,7 +1177,6 @@ tbody tr:hover{
             1px solid #ddd;
 
     }
-
 
     .card{
 
@@ -1221,15 +1222,27 @@ tbody tr:hover{
 
         <div class="nav">
 
-            <a href="#">
+            <a
+                href="?page=produksi"
+                onclick="goPage(event,'produksi')"
+            >
                 Produksi
             </a>
 
-            <a href="#">
+
+            <a
+                href="?page=cuci"
+                onclick="goPage(event,'cuci')"
+            >
                 Cuci
             </a>
 
-            <a href="#">
+
+            <a
+                href="?page=defect"
+                class="active"
+                onclick="goPage(event,'defect')"
+            >
                 Defect Flat
             </a>
 
@@ -1248,7 +1261,6 @@ tbody tr:hover{
 </div>
 
 
-
 <!-- =================================================
      FILTER
 ================================================= -->
@@ -1260,6 +1272,7 @@ tbody tr:hover{
         <div class="filter-title">
             Filter Data
         </div>
+
 
         <button
             class="btn btn-light"
@@ -1446,6 +1459,23 @@ tbody tr:hover{
 </div>
 
 
+<!-- =================================================
+     FILTER STATUS DI LUAR FILTER
+================================================= -->
+
+<div
+    id="filterStatusOutside"
+    class="filter-status-outside"
+>
+
+    <span class="filter-status-title">
+        🔎 Filter aktif:
+    </span>
+
+    <span id="filterOutsideItems"></span>
+
+</div>
+
 
 <!-- =================================================
      SUMMARY
@@ -1536,10 +1566,9 @@ tbody tr:hover{
 </div>
 
 
-
 <!-- =================================================
      FOCUS
-================================================= -->
+===================================================== -->
 
 <div class="section-title">
     Fokus Defect
@@ -1581,7 +1610,6 @@ tbody tr:hover{
     </div>
 
 
-
     <div class="card focus-card">
 
         <div class="focus-head">
@@ -1612,7 +1640,6 @@ tbody tr:hover{
         ></div>
 
     </div>
-
 
 
     <div class="card focus-card">
@@ -1649,10 +1676,9 @@ tbody tr:hover{
 </div>
 
 
-
 <!-- =================================================
      RANKING
-================================================= -->
+===================================================== -->
 
 <div class="section-title">
     Ranking
@@ -1692,10 +1718,9 @@ tbody tr:hover{
 </div>
 
 
-
 <!-- =================================================
      TABLE
-================================================= -->
+===================================================== -->
 
 <div class="card table-card">
 
@@ -1774,9 +1799,7 @@ tbody tr:hover{
             </thead>
 
 
-            <tbody id="tableBody">
-
-            </tbody>
+            <tbody id="tableBody"></tbody>
 
         </table>
 
@@ -1806,7 +1829,6 @@ tbody tr:hover{
 </div>
 
 
-
 <script>
 
 /* =====================================================
@@ -1818,7 +1840,18 @@ const API_URL =
 
 
 /* =====================================================
-   GLOBAL DATA
+   CACHE
+===================================================== */
+
+const DATA_CACHE_KEY =
+"DEFECT_FLAT_DATA_CACHE_V2";
+
+const FILTER_CACHE_KEY =
+"DEFECT_FLAT_FILTER_V2";
+
+
+/* =====================================================
+   GLOBAL
 ===================================================== */
 
 let allData = [];
@@ -1851,13 +1884,46 @@ document.addEventListener(
 
 
 /* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goPage(
+    event,
+    page
+){
+
+    event.preventDefault();
+
+
+    /*
+     * Gunakan URL Web App yang sama.
+     * Tidak lagi memanggil defect.html,
+     * cuci.html atau index.html secara langsung.
+     */
+
+    const base =
+        window.location.href
+        .split("?")[0];
+
+
+    window.location.href =
+        base +
+        "?page=" +
+        encodeURIComponent(page);
+
+}
+
+
+/* =====================================================
    STATUS
 ===================================================== */
 
 function setStatus(message){
 
     const el =
-        document.getElementById("status");
+        document.getElementById(
+            "status"
+        );
 
     if(el){
 
@@ -1883,10 +1949,108 @@ function toggleFilter(){
     filterVisible =
         !filterVisible;
 
+
     body.style.display =
         filterVisible
         ? "block"
         : "none";
+
+
+    /*
+     * Filter aktif tetap ditampilkan
+     * di luar panel ketika panel ditutup.
+     */
+
+    renderOutsideFilterStatus();
+
+}
+
+
+/* =====================================================
+   CACHE READ
+===================================================== */
+
+function getCachedData(){
+
+    try{
+
+        const raw =
+            sessionStorage.getItem(
+                DATA_CACHE_KEY
+            );
+
+
+        if(!raw){
+
+            return null;
+
+        }
+
+
+        const obj =
+            JSON.parse(raw);
+
+
+        if(
+            !obj ||
+            !Array.isArray(obj.data)
+        ){
+
+            return null;
+
+        }
+
+
+        return obj.data;
+
+    }catch(e){
+
+        return null;
+
+    }
+
+}
+
+
+/* =====================================================
+   CACHE WRITE
+===================================================== */
+
+function saveCachedData(data){
+
+    try{
+
+        const payload =
+            JSON.stringify({
+                time:Date.now(),
+                data:data
+            });
+
+
+        /*
+         * Hindari storage terlalu besar.
+         */
+
+        if(
+            payload.length <
+            3500000
+        ){
+
+            sessionStorage.setItem(
+                DATA_CACHE_KEY,
+                payload
+            );
+
+        }
+
+    }catch(e){
+
+        /*
+         * Dashboard tetap berjalan
+         * walaupun cache gagal.
+         */
+
+    }
 
 }
 
@@ -1897,92 +2061,39 @@ function toggleFilter(){
 
 async function loadDefectData(){
 
-    setStatus(
-        "⏳ Mengambil data Defect Flat..."
-    );
+    /*
+     * Tampilkan cache lebih dahulu.
+     * Ini membuat reload jauh lebih cepat.
+     */
+
+    const cached =
+        getCachedData();
 
 
-    /* ===============================================
-       JALUR APPS SCRIPT
-    =============================================== */
+    if(cached){
 
-    if(
-        typeof google !== "undefined" &&
-        google.script &&
-        google.script.run
-    ){
-
-        google.script.run
-
-            .withSuccessHandler(
-                function(data){
-
-                    console.log(
-                        "DATA GOOGLE SCRIPT:",
-                        data
-                    );
+        setStatus(
+            "⚡ Menampilkan data terakhir..."
+        );
 
 
-                    if(
-                        !Array.isArray(data) ||
-                        data.length === 0
-                    ){
+        setDefectData(
+            cached,
+            true
+        );
 
-                        setStatus(
-                            "⚠️ Data Defect Flat kosong"
-                        );
+    }else{
 
-                        setDefectData([]);
-
-                        return;
-
-                    }
-
-
-                    setStatus(
-                        "✅ Data berhasil dimuat: " +
-                        (data.length - 1) +
-                        " baris"
-                    );
-
-
-                    setDefectData(data);
-
-                }
-            )
-
-            .withFailureHandler(
-                function(error){
-
-                    console.error(
-                        error
-                    );
-
-
-                    setStatus(
-                        "❌ Gagal: " +
-                        (
-                            error &&
-                            error.message
-                            ? error.message
-                            : error
-                        )
-                    );
-
-                }
-            )
-
-            .getDefectData();
-
-
-        return;
+        setStatus(
+            "⏳ Mengambil data Defect Flat..."
+        );
 
     }
 
 
-    /* ===============================================
-       JALUR FETCH
-    =============================================== */
+    /*
+     * Ambil data terbaru di background.
+     */
 
     try{
 
@@ -2016,36 +2127,36 @@ async function loadDefectData(){
             await response.json();
 
 
-        console.log(
-            "DATA FETCH:",
-            result
-        );
-
-
         if(
-            !Array.isArray(result) ||
-            result.length === 0
+            !Array.isArray(result)
         ){
 
-            setStatus(
-                "⚠️ API berhasil tetapi data kosong"
+            throw new Error(
+                "Format data tidak valid"
             );
-
-            setDefectData([]);
-
-            return;
 
         }
 
 
+        saveCachedData(
+            result
+        );
+
+
         setStatus(
-            "✅ Data berhasil dimuat: " +
-            (result.length - 1) +
+            "✅ Data terbaru berhasil dimuat: " +
+            Math.max(
+                result.length - 1,
+                0
+            ) +
             " baris"
         );
 
 
-        setDefectData(result);
+        setDefectData(
+            result,
+            false
+        );
 
 
     }catch(error){
@@ -2055,13 +2166,21 @@ async function loadDefectData(){
         );
 
 
-        setStatus(
-            "❌ Gagal mengambil data: " +
-            error.message
-        );
+        if(!allData.length){
 
+            setStatus(
+                "❌ Gagal mengambil data: " +
+                error.message
+            );
 
-        setDefectData([]);
+        }else{
+
+            setStatus(
+                "⚡ Menampilkan data terakhir • " +
+                "Data terbaru belum tersedia"
+            );
+
+        }
 
     }
 
@@ -2081,8 +2200,14 @@ function normalizeHeader(value){
     )
     .trim()
     .toLowerCase()
-    .replace(/\s+/g," ")
-    .replace(/_/g," ");
+    .replace(
+        /\s+/g,
+        " "
+    )
+    .replace(
+        /_/g,
+        " "
+    );
 
 }
 
@@ -2103,8 +2228,8 @@ function findHeaderIndex(
 
 
     for(
-        let i = 0;
-        i < aliases.length;
+        let i=0;
+        i<aliases.length;
         i++
     ){
 
@@ -2164,7 +2289,10 @@ function getCell(
    SET DATA
 ===================================================== */
 
-function setDefectData(data){
+function setDefectData(
+    data,
+    fromCache
+){
 
     if(
         !Array.isArray(data) ||
@@ -2183,222 +2311,260 @@ function setDefectData(data){
 
 
     const headers =
-        data[0];
+        Array.isArray(data[0])
+        ? data[0]
+        : [];
 
 
     const rows =
         data.slice(1);
 
 
-    console.log(
-        "HEADERS:",
-        headers
-    );
-
-
-    /* ===============================================
-       CARI KOLOM
-    =============================================== */
-
     const idx = {
 
-        tgl: findHeaderIndex(
-            headers,
-            [
-                "tgl flat",
-                "tanggal flat",
-                "tanggal",
-                "tgl"
-            ]
-        ),
+        tgl:
+            findHeaderIndex(
+                headers,
+                [
+                    "tgl flat",
+                    "tanggal flat",
+                    "tanggal",
+                    "tgl"
+                ]
+            ),
 
-        roll: findHeaderIndex(
-            headers,
-            [
-                "roll id",
-                "roll",
-                "id roll"
-            ]
-        ),
+        roll:
+            findHeaderIndex(
+                headers,
+                [
+                    "roll id",
+                    "roll",
+                    "id roll"
+                ]
+            ),
 
-        kode: findHeaderIndex(
-            headers,
-            [
-                "kode prod",
-                "kode produk",
-                "kode product",
-                "kode"
-            ]
-        ),
+        kode:
+            findHeaderIndex(
+                headers,
+                [
+                    "kode prod",
+                    "kode produk",
+                    "kode product",
+                    "kode"
+                ]
+            ),
 
-        qty: findHeaderIndex(
-            headers,
-            [
-                "jumlah (pcs)",
-                "jumlah pcs",
-                "jumlah",
-                "qty",
-                "pcs"
-            ]
-        ),
+        qty:
+            findHeaderIndex(
+                headers,
+                [
+                    "jumlah (pcs)",
+                    "jumlah pcs",
+                    "jumlah",
+                    "qty",
+                    "pcs"
+                ]
+            ),
 
-        defect: findHeaderIndex(
-            headers,
-            [
-                "jenis defect",
-                "jenis_defect",
-                "defect"
-            ]
-        ),
+        defect:
+            findHeaderIndex(
+                headers,
+                [
+                    "jenis defect",
+                    "jenis_defect",
+                    "defect"
+                ]
+            ),
 
-        mesin: findHeaderIndex(
-            headers,
-            [
-                "mesin",
-                "nama mesin"
-            ]
-        ),
+        mesin:
+            findHeaderIndex(
+                headers,
+                [
+                    "mesin",
+                    "nama mesin"
+                ]
+            ),
 
-        motif: findHeaderIndex(
-            headers,
-            [
-                "motif"
-            ]
-        ),
+        motif:
+            findHeaderIndex(
+                headers,
+                [
+                    "motif"
+                ]
+            ),
 
-        blok: findHeaderIndex(
-            headers,
-            [
-                "blok + isian",
-                "blok isian",
-                "blok+isian",
-                "blok"
-            ]
-        ),
+        blok:
+            findHeaderIndex(
+                headers,
+                [
+                    "blok + isian",
+                    "blok isian",
+                    "blok+isian",
+                    "blok"
+                ]
+            ),
 
-        grup: findHeaderIndex(
-            headers,
-            [
-                "grup",
-                "group"
-            ]
-        ),
+        grup:
+            findHeaderIndex(
+                headers,
+                [
+                    "grup",
+                    "group"
+                ]
+            ),
 
-        operator: findHeaderIndex(
-            headers,
-            [
-                "operator",
-                "nama operator"
-            ]
-        )
+        operator:
+            findHeaderIndex(
+                headers,
+                [
+                    "operator",
+                    "nama operator"
+                ]
+            )
 
     };
 
 
-    console.log(
-        "INDEX KOLOM:",
-        idx
-    );
-
-
-    /* ===============================================
-       MAP DATA
-    =============================================== */
-
     allData =
         rows
-        .filter(function(row){
+        .filter(
+            function(row){
 
-            return row.some(
-                function(value){
+                return row.some(
+                    function(value){
 
-                    return String(
-                        value
-                    ).trim() !== "";
+                        return String(
+                            value
+                        ).trim() !== "";
 
-                }
-            );
+                    }
+                );
 
-        })
-        .map(function(row){
+            }
+        )
+        .map(
+            function(row){
 
-            return {
+                const item = {
 
-                tgl:
-                    getCell(
-                        row,
-                        idx.tgl
-                    ),
-
-                roll:
-                    getCell(
-                        row,
-                        idx.roll
-                    ),
-
-                kode:
-                    getCell(
-                        row,
-                        idx.kode
-                    ),
-
-                qty:
-                    parseQty(
+                    tgl:
                         getCell(
                             row,
-                            idx.qty
+                            idx.tgl
+                        ),
+
+                    roll:
+                        getCell(
+                            row,
+                            idx.roll
+                        ),
+
+                    kode:
+                        getCell(
+                            row,
+                            idx.kode
+                        ),
+
+                    qty:
+                        parseQty(
+                            getCell(
+                                row,
+                                idx.qty
+                            )
+                        ),
+
+                    defect:
+                        getCell(
+                            row,
+                            idx.defect
+                        ),
+
+                    mesin:
+                        getCell(
+                            row,
+                            idx.mesin
+                        ),
+
+                    motif:
+                        getCell(
+                            row,
+                            idx.motif
+                        ),
+
+                    blok:
+                        getCell(
+                            row,
+                            idx.blok
+                        ),
+
+                    grup:
+                        getCell(
+                            row,
+                            idx.grup
+                        ),
+
+                    operator:
+                        getCell(
+                            row,
+                            idx.operator
                         )
-                    ),
 
-                defect:
-                    getCell(
-                        row,
-                        idx.defect
-                    ),
+                };
 
-                mesin:
-                    getCell(
-                        row,
-                        idx.mesin
-                    ),
 
-                motif:
-                    getCell(
-                        row,
-                        idx.motif
-                    ),
+                /*
+                 * Simpan tanggal normalisasi sekali.
+                 * Tidak perlu dihitung ulang setiap filter.
+                 */
 
-                blok:
-                    getCell(
-                        row,
-                        idx.blok
-                    ),
+                item._date =
+                    normalizeDate(
+                        item.tgl
+                    );
 
-                grup:
-                    getCell(
-                        row,
-                        idx.grup
-                    ),
 
-                operator:
-                    getCell(
-                        row,
-                        idx.operator
-                    )
+                return item;
 
-            };
-
-        });
+            }
+        );
 
 
     populateFilters();
 
-    loadSavedFilter();
 
-    filteredData =
-        [...allData];
+    /*
+     * Ambil filter terakhir.
+     * Hanya dipanggil saat data baru selesai dimuat.
+     */
+
+    const saved =
+        loadSavedFilter();
+
+
+    if(saved){
+
+        setFilterValues(
+            saved
+        );
+
+    }else{
+
+        filteredData =
+            [...allData];
+
+    }
+
 
     renderDashboard();
+
+
+    if(fromCache){
+
+        setStatus(
+            "⚡ Data terakhir tampil • memperbarui..."
+        );
+
+    }
 
 }
 
@@ -2425,23 +2591,23 @@ function parseQty(value){
         .trim();
 
 
-    // Hapus satuan
     text =
-        text.replace(
+        text
+        .replace(
             /pcs/gi,
             ""
         )
         .trim();
 
 
-    // Format Indonesia
     if(
         text.indexOf(",") !== -1 &&
         text.indexOf(".") !== -1
     ){
 
         text =
-            text.replace(
+            text
+            .replace(
                 /\./g,
                 ""
             )
@@ -2497,7 +2663,6 @@ function normalizeDate(value){
         .trim();
 
 
-    // yyyy-mm-dd
     if(
         /^\d{4}-\d{2}-\d{2}$/
         .test(text)
@@ -2508,7 +2673,6 @@ function normalizeDate(value){
     }
 
 
-    // dd/mm/yyyy
     let match =
         text.match(
             /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/
@@ -2528,7 +2692,6 @@ function normalizeDate(value){
     }
 
 
-    // dd/mm/yy
     match =
         text.match(
             /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2})/
@@ -2563,13 +2726,17 @@ function uniqueSorted(values){
     return [
         ...new Set(
             values
-            .map(function(v){
+            .map(
+                function(v){
 
-                return String(
-                    v == null ? "" : v
-                ).trim();
+                    return String(
+                        v == null
+                        ? ""
+                        : v
+                    ).trim();
 
-            })
+                }
+            )
             .filter(Boolean)
         )
     ]
@@ -2602,7 +2769,9 @@ function fillSelect(
 ){
 
     const select =
-        document.getElementById(id);
+        document.getElementById(
+            id
+        );
 
 
     if(!select){
@@ -2662,7 +2831,9 @@ function fillSelect(
 
 
     if(
-        values.includes(current)
+        values.includes(
+            current
+        )
     ){
 
         select.value =
@@ -2683,7 +2854,9 @@ function populateFilters(){
         "kodeProduk",
         uniqueSorted(
             allData.map(
-                x => x.kode
+                function(x){
+                    return x.kode;
+                }
             )
         ),
         "Semua Kode Produk"
@@ -2694,7 +2867,9 @@ function populateFilters(){
         "motif",
         uniqueSorted(
             allData.map(
-                x => x.motif
+                function(x){
+                    return x.motif;
+                }
             )
         ),
         "Semua Motif"
@@ -2705,7 +2880,9 @@ function populateFilters(){
         "jenisDefect",
         uniqueSorted(
             allData.map(
-                x => x.defect
+                function(x){
+                    return x.defect;
+                }
             )
         ),
         "Semua Jenis Defect"
@@ -2716,7 +2893,9 @@ function populateFilters(){
         "mesin",
         uniqueSorted(
             allData.map(
-                x => x.mesin
+                function(x){
+                    return x.mesin;
+                }
             )
         ),
         "Semua Mesin"
@@ -2727,7 +2906,9 @@ function populateFilters(){
         "grup",
         uniqueSorted(
             allData.map(
-                x => x.grup
+                function(x){
+                    return x.grup;
+                }
             )
         ),
         "Semua Grup"
@@ -2738,7 +2919,9 @@ function populateFilters(){
         "rollId",
         uniqueSorted(
             allData.map(
-                x => x.roll
+                function(x){
+                    return x.roll;
+                }
             )
         ),
         "Semua Roll ID"
@@ -2801,6 +2984,113 @@ function getFilter(){
 
 
 /* =====================================================
+   FILTER DATA
+===================================================== */
+
+function filterData(data,f){
+
+    return data.filter(
+        function(row){
+
+            const rowDate =
+                row._date;
+
+
+            if(
+                f.dateFrom &&
+                (
+                    !rowDate ||
+                    rowDate < f.dateFrom
+                )
+            ){
+
+                return false;
+
+            }
+
+
+            if(
+                f.dateTo &&
+                (
+                    !rowDate ||
+                    rowDate > f.dateTo
+                )
+            ){
+
+                return false;
+
+            }
+
+
+            if(
+                f.kodeProduk &&
+                row.kode !== f.kodeProduk
+            ){
+
+                return false;
+
+            }
+
+
+            if(
+                f.motif &&
+                row.motif !== f.motif
+            ){
+
+                return false;
+
+            }
+
+
+            if(
+                f.jenisDefect &&
+                row.defect !== f.jenisDefect
+            ){
+
+                return false;
+
+            }
+
+
+            if(
+                f.mesin &&
+                row.mesin !== f.mesin
+            ){
+
+                return false;
+
+            }
+
+
+            if(
+                f.grup &&
+                row.grup !== f.grup
+            ){
+
+                return false;
+
+            }
+
+
+            if(
+                f.rollId &&
+                row.roll !== f.rollId
+            ){
+
+                return false;
+
+            }
+
+
+            return true;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
    APPLY FILTER
 ===================================================== */
 
@@ -2811,112 +3101,28 @@ function applyFilter(){
 
 
     filteredData =
-        allData.filter(
-            function(row){
-
-                const rowDate =
-                    normalizeDate(
-                        row.tgl
-                    );
-
-
-                if(
-                    f.dateFrom &&
-                    (
-                        !rowDate ||
-                        rowDate < f.dateFrom
-                    )
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.dateTo &&
-                    (
-                        !rowDate ||
-                        rowDate > f.dateTo
-                    )
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.kodeProduk &&
-                    row.kode !== f.kodeProduk
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.motif &&
-                    row.motif !== f.motif
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.jenisDefect &&
-                    row.defect !== f.jenisDefect
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.mesin &&
-                    row.mesin !== f.mesin
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.grup &&
-                    row.grup !== f.grup
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.rollId &&
-                    row.roll !== f.rollId
-                ){
-
-                    return false;
-
-                }
-
-
-                return true;
-
-            }
+        filterData(
+            allData,
+            f
         );
 
 
     currentPage = 1;
 
+
     saveFilter();
 
+
     renderDashboard();
+
+
+    setStatus(
+        "🔎 Filter diterapkan • " +
+        filteredData.length +
+        " dari " +
+        allData.length +
+        " data"
+    );
 
 }
 
@@ -2927,44 +3133,36 @@ function applyFilter(){
 
 function clearFilter(){
 
-    document.getElementById(
-        "dateFrom"
-    ).value = "";
+    const ids = [
 
-
-    document.getElementById(
-        "dateTo"
-    ).value = "";
-
-
-    document.getElementById(
-        "kodeProduk"
-    ).value = "";
-
-
-    document.getElementById(
-        "motif"
-    ).value = "";
-
-
-    document.getElementById(
-        "jenisDefect"
-    ).value = "";
-
-
-    document.getElementById(
-        "mesin"
-    ).value = "";
-
-
-    document.getElementById(
-        "grup"
-    ).value = "";
-
-
-    document.getElementById(
+        "dateFrom",
+        "dateTo",
+        "kodeProduk",
+        "motif",
+        "jenisDefect",
+        "mesin",
+        "grup",
         "rollId"
-    ).value = "";
+
+    ];
+
+
+    ids.forEach(
+        function(id){
+
+            const el =
+                document.getElementById(
+                    id
+                );
+
+            if(el){
+
+                el.value = "";
+
+            }
+
+        }
+    );
 
 
     applyFilter();
@@ -2988,34 +3186,27 @@ function renderFilterChips(){
         );
 
 
-    chips.innerHTML = "";
+    chips.innerHTML =
+        "";
 
 
     const labels = {
 
-        dateFrom:
-            "Dari",
+        dateFrom:"Dari",
 
-        dateTo:
-            "Sampai",
+        dateTo:"Sampai",
 
-        kodeProduk:
-            "Kode",
+        kodeProduk:"Kode",
 
-        motif:
-            "Motif",
+        motif:"Motif",
 
-        jenisDefect:
-            "Defect",
+        jenisDefect:"Defect",
 
-        mesin:
-            "Mesin",
+        mesin:"Mesin",
 
-        grup:
-            "Grup",
+        grup:"Grup",
 
-        rollId:
-            "Roll"
+        rollId:"Roll"
 
     };
 
@@ -3054,6 +3245,101 @@ function renderFilterChips(){
 
 
 /* =====================================================
+   FILTER STATUS OUTSIDE
+===================================================== */
+
+function renderOutsideFilterStatus(){
+
+    const f =
+        getFilter();
+
+
+    const box =
+        document.getElementById(
+            "filterStatusOutside"
+        );
+
+
+    const items =
+        document.getElementById(
+            "filterOutsideItems"
+        );
+
+
+    const labels = {
+
+        dateFrom:"Dari",
+
+        dateTo:"Sampai",
+
+        kodeProduk:"Kode",
+
+        motif:"Motif",
+
+        jenisDefect:"Defect",
+
+        mesin:"Mesin",
+
+        grup:"Grup",
+
+        rollId:"Roll"
+
+    };
+
+
+    const active =
+        Object.keys(f)
+        .filter(
+            function(key){
+
+                return !!f[key];
+
+            }
+        );
+
+
+    if(!active.length){
+
+        box.classList.remove(
+            "active"
+        );
+
+        items.innerHTML =
+            "";
+
+        return;
+
+    }
+
+
+    box.classList.add(
+        "active"
+    );
+
+
+    items.innerHTML =
+        active
+        .map(
+            function(key){
+
+                return (
+                    '<span class="filter-status-chip">' +
+                    escapeHtml(
+                        labels[key] +
+                        ": " +
+                        f[key]
+                    ) +
+                    '</span>'
+                );
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =====================================================
    SAVE FILTER
 ===================================================== */
 
@@ -3066,7 +3352,7 @@ function saveFilter(){
     try{
 
         localStorage.setItem(
-            "DEFECT_FLAT_FILTER",
+            FILTER_CACHE_KEY,
             JSON.stringify(
                 filter
             )
@@ -3074,20 +3360,6 @@ function saveFilter(){
 
     }catch(e){}
 
-
-    if(
-        typeof google !== "undefined" &&
-        google.script &&
-        google.script.run
-    ){
-
-        google.script.run
-            .saveFilterDefectFlat
-            ? google.script.run
-                .saveFilterDefectFlat(filter)
-            : null;
-
-    }
 
 }
 
@@ -3102,37 +3374,40 @@ function loadSavedFilter(){
 
         const saved =
             localStorage.getItem(
-                "DEFECT_FLAT_FILTER"
+                FILTER_CACHE_KEY
             );
 
 
         if(!saved){
 
-            return;
+            return null;
 
         }
 
 
-        const f =
-            JSON.parse(
-                saved
-            );
+        return JSON.parse(
+            saved
+        );
 
+    }catch(e){
 
-        setFilterValues(f);
+        return null;
 
-    }catch(e){}
+    }
 
 }
 
 
 /* =====================================================
-   SET FILTER
+   SET FILTER VALUES
 ===================================================== */
 
 function setFilterValues(f){
 
     if(!f){
+
+        filteredData =
+            [...allData];
 
         return;
 
@@ -3177,104 +3452,9 @@ function setFilterValues(f){
 
 
     filteredData =
-        allData.filter(
-            function(row){
-
-                const rowDate =
-                    normalizeDate(
-                        row.tgl
-                    );
-
-
-                if(
-                    f.dateFrom &&
-                    (
-                        !rowDate ||
-                        rowDate < f.dateFrom
-                    )
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.dateTo &&
-                    (
-                        !rowDate ||
-                        rowDate > f.dateTo
-                    )
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.kodeProduk &&
-                    row.kode !== f.kodeProduk
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.motif &&
-                    row.motif !== f.motif
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.jenisDefect &&
-                    row.defect !== f.jenisDefect
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.mesin &&
-                    row.mesin !== f.mesin
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.grup &&
-                    row.grup !== f.grup
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.rollId &&
-                    row.roll !== f.rollId
-                ){
-
-                    return false;
-
-                }
-
-
-                return true;
-
-            }
+        filterData(
+            allData,
+            f
         );
 
 }
@@ -3289,7 +3469,7 @@ function resetSavedFilter(){
     try{
 
         localStorage.removeItem(
-            "DEFECT_FLAT_FILTER"
+            FILTER_CACHE_KEY
         );
 
     }catch(e){}
@@ -3297,8 +3477,9 @@ function resetSavedFilter(){
 
     clearFilter();
 
+
     setStatus(
-        "✅ Filter berhasil direset"
+        "✅ Filter tersimpan berhasil direset"
     );
 
 }
@@ -3317,6 +3498,8 @@ function renderDashboard(){
     renderRanking();
 
     renderFilterChips();
+
+    renderOutsideFilterStatus();
 
     renderTable();
 
@@ -3396,38 +3579,43 @@ function groupSum(
 
 function renderSummary(){
 
-    const totalPcs =
-        filteredData.reduce(
-            function(sum,row){
+    let totalPcs = 0;
 
-                return sum +
-                    Number(
-                        row.qty || 0
-                    );
+    const rolls =
+        new Set();
 
-            },
-            0
-        );
+    const jenis =
+        new Set();
 
 
-    const totalRoll =
-        new Set(
-            filteredData
-            .map(
-                x => x.roll
-            )
-            .filter(Boolean)
-        ).size;
+    filteredData.forEach(
+        function(row){
+
+            totalPcs +=
+                Number(
+                    row.qty || 0
+                );
 
 
-    const totalJenis =
-        new Set(
-            filteredData
-            .map(
-                x => x.defect
-            )
-            .filter(Boolean)
-        ).size;
+            if(row.roll){
+
+                rolls.add(
+                    row.roll
+                );
+
+            }
+
+
+            if(row.defect){
+
+                jenis.add(
+                    row.defect
+                );
+
+            }
+
+        }
+    );
 
 
     document.getElementById(
@@ -3442,7 +3630,7 @@ function renderSummary(){
         "totalRoll"
     ).textContent =
         formatNumber(
-            totalRoll
+            rolls.size
         );
 
 
@@ -3450,7 +3638,7 @@ function renderSummary(){
         "totalJenis"
     ).textContent =
         formatNumber(
-            totalJenis
+            jenis.size
         );
 
 
@@ -3470,15 +3658,19 @@ function renderSummary(){
 
 function renderFocus(){
 
-    const total =
-        filteredData.reduce(
-            (sum,row) =>
-                sum +
+    let total = 0;
+
+
+    filteredData.forEach(
+        function(row){
+
+            total +=
                 Number(
                     row.qty || 0
-                ),
-            0
-        );
+                );
+
+        }
+    );
 
 
     renderFocusGroup(
@@ -3486,7 +3678,6 @@ function renderFocus(){
         "focusDefectPcs",
         "focusDefectPercent",
         "defectMiniList",
-        "Jenis Defect",
         total
     );
 
@@ -3496,7 +3687,6 @@ function renderFocus(){
         "focusMesinPcs",
         "focusMesinPercent",
         "mesinMiniList",
-        "Mesin",
         total
     );
 
@@ -3506,7 +3696,6 @@ function renderFocus(){
         "focusGrupPcs",
         "focusGrupPercent",
         "grupMiniList",
-        "Grup",
         total
     );
 
@@ -3522,7 +3711,6 @@ function renderFocusGroup(
     numberId,
     percentId,
     listId,
-    label,
     total
 ){
 
@@ -3560,11 +3748,16 @@ function renderFocusGroup(
         numberEl.textContent =
             "0";
 
+
         percentEl.textContent =
             "Tidak ada data";
 
+
         listEl.innerHTML =
-            '<div class="empty">Tidak ada data</div>';
+            '<div class="empty">' +
+            'Tidak ada data' +
+            '</div>';
+
 
         return;
 
@@ -3602,12 +3795,15 @@ function renderFocusGroup(
 
                 return `
                     <div class="mini-row">
+
                         <span>
                             ${escapeHtml(item[0])}
                         </span>
+
                         <strong>
                             ${formatNumber(item[1])}
                         </strong>
+
                     </div>
                 `;
 
@@ -3663,7 +3859,10 @@ function renderRankingList(
     if(!grouped.length){
 
         list.innerHTML =
-            '<div class="empty">Tidak ada data</div>';
+            '<div class="empty">' +
+            'Tidak ada data' +
+            '</div>';
+
 
         return;
 
@@ -3677,6 +3876,7 @@ function renderRankingList(
             function(item,index){
 
                 let rankClass = "";
+
 
                 if(index === 0){
 
@@ -3749,12 +3949,8 @@ function quickSearch(){
     }
 
 
-    const source =
-        filteredData;
-
-
     const result =
-        source.filter(
+        filteredData.filter(
             function(row){
 
                 return [
@@ -3780,6 +3976,8 @@ function quickSearch(){
             }
         );
 
+
+    currentPage = 1;
 
     renderTableData(
         result
@@ -3842,9 +4040,7 @@ function sortTable(field){
             }
 
 
-            if(
-                av < bv
-            ){
+            if(av < bv){
 
                 return -1 *
                     sortDirection;
@@ -3852,9 +4048,7 @@ function sortTable(field){
             }
 
 
-            if(
-                av > bv
-            ){
+            if(av > bv){
 
                 return 1 *
                     sortDirection;
@@ -4003,9 +4197,11 @@ function renderTableData(
                         </td>
 
                         <td>
+
                             <span class="defect-badge">
                                 ${escapeHtml(row.defect)}
                             </span>
+
                         </td>
 
                         <td>
@@ -4076,7 +4272,8 @@ function renderPagination(
         );
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     if(totalPages <= 1){
@@ -4142,8 +4339,8 @@ function renderPagination(
 
 
     for(
-        let i = start;
-        i <= end;
+        let i=start;
+        i<=end;
         i++
     ){
 
@@ -4265,7 +4462,6 @@ function escapeHtml(value){
 }
 
 </script>
-
 
 </body>
 
