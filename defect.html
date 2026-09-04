@@ -4361,30 +4361,5071 @@ function setDefectData(data){
     updateActiveFilter();
 
 
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard Defect Flat</title>
+
+<style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#eef3f8;
+    --card:#ffffff;
+    --text:#243447;
+    --muted:#718096;
+    --border:#dfe7ef;
+
+    --blue-dark:#315f82;
+    --green-dark:#3d7058;
+    --orange-dark:#9a6435;
+    --purple-dark:#66528c;
+
+    --table-head:#244f73;
+
+    --shadow:
+        0 8px 18px rgba(44,62,80,.08),
+        0 2px 5px rgba(44,62,80,.05);
+
+    --shadow3d:
+        0 10px 20px rgba(44,62,80,.12),
+        0 3px 0 rgba(255,255,255,.8) inset,
+        0 -2px 0 rgba(0,0,0,.025) inset;
+}
+
+
+/* =====================================================
+   BODY
+===================================================== */
+
+body{
+
+    margin:0;
+
+    padding:18px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:var(--text);
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #ffffff 0,
+            #f4f8fc 28%,
+            transparent 55%
+        ),
+        linear-gradient(
+            135deg,
+            #edf3f8,
+            #f7f9fc
+        );
+
+    min-height:100vh;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    position:relative;
+
+    background:rgba(255,255,255,.94);
+
+    border:1px solid rgba(255,255,255,.9);
+
+    border-radius:20px;
+
+    padding:22px 24px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:14px;
+
+    overflow:hidden;
+}
+
+
+.header:before{
+
+    content:"";
+
+    position:absolute;
+
+    width:190px;
+    height:190px;
+
+    border-radius:50%;
+
+    background:#dbeafe;
+
+    right:-70px;
+    top:-105px;
+
+    opacity:.55;
+}
+
+
+.header-content{
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+.title{
+
+    margin:0;
+
+    font-size:30px;
+
+    font-weight:900;
+
+    letter-spacing:.3px;
+}
+
+
+.subtitle{
+
+    margin:6px 0 0;
+
+    color:var(--muted);
+
+    font-size:14px;
+
+    font-weight:600;
+}
+
+
+/* =====================================================
+   NAV
+===================================================== */
+
+.nav{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-top:18px;
+
+    flex-wrap:wrap;
+}
+
+
+.nav button{
+
+    border:0;
+
+    padding:10px 17px;
+
+    border-radius:11px;
+
+    background:#f0f4f8;
+
+    color:#526273;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    box-shadow:
+        0 3px 7px rgba(40,55,70,.08),
+        0 1px 0 rgba(255,255,255,.8) inset;
+}
+
+
+.nav button:hover{
+
+    transform:translateY(-1px);
+
+    background:#e5edf5;
+}
+
+
+.nav button.active{
+
+    background:#d3e9fb;
+
+    color:#3473a3;
+}
+
+
+/* =====================================================
+   FILTER TOGGLE
+===================================================== */
+
+.filter-toggle-wrap{
+
+    margin-bottom:14px;
+}
+
+
+.filter-toggle{
+
+    width:100%;
+
+    border:1px solid var(--border);
+
+    background:#fff;
+
+    color:#526577;
+
+    min-height:46px;
+
+    border-radius:14px;
+
+    padding:0 17px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    box-shadow:var(--shadow);
+
+    transition:.2s;
+}
+
+
+.filter-toggle:hover{
+
+    transform:translateY(-1px);
+
+    background:#f9fbfd;
+}
+
+
+.filter-toggle-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+}
+
+
+.filter-toggle-icon{
+
+    width:30px;
+    height:30px;
+
+    border-radius:9px;
+
+    background:#e5f2fc;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+
+.filter-arrow{
+
+    font-size:15px;
+
+    transition:.25s;
+}
+
+
+.filter-toggle.open .filter-arrow{
+
+    transform:rotate(180deg);
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+.filter-card{
+
+    background:var(--card);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid var(--border);
+
+    margin-bottom:16px;
+
+    display:none;
+}
+
+
+.filter-card.show{
+
+    display:block;
+}
+
+
+.section-title{
+
+    font-size:17px;
+
+    font-weight:900;
+
+    margin-bottom:14px;
+}
+
+
+.filter-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(150px,1fr));
+
+    gap:12px;
+}
+
+
+.field{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+}
+
+
+.field label{
+
+    font-size:12px;
+
+    font-weight:800;
+
+    color:#607080;
+}
+
+
+.field input,
+.field select{
+
+    width:100%;
+
+    height:40px;
+
+    border:1px solid #d8e1ea;
+
+    border-radius:10px;
+
+    padding:0 11px;
+
+    background:#fafcfe;
+
+    color:#263645;
+
+    outline:none;
+
+    font-size:13px;
+
+    font-weight:600;
+}
+
+
+.field input:focus,
+.field select:focus{
+
+    border-color:#8db9dc;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(99,157,201,.12);
+}
+
+
+.search-wrap{
+
+    position:relative;
+}
+
+
+.search-wrap input{
+
+    padding-right:35px;
+}
+
+
+.search-icon{
+
+    position:absolute;
+
+    right:11px;
+
+    top:11px;
+
+    color:#8494a4;
+}
+
+
+.filter-actions{
+
+    display:flex;
+
+    gap:9px;
+
+    flex-wrap:wrap;
+
+    margin-top:14px;
+}
+
+
+.btn{
+
+    border:0;
+
+    height:39px;
+
+    padding:0 16px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:800;
+
+    font-size:13px;
+
+    transition:.2s;
+}
+
+
+.btn:hover{
+
+    transform:translateY(-1px);
+}
+
+
+.btn-primary{
+
+    background:#d4eafa;
+
+    color:#3473a3;
+
+    box-shadow:var(--shadow3d);
+}
+
+
+.btn-reset{
+
+    background:#f1f4f7;
+
+    color:#596b7b;
+}
+
+
+/* =====================================================
+   ACTIVE FILTER
+===================================================== */
+
+.active-filter-card{
+
+    background:
+        linear-gradient(
+            135deg,
+            #304f69,
+            #3c6684
+        );
+
+    color:#fff;
+
+    border-radius:17px;
+
+    padding:14px 17px;
+
+    margin-bottom:16px;
+
+    box-shadow:
+        0 8px 18px rgba(44,62,80,.14);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+
+.active-filter-card:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:130px;
+    height:130px;
+
+    border-radius:50%;
+
+    right:-45px;
+    top:-70px;
+
+    background:rgba(255,255,255,.08);
+}
+
+
+.active-filter-title{
+
+    position:relative;
+
+    z-index:2;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    letter-spacing:.3px;
+
+    margin-bottom:9px;
+}
+
+
+.active-filter-list{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    gap:7px;
+
+    flex-wrap:wrap;
+}
+
+
+.filter-chip{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:6px 9px;
+
+    border-radius:8px;
+
+    background:rgba(255,255,255,.14);
+
+    border:1px solid
+        rgba(255,255,255,.16);
+
+    color:#fff;
+
+    font-size:11px;
+
+    font-weight:700;
+}
+
+
+.filter-chip strong{
+
+    font-weight:900;
+}
+
+
+.filter-all{
+
+    color:#e9f4fc;
+
+    font-size:11px;
+
+    font-weight:800;
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(150px,1fr));
+
+    gap:14px;
+
+    margin-bottom:16px;
+}
+
+
+.summary-card{
+
+    border-radius:17px;
+
+    padding:17px;
+
+    box-shadow:var(--shadow3d);
+
+    min-height:105px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    color:#fff;
+
+    border:1px solid
+        rgba(255,255,255,.12);
+}
+
+
+.summary-card:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:85px;
+    height:85px;
+
+    border-radius:50%;
+
+    right:-25px;
+
+    bottom:-35px;
+
+    background:rgba(255,255,255,.10);
+}
+
+
+.summary-card.blue{
+
+    background:
+        linear-gradient(
+            145deg,
+            #315f82,
+            #3c7297
+        );
+}
+
+
+.summary-card.green{
+
+    background:
+        linear-gradient(
+            145deg,
+            #3d7058,
+            #4b8568
+        );
+}
+
+
+.summary-card.orange{
+
+    background:
+        linear-gradient(
+            145deg,
+            #9a6435,
+            #b87943
+        );
+}
+
+
+.summary-card.purple{
+
+    background:
+        linear-gradient(
+            145deg,
+            #66528c,
+            #7a65a3
+        );
+}
+
+
+.summary-label{
+
+    font-size:12px;
+
+    font-weight:800;
+
+    color:rgba(255,255,255,.82);
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+.summary-value{
+
+    font-size:27px;
+
+    font-weight:900;
+
+    margin-top:8px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+.summary-unit{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:rgba(255,255,255,.75);
+
+    position:relative;
+
+    z-index:2;
+}
+
+
+/* =====================================================
+   FOCUS
+===================================================== */
+
+.focus-title{
+
+    font-size:20px;
+
+    font-weight:900;
+
+    margin:20px 0 12px;
+}
+
+
+.focus-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(220px,1fr));
+
+    gap:16px;
+
+    margin-bottom:18px;
+}
+
+
+.focus-card{
+
+    border-radius:20px;
+
+    padding:20px;
+
+    border:1px solid
+        rgba(0,0,0,.05);
+
+    box-shadow:var(--shadow3d);
+
+    min-height:235px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    color:#fff;
+}
+
+
+.focus-card:before{
+
+    content:"";
+
+    position:absolute;
+
+    width:160px;
+    height:160px;
+
+    border-radius:50%;
+
+    right:-70px;
+    top:-75px;
+
+    background:rgba(255,255,255,.10);
+}
+
+
+.focus-card.blue{
+
+    background:
+        linear-gradient(
+            145deg,
+            #315f82,
+            #417b9f
+        );
+}
+
+
+.focus-card.purple{
+
+    background:
+        linear-gradient(
+            145deg,
+            #66528c,
+            #7c68a5
+        );
+}
+
+
+.focus-card.green{
+
+    background:
+        linear-gradient(
+            145deg,
+            #3d7058,
+            #4d896b
+        );
+}
+
+
+.focus-head{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+}
+
+
+.focus-name{
+
+    font-size:20px;
+
+    font-weight:900;
+
+    letter-spacing:.2px;
+}
+
+
+.focus-icon{
+
+    width:40px;
+    height:40px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(255,255,255,.15);
+
+    font-size:20px;
+
+    box-shadow:
+        0 3px 7px rgba(0,0,0,.08);
+}
+
+
+.focus-total{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:15px;
+
+    font-size:30px;
+
+    font-weight:900;
+}
+
+
+.focus-percent{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:4px;
+
+    font-size:15px;
+
+    font-weight:900;
+}
+
+
+.focus-desc{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:5px;
+
+    color:rgba(255,255,255,.75);
+
+    font-size:11px;
+
+    font-weight:700;
+}
+
+
+.focus-list{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:15px;
+
+    max-height:75px;
+
+    overflow:auto;
+}
+
+
+.mini-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:5px 0;
+
+    border-bottom:
+        1px dashed
+        rgba(255,255,255,.18);
+
+    font-size:11px;
+
+    font-weight:800;
+}
+
+
+.mini-row:last-child{
+
+    border-bottom:0;
+}
+
+
+/* =====================================================
+   ANALYSIS
+===================================================== */
+
+.analysis-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(300px,1fr));
+
+    gap:16px;
+
+    margin-bottom:18px;
+}
+
+
+.panel{
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    box-shadow:var(--shadow);
+}
+
+
+.panel-title{
+
+    font-size:16px;
+
+    font-weight:900;
+
+    margin-bottom:14px;
+}
+
+
+.rank-row{
+
+    display:grid;
+
+    grid-template-columns:
+        35px 1fr 85px;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:11px;
+}
+
+
+.rank-number{
+
+    width:28px;
+    height:28px;
+
+    border-radius:9px;
+
+    background:#f0f4f7;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:11px;
+
+    font-weight:900;
+}
+
+
+.rank-name{
+
+    font-size:12px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+
+.bar-wrap{
+
+    margin-top:4px;
+
+    height:7px;
+
+    background:#edf1f5;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+
+.bar{
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:#4f7d9d;
+}
+
+
+.rank-value{
+
+    text-align:right;
+
+    font-size:11px;
+
+    font-weight:900;
+}
+
+
+.empty{
+
+    text-align:center;
+
+    padding:25px;
+
+    color:#8a98a6;
+
+    font-size:13px;
+
+    font-weight:700;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-panel{
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+}
+
+
+.table-header{
+
+    padding:17px 18px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+}
+
+
+.table-title{
+
+    font-size:17px;
+
+    font-weight:900;
+}
+
+
+.quick-search{
+
+    width:250px;
+
+    height:38px;
+
+    border:1px solid #d8e1ea;
+
+    border-radius:10px;
+
+    padding:0 11px;
+
+    outline:none;
+
+    background:#fafcfe;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+
+
+.quick-search:focus{
+
+    border-color:#8db9dc;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(99,157,201,.12);
+}
+
+
+.table-wrap{
+
+    width:100%;
+
+    overflow-x:auto;
+}
+
+
+table{
+
+    width:100%;
+
+    min-width:1100px;
+
+    border-collapse:collapse;
+}
+
+
+thead th{
+
+    background:var(--table-head);
+
+    color:#ffffff;
+
+    padding:11px 10px;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    text-align:left;
+
+    white-space:nowrap;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    border-right:
+        1px solid
+        rgba(255,255,255,.85);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.85);
+}
+
+
+thead th:last-child{
+
+    border-right:0;
+}
+
+
+thead th:hover{
+
+    background:#315f82;
+}
+
+
+tbody td{
+
+    padding:10px;
+
+    border-top:1px solid #edf1f4;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+}
+
+
+tbody tr:hover{
+
+    background:#f8fbfd;
+}
+
+
+.qty{
+
+    text-align:right;
+
+    font-weight:900;
+}
+
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+.pagination{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:13px 18px;
+
+    flex-wrap:wrap;
+}
+
+
+.page-info{
+
+    color:#7a8997;
+
+    font-size:11px;
+
+    font-weight:700;
+}
+
+
+.page-buttons{
+
+    display:flex;
+
+    gap:5px;
+}
+
+
+.page-buttons button{
+
+    border:0;
+
+    min-width:31px;
+
+    height:31px;
+
+    border-radius:8px;
+
+    background:#f0f4f7;
+
+    color:#617181;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    font-weight:900;
+}
+
+
+.page-buttons button:hover{
+
+    background:#e4ebf1;
+}
+
+
+.page-buttons button.active{
+
+    background:#315f82;
+
+    color:#fff;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status{
+
+    position:fixed;
+
+    right:18px;
+
+    bottom:18px;
+
+    background:#fff;
+
+    border:1px solid #dfe7ef;
+
+    border-radius:12px;
+
+    padding:10px 14px;
+
+    box-shadow:var(--shadow);
+
+    font-size:11px;
+
+    font-weight:800;
+
+    color:#667788;
+
+    z-index:50;
+
+    opacity:.95;
+
+    pointer-events:none;
+
+    max-width:90%;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1000px){
+
+    .filter-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .summary-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .focus-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .analysis-grid{
+
+        grid-template-columns:1fr;
+    }
+}
+
+
+@media(max-width:650px){
+
+    body{
+
+        padding:10px;
+    }
+
+    .header{
+
+        padding:18px;
+    }
+
+    .title{
+
+        font-size:24px;
+    }
+
+    .filter-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .summary-grid{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:9px;
+    }
+
+    .summary-card{
+
+        min-height:95px;
+
+        padding:13px;
+    }
+
+    .summary-value{
+
+        font-size:22px;
+    }
+
+    .focus-card{
+
+        min-height:215px;
+    }
+
+    .quick-search{
+
+        width:100%;
+    }
+
+    .table-header{
+
+        align-items:stretch;
+    }
+
+}
+
+
+@media(max-width:420px){
+
+    .summary-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .nav button{
+
+        flex:1;
+    }
+
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+@media print{
+
+    body{
+
+        background:#fff;
+
+        padding:0;
+    }
+
+    .nav,
+    .filter-toggle-wrap,
+    .filter-card,
+    .quick-search,
+    .pagination,
+    .status{
+
+        display:none !important;
+    }
+
+    .header,
+    .summary-card,
+    .focus-card,
+    .panel,
+    .table-panel{
+
+        box-shadow:none;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div class="header">
+
+    <div class="header-content">
+
+        <h1 class="title">
+            DASHBOARD DEFECT FLAT
+        </h1>
+
+        <div class="subtitle">
+            Monitoring & Analisa Defect Printing Flat
+        </div>
+
+
+        <div class="nav">
+
+            <button onclick="goPage('produksi')">
+                🏭 Produksi
+            </button>
+
+            <button onclick="goPage('cuci')">
+                🧺 Cuci
+            </button>
+
+            <button
+                class="active"
+                onclick="goPage('defect')">
+
+                ⚠️ Defect Flat
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FILTER TOGGLE
+===================================================== -->
+
+<div class="filter-toggle-wrap">
+
+    <button
+        class="filter-toggle"
+        id="filterToggle"
+        onclick="toggleFilter()">
+
+        <span class="filter-toggle-left">
+
+            <span class="filter-toggle-icon">
+                🔎
+            </span>
+
+            <span>
+                FILTER DATA DEFECT
+            </span>
+
+        </span>
+
+        <span class="filter-arrow">
+            ▼
+        </span>
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     FILTER
+===================================================== -->
+
+<div
+    class="filter-card"
+    id="filterCard">
+
+    <div class="section-title">
+        🔎 Filter Data Defect Flat
+    </div>
+
+
+    <div class="filter-grid">
+
+
+        <div class="field">
+
+            <label>
+                Tanggal Dari
+            </label>
+
+            <input
+                type="date"
+                id="dateFrom">
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Tanggal Ke
+            </label>
+
+            <input
+                type="date"
+                id="dateTo">
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Kode Produk
+            </label>
+
+            <select id="kodeProduk">
+
+                <option value="">
+                    Semua Kode Produk
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Motif
+            </label>
+
+            <select id="motif">
+
+                <option value="">
+                    Semua Motif
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Jenis Defect
+            </label>
+
+            <select id="jenisDefect">
+
+                <option value="">
+                    Semua Jenis Defect
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Mesin
+            </label>
+
+            <select id="mesin">
+
+                <option value="">
+                    Semua Mesin
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Grup — Pencarian
+            </label>
+
+            <div class="search-wrap">
+
+                <input
+                    type="text"
+                    id="grup"
+                    placeholder="Ketik grup...">
+
+                <span class="search-icon">
+                    ⌕
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Roll ID — Pencarian
+            </label>
+
+            <div class="search-wrap">
+
+                <input
+                    type="text"
+                    id="rollId"
+                    placeholder="Ketik Roll ID...">
+
+                <span class="search-icon">
+                    ⌕
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="filter-actions">
+
+        <button
+            class="btn btn-primary"
+            onclick="applyFilter()">
+
+            🔍 Terapkan Filter
+
+        </button>
+
+
+        <button
+            class="btn btn-reset"
+            onclick="resetFilter()">
+
+            ↻ Reset
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FILTER AKTIF
+===================================================== -->
+
+<div
+    class="active-filter-card"
+    id="activeFilterCard">
+
+    <div class="active-filter-title">
+
+        🔎 FILTER AKTIF
+
+    </div>
+
+
+    <div
+        class="active-filter-list"
+        id="activeFilterList">
+
+        <span class="filter-all">
+            Semua Data
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SUMMARY
+===================================================== -->
+
+<div class="summary-grid">
+
+
+    <div class="summary-card blue">
+
+        <div class="summary-label">
+            TOTAL DEFECT
+        </div>
+
+        <div
+            class="summary-value"
+            id="totalPcs">
+
+            0
+
+        </div>
+
+        <div class="summary-unit">
+            Pcs
+        </div>
+
+    </div>
+
+
+    <div class="summary-card green">
+
+        <div class="summary-label">
+            TOTAL ROLL
+        </div>
+
+        <div
+            class="summary-value"
+            id="totalRoll">
+
+            0
+
+        </div>
+
+        <div class="summary-unit">
+            Roll
+        </div>
+
+    </div>
+
+
+    <div class="summary-card orange">
+
+        <div class="summary-label">
+            JENIS DEFECT
+        </div>
+
+        <div
+            class="summary-value"
+            id="totalJenis">
+
+            0
+
+        </div>
+
+        <div class="summary-unit">
+            Jenis
+        </div>
+
+    </div>
+
+
+    <div class="summary-card purple">
+
+        <div class="summary-label">
+            DATA TERFILTER
+        </div>
+
+        <div
+            class="summary-value"
+            id="totalData">
+
+            0
+
+        </div>
+
+        <div class="summary-unit">
+            Baris
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FOCUS
+===================================================== -->
+
+<div class="focus-title">
+    🎯 FOKUS DEFECT
+</div>
+
+
+<div class="focus-grid">
+
+
+    <div class="focus-card blue">
+
+        <div class="focus-head">
+
+            <div class="focus-name">
+                JENIS DEFECT
+            </div>
+
+            <div class="focus-icon">
+                ⚠️
+            </div>
+
+        </div>
+
+
+        <div
+            class="focus-total"
+            id="focusDefectPcs">
+
+            0 Pcs
+
+        </div>
+
+
+        <div
+            class="focus-percent"
+            id="focusDefectPercent">
+
+            0%
+
+        </div>
+
+
+        <div class="focus-desc">
+
+            Kontribusi berdasarkan jenis defect
+
+        </div>
+
+
+        <div
+            class="focus-list"
+            id="defectMiniList">
+
+            <div class="empty">
+                Belum ada data
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="focus-card purple">
+
+        <div class="focus-head">
+
+            <div class="focus-name">
+                MESIN
+            </div>
+
+            <div class="focus-icon">
+                ⚙️
+            </div>
+
+        </div>
+
+
+        <div
+            class="focus-total"
+            id="focusMesinPcs">
+
+            0 Pcs
+
+        </div>
+
+
+        <div
+            class="focus-percent"
+            id="focusMesinPercent">
+
+            0%
+
+        </div>
+
+
+        <div class="focus-desc">
+
+            Kontribusi berdasarkan mesin
+
+        </div>
+
+
+        <div
+            class="focus-list"
+            id="mesinMiniList">
+
+            <div class="empty">
+                Belum ada data
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="focus-card green">
+
+        <div class="focus-head">
+
+            <div class="focus-name">
+                GRUP
+            </div>
+
+            <div class="focus-icon">
+                👥
+            </div>
+
+        </div>
+
+
+        <div
+            class="focus-total"
+            id="focusGrupPcs">
+
+            0 Pcs
+
+        </div>
+
+
+        <div
+            class="focus-percent"
+            id="focusGrupPercent">
+
+            0%
+
+        </div>
+
+
+        <div class="focus-desc">
+
+            Kontribusi berdasarkan grup
+
+        </div>
+
+
+        <div
+            class="focus-list"
+            id="grupMiniList">
+
+            <div class="empty">
+                Belum ada data
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ANALYSIS
+===================================================== -->
+
+<div class="analysis-grid">
+
+
+    <div class="panel">
+
+        <div class="panel-title">
+            🏆 Ranking Jenis Defect
+        </div>
+
+        <div id="defectRanking">
+
+            <div class="empty">
+                Belum ada data
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="panel">
+
+        <div class="panel-title">
+            ⚙️ Ranking Mesin
+        </div>
+
+        <div id="mesinRanking">
+
+            <div class="empty">
+                Belum ada data
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TABLE
+===================================================== -->
+
+<div class="table-panel">
+
+
+    <div class="table-header">
+
+        <div class="table-title">
+            📋 DETAIL DATA DEFECT
+        </div>
+
+
+        <input
+            class="quick-search"
+            id="quickSearch"
+            placeholder="Cari seluruh data..."
+            oninput="quickSearch()">
+
+    </div>
+
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th onclick="sortTable('tgl')">
+                        TGL FLAT ↕
+                    </th>
+
+                    <th onclick="sortTable('roll')">
+                        ROLL ID ↕
+                    </th>
+
+                    <th onclick="sortTable('kode')">
+                        KODE PROD ↕
+                    </th>
+
+                    <th onclick="sortTable('qty')">
+                        JUMLAH (Pcs) ↕
+                    </th>
+
+                    <th onclick="sortTable('defect')">
+                        JENIS DEFECT ↕
+                    </th>
+
+                    <th onclick="sortTable('mesin')">
+                        MESIN ↕
+                    </th>
+
+                    <th onclick="sortTable('motif')">
+                        MOTIF ↕
+                    </th>
+
+                    <th>
+                        BLOK + ISIAN
+                    </th>
+
+                    <th onclick="sortTable('grup')">
+                        GRUP ↕
+                    </th>
+
+                    <th>
+                        OPERATOR
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="tableBody"></tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="pagination">
+
+        <div
+            class="page-info"
+            id="pageInfo">
+
+            Belum ada data
+
+        </div>
+
+
+        <div
+            class="page-buttons"
+            id="pageButtons">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     STATUS
+===================================================== -->
+
+<div
+    class="status"
+    id="status">
+
+    Memuat data...
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   URL APPS SCRIPT
+===================================================== */
+
+const API_URL =
+    "https://script.google.com/macros/s/AKfycbyIVCEUVB-vmepbtaOZvUwFGpMZD0rWBoAn4VrjoLq7JmBLTlhtifMOuYNTbaCKi4Q_qA/exec";
+
+
+/* =====================================================
+   DATA
+===================================================== */
+
+let allData = [];
+
+let filteredData = [];
+
+let currentPage = 1;
+
+const rowsPerPage = 15;
+
+let sortColumn = "";
+
+let sortDirection = 1;
+
+
+/* =====================================================
+   STORAGE KEY
+===================================================== */
+
+const FILTER_STORAGE_KEY =
+    "dashboardDefectFlat_filter_v1";
+
+
+/* =====================================================
+   FORMAT ANGKA
+===================================================== */
+
+function formatNumber(number){
+
+    return Number(number || 0)
+        .toLocaleString("id-ID");
+
+}
+
+
+/* =====================================================
+   FORMAT TANGGAL
+===================================================== */
+
+function formatDate(value){
+
+    if(!value)
+        return "";
+
+    const normalized =
+        normalizeDate(value);
+
+    if(!normalized)
+        return value;
+
+    const parts =
+        normalized.split("-");
+
+    if(parts.length !== 3)
+        return value;
+
+    return (
+        parts[2] +
+        "/" +
+        parts[1] +
+        "/" +
+        parts[0]
+    );
+
+}
+
+
+/* =====================================================
+   NORMALIZE DATE
+===================================================== */
+
+function normalizeDate(value){
+
+    if(!value)
+        return "";
+
+    if(typeof value === "string"){
+
+        const text =
+            value.trim();
+
+        if(
+            /^\d{4}-\d{2}-\d{2}$/
+            .test(text)
+        ){
+
+            return text;
+
+        }
+
+        let match =
+            text.match(
+                /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/
+            );
+
+        if(match){
+
+            return (
+                match[3] +
+                "-" +
+                String(match[2]).padStart(2,"0") +
+                "-" +
+                String(match[1]).padStart(2,"0")
+            );
+
+        }
+
+        const parsed =
+            new Date(text);
+
+        if(!isNaN(parsed)){
+
+            const y =
+                parsed.getFullYear();
+
+            const m =
+                String(
+                    parsed.getMonth()+1
+                ).padStart(2,"0");
+
+            const d =
+                String(
+                    parsed.getDate()
+                ).padStart(2,"0");
+
+            return (
+                y +
+                "-" +
+                m +
+                "-" +
+                d
+            );
+
+        }
+
+    }
+
+    const d =
+        new Date(value);
+
+    if(isNaN(d))
+        return "";
+
+    const y =
+        d.getFullYear();
+
+    const m =
+        String(
+            d.getMonth()+1
+        ).padStart(2,"0");
+
+    const day =
+        String(
+            d.getDate()
+        ).padStart(2,"0");
+
+    return (
+        y +
+        "-" +
+        m +
+        "-" +
+        day
+    );
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function setStatus(text){
+
+    const el =
+        document.getElementById("status");
+
+    if(el)
+        el.textContent = text;
+
+}
+
+
+/* =====================================================
+   TOGGLE FILTER
+===================================================== */
+
+function toggleFilter(){
+
+    const card =
+        document.getElementById(
+            "filterCard"
+        );
+
+    const button =
+        document.getElementById(
+            "filterToggle"
+        );
+
+    card.classList.toggle("show");
+
+    button.classList.toggle(
+        "open",
+        card.classList.contains("show")
+    );
+
+}
+
+
+/* =====================================================
+   DOM READY
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        setStatus(
+            "Memuat data Defect Flat..."
+        );
+
+        loadDefectData();
+
+    }
+);
+
+
+/* =====================================================
+   LOAD DATA DARI APPS SCRIPT
+===================================================== */
+
+async function loadDefectData(){
+
+    try{
+
+        setStatus(
+            "Mengambil data dari Google Sheets..."
+        );
+
+
+        const url =
+            API_URL +
+            "?action=defect&_=" +
+            Date.now();
+
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method:"GET",
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        console.log(
+            "RESPON APPS SCRIPT:",
+            result
+        );
+
+
+        if(
+            result &&
+            result.success === false
+        ){
+
+            throw new Error(
+                result.error ||
+                "Apps Script mengembalikan error"
+            );
+
+        }
+
+
+        setDefectData(result);
+
+
+    }
+    catch(error){
+
+        console.error(
+            "GAGAL LOAD DEFECT:",
+            error
+        );
+
+
+        allData = [];
+
+        filteredData = [];
+
+
+        renderDashboard();
+
+
+        setStatus(
+            "❌ Gagal mengambil data: " +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   NORMALIZE HEADER
+===================================================== */
+
+function normalizeHeader(value){
+
+    return String(
+        value || ""
+    )
+    .trim()
+    .toLowerCase()
+    .replace(
+        /[\r\n]+/g,
+        " "
+    )
+    .replace(
+        /[_\-]+/g,
+        " "
+    )
+    .replace(
+        /\s+/g,
+        " "
+    )
+    .trim();
+
+}
+
+
+/* =====================================================
+   CARI INDEX HEADER
+===================================================== */
+
+function findHeaderIndex(
+    headers,
+    names
+){
+
+    const normalizedHeaders =
+        headers.map(
+            normalizeHeader
+        );
+
+
+    for(
+        const name of names
+    ){
+
+        const target =
+            normalizeHeader(name);
+
+        const index =
+            normalizedHeaders.indexOf(
+                target
+            );
+
+        if(index !== -1)
+            return index;
+
+    }
+
+
+    /* CARI HEADER YANG MENGANDUNG */
+
+    for(
+        const name of names
+    ){
+
+        const target =
+            normalizeHeader(name);
+
+        const index =
+            normalizedHeaders.findIndex(
+                header =>
+                    header.includes(target)
+            );
+
+        if(index !== -1)
+            return index;
+
+    }
+
+
+    return -1;
+
+}
+
+
+/* =====================================================
+   AMBIL NILAI KOLOM
+===================================================== */
+
+function getCell(
+    row,
+    index
+){
+
+    if(index < 0)
+        return "";
+
+    if(
+        !row ||
+        index >= row.length
+    )
+        return "";
+
+    return row[index];
+
+}
+
+
+/* =====================================================
+   SET DEFECT DATA
+===================================================== */
+
+function setDefectData(data){
+
+    try{
+
+        if(!Array.isArray(data)){
+
+            throw new Error(
+                "Format data dari Apps Script bukan array"
+            );
+
+        }
+
+
+        if(data.length === 0){
+
+            allData = [];
+
+            filteredData = [];
+
+            populateFilters();
+
+            renderDashboard();
+
+            setStatus(
+                "⚠️ Sheet Defect Flat kosong"
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * APPS SCRIPT MENGEMBALIKAN:
+         *
+         * [
+         *   [HEADER1, HEADER2, ...],
+         *   [DATA1, DATA2, ...],
+         *   [DATA1, DATA2, ...]
+         * ]
+         */
+
+
+        const headers =
+            data[0];
+
+
+        const rows =
+            data.slice(1);
+
+
+        console.log(
+            "HEADER SHEET:",
+            headers
+        );
+
+
+        /*
+         * CARI POSISI MASING-MASING KOLOM
+         */
+
+        const idx = {
+
+            tgl:
+                findHeaderIndex(
+                    headers,
+                    [
+                        "tgl flat",
+                        "tanggal flat",
+                        "tanggal",
+                        "tgl"
+                    ]
+                ),
+
+            roll:
+                findHeaderIndex(
+                    headers,
+                    [
+                        "roll id",
+                        "roll",
+                        "id roll"
+                    ]
+                ),
+
+            kode:
+                findHeaderIndex(
+                    headers,
+                    [
+                        "kode prod",
+                        "kode produk",
+                        "kode product",
+                        "kode"
+                    ]
+                ),
+
+            qty:
+                findHeaderIndex(
+                    headers,
+                    [
+                        "jumlah (pcs)",
+                        "jumlah pcs",
+                        "jumlah",
+                        "qty",
+                        "pcs"
+                    ]
+                ),
+
+            defect:
+                findHeaderIndex(
+                    headers,
+                    [
+                        "jenis defect",
+                        "jenis_defect",
+                        "defect"
+                    ]
+                ),
+
+            mesin:
+                findHeaderIndex(
+                    headers,
+                    [
+                        "mesin",
+                        "nama mesin"
+                    ]
+                ),
+
+            motif:
+                findHeaderIndex(
+                    headers,
+                    [
+                        "motif"
+                    ]
+                ),
+
+            blok:
+                findHeaderIndex(
+                    headers,
+                    [
+                        "blok + isian",
+                        "blok isian",
+                        "blok+isian",
+                        "blok"
+                    ]
+                ),
+
+            grup:
+                findHeaderIndex(
+                    headers,
+                    [
+                        "grup",
+                        "group"
+                    ]
+                ),
+
+            operator:
+                findHeaderIndex(
+                    headers,
+                    [
+                        "operator",
+                        "nama operator"
+                    ]
+                )
+
+        };
+
+
+        console.log(
+            "INDEX KOLOM:",
+            idx
+        );
+
+
+        /*
+         * KONVERSI DATA
+         */
+
+        allData =
+            rows
+            .filter(
+                row =>
+                    Array.isArray(row)
+            )
+            .map(
+                row => {
+
+                    let qtyValue =
+                        getCell(
+                            row,
+                            idx.qty
+                        );
+
+
+                    /*
+                     * SUPPORT ANGKA:
+                     * 1000
+                     * "1000"
+                     * "1.000"
+                     * "1,000"
+                     */
+
+                    if(
+                        typeof qtyValue ===
+                        "string"
+                    ){
+
+                        let text =
+                            qtyValue
+                            .trim()
+                            .replace(
+                                /\s/g,
+                                ""
+                            );
+
+
+                        if(
+                            text.includes(".") &&
+                            text.includes(",")
+                        ){
+
+                            text =
+                                text
+                                .replace(
+                                    /\./g,
+                                    ""
+                                )
+                                .replace(
+                                    ",",
+                                    "."
+                                );
+
+                        }
+                        else if(
+                            text.includes(".")
+                        ){
+
+                            /*
+                             * Untuk data seperti
+                             * 1.000 dianggap 1000
+                             */
+
+                            text =
+                                text.replace(
+                                    /\./g,
+                                    ""
+                                );
+
+                        }
+                        else if(
+                            text.includes(",")
+                        ){
+
+                            text =
+                                text.replace(
+                                    ",",
+                                    "."
+                                );
+
+                        }
+
+
+                        qtyValue =
+                            Number(text);
+
+                    }
+
+
+                    return {
+
+                        tgl:
+                            normalizeDate(
+                                getCell(
+                                    row,
+                                    idx.tgl
+                                )
+                            ),
+
+                        roll:
+                            getCell(
+                                row,
+                                idx.roll
+                            ) || "",
+
+                        kode:
+                            getCell(
+                                row,
+                                idx.kode
+                            ) || "",
+
+                        qty:
+                            Number(
+                                qtyValue || 0
+                            ),
+
+                        defect:
+                            getCell(
+                                row,
+                                idx.defect
+                            ) || "",
+
+                        mesin:
+                            getCell(
+                                row,
+                                idx.mesin
+                            ) || "",
+
+                        motif:
+                            getCell(
+                                row,
+                                idx.motif
+                            ) || "",
+
+                        blok:
+                            getCell(
+                                row,
+                                idx.blok
+                            ) || "",
+
+                        grup:
+                            getCell(
+                                row,
+                                idx.grup
+                            ) || "",
+
+                        operator:
+                            getCell(
+                                row,
+                                idx.operator
+                            ) || ""
+
+                    };
+
+                }
+            );
+
+
+        /*
+         * UBAH SEMUA NILAI MENJADI STRING
+         * KECUALI QTY
+         */
+
+        allData =
+            allData.map(
+                row => {
+
+                    return {
+
+                        tgl:
+                            row.tgl,
+
+                        roll:
+                            String(
+                                row.roll ?? ""
+                            ),
+
+                        kode:
+                            String(
+                                row.kode ?? ""
+                            ),
+
+                        qty:
+                            Number(
+                                row.qty || 0
+                            ),
+
+                        defect:
+                            String(
+                                row.defect ?? ""
+                            ),
+
+                        mesin:
+                            String(
+                                row.mesin ?? ""
+                            ),
+
+                        motif:
+                            String(
+                                row.motif ?? ""
+                            ),
+
+                        blok:
+                            String(
+                                row.blok ?? ""
+                            ),
+
+                        grup:
+                            String(
+                                row.grup ?? ""
+                            ),
+
+                        operator:
+                            String(
+                                row.operator ?? ""
+                            )
+
+                    };
+
+                }
+            );
+
+
+        /*
+         * FILTER OPTION
+         */
+
+        populateFilters();
+
+
+        /*
+         * LOAD FILTER TERAKHIR
+         */
+
+        let savedFilter = null;
+
+
+        try{
+
+            const saved =
+                localStorage.getItem(
+                    FILTER_STORAGE_KEY
+                );
+
+
+            if(saved){
+
+                savedFilter =
+                    JSON.parse(saved);
+
+            }
+
+        }
+        catch(error){
+
+            savedFilter = null;
+
+        }
+
+
+        if(savedFilter){
+
+            setFilterForm(
+                savedFilter
+            );
+
+
+            filteredData =
+                getCurrentFilterData();
+
+        }
+        else{
+
+            filteredData =
+                [...allData];
+
+        }
+
+
+        currentPage = 1;
+
+
+        updateActiveFilter();
+
+
+        renderDashboard();
+
+
+        setStatus(
+
+            savedFilter
+
+            ? "✅ Data dimuat • Filter terakhir aktif • " +
+              formatNumber(
+                  filteredData.length
+              ) +
+              " baris"
+
+            : "✅ Data berhasil dimuat • " +
+              formatNumber(
+                  allData.length
+              ) +
+              " baris"
+
+        );
+
+
+        /*
+         * DEBUG DI CONSOLE
+         */
+
+        console.log(
+            "TOTAL DATA:",
+            allData.length
+        );
+
+        console.log(
+            "DATA DEFECT:",
+            allData
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "ERROR SET DEFECT DATA:",
+            error
+        );
+
+
+        allData = [];
+
+        filteredData = [];
+
+
+        renderDashboard();
+
+
+        setStatus(
+            "❌ Error membaca data: " +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   POPULATE FILTER
+===================================================== */
+
+function populateFilters(){
+
+    const kodeSet =
+        new Set();
+
+    const defectSet =
+        new Set();
+
+    const mesinSet =
+        new Set();
+
+    const motifSet =
+        new Set();
+
+
+    allData.forEach(
+        row => {
+
+            if(row.kode)
+                kodeSet.add(
+                    String(row.kode)
+                );
+
+            if(row.defect)
+                defectSet.add(
+                    String(row.defect)
+                );
+
+            if(row.mesin)
+                mesinSet.add(
+                    String(row.mesin)
+                );
+
+            if(row.motif)
+                motifSet.add(
+                    String(row.motif)
+                );
+
+        }
+    );
+
+
+    fillSelect(
+        "kodeProduk",
+        [...kodeSet].sort()
+    );
+
+
+    fillSelect(
+        "jenisDefect",
+        [...defectSet].sort()
+    );
+
+
+    fillSelect(
+        "mesin",
+        [...mesinSet].sort()
+    );
+
+
+    fillSelect(
+        "motif",
+        [...motifSet].sort()
+    );
+
+}
+
+
+/* =====================================================
+   FILL SELECT
+===================================================== */
+
+function fillSelect(
+    id,
+    items
+){
+
+    const select =
+        document.getElementById(id);
+
+    if(!select)
+        return;
+
+
+    const firstOption =
+        select.options[0];
+
+
+    select.innerHTML = "";
+
+
+    select.appendChild(
+        firstOption
+    );
+
+
+    items.forEach(
+        item => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                item;
+
+            option.textContent =
+                item;
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   GET FILTER OBJECT
+===================================================== */
+
+function getFilterObject(){
+
+    return {
+
+        dateFrom:
+            document.getElementById(
+                "dateFrom"
+            ).value,
+
+        dateTo:
+            document.getElementById(
+                "dateTo"
+            ).value,
+
+        kode:
+            document.getElementById(
+                "kodeProduk"
+            ).value,
+
+        motif:
+            document.getElementById(
+                "motif"
+            ).value,
+
+        defect:
+            document.getElementById(
+                "jenisDefect"
+            ).value,
+
+        mesin:
+            document.getElementById(
+                "mesin"
+            ).value,
+
+        grup:
+            document.getElementById(
+                "grup"
+            ).value
+            .trim(),
+
+        roll:
+            document.getElementById(
+                "rollId"
+            ).value
+            .trim()
+
+    };
+
+}
+
+
+/* =====================================================
+   SET FILTER FORM
+===================================================== */
+
+function setFilterForm(filter){
+
+    if(!filter)
+        return;
+
+
+    document.getElementById(
+        "dateFrom"
+    ).value =
+        filter.dateFrom || "";
+
+
+    document.getElementById(
+        "dateTo"
+    ).value =
+        filter.dateTo || "";
+
+
+    document.getElementById(
+        "kodeProduk"
+    ).value =
+        filter.kode || "";
+
+
+    document.getElementById(
+        "motif"
+    ).value =
+        filter.motif || "";
+
+
+    document.getElementById(
+        "jenisDefect"
+    ).value =
+        filter.defect || "";
+
+
+    document.getElementById(
+        "mesin"
+    ).value =
+        filter.mesin || "";
+
+
+    document.getElementById(
+        "grup"
+    ).value =
+        filter.grup || "";
+
+
+    document.getElementById(
+        "rollId"
+    ).value =
+        filter.roll || "";
+
+}
+
+
+/* =====================================================
+   SAVE FILTER
+===================================================== */
+
+function saveFilter(){
+
+    try{
+
+        const filter =
+            getFilterObject();
+
+
+        localStorage.setItem(
+            FILTER_STORAGE_KEY,
+            JSON.stringify(filter)
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            "Gagal menyimpan filter:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD SAVED FILTER
+===================================================== */
+
+function loadSavedFilter(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(
+                FILTER_STORAGE_KEY
+            );
+
+
+        if(!saved){
+
+            filteredData =
+                [...allData];
+
+            updateActiveFilter();
+
+            return;
+
+        }
+
+
+        const filter =
+            JSON.parse(saved);
+
+
+        setFilterForm(
+            filter
+        );
+
+
+        filteredData =
+            getCurrentFilterData();
+
+
+        currentPage = 1;
+
+
+        updateActiveFilter();
+
+
+        setStatus(
+            "Filter terakhir dipulihkan • " +
+            formatNumber(
+                filteredData.length
+            ) +
+            " baris"
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            "Gagal memuat filter:",
+            error
+        );
+
+        filteredData =
+            [...allData];
+
+    }
+
+}
+
+
+/* =====================================================
+   CLEAR SAVED FILTER
+===================================================== */
+
+function clearSavedFilter(){
+
+    try{
+
+        localStorage.removeItem(
+            FILTER_STORAGE_KEY
+        );
+
+    }
+    catch(error){
+
+        console.warn(
+            "Gagal menghapus filter:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   GET CURRENT FILTER DATA
+===================================================== */
+
+function getCurrentFilterData(){
+
+    const dateFrom =
+        document.getElementById(
+            "dateFrom"
+        ).value;
+
+    const dateTo =
+        document.getElementById(
+            "dateTo"
+        ).value;
+
+    const kode =
+        document.getElementById(
+            "kodeProduk"
+        ).value;
+
+    const defect =
+        document.getElementById(
+            "jenisDefect"
+        ).value;
+
+    const mesin =
+        document.getElementById(
+            "mesin"
+        ).value;
+
+    const motif =
+        document.getElementById(
+            "motif"
+        ).value;
+
+    const grup =
+        document.getElementById(
+            "grup"
+        ).value
+        .trim()
+        .toLowerCase();
+
+    const roll =
+        document.getElementById(
+            "rollId"
+        ).value
+        .trim()
+        .toLowerCase();
+
+
+    return allData.filter(
+        row => {
+
+            const rowDate =
+                normalizeDate(
+                    row.tgl
+                );
+
+
+            if(dateFrom){
+
+                if(
+                    !rowDate ||
+                    rowDate < dateFrom
+                )
+                    return false;
+
+            }
+
+
+            if(dateTo){
+
+                if(
+                    !rowDate ||
+                    rowDate > dateTo
+                )
+                    return false;
+
+            }
+
+
+            if(kode){
+
+                if(
+                    String(
+                        row.kode || ""
+                    ) !==
+                    String(kode)
+                )
+                    return false;
+
+            }
+
+
+            if(defect){
+
+                if(
+                    String(
+                        row.defect || ""
+                    ) !==
+                    String(defect)
+                )
+                    return false;
+
+            }
+
+
+            if(mesin){
+
+                if(
+                    String(
+                        row.mesin || ""
+                    ) !==
+                    String(mesin)
+                )
+                    return false;
+
+            }
+
+
+            if(motif){
+
+                if(
+                    String(
+                        row.motif || ""
+                    ) !==
+                    String(motif)
+                )
+                    return false;
+
+            }
+
+
+            if(grup){
+
+                if(
+                    !String(
+                        row.grup || ""
+                    )
+                    .toLowerCase()
+                    .includes(grup)
+                )
+                    return false;
+
+            }
+
+
+            if(roll){
+
+                if(
+                    !String(
+                        row.roll || ""
+                    )
+                    .toLowerCase()
+                    .includes(roll)
+                )
+                    return false;
+
+            }
+
+
+            return true;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   APPLY FILTER
+===================================================== */
+
+function applyFilter(){
+
+    filteredData =
+        getCurrentFilterData();
+
+
+    currentPage = 1;
+
+
+    saveFilter();
+
+
+    updateActiveFilter();
+
+
     renderDashboard();
 
 
     setStatus(
-
-        savedFilter
-
-        ? "Data dimuat • Filter terakhir aktif • " +
-          formatNumber(
-              filteredData.length
-          ) +
-          " baris"
-
-        : "Data berhasil dimuat • " +
-          formatNumber(
-              allData.length
-          ) +
-          " baris"
-
+        "Filter aktif • " +
+        formatNumber(
+            filteredData.length
+        ) +
+        " baris"
     );
+
+}
+
+
+/* =====================================================
+   RESET FILTER
+===================================================== */
+
+function resetFilter(){
+
+    document.getElementById(
+        "dateFrom"
+    ).value = "";
+
+
+    document.getElementById(
+        "dateTo"
+    ).value = "";
+
+
+    document.getElementById(
+        "kodeProduk"
+    ).value = "";
+
+
+    document.getElementById(
+        "jenisDefect"
+    ).value = "";
+
+
+    document.getElementById(
+        "mesin"
+    ).value = "";
+
+
+    document.getElementById(
+        "motif"
+    ).value = "";
+
+
+    document.getElementById(
+        "grup"
+    ).value = "";
+
+
+    document.getElementById(
+        "rollId"
+    ).value = "";
+
+
+    document.getElementById(
+        "quickSearch"
+    ).value = "";
+
+
+    clearSavedFilter();
+
+
+    filteredData =
+        [...allData];
+
+
+    currentPage = 1;
+
+
+    sortColumn = "";
+
+    sortDirection = 1;
+
+
+    updateActiveFilter();
+
+
+    renderDashboard();
+
+
+    setStatus(
+        "Filter direset • Semua Data"
+    );
+
+}
+
+
+/* =====================================================
+   ACTIVE FILTER DISPLAY
+===================================================== */
+
+function updateActiveFilter(){
+
+    const container =
+        document.getElementById(
+            "activeFilterList"
+        );
+
+
+    if(!container)
+        return;
+
+
+    const filter =
+        getFilterObject();
+
+
+    const chips = [];
+
+
+    if(filter.dateFrom){
+
+        chips.push(
+            createFilterChip(
+                "Tanggal Dari",
+                formatDate(
+                    filter.dateFrom
+                )
+            )
+        );
+
+    }
+
+
+    if(filter.dateTo){
+
+        chips.push(
+            createFilterChip(
+                "Tanggal Ke",
+                formatDate(
+                    filter.dateTo
+                )
+            )
+        );
+
+    }
+
+
+    if(filter.kode){
+
+        chips.push(
+            createFilterChip(
+                "Kode",
+                filter.kode
+            )
+        );
+
+    }
+
+
+    if(filter.motif){
+
+        chips.push(
+            createFilterChip(
+                "Motif",
+                filter.motif
+            )
+        );
+
+    }
+
+
+    if(filter.defect){
+
+        chips.push(
+            createFilterChip(
+                "Defect",
+                filter.defect
+            )
+        );
+
+    }
+
+
+    if(filter.mesin){
+
+        chips.push(
+            createFilterChip(
+                "Mesin",
+                filter.mesin
+            )
+        );
+
+    }
+
+
+    if(filter.grup){
+
+        chips.push(
+            createFilterChip(
+                "Grup",
+                filter.grup
+            )
+        );
+
+    }
+
+
+    if(filter.roll){
+
+        chips.push(
+            createFilterChip(
+                "Roll ID",
+                filter.roll
+            )
+        );
+
+    }
+
+
+    if(!chips.length){
+
+        container.innerHTML = `
+            <span class="filter-all">
+                ✓ Semua Data
+            </span>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        chips.join("");
+
+}
+
+
+/* =====================================================
+   CREATE FILTER CHIP
+===================================================== */
+
+function createFilterChip(
+    label,
+    value
+){
+
+    return `
+        <span class="filter-chip">
+
+            <strong>
+                ${escapeHtml(label)}:
+            </strong>
+
+            ${escapeHtml(value)}
+
+        </span>
+    `;
+
+}
+
+
+/* =====================================================
+   QUICK SEARCH
+===================================================== */
+
+function quickSearch(){
+
+    const text =
+        document.getElementById(
+            "quickSearch"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const baseData =
+        getCurrentFilterData();
+
+
+    if(!text){
+
+        filteredData =
+            baseData;
+
+    }
+    else{
+
+        filteredData =
+            baseData.filter(
+                row => {
+
+                    return Object.values(row)
+                        .join(" ")
+                        .toLowerCase()
+                        .includes(text);
+
+                }
+            );
+
+    }
+
+
+    currentPage = 1;
+
+
+    renderDashboard();
+
+}
+
+
+/* =====================================================
+   RENDER DASHBOARD
+===================================================== */
+
+function renderDashboard(){
+
+    updateActiveFilter();
+
+    renderSummary();
+
+    renderFocusCards();
+
+    renderRanking();
+
+    renderTable();
+
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+function renderSummary(){
+
+    let totalPcs = 0;
+
+    const rolls =
+        new Set();
+
+    const defects =
+        new Set();
+
+
+    filteredData.forEach(
+        row => {
+
+            totalPcs +=
+                Number(
+                    row.qty || 0
+                );
+
+
+            if(row.roll)
+                rolls.add(
+                    String(row.roll)
+                );
+
+
+            if(row.defect)
+                defects.add(
+                    String(row.defect)
+                );
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalPcs"
+    ).textContent =
+        formatNumber(totalPcs);
+
+
+    document.getElementById(
+        "totalRoll"
+    ).textContent =
+        formatNumber(rolls.size);
+
+
+    document.getElementById(
+        "totalJenis"
+    ).textContent =
+        formatNumber(defects.size);
+
+
+    document.getElementById(
+        "totalData"
+    ).textContent =
+        formatNumber(
+            filteredData.length
+        );
+
+}
+
+
+/* =====================================================
+   GROUP DATA
+===================================================== */
+
+function groupBy(field){
+
+    const result = {};
+
+
+    filteredData.forEach(
+        row => {
+
+            const raw =
+                row[field];
+
+
+            const name =
+                raw === null ||
+                raw === undefined ||
+                raw === ""
+                ? "Tidak diketahui"
+                : String(raw);
+
+
+            if(!result[name])
+                result[name] = 0;
+
+
+            result[name] +=
+                Number(
+                    row.qty || 0
+                );
+
+        }
+    );
+
+
+    return result;
+
+}
+
+
+/* =====================================================
+   FOCUS CARDS
+===================================================== */
+
+function renderFocusCards(){
+
+    const total =
+        filteredData.reduce(
+            (sum,row) =>
+                sum +
+                Number(
+                    row.qty || 0
+                ),
+            0
+        );
+
+
+    renderFocus(
+        "defect",
+        groupBy("defect"),
+        total
+    );
+
+
+    renderFocus(
+        "mesin",
+        groupBy("mesin"),
+        total
+    );
+
+
+    renderFocus(
+        "grup",
+        groupBy("grup"),
+        total
+    );
+
+}
+
+
+/* =====================================================
+   RENDER FOCUS
+===================================================== */
+
+function renderFocus(
+    type,
+    data,
+    total
+){
+
+    const entries =
+        Object.entries(data)
+        .sort(
+            (a,b) =>
+                b[1] - a[1]
+        );
+
+
+    const top =
+        entries.length
+        ? entries[0]
+        : ["-",0];
+
+
+    const percent =
+        total > 0
+        ? top[1] /
+          total *
+          100
+        : 0;
+
+
+    let pcsId;
+
+    let percentId;
+
+    let listId;
+
+
+    if(type === "defect"){
+
+        pcsId =
+            "focusDefectPcs";
+
+        percentId =
+            "focusDefectPercent";
+
+        listId =
+            "defectMiniList";
+
+    }
+
+
+    if(type === "mesin"){
+
+        pcsId =
+            "focusMesinPcs";
+
+        percentId =
+            "focusMesinPercent";
+
+        listId =
+            "mesinMiniList";
+
+    }
+
+
+    if(type === "grup"){
+
+        pcsId =
+            "focusGrupPcs";
+
+        percentId =
+            "focusGrupPercent";
+
+        listId =
+            "grupMiniList";
+
+    }
+
+
+    document.getElementById(
+        pcsId
+    ).textContent =
+        formatNumber(
+            top[1]
+        ) +
+        " Pcs";
+
+
+    document.getElementById(
+        percentId
+    ).textContent =
+        percent.toFixed(1) +
+        "%";
+
+
+    const list =
+        document.getElementById(
+            listId
+        );
+
+
+    if(!entries.length){
+
+        list.innerHTML =
+            '<div class="empty">Belum ada data</div>';
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        entries
+        .slice(0,4)
+        .map(
+            (item,index)=>{
+
+                const p =
+                    total > 0
+                    ? item[1] /
+                      total *
+                      100
+                    : 0;
+
+
+                return `
+
+                    <div class="mini-row">
+
+                        <span>
+                            ${index + 1}.
+                            ${escapeHtml(
+                                item[0]
+                            )}
+                        </span>
+
+                        <span>
+                            ${formatNumber(
+                                item[1]
+                            )}
+                            (${p.toFixed(1)}%)
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =====================================================
+   RANKING
+===================================================== */
+
+function renderRanking(){
+
+    renderRankPanel(
+        "defectRanking",
+        groupBy("defect")
+    );
+
+
+    renderRankPanel(
+        "mesinRanking",
+        groupBy("mesin")
+    );
+
+}
+
+
+/* =====================================================
+   RANK PANEL
+===================================================== */
+
+function renderRankPanel(
+    id,
+    data
+){
+
+    const container =
+        document.getElementById(id);
+
+
+    const entries =
+        Object.entries(data)
+        .sort(
+            (a,b) =>
+                b[1] - a[1]
+        );
+
+
+    if(!entries.length){
+
+        container.innerHTML =
+            '<div class="empty">Belum ada data</div>';
+
+        return;
+
+    }
+
+
+    const max =
+        entries[0][1] || 1;
+
+
+    container.innerHTML =
+        entries
+        .slice(0,8)
+        .map(
+            (item,index)=>{
+
+                const width =
+                    item[1] /
+                    max *
+                    100;
+
+
+                return `
+
+                    <div class="rank-row">
+
+                        <div class="rank-number">
+                            ${index + 1}
+                        </div>
+
+                        <div>
+
+                            <div class="rank-name">
+                                ${escapeHtml(
+                                    item[0]
+                                )}
+                            </div>
+
+                            <div class="bar-wrap">
+
+                                <div
+                                    class="bar"
+                                    style="width:${width}%">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="rank-value">
+                            ${formatNumber(
+                                item[1]
+                            )}
+                            Pcs
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+function renderTable(){
+
+    const tbody =
+        document.getElementById(
+            "tableBody"
+        );
+
+
+    let data =
+        [...filteredData];
+
+
+    if(sortColumn){
+
+        data.sort(
+            (a,b)=>{
+
+                let A =
+                    a[sortColumn] ??
+                    "";
+
+                let B =
+                    b[sortColumn] ??
+                    "";
+
+
+                if(sortColumn === "qty"){
+
+                    A =
+                        Number(
+                            A || 0
+                        );
+
+                    B =
+                        Number(
+                            B || 0
+                        );
+
+                }
+
+                else if(
+                    sortColumn === "tgl"
+                ){
+
+                    A =
+                        normalizeDate(A);
+
+                    B =
+                        normalizeDate(B);
+
+                }
+
+                else{
+
+                    A =
+                        String(A)
+                        .toLowerCase();
+
+                    B =
+                        String(B)
+                        .toLowerCase();
+
+                }
+
+
+                if(A < B)
+                    return (
+                        -1 *
+                        sortDirection
+                    );
+
+
+                if(A > B)
+                    return (
+                        1 *
+                        sortDirection
+                    );
+
+
+                return 0;
+
+            }
+        );
+
+    }
+
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                data.length /
+                rowsPerPage
+            )
+        );
+
+
+    if(
+        currentPage >
+        totalPages
+    )
+        currentPage =
+            totalPages;
+
+
+    const start =
+        (
+            currentPage - 1
+        ) *
+        rowsPerPage;
+
+
+    const pageData =
+        data.slice(
+            start,
+            start +
+            rowsPerPage
+        );
+
+
+    if(!pageData.length){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="10">
+
+                    <div class="empty">
+                        Tidak ada data
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        renderPagination(
+            0,
+            0
+        );
+
+        return;
+
+    }
+
+
+    tbody.innerHTML =
+        pageData
+        .map(
+            row=>{
+
+                return `
+
+                    <tr>
+
+                        <td>
+                            ${formatDate(
+                                row.tgl
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                row.roll
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                row.kode
+                            )}
+                        </td>
+
+                        <td class="qty">
+                            ${formatNumber(
+                                row.qty
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                row.defect
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                row.mesin
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                row.motif
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                row.blok
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                row.grup
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                row.operator
+                            )}
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        )
+        .join("");
+
+
+    renderPagination(
+        data.length,
+        totalPages
+    );
+
+}
+
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+function renderPagination(
+    total,
+    totalPages
+){
+
+    const info =
+        document.getElementById(
+            "pageInfo"
+        );
+
+
+    const buttons =
+        document.getElementById(
+            "pageButtons"
+        );
+
+
+    if(!total){
+
+        info.textContent =
+            "Tidak ada data";
+
+        buttons.innerHTML = "";
+
+        return;
+
+    }
+
+
+    const start =
+        (
+            currentPage - 1
+        ) *
+        rowsPerPage +
+        1;
+
+
+    const end =
+        Math.min(
+            currentPage *
+            rowsPerPage,
+            total
+        );
+
+
+    info.textContent =
+        `Menampilkan ${start}-${end} dari ${formatNumber(total)} data`;
+
+
+    let html = "";
+
+
+    if(currentPage > 1){
+
+        html += `
+
+            <button
+                onclick="changePage(
+                    ${currentPage - 1}
+                )">
+
+                ‹
+
+            </button>
+
+        `;
+
+    }
+
+
+    const maxButtons = 7;
+
+
+    let first =
+        Math.max(
+            1,
+            currentPage -
+            Math.floor(
+                maxButtons / 2
+            )
+        );
+
+
+    let last =
+        Math.min(
+            totalPages,
+            first +
+            maxButtons -
+            1
+        );
+
+
+    if(
+        last - first <
+        maxButtons - 1
+    ){
+
+        first =
+            Math.max(
+                1,
+                last -
+                maxButtons +
+                1
+            );
+
+    }
+
+
+    for(
+        let i = first;
+        i <= last;
+        i++
+    ){
+
+        html += `
+
+            <button
+                class="${
+                    i === currentPage
+                    ? "active"
+                    : ""
+                }"
+                onclick="changePage(
+                    ${i}
+                )">
+
+                ${i}
+
+            </button>
+
+        `;
+
+    }
+
+
+    if(
+        currentPage <
+        totalPages
+    ){
+
+        html += `
+
+            <button
+                onclick="changePage(
+                    ${currentPage + 1}
+                )">
+
+                ›
+
+            </button>
+
+        `;
+
+    }
+
+
+    buttons.innerHTML =
+        html;
+
+}
+
+
+/* =====================================================
+   CHANGE PAGE
+===================================================== */
+
+function changePage(page){
+
+    currentPage =
+        page;
+
+
+    renderTable();
+
+
+    window.scrollTo({
+
+        top:
+            document.body
+            .scrollHeight,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =====================================================
+   SORT
+===================================================== */
+
+function sortTable(column){
+
+    if(
+        sortColumn ===
+        column
+    ){
+
+        sortDirection *= -1;
+
+    }
+    else{
+
+        sortColumn =
+            column;
+
+        sortDirection =
+            1;
+
+    }
+
+
+    renderTable();
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goPage(page){
+
+    const currentUrl =
+        window.location.href
+        .split("?")[0];
+
+
+    if(page === "produksi"){
+
+        window.location.href =
+            currentUrl +
+            "?page=produksi";
+
+    }
+
+    else if(page === "cuci"){
+
+        window.location.href =
+            currentUrl +
+            "?page=cuci";
+
+    }
+
+    else if(page === "defect"){
+
+        window.location.href =
+            currentUrl +
+            "?page=defect";
+
+    }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(value){
+
+    if(
+        value === null ||
+        value === undefined
+    )
+        return "";
+
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 </script>
 
 </body>
+
 </html>
