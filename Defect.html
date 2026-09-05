@@ -1,6 +1,5 @@
 <!DOCTYPE html><html lang="id">
-<head>
-<meta charset="UTF-8">
+<head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Dashboard Defect Flat</title><style>
 
 /* =====================================================
@@ -301,6 +300,19 @@ body{
     color:var(--text);
 
     outline:none;
+}
+
+.field select[multiple]{
+    min-height:40px;
+    height:40px;
+    overflow:hidden;
+}
+
+.field select[multiple]:focus{
+    height:auto;
+    min-height:100px;
+    max-height:180px;
+    overflow-y:auto;
 }
 
 .field input:focus,
@@ -653,6 +665,25 @@ body{
         0 5px 9px rgba(15,23,42,.18);
 }
 
+/* KHUSUS ANGKA DEFECT TERBESAR */
+
+#focusDefectPcs{
+    color:#4776b5;
+
+    font-weight:900;
+
+    text-shadow:
+        0 2px 0 rgba(255,255,255,.95),
+        0 3px 0 rgba(112,151,205,.55),
+        0 5px 0 rgba(72,112,170,.20),
+        0 7px 12px rgba(37,76,125,.22);
+
+    filter:
+        drop-shadow(
+            0 2px 2px rgba(255,255,255,.45)
+        );
+}
+
 .focus-percent{
     position:relative;
     z-index:1;
@@ -761,8 +792,6 @@ body{
         0 2px 0 rgba(255,255,255,.70),
         0 4px 6px rgba(15,23,42,.15);
 }
-
-/* ranking item */
 
 .ranking-item{
     display:flex;
@@ -1123,6 +1152,10 @@ tbody tr:hover{
     .focus-number{
         font-size:36px;
     }
+
+    #focusDefectPcs{
+        font-size:36px;
+    }
 }
 
 @media(max-width:520px){
@@ -1164,6 +1197,10 @@ tbody tr:hover{
         font-size:34px;
     }
 
+    #focusDefectPcs{
+        font-size:34px;
+    }
+
     .ranking-card{
         padding:16px;
     }
@@ -1186,7 +1223,12 @@ tbody tr:hover{
         flex:1;
         text-align:center;
     }
+
 }
+
+/* =====================================================
+   PRINT
+===================================================== */
 
 @media print{
 
@@ -1216,482 +1258,245 @@ tbody tr:hover{
 
         break-inside:avoid;
     }
+
 }
 
 </style></head><body><div class="container"><!-- =====================================================
      HEADER
-===================================================== --><div class="header"><div class="header-top">
+===================================================== --><div class="header"><div class="header-top"><div><div class="title">
+Dashboard Defect Flat
+</div><div class="subtitle">
+Monitoring defect hasil proses Flat
+</div></div><div class="nav"><a href="javascript:void(0)"
+onclick="navigateToPage('produksi')">
+Produksi
+</a>
 
-    <div>
+<a href="javascript:void(0)"
+onclick="navigateToPage('cuci')">
+Cuci
+</a>
 
-        <div class="title">
-            Dashboard Defect Flat
-        </div>
+<a href="javascript:void(0)"
+onclick="navigateToPage('defect')">
+Defect Flat
+</a>
 
-        <div class="subtitle">
-            Monitoring defect hasil proses Flat
-        </div>
-
-    </div>
-
-    <div class="nav">
-
-        <a href="javascript:void(0)"
-           onclick="navigateToPage('produksi')">
-            Produksi
-        </a>
-
-        <a href="javascript:void(0)"
-           onclick="navigateToPage('cuci')">
-            Cuci
-        </a>
-
-        <a href="javascript:void(0)"
-           onclick="navigateToPage('defect')">
-            Defect Flat
-        </a>
-
-    </div>
-
-</div>
-
-<div id="status" class="status">
-    ⏳ Menyiapkan dashboard...
-</div>
-
-</div><!-- =====================================================
+</div></div><div id="status" class="status">
+⏳ Menyiapkan dashboard...
+</div></div><!-- =====================================================
      FILTER
-===================================================== --><div class="filter-card"><div class="filter-header">
+===================================================== --><div class="filter-card"><div class="filter-header"><div class="filter-title">
+Filter Data
+</div><button
+class="btn btn-light"
+onclick="toggleFilter()">
+☰ Filter
+</button>
 
-    <div class="filter-title">
-        Filter Data
-    </div>
+</div><div
+id="activeFilterBar"
+class="active-filter-bar">
+</div><div id="filterBody"><div class="filter-grid"><div class="field"><label>Tanggal Dari</label>
 
-    <button
-        class="btn btn-light"
-        onclick="toggleFilter()">
-        ☰ Filter
-    </button>
+<input
+type="date"
+id="dateFrom">
 
-</div>
+</div><div class="field"><label>Tanggal Sampai</label>
 
-<!-- SELALU TERLIHAT SAAT FILTER DISEMBUNYIKAN -->
+<input
+type="date"
+id="dateTo">
 
-<div
-    id="activeFilterBar"
-    class="active-filter-bar">
-</div>
+</div><div class="field"><label>Kode Produk</label>
 
-<div id="filterBody">
+<select
+id="kodeProduk"
+multiple>
 
-    <div class="filter-grid">
+</select></div><div class="field"><label>Motif</label>
 
-        <div class="field">
-            <label>Tanggal Dari</label>
-            <input
-                type="date"
-                id="dateFrom">
-        </div>
+<select
+id="motif"
+multiple>
 
-        <div class="field">
-            <label>Tanggal Sampai</label>
-            <input
-                type="date"
-                id="dateTo">
-        </div>
+</select></div><div class="field"><label>Jenis Defect</label>
 
-        <div class="field">
-            <label>Kode Produk</label>
-            <select id="kodeProduk">
-                <option value="">
-                    Semua Kode Produk
-                </option>
-            </select>
-        </div>
+<select
+id="jenisDefect"
+multiple>
 
-        <div class="field">
-            <label>Motif</label>
-            <select id="motif">
-                <option value="">
-                    Semua Motif
-                </option>
-            </select>
-        </div>
+</select></div><div class="field"><label>Mesin</label>
 
-        <div class="field">
-            <label>Jenis Defect</label>
-            <select id="jenisDefect">
-                <option value="">
-                    Semua Jenis Defect
-                </option>
-            </select>
-        </div>
+<select
+id="mesin"
+multiple>
 
-        <div class="field">
-            <label>Mesin</label>
-            <select id="mesin">
-                <option value="">
-                    Semua Mesin
-                </option>
-            </select>
-        </div>
+</select></div><div class="field"><label>Grup</label>
 
-        <div class="field">
-            <label>Grup</label>
-            <select id="grup">
-                <option value="">
-                    Semua Grup
-                </option>
-            </select>
-        </div>
+<select
+id="grup"
+multiple>
 
-        <div class="field">
-            <label>Roll ID</label>
-            <select id="rollId">
-                <option value="">
-                    Semua Roll ID
-                </option>
-            </select>
-        </div>
+</select></div><div class="field"><label>Roll ID</label>
 
-    </div>
+<select
+id="rollId"
+multiple>
 
+</select></div></div><div class="filter-actions"><button
+class="btn btn-primary"
+onclick="applyFilter()">
+🔎 Terapkan Filter
+</button>
 
-    <div class="filter-actions">
+<button
+class="btn btn-light"
+onclick="clearFilter()">
+↺ Bersihkan
+</button>
 
-        <button
-            class="btn btn-primary"
-            onclick="applyFilter()">
-            🔎 Terapkan Filter
-        </button>
+<button
+class="btn btn-danger"
+onclick="resetSavedFilter()">
+🗑 Reset Filter Tersimpan
+</button>
 
-        <button
-            class="btn btn-light"
-            onclick="clearFilter()">
-            ↺ Bersihkan
-        </button>
-
-        <button
-            class="btn btn-danger"
-            onclick="resetSavedFilter()">
-            🗑 Reset Filter Tersimpan
-        </button>
-
-    </div>
-
-</div>
-
-</div><!-- =====================================================
+</div></div></div><!-- =====================================================
      SUMMARY 4 KOTAK
-===================================================== --><div class="summary-grid"><div class="card summary-card">
-
-    <div class="summary-label">
-        Total Defect Pcs
-    </div>
-
-    <div
-        class="summary-value"
-        id="totalPcs">
-        0
-    </div>
-
-    <div class="summary-small">
-        Jumlah pcs defect
-    </div>
-
-</div>
-
-
-<div class="card summary-card">
-
-    <div class="summary-label">
-        Total Roll
-    </div>
-
-    <div
-        class="summary-value"
-        id="totalRoll">
-        0
-    </div>
-
-    <div class="summary-small">
-        Roll terdampak
-    </div>
-
-</div>
-
-
-<div class="card summary-card">
-
-    <div class="summary-label">
-        Jenis Defect
-    </div>
-
-    <div
-        class="summary-value"
-        id="totalJenis">
-        0
-    </div>
-
-    <div class="summary-small">
-        Jenis defect berbeda
-    </div>
-
-</div>
-
-
-<div class="card summary-card">
-
-    <div class="summary-label">
-        Total Data
-    </div>
-
-    <div
-        class="summary-value"
-        id="totalData">
-        0
-    </div>
-
-    <div class="summary-small">
-        Baris data
-    </div>
-
-</div>
-
-</div><!-- =====================================================
+===================================================== --><div class="summary-grid"><div class="card summary-card"><div class="summary-label">
+Total Defect Pcs
+</div><div
+class="summary-value"
+id="totalPcs">
+0
+</div><div class="summary-small">
+Jumlah pcs defect
+</div></div><div class="card summary-card"><div class="summary-label">
+Total Roll
+</div><div
+class="summary-value"
+id="totalRoll">
+0
+</div><div class="summary-small">
+Roll terdampak
+</div></div><div class="card summary-card"><div class="summary-label">
+Jenis Defect
+</div><div
+class="summary-value"
+id="totalJenis">
+0
+</div><div class="summary-small">
+Jenis defect berbeda
+</div></div><div class="card summary-card"><div class="summary-label">
+Total Data
+</div><div
+class="summary-value"
+id="totalData">
+0
+</div><div class="summary-small">
+Baris data
+</div></div></div><!-- =====================================================
      FOKUS 3 KOTAK
 ===================================================== --><div class="section-title">
-    Fokus Defect
-</div><div class="focus-grid"><div class="card focus-card">
-
-    <div class="focus-head">
-
-        <div class="focus-name">
-            Defect Terbesar
-        </div>
-
-    </div>
-
-    <div
-        class="focus-number"
-        id="focusDefectPcs">
-        0
-    </div>
-
-    <div
-        class="focus-percent"
-        id="focusDefectPercent">
-        -
-    </div>
-
-    <div
-        id="defectMiniList"
-        class="mini-list">
-    </div>
-
-</div>
-
-
-<div class="card focus-card">
-
-    <div class="focus-head">
-
-        <div class="focus-name">
-            Mesin Terbesar
-        </div>
-
-    </div>
-
-    <div
-        class="focus-number"
-        id="focusMesinPcs">
-        0
-    </div>
-
-    <div
-        class="focus-percent"
-        id="focusMesinPercent">
-        -
-    </div>
-
-    <div
-        id="mesinMiniList"
-        class="mini-list">
-    </div>
-
-</div>
-
-
-<div class="card focus-card">
-
-    <div class="focus-head">
-
-        <div class="focus-name">
-            Grup Terbesar
-        </div>
-
-    </div>
-
-    <div
-        class="focus-number"
-        id="focusGrupPcs">
-        0
-    </div>
-
-    <div
-        class="focus-percent"
-        id="focusGrupPercent">
-        -
-    </div>
-
-    <div
-        id="grupMiniList"
-        class="mini-list">
-    </div>
-
-</div>
-
-</div><!-- =====================================================
+Fokus Defect
+</div><div class="focus-grid"><div class="card focus-card"><div class="focus-head"><div class="focus-name">
+Defect Terbesar
+</div></div><div
+class="focus-number"
+id="focusDefectPcs">
+0
+</div><div
+class="focus-percent"
+id="focusDefectPercent">
+-
+</div><div
+id="defectMiniList"
+class="mini-list">
+</div></div><div class="card focus-card"><div class="focus-head"><div class="focus-name">
+Mesin Terbesar
+</div></div><div
+class="focus-number"
+id="focusMesinPcs">
+0
+</div><div
+class="focus-percent"
+id="focusMesinPercent">
+-
+</div><div
+id="mesinMiniList"
+class="mini-list">
+</div></div><div class="card focus-card"><div class="focus-head"><div class="focus-name">
+Grup Terbesar
+</div></div><div
+class="focus-number"
+id="focusGrupPcs">
+0
+</div><div
+class="focus-percent"
+id="focusGrupPercent">
+-
+</div><div
+id="grupMiniList"
+class="mini-list">
+</div></div></div><!-- =====================================================
      RANKING
 ===================================================== --><div class="section-title">
-    Ranking
-</div><div class="ranking-grid"><!-- RANKING DEFECT -->
-
-<div class="card ranking-card">
-
-    <div class="ranking-title">
-        Ranking Jenis Defect
-    </div>
-
-    <div
-        id="defectRanking"
-        class="mini-list">
-    </div>
-
-</div>
-
-
-<!-- RANKING MESIN + GRUP -->
-
-<div class="card ranking-card">
-
-    <div class="ranking-title">
-        Ranking Mesin
-    </div>
-
-    <div
-        id="mesinRanking"
-        class="mini-list">
-    </div>
-
-
-    <div class="group-ranking-title">
-        Ranking Grup
-    </div>
-
-    <div
-        id="groupRanking"
-        class="group-ranking-list">
-    </div>
-
-</div>
-
-</div><!-- =====================================================
+Ranking
+</div><div class="ranking-grid"><div class="card ranking-card"><div class="ranking-title">
+Ranking Jenis Defect
+</div><div
+id="defectRanking"
+class="mini-list">
+</div></div><div class="card ranking-card"><div class="ranking-title">
+Ranking Mesin
+</div><div
+id="mesinRanking"
+class="mini-list">
+</div><div class="group-ranking-title">
+Ranking Grup
+</div><div
+id="groupRanking"
+class="group-ranking-list">
+</div></div></div><!-- =====================================================
      TABLE
-===================================================== --><div class="card table-card"><div class="table-toolbar">
+===================================================== --><div class="card table-card"><div class="table-toolbar"><div class="table-title">
+Detail Data Defect Flat
+</div><div class="search-box"><input
+type="text"
+id="quickSearch"
+placeholder="🔎 Cari data..."
+oninput="quickSearch()">
 
-    <div class="table-title">
-        Detail Data Defect Flat
-    </div>
-
-    <div class="search-box">
-
-        <input
-            type="text"
-            id="quickSearch"
-            placeholder="🔎 Cari data..."
-            oninput="quickSearch()">
-
-    </div>
-
-</div>
-
-
-<div class="table-wrap">
-
-    <table>
-
-        <thead>
-
-            <tr>
-
-                <th onclick="sortTable('tgl')">
-                    TGL FLAT ↕
-                </th>
-
-                <th onclick="sortTable('roll')">
-                    ROLL ID ↕
-                </th>
-
-                <th onclick="sortTable('kode')">
-                    KODE PROD ↕
-                </th>
-
-                <th onclick="sortTable('qty')">
-                    JUMLAH (Pcs) ↕
-                </th>
-
-                <th onclick="sortTable('defect')">
-                    JENIS DEFECT ↕
-                </th>
-
-                <th onclick="sortTable('mesin')">
-                    MESIN ↕
-                </th>
-
-                <th onclick="sortTable('motif')">
-                    MOTIF ↕
-                </th>
-
-                <th>
-                    BLOK + ISIAN
-                </th>
-
-                <th onclick="sortTable('grup')">
-                    GRUP ↕
-                </th>
-
-                <th>
-                    OPERATOR
-                </th>
-
-            </tr>
-
-        </thead>
-
-        <tbody id="tableBody"></tbody>
-
-    </table>
-
-</div>
-
-
-<div class="pagination">
-
-    <div
-        id="pageInfo"
-        class="page-info">
-        -
-    </div>
-
-    <div
-        id="pageButtons"
-        class="page-buttons">
-    </div>
-
-</div>
-
-</div></div><script>
+</div></div><div class="table-wrap"><table><thead><tr><th onclick="sortTable('tgl')">
+TGL FLAT ↕
+</th><th onclick="sortTable('roll')">
+ROLL ID ↕
+</th><th onclick="sortTable('kode')">
+KODE PROD ↕
+</th><th onclick="sortTable('qty')">
+JUMLAH (Pcs) ↕
+</th><th onclick="sortTable('defect')">
+JENIS DEFECT ↕
+</th><th onclick="sortTable('mesin')">
+MESIN ↕
+</th><th onclick="sortTable('motif')">
+MOTIF ↕
+</th><th>
+BLOK + ISIAN
+</th><th onclick="sortTable('grup')">
+GRUP ↕
+</th><th>
+OPERATOR
+</th></tr></thead><tbody id="tableBody"></tbody></table></div><div class="pagination"><div
+id="pageInfo"
+class="page-info">
+-
+</div><div
+id="pageButtons"
+class="page-buttons">
+</div></div></div></div><script>
 
 /* =====================================================
    CONFIG
@@ -1707,21 +1512,14 @@ const FILTER_CACHE_KEY =
 "DEFECT_FLAT_FILTER_V2";
 
 
-/*
-   ROUTE NAVIGASI
-
-   Jika Code.gs menggunakan:
-   ?page=produksi
-   ?page=cuci
-   ?page=defect
-
-   maka tombol akan langsung menuju halaman tersebut.
-*/
-
 const PAGE_ROUTES = {
-    produksi:"?page=produksi",
-    cuci:"?page=cuci",
-    defect:"?page=defect"
+
+produksi:"?page=produksi",
+
+cuci:"?page=cuci",
+
+defect:"?page=defect"
+
 };
 
 
@@ -1746,7 +1544,23 @@ let filterVisible = true;
 let currentSearch = "";
 
 const numberFormatter =
-    new Intl.NumberFormat("id-ID");
+new Intl.NumberFormat("id-ID");
+
+
+/* =====================================================
+   MULTI FILTER CONFIG
+===================================================== */
+
+const MULTI_FILTER_IDS = [
+
+"kodeProduk",
+"motif",
+"jenisDefect",
+"mesin",
+"grup",
+"rollId"
+
+];
 
 
 /* =====================================================
@@ -1754,16 +1568,16 @@ const numberFormatter =
 ===================================================== */
 
 document.addEventListener(
-    "DOMContentLoaded",
-    function(){
+"DOMContentLoaded",
+function(){
 
-        restoreSavedFilterOnly();
+restoreSavedFilterOnly();
 
-        loadCachedData();
+loadCachedData();
 
-        loadDefectData();
+loadDefectData();
 
-    }
+}
 );
 
 
@@ -1773,24 +1587,26 @@ document.addEventListener(
 
 function navigateToPage(page){
 
-    const route = PAGE_ROUTES[page];
+const route =
+PAGE_ROUTES[page];
 
-    if(!route) return;
+if(!route) return;
 
-    try{
+try{
 
-        const base =
-            window.location.href.split("?")[0];
+const base =
+window.location.href.split("?")[0];
 
-        window.top.location.href =
-            base + route;
+window.top.location.href =
+base + route;
 
-    }catch(error){
+}catch(error){
 
-        window.location.href =
-            route;
+window.location.href =
+route;
 
-    }
+}
+
 }
 
 
@@ -1800,12 +1616,16 @@ function navigateToPage(page){
 
 function setStatus(message){
 
-    const el =
-        document.getElementById("status");
+const el =
+document.getElementById("status");
 
-    if(el){
-        el.textContent = message;
-    }
+if(el){
+
+el.textContent =
+message;
+
+}
+
 }
 
 
@@ -1815,16 +1635,16 @@ function setStatus(message){
 
 function toggleFilter(){
 
-    const body =
-        document.getElementById("filterBody");
+const body =
+document.getElementById("filterBody");
 
-    filterVisible =
-        !filterVisible;
+filterVisible =
+!filterVisible;
 
-    body.style.display =
-        filterVisible
-        ? "block"
-        : "none";
+body.style.display =
+filterVisible
+? "block"
+: "none";
 
 }
 
@@ -1835,42 +1655,42 @@ function toggleFilter(){
 
 function loadCachedData(){
 
-    try{
+try{
 
-        const cached =
-            sessionStorage.getItem(
-                DATA_CACHE_KEY
-            );
+const cached =
+sessionStorage.getItem(
+DATA_CACHE_KEY
+);
 
-        if(!cached) return;
+if(!cached) return;
 
-        const data =
-            JSON.parse(cached);
+const data =
+JSON.parse(cached);
 
-        if(
-            Array.isArray(data) &&
-            data.length
-        ){
+if(
+Array.isArray(data) &&
+data.length
+){
 
-            setDefectData(
-                data,
-                false
-            );
+setDefectData(
+data,
+false
+);
 
-            setStatus(
-                "⚡ Data tersimpan ditampilkan • memperbarui..."
-            );
+setStatus(
+"⚡ Data tersimpan ditampilkan • memperbarui..."
+);
 
-        }
+}
 
-    }catch(error){
+}catch(error){
 
-        console.warn(
-            "Cache tidak dapat digunakan",
-            error
-        );
+console.warn(
+"Cache tidak dapat digunakan",
+error
+);
 
-    }
+}
 
 }
 
@@ -1881,189 +1701,178 @@ function loadCachedData(){
 
 async function loadDefectData(){
 
-    /*
-       Jika cache sudah ada,
-       jangan tampilkan loading besar.
-    */
+if(!allData.length){
 
-    if(!allData.length){
+setStatus(
+"⏳ Mengambil data Defect Flat..."
+);
 
-        setStatus(
-            "⏳ Mengambil data Defect Flat..."
-        );
-
-    }
+}
 
 
-    /*
-       GOOGLE APPS SCRIPT
-    */
+if(
+typeof google !== "undefined" &&
+google.script &&
+google.script.run
+){
 
-    if(
-        typeof google !== "undefined" &&
-        google.script &&
-        google.script.run
-    ){
+google.script.run
 
-        google.script.run
+.withSuccessHandler(
+function(data){
 
-            .withSuccessHandler(
-                function(data){
+if(
+!Array.isArray(data) ||
+data.length === 0
+){
 
-                    if(
-                        !Array.isArray(data) ||
-                        data.length === 0
-                    ){
+if(!allData.length){
 
-                        if(!allData.length){
+setStatus(
+"⚠️ Data Defect Flat kosong"
+);
 
-                            setStatus(
-                                "⚠️ Data Defect Flat kosong"
-                            );
+setDefectData(
+[]
+);
 
-                            setDefectData(
-                                []
-                            );
+}
 
-                        }
+return;
 
-                        return;
-                    }
+}
 
 
-                    cacheData(data);
+cacheData(data);
 
-                    setDefectData(
-                        data,
-                        true
-                    );
+setDefectData(
+data,
+true
+);
 
-                    setStatus(
-                        "✅ Data diperbarui: " +
-                        (data.length - 1) +
-                        " baris"
-                    );
+setStatus(
+"✅ Data diperbarui: " +
+(data.length - 1) +
+" baris"
+);
 
-                }
-            )
+}
+)
 
-            .withFailureHandler(
-                function(error){
+.withFailureHandler(
+function(error){
 
-                    console.error(error);
+console.error(error);
 
-                    if(!allData.length){
+if(!allData.length){
 
-                        setStatus(
-                            "❌ Gagal: " +
-                            (
-                                error &&
-                                error.message
-                                ? error.message
-                                : error
-                            )
-                        );
+setStatus(
+"❌ Gagal: " +
+(
+error &&
+error.message
+? error.message
+: error
+)
+);
 
-                    }else{
+}else{
 
-                        setStatus(
-                            "⚡ Menampilkan data terakhir • refresh gagal"
-                        );
+setStatus(
+"⚡ Menampilkan data terakhir • refresh gagal"
+);
 
-                    }
+}
 
-                }
-            )
+}
+)
 
-            .getDefectData();
+.getDefectData();
 
-        return;
-    }
+return;
+
+}
 
 
-    /*
-       FETCH API
-    */
+try{
 
-    try{
+const response =
+await fetch(
+API_URL +
+"&_=" +
+Date.now(),
+{
+method:"GET",
+cache:"no-store"
+}
+);
 
-        const response =
-            await fetch(
-                API_URL +
-                "&_=" +
-                Date.now(),
-                {
-                    method:"GET",
-                    cache:"no-store"
-                }
-            );
+if(!response.ok){
 
-        if(!response.ok){
+throw new Error(
+"HTTP " +
+response.status
+);
 
-            throw new Error(
-                "HTTP " +
-                response.status
-            );
+}
 
-        }
+const result =
+await response.json();
 
-        const result =
-            await response.json();
+if(
+!Array.isArray(result) ||
+result.length === 0
+){
 
-        if(
-            !Array.isArray(result) ||
-            result.length === 0
-        ){
+if(!allData.length){
 
-            if(!allData.length){
+setStatus(
+"⚠️ API berhasil tetapi data kosong"
+);
 
-                setStatus(
-                    "⚠️ API berhasil tetapi data kosong"
-                );
+setDefectData([]);
 
-                setDefectData([]);
+}
 
-            }
+return;
 
-            return;
+}
 
-        }
+cacheData(result);
 
-        cacheData(result);
+setDefectData(
+result,
+true
+);
 
-        setDefectData(
-            result,
-            true
-        );
+setStatus(
+"✅ Data diperbarui: " +
+(result.length - 1) +
+" baris"
+);
 
-        setStatus(
-            "✅ Data diperbarui: " +
-            (result.length - 1) +
-            " baris"
-        );
+}catch(error){
 
-    }catch(error){
+console.error(error);
 
-        console.error(error);
+if(!allData.length){
 
-        if(!allData.length){
+setStatus(
+"❌ Gagal mengambil data: " +
+error.message
+);
 
-            setStatus(
-                "❌ Gagal mengambil data: " +
-                error.message
-            );
+setDefectData([]);
 
-            setDefectData([]);
+}else{
 
-        }else{
+setStatus(
+"⚡ Menampilkan data terakhir • refresh gagal"
+);
 
-            setStatus(
-                "⚡ Menampilkan data terakhir • refresh gagal"
-            );
+}
 
-        }
-
-    }
+}
 
 }
 
@@ -2074,32 +1883,28 @@ async function loadDefectData(){
 
 function cacheData(data){
 
-    try{
+try{
 
-        const text =
-            JSON.stringify(data);
+const text =
+JSON.stringify(data);
 
-        /*
-           Hindari cache terlalu besar.
-        */
+if(text.length < 2500000){
 
-        if(text.length < 2500000){
+sessionStorage.setItem(
+DATA_CACHE_KEY,
+text
+);
 
-            sessionStorage.setItem(
-                DATA_CACHE_KEY,
-                text
-            );
+}
 
-        }
+}catch(error){
 
-    }catch(error){
+console.warn(
+"Cache data gagal",
+error
+);
 
-        console.warn(
-            "Cache data gagal",
-            error
-        );
-
-    }
+}
 
 }
 
@@ -2110,50 +1915,50 @@ function cacheData(data){
 
 function normalizeHeader(value){
 
-    return String(
-        value == null
-        ? ""
-        : value
-    )
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g," ")
-    .replace(/_/g," ");
+return String(
+value == null
+? ""
+: value
+)
+.trim()
+.toLowerCase()
+.replace(/\s+/g," ")
+.replace(/_/g," ");
 
 }
 
 
 function findHeaderIndex(
-    headers,
-    aliases
+headers,
+aliases
 ){
 
-    const normalized =
-        headers.map(normalizeHeader);
+const normalized =
+headers.map(normalizeHeader);
 
-    for(
-        let i = 0;
-        i < aliases.length;
-        i++
-    ){
+for(
+let i = 0;
+i < aliases.length;
+i++
+){
 
-        const target =
-            normalizeHeader(
-                aliases[i]
-            );
+const target =
+normalizeHeader(
+aliases[i]
+);
 
-        const index =
-            normalized.indexOf(target);
+const index =
+normalized.indexOf(target);
 
-        if(index !== -1){
+if(index !== -1){
 
-            return index;
+return index;
 
-        }
+}
 
-    }
+}
 
-    return -1;
+return -1;
 
 }
 
@@ -2164,18 +1969,18 @@ function findHeaderIndex(
 
 function getCell(row,index){
 
-    if(
-        index === -1 ||
-        index == null
-    ){
+if(
+index === -1 ||
+index == null
+){
 
-        return "";
+return "";
 
-    }
+}
 
-    return row[index] == null
-        ? ""
-        : row[index];
+return row[index] == null
+? ""
+: row[index];
 
 }
 
@@ -2185,301 +1990,297 @@ function getCell(row,index){
 ===================================================== */
 
 function setDefectData(
-    data,
-    fresh
+data,
+fresh
 ){
 
-    if(
-        !Array.isArray(data) ||
-        data.length === 0
-    ){
+if(
+!Array.isArray(data) ||
+data.length === 0
+){
 
-        allData = [];
+allData = [];
 
-        filteredData = [];
+filteredData = [];
 
-        renderDashboard();
+populateFilters();
 
-        return;
+renderDashboard();
 
-    }
+return;
 
-
-    const headers =
-        data[0];
-
-    const rows =
-        data.slice(1);
+}
 
 
-    const idx = {
+const headers =
+data[0];
 
-        tgl:
-            findHeaderIndex(
-                headers,
-                [
-                    "tgl flat",
-                    "tanggal flat",
-                    "tanggal",
-                    "tgl"
-                ]
-            ),
-
-        roll:
-            findHeaderIndex(
-                headers,
-                [
-                    "roll id",
-                    "roll",
-                    "id roll"
-                ]
-            ),
-
-        kode:
-            findHeaderIndex(
-                headers,
-                [
-                    "kode prod",
-                    "kode produk",
-                    "kode product",
-                    "kode"
-                ]
-            ),
-
-        qty:
-            findHeaderIndex(
-                headers,
-                [
-                    "jumlah (pcs)",
-                    "jumlah pcs",
-                    "jumlah",
-                    "qty",
-                    "pcs"
-                ]
-            ),
-
-        defect:
-            findHeaderIndex(
-                headers,
-                [
-                    "jenis defect",
-                    "jenis_defect",
-                    "defect"
-                ]
-            ),
-
-        mesin:
-            findHeaderIndex(
-                headers,
-                [
-                    "mesin",
-                    "nama mesin"
-                ]
-            ),
-
-        motif:
-            findHeaderIndex(
-                headers,
-                [
-                    "motif"
-                ]
-            ),
-
-        blok:
-            findHeaderIndex(
-                headers,
-                [
-                    "blok + isian",
-                    "blok isian",
-                    "blok+isian",
-                    "blok"
-                ]
-            ),
-
-        grup:
-            findHeaderIndex(
-                headers,
-                [
-                    "grup",
-                    "group"
-                ]
-            ),
-
-        operator:
-            findHeaderIndex(
-                headers,
-                [
-                    "operator",
-                    "nama operator"
-                ]
-            )
-
-    };
+const rows =
+data.slice(1);
 
 
-    allData =
-        rows
+const idx = {
 
-        .filter(
-            function(row){
+tgl:
+findHeaderIndex(
+headers,
+[
+"tgl flat",
+"tanggal flat",
+"tanggal",
+"tgl"
+]
+),
 
-                return row.some(
-                    function(value){
+roll:
+findHeaderIndex(
+headers,
+[
+"roll id",
+"roll",
+"id roll"
+]
+),
 
-                        return String(
-                            value == null
-                            ? ""
-                            : value
-                        ).trim() !== "";
+kode:
+findHeaderIndex(
+headers,
+[
+"kode prod",
+"kode produk",
+"kode product",
+"kode"
+]
+),
 
-                    }
-                );
+qty:
+findHeaderIndex(
+headers,
+[
+"jumlah (pcs)",
+"jumlah pcs",
+"jumlah",
+"qty",
+"pcs"
+]
+),
 
-            }
-        )
+defect:
+findHeaderIndex(
+headers,
+[
+"jenis defect",
+"jenis_defect",
+"defect"
+]
+),
 
-        .map(
-            function(row){
+mesin:
+findHeaderIndex(
+headers,
+[
+"mesin",
+"nama mesin"
+]
+),
 
-                const tgl =
-                    getCell(
-                        row,
-                        idx.tgl
-                    );
+motif:
+findHeaderIndex(
+headers,
+[
+"motif"
+]
+),
 
-                const roll =
-                    String(
-                        getCell(
-                            row,
-                            idx.roll
-                        )
-                    ).trim();
+blok:
+findHeaderIndex(
+headers,
+[
+"blok + isian",
+"blok isian",
+"blok+isian",
+"blok"
+]
+),
 
-                const kode =
-                    String(
-                        getCell(
-                            row,
-                            idx.kode
-                        )
-                    ).trim();
+grup:
+findHeaderIndex(
+headers,
+[
+"grup",
+"group"
+]
+),
 
-                const defect =
-                    String(
-                        getCell(
-                            row,
-                            idx.defect
-                        )
-                    ).trim();
+operator:
+findHeaderIndex(
+headers,
+[
+"operator",
+"nama operator"
+]
+)
 
-                const mesin =
-                    String(
-                        getCell(
-                            row,
-                            idx.mesin
-                        )
-                    ).trim();
-
-                const motif =
-                    String(
-                        getCell(
-                            row,
-                            idx.motif
-                        )
-                    ).trim();
-
-                const blok =
-                    String(
-                        getCell(
-                            row,
-                            idx.blok
-                        )
-                    ).trim();
-
-                const grup =
-                    String(
-                        getCell(
-                            row,
-                            idx.grup
-                        )
-                    ).trim();
-
-                const operator =
-                    String(
-                        getCell(
-                            row,
-                            idx.operator
-                        )
-                    ).trim();
-
-                const qty =
-                    parseQty(
-                        getCell(
-                            row,
-                            idx.qty
-                        )
-                    );
-
-                return {
-
-                    tgl:tgl,
-
-                    dateNorm:
-                        normalizeDate(tgl),
-
-                    roll:roll,
-
-                    kode:kode,
-
-                    qty:qty,
-
-                    defect:defect,
-
-                    mesin:mesin,
-
-                    motif:motif,
-
-                    blok:blok,
-
-                    grup:grup,
-
-                    operator:operator,
-
-                    searchText:
-                        [
-                            tgl,
-                            roll,
-                            kode,
-                            qty,
-                            defect,
-                            mesin,
-                            motif,
-                            blok,
-                            grup,
-                            operator
-                        ]
-                        .join(" ")
-                        .toLowerCase()
-
-                };
-
-            }
-        );
+};
 
 
-    /*
-       PENTING:
-       filter tersimpan diterapkan
-       SETELAH data baru tersedia.
-    */
+allData =
+rows
 
-    populateFilters();
+.filter(
+function(row){
 
-    filteredData =
-        [...allData];
+return row.some(
+function(value){
 
-    restoreSavedFilter();
+return String(
+value == null
+? ""
+: value
+).trim() !== "";
 
-    renderDashboard();
+}
+);
+
+}
+)
+
+.map(
+function(row){
+
+const tgl =
+getCell(
+row,
+idx.tgl
+);
+
+const roll =
+String(
+getCell(
+row,
+idx.roll
+)
+).trim();
+
+const kode =
+String(
+getCell(
+row,
+idx.kode
+)
+).trim();
+
+const defect =
+String(
+getCell(
+row,
+idx.defect
+)
+).trim();
+
+const mesin =
+String(
+getCell(
+row,
+idx.mesin
+)
+).trim();
+
+const motif =
+String(
+getCell(
+row,
+idx.motif
+)
+).trim();
+
+const blok =
+String(
+getCell(
+row,
+idx.blok
+)
+).trim();
+
+const grup =
+String(
+getCell(
+row,
+idx.grup
+)
+).trim();
+
+const operator =
+String(
+getCell(
+row,
+idx.operator
+)
+).trim();
+
+const qty =
+parseQty(
+getCell(
+row,
+idx.qty
+)
+);
+
+return {
+
+tgl:tgl,
+
+dateNorm:
+normalizeDate(tgl),
+
+roll:roll,
+
+kode:kode,
+
+qty:qty,
+
+defect:defect,
+
+mesin:mesin,
+
+motif:motif,
+
+blok:blok,
+
+grup:grup,
+
+operator:operator,
+
+searchText:
+[
+tgl,
+roll,
+kode,
+qty,
+defect,
+mesin,
+motif,
+blok,
+grup,
+operator
+]
+.join(" ")
+.toLowerCase()
+
+};
+
+}
+);
+
+
+populateFilters();
+
+filteredData =
+[...allData];
+
+restoreSavedFilter();
+
+renderDashboard();
 
 }
 
@@ -2490,57 +2291,57 @@ function setDefectData(
 
 function parseQty(value){
 
-    if(
-        value === null ||
-        value === undefined ||
-        value === ""
-    ){
+if(
+value === null ||
+value === undefined ||
+value === ""
+){
 
-        return 0;
+return 0;
 
-    }
+}
 
-    let text =
-        String(value).trim();
+let text =
+String(value).trim();
 
-    text =
-        text
-        .replace(/pcs/gi,"")
-        .trim();
-
-
-    if(
-        text.indexOf(",") !== -1 &&
-        text.indexOf(".") !== -1
-    ){
-
-        text =
-            text
-            .replace(/\./g,"")
-            .replace(",", ".");
-
-    }else if(
-        text.indexOf(",") !== -1
-    ){
-
-        text =
-            text.replace(",", ".");
-
-    }
+text =
+text
+.replace(/pcs/gi,"")
+.trim();
 
 
-    const number =
-        parseFloat(
-            text.replace(
-                /[^0-9.-]/g,
-                ""
-            )
-        );
+if(
+text.indexOf(",") !== -1 &&
+text.indexOf(".") !== -1
+){
+
+text =
+text
+.replace(/\./g,"")
+.replace(",", ".");
+
+}else if(
+text.indexOf(",") !== -1
+){
+
+text =
+text.replace(",", ".");
+
+}
 
 
-    return isNaN(number)
-        ? 0
-        : number;
+const number =
+parseFloat(
+text.replace(
+/[^0-9.-]/g,
+""
+)
+);
+
+
+return isNaN(number)
+? 0
+: number;
 
 }
 
@@ -2551,62 +2352,60 @@ function parseQty(value){
 
 function normalizeDate(value){
 
-    if(!value) return null;
+if(!value) return null;
 
-    const text =
-        String(value).trim();
-
-
-    if(
-        /^\d{4}-\d{2}-\d{2}$/
-        .test(text)
-    ){
-
-        return text;
-
-    }
+const text =
+String(value).trim();
 
 
-    let match =
-        text.match(
-            /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/
-        );
+if(
+/^\d{4}-\d{2}-\d{2}$/
+.test(text)
+){
+
+return text;
+
+}
 
 
-    if(match){
+let match =
+text.match(
+/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/
+);
 
-        return (
-            match[3] +
-            "-" +
-            String(match[2]).padStart(2,"0") +
-            "-" +
-            String(match[1]).padStart(2,"0")
-        );
+if(match){
 
-    }
+return (
+match[3] +
+"-" +
+String(match[2]).padStart(2,"0") +
+"-" +
+String(match[1]).padStart(2,"0")
+);
 
-
-    match =
-        text.match(
-            /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2})/
-        );
-
-
-    if(match){
-
-        return (
-            "20" +
-            match[3] +
-            "-" +
-            String(match[2]).padStart(2,"0") +
-            "-" +
-            String(match[1]).padStart(2,"0")
-        );
-
-    }
+}
 
 
-    return null;
+match =
+text.match(
+/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2})/
+);
+
+if(match){
+
+return (
+"20" +
+match[3] +
+"-" +
+String(match[2]).padStart(2,"0") +
+"-" +
+String(match[1]).padStart(2,"0")
+);
+
+}
+
+
+return null;
 
 }
 
@@ -2617,101 +2416,94 @@ function normalizeDate(value){
 
 function uniqueSorted(values){
 
-    return [
-        ...new Set(
-            values
-            .map(
-                function(v){
+return [
+...new Set(
+values
+.map(
+function(v){
 
-                    return String(
-                        v == null
-                        ? ""
-                        : v
-                    ).trim();
+return String(
+v == null
+? ""
+: v
+).trim();
 
-                }
-            )
-            .filter(Boolean)
-        )
-    ]
-    .sort(
-        function(a,b){
+}
+)
+.filter(Boolean)
+)
+]
+.sort(
+function(a,b){
 
-            return a.localeCompare(
-                b,
-                "id",
-                {
-                    numeric:true,
-                    sensitivity:"base"
-                }
-            );
+return a.localeCompare(
+b,
+"id",
+{
+numeric:true,
+sensitivity:"base"
+}
+);
 
-        }
-    );
+}
+);
 
 }
 
 
 /* =====================================================
-   SELECT
+   MULTI SELECT
 ===================================================== */
 
 function fillSelect(
-    id,
-    values,
-    firstText
+id,
+values,
+firstText
 ){
 
-    const select =
-        document.getElementById(id);
+const select =
+document.getElementById(id);
 
-    if(!select) return;
+if(!select) return;
 
-    const current =
-        select.value;
+const oldValues =
+getSelectedValues(
+select
+);
 
-    select.innerHTML = "";
-
-
-    const first =
-        document.createElement("option");
-
-    first.value = "";
-
-    first.textContent =
-        firstText;
-
-    select.appendChild(first);
+select.innerHTML = "";
 
 
-    values.forEach(
-        function(value){
+values.forEach(
+function(value){
 
-            const option =
-                document.createElement(
-                    "option"
-                );
+const option =
+document.createElement(
+"option"
+);
 
-            option.value =
-                value;
+option.value =
+value;
 
-            option.textContent =
-                value;
+option.textContent =
+value;
 
-            select.appendChild(
-                option
-            );
+select.appendChild(
+option
+);
 
-        }
-    );
+}
+);
 
 
-    if(values.includes(current)){
+if(oldValues.length){
 
-        select.value =
-            current;
+setSelectedValues(
+select,
+oldValues
+);
 
-    }
+}
 
 }
 
@@ -2722,82 +2514,233 @@ function fillSelect(
 
 function populateFilters(){
 
-    fillSelect(
-        "kodeProduk",
-        uniqueSorted(
-            allData.map(
-                function(x){
-                    return x.kode;
-                }
-            )
-        ),
-        "Semua Kode Produk"
-    );
+fillSelect(
+"kodeProduk",
+uniqueSorted(
+allData.map(
+function(x){
+return x.kode;
+}
+)
+),
+"Semua Kode Produk"
+);
 
 
-    fillSelect(
-        "motif",
-        uniqueSorted(
-            allData.map(
-                function(x){
-                    return x.motif;
-                }
-            )
-        ),
-        "Semua Motif"
-    );
+fillSelect(
+"motif",
+uniqueSorted(
+allData.map(
+function(x){
+return x.motif;
+}
+)
+),
+"Semua Motif"
+);
 
 
-    fillSelect(
-        "jenisDefect",
-        uniqueSorted(
-            allData.map(
-                function(x){
-                    return x.defect;
-                }
-            )
-        ),
-        "Semua Jenis Defect"
-    );
+fillSelect(
+"jenisDefect",
+uniqueSorted(
+allData.map(
+function(x){
+return x.defect;
+}
+)
+),
+"Semua Jenis Defect"
+);
 
 
-    fillSelect(
-        "mesin",
-        uniqueSorted(
-            allData.map(
-                function(x){
-                    return x.mesin;
-                }
-            )
-        ),
-        "Semua Mesin"
-    );
+fillSelect(
+"mesin",
+uniqueSorted(
+allData.map(
+function(x){
+return x.mesin;
+}
+)
+),
+"Semua Mesin"
+);
 
 
-    fillSelect(
-        "grup",
-        uniqueSorted(
-            allData.map(
-                function(x){
-                    return x.grup;
-                }
-            )
-        ),
-        "Semua Grup"
-    );
+fillSelect(
+"grup",
+uniqueSorted(
+allData.map(
+function(x){
+return x.grup;
+}
+)
+),
+"Semua Grup"
+);
 
 
-    fillSelect(
-        "rollId",
-        uniqueSorted(
-            allData.map(
-                function(x){
-                    return x.roll;
-                }
-            )
-        ),
-        "Semua Roll ID"
-    );
+fillSelect(
+"rollId",
+uniqueSorted(
+allData.map(
+function(x){
+return x.roll;
+}
+)
+),
+"Semua Roll ID"
+);
+
+}
+
+
+/* =====================================================
+   GET SELECTED VALUES
+===================================================== */
+
+function getSelectedValues(select){
+
+if(!select){
+
+return [];
+
+}
+
+return Array.from(
+select.selectedOptions
+)
+.map(
+function(option){
+
+return String(
+option.value
+).trim();
+
+}
+)
+.filter(Boolean);
+
+}
+
+
+/* =====================================================
+   SET SELECTED VALUES
+===================================================== */
+
+function setSelectedValues(
+select,
+values
+){
+
+if(!select) return;
+
+const wanted =
+Array.isArray(values)
+? values.map(
+function(v){
+return String(v);
+}
+)
+: values
+? [String(values)]
+: [];
+
+
+Array.from(
+select.options
+)
+.forEach(
+function(option){
+
+option.selected =
+wanted.includes(
+option.value
+);
+
+}
+);
+
+}
+
+
+/* =====================================================
+   NORMALIZE SAVED FILTER
+===================================================== */
+
+function normalizeFilter(f){
+
+f =
+f || {};
+
+
+return {
+
+dateFrom:
+f.dateFrom || "",
+
+dateTo:
+f.dateTo || "",
+
+kodeProduk:
+toArray(f.kodeProduk),
+
+motif:
+toArray(f.motif),
+
+jenisDefect:
+toArray(f.jenisDefect),
+
+mesin:
+toArray(f.mesin),
+
+grup:
+toArray(f.grup),
+
+rollId:
+toArray(f.rollId)
+
+};
+
+}
+
+
+/* =====================================================
+   TO ARRAY
+===================================================== */
+
+function toArray(value){
+
+if(Array.isArray(value)){
+
+return value
+.map(
+function(v){
+
+return String(
+v == null
+? ""
+: v
+).trim();
+
+}
+)
+.filter(Boolean);
+
+}
+
+if(
+value === null ||
+value === undefined ||
+value === ""
+){
+
+return [];
+
+}
+
+return [
+String(value).trim()
+].filter(Boolean);
 
 }
 
@@ -2808,49 +2751,202 @@ function populateFilters(){
 
 function getFilter(){
 
-    return {
+return {
 
-        dateFrom:
-            document.getElementById(
-                "dateFrom"
-            ).value,
+dateFrom:
+document.getElementById(
+"dateFrom"
+).value,
 
-        dateTo:
-            document.getElementById(
-                "dateTo"
-            ).value,
+dateTo:
+document.getElementById(
+"dateTo"
+).value,
 
-        kodeProduk:
-            document.getElementById(
-                "kodeProduk"
-            ).value,
+kodeProduk:
+getSelectedValues(
+document.getElementById(
+"kodeProduk"
+)
+),
 
-        motif:
-            document.getElementById(
-                "motif"
-            ).value,
+motif:
+getSelectedValues(
+document.getElementById(
+"motif"
+)
+),
 
-        jenisDefect:
-            document.getElementById(
-                "jenisDefect"
-            ).value,
+jenisDefect:
+getSelectedValues(
+document.getElementById(
+"jenisDefect"
+)
+),
 
-        mesin:
-            document.getElementById(
-                "mesin"
-            ).value,
+mesin:
+getSelectedValues(
+document.getElementById(
+"mesin"
+)
+),
 
-        grup:
-            document.getElementById(
-                "grup"
-            ).value,
+grup:
+getSelectedValues(
+document.getElementById(
+"grup"
+)
+),
 
-        rollId:
-            document.getElementById(
-                "rollId"
-            ).value
+rollId:
+getSelectedValues(
+document.getElementById(
+"rollId"
+)
+)
 
-    };
+};
+
+}
+
+
+/* =====================================================
+   MATCH MULTI
+===================================================== */
+
+function matchesMulti(
+selected,
+value
+){
+
+if(
+!Array.isArray(selected) ||
+selected.length === 0
+){
+
+return true;
+
+}
+
+return selected.includes(
+String(
+value == null
+? ""
+: value
+).trim()
+);
+
+}
+
+
+/* =====================================================
+   FILTER ROW
+===================================================== */
+
+function rowMatchesFilter(
+row,
+f
+){
+
+if(
+f.dateFrom &&
+(
+!row.dateNorm ||
+row.dateNorm < f.dateFrom
+)
+){
+
+return false;
+
+}
+
+
+if(
+f.dateTo &&
+(
+!row.dateNorm ||
+row.dateNorm > f.dateTo
+)
+){
+
+return false;
+
+}
+
+
+if(
+!matchesMulti(
+f.kodeProduk,
+row.kode
+)
+){
+
+return false;
+
+}
+
+
+if(
+!matchesMulti(
+f.motif,
+row.motif
+)
+){
+
+return false;
+
+}
+
+
+if(
+!matchesMulti(
+f.jenisDefect,
+row.defect
+)
+){
+
+return false;
+
+}
+
+
+if(
+!matchesMulti(
+f.mesin,
+row.mesin
+)
+){
+
+return false;
+
+}
+
+
+if(
+!matchesMulti(
+f.grup,
+row.grup
+)
+){
+
+return false;
+
+}
+
+
+if(
+!matchesMulti(
+f.rollId,
+row.roll
+)
+){
+
+return false;
+
+}
+
+
+return true;
 
 }
 
@@ -2861,125 +2957,42 @@ function getFilter(){
 
 function applyFilter(){
 
-    const f =
-        getFilter();
+const f =
+getFilter();
 
 
-    filteredData =
-        allData.filter(
-            function(row){
+filteredData =
+allData.filter(
+function(row){
 
-                if(
-                    f.dateFrom &&
-                    (
-                        !row.dateNorm ||
-                        row.dateNorm < f.dateFrom
-                    )
-                ){
+return rowMatchesFilter(
+row,
+f
+);
 
-                    return false;
-
-                }
+}
+);
 
 
-                if(
-                    f.dateTo &&
-                    (
-                        !row.dateNorm ||
-                        row.dateNorm > f.dateTo
-                    )
-                ){
+currentPage = 1;
 
-                    return false;
+currentSearch = "";
 
-                }
+const search =
+document.getElementById(
+"quickSearch"
+);
 
+if(search){
 
-                if(
-                    f.kodeProduk &&
-                    row.kode !== f.kodeProduk
-                ){
+search.value = "";
 
-                    return false;
-
-                }
+}
 
 
-                if(
-                    f.motif &&
-                    row.motif !== f.motif
-                ){
+saveFilter(f);
 
-                    return false;
-
-                }
-
-
-                if(
-                    f.jenisDefect &&
-                    row.defect !== f.jenisDefect
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.mesin &&
-                    row.mesin !== f.mesin
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.grup &&
-                    row.grup !== f.grup
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.rollId &&
-                    row.roll !== f.rollId
-                ){
-
-                    return false;
-
-                }
-
-
-                return true;
-
-            }
-        );
-
-
-    currentPage = 1;
-
-    currentSearch = "";
-
-    const search =
-        document.getElementById(
-            "quickSearch"
-        );
-
-    if(search){
-
-        search.value = "";
-
-    }
-
-
-    saveFilter(f);
-
-    renderDashboard();
+renderDashboard();
 
 }
 
@@ -2990,65 +3003,54 @@ function applyFilter(){
 
 function clearFilter(){
 
-    document.getElementById(
-        "dateFrom"
-    ).value = "";
+document.getElementById(
+"dateFrom"
+).value = "";
 
-    document.getElementById(
-        "dateTo"
-    ).value = "";
-
-    document.getElementById(
-        "kodeProduk"
-    ).value = "";
-
-    document.getElementById(
-        "motif"
-    ).value = "";
-
-    document.getElementById(
-        "jenisDefect"
-    ).value = "";
-
-    document.getElementById(
-        "mesin"
-    ).value = "";
-
-    document.getElementById(
-        "grup"
-    ).value = "";
-
-    document.getElementById(
-        "rollId"
-    ).value = "";
+document.getElementById(
+"dateTo"
+).value = "";
 
 
-    filteredData =
-        [...allData];
+MULTI_FILTER_IDS.forEach(
+function(id){
 
-    currentPage = 1;
+const select =
+document.getElementById(id);
 
-    currentSearch = "";
+if(select){
 
-    const search =
-        document.getElementById(
-            "quickSearch"
-        );
+setSelectedValues(
+select,
+[]
+);
 
-    if(search){
+}
 
-        search.value = "";
+}
+);
 
-    }
+
+filteredData =
+[...allData];
+
+currentPage = 1;
+
+currentSearch = "";
+
+const search =
+document.getElementById(
+"quickSearch"
+);
+
+if(search){
+
+search.value = "";
+
+}
 
 
-    /*
-       Tidak menghapus filter tersimpan.
-       Penghapusan permanen hanya lewat
-       tombol Reset Filter Tersimpan.
-    */
-
-    renderDashboard();
+renderDashboard();
 
 }
 
@@ -3059,21 +3061,23 @@ function clearFilter(){
 
 function saveFilter(filter){
 
-    try{
+try{
 
-        localStorage.setItem(
-            FILTER_CACHE_KEY,
-            JSON.stringify(filter)
-        );
+localStorage.setItem(
+FILTER_CACHE_KEY,
+JSON.stringify(
+normalizeFilter(filter)
+)
+);
 
-    }catch(error){
+}catch(error){
 
-        console.warn(
-            "Filter tidak tersimpan",
-            error
-        );
+console.warn(
+"Filter tidak tersimpan",
+error
+);
 
-    }
+}
 
 }
 
@@ -3084,30 +3088,32 @@ function saveFilter(filter){
 
 function restoreSavedFilterOnly(){
 
-    try{
+try{
 
-        const saved =
-            localStorage.getItem(
-                FILTER_CACHE_KEY
-            );
+const saved =
+localStorage.getItem(
+FILTER_CACHE_KEY
+);
 
-        if(!saved) return;
+if(!saved) return;
 
-        const filter =
-            JSON.parse(saved);
+const filter =
+normalizeFilter(
+JSON.parse(saved)
+);
 
-        setBasicFilterValues(
-            filter
-        );
+setBasicFilterValues(
+filter
+);
 
-    }catch(error){
+}catch(error){
 
-        console.warn(
-            "Saved filter gagal dibaca",
-            error
-        );
+console.warn(
+"Saved filter gagal dibaca",
+error
+);
 
-    }
+}
 
 }
 
@@ -3118,36 +3124,38 @@ function restoreSavedFilterOnly(){
 
 function restoreSavedFilter(){
 
-    try{
+try{
 
-        const saved =
-            localStorage.getItem(
-                FILTER_CACHE_KEY
-            );
+const saved =
+localStorage.getItem(
+FILTER_CACHE_KEY
+);
 
-        if(!saved){
+if(!saved){
 
-            filteredData =
-                [...allData];
+filteredData =
+[...allData];
 
-            return;
+return;
 
-        }
+}
 
 
-        const filter =
-            JSON.parse(saved);
+const filter =
+normalizeFilter(
+JSON.parse(saved)
+);
 
-        setFilterValues(
-            filter
-        );
+setFilterValues(
+filter
+);
 
-    }catch(error){
+}catch(error){
 
-        filteredData =
-            [...allData];
+filteredData =
+[...allData];
 
-    }
+}
 
 }
 
@@ -3158,39 +3166,43 @@ function restoreSavedFilter(){
 
 function setBasicFilterValues(f){
 
-    if(!f) return;
+if(!f) return;
+
+const filter =
+normalizeFilter(f);
 
 
-    const ids = [
-        "dateFrom",
-        "dateTo",
-        "kodeProduk",
-        "motif",
-        "jenisDefect",
-        "mesin",
-        "grup",
-        "rollId"
-    ];
+document.getElementById(
+"dateFrom"
+).value =
+filter.dateFrom;
+
+document.getElementById(
+"dateTo"
+).value =
+filter.dateTo;
 
 
-    ids.forEach(
-        function(id){
+MULTI_FILTER_IDS.forEach(
+function(id){
 
-            const el =
-                document.getElementById(id);
+const el =
+document.getElementById(id);
 
-            if(
-                el &&
-                f[id] !== undefined
-            ){
+if(
+el &&
+filter[id] !== undefined
+){
 
-                el.value =
-                    f[id];
+setSelectedValues(
+el,
+filter[id]
+);
 
-            }
+}
 
-        }
-    );
+}
+);
 
 }
 
@@ -3201,115 +3213,35 @@ function setBasicFilterValues(f){
 
 function setFilterValues(f){
 
-    if(!f){
+if(!f){
 
-        filteredData =
-            [...allData];
+filteredData =
+[...allData];
 
-        return;
+return;
 
-    }
-
-
-    setBasicFilterValues(
-        f
-    );
+}
 
 
-    filteredData =
-        allData.filter(
-            function(row){
+const filter =
+normalizeFilter(f);
 
-                if(
-                    f.dateFrom &&
-                    (
-                        !row.dateNorm ||
-                        row.dateNorm < f.dateFrom
-                    )
-                ){
-
-                    return false;
-
-                }
+setBasicFilterValues(
+filter
+);
 
 
-                if(
-                    f.dateTo &&
-                    (
-                        !row.dateNorm ||
-                        row.dateNorm > f.dateTo
-                    )
-                ){
+filteredData =
+allData.filter(
+function(row){
 
-                    return false;
+return rowMatchesFilter(
+row,
+filter
+);
 
-                }
-
-
-                if(
-                    f.kodeProduk &&
-                    row.kode !== f.kodeProduk
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.motif &&
-                    row.motif !== f.motif
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.jenisDefect &&
-                    row.defect !== f.jenisDefect
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.mesin &&
-                    row.mesin !== f.mesin
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.grup &&
-                    row.grup !== f.grup
-                ){
-
-                    return false;
-
-                }
-
-
-                if(
-                    f.rollId &&
-                    row.roll !== f.rollId
-                ){
-
-                    return false;
-
-                }
-
-
-                return true;
-
-            }
-        );
+}
+);
 
 }
 
@@ -3320,21 +3252,21 @@ function setFilterValues(f){
 
 function resetSavedFilter(){
 
-    try{
+try{
 
-        localStorage.removeItem(
-            FILTER_CACHE_KEY
-        );
+localStorage.removeItem(
+FILTER_CACHE_KEY
+);
 
-    }catch(error){}
-
-
-    clearFilter();
+}catch(error){}
 
 
-    setStatus(
-        "✅ Filter tersimpan berhasil direset"
-    );
+clearFilter();
+
+
+setStatus(
+"✅ Filter tersimpan berhasil direset"
+);
 
 }
 
@@ -3345,110 +3277,154 @@ function resetSavedFilter(){
 
 function renderFilterChips(){
 
-    const f =
-        getFilter();
+const f =
+getFilter();
 
-    const bar =
-        document.getElementById(
-            "activeFilterBar"
-        );
+const bar =
+document.getElementById(
+"activeFilterBar"
+);
 
-    if(!bar) return;
+if(!bar) return;
 
-    bar.innerHTML = "";
-
-
-    const labels = {
-
-        dateFrom:"Dari",
-
-        dateTo:"Sampai",
-
-        kodeProduk:"Kode",
-
-        motif:"Motif",
-
-        jenisDefect:"Defect",
-
-        mesin:"Mesin",
-
-        grup:"Grup",
-
-        rollId:"Roll"
-
-    };
+bar.innerHTML = "";
 
 
-    let count = 0;
+const labels = {
+
+dateFrom:"Dari",
+
+dateTo:"Sampai",
+
+kodeProduk:"Kode",
+
+motif:"Motif",
+
+jenisDefect:"Defect",
+
+mesin:"Mesin",
+
+grup:"Grup",
+
+rollId:"Roll"
+
+};
 
 
-    Object.keys(f).forEach(
-        function(key){
-
-            if(f[key]){
-
-                count++;
+let count = 0;
 
 
-                const chip =
-                    document.createElement(
-                        "div"
-                    );
+/*
+   DATE
+*/
 
-                chip.className =
-                    "chip";
+[
+"dateFrom",
+"dateTo"
+]
+.forEach(
+function(key){
 
-                chip.textContent =
-                    labels[key] +
-                    ": " +
-                    f[key];
+if(f[key]){
 
-                bar.appendChild(
-                    chip
-                );
+count++;
 
-            }
+const chip =
+document.createElement(
+"div"
+);
 
-        }
-    );
+chip.className =
+"chip";
+
+chip.textContent =
+labels[key] +
+": " +
+f[key];
+
+bar.appendChild(
+chip
+);
+
+}
+
+}
+);
 
 
-    if(count === 0){
+/*
+   MULTI SELECT
+*/
 
-        const label =
-            document.createElement(
-                "span"
-            );
+MULTI_FILTER_IDS.forEach(
+function(key){
 
-        label.className =
-            "active-filter-label";
+if(
+Array.isArray(f[key]) &&
+f[key].length
+){
 
-        label.textContent =
-            "Filter aktif: Semua Data";
+f[key].forEach(
+function(value){
 
-        bar.appendChild(
-            label
-        );
+count++;
 
-    }else{
+const chip =
+document.createElement(
+"div"
+);
 
-        const label =
-            document.createElement(
-                "span"
-            );
+chip.className =
+"chip";
 
-        label.className =
-            "active-filter-label";
+chip.textContent =
+labels[key] +
+": " +
+value;
 
-        label.textContent =
-            "Filter aktif:";
+bar.appendChild(
+chip
+);
 
-        bar.insertBefore(
-            label,
-            bar.firstChild
-        );
+}
 
-    }
+);
+
+}
+
+}
+);
+
+
+const label =
+document.createElement(
+"span"
+);
+
+label.className =
+"active-filter-label";
+
+
+if(count === 0){
+
+label.textContent =
+"Filter aktif: Semua Data";
+
+bar.appendChild(
+label
+);
+
+}else{
+
+label.textContent =
+"Filter aktif:";
+
+bar.insertBefore(
+label,
+bar.firstChild
+);
+
+}
 
 }
 
@@ -3459,15 +3435,15 @@ function renderFilterChips(){
 
 function renderDashboard(){
 
-    renderSummary();
+renderSummary();
 
-    renderFocus();
+renderFocus();
 
-    renderRanking();
+renderRanking();
 
-    renderFilterChips();
+renderFilterChips();
 
-    renderTable();
+renderTable();
 
 }
 
@@ -3478,9 +3454,9 @@ function renderDashboard(){
 
 function formatNumber(value){
 
-    return numberFormatter.format(
-        Number(value) || 0
-    );
+return numberFormatter.format(
+Number(value) || 0
+);
 
 }
 
@@ -3490,43 +3466,43 @@ function formatNumber(value){
 ===================================================== */
 
 function groupSum(
-    data,
-    field
+data,
+field
 ){
 
-    const map =
-        new Map();
+const map =
+new Map();
 
 
-    data.forEach(
-        function(row){
+data.forEach(
+function(row){
 
-            const key =
-                String(
-                    row[field] || "(Kosong)"
-                ).trim();
-
-
-            map.set(
-                key,
-                (map.get(key) || 0) +
-                Number(row.qty || 0)
-            );
-
-        }
-    );
+const key =
+String(
+row[field] || "(Kosong)"
+).trim();
 
 
-    return [
-        ...map.entries()
-    ]
-    .sort(
-        function(a,b){
+map.set(
+key,
+(map.get(key) || 0) +
+Number(row.qty || 0)
+);
 
-            return b[1] - a[1];
+}
+);
 
-        }
-    );
+
+return [
+...map.entries()
+]
+.sort(
+function(a,b){
+
+return b[1] - a[1];
+
+}
+);
 
 }
 
@@ -3537,68 +3513,68 @@ function groupSum(
 
 function renderSummary(){
 
-    const totalPcs =
-        filteredData.reduce(
-            function(sum,row){
+const totalPcs =
+filteredData.reduce(
+function(sum,row){
 
-                return sum +
-                    Number(
-                        row.qty || 0
-                    );
+return sum +
+Number(
+row.qty || 0
+);
 
-            },
-            0
-        );
-
-
-    const totalRoll =
-        new Set(
-            filteredData
-            .map(
-                function(x){
-                    return x.roll;
-                }
-            )
-            .filter(Boolean)
-        ).size;
+},
+0
+);
 
 
-    const totalJenis =
-        new Set(
-            filteredData
-            .map(
-                function(x){
-                    return x.defect;
-                }
-            )
-            .filter(Boolean)
-        ).size;
+const totalRoll =
+new Set(
+filteredData
+.map(
+function(x){
+return x.roll;
+}
+)
+.filter(Boolean)
+).size;
 
 
-    document.getElementById(
-        "totalPcs"
-    ).textContent =
-        formatNumber(totalPcs);
+const totalJenis =
+new Set(
+filteredData
+.map(
+function(x){
+return x.defect;
+}
+)
+.filter(Boolean)
+).size;
 
 
-    document.getElementById(
-        "totalRoll"
-    ).textContent =
-        formatNumber(totalRoll);
+document.getElementById(
+"totalPcs"
+).textContent =
+formatNumber(totalPcs);
 
 
-    document.getElementById(
-        "totalJenis"
-    ).textContent =
-        formatNumber(totalJenis);
+document.getElementById(
+"totalRoll"
+).textContent =
+formatNumber(totalRoll);
 
 
-    document.getElementById(
-        "totalData"
-    ).textContent =
-        formatNumber(
-            filteredData.length
-        );
+document.getElementById(
+"totalJenis"
+).textContent =
+formatNumber(totalJenis);
+
+
+document.getElementById(
+"totalData"
+).textContent =
+formatNumber(
+filteredData.length
+);
 
 }
 
@@ -3609,45 +3585,45 @@ function renderSummary(){
 
 function renderFocus(){
 
-    const total =
-        filteredData.reduce(
-            function(sum,row){
+const total =
+filteredData.reduce(
+function(sum,row){
 
-                return sum +
-                    Number(
-                        row.qty || 0
-                    );
+return sum +
+Number(
+row.qty || 0
+);
 
-            },
-            0
-        );
-
-
-    renderFocusGroup(
-        "defect",
-        "focusDefectPcs",
-        "focusDefectPercent",
-        "defectMiniList",
-        total
-    );
+},
+0
+);
 
 
-    renderFocusGroup(
-        "mesin",
-        "focusMesinPcs",
-        "focusMesinPercent",
-        "mesinMiniList",
-        total
-    );
+renderFocusGroup(
+"defect",
+"focusDefectPcs",
+"focusDefectPercent",
+"defectMiniList",
+total
+);
 
 
-    renderFocusGroup(
-        "grup",
-        "focusGrupPcs",
-        "focusGrupPercent",
-        "grupMiniList",
-        total
-    );
+renderFocusGroup(
+"mesin",
+"focusMesinPcs",
+"focusMesinPercent",
+"mesinMiniList",
+total
+);
+
+
+renderFocusGroup(
+"grup",
+"focusGrupPcs",
+"focusGrupPercent",
+"grupMiniList",
+total
+);
 
 }
 
@@ -3657,96 +3633,98 @@ function renderFocus(){
 ===================================================== */
 
 function renderFocusGroup(
-    field,
-    numberId,
-    percentId,
-    listId,
-    total
+field,
+numberId,
+percentId,
+listId,
+total
 ){
 
-    const grouped =
-        groupSum(
-            filteredData,
-            field
-        );
+const grouped =
+groupSum(
+filteredData,
+field
+);
 
 
-    const top =
-        grouped[0];
+const top =
+grouped[0];
 
 
-    const numberEl =
-        document.getElementById(
-            numberId
-        );
+const numberEl =
+document.getElementById(
+numberId
+);
 
-    const percentEl =
-        document.getElementById(
-            percentId
-        );
+const percentEl =
+document.getElementById(
+percentId
+);
 
-    const listEl =
-        document.getElementById(
-            listId
-        );
-
-
-    if(!top){
-
-        numberEl.textContent =
-            "0";
-
-        percentEl.textContent =
-            "Tidak ada data";
-
-        listEl.innerHTML =
-            '<div class="empty">Tidak ada data</div>';
-
-        return;
-
-    }
+const listEl =
+document.getElementById(
+listId
+);
 
 
-    const percent =
-        total > 0
-        ? top[1] / total * 100
-        : 0;
+if(!top){
+
+numberEl.textContent =
+"0";
+
+percentEl.textContent =
+"Tidak ada data";
+
+listEl.innerHTML =
+'<div class="empty">Tidak ada data</div>';
+
+return;
+
+}
 
 
-    numberEl.textContent =
-        formatNumber(top[1]);
+const percent =
+total > 0
+? top[1] / total * 100
+: 0;
 
 
-    percentEl.textContent =
-        top[0] +
-        " • " +
-        percent.toFixed(1) +
-        "%";
+numberEl.textContent =
+formatNumber(top[1]);
 
 
-    listEl.innerHTML =
-        grouped
-        .slice(0,5)
-        .map(
-            function(item){
+percentEl.textContent =
+top[0] +
+" • " +
+percent.toFixed(1) +
+"%";
 
-                return `
-                    <div class="mini-row">
 
-                        <span>
-                            ${escapeHtml(item[0])}
-                        </span>
+listEl.innerHTML =
+grouped
+.slice(0,5)
+.map(
+function(item){
 
-                        <strong>
-                            ${formatNumber(item[1])}
-                        </strong>
+return `
 
-                    </div>
-                `;
+<div class="mini-row">
 
-            }
-        )
-        .join("");
+<span>
+${escapeHtml(item[0])}
+</span>
+
+<strong>
+${formatNumber(item[1])}
+</strong>
+
+</div>
+
+`;
+
+}
+)
+.join("");
 
 }
 
@@ -3757,22 +3735,22 @@ function renderFocusGroup(
 
 function renderRanking(){
 
-    renderRankingList(
-        "defect",
-        "defectRanking"
-    );
+renderRankingList(
+"defect",
+"defectRanking"
+);
 
 
-    renderRankingList(
-        "mesin",
-        "mesinRanking"
-    );
+renderRankingList(
+"mesin",
+"mesinRanking"
+);
 
 
-    renderRankingList(
-        "grup",
-        "groupRanking"
-    );
+renderRankingList(
+"grup",
+"groupRanking"
+);
 
 }
 
@@ -3782,84 +3760,84 @@ function renderRanking(){
 ===================================================== */
 
 function renderRankingList(
-    field,
-    elementId
+field,
+elementId
 ){
 
-    const list =
-        document.getElementById(
-            elementId
-        );
+const list =
+document.getElementById(
+elementId
+);
 
 
-    const grouped =
-        groupSum(
-            filteredData,
-            field
-        );
+const grouped =
+groupSum(
+filteredData,
+field
+);
 
 
-    if(!grouped.length){
+if(!grouped.length){
 
-        list.innerHTML =
-            '<div class="empty">Tidak ada data</div>';
+list.innerHTML =
+'<div class="empty">Tidak ada data</div>';
 
-        return;
+return;
 
-    }
-
-
-    list.innerHTML =
-        grouped
-        .slice(0,10)
-        .map(
-            function(item,index){
-
-                let rankClass = "";
+}
 
 
-                if(index === 0){
+list.innerHTML =
+grouped
+.slice(0,10)
+.map(
+function(item,index){
 
-                    rankClass =
-                        "rank-1";
-
-                }else if(index === 1){
-
-                    rankClass =
-                        "rank-2";
-
-                }else if(index === 2){
-
-                    rankClass =
-                        "rank-3";
-
-                }
+let rankClass = "";
 
 
-                return `
+if(index === 0){
 
-                    <div class="ranking-item">
+rankClass =
+"rank-1";
 
-                        <div
-                            class="rank ${rankClass}">
-                            ${index + 1}
-                        </div>
+}else if(index === 1){
 
-                        <div class="rank-name">
-                            ${escapeHtml(item[0])}
-                        </div>
+rankClass =
+"rank-2";
 
-                        <div class="rank-value">
-                            ${formatNumber(item[1])} Pcs
-                        </div>
+}else if(index === 2){
 
-                    </div>
+rankClass =
+"rank-3";
 
-                `;
+}
 
-            }
-        )
-        .join("");
+
+return `
+
+<div class="ranking-item">
+
+<div
+class="rank ${rankClass}">
+${index + 1}
+</div>
+
+<div class="rank-name">
+${escapeHtml(item[0])}
+</div>
+
+<div class="rank-value">
+${formatNumber(item[1])} Pcs
+</div>
+
+</div>
+
+`;
+
+}
+)
+.join("");
 
 }
 
@@ -3870,46 +3848,46 @@ function renderRankingList(
 
 function quickSearch(){
 
-    const input =
-        document.getElementById(
-            "quickSearch"
-        );
+const input =
+document.getElementById(
+"quickSearch"
+);
 
 
-    currentSearch =
-        input.value
-        .toLowerCase()
-        .trim();
+currentSearch =
+input.value
+.toLowerCase()
+.trim();
 
 
-    currentPage = 1;
+currentPage = 1;
 
 
-    if(!currentSearch){
+if(!currentSearch){
 
-        renderTable();
+renderTable();
 
-        return;
+return;
 
-    }
-
-
-    const result =
-        filteredData.filter(
-            function(row){
-
-                return row.searchText
-                    .includes(
-                        currentSearch
-                    );
-
-            }
-        );
+}
 
 
-    renderTableData(
-        result
-    );
+const result =
+filteredData.filter(
+function(row){
+
+return row.searchText
+.includes(
+currentSearch
+);
+
+}
+);
+
+
+renderTableData(
+result
+);
 
 }
 
@@ -3920,77 +3898,77 @@ function quickSearch(){
 
 function sortTable(field){
 
-    if(sortField === field){
+if(sortField === field){
 
-        sortDirection *= -1;
+sortDirection *= -1;
 
-    }else{
+}else{
 
-        sortField =
-            field;
+sortField =
+field;
 
-        sortDirection =
-            1;
+sortDirection =
+1;
 
-    }
-
-
-    filteredData.sort(
-        function(a,b){
-
-            let av =
-                a[field] ?? "";
-
-            let bv =
-                b[field] ?? "";
+}
 
 
-            if(field === "qty"){
+filteredData.sort(
+function(a,b){
 
-                av =
-                    Number(av);
+let av =
+a[field] ?? "";
 
-                bv =
-                    Number(bv);
-
-            }else{
-
-                av =
-                    String(av)
-                    .toLowerCase();
-
-                bv =
-                    String(bv)
-                    .toLowerCase();
-
-            }
+let bv =
+b[field] ?? "";
 
 
-            if(av < bv){
+if(field === "qty"){
 
-                return -1 *
-                    sortDirection;
+av =
+Number(av);
 
-            }
+bv =
+Number(bv);
+
+}else{
+
+av =
+String(av)
+.toLowerCase();
+
+bv =
+String(bv)
+.toLowerCase();
+
+}
 
 
-            if(av > bv){
+if(av < bv){
 
-                return 1 *
-                    sortDirection;
+return -1 *
+sortDirection;
 
-            }
-
-
-            return 0;
-
-        }
-    );
+}
 
 
-    currentPage = 1;
+if(av > bv){
 
-    renderTable();
+return 1 *
+sortDirection;
+
+}
+
+
+return 0;
+
+}
+);
+
+
+currentPage = 1;
+
+renderTable();
 
 }
 
@@ -4001,33 +3979,33 @@ function sortTable(field){
 
 function renderTable(){
 
-    if(currentSearch){
+if(currentSearch){
 
-        const result =
-            filteredData.filter(
-                function(row){
+const result =
+filteredData.filter(
+function(row){
 
-                    return row.searchText
-                        .includes(
-                            currentSearch
-                        );
+return row.searchText
+.includes(
+currentSearch
+);
 
-                }
-            );
-
-
-        renderTableData(
-            result
-        );
-
-        return;
-
-    }
+}
+);
 
 
-    renderTableData(
-        filteredData
-    );
+renderTableData(
+result
+);
+
+return;
+
+}
+
+
+renderTableData(
+filteredData
+);
 
 }
 
@@ -4038,166 +4016,166 @@ function renderTable(){
 
 function renderTableData(data){
 
-    const tbody =
-        document.getElementById(
-            "tableBody"
-        );
+const tbody =
+document.getElementById(
+"tableBody"
+);
 
 
-    if(
-        !data ||
-        data.length === 0
-    ){
+if(
+!data ||
+data.length === 0
+){
 
-        tbody.innerHTML = `
+tbody.innerHTML = `
 
-            <tr>
+<tr>
 
-                <td
-                    colspan="10"
-                    class="empty">
+<td
+colspan="10"
+class="empty">
 
-                    Tidak ada data sesuai filter
+Tidak ada data sesuai filter
 
-                </td>
+</td>
 
-            </tr>
+</tr>
 
-        `;
-
-
-        document.getElementById(
-            "pageInfo"
-        ).textContent =
-            "0 data";
+`;
 
 
-        document.getElementById(
-            "pageButtons"
-        ).innerHTML =
-            "";
-
-        return;
-
-    }
+document.getElementById(
+"pageInfo"
+).textContent =
+"0 data";
 
 
-    const totalPages =
-        Math.ceil(
-            data.length /
-            rowsPerPage
-        );
+document.getElementById(
+"pageButtons"
+).innerHTML =
+"";
+
+return;
+
+}
 
 
-    if(
-        currentPage >
-        totalPages
-    ){
-
-        currentPage =
-            totalPages;
-
-    }
+const totalPages =
+Math.ceil(
+data.length /
+rowsPerPage
+);
 
 
-    const start =
-        (currentPage - 1) *
-        rowsPerPage;
+if(
+currentPage >
+totalPages
+){
+
+currentPage =
+totalPages;
+
+}
 
 
-    const end =
-        start +
-        rowsPerPage;
+const start =
+(currentPage - 1) *
+rowsPerPage;
 
 
-    const pageRows =
-        data.slice(
-            start,
-            end
-        );
+const end =
+start +
+rowsPerPage;
 
 
-    tbody.innerHTML =
-        pageRows
-        .map(
-            function(row){
-
-                return `
-
-                    <tr>
-
-                        <td>
-                            ${escapeHtml(row.tgl)}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(row.roll)}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(row.kode)}
-                        </td>
-
-                        <td class="qty">
-                            ${formatNumber(row.qty)}
-                        </td>
-
-                        <td>
-
-                            <span class="defect-badge">
-                                ${escapeHtml(row.defect)}
-                            </span>
-
-                        </td>
-
-                        <td>
-                            ${escapeHtml(row.mesin)}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(row.motif)}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(row.blok)}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(row.grup)}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(row.operator)}
-                        </td>
-
-                    </tr>
-
-                `;
-
-            }
-        )
-        .join("");
+const pageRows =
+data.slice(
+start,
+end
+);
 
 
-    document.getElementById(
-        "pageInfo"
-    ).textContent =
-        "Menampilkan " +
-        (start + 1) +
-        "-" +
-        Math.min(
-            end,
-            data.length
-        ) +
-        " dari " +
-        data.length +
-        " data";
+tbody.innerHTML =
+pageRows
+.map(
+function(row){
+
+return `
+
+<tr>
+
+<td>
+${escapeHtml(row.tgl)}
+</td>
+
+<td>
+${escapeHtml(row.roll)}
+</td>
+
+<td>
+${escapeHtml(row.kode)}
+</td>
+
+<td class="qty">
+${formatNumber(row.qty)}
+</td>
+
+<td>
+
+<span class="defect-badge">
+${escapeHtml(row.defect)}
+</span>
+
+</td>
+
+<td>
+${escapeHtml(row.mesin)}
+</td>
+
+<td>
+${escapeHtml(row.motif)}
+</td>
+
+<td>
+${escapeHtml(row.blok)}
+</td>
+
+<td>
+${escapeHtml(row.grup)}
+</td>
+
+<td>
+${escapeHtml(row.operator)}
+</td>
+
+</tr>
+
+`;
+
+}
+)
+.join("");
 
 
-    renderPagination(
-        totalPages,
-        data
-    );
+document.getElementById(
+"pageInfo"
+).textContent =
+"Menampilkan " +
+(start + 1) +
+"-" +
+Math.min(
+end,
+data.length
+) +
+" dari " +
+data.length +
+" data";
+
+
+renderPagination(
+totalPages,
+data
+);
 
 }
 
@@ -4207,161 +4185,161 @@ function renderTableData(data){
 ===================================================== */
 
 function renderPagination(
-    totalPages,
-    data
+totalPages,
+data
 ){
 
-    const container =
-        document.getElementById(
-            "pageButtons"
-        );
+const container =
+document.getElementById(
+"pageButtons"
+);
 
 
-    container.innerHTML =
-        "";
+container.innerHTML =
+"";
 
 
-    if(totalPages <= 1){
+if(totalPages <= 1){
 
-        return;
+return;
 
-    }
-
-
-    const prev =
-        document.createElement(
-            "button"
-        );
+}
 
 
-    prev.className =
-        "page-btn";
-
-    prev.textContent =
-        "‹";
-
-    prev.disabled =
-        currentPage === 1;
+const prev =
+document.createElement(
+"button"
+);
 
 
-    prev.onclick =
-        function(){
+prev.className =
+"page-btn";
 
-            if(currentPage > 1){
+prev.textContent =
+"‹";
 
-                currentPage--;
-
-                renderTableData(
-                    data
-                );
-
-            }
-
-        };
+prev.disabled =
+currentPage === 1;
 
 
-    container.appendChild(
-        prev
-    );
+prev.onclick =
+function(){
+
+if(currentPage > 1){
+
+currentPage--;
+
+renderTableData(
+data
+);
+
+}
+
+};
 
 
-    let start =
-        Math.max(
-            1,
-            currentPage - 2
-        );
+container.appendChild(
+prev
+);
 
 
-    let end =
-        Math.min(
-            totalPages,
-            currentPage + 2
-        );
+let start =
+Math.max(
+1,
+currentPage - 2
+);
 
 
-    for(
-        let i = start;
-        i <= end;
-        i++
-    ){
-
-        const btn =
-            document.createElement(
-                "button"
-            );
+let end =
+Math.min(
+totalPages,
+currentPage + 2
+);
 
 
-        btn.className =
-            "page-btn" +
-            (
-                i === currentPage
-                ? " active"
-                : ""
-            );
+for(
+let i = start;
+i <= end;
+i++
+){
+
+const btn =
+document.createElement(
+"button"
+);
 
 
-        btn.textContent =
-            i;
+btn.className =
+"page-btn" +
+(
+i === currentPage
+? " active"
+: ""
+);
 
 
-        btn.onclick =
-            function(){
-
-                currentPage =
-                    i;
-
-                renderTableData(
-                    data
-                );
-
-            };
+btn.textContent =
+i;
 
 
-        container.appendChild(
-            btn
-        );
+btn.onclick =
+function(){
 
-    }
+currentPage =
+i;
 
+renderTableData(
+data
+);
 
-    const next =
-        document.createElement(
-            "button"
-        );
-
-
-    next.className =
-        "page-btn";
-
-    next.textContent =
-        "›";
-
-    next.disabled =
-        currentPage === totalPages;
+};
 
 
-    next.onclick =
-        function(){
+container.appendChild(
+btn
+);
 
-            if(
-                currentPage <
-                totalPages
-            ){
-
-                currentPage++;
-
-                renderTableData(
-                    data
-                );
-
-            }
-
-        };
+}
 
 
-    container.appendChild(
-        next
-    );
+const next =
+document.createElement(
+"button"
+);
+
+
+next.className =
+"page-btn";
+
+next.textContent =
+"›";
+
+next.disabled =
+currentPage === totalPages;
+
+
+next.onclick =
+function(){
+
+if(
+currentPage <
+totalPages
+){
+
+currentPage++;
+
+renderTableData(
+data
+);
+
+}
+
+};
+
+
+container.appendChild(
+next
+);
 
 }
 
@@ -4372,36 +4350,36 @@ function renderPagination(
 
 function escapeHtml(value){
 
-    return String(
-        value == null
-        ? ""
-        : value
-    )
+return String(
+value == null
+? ""
+: value
+)
 
-    .replace(
-        /&/g,
-        "&amp;"
-    )
+.replace(
+/&/g,
+"&amp;"
+)
 
-    .replace(
-        /</g,
-        "&lt;"
-    )
+.replace(
+/</g,
+"&lt;"
+)
 
-    .replace(
-        />/g,
-        "&gt;"
-    )
+.replace(
+/>/g,
+"&gt;"
+)
 
-    .replace(
-        /"/g,
-        "&quot;"
-    )
+.replace(
+/"/g,
+"&quot;"
+)
 
-    .replace(
-        /'/g,
-        "&#039;"
-    );
+.replace(
+/'/g,
+"&#039;"
+);
 
 }
 
