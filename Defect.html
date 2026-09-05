@@ -416,6 +416,7 @@ input[type="date"]:focus,
     background:#fff;
 }
 
+/* +6 level dari 11px menjadi 17px */
 .focus-title{
     font-size:17px;
     font-weight:800;
@@ -423,12 +424,14 @@ input[type="date"]:focus,
     margin-bottom:6px;
 }
 
+/* +6 level dari 16px menjadi 22px */
 .focus-value{
     font-size:22px;
     font-weight:800;
     color:#1e293b;
 }
 
+/* +6 level dari 11px menjadi 17px */
 .focus-number{
     font-size:17px;
     font-weight:800;
@@ -454,6 +457,7 @@ input[type="date"]:focus,
     overflow:hidden;
 }
 
+/* +6 level dari 13px menjadi 19px */
 .ranking-title{
     padding:11px 12px;
     background:#f8fafc;
@@ -475,6 +479,7 @@ input[type="date"]:focus,
     border-bottom:0;
 }
 
+/* +6 level dari 10px menjadi 16px */
 .rank-number{
     width:25px;
     height:25px;
@@ -502,6 +507,7 @@ input[type="date"]:focus,
     color:#15803d;
 }
 
+/* +6 level dari 11px menjadi 17px */
 .rank-name{
     min-width:0;
     overflow:hidden;
@@ -511,6 +517,7 @@ input[type="date"]:focus,
     font-weight:700;
 }
 
+/* +6 level dari 11px menjadi 17px */
 .rank-value{
     font-size:17px;
     font-weight:800;
@@ -1228,6 +1235,10 @@ tbody tr:hover{
 
 <script>
 
+/* =====================================================
+   CONFIG
+===================================================== */
+
 const API_URL =
 "https://script.google.com/macros/s/AKfycbwJ9bH0_V1p--6hRJqXO7yi2k4GY4jLfONJMGxIGcqfh8UmLTxphSNFhAY9ifdFhCpnag/exec?action=defect";
 
@@ -1250,13 +1261,21 @@ const MULTI_FILTER_IDS = [
     "rollId"
 ];
 
+
 let allData = [];
+
 let filteredData = [];
+
 let displayedData = [];
+
 let currentPage = 1;
+
 let sortColumn = "";
+
 let sortDirection = 1;
+
 let dataLoadState = "loading";
+
 let dataSourceError = "";
 
 let checkboxValues = {
@@ -1268,6 +1287,10 @@ let checkboxValues = {
     rollId:[]
 };
 
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
 function goPage(page){
 
@@ -1283,6 +1306,10 @@ function goPage(page){
 
 }
 
+
+/* =====================================================
+   BASIC HELPERS
+===================================================== */
 
 function text(v){
 
@@ -1343,6 +1370,10 @@ function uniqueSorted(arr){
 }
 
 
+/* =====================================================
+   STATUS
+===================================================== */
+
 function setStatus(message,type=""){
 
     const el =
@@ -1359,6 +1390,10 @@ function setStatus(message,type=""){
 
 }
 
+
+/* =====================================================
+   HEADER INDEX
+===================================================== */
 
 function findHeader(headers,aliases){
 
@@ -1382,6 +1417,10 @@ function findHeader(headers,aliases){
 
 }
 
+
+/* =====================================================
+   DATE NORMALIZATION
+===================================================== */
 
 function normalizeDate(value){
 
@@ -1455,6 +1494,10 @@ function normalizeDate(value){
 
 }
 
+
+/* =====================================================
+   QTY
+===================================================== */
 
 function parseQty(value){
 
@@ -1532,6 +1575,10 @@ function parseQty(value){
 
 }
 
+
+/* =====================================================
+   NORMALIZE API DATA
+===================================================== */
 
 function normalizeRows(raw){
 
@@ -1746,6 +1793,10 @@ function normalizeRows(raw){
 }
 
 
+/* =====================================================
+   CACHE
+===================================================== */
+
 function saveDataCache(raw){
 
     try{
@@ -1810,6 +1861,10 @@ function getDataCache(){
 
 }
 
+
+/* =====================================================
+   FILTER STORAGE
+===================================================== */
 
 function normalizeFilter(f){
 
@@ -1904,6 +1959,10 @@ function getSavedFilter(){
 }
 
 
+/* =====================================================
+   SANITIZE SAVED FILTER
+===================================================== */
+
 function sanitizeFilterAgainstData(filter){
 
     const f =
@@ -1928,6 +1987,10 @@ function sanitizeFilterAgainstData(filter){
 
 }
 
+
+/* =====================================================
+   CHECKBOX FILTER
+===================================================== */
 
 function buildCheckboxFilter(id,values){
 
@@ -2285,6 +2348,10 @@ function clearAllCheckboxes(id){
 }
 
 
+/* =====================================================
+   POPULATE FILTER
+===================================================== */
+
 function populateFilters(){
 
     buildCheckboxFilter(
@@ -2319,6 +2386,10 @@ function populateFilters(){
 
 }
 
+
+/* =====================================================
+   GET FILTER
+===================================================== */
 
 function getFilter(){
 
@@ -2368,6 +2439,10 @@ function getFilter(){
 
 }
 
+
+/* =====================================================
+   ROW MATCH
+===================================================== */
 
 function rowMatchesFilter(row,f){
 
@@ -2446,6 +2521,10 @@ function rowMatchesFilter(row,f){
 }
 
 
+/* =====================================================
+   APPLY FILTER
+===================================================== */
+
 function applyFilter(){
 
     const f =
@@ -2502,6 +2581,10 @@ function applyFilter(){
 
 }
 
+
+/* =====================================================
+   RESTORE SAVED FILTER
+===================================================== */
 
 function restoreSavedFilter(){
 
@@ -2560,6 +2643,10 @@ function restoreSavedFilter(){
 
 }
 
+
+/* =====================================================
+   FILTER CHIPS
+===================================================== */
 
 function renderFilterChips(f){
 
@@ -2641,6 +2728,10 @@ function renderFilterChips(f){
 }
 
 
+/* =====================================================
+   CLEAR FILTER
+===================================================== */
+
 function clearFilter(){
 
     document.getElementById(
@@ -2685,6 +2776,10 @@ function clearFilter(){
 }
 
 
+/* =====================================================
+   RESET SAVED FILTER
+===================================================== */
+
 function resetSavedFilter(){
 
     try{
@@ -2706,6 +2801,10 @@ function resetSavedFilter(){
 
 }
 
+
+/* =====================================================
+   QUICK SEARCH
+===================================================== */
 
 function applyQuickSearch(){
 
@@ -2745,6 +2844,10 @@ function applyQuickSearch(){
 
 }
 
+
+/* =====================================================
+   SORT
+===================================================== */
 
 function sortData(column){
 
@@ -2817,6 +2920,10 @@ function sortData(column){
 }
 
 
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
 function renderDashboard(){
 
     const data =
@@ -2834,6 +2941,10 @@ function renderDashboard(){
 
 }
 
+
+/* =====================================================
+   CURRENT DISPLAY DATA
+===================================================== */
 
 function getCurrentDisplayData(){
 
@@ -2858,6 +2969,10 @@ function getCurrentDisplayData(){
 
 }
 
+
+/* =====================================================
+   SUMMARY
+===================================================== */
 
 function renderSummary(data){
 
@@ -2911,6 +3026,10 @@ function renderSummary(data){
 }
 
 
+/* =====================================================
+   GROUP SUM
+===================================================== */
+
 function groupSum(data,key){
 
     const map = new Map();
@@ -2941,6 +3060,10 @@ function groupSum(data,key){
 
 }
 
+
+/* =====================================================
+   FOCUS
+===================================================== */
 
 function renderFocus(data){
 
@@ -3009,6 +3132,10 @@ function renderFocus(data){
 }
 
 
+/* =====================================================
+   RANKING
+===================================================== */
+
 function renderRankings(data){
 
     renderRankingBox(
@@ -3076,6 +3203,10 @@ function renderRankingBox(id,items){
 
 }
 
+
+/* =====================================================
+   TABLE
+===================================================== */
 
 function renderTable(){
 
@@ -3331,6 +3462,10 @@ function renderTable(){
 }
 
 
+/* =====================================================
+   PAGINATION
+===================================================== */
+
 function updatePagination(total){
 
     const totalPages =
@@ -3414,6 +3549,10 @@ function changePage(direction){
 
 }
 
+
+/* =====================================================
+   SET DATA
+===================================================== */
 
 function setDefectData(raw,fresh=false){
 
@@ -3555,6 +3694,10 @@ function setDefectData(raw,fresh=false){
 
 }
 
+
+/* =====================================================
+   LOAD DATA
+===================================================== */
 
 async function loadDefectData(){
 
@@ -3823,6 +3966,10 @@ async function loadDefectData(){
 }
 
 
+/* =====================================================
+   INITIALIZATION
+===================================================== */
+
 function initialize(){
 
     document.getElementById(
@@ -3842,10 +3989,15 @@ function initialize(){
 
     renderTable();
 
+
     loadDefectData();
 
 }
 
+
+/* =====================================================
+   START
+===================================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
