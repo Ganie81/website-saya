@@ -400,6 +400,7 @@ input[type="date"]:focus,
 
 /* =====================================================
    FOCUS
+   +6 PX SESUAI PERMINTAAN
 ===================================================== */
 
 .focus-grid{
@@ -417,19 +418,21 @@ input[type="date"]:focus,
 }
 
 .focus-title{
-    font-size:11px;
+    font-size:17px;
+    font-weight:800;
     color:#64748b;
     margin-bottom:6px;
 }
 
 .focus-value{
-    font-size:16px;
+    font-size:22px;
     font-weight:800;
     color:#1e293b;
 }
 
 .focus-number{
-    font-size:11px;
+    font-size:17px;
+    font-weight:800;
     color:#64748b;
     margin-top:4px;
 }
@@ -437,6 +440,7 @@ input[type="date"]:focus,
 
 /* =====================================================
    RANKING
+   +6 PX SESUAI PERMINTAAN
 ===================================================== */
 
 .ranking-grid{
@@ -455,7 +459,7 @@ input[type="date"]:focus,
 .ranking-title{
     padding:11px 12px;
     background:#f8fafc;
-    font-size:13px;
+    font-size:19px;
     font-weight:800;
     border-bottom:1px solid var(--border);
 }
@@ -480,7 +484,7 @@ input[type="date"]:focus,
     align-items:center;
     justify-content:center;
     border-radius:50%;
-    font-size:10px;
+    font-size:16px;
     font-weight:800;
     background:#e2e8f0;
 }
@@ -505,11 +509,12 @@ input[type="date"]:focus,
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
-    font-size:11px;
+    font-size:17px;
+    font-weight:700;
 }
 
 .rank-value{
-    font-size:11px;
+    font-size:17px;
     font-weight:800;
 }
 
@@ -2302,14 +2307,6 @@ function updateCheckboxCount(id){
 
 function selectAllCheckboxes(id){
 
-    /*
-       Dalam sistem ini:
-       tidak ada checkbox terpilih = SEMUA DATA.
-
-       Jadi tombol "Pilih Semua" cukup
-       mengosongkan pilihan agar semua aktif.
-    */
-
     const container =
         document.getElementById(
             "options-" + id
@@ -2620,11 +2617,6 @@ function restoreSavedFilter(){
     const f =
         sanitizeFilterAgainstData(saved);
 
-
-    /*
-       Simpan kembali filter yang sudah
-       dibersihkan dari pilihan lama/stale.
-    */
 
     saveFilter(f);
 
@@ -3242,12 +3234,6 @@ function renderTable(){
     }
 
 
-    /*
-       PENTING:
-       bedakan antara error server,
-       data kosong, dan filter kosong.
-    */
-
     if(
         dataLoadState === "loading" &&
         !allData.length
@@ -3583,11 +3569,6 @@ function changePage(direction){
 
 function setDefectData(raw,fresh=false){
 
-    /*
-       Jika API mengirim data kosong,
-       jangan menimpa cache/data lama.
-    */
-
     if(
         !Array.isArray(raw) ||
         raw.length === 0
@@ -3733,11 +3714,6 @@ function setDefectData(raw,fresh=false){
 
 async function loadDefectData(){
 
-    /*
-       CACHE FIRST
-       Supaya dashboard langsung terasa cepat.
-    */
-
     const cached =
         getDataCache();
 
@@ -3767,10 +3743,6 @@ async function loadDefectData(){
 
     }
 
-
-    /*
-       GOOGLE APPS SCRIPT
-    */
 
     if(
         typeof google !== "undefined" &&
@@ -3877,10 +3849,6 @@ async function loadDefectData(){
         return;
     }
 
-
-    /*
-       FALLBACK API
-    */
 
     try{
 
@@ -4017,12 +3985,6 @@ async function loadDefectData(){
 
 function initialize(){
 
-    /*
-       Tanggal dikosongkan.
-       Filter tersimpan akan dipulihkan
-       setelah data tersedia.
-    */
-
     document.getElementById(
         "dateFrom"
     ).value = "";
@@ -4038,16 +4000,8 @@ function initialize(){
     );
 
 
-    /*
-       Render awal supaya UI tidak kosong.
-    */
-
     renderTable();
 
-
-    /*
-       Ambil data.
-    */
 
     loadDefectData();
 
