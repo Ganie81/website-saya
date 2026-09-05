@@ -27,208 +27,282 @@
     --primary:#2563eb;
     --primary-dark:#1d4ed8;
 
+    --success:#16a34a;
+    --danger:#dc2626;
+    --warning:#d97706;
+
     --border:#dbe3ec;
+    --shadow:0 4px 15px rgba(15,23,42,.07);
 
-    --soft-blue:#e8f1ff;
-    --soft-green:#e7f7ef;
-    --soft-orange:#fff1e6;
-    --soft-purple:#f0eaff;
+    --radius:14px;
+}
 
-    --focus-blue:#d7e5ff;
-    --focus-green:#d8f0e4;
-    --focus-orange:#ffe1cc;
-
-    --rank-blue:#dce9ff;
-    --rank-purple:#e9defc;
-
-    --shadow:
-        0 12px 30px rgba(15,23,42,.10),
-        0 3px 8px rgba(15,23,42,.06);
+html,
+body{
+    margin:0;
+    padding:0;
 }
 
 body{
-    margin:0;
-    padding:20px;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+    font-family:Arial,sans-serif;
     background:
-        radial-gradient(
-            circle at top left,
-            #e5edf7,
-            #eef3f8 45%,
-            #e8eef5
-        );
-
+        radial-gradient(circle at top left,#e5edf7 0,#eef3f8 38%,#f7f9fc 100%);
     color:var(--text);
+    padding:18px;
 }
 
-.container{
-    width:100%;
-    max-width:1600px;
-    margin:auto;
+button,
+input,
+select{
+    font-family:inherit;
 }
+
+button{
+    cursor:pointer;
+}
+
 
 /* =====================================================
    HEADER
 ===================================================== */
 
 .header{
-    background:
-        linear-gradient(
-            135deg,
-            #1e3a5f,
-            #2563eb
-        );
-
-    color:white;
-
-    padding:22px;
-
-    border-radius:18px;
-
-    box-shadow:
-        0 14px 35px rgba(30,58,95,.20),
-        inset 0 1px 0 rgba(255,255,255,.20);
-
-    margin-bottom:18px;
-
-    position:relative;
-    overflow:hidden;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    box-shadow:var(--shadow);
+    margin-bottom:15px;
 }
 
-.header::before{
-    content:"";
-    position:absolute;
-
-    width:240px;
-    height:240px;
-
-    right:-80px;
-    top:-120px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.18),
-            transparent 68%
-        );
+.header h1{
+    margin:0;
+    font-size:23px;
+    color:#1e293b;
 }
 
-.header-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    flex-wrap:wrap;
-
-    position:relative;
-    z-index:1;
-}
-
-.title{
-    font-size:28px;
-    font-weight:900;
-    letter-spacing:.3px;
-
-    text-shadow:
-        0 3px 0 rgba(0,0,0,.18),
-        0 5px 12px rgba(0,0,0,.20);
-}
-
-.subtitle{
-    margin-top:5px;
+.header p{
+    margin:5px 0 0;
+    color:var(--muted);
     font-size:13px;
-    opacity:.88;
-    font-weight:600;
 }
+
+
+/* =====================================================
+   NAV
+===================================================== */
 
 .nav{
     display:flex;
     gap:8px;
-    flex-wrap:wrap;
+    margin-bottom:15px;
+    overflow-x:auto;
 }
 
-.nav a{
-    text-decoration:none;
-    color:white;
-
-    background:rgba(255,255,255,.14);
-
+.nav button{
+    border:0;
+    background:#fff;
+    color:#475569;
     padding:10px 15px;
-
     border-radius:10px;
-
-    font-size:13px;
-    font-weight:800;
-
-    border:1px solid rgba(255,255,255,.12);
-
-    box-shadow:
-        0 4px 10px rgba(0,0,0,.10),
-        inset 0 1px 0 rgba(255,255,255,.15);
-
-    cursor:pointer;
-}
-
-.nav a:hover{
-    background:rgba(255,255,255,.25);
-    transform:translateY(-1px);
-}
-
-.status{
-    margin-top:15px;
-
-    background:rgba(255,255,255,.12);
-
-    padding:10px 13px;
-
-    border-radius:9px;
-
-    font-size:12px;
+    box-shadow:var(--shadow);
     font-weight:700;
-
-    position:relative;
-    z-index:1;
+    white-space:nowrap;
 }
+
+.nav button:hover{
+    background:#f1f5f9;
+}
+
+.nav button.active{
+    background:var(--primary);
+    color:#fff;
+}
+
 
 /* =====================================================
-   BUTTON
+   CARD
 ===================================================== */
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:16px;
+    margin-bottom:15px;
+}
+
+.card-title{
+    font-size:16px;
+    font-weight:700;
+    margin-bottom:13px;
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+.filter-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(6,minmax(150px,1fr));
+    gap:12px;
+}
+
+.filter-date{
+    grid-column:span 3;
+}
+
+.filter-box{
+    min-width:0;
+}
+
+.filter-label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    color:#475569;
+    margin-bottom:6px;
+}
+
+.date-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+input[type="date"],
+.quick-search{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:9px;
+    padding:9px 10px;
+    outline:none;
+    background:#fff;
+    color:#334155;
+}
+
+input[type="date"]:focus,
+.quick-search:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 2px rgba(37,99,235,.10);
+}
+
+
+/* =====================================================
+   CHECKBOX FILTER
+===================================================== */
+
+.checkbox-wrap{
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:#fafcff;
+    overflow:hidden;
+}
+
+.checkbox-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:6px;
+    padding:7px 8px;
+    border-bottom:1px solid var(--border);
+    min-height:35px;
+}
+
+.checkbox-count{
+    font-size:11px;
+    color:#64748b;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.checkbox-search{
+    display:none;
+    width:100%;
+    min-width:0;
+    border:1px solid var(--border);
+    border-radius:7px;
+    padding:5px 7px;
+    font-size:11px;
+    outline:none;
+}
+
+.checkbox-options{
+    max-height:145px;
+    overflow:auto;
+    padding:5px 7px;
+}
+
+.checkbox-option{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 2px;
+    font-size:11px;
+    color:#334155;
+}
+
+.checkbox-option input{
+    margin:0;
+    accent-color:var(--primary);
+}
+
+.checkbox-actions{
+    display:flex;
+    gap:5px;
+    padding:6px 7px;
+    border-top:1px solid var(--border);
+}
+
+.checkbox-actions button{
+    flex:1;
+    border:1px solid var(--border);
+    background:#fff;
+    border-radius:6px;
+    padding:5px 4px;
+    font-size:10px;
+    color:#475569;
+}
+
+.checkbox-actions button:hover{
+    background:#f1f5f9;
+}
+
+
+/* =====================================================
+   FILTER BUTTON
+===================================================== */
+
+.filter-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:13px;
+}
 
 .btn{
     border:0;
-    cursor:pointer;
-
-    padding:10px 14px;
-
     border-radius:9px;
-
-    font-weight:800;
-    font-size:13px;
-
-    transition:.15s ease;
-}
-
-.btn:hover{
-    transform:translateY(-1px);
+    padding:9px 14px;
+    font-weight:700;
+    font-size:12px;
 }
 
 .btn-primary{
     background:var(--primary);
-    color:white;
-
-    box-shadow:
-        0 5px 12px rgba(37,99,235,.20);
+    color:#fff;
 }
 
 .btn-primary:hover{
     background:var(--primary-dark);
+}
+
+.btn-secondary{
+    background:#e2e8f0;
+    color:#334155;
 }
 
 .btn-danger{
@@ -236,406 +310,56 @@ body{
     color:#991b1b;
 }
 
-.btn-light{
-    background:#f1f5f9;
-    color:#334155;
+.btn-success{
+    background:#dcfce7;
+    color:#166534;
 }
+
 
 /* =====================================================
-   FILTER
+   STATUS
 ===================================================== */
 
-.filter-card{
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:16px;
-
-    padding:16px;
-
-    margin-bottom:18px;
-
-    box-shadow:
-        0 5px 20px rgba(15,23,42,.05);
-}
-
-.filter-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    gap:10px;
-
-    margin-bottom:12px;
-}
-
-.filter-title{
-    font-size:17px;
-    font-weight:900;
-}
-
-.filter-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-}
-
-.field{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-
-    min-width:0;
-}
-
-.field label{
+.status{
+    margin-top:11px;
     font-size:12px;
-    font-weight:800;
-    color:var(--muted);
+    color:#64748b;
+    min-height:18px;
 }
 
-.field input{
-    width:100%;
-    min-height:40px;
-
-    border:1px solid var(--border);
-
-    border-radius:9px;
-
-    padding:8px 10px;
-
-    background:white;
-    color:var(--text);
-
-    outline:none;
+.status.success{
+    color:var(--success);
 }
 
-.field input:focus{
-    border-color:var(--primary);
-
-    box-shadow:
-        0 0 0 3px rgba(37,99,235,.10);
+.status.error{
+    color:var(--danger);
 }
+
+.status.warning{
+    color:var(--warning);
+}
+
 
 /* =====================================================
-   CHECKBOX FILTER
+   CHIPS
 ===================================================== */
-
-.checkbox-filter{
-    position:relative;
-
-    width:100%;
-
-    border:1px solid var(--border);
-
-    border-radius:10px;
-
-    background:#fff;
-
-    overflow:hidden;
-}
-
-.checkbox-top{
-    display:flex;
-
-    align-items:center;
-    justify-content:space-between;
-
-    gap:7px;
-
-    padding:7px 8px;
-
-    background:#f8fafc;
-
-    border-bottom:1px solid #edf2f7;
-}
-
-.checkbox-count{
-    font-size:10px;
-
-    color:#64748b;
-
-    font-weight:800;
-
-    white-space:nowrap;
-}
-
-.checkbox-search{
-    width:100%;
-
-    min-height:32px;
-
-    border:1px solid var(--border);
-
-    border-radius:7px;
-
-    padding:6px 8px;
-
-    outline:none;
-
-    font-size:11px;
-
-    background:white;
-}
-
-.checkbox-search:focus{
-    border-color:var(--primary);
-
-    box-shadow:
-        0 0 0 2px rgba(37,99,235,.08);
-}
-
-.checkbox-actions{
-    display:flex;
-
-    gap:5px;
-
-    padding:6px 8px;
-
-    border-bottom:1px solid #edf2f7;
-
-    background:#fff;
-
-    flex-wrap:wrap;
-}
-
-.checkbox-action{
-    border:0;
-
-    background:#eef4ff;
-
-    color:#2563eb;
-
-    padding:4px 7px;
-
-    border-radius:6px;
-
-    cursor:pointer;
-
-    font-size:9px;
-
-    font-weight:800;
-}
-
-.checkbox-action:hover{
-    background:#dce9ff;
-}
-
-.checkbox-list{
-    max-height:145px;
-
-    overflow-y:auto;
-
-    padding:5px;
-}
-
-.checkbox-list::-webkit-scrollbar{
-    width:6px;
-}
-
-.checkbox-list::-webkit-scrollbar-track{
-    background:#f1f5f9;
-}
-
-.checkbox-list::-webkit-scrollbar-thumb{
-    background:#cbd5e1;
-
-    border-radius:10px;
-}
-
-.checkbox-item{
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    width:100%;
-
-    padding:6px 7px;
-
-    border-radius:7px;
-
-    cursor:pointer;
-
-    font-size:11px;
-
-    font-weight:700;
-
-    color:#334155;
-
-    user-select:none;
-}
-
-.checkbox-item:hover{
-    background:#f1f5f9;
-}
-
-.checkbox-item input{
-    width:15px;
-    height:15px;
-
-    margin:0;
-
-    accent-color:var(--primary);
-
-    cursor:pointer;
-
-    flex:none;
-}
-
-.checkbox-item span{
-    overflow:hidden;
-
-    text-overflow:ellipsis;
-
-    white-space:nowrap;
-
-    flex:1;
-}
-
-.checkbox-empty{
-    padding:13px 8px;
-
-    text-align:center;
-
-    color:#94a3b8;
-
-    font-size:10px;
-
-    font-weight:700;
-}
-
-.checkbox-filter.no-search .checkbox-list{
-    max-height:115px;
-}
-
-.filter-actions{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-
-    margin-top:14px;
-}
 
 .filter-chips{
     display:flex;
-    gap:7px;
     flex-wrap:wrap;
-
-    margin-top:12px;
+    gap:5px;
+    margin-top:10px;
 }
 
-.active-filter-bar{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-    align-items:center;
-
-    min-height:24px;
-
-    margin-bottom:10px;
-}
-
-.active-filter-label{
-    font-size:11px;
-    font-weight:900;
-    color:var(--muted);
-}
-
-.chip{
+.filter-chip{
     background:#eff6ff;
+    border:1px solid #bfdbfe;
     color:#1d4ed8;
-
-    padding:6px 9px;
-
-    border-radius:999px;
-
-    font-size:11px;
-    font-weight:800;
-
-    box-shadow:
-        0 2px 5px rgba(37,99,235,.08);
+    border-radius:20px;
+    padding:4px 8px;
+    font-size:10px;
 }
 
-/* =====================================================
-   3D CARD SYSTEM
-===================================================== */
-
-.card{
-    position:relative;
-
-    border:1px solid rgba(255,255,255,.75);
-
-    border-radius:17px;
-
-    box-shadow:
-        0 14px 28px rgba(15,23,42,.10),
-        0 4px 8px rgba(15,23,42,.06),
-        inset 0 1px 0 rgba(255,255,255,.80);
-
-    overflow:hidden;
-
-    transition:
-        transform .18s ease,
-        box-shadow .18s ease;
-}
-
-.card::before{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    right:0;
-    top:0;
-
-    height:7px;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.80),
-            rgba(255,255,255,.15),
-            rgba(255,255,255,.70)
-        );
-
-    opacity:.90;
-}
-
-.card::after{
-    content:"";
-
-    position:absolute;
-
-    width:150px;
-    height:150px;
-
-    right:-65px;
-    top:-75px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.65),
-            rgba(255,255,255,.15) 45%,
-            transparent 72%
-        );
-
-    pointer-events:none;
-}
-
-.card:hover{
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 18px 35px rgba(15,23,42,.13),
-        0 6px 10px rgba(15,23,42,.07),
-        inset 0 1px 0 rgba(255,255,255,.90);
-}
 
 /* =====================================================
    SUMMARY
@@ -643,282 +367,73 @@ body{
 
 .summary-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-
-    gap:14px;
-
-    margin-bottom:18px;
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+    gap:12px;
 }
 
 .summary-card{
-    padding:19px;
-
-    min-height:145px;
-}
-
-.summary-card:nth-child(1){
-    background:
-        linear-gradient(
-            145deg,
-            #f0f6ff,
-            #dceaff
-        );
-
-    border-color:#c9dcfa;
-}
-
-.summary-card:nth-child(2){
-    background:
-        linear-gradient(
-            145deg,
-            #effbf5,
-            #d9f3e5
-        );
-
-    border-color:#c6e9d5;
-}
-
-.summary-card:nth-child(3){
-    background:
-        linear-gradient(
-            145deg,
-            #fff7ed,
-            #ffe9d4
-        );
-
-    border-color:#f4d4b4;
-}
-
-.summary-card:nth-child(4){
-    background:
-        linear-gradient(
-            145deg,
-            #f5f1ff,
-            #e8defb
-        );
-
-    border-color:#d9ccf5;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px;
+    background:#fff;
 }
 
 .summary-label{
-    position:relative;
-    z-index:1;
-
-    font-size:14px;
-    font-weight:900;
-
-    color:#34445a;
-
-    text-transform:uppercase;
-
-    text-shadow:
-        0 1px 0 white,
-        0 2px 3px rgba(15,23,42,.10);
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:7px;
 }
 
 .summary-value{
-    position:relative;
-    z-index:1;
-
-    font-size:36px;
-
-    font-weight:900;
-
-    margin-top:8px;
-
-    letter-spacing:-.5px;
-
-    text-shadow:
-        0 2px 0 rgba(255,255,255,.75),
-        0 4px 7px rgba(15,23,42,.15);
+    font-size:24px;
+    font-weight:800;
+    color:#1e293b;
 }
 
 .summary-small{
-    position:relative;
-    z-index:1;
-
-    font-size:12px;
-
-    color:#526174;
-
-    margin-top:5px;
-
-    font-weight:700;
+    font-size:10px;
+    color:#94a3b8;
+    margin-top:4px;
 }
+
 
 /* =====================================================
    FOCUS
 ===================================================== */
 
-.section-title{
-    font-size:20px;
-
-    font-weight:900;
-
-    margin:20px 0 12px;
-
-    text-shadow:
-        0 2px 3px rgba(15,23,42,.12);
-}
-
 .focus-grid{
     display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:14px;
-
-    margin-bottom:18px;
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+    gap:12px;
 }
 
 .focus-card{
-    min-height:205px;
-
-    padding:19px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:13px;
+    background:#fff;
 }
 
-.focus-card:nth-child(1){
-    background:
-        linear-gradient(
-            145deg,
-            #cbdcff,
-            #b8cff8
-        );
-
-    border-color:#a9c3f0;
+.focus-title{
+    font-size:11px;
+    color:#64748b;
+    margin-bottom:6px;
 }
 
-.focus-card:nth-child(2){
-    background:
-        linear-gradient(
-            145deg,
-            #c8ead9,
-            #b4dfca
-        );
-
-    border-color:#a4d1ba;
-}
-
-.focus-card:nth-child(3){
-    background:
-        linear-gradient(
-            145deg,
-            #ffd8bd,
-            #f9c7a2
-        );
-
-    border-color:#edb992;
-}
-
-.focus-head{
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-
-    gap:10px;
-
-    position:relative;
-    z-index:1;
-}
-
-.focus-name{
+.focus-value{
     font-size:16px;
-
-    color:#26384e;
-
-    font-weight:900;
-
-    text-transform:uppercase;
-
-    text-shadow:
-        0 2px 0 rgba(255,255,255,.60),
-        0 3px 5px rgba(15,23,42,.16);
+    font-weight:800;
+    color:#1e293b;
 }
 
 .focus-number{
-    position:relative;
-    z-index:1;
-
-    font-size:38px;
-
-    font-weight:900;
-
-    margin-top:9px;
-
-    letter-spacing:-.5px;
-
-    text-shadow:
-        0 2px 0 rgba(255,255,255,.70),
-        0 5px 9px rgba(15,23,42,.18);
+    font-size:11px;
+    color:#64748b;
+    margin-top:4px;
 }
 
-#focusDefectPcs{
-    color:#4776b5;
-
-    font-weight:900;
-
-    text-shadow:
-        0 2px 0 rgba(255,255,255,.95),
-        0 3px 0 rgba(112,151,205,.55),
-        0 5px 0 rgba(72,112,170,.20),
-        0 7px 12px rgba(37,76,125,.22);
-
-    filter:
-        drop-shadow(
-            0 2px 2px rgba(255,255,255,.45)
-        );
-}
-
-.focus-percent{
-    position:relative;
-    z-index:1;
-
-    font-size:14px;
-
-    color:#40536a;
-
-    font-weight:900;
-
-    margin-top:2px;
-}
-
-.mini-list{
-    margin-top:13px;
-
-    position:relative;
-    z-index:1;
-}
-
-.mini-row{
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:10px;
-
-    padding:8px 0;
-
-    border-bottom:
-        1px solid rgba(71,85,105,.14);
-
-    font-size:13px;
-
-    font-weight:700;
-}
-
-.mini-row:last-child{
-    border-bottom:0;
-}
-
-.mini-row strong{
-    font-weight:900;
-
-    font-size:14px;
-
-    text-shadow:
-        0 2px 3px rgba(15,23,42,.10);
-}
 
 /* =====================================================
    RANKING
@@ -926,283 +441,147 @@ body{
 
 .ranking-grid{
     display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:14px;
-
-    margin-bottom:18px;
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+    gap:12px;
 }
 
-.ranking-card{
-    padding:19px;
-
-    min-height:300px;
-}
-
-.ranking-card:nth-child(1){
-    background:
-        linear-gradient(
-            145deg,
-            #d9e8ff,
-            #c7dcfa
-        );
-
-    border-color:#b4cbed;
-}
-
-.ranking-card:nth-child(2){
-    background:
-        linear-gradient(
-            145deg,
-            #eadffb,
-            #d9c8f1
-        );
-
-    border-color:#cdb9e8;
+.ranking-box{
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
 }
 
 .ranking-title{
-    position:relative;
-    z-index:1;
-
-    font-size:19px;
-
-    font-weight:900;
-
-    text-transform:uppercase;
-
-    color:#283b55;
-
-    text-shadow:
-        0 2px 0 rgba(255,255,255,.70),
-        0 4px 6px rgba(15,23,42,.15);
+    padding:11px 12px;
+    background:#f8fafc;
+    font-size:13px;
+    font-weight:800;
+    border-bottom:1px solid var(--border);
 }
 
-.ranking-item{
-    display:flex;
-
+.rank-row{
+    display:grid;
+    grid-template-columns:35px 1fr auto;
+    gap:7px;
+    padding:8px 10px;
+    border-bottom:1px solid #edf2f7;
     align-items:center;
-
-    gap:12px;
-
-    padding:10px 0;
-
-    border-bottom:
-        1px solid rgba(71,85,105,.15);
 }
 
-.ranking-item:last-child{
+.rank-row:last-child{
     border-bottom:0;
 }
 
-.rank{
-    min-width:38px;
-    height:38px;
-
+.rank-number{
+    width:25px;
+    height:25px;
     display:flex;
-
     align-items:center;
     justify-content:center;
-
-    border-radius:10px;
-
-    background:rgba(255,255,255,.60);
-
-    font-weight:900;
-
-    font-size:14px;
-
-    box-shadow:
-        0 4px 8px rgba(15,23,42,.10),
-        inset 0 1px 0 rgba(255,255,255,.80);
+    border-radius:50%;
+    font-size:10px;
+    font-weight:800;
+    background:#e2e8f0;
 }
 
-.rank-1{
-    background:#fecaca;
-    color:#991b1b;
+.rank-row:nth-child(2) .rank-number{
+    background:#fee2e2;
+    color:#b91c1c;
 }
 
-.rank-2{
-    background:#bfdbfe;
+.rank-row:nth-child(3) .rank-number{
+    background:#dbeafe;
     color:#1d4ed8;
 }
 
-.rank-3{
-    background:#bbf7d0;
-    color:#166534;
+.rank-row:nth-child(4) .rank-number{
+    background:#dcfce7;
+    color:#15803d;
 }
 
 .rank-name{
-    flex:1;
-
-    font-size:14px;
-
-    font-weight:900;
-
-    color:#293b51;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-size:11px;
 }
 
 .rank-value{
-    font-size:14px;
-
-    font-weight:900;
-
-    color:#172b45;
-
-    white-space:nowrap;
-
-    text-shadow:
-        0 2px 3px rgba(15,23,42,.10);
+    font-size:11px;
+    font-weight:800;
 }
 
-.group-ranking-title{
-    margin-top:20px;
-
-    padding-top:13px;
-
-    border-top:
-        2px solid rgba(71,85,105,.14);
-
-    position:relative;
-    z-index:1;
-
-    font-size:19px;
-
-    font-weight:900;
-
-    text-transform:uppercase;
-
-    color:#283b55;
-
-    text-shadow:
-        0 2px 0 rgba(255,255,255,.70),
-        0 4px 6px rgba(15,23,42,.15);
-}
-
-.group-ranking-list{
-    position:relative;
-    z-index:1;
-}
 
 /* =====================================================
    TABLE
 ===================================================== */
 
-.table-card{
-    background:white;
-
-    padding:17px;
-}
-
-.table-toolbar{
+.table-head{
     display:flex;
-
     justify-content:space-between;
     align-items:center;
-
     gap:10px;
-
-    flex-wrap:wrap;
-
-    margin-bottom:12px;
+    margin-bottom:10px;
 }
 
 .table-title{
-    font-size:17px;
-
-    font-weight:900;
+    font-size:15px;
+    font-weight:800;
 }
 
-.search-box{
-    width:min(320px,100%);
-}
-
-.search-box input{
-    width:100%;
-
-    min-height:39px;
-
-    border:1px solid var(--border);
-
-    border-radius:9px;
-
-    padding:8px 11px;
-
-    outline:none;
+.quick-search{
+    max-width:280px;
+    font-size:12px;
 }
 
 .table-wrap{
-    overflow-x:auto;
-
+    width:100%;
+    overflow:auto;
     border:1px solid var(--border);
-
-    border-radius:12px;
+    border-radius:10px;
 }
 
 table{
     width:100%;
-
     border-collapse:collapse;
-
-    min-width:1100px;
+    min-width:1050px;
 }
 
-thead{
-    background:#f8fafc;
+th,
+td{
+    padding:8px 9px;
+    border-bottom:1px solid #edf2f7;
+    text-align:left;
+    font-size:11px;
+    white-space:nowrap;
 }
 
 th{
-    text-align:left;
-
-    padding:11px 10px;
-
-    font-size:11px;
-
+    background:#f8fafc;
     color:#475569;
-
-    border-bottom:
-        1px solid var(--border);
-
-    white-space:nowrap;
-
+    font-weight:800;
+    position:sticky;
+    top:0;
+    z-index:1;
     cursor:pointer;
 }
 
-td{
-    padding:10px;
-
-    font-size:12px;
-
-    border-bottom:
-        1px solid #edf2f7;
-
-    white-space:nowrap;
+th:hover{
+    background:#f1f5f9;
 }
 
 tbody tr:hover{
     background:#f8fafc;
 }
 
-.qty{
-    font-weight:900;
+.empty-row{
+    text-align:center;
+    padding:30px 15px;
+    color:#64748b;
 }
 
-.defect-badge{
-    display:inline-block;
-
-    background:#fff7ed;
-
-    color:#c2410c;
-
-    padding:5px 8px;
-
-    border-radius:7px;
-
-    font-size:10px;
-
-    font-weight:900;
-}
 
 /* =====================================================
    PAGINATION
@@ -1210,89 +589,84 @@ tbody tr:hover{
 
 .pagination{
     display:flex;
-
-    justify-content:space-between;
-
     align-items:center;
-
+    justify-content:space-between;
     gap:10px;
-
+    margin-top:10px;
     flex-wrap:wrap;
-
-    margin-top:12px;
 }
 
 .page-info{
-    font-size:12px;
-
-    color:var(--muted);
-
-    font-weight:700;
+    font-size:11px;
+    color:#64748b;
 }
 
 .page-buttons{
     display:flex;
-
     gap:5px;
-
-    flex-wrap:wrap;
 }
 
-.page-btn{
+.page-buttons button{
     border:1px solid var(--border);
-
-    background:white;
-
-    padding:7px 10px;
-
+    background:#fff;
     border-radius:7px;
-
-    cursor:pointer;
-
+    padding:6px 9px;
     font-size:11px;
-
-    font-weight:800;
 }
 
-.page-btn.active{
-    background:var(--primary);
-
-    color:white;
-
-    border-color:var(--primary);
+.page-buttons button:hover{
+    background:#f1f5f9;
 }
 
-.page-btn:disabled{
+.page-buttons button:disabled{
     opacity:.45;
-
     cursor:not-allowed;
 }
 
-.empty{
-    padding:35px;
-
-    text-align:center;
-
-    color:var(--muted);
-
-    font-size:13px;
-
-    font-weight:700;
-}
 
 /* =====================================================
-   MOBILE
+   LOADING
+===================================================== */
+
+.loading{
+    text-align:center;
+    padding:25px;
+    color:#64748b;
+    font-size:12px;
+}
+
+.spinner{
+    width:22px;
+    height:22px;
+    border:3px solid #dbeafe;
+    border-top-color:var(--primary);
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+    margin:0 auto 8px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE
 ===================================================== */
 
 @media(max-width:1100px){
 
     .filter-grid{
-        grid-template-columns:repeat(3,1fr);
+        grid-template-columns:
+            repeat(3,minmax(150px,1fr));
     }
 
-    .summary-grid{
-        grid-template-columns:repeat(2,1fr);
+    .filter-date{
+        grid-column:span 3;
     }
+
 }
 
 @media(max-width:800px){
@@ -1301,144 +675,69 @@ tbody tr:hover{
         padding:10px;
     }
 
-    .header{
-        padding:17px;
-
-        border-radius:14px;
+    .summary-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
     }
 
-    .title{
-        font-size:22px;
-    }
-
-    .filter-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .focus-grid{
-        grid-template-columns:1fr;
-    }
-
+    .focus-grid,
     .ranking-grid{
         grid-template-columns:1fr;
     }
 
-    .summary-card{
-        min-height:135px;
+}
+
+@media(max-width:650px){
+
+    .header h1{
+        font-size:19px;
+    }
+
+    .filter-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .filter-date{
+        grid-column:span 2;
+    }
+
+    .date-row{
+        grid-template-columns:1fr 1fr;
     }
 
     .summary-value{
-        font-size:32px;
+        font-size:20px;
     }
 
-    .focus-number{
-        font-size:36px;
-    }
-
-    #focusDefectPcs{
-        font-size:36px;
-    }
 }
 
-@media(max-width:520px){
+@media(max-width:450px){
 
     .filter-grid{
         grid-template-columns:1fr;
     }
 
+    .filter-date{
+        grid-column:span 1;
+    }
+
     .summary-grid{
         grid-template-columns:1fr 1fr;
-    }
-
-    .summary-card{
-        padding:15px;
-        min-height:125px;
-    }
-
-    .summary-label{
-        font-size:12px;
-    }
-
-    .summary-value{
-        font-size:28px;
-    }
-
-    .summary-small{
-        font-size:11px;
-    }
-
-    .focus-card{
-        padding:16px;
-    }
-
-    .focus-name{
-        font-size:15px;
-    }
-
-    .focus-number{
-        font-size:34px;
-    }
-
-    #focusDefectPcs{
-        font-size:34px;
-    }
-
-    .ranking-card{
-        padding:16px;
-    }
-
-    .ranking-title,
-    .group-ranking-title{
-        font-size:17px;
-    }
-
-    .rank-name,
-    .rank-value{
-        font-size:13px;
-    }
-
-    .nav{
-        width:100%;
-    }
-
-    .nav a{
-        flex:1;
-        text-align:center;
-    }
-
-}
-
-/* =====================================================
-   PRINT
-===================================================== */
-
-@media print{
-
-    body{
-        background:white;
-        padding:0;
-    }
-
-    .nav,
-    .filter-card,
-    .table-toolbar,
-    .pagination{
-        display:none!important;
-    }
-
-    .header{
-        background:white;
-        color:black;
-
-        box-shadow:none;
-
-        border:1px solid #ddd;
+        gap:8px;
     }
 
     .card{
-        box-shadow:none;
+        padding:12px;
+    }
 
-        break-inside:avoid;
+    .table-head{
+        align-items:stretch;
+        flex-direction:column;
+    }
+
+    .quick-search{
+        max-width:none;
     }
 
 }
@@ -1449,7 +748,6 @@ tbody tr:hover{
 
 <body>
 
-<div class="container">
 
 <!-- =====================================================
      HEADER
@@ -1457,44 +755,32 @@ tbody tr:hover{
 
 <div class="header">
 
-<div class="header-top">
+    <h1>Dashboard Defect Flat</h1>
 
-<div>
-
-<div class="title">
-Dashboard Defect Flat
-</div>
-
-<div class="subtitle">
-Monitoring defect hasil proses Flat
-</div>
+    <p>
+        Monitoring defect hasil proses Flat
+    </p>
 
 </div>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
 <div class="nav">
 
-<a href="javascript:void(0)"
-onclick="navigateToPage('produksi')">
-Produksi
-</a>
+    <button onclick="goPage('produksi')">
+        Produksi
+    </button>
 
-<a href="javascript:void(0)"
-onclick="navigateToPage('cuci')">
-Cuci
-</a>
+    <button onclick="goPage('cuci')">
+        Cuci
+    </button>
 
-<a href="javascript:void(0)"
-onclick="navigateToPage('defect')">
-Defect Flat
-</a>
-
-</div>
-
-</div>
-
-<div id="status" class="status">
-⏳ Menyiapkan dashboard...
-</div>
+    <button class="active" onclick="goPage('defect')">
+        Defect Flat
+    </button>
 
 </div>
 
@@ -1503,174 +789,171 @@ Defect Flat
      FILTER
 ===================================================== -->
 
-<div class="filter-card">
+<div class="card">
 
-<div class="filter-header">
+    <div class="card-title">
+        Filter Data
+    </div>
 
-<div class="filter-title">
-Filter Data
-</div>
+    <div class="filter-grid">
 
-<button
-class="btn btn-light"
-onclick="toggleFilter()">
-☰ Filter
-</button>
+        <!-- DATE -->
 
-</div>
+        <div class="filter-box filter-date">
 
-<div
-id="activeFilterBar"
-class="active-filter-bar">
-</div>
+            <span class="filter-label">
+                Tanggal Flat
+            </span>
 
+            <div class="date-row">
 
-<div id="filterBody">
+                <input
+                    type="date"
+                    id="dateFrom"
+                >
 
-<div class="filter-grid">
+                <input
+                    type="date"
+                    id="dateTo"
+                >
 
+            </div>
 
-<!-- TANGGAL DARI -->
+        </div>
 
-<div class="field">
 
-<label>Tanggal Dari</label>
+        <!-- KODE PRODUK -->
 
-<input
-type="date"
-id="dateFrom">
+        <div class="filter-box">
 
-</div>
+            <span class="filter-label">
+                Kode Produk
+            </span>
 
+            <div
+                class="checkbox-wrap"
+                id="filterBox-kodeProduk">
+            </div>
 
-<!-- TANGGAL SAMPAI -->
+        </div>
 
-<div class="field">
 
-<label>Tanggal Sampai</label>
+        <!-- MOTIF -->
 
-<input
-type="date"
-id="dateTo">
+        <div class="filter-box">
 
-</div>
+            <span class="filter-label">
+                Motif
+            </span>
 
+            <div
+                class="checkbox-wrap"
+                id="filterBox-motif">
+            </div>
 
-<!-- KODE PRODUK -->
+        </div>
 
-<div class="field">
 
-<label>Kode Produk</label>
+        <!-- JENIS DEFECT -->
 
-<div
-class="checkbox-filter"
-id="filterBox-kodeProduk">
+        <div class="filter-box">
 
-</div>
+            <span class="filter-label">
+                Jenis Defect
+            </span>
 
-</div>
+            <div
+                class="checkbox-wrap"
+                id="filterBox-jenisDefect">
+            </div>
 
+        </div>
 
-<!-- MOTIF -->
 
-<div class="field">
+        <!-- MESIN -->
 
-<label>Motif</label>
+        <div class="filter-box">
 
-<div
-class="checkbox-filter"
-id="filterBox-motif">
+            <span class="filter-label">
+                Mesin
+            </span>
 
-</div>
+            <div
+                class="checkbox-wrap"
+                id="filterBox-mesin">
+            </div>
 
-</div>
+        </div>
 
 
-<!-- JENIS DEFECT -->
+        <!-- GRUP -->
 
-<div class="field">
+        <div class="filter-box">
 
-<label>Jenis Defect</label>
+            <span class="filter-label">
+                Grup
+            </span>
 
-<div
-class="checkbox-filter"
-id="filterBox-jenisDefect">
+            <div
+                class="checkbox-wrap"
+                id="filterBox-grup">
+            </div>
 
-</div>
+        </div>
 
-</div>
 
+        <!-- ROLL ID -->
 
-<!-- MESIN -->
+        <div class="filter-box">
 
-<div class="field">
+            <span class="filter-label">
+                Roll ID
+            </span>
 
-<label>Mesin</label>
+            <div
+                class="checkbox-wrap"
+                id="filterBox-rollId">
+            </div>
 
-<div
-class="checkbox-filter"
-id="filterBox-mesin">
+        </div>
 
-</div>
+    </div>
 
-</div>
 
+    <div class="filter-actions">
 
-<!-- GRUP -->
+        <button
+            class="btn btn-primary"
+            onclick="applyFilter()">
+            🔎 Terapkan Filter
+        </button>
 
-<div class="field">
+        <button
+            class="btn btn-secondary"
+            onclick="clearFilter()">
+            ↺ Bersihkan
+        </button>
 
-<label>Grup</label>
+        <button
+            class="btn btn-danger"
+            onclick="resetSavedFilter()">
+            🗑 Reset Filter Tersimpan
+        </button>
 
-<div
-class="checkbox-filter"
-id="filterBox-grup">
+    </div>
 
-</div>
 
-</div>
+    <div
+        id="status"
+        class="status">
+        ⏳ Memuat data...
+    </div>
 
 
-<!-- ROLL ID -->
-
-<div class="field">
-
-<label>Roll ID</label>
-
-<div
-class="checkbox-filter"
-id="filterBox-rollId">
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="filter-actions">
-
-<button
-class="btn btn-primary"
-onclick="applyFilter()">
-🔎 Terapkan Filter
-</button>
-
-<button
-class="btn btn-light"
-onclick="clearFilter()">
-↺ Bersihkan
-</button>
-
-<button
-class="btn btn-danger"
-onclick="resetSavedFilter()">
-🗑 Reset Filter Tersimpan
-</button>
-
-</div>
-
-</div>
+    <div
+        id="filterChips"
+        class="filter-chips">
+    </div>
 
 </div>
 
@@ -1679,185 +962,169 @@ onclick="resetSavedFilter()">
      SUMMARY
 ===================================================== -->
 
-<div class="summary-grid">
+<div class="card">
 
-<div class="card summary-card">
+    <div class="card-title">
+        Ringkasan
+    </div>
 
-<div class="summary-label">
-Total Defect Pcs
-</div>
+    <div class="summary-grid">
 
-<div
-class="summary-value"
-id="totalPcs">
-0
-</div>
+        <div class="summary-card">
 
-<div class="summary-small">
-Jumlah pcs defect
-</div>
+            <div class="summary-label">
+                Total Defect Pcs
+            </div>
 
-</div>
+            <div
+                class="summary-value"
+                id="totalDefect">
+                0
+            </div>
 
+            <div class="summary-small">
+                Jumlah seluruh defect
+            </div>
 
-<div class="card summary-card">
-
-<div class="summary-label">
-Total Roll
-</div>
-
-<div
-class="summary-value"
-id="totalRoll">
-0
-</div>
-
-<div class="summary-small">
-Roll terdampak
-</div>
-
-</div>
+        </div>
 
 
-<div class="card summary-card">
+        <div class="summary-card">
 
-<div class="summary-label">
-Jenis Defect
-</div>
+            <div class="summary-label">
+                Total Roll
+            </div>
 
-<div
-class="summary-value"
-id="totalJenis">
-0
-</div>
+            <div
+                class="summary-value"
+                id="totalRoll">
+                0
+            </div>
 
-<div class="summary-small">
-Jenis defect berbeda
-</div>
+            <div class="summary-small">
+                Roll unik
+            </div>
 
-</div>
+        </div>
 
 
-<div class="card summary-card">
+        <div class="summary-card">
 
-<div class="summary-label">
-Total Data
-</div>
+            <div class="summary-label">
+                Jenis Defect
+            </div>
 
-<div
-class="summary-value"
-id="totalData">
-0
-</div>
+            <div
+                class="summary-value"
+                id="totalJenisDefect">
+                0
+            </div>
 
-<div class="summary-small">
-Baris data
-</div>
+            <div class="summary-small">
+                Jenis unik
+            </div>
 
-</div>
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-label">
+                Total Data
+            </div>
+
+            <div
+                class="summary-value"
+                id="totalData">
+                0
+            </div>
+
+            <div class="summary-small">
+                Baris data
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
 
 <!-- =====================================================
-     FOKUS
+     FOCUS DEFECT
 ===================================================== -->
 
-<div class="section-title">
-Fokus Defect
-</div>
+<div class="card">
 
-<div class="focus-grid">
+    <div class="card-title">
+        Fokus Defect
+    </div>
 
+    <div class="focus-grid">
 
-<div class="card focus-card">
+        <div class="focus-card">
 
-<div class="focus-head">
+            <div class="focus-title">
+                Defect Terbesar
+            </div>
 
-<div class="focus-name">
-Defect Terbesar
-</div>
+            <div
+                class="focus-value"
+                id="focusDefect">
+                -
+            </div>
 
-</div>
+            <div
+                class="focus-number"
+                id="focusDefectValue">
+                0 Pcs
+            </div>
 
-<div
-class="focus-number"
-id="focusDefectPcs">
-0
-</div>
-
-<div
-class="focus-percent"
-id="focusDefectPercent">
--
-</div>
-
-<div
-id="defectMiniList"
-class="mini-list">
-</div>
-
-</div>
+        </div>
 
 
-<div class="card focus-card">
+        <div class="focus-card">
 
-<div class="focus-head">
+            <div class="focus-title">
+                Mesin Terbesar
+            </div>
 
-<div class="focus-name">
-Mesin Terbesar
-</div>
+            <div
+                class="focus-value"
+                id="focusMesin">
+                -
+            </div>
 
-</div>
+            <div
+                class="focus-number"
+                id="focusMesinValue">
+                0 Pcs
+            </div>
 
-<div
-class="focus-number"
-id="focusMesinPcs">
-0
-</div>
-
-<div
-class="focus-percent"
-id="focusMesinPercent">
--
-</div>
-
-<div
-id="mesinMiniList"
-class="mini-list">
-</div>
-
-</div>
+        </div>
 
 
-<div class="card focus-card">
+        <div class="focus-card">
 
-<div class="focus-head">
+            <div class="focus-title">
+                Grup Terbesar
+            </div>
 
-<div class="focus-name">
-Grup Terbesar
-</div>
+            <div
+                class="focus-value"
+                id="focusGrup">
+                -
+            </div>
 
-</div>
+            <div
+                class="focus-number"
+                id="focusGrupValue">
+                0 Pcs
+            </div>
 
-<div
-class="focus-number"
-id="focusGrupPcs">
-0
-</div>
+        </div>
 
-<div
-class="focus-percent"
-id="focusGrupPercent">
--
-</div>
-
-<div
-id="grupMiniList"
-class="mini-list">
-</div>
-
-</div>
+    </div>
 
 </div>
 
@@ -1866,153 +1133,106 @@ class="mini-list">
      RANKING
 ===================================================== -->
 
-<div class="section-title">
-Ranking
-</div>
+<div class="card">
 
-<div class="ranking-grid">
+    <div class="card-title">
+        Ranking
+    </div>
 
-
-<div class="card ranking-card">
-
-<div class="ranking-title">
-Ranking Jenis Defect
-</div>
-
-<div
-id="defectRanking"
-class="mini-list">
-</div>
-
-</div>
+    <div class="ranking-grid">
 
 
-<div class="card ranking-card">
+        <div class="ranking-box">
 
-<div class="ranking-title">
-Ranking Mesin
-</div>
+            <div class="ranking-title">
+                Ranking Jenis Defect
+            </div>
 
-<div
-id="mesinRanking"
-class="mini-list">
-</div>
+            <div id="rankingDefect"></div>
 
-<div class="group-ranking-title">
-Ranking Grup
-</div>
+        </div>
 
-<div
-id="groupRanking"
-class="group-ranking-list">
-</div>
 
-</div>
+        <div class="ranking-box">
+
+            <div class="ranking-title">
+                Ranking Mesin
+            </div>
+
+            <div id="rankingMesin"></div>
+
+        </div>
+
+
+        <div class="ranking-box">
+
+            <div class="ranking-title">
+                Ranking Grup
+            </div>
+
+            <div id="rankingGrup"></div>
+
+        </div>
+
+
+    </div>
 
 </div>
 
 
 <!-- =====================================================
-     TABLE
+     DETAIL DATA
 ===================================================== -->
 
-<div class="card table-card">
+<div class="card">
 
-<div class="table-toolbar">
+    <div class="table-head">
 
-<div class="table-title">
-Detail Data Defect Flat
-</div>
+        <div class="table-title">
+            Detail Data Defect Flat
+        </div>
 
-<div class="search-box">
+        <input
+            type="text"
+            class="quick-search"
+            id="quickSearch"
+            placeholder="🔍 Cari data..."
+            oninput="applyQuickSearch()"
+        >
 
-<input
-type="text"
-id="quickSearch"
-placeholder="🔎 Cari data..."
-oninput="quickSearch()">
-
-</div>
-
-</div>
+    </div>
 
 
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th onclick="sortTable('tgl')">
-TGL FLAT ↕
-</th>
-
-<th onclick="sortTable('roll')">
-ROLL ID ↕
-</th>
-
-<th onclick="sortTable('kode')">
-KODE PROD ↕
-</th>
-
-<th onclick="sortTable('qty')">
-JUMLAH (Pcs) ↕
-</th>
-
-<th onclick="sortTable('defect')">
-JENIS DEFECT ↕
-</th>
-
-<th onclick="sortTable('mesin')">
-MESIN ↕
-</th>
-
-<th onclick="sortTable('motif')">
-MOTIF ↕
-</th>
-
-<th>
-BLOK + ISIAN
-</th>
-
-<th onclick="sortTable('grup')">
-GRUP ↕
-</th>
-
-<th>
-OPERATOR
-</th>
-
-</tr>
-
-</thead>
-
-<tbody id="tableBody">
-</tbody>
-
-</table>
-
-</div>
+    <div
+        id="tableContainer"
+        class="table-wrap">
+    </div>
 
 
-<div class="pagination">
+    <div class="pagination">
 
-<div
-id="pageInfo"
-class="page-info">
--
-</div>
+        <div
+            id="pageInfo"
+            class="page-info">
+        </div>
 
-<div
-id="pageButtons"
-class="page-buttons">
-</div>
+        <div class="page-buttons">
 
-</div>
+            <button
+                id="prevBtn"
+                onclick="changePage(-1)">
+                ‹ Sebelumnya
+            </button>
 
-</div>
+            <button
+                id="nextBtn"
+                onclick="changePage(1)">
+                Berikutnya ›
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -2032,23 +1252,18 @@ const DATA_CACHE_KEY =
 const FILTER_CACHE_KEY =
 "DEFECT_FLAT_FILTER_V3";
 
-
-/*
-   Jumlah pilihan minimal agar kotak
-   pencarian muncul.
-*/
 const FILTER_SEARCH_LIMIT = 15;
 
+const PAGE_SIZE = 25;
 
-const PAGE_ROUTES = {
-
-produksi:"?page=produksi",
-
-cuci:"?page=cuci",
-
-defect:"?page=defect"
-
-};
+const MULTI_FILTER_IDS = [
+    "kodeProduk",
+    "motif",
+    "jenisDefect",
+    "mesin",
+    "grup",
+    "rollId"
+];
 
 
 /* =====================================================
@@ -2059,115 +1274,106 @@ let allData = [];
 
 let filteredData = [];
 
+let displayedData = [];
+
 let currentPage = 1;
 
-let rowsPerPage = 15;
-
-let sortField = "";
+let sortColumn = "";
 
 let sortDirection = 1;
 
-let filterVisible = true;
+let dataLoadState = "loading";
 
-let currentSearch = "";
+let dataSourceError = "";
 
-
-/*
-   Menyimpan daftar pilihan checkbox
-*/
-const checkboxValues = {};
-
-
-/*
-   Konfigurasi filter
-*/
-const CHECKBOX_FILTERS = {
-
-kodeProduk:{
-    label:"Kode",
-    box:"filterBox-kodeProduk"
-},
-
-motif:{
-    label:"Motif",
-    box:"filterBox-motif"
-},
-
-jenisDefect:{
-    label:"Defect",
-    box:"filterBox-jenisDefect"
-},
-
-mesin:{
-    label:"Mesin",
-    box:"filterBox-mesin"
-},
-
-grup:{
-    label:"Grup",
-    box:"filterBox-grup"
-},
-
-rollId:{
-    label:"Roll",
-    box:"filterBox-rollId"
-}
-
+let checkboxValues = {
+    kodeProduk:[],
+    motif:[],
+    jenisDefect:[],
+    mesin:[],
+    grup:[],
+    rollId:[]
 };
-
-
-const MULTI_FILTER_IDS = Object.keys(
-    CHECKBOX_FILTERS
-);
-
-
-const numberFormatter =
-new Intl.NumberFormat("id-ID");
-
-
-/* =====================================================
-   START
-===================================================== */
-
-document.addEventListener(
-"DOMContentLoaded",
-function(){
-
-restoreSavedFilterOnly();
-
-loadCachedData();
-
-loadDefectData();
-
-}
-);
 
 
 /* =====================================================
    NAVIGATION
 ===================================================== */
 
-function navigateToPage(page){
+function goPage(page){
 
-const route =
-PAGE_ROUTES[page];
+    const routes = {
+        produksi:"?page=produksi",
+        cuci:"?page=cuci",
+        defect:"?page=defect"
+    };
 
-if(!route) return;
-
-try{
-
-const base =
-window.location.href.split("?")[0];
-
-window.top.location.href =
-base + route;
-
-}catch(error){
-
-window.location.href =
-route;
+    if(routes[page]){
+        window.location.href = routes[page];
+    }
 
 }
+
+
+/* =====================================================
+   BASIC HELPERS
+===================================================== */
+
+function text(v){
+
+    if(v === null || v === undefined){
+        return "";
+    }
+
+    return String(v).trim();
+
+}
+
+
+function escapeHtml(value){
+
+    return text(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function normalizeText(value){
+
+    return text(value)
+        .toLowerCase()
+        .replace(/\s+/g," ")
+        .trim();
+
+}
+
+
+function formatNumber(value){
+
+    return Number(value || 0)
+        .toLocaleString("id-ID");
+
+}
+
+
+function uniqueSorted(arr){
+
+    return [...new Set(
+        arr
+        .map(text)
+        .filter(Boolean)
+    )].sort(
+        (a,b) =>
+            a.localeCompare(
+                b,
+                "id",
+                {numeric:true,sensitivity:"base"}
+            )
+    );
 
 }
 
@@ -2176,271 +1382,421 @@ route;
    STATUS
 ===================================================== */
 
-function setStatus(message){
+function setStatus(message,type=""){
 
-const el =
-document.getElementById("status");
+    const el =
+        document.getElementById("status");
 
-if(el){
+    if(!el){
+        return;
+    }
 
-el.textContent =
-message;
+    el.className =
+        "status " + type;
 
-}
-
-}
-
-
-/* =====================================================
-   FILTER TOGGLE
-===================================================== */
-
-function toggleFilter(){
-
-const body =
-document.getElementById("filterBody");
-
-filterVisible =
-!filterVisible;
-
-body.style.display =
-filterVisible
-? "block"
-: "none";
+    el.textContent = message;
 
 }
 
 
 /* =====================================================
-   LOAD CACHE
+   HEADER INDEX
 ===================================================== */
 
-function loadCachedData(){
+function findHeader(headers,aliases){
 
-try{
+    const normalizedHeaders =
+        headers.map(h => normalizeText(h));
 
-const cached =
-sessionStorage.getItem(
-DATA_CACHE_KEY
-);
+    for(const alias of aliases){
 
-if(!cached) return;
+        const index =
+            normalizedHeaders.indexOf(
+                normalizeText(alias)
+            );
 
-const data =
-JSON.parse(cached);
+        if(index !== -1){
+            return index;
+        }
 
-if(
-Array.isArray(data) &&
-data.length
-){
+    }
 
-setDefectData(
-data,
-false
-);
-
-setStatus(
-"⚡ Data tersimpan ditampilkan • memperbarui..."
-);
-
-}
-
-}catch(error){
-
-console.warn(
-"Cache tidak dapat digunakan",
-error
-);
-
-}
+    return -1;
 
 }
 
 
 /* =====================================================
-   LOAD DATA
+   DATE NORMALIZATION
 ===================================================== */
 
-async function loadDefectData(){
+function normalizeDate(value){
 
-if(!allData.length){
+    if(value instanceof Date &&
+       !isNaN(value.getTime())){
 
-setStatus(
-"⏳ Mengambil data Defect Flat..."
-);
+        const y =
+            value.getFullYear();
 
-}
+        const m =
+            String(value.getMonth()+1)
+            .padStart(2,"0");
 
+        const d =
+            String(value.getDate())
+            .padStart(2,"0");
 
-/*
-   Google Apps Script
-*/
+        return `${y}-${m}-${d}`;
 
-if(
-typeof google !== "undefined" &&
-google.script &&
-google.script.run
-){
+    }
 
-google.script.run
+    const s = text(value);
 
-.withSuccessHandler(
-function(data){
+    if(!s){
+        return "";
+    }
 
-if(
-!Array.isArray(data) ||
-data.length === 0
-){
+    if(/^\d{4}-\d{2}-\d{2}/.test(s)){
+        return s.substring(0,10);
+    }
 
-if(!allData.length){
+    const match =
+        s.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
 
-setStatus(
-"⚠️ Data Defect Flat kosong"
-);
+    if(match){
 
-setDefectData([]);
+        const d =
+            match[1].padStart(2,"0");
 
-}
+        const m =
+            match[2].padStart(2,"0");
 
-return;
+        const y =
+            match[3];
 
-}
+        return `${y}-${m}-${d}`;
 
+    }
 
-cacheData(data);
+    const date =
+        new Date(s);
 
-setDefectData(
-data,
-true
-);
+    if(!isNaN(date.getTime())){
 
-setStatus(
-"✅ Data diperbarui: " +
-Math.max(0,data.length - 1) +
-" baris"
-);
+        const y =
+            date.getFullYear();
 
-}
-)
+        const m =
+            String(date.getMonth()+1)
+            .padStart(2,"0");
 
-.withFailureHandler(
-function(error){
+        const d =
+            String(date.getDate())
+            .padStart(2,"0");
 
-console.error(error);
+        return `${y}-${m}-${d}`;
 
-if(!allData.length){
+    }
 
-setStatus(
-"❌ Gagal: " +
-(
-error &&
-error.message
-? error.message
-: error
-)
-);
-
-}else{
-
-setStatus(
-"⚡ Menampilkan data terakhir • refresh gagal"
-);
-
-}
-
-}
-)
-
-.getDefectData();
-
-return;
+    return "";
 
 }
 
 
-/*
-   API fallback
-*/
+/* =====================================================
+   QTY
+===================================================== */
 
-try{
+function parseQty(value){
 
-const response =
-await fetch(
-API_URL +
-"&_=" +
-Date.now(),
-{
-method:"GET",
-cache:"no-store"
-}
-);
+    if(typeof value === "number"){
+        return isFinite(value) ? value : 0;
+    }
 
-if(!response.ok){
+    let s = text(value);
 
-throw new Error(
-"HTTP " +
-response.status
-);
+    if(!s){
+        return 0;
+    }
 
-}
+    s =
+        s.replace(/[^\d,.\-]/g,"");
 
-const result =
-await response.json();
+    if(!s){
+        return 0;
+    }
 
-if(
-!Array.isArray(result) ||
-result.length === 0
-){
+    if(
+        s.includes(".") &&
+        s.includes(",")
+    ){
 
-if(!allData.length){
+        if(s.lastIndexOf(",") >
+           s.lastIndexOf(".")){
 
-setStatus(
-"⚠️ API berhasil tetapi data kosong"
-);
+            s =
+                s.replace(/\./g,"")
+                 .replace(",",".");
+        }
+        else{
 
-setDefectData([]);
+            s =
+                s.replace(/,/g,"");
+        }
 
-}
+    }
+    else if(s.includes(",")){
 
-return;
+        const parts =
+            s.split(",");
 
-}
+        if(parts[1] &&
+           parts[1].length <= 2){
 
-cacheData(result);
+            s =
+                s.replace(",",".");
+        }
+        else{
 
-setDefectData(
-result,
-true
-);
+            s =
+                s.replace(/,/g,"");
+        }
 
-setStatus(
-"✅ Data diperbarui: " +
-Math.max(0,result.length - 1) +
-" baris"
-);
+    }
+    else if(s.includes(".")){
 
-}catch(error){
+        const parts =
+            s.split(".");
 
-console.error(error);
+        if(parts.length > 2){
 
-if(!allData.length){
+            s =
+                s.replace(/\./g,"");
+        }
 
-setStatus(
-"❌ Gagal mengambil data: " +
-error.message
-);
+    }
 
-setDefectData([]);
+    const n =
+        Number(s);
 
-}else{
-
-setStatus(
-"⚡ Menampilkan data terakhir • refresh gagal"
-);
+    return isFinite(n) ? n : 0;
 
 }
 
-}
+
+/* =====================================================
+   NORMALIZE API DATA
+===================================================== */
+
+function normalizeRows(raw){
+
+    if(!Array.isArray(raw) ||
+       raw.length < 2){
+
+        return [];
+    }
+
+    if(!Array.isArray(raw[0])){
+
+        return [];
+    }
+
+    const headers =
+        raw[0];
+
+    const idx = {
+
+        tgl:findHeader(headers,[
+            "tgl flat",
+            "tanggal flat",
+            "tanggal",
+            "tgl"
+        ]),
+
+        roll:findHeader(headers,[
+            "roll id",
+            "roll",
+            "id roll"
+        ]),
+
+        kode:findHeader(headers,[
+            "kode prod",
+            "kode produk",
+            "kode product",
+            "kode"
+        ]),
+
+        qty:findHeader(headers,[
+            "jumlah (pcs)",
+            "jumlah pcs",
+            "jumlah",
+            "qty",
+            "pcs"
+        ]),
+
+        defect:findHeader(headers,[
+            "jenis defect",
+            "jenis_defect",
+            "defect"
+        ]),
+
+        mesin:findHeader(headers,[
+            "mesin",
+            "nama mesin"
+        ]),
+
+        motif:findHeader(headers,[
+            "motif"
+        ]),
+
+        blok:findHeader(headers,[
+            "blok + isian",
+            "blok isian",
+            "blok+isian",
+            "blok"
+        ]),
+
+        grup:findHeader(headers,[
+            "grup",
+            "group"
+        ]),
+
+        operator:findHeader(headers,[
+            "operator",
+            "nama operator"
+        ])
+
+    };
+
+
+    const missing = [];
+
+    if(idx.tgl === -1) missing.push("Tanggal");
+    if(idx.roll === -1) missing.push("Roll ID");
+    if(idx.kode === -1) missing.push("Kode Produk");
+    if(idx.qty === -1) missing.push("Jumlah");
+    if(idx.defect === -1) missing.push("Jenis Defect");
+
+    if(missing.length){
+
+        dataSourceError =
+            "Kolom wajib tidak ditemukan: " +
+            missing.join(", ");
+
+        return [];
+    }
+
+
+    const result = [];
+
+    for(let i=1;i<raw.length;i++){
+
+        const r =
+            Array.isArray(raw[i])
+                ? raw[i]
+                : [];
+
+        const tgl =
+            idx.tgl >= 0
+                ? text(r[idx.tgl])
+                : "";
+
+        const dateNorm =
+            normalizeDate(tgl);
+
+        const roll =
+            idx.roll >= 0
+                ? text(r[idx.roll])
+                : "";
+
+        const kode =
+            idx.kode >= 0
+                ? text(r[idx.kode])
+                : "";
+
+        const qty =
+            idx.qty >= 0
+                ? parseQty(r[idx.qty])
+                : 0;
+
+        const defect =
+            idx.defect >= 0
+                ? text(r[idx.defect])
+                : "";
+
+        const mesin =
+            idx.mesin >= 0
+                ? text(r[idx.mesin])
+                : "";
+
+        const motif =
+            idx.motif >= 0
+                ? text(r[idx.motif])
+                : "";
+
+        const blok =
+            idx.blok >= 0
+                ? text(r[idx.blok])
+                : "";
+
+        const grup =
+            idx.grup >= 0
+                ? text(r[idx.grup])
+                : "";
+
+        const operator =
+            idx.operator >= 0
+                ? text(r[idx.operator])
+                : "";
+
+
+        if(
+            !tgl &&
+            !roll &&
+            !kode &&
+            !defect &&
+            !mesin
+        ){
+            continue;
+        }
+
+
+        result.push({
+
+            tgl,
+            dateNorm,
+
+            roll,
+            kode,
+
+            qty,
+
+            defect,
+            mesin,
+            motif,
+            blok,
+            grup,
+            operator,
+
+            searchText:
+                normalizeText([
+                    tgl,
+                    roll,
+                    kode,
+                    qty,
+                    defect,
+                    mesin,
+                    motif,
+                    blok,
+                    grup,
+                    operator
+                ].join(" "))
+
+        });
+
+    }
+
+    return result;
 
 }
 
@@ -2449,1292 +1805,600 @@ setStatus(
    CACHE
 ===================================================== */
 
-function cacheData(data){
+function saveDataCache(raw){
 
-try{
+    try{
 
-const text =
-JSON.stringify(data);
+        const json =
+            JSON.stringify(raw);
 
-if(
-text.length < 2500000
-){
+        if(json.length < 2500000){
 
-sessionStorage.setItem(
-DATA_CACHE_KEY,
-text
-);
+            localStorage.setItem(
+                DATA_CACHE_KEY,
+                json
+            );
+
+        }
+
+    }catch(e){
+
+        console.warn(
+            "Cache data gagal:",
+            e
+        );
+
+    }
 
 }
 
-}catch(error){
 
-console.warn(
-"Cache data gagal",
-error
-);
+function getDataCache(){
 
-}
+    try{
+
+        const raw =
+            localStorage.getItem(
+                DATA_CACHE_KEY
+            );
+
+        if(!raw){
+            return null;
+        }
+
+        const data =
+            JSON.parse(raw);
+
+        if(
+            Array.isArray(data) &&
+            data.length
+        ){
+            return data;
+        }
+
+    }catch(e){
+
+        console.warn(
+            "Cache rusak:",
+            e
+        );
+
+    }
+
+    return null;
 
 }
 
 
 /* =====================================================
-   HEADER NORMALIZATION
+   FILTER STORAGE
 ===================================================== */
 
-function normalizeHeader(value){
+function normalizeFilter(f){
 
-return String(
-value == null
-? ""
-: value
-)
-.trim()
-.toLowerCase()
-.replace(/\s+/g," ")
-.replace(/_/g," ");
+    f = f || {};
+
+    return {
+
+        dateFrom:text(f.dateFrom),
+
+        dateTo:text(f.dateTo),
+
+        kodeProduk:
+            Array.isArray(f.kodeProduk)
+                ? f.kodeProduk.map(text).filter(Boolean)
+                : [],
+
+        motif:
+            Array.isArray(f.motif)
+                ? f.motif.map(text).filter(Boolean)
+                : [],
+
+        jenisDefect:
+            Array.isArray(f.jenisDefect)
+                ? f.jenisDefect.map(text).filter(Boolean)
+                : [],
+
+        mesin:
+            Array.isArray(f.mesin)
+                ? f.mesin.map(text).filter(Boolean)
+                : [],
+
+        grup:
+            Array.isArray(f.grup)
+                ? f.grup.map(text).filter(Boolean)
+                : [],
+
+        rollId:
+            Array.isArray(f.rollId)
+                ? f.rollId.map(text).filter(Boolean)
+                : []
+
+    };
 
 }
 
 
-function findHeaderIndex(
-headers,
-aliases
-){
+function saveFilter(filter){
 
-const normalized =
-headers.map(normalizeHeader);
+    try{
 
-for(
-let i = 0;
-i < aliases.length;
-i++
-){
+        localStorage.setItem(
+            FILTER_CACHE_KEY,
+            JSON.stringify(
+                normalizeFilter(filter)
+            )
+        );
 
-const target =
-normalizeHeader(
-aliases[i]
-);
+    }catch(e){
 
-const index =
-normalized.indexOf(target);
+        console.warn(
+            "Filter gagal disimpan:",
+            e
+        );
 
-if(index !== -1){
-
-return index;
+    }
 
 }
 
-}
 
-return -1;
+function getSavedFilter(){
+
+    try{
+
+        const raw =
+            localStorage.getItem(
+                FILTER_CACHE_KEY
+            );
+
+        if(!raw){
+            return null;
+        }
+
+        return normalizeFilter(
+            JSON.parse(raw)
+        );
+
+    }catch(e){
+
+        return null;
+    }
 
 }
 
 
 /* =====================================================
-   CELL
+   SANITIZE SAVED FILTER
 ===================================================== */
 
-function getCell(row,index){
+function sanitizeFilterAgainstData(filter){
 
-if(
-index === -1 ||
-index == null
-){
+    const f =
+        normalizeFilter(filter);
 
-return "";
+    MULTI_FILTER_IDS.forEach(id => {
 
-}
+        const available =
+            new Set(
+                checkboxValues[id] || []
+            );
 
-return row[index] == null
-? ""
-: row[index];
+        f[id] =
+            f[id].filter(
+                value =>
+                    available.has(value)
+            );
+
+    });
+
+    return f;
 
 }
 
 
 /* =====================================================
-   SET DATA
+   CHECKBOX FILTER
 ===================================================== */
 
-function setDefectData(
-data,
-fresh
-){
+function buildCheckboxFilter(id,values){
 
-if(
-!Array.isArray(data) ||
-data.length === 0
-){
-
-allData = [];
-
-filteredData = [];
-
-populateFilters();
-
-renderDashboard();
-
-return;
-
-}
+    checkboxValues[id] =
+        uniqueSorted(values);
 
 
-const headers =
-data[0];
+    const box =
+        document.getElementById(
+            "filterBox-" + id
+        );
 
-const rows =
-data.slice(1);
-
-
-const idx = {
-
-tgl:
-findHeaderIndex(
-headers,
-[
-"tgl flat",
-"tanggal flat",
-"tanggal",
-"tgl"
-]
-),
-
-roll:
-findHeaderIndex(
-headers,
-[
-"roll id",
-"roll",
-"id roll"
-]
-),
-
-kode:
-findHeaderIndex(
-headers,
-[
-"kode prod",
-"kode produk",
-"kode product",
-"kode"
-]
-),
-
-qty:
-findHeaderIndex(
-headers,
-[
-"jumlah (pcs)",
-"jumlah pcs",
-"jumlah",
-"qty",
-"pcs"
-]
-),
-
-defect:
-findHeaderIndex(
-headers,
-[
-"jenis defect",
-"jenis_defect",
-"defect"
-]
-),
-
-mesin:
-findHeaderIndex(
-headers,
-[
-"mesin",
-"nama mesin"
-]
-),
-
-motif:
-findHeaderIndex(
-headers,
-[
-"motif"
-]
-),
-
-blok:
-findHeaderIndex(
-headers,
-[
-"blok + isian",
-"blok isian",
-"blok+isian",
-"blok"
-]
-),
-
-grup:
-findHeaderIndex(
-headers,
-[
-"grup",
-"group"
-]
-),
-
-operator:
-findHeaderIndex(
-headers,
-[
-"operator",
-"nama operator"
-]
-)
-
-};
+    if(!box){
+        return;
+    }
 
 
-allData =
-rows
-
-.filter(
-function(row){
-
-return row.some(
-function(value){
-
-return String(
-value == null
-? ""
-: value
-).trim() !== "";
-
-}
-);
-
-}
-)
-
-.map(
-function(row){
-
-const tgl =
-getCell(
-row,
-idx.tgl
-);
-
-const roll =
-String(
-getCell(
-row,
-idx.roll
-)
-).trim();
-
-const kode =
-String(
-getCell(
-row,
-idx.kode
-)
-).trim();
-
-const defect =
-String(
-getCell(
-row,
-idx.defect
-)
-).trim();
-
-const mesin =
-String(
-getCell(
-row,
-idx.mesin
-)
-).trim();
-
-const motif =
-String(
-getCell(
-row,
-idx.motif
-)
-).trim();
-
-const blok =
-String(
-getCell(
-row,
-idx.blok
-)
-).trim();
-
-const grup =
-String(
-getCell(
-row,
-idx.grup
-)
-).trim();
-
-const operator =
-String(
-getCell(
-row,
-idx.operator
-)
-).trim();
-
-const qty =
-parseQty(
-getCell(
-row,
-idx.qty
-)
-);
-
-return {
-
-tgl:tgl,
-
-dateNorm:
-normalizeDate(tgl),
-
-roll:roll,
-
-kode:kode,
-
-qty:qty,
-
-defect:defect,
-
-mesin:mesin,
-
-motif:motif,
-
-blok:blok,
-
-grup:grup,
-
-operator:operator,
-
-searchText:
-[
-tgl,
-roll,
-kode,
-qty,
-defect,
-mesin,
-motif,
-blok,
-grup,
-operator
-]
-.join(" ")
-.toLowerCase()
-
-};
-
-}
-);
+    const oldSelected =
+        getSelectedValuesById(id)
+            .filter(v =>
+                checkboxValues[id]
+                .includes(v)
+            );
 
 
-populateFilters();
+    const showSearch =
+        checkboxValues[id].length >
+        FILTER_SEARCH_LIMIT;
 
 
-/*
-   Restore filter yang tersimpan
-   setelah daftar checkbox dibuat.
-*/
+    box.innerHTML = `
 
-restoreSavedFilter();
+        <div class="checkbox-top">
+
+            <span
+                class="checkbox-count"
+                id="count-${id}">
+                Semua (0)
+            </span>
+
+            <input
+                type="text"
+                class="checkbox-search"
+                id="search-${id}"
+                placeholder="Cari..."
+                oninput="filterCheckboxOptions('${id}')"
+            >
+
+        </div>
+
+        <div
+            class="checkbox-options"
+            id="options-${id}">
+        </div>
+
+        <div class="checkbox-actions">
+
+            <button
+                type="button"
+                onclick="selectAllCheckboxes('${id}')">
+                ☑ Pilih Semua
+            </button>
+
+            <button
+                type="button"
+                onclick="clearAllCheckboxes('${id}')">
+                ☐ Batal Semua
+            </button>
+
+        </div>
+    `;
 
 
-renderDashboard();
+    const search =
+        document.getElementById(
+            "search-" + id
+        );
+
+    if(search){
+
+        search.style.display =
+            showSearch
+                ? "block"
+                : "none";
+
+    }
+
+
+    renderCheckboxOptions(
+        id,
+        oldSelected
+    );
 
 }
 
 
-/* =====================================================
-   PARSE QTY
-===================================================== */
+function renderCheckboxOptions(id,selected=[]){
 
-function parseQty(value){
+    const container =
+        document.getElementById(
+            "options-" + id
+        );
 
-if(
-value === null ||
-value === undefined ||
-value === ""
-){
-
-return 0;
-
-}
-
-let text =
-String(value).trim();
-
-text =
-text
-.replace(/pcs/gi,"")
-.trim();
+    if(!container){
+        return;
+    }
 
 
-if(
-text.indexOf(",") !== -1 &&
-text.indexOf(".") !== -1
-){
-
-text =
-text
-.replace(/\./g,"")
-.replace(",", ".");
-
-}else if(
-text.indexOf(",") !== -1
-){
-
-text =
-text.replace(",", ".");
-
-}
+    const selectedSet =
+        new Set(selected);
 
 
-const number =
-parseFloat(
-text.replace(
-/[^0-9.-]/g,
-""
-)
-);
+    const values =
+        checkboxValues[id] || [];
 
 
-return isNaN(number)
-? 0
-: number;
-
-}
+    let html = "";
 
 
-/* =====================================================
-   DATE
-===================================================== */
+    for(let i=0;i<values.length;i++){
 
-function normalizeDate(value){
+        const value =
+            values[i];
 
-if(!value) return null;
+        html += `
 
-const text =
-String(value).trim();
+            <label
+                class="checkbox-option">
+
+                <input
+                    type="checkbox"
+                    value="${escapeHtml(value)}"
+                    ${selectedSet.has(value) ? "checked" : ""}
+                    onchange="updateCheckboxCount('${id}')"
+                >
+
+                <span>
+                    ${escapeHtml(value)}
+                </span>
+
+            </label>
+
+        `;
+
+    }
 
 
-if(
-/^\d{4}-\d{2}-\d{2}$/
-.test(text)
-){
+    container.innerHTML =
+        html ||
+        `<div style="
+            font-size:11px;
+            color:#94a3b8;
+            padding:5px;
+        ">
+            Tidak ada pilihan
+        </div>`;
 
-return text;
+
+    updateCheckboxCount(id);
 
 }
 
 
-let match =
-text.match(
-/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/
-);
+function filterCheckboxOptions(id){
 
-if(match){
+    const search =
+        normalizeText(
+            document.getElementById(
+                "search-" + id
+            )?.value
+        );
 
-return (
-match[3] +
-"-" +
-String(match[2]).padStart(2,"0") +
-"-" +
-String(match[1]).padStart(2,"0")
-);
+
+    const container =
+        document.getElementById(
+            "options-" + id
+        );
+
+    if(!container){
+        return;
+    }
+
+
+    const options =
+        container.querySelectorAll(
+            ".checkbox-option"
+        );
+
+
+    options.forEach(option => {
+
+        const value =
+            normalizeText(
+                option.textContent
+            );
+
+        option.style.display =
+            !search ||
+            value.includes(search)
+                ? "flex"
+                : "none";
+
+    });
 
 }
 
 
-match =
-text.match(
-/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2})/
-);
+function getSelectedValuesById(id){
 
-if(match){
+    const container =
+        document.getElementById(
+            "options-" + id
+        );
 
-return (
-"20" +
-match[3] +
-"-" +
-String(match[2]).padStart(2,"0") +
-"-" +
-String(match[1]).padStart(2,"0")
-);
+    if(!container){
+        return [];
+    }
+
+
+    return Array.from(
+        container.querySelectorAll(
+            'input[type="checkbox"]:checked'
+        )
+    ).map(
+        input => input.value
+    );
 
 }
 
 
-return null;
+function setSelectedValuesById(id,values){
+
+    const wanted =
+        new Set(values || []);
+
+
+    const container =
+        document.getElementById(
+            "options-" + id
+        );
+
+    if(!container){
+        return;
+    }
+
+
+    container
+        .querySelectorAll(
+            'input[type="checkbox"]'
+        )
+        .forEach(input => {
+
+            input.checked =
+                wanted.has(input.value);
+
+        });
+
+
+    updateCheckboxCount(id);
+
+}
+
+
+function updateCheckboxCount(id){
+
+    const selected =
+        getSelectedValuesById(id);
+
+    const total =
+        (checkboxValues[id] || []).length;
+
+
+    const count =
+        document.getElementById(
+            "count-" + id
+        );
+
+    if(!count){
+        return;
+    }
+
+
+    if(
+        selected.length === 0 ||
+        selected.length === total
+    ){
+
+        count.textContent =
+            `Semua (${total})`;
+
+    }
+    else{
+
+        count.textContent =
+            `${selected.length} dipilih`;
+
+    }
+
+}
+
+
+function selectAllCheckboxes(id){
+
+    /*
+       Dalam sistem ini:
+       tidak ada checkbox terpilih = SEMUA DATA.
+
+       Jadi tombol "Pilih Semua" cukup
+       mengosongkan pilihan agar semua aktif.
+    */
+
+    const container =
+        document.getElementById(
+            "options-" + id
+        );
+
+    if(!container){
+        return;
+    }
+
+
+    container
+        .querySelectorAll(
+            'input[type="checkbox"]'
+        )
+        .forEach(input => {
+
+            input.checked = false;
+
+        });
+
+
+    updateCheckboxCount(id);
+
+}
+
+
+function clearAllCheckboxes(id){
+
+    const container =
+        document.getElementById(
+            "options-" + id
+        );
+
+    if(!container){
+        return;
+    }
+
+
+    container
+        .querySelectorAll(
+            'input[type="checkbox"]'
+        )
+        .forEach(input => {
+
+            input.checked = false;
+
+        });
+
+
+    updateCheckboxCount(id);
 
 }
 
 
 /* =====================================================
-   UNIQUE
-===================================================== */
-
-function uniqueSorted(values){
-
-return [
-...new Set(
-values
-.map(
-function(v){
-
-return String(
-v == null
-? ""
-: v
-).trim();
-
-}
-)
-.filter(Boolean)
-)
-]
-.sort(
-function(a,b){
-
-return a.localeCompare(
-b,
-"id",
-{
-numeric:true,
-sensitivity:"base"
-}
-);
-
-}
-);
-
-}
-
-
-/* =====================================================
-   POPULATE CHECKBOX FILTER
+   POPULATE FILTER
 ===================================================== */
 
 function populateFilters(){
 
-buildCheckboxFilter(
-"kodeProduk",
-uniqueSorted(
-allData.map(
-function(x){
-return x.kode;
-}
-)
-)
-);
-
-
-buildCheckboxFilter(
-"motif",
-uniqueSorted(
-allData.map(
-function(x){
-return x.motif;
-}
-)
-)
-);
-
-
-buildCheckboxFilter(
-"jenisDefect",
-uniqueSorted(
-allData.map(
-function(x){
-return x.defect;
-}
-)
-)
-);
-
-
-buildCheckboxFilter(
-"mesin",
-uniqueSorted(
-allData.map(
-function(x){
-return x.mesin;
-}
-)
-)
-);
-
-
-buildCheckboxFilter(
-"grup",
-uniqueSorted(
-allData.map(
-function(x){
-return x.grup;
-}
-)
-)
-);
-
-
-buildCheckboxFilter(
-"rollId",
-uniqueSorted(
-allData.map(
-function(x){
-return x.roll;
-}
-)
-)
-);
-
-}
-
-
-/* =====================================================
-   BUILD CHECKBOX FILTER
-===================================================== */
-
-function buildCheckboxFilter(
-id,
-values
-){
-
-const config =
-CHECKBOX_FILTERS[id];
-
-if(!config) return;
-
-const box =
-document.getElementById(
-config.box
-);
-
-if(!box) return;
-
-
-/*
-   Simpan values agar dapat
-   digunakan saat filter.
-*/
-
-checkboxValues[id] =
-values;
-
-
-/*
-   Ambil pilihan lama
-*/
-
-const oldSelected =
-getSelectedValuesById(id);
-
-
-box.innerHTML = "";
-
-
-box.className =
-"checkbox-filter " +
-(
-values.length > FILTER_SEARCH_LIMIT
-? "has-search"
-: "no-search"
-);
-
-
-/*
-   TOP BAR
-*/
-
-const top =
-document.createElement("div");
-
-top.className =
-"checkbox-top";
-
-
-const count =
-document.createElement("span");
-
-count.className =
-"checkbox-count";
-
-count.id =
-"count-" + id;
-
-count.textContent =
-"0 dipilih";
-
-
-top.appendChild(count);
-
-
-/*
-   SEARCH hanya kalau
-   pilihan > 15
-*/
-
-if(
-values.length >
-FILTER_SEARCH_LIMIT
-){
-
-const search =
-document.createElement("input");
-
-search.type =
-"text";
-
-search.className =
-"checkbox-search";
-
-search.placeholder =
-"🔎 Telusuri...";
-
-search.setAttribute(
-"autocomplete",
-"off"
-);
-
-search.oninput =
-function(){
-
-filterCheckboxOptions(
-id,
-search.value
-);
-
-};
-
-top.insertBefore(
-search,
-count
-);
-
-}
-
-
-box.appendChild(top);
-
-
-/*
-   ACTION
-*/
-
-const actions =
-document.createElement("div");
-
-actions.className =
-"checkbox-actions";
-
-
-const selectAll =
-document.createElement("button");
-
-selectAll.type =
-"button";
-
-selectAll.className =
-"checkbox-action";
-
-selectAll.textContent =
-"☑ Pilih Semua";
-
-selectAll.onclick =
-function(){
-
-selectAllCheckboxes(id);
-
-};
-
-
-actions.appendChild(
-selectAll
-);
-
-
-const clearAll =
-document.createElement("button");
-
-clearAll.type =
-"button";
-
-clearAll.className =
-"checkbox-action";
-
-clearAll.textContent =
-"☐ Batal Semua";
-
-clearAll.onclick =
-function(){
-
-clearAllCheckboxes(id);
-
-};
-
-
-actions.appendChild(
-clearAll
-);
-
-
-box.appendChild(
-actions
-);
-
-
-/*
-   LIST
-*/
-
-const list =
-document.createElement("div");
-
-list.className =
-"checkbox-list";
-
-list.id =
-"list-" + id;
-
-
-box.appendChild(
-list
-);
-
-
-/*
-   Buat checkbox
-*/
-
-renderCheckboxOptions(
-id,
-values,
-oldSelected
-);
-
-
-/*
-   Update count
-*/
-
-updateCheckboxCount(id);
-
-}
-
-
-/* =====================================================
-   RENDER CHECKBOX OPTIONS
-===================================================== */
-
-function renderCheckboxOptions(
-id,
-values,
-selectedValues
-){
-
-const list =
-document.getElementById(
-"list-" + id
-);
-
-if(!list) return;
-
-list.innerHTML = "";
-
-
-if(!values.length){
-
-const empty =
-document.createElement("div");
-
-empty.className =
-"checkbox-empty";
-
-empty.textContent =
-"Tidak ada pilihan";
-
-list.appendChild(
-empty
-);
-
-return;
-
-}
-
-
-const selected =
-new Set(
-selectedValues || []
-);
-
-
-values.forEach(
-function(value){
-
-const label =
-document.createElement("label");
-
-label.className =
-"checkbox-item";
-
-
-const checkbox =
-document.createElement("input");
-
-checkbox.type =
-"checkbox";
-
-checkbox.value =
-value;
-
-checkbox.checked =
-selected.has(value);
-
-
-checkbox.onchange =
-function(){
-
-updateCheckboxCount(id);
-
-};
-
-
-const text =
-document.createElement("span");
-
-text.textContent =
-value;
-
-
-label.appendChild(
-checkbox
-);
-
-label.appendChild(
-text
-);
-
-list.appendChild(
-label
-);
-
-}
-);
-
-}
-
-
-/* =====================================================
-   FILTER CHECKBOX SEARCH
-===================================================== */
-
-function filterCheckboxOptions(
-id,
-searchText
-){
-
-const list =
-document.getElementById(
-"list-" + id
-);
-
-if(!list) return;
-
-
-const search =
-String(
-searchText || ""
-)
-.toLowerCase()
-.trim();
-
-
-const items =
-list.querySelectorAll(
-".checkbox-item"
-);
-
-
-let visible =
-0;
-
-
-items.forEach(
-function(item){
-
-const text =
-item
-.textContent
-.toLowerCase();
-
-
-const show =
-!search ||
-text.includes(search);
-
-
-item.style.display =
-show
-? "flex"
-: "none";
-
-
-if(show){
-
-visible++;
-
-}
-
-}
-);
-
-
-let empty =
-list.querySelector(
-".checkbox-empty-search"
-);
-
-
-if(
-search &&
-visible === 0
-){
-
-if(!empty){
-
-empty =
-document.createElement(
-"div"
-);
-
-empty.className =
-"checkbox-empty checkbox-empty-search";
-
-empty.textContent =
-"Tidak ditemukan";
-
-list.appendChild(
-empty
-);
-
-}
-
-}else{
-
-if(empty){
-
-empty.remove();
-
-}
-
-}
-
-}
-
-
-/* =====================================================
-   GET SELECTED BY ID
-===================================================== */
-
-function getSelectedValuesById(id){
-
-const list =
-document.getElementById(
-"list-" + id
-);
-
-if(!list) return [];
-
-
-return Array.from(
-list.querySelectorAll(
-'input[type="checkbox"]:checked'
-)
-)
-.map(
-function(input){
-
-return String(
-input.value
-).trim();
-
-}
-)
-.filter(Boolean);
-
-}
-
-
-/* =====================================================
-   SET SELECTED BY ID
-===================================================== */
-
-function setSelectedValuesById(
-id,
-values
-){
-
-const list =
-document.getElementById(
-"list-" + id
-);
-
-if(!list) return;
-
-
-const wanted =
-new Set(
-toArray(values)
-);
-
-
-Array.from(
-list.querySelectorAll(
-'input[type="checkbox"]'
-)
-)
-.forEach(
-function(input){
-
-input.checked =
-wanted.has(
-input.value
-);
-
-}
-);
-
-
-updateCheckboxCount(id);
-
-}
-
-
-/* =====================================================
-   UPDATE CHECKBOX COUNT
-===================================================== */
-
-function updateCheckboxCount(id){
-
-const countEl =
-document.getElementById(
-"count-" + id
-);
-
-if(!countEl) return;
-
-
-const selected =
-getSelectedValuesById(id);
-
-const total =
-checkboxValues[id]
-? checkboxValues[id].length
-: 0;
-
-
-if(selected.length === 0){
-
-countEl.textContent =
-"0 dipilih";
-
-}else if(
-selected.length === total &&
-total > 0
-){
-
-countEl.textContent =
-"Semua (" +
-total +
-")";
-
-}else{
-
-countEl.textContent =
-selected.length +
-" dipilih";
-
-}
-
-}
-
-
-/* =====================================================
-   SELECT ALL
-===================================================== */
-
-function selectAllCheckboxes(id){
-
-const list =
-document.getElementById(
-"list-" + id
-);
-
-if(!list) return;
-
-
-Array.from(
-list.querySelectorAll(
-'input[type="checkbox"]'
-)
-)
-.forEach(
-function(input){
-
-input.checked = true;
-
-}
-);
-
-
-updateCheckboxCount(id);
-
-}
-
-
-/* =====================================================
-   CLEAR ALL
-===================================================== */
-
-function clearAllCheckboxes(id){
-
-const list =
-document.getElementById(
-"list-" + id
-);
-
-if(!list) return;
-
-
-Array.from(
-list.querySelectorAll(
-'input[type="checkbox"]'
-)
-)
-.forEach(
-function(input){
-
-input.checked = false;
-
-}
-);
-
-
-updateCheckboxCount(id);
+    buildCheckboxFilter(
+        "kodeProduk",
+        allData.map(r => r.kode)
+    );
+
+    buildCheckboxFilter(
+        "motif",
+        allData.map(r => r.motif)
+    );
+
+    buildCheckboxFilter(
+        "jenisDefect",
+        allData.map(r => r.defect)
+    );
+
+    buildCheckboxFilter(
+        "mesin",
+        allData.map(r => r.mesin)
+    );
+
+    buildCheckboxFilter(
+        "grup",
+        allData.map(r => r.grup)
+    );
+
+    buildCheckboxFilter(
+        "rollId",
+        allData.map(r => r.roll)
+    );
 
 }
 
@@ -3745,139 +2409,49 @@ updateCheckboxCount(id);
 
 function getFilter(){
 
-const filter = {
+    return {
 
-dateFrom:
-document.getElementById(
-"dateFrom"
-).value,
+        dateFrom:
+            document.getElementById(
+                "dateFrom"
+            ).value,
 
-dateTo:
-document.getElementById(
-"dateTo"
-).value
+        dateTo:
+            document.getElementById(
+                "dateTo"
+            ).value,
 
-};
+        kodeProduk:
+            getSelectedValuesById(
+                "kodeProduk"
+            ),
 
+        motif:
+            getSelectedValuesById(
+                "motif"
+            ),
 
-MULTI_FILTER_IDS.forEach(
-function(id){
+        jenisDefect:
+            getSelectedValuesById(
+                "jenisDefect"
+            ),
 
-filter[id] =
-getSelectedValuesById(id);
+        mesin:
+            getSelectedValuesById(
+                "mesin"
+            ),
 
-}
-);
+        grup:
+            getSelectedValuesById(
+                "grup"
+            ),
 
+        rollId:
+            getSelectedValuesById(
+                "rollId"
+            )
 
-return filter;
-
-}
-
-
-/* =====================================================
-   NORMALIZE FILTER
-===================================================== */
-
-function normalizeFilter(f){
-
-f =
-f || {};
-
-
-const result = {
-
-dateFrom:
-f.dateFrom || "",
-
-dateTo:
-f.dateTo || ""
-
-};
-
-
-MULTI_FILTER_IDS.forEach(
-function(id){
-
-result[id] =
-toArray(f[id]);
-
-}
-);
-
-
-return result;
-
-}
-
-
-/* =====================================================
-   TO ARRAY
-===================================================== */
-
-function toArray(value){
-
-if(Array.isArray(value)){
-
-return value
-.map(
-function(v){
-
-return String(
-v == null
-? ""
-: v
-).trim();
-
-}
-)
-.filter(Boolean);
-
-}
-
-if(
-value === null ||
-value === undefined ||
-value === ""
-){
-
-return [];
-
-}
-
-return [
-String(value).trim()
-].filter(Boolean);
-
-}
-
-
-/* =====================================================
-   MATCH MULTI
-===================================================== */
-
-function matchesMulti(
-selected,
-value
-){
-
-if(
-!Array.isArray(selected) ||
-selected.length === 0
-){
-
-return true;
-
-}
-
-
-return selected.includes(
-String(
-value == null
-? ""
-: value
-).trim()
-);
+    };
 
 }
 
@@ -3886,110 +2460,79 @@ value == null
    ROW MATCH
 ===================================================== */
 
-function rowMatchesFilter(
-row,
-f
-){
+function rowMatchesFilter(row,f){
 
-if(
-f.dateFrom &&
-(
-!row.dateNorm ||
-row.dateNorm < f.dateFrom
-)
-){
-
-return false;
-
-}
+    if(
+        f.dateFrom &&
+        (
+            !row.dateNorm ||
+            row.dateNorm < f.dateFrom
+        )
+    ){
+        return false;
+    }
 
 
-if(
-f.dateTo &&
-(
-!row.dateNorm ||
-row.dateNorm > f.dateTo
-)
-){
-
-return false;
-
-}
+    if(
+        f.dateTo &&
+        (
+            !row.dateNorm ||
+            row.dateNorm > f.dateTo
+        )
+    ){
+        return false;
+    }
 
 
-if(
-!matchesMulti(
-f.kodeProduk,
-row.kode
-)
-){
-
-return false;
-
-}
+    if(
+        f.kodeProduk.length &&
+        !f.kodeProduk.includes(row.kode)
+    ){
+        return false;
+    }
 
 
-if(
-!matchesMulti(
-f.motif,
-row.motif
-)
-){
-
-return false;
-
-}
+    if(
+        f.motif.length &&
+        !f.motif.includes(row.motif)
+    ){
+        return false;
+    }
 
 
-if(
-!matchesMulti(
-f.jenisDefect,
-row.defect
-)
-){
-
-return false;
-
-}
+    if(
+        f.jenisDefect.length &&
+        !f.jenisDefect.includes(row.defect)
+    ){
+        return false;
+    }
 
 
-if(
-!matchesMulti(
-f.mesin,
-row.mesin
-)
-){
-
-return false;
-
-}
+    if(
+        f.mesin.length &&
+        !f.mesin.includes(row.mesin)
+    ){
+        return false;
+    }
 
 
-if(
-!matchesMulti(
-f.grup,
-row.grup
-)
-){
-
-return false;
-
-}
+    if(
+        f.grup.length &&
+        !f.grup.includes(row.grup)
+    ){
+        return false;
+    }
 
 
-if(
-!matchesMulti(
-f.rollId,
-row.roll
-)
-){
-
-return false;
-
-}
+    if(
+        f.rollId.length &&
+        !f.rollId.includes(row.roll)
+    ){
+        return false;
+    }
 
 
-return true;
+    return true;
 
 }
 
@@ -4000,263 +2543,256 @@ return true;
 
 function applyFilter(){
 
-const f =
-getFilter();
+    const f =
+        getFilter();
 
 
-filteredData =
-allData.filter(
-function(row){
+    if(
+        f.dateFrom &&
+        f.dateTo &&
+        f.dateFrom > f.dateTo
+    ){
 
-return rowMatchesFilter(
-row,
-f
-);
+        setStatus(
+            "⚠️ Tanggal Dari tidak boleh lebih besar dari Tanggal Sampai.",
+            "warning"
+        );
 
-}
-);
-
-
-currentPage = 1;
-
-currentSearch = "";
+        return;
+    }
 
 
-const search =
-document.getElementById(
-"quickSearch"
-);
-
-if(search){
-
-search.value = "";
-
-}
+    filteredData =
+        allData.filter(
+            row =>
+                rowMatchesFilter(row,f)
+        );
 
 
-saveFilter(f);
-
-renderDashboard();
+    saveFilter(f);
 
 
-setStatus(
-"🔎 Filter diterapkan • " +
-formatNumber(
-filteredData.length
-) +
-" data"
-);
+    currentPage = 1;
 
-}
+    displayedData =
+        filteredData;
 
 
-/* =====================================================
-   CLEAR CURRENT FILTER
-===================================================== */
+    renderFilterChips(f);
 
-function clearFilter(){
-
-document.getElementById(
-"dateFrom"
-).value = "";
-
-document.getElementById(
-"dateTo"
-).value = "";
+    renderDashboard();
 
 
-MULTI_FILTER_IDS.forEach(
-function(id){
+    if(
+        dataLoadState === "success" &&
+        filteredData.length === 0
+    ){
 
-clearAllCheckboxes(id);
+        setStatus(
+            "⚠️ Data berhasil dimuat, tetapi tidak ada data sesuai filter.",
+            "warning"
+        );
 
-}
-);
-
-
-filteredData =
-[...allData];
-
-currentPage = 1;
-
-currentSearch = "";
-
-
-const search =
-document.getElementById(
-"quickSearch"
-);
-
-if(search){
-
-search.value = "";
-
-}
-
-
-renderDashboard();
+    }
 
 }
 
 
 /* =====================================================
-   FILTER CACHE
-===================================================== */
-
-function saveFilter(filter){
-
-try{
-
-localStorage.setItem(
-FILTER_CACHE_KEY,
-JSON.stringify(
-normalizeFilter(filter)
-)
-);
-
-}catch(error){
-
-console.warn(
-"Filter tidak tersimpan",
-error
-);
-
-}
-
-}
-
-
-/* =====================================================
-   RESTORE FILTER UI SAJA
-===================================================== */
-
-function restoreSavedFilterOnly(){
-
-try{
-
-const saved =
-localStorage.getItem(
-FILTER_CACHE_KEY
-);
-
-if(!saved) return;
-
-
-const filter =
-normalizeFilter(
-JSON.parse(saved)
-);
-
-
-document.getElementById(
-"dateFrom"
-).value =
-filter.dateFrom;
-
-
-document.getElementById(
-"dateTo"
-).value =
-filter.dateTo;
-
-
-/*
-   Checkbox belum dibuat saat
-   fungsi ini dipanggil.
-
-   Nilainya akan diterapkan
-   lagi setelah data tersedia.
-*/
-
-}catch(error){
-
-console.warn(
-"Saved filter gagal dibaca",
-error
-);
-
-}
-
-}
-
-
-/* =====================================================
-   RESTORE FILTER SETELAH DATA
+   RESTORE SAVED FILTER
 ===================================================== */
 
 function restoreSavedFilter(){
 
-try{
+    const saved =
+        getSavedFilter();
 
-const saved =
-localStorage.getItem(
-FILTER_CACHE_KEY
-);
 
-if(!saved){
+    if(!saved){
 
-filteredData =
-[...allData];
+        filteredData =
+            [...allData];
 
-return;
+        return;
+    }
+
+
+    const f =
+        sanitizeFilterAgainstData(saved);
+
+
+    /*
+       Simpan kembali filter yang sudah
+       dibersihkan dari pilihan lama/stale.
+    */
+
+    saveFilter(f);
+
+
+    document.getElementById(
+        "dateFrom"
+    ).value =
+        f.dateFrom || "";
+
+
+    document.getElementById(
+        "dateTo"
+    ).value =
+        f.dateTo || "";
+
+
+    MULTI_FILTER_IDS.forEach(id => {
+
+        setSelectedValuesById(
+            id,
+            f[id]
+        );
+
+    });
+
+
+    filteredData =
+        allData.filter(
+            row =>
+                rowMatchesFilter(row,f)
+        );
+
+
+    currentPage = 1;
+
+    renderFilterChips(f);
+
+}
+
+
+/* =====================================================
+   FILTER CHIPS
+===================================================== */
+
+function renderFilterChips(f){
+
+    const box =
+        document.getElementById(
+            "filterChips"
+        );
+
+    if(!box){
+        return;
+    }
+
+
+    const chips = [];
+
+
+    if(f.dateFrom){
+
+        chips.push(
+            `Dari: ${escapeHtml(f.dateFrom)}`
+        );
+
+    }
+
+
+    if(f.dateTo){
+
+        chips.push(
+            `Sampai: ${escapeHtml(f.dateTo)}`
+        );
+
+    }
+
+
+    const labels = {
+
+        kodeProduk:"Kode",
+        motif:"Motif",
+        jenisDefect:"Defect",
+        mesin:"Mesin",
+        grup:"Grup",
+        rollId:"Roll"
+
+    };
+
+
+    MULTI_FILTER_IDS.forEach(id => {
+
+        if(
+            f[id] &&
+            f[id].length
+        ){
+
+            const shown =
+                f[id].length <= 3
+                    ? f[id].join(", ")
+                    : `${f[id].length} pilihan`;
+
+            chips.push(
+                `${labels[id]}: ${escapeHtml(shown)}`
+            );
+
+        }
+
+    });
+
+
+    box.innerHTML =
+        chips.length
+            ? chips.map(
+                c =>
+                    `<span class="filter-chip">${c}</span>`
+              ).join("")
+            : `<span
+                class="filter-chip">
+                Semua Data
+              </span>`;
 
 }
 
 
-const filter =
-normalizeFilter(
-JSON.parse(saved)
-);
+/* =====================================================
+   CLEAR FILTER
+===================================================== */
+
+function clearFilter(){
+
+    document.getElementById(
+        "dateFrom"
+    ).value = "";
+
+    document.getElementById(
+        "dateTo"
+    ).value = "";
 
 
-document.getElementById(
-"dateFrom"
-).value =
-filter.dateFrom;
+    MULTI_FILTER_IDS.forEach(id => {
+
+        clearAllCheckboxes(id);
+
+    });
 
 
-document.getElementById(
-"dateTo"
-).value =
-filter.dateTo;
+    document.getElementById(
+        "quickSearch"
+    ).value = "";
 
 
-MULTI_FILTER_IDS.forEach(
-function(id){
+    filteredData =
+        [...allData];
 
-setSelectedValuesById(
-id,
-filter[id]
-);
-
-}
-);
+    currentPage = 1;
 
 
-filteredData =
-allData.filter(
-function(row){
+    renderFilterChips(
+        getFilter()
+    );
 
-return rowMatchesFilter(
-row,
-filter
-);
-
-}
-);
+    renderDashboard();
 
 
-}catch(error){
-
-console.warn(
-"Restore filter gagal",
-error
-);
-
-filteredData =
-[...allData];
-
-}
+    setStatus(
+        "Filter dibersihkan. Menampilkan semua data.",
+        "success"
+    );
 
 }
 
@@ -4267,179 +2803,140 @@ filteredData =
 
 function resetSavedFilter(){
 
-try{
+    try{
 
-localStorage.removeItem(
-FILTER_CACHE_KEY
-);
+        localStorage.removeItem(
+            FILTER_CACHE_KEY
+        );
 
-}catch(error){}
-
-
-clearFilter();
+    }catch(e){}
 
 
-setStatus(
-"✅ Filter tersimpan berhasil direset"
-);
+    clearFilter();
+
+
+    setStatus(
+        "Filter tersimpan berhasil di-reset.",
+        "success"
+    );
 
 }
 
 
 /* =====================================================
-   FILTER CHIPS
+   QUICK SEARCH
 ===================================================== */
 
-function renderFilterChips(){
+function applyQuickSearch(){
 
-const f =
-getFilter();
-
-const bar =
-document.getElementById(
-"activeFilterBar"
-);
-
-if(!bar) return;
+    const q =
+        normalizeText(
+            document.getElementById(
+                "quickSearch"
+            ).value
+        );
 
 
-bar.innerHTML = "";
+    const base =
+        filteredData;
 
 
-const labels = {
+    if(!q){
 
-dateFrom:"Dari",
+        displayedData =
+            base;
 
-dateTo:"Sampai",
+    }
+    else{
 
-kodeProduk:"Kode",
+        displayedData =
+            base.filter(
+                row =>
+                    row.searchText
+                    .includes(q)
+            );
 
-motif:"Motif",
-
-jenisDefect:"Defect",
-
-mesin:"Mesin",
-
-grup:"Grup",
-
-rollId:"Roll"
-
-};
+    }
 
 
-let count = 0;
+    currentPage = 1;
 
-
-/*
-   DATE
-*/
-
-[
-"dateFrom",
-"dateTo"
-]
-.forEach(
-function(key){
-
-if(f[key]){
-
-count++;
-
-const chip =
-document.createElement(
-"div"
-);
-
-chip.className =
-"chip";
-
-chip.textContent =
-labels[key] +
-": " +
-f[key];
-
-bar.appendChild(
-chip
-);
+    renderTable();
 
 }
 
-}
-);
+
+/* =====================================================
+   SORT
+===================================================== */
+
+function sortData(column){
+
+    if(sortColumn === column){
+
+        sortDirection *= -1;
+
+    }
+    else{
+
+        sortColumn = column;
+
+        sortDirection = 1;
+
+    }
 
 
-/*
-   CHECKBOX
-*/
+    displayedData.sort(
+        (a,b) => {
 
-MULTI_FILTER_IDS.forEach(
-function(key){
+            let av =
+                text(a[column]);
 
-if(
-Array.isArray(f[key]) &&
-f[key].length
-){
-
-f[key].forEach(
-function(value){
-
-count++;
-
-const chip =
-document.createElement(
-"div"
-);
-
-chip.className =
-"chip";
-
-chip.textContent =
-labels[key] +
-": " +
-value;
-
-bar.appendChild(
-chip
-);
-
-}
-);
-
-}
-
-}
-);
+            let bv =
+                text(b[column]);
 
 
-const label =
-document.createElement(
-"span"
-);
+            if(column === "qty"){
 
-label.className =
-"active-filter-label";
+                av =
+                    Number(a.qty || 0);
+
+                bv =
+                    Number(b.qty || 0);
+
+                return (
+                    av - bv
+                ) * sortDirection;
+            }
 
 
-if(count === 0){
+            if(column === "dateNorm"){
 
-label.textContent =
-"Filter aktif: Semua Data";
+                return (
+                    av.localeCompare(bv)
+                ) * sortDirection;
 
-bar.appendChild(
-label
-);
+            }
 
-}else{
 
-label.textContent =
-"Filter aktif:";
+            return (
+                av.localeCompare(
+                    bv,
+                    "id",
+                    {
+                        numeric:true,
+                        sensitivity:"base"
+                    }
+                )
+            ) * sortDirection;
 
-bar.insertBefore(
-label,
-bar.firstChild
-);
+        }
+    );
 
-}
+
+    currentPage = 1;
+
+    renderTable();
 
 }
 
@@ -4450,74 +2947,46 @@ bar.firstChild
 
 function renderDashboard(){
 
-renderSummary();
-
-renderFocus();
-
-renderRanking();
-
-renderFilterChips();
-
-renderTable();
-
-}
+    const data =
+        displayedData =
+            getCurrentDisplayData();
 
 
-/* =====================================================
-   NUMBER
-===================================================== */
+    renderSummary(data);
 
-function formatNumber(value){
+    renderFocus(data);
 
-return numberFormatter.format(
-Number(value) || 0
-);
+    renderRankings(data);
+
+    renderTable();
 
 }
 
 
 /* =====================================================
-   GROUP SUM
+   CURRENT DISPLAY DATA
 ===================================================== */
 
-function groupSum(
-data,
-field
-){
+function getCurrentDisplayData(){
 
-const map =
-new Map();
-
-
-data.forEach(
-function(row){
-
-const key =
-String(
-row[field] || "(Kosong)"
-).trim();
+    const q =
+        normalizeText(
+            document.getElementById(
+                "quickSearch"
+            )?.value
+        );
 
 
-map.set(
-key,
-(map.get(key) || 0) +
-Number(row.qty || 0)
-);
-
-}
-);
+    if(!q){
+        return [...filteredData];
+    }
 
 
-return [
-...map.entries()
-]
-.sort(
-function(a,b){
-
-return b[1] - a[1];
-
-}
-);
+    return filteredData.filter(
+        row =>
+            row.searchText
+            .includes(q)
+    );
 
 }
 
@@ -4526,70 +2995,89 @@ return b[1] - a[1];
    SUMMARY
 ===================================================== */
 
-function renderSummary(){
+function renderSummary(data){
 
-const totalPcs =
-filteredData.reduce(
-function(sum,row){
-
-return sum +
-Number(
-row.qty || 0
-);
-
-},
-0
-);
+    const totalDefect =
+        data.reduce(
+            (sum,row) =>
+                sum + Number(row.qty || 0),
+            0
+        );
 
 
-const totalRoll =
-new Set(
-filteredData
-.map(
-function(x){
-return x.roll;
+    const rolls =
+        new Set(
+            data
+                .map(r => r.roll)
+                .filter(Boolean)
+        );
+
+
+    const defects =
+        new Set(
+            data
+                .map(r => r.defect)
+                .filter(Boolean)
+        );
+
+
+    document.getElementById(
+        "totalDefect"
+    ).textContent =
+        formatNumber(totalDefect);
+
+
+    document.getElementById(
+        "totalRoll"
+    ).textContent =
+        formatNumber(rolls.size);
+
+
+    document.getElementById(
+        "totalJenisDefect"
+    ).textContent =
+        formatNumber(defects.size);
+
+
+    document.getElementById(
+        "totalData"
+    ).textContent =
+        formatNumber(data.length);
+
 }
-)
-.filter(Boolean)
-).size;
 
 
-const totalJenis =
-new Set(
-filteredData
-.map(
-function(x){
-return x.defect;
-}
-)
-.filter(Boolean)
-).size;
+/* =====================================================
+   GROUP SUM
+===================================================== */
+
+function groupSum(data,key){
+
+    const map = new Map();
 
 
-document.getElementById(
-"totalPcs"
-).textContent =
-formatNumber(totalPcs);
+    data.forEach(row => {
+
+        const name =
+            text(row[key]) ||
+            "(Kosong)";
+
+        const old =
+            map.get(name) || 0;
+
+        map.set(
+            name,
+            old + Number(row.qty || 0)
+        );
+
+    });
 
 
-document.getElementById(
-"totalRoll"
-).textContent =
-formatNumber(totalRoll);
-
-
-document.getElementById(
-"totalJenis"
-).textContent =
-formatNumber(totalJenis);
-
-
-document.getElementById(
-"totalData"
-).textContent =
-formatNumber(
-filteredData.length
-);
+    return [...map.entries()]
+        .sort(
+            (a,b) =>
+                b[1] - a[1]
+        );
 
 }
 
@@ -4598,148 +3086,69 @@ filteredData.length
    FOCUS
 ===================================================== */
 
-function renderFocus(){
+function renderFocus(data){
 
-const total =
-filteredData.reduce(
-function(sum,row){
-
-return sum +
-Number(
-row.qty || 0
-);
-
-},
-0
-);
+    const defect =
+        groupSum(
+            data,
+            "defect"
+        )[0];
 
 
-renderFocusGroup(
-"defect",
-"focusDefectPcs",
-"focusDefectPercent",
-"defectMiniList",
-total
-);
+    const mesin =
+        groupSum(
+            data,
+            "mesin"
+        )[0];
 
 
-renderFocusGroup(
-"mesin",
-"focusMesinPcs",
-"focusMesinPercent",
-"mesinMiniList",
-total
-);
+    const grup =
+        groupSum(
+            data,
+            "grup"
+        )[0];
 
 
-renderFocusGroup(
-"grup",
-"focusGrupPcs",
-"focusGrupPercent",
-"grupMiniList",
-total
-);
-
-}
+    document.getElementById(
+        "focusDefect"
+    ).textContent =
+        defect ? defect[0] : "-";
 
 
-/* =====================================================
-   FOCUS GROUP
-===================================================== */
-
-function renderFocusGroup(
-field,
-numberId,
-percentId,
-listId,
-total
-){
-
-const grouped =
-groupSum(
-filteredData,
-field
-);
+    document.getElementById(
+        "focusDefectValue"
+    ).textContent =
+        defect
+            ? `${formatNumber(defect[1])} Pcs`
+            : "0 Pcs";
 
 
-const top =
-grouped[0];
+    document.getElementById(
+        "focusMesin"
+    ).textContent =
+        mesin ? mesin[0] : "-";
 
 
-const numberEl =
-document.getElementById(
-numberId
-);
-
-const percentEl =
-document.getElementById(
-percentId
-);
-
-const listEl =
-document.getElementById(
-listId
-);
+    document.getElementById(
+        "focusMesinValue"
+    ).textContent =
+        mesin
+            ? `${formatNumber(mesin[1])} Pcs`
+            : "0 Pcs";
 
 
-if(!top){
-
-numberEl.textContent =
-"0";
-
-percentEl.textContent =
-"Tidak ada data";
-
-listEl.innerHTML =
-'<div class="empty">Tidak ada data</div>';
-
-return;
-
-}
+    document.getElementById(
+        "focusGrup"
+    ).textContent =
+        grup ? grup[0] : "-";
 
 
-const percent =
-total > 0
-? top[1] / total * 100
-: 0;
-
-
-numberEl.textContent =
-formatNumber(top[1]);
-
-
-percentEl.textContent =
-top[0] +
-" • " +
-percent.toFixed(1) +
-"%";
-
-
-listEl.innerHTML =
-grouped
-.slice(0,5)
-.map(
-function(item){
-
-return `
-
-<div class="mini-row">
-
-<span>
-${escapeHtml(item[0])}
-</span>
-
-<strong>
-${formatNumber(item[1])}
-</strong>
-
-</div>
-
-`;
-
-}
-)
-.join("");
+    document.getElementById(
+        "focusGrupValue"
+    ).textContent =
+        grup
+            ? `${formatNumber(grup[1])} Pcs`
+            : "0 Pcs";
 
 }
 
@@ -4748,218 +3157,70 @@ ${formatNumber(item[1])}
    RANKING
 ===================================================== */
 
-function renderRanking(){
+function renderRankings(data){
 
-renderRankingList(
-"defect",
-"defectRanking"
-);
+    renderRankingBox(
+        "rankingDefect",
+        groupSum(data,"defect")
+    );
 
+    renderRankingBox(
+        "rankingMesin",
+        groupSum(data,"mesin")
+    );
 
-renderRankingList(
-"mesin",
-"mesinRanking"
-);
-
-
-renderRankingList(
-"grup",
-"groupRanking"
-);
+    renderRankingBox(
+        "rankingGrup",
+        groupSum(data,"grup")
+    );
 
 }
 
 
-/* =====================================================
-   RANKING LIST
-===================================================== */
+function renderRankingBox(id,items){
 
-function renderRankingList(
-field,
-elementId
-){
+    const box =
+        document.getElementById(id);
 
-const list =
-document.getElementById(
-elementId
-);
 
+    if(!items.length){
 
-const grouped =
-groupSum(
-filteredData,
-field
-);
+        box.innerHTML =
+            `<div class="empty-row">
+                Tidak ada data
+            </div>`;
 
+        return;
+    }
 
-if(!grouped.length){
 
-list.innerHTML =
-'<div class="empty">Tidak ada data</div>';
+    box.innerHTML =
+        items
+        .slice(0,10)
+        .map(
+            (item,index) => `
 
-return;
+                <div class="rank-row">
 
-}
+                    <div class="rank-number">
+                        ${index + 1}
+                    </div>
 
+                    <div
+                        class="rank-name"
+                        title="${escapeHtml(item[0])}">
+                        ${escapeHtml(item[0])}
+                    </div>
 
-list.innerHTML =
-grouped
-.slice(0,10)
-.map(
-function(item,index){
+                    <div class="rank-value">
+                        ${formatNumber(item[1])}
+                    </div>
 
-let rankClass = "";
+                </div>
 
-
-if(index === 0){
-
-rankClass =
-"rank-1";
-
-}else if(index === 1){
-
-rankClass =
-"rank-2";
-
-}else if(index === 2){
-
-rankClass =
-"rank-3";
-
-}
-
-
-return `
-
-<div class="ranking-item">
-
-<div
-class="rank ${rankClass}">
-${index + 1}
-</div>
-
-<div class="rank-name">
-${escapeHtml(item[0])}
-</div>
-
-<div class="rank-value">
-${formatNumber(item[1])} Pcs
-</div>
-
-</div>
-
-`;
-
-}
-)
-.join("");
-
-}
-
-
-/* =====================================================
-   QUICK SEARCH
-===================================================== */
-
-function quickSearch(){
-
-const input =
-document.getElementById(
-"quickSearch"
-);
-
-
-currentSearch =
-input.value
-.toLowerCase()
-.trim();
-
-
-currentPage = 1;
-
-
-renderTable();
-
-}
-
-
-/* =====================================================
-   SORT
-===================================================== */
-
-function sortTable(field){
-
-if(sortField === field){
-
-sortDirection *= -1;
-
-}else{
-
-sortField =
-field;
-
-sortDirection =
-1;
-
-}
-
-
-filteredData.sort(
-function(a,b){
-
-let av =
-a[field] ?? "";
-
-let bv =
-b[field] ?? "";
-
-
-if(field === "qty"){
-
-av =
-Number(av);
-
-bv =
-Number(bv);
-
-}else{
-
-av =
-String(av)
-.toLowerCase();
-
-bv =
-String(bv)
-.toLowerCase();
-
-}
-
-
-if(av < bv){
-
-return -1 *
-sortDirection;
-
-}
-
-
-if(av > bv){
-
-return 1 *
-sortDirection;
-
-}
-
-
-return 0;
-
-}
-);
-
-
-currentPage = 1;
-
-renderTable();
+            `
+        )
+        .join("");
 
 }
 
@@ -4970,200 +3231,260 @@ renderTable();
 
 function renderTable(){
 
-let data =
-filteredData;
+    const container =
+        document.getElementById(
+            "tableContainer"
+        );
 
 
-if(currentSearch){
-
-data =
-filteredData.filter(
-function(row){
-
-return row.searchText
-.includes(
-currentSearch
-);
-
-}
-);
-
-}
+    if(!container){
+        return;
+    }
 
 
-renderTableData(
-data
-);
+    /*
+       PENTING:
+       bedakan antara error server,
+       data kosong, dan filter kosong.
+    */
 
-}
+    if(
+        dataLoadState === "loading" &&
+        !allData.length
+    ){
 
+        container.innerHTML = `
 
-/* =====================================================
-   TABLE DATA
-===================================================== */
+            <div class="loading">
 
-function renderTableData(data){
+                <div class="spinner"></div>
 
-const tbody =
-document.getElementById(
-"tableBody"
-);
+                Memuat data...
 
+            </div>
 
-if(
-!data ||
-data.length === 0
-){
+        `;
 
-tbody.innerHTML = `
-
-<tr>
-
-<td
-colspan="10"
-class="empty">
-
-Tidak ada data sesuai filter
-
-</td>
-
-</tr>
-
-`;
+        return;
+    }
 
 
-document.getElementById(
-"pageInfo"
-).textContent =
-"0 data";
+    if(
+        dataLoadState === "error" &&
+        !allData.length
+    ){
+
+        container.innerHTML = `
+
+            <div class="empty-row">
+
+                <div style="
+                    color:#dc2626;
+                    font-weight:800;
+                    margin-bottom:6px;
+                ">
+                    ❌ Data gagal dimuat
+                </div>
+
+                <div>
+                    ${escapeHtml(
+                        dataSourceError ||
+                        "Tidak dapat mengambil data dari server."
+                    )}
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+    }
 
 
-document.getElementById(
-"pageButtons"
-).innerHTML =
-"";
+    if(
+        dataLoadState === "empty" &&
+        !allData.length
+    ){
 
-return;
+        container.innerHTML = `
 
-}
+            <div class="empty-row">
 
+                <div style="
+                    font-weight:800;
+                    margin-bottom:5px;
+                ">
+                    ⚠️ Data Defect Flat kosong
+                </div>
 
-const totalPages =
-Math.ceil(
-data.length /
-rowsPerPage
-);
+                <div>
+                    Server berhasil dihubungi,
+                    tetapi tidak ada data.
+                </div>
 
+            </div>
 
-if(
-currentPage >
-totalPages
-){
+        `;
 
-currentPage =
-totalPages;
-
-}
-
-
-const start =
-(currentPage - 1) *
-rowsPerPage;
+        return;
+    }
 
 
-const end =
-start +
-rowsPerPage;
+    if(!displayedData.length){
+
+        container.innerHTML = `
+
+            <div class="empty-row">
+
+                🔎 Tidak ada data sesuai filter.
+
+            </div>
+
+        `;
+
+        updatePagination(0);
+
+        return;
+    }
 
 
-const pageRows =
-data.slice(
-start,
-end
-);
+    const start =
+        (currentPage - 1) *
+        PAGE_SIZE;
 
 
-tbody.innerHTML =
-pageRows
-.map(
-function(row){
-
-return `
-
-<tr>
-
-<td>
-${escapeHtml(row.tgl)}
-</td>
-
-<td>
-${escapeHtml(row.roll)}
-</td>
-
-<td>
-${escapeHtml(row.kode)}
-</td>
-
-<td class="qty">
-${formatNumber(row.qty)}
-</td>
-
-<td>
-
-<span class="defect-badge">
-${escapeHtml(row.defect)}
-</span>
-
-</td>
-
-<td>
-${escapeHtml(row.mesin)}
-</td>
-
-<td>
-${escapeHtml(row.motif)}
-</td>
-
-<td>
-${escapeHtml(row.blok)}
-</td>
-
-<td>
-${escapeHtml(row.grup)}
-</td>
-
-<td>
-${escapeHtml(row.operator)}
-</td>
-
-</tr>
-
-`;
-
-}
-)
-.join("");
+    const pageData =
+        displayedData.slice(
+            start,
+            start + PAGE_SIZE
+        );
 
 
-document.getElementById(
-"pageInfo"
-).textContent =
-"Menampilkan " +
-(start + 1) +
-"-" +
-Math.min(
-end,
-data.length
-) +
-" dari " +
-data.length +
-" data";
+    let html = `
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th onclick="sortData('dateNorm')">
+                        TGL FLAT ↕
+                    </th>
+
+                    <th onclick="sortData('roll')">
+                        ROLL ID ↕
+                    </th>
+
+                    <th onclick="sortData('kode')">
+                        KODE PROD ↕
+                    </th>
+
+                    <th onclick="sortData('qty')">
+                        JUMLAH (Pcs) ↕
+                    </th>
+
+                    <th onclick="sortData('defect')">
+                        JENIS DEFECT ↕
+                    </th>
+
+                    <th onclick="sortData('mesin')">
+                        MESIN ↕
+                    </th>
+
+                    <th onclick="sortData('motif')">
+                        MOTIF ↕
+                    </th>
+
+                    <th onclick="sortData('blok')">
+                        BLOK + ISIAN ↕
+                    </th>
+
+                    <th onclick="sortData('grup')">
+                        GRUP ↕
+                    </th>
+
+                    <th onclick="sortData('operator')">
+                        OPERATOR ↕
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+    `;
 
 
-renderPagination(
-totalPages,
-data
-);
+    pageData.forEach(row => {
+
+        html += `
+
+            <tr>
+
+                <td>
+                    ${escapeHtml(row.tgl)}
+                </td>
+
+                <td>
+                    ${escapeHtml(row.roll)}
+                </td>
+
+                <td>
+                    ${escapeHtml(row.kode)}
+                </td>
+
+                <td>
+                    ${formatNumber(row.qty)}
+                </td>
+
+                <td>
+                    ${escapeHtml(row.defect)}
+                </td>
+
+                <td>
+                    ${escapeHtml(row.mesin)}
+                </td>
+
+                <td>
+                    ${escapeHtml(row.motif)}
+                </td>
+
+                <td>
+                    ${escapeHtml(row.blok)}
+                </td>
+
+                <td>
+                    ${escapeHtml(row.grup)}
+                </td>
+
+                <td>
+                    ${escapeHtml(row.operator)}
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    html += `
+
+            </tbody>
+
+        </table>
+
+    `;
+
+
+    container.innerHTML =
+        html;
+
+
+    updatePagination(
+        displayedData.length
+    );
 
 }
 
@@ -5172,204 +3493,575 @@ data
    PAGINATION
 ===================================================== */
 
-function renderPagination(
-totalPages,
-data
-){
+function updatePagination(total){
 
-const container =
-document.getElementById(
-"pageButtons"
-);
-
-
-container.innerHTML =
-"";
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                total / PAGE_SIZE
+            )
+        );
 
 
-if(totalPages <= 1){
-
-return;
-
-}
+    if(currentPage > totalPages){
+        currentPage = totalPages;
+    }
 
 
-const prev =
-document.createElement(
-"button"
-);
+    const start =
+        total === 0
+            ? 0
+            : ((currentPage - 1) * PAGE_SIZE) + 1;
 
 
-prev.className =
-"page-btn";
-
-prev.textContent =
-"‹";
-
-prev.disabled =
-currentPage === 1;
+    const end =
+        Math.min(
+            currentPage * PAGE_SIZE,
+            total
+        );
 
 
-prev.onclick =
-function(){
-
-if(currentPage > 1){
-
-currentPage--;
-
-renderTableData(
-data
-);
-
-}
-
-};
+    document.getElementById(
+        "pageInfo"
+    ).textContent =
+        total
+            ? `Menampilkan ${formatNumber(start)}-${formatNumber(end)} dari ${formatNumber(total)} data`
+            : "Tidak ada data";
 
 
-container.appendChild(
-prev
-);
+    document.getElementById(
+        "prevBtn"
+    ).disabled =
+        currentPage <= 1;
 
 
-let start =
-Math.max(
-1,
-currentPage - 2
-);
-
-
-let end =
-Math.min(
-totalPages,
-currentPage + 2
-);
-
-
-for(
-let i = start;
-i <= end;
-i++
-){
-
-const btn =
-document.createElement(
-"button"
-);
-
-
-btn.className =
-"page-btn" +
-(
-i === currentPage
-? " active"
-: ""
-);
-
-
-btn.textContent =
-i;
-
-
-btn.onclick =
-function(){
-
-currentPage =
-i;
-
-renderTableData(
-data
-);
-
-};
-
-
-container.appendChild(
-btn
-);
+    document.getElementById(
+        "nextBtn"
+    ).disabled =
+        currentPage >= totalPages;
 
 }
 
 
-const next =
-document.createElement(
-"button"
-);
+function changePage(direction){
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                displayedData.length /
+                PAGE_SIZE
+            )
+        );
 
 
-next.className =
-"page-btn";
-
-next.textContent =
-"›";
-
-next.disabled =
-currentPage === totalPages;
+    const next =
+        currentPage + direction;
 
 
-next.onclick =
-function(){
-
-if(
-currentPage <
-totalPages
-){
-
-currentPage++;
-
-renderTableData(
-data
-);
-
-}
-
-};
+    if(
+        next < 1 ||
+        next > totalPages
+    ){
+        return;
+    }
 
 
-container.appendChild(
-next
-);
+    currentPage =
+        next;
+
+
+    renderTable();
 
 }
 
 
 /* =====================================================
-   ESCAPE HTML
+   SET DATA
 ===================================================== */
 
-function escapeHtml(value){
+function setDefectData(raw,fresh=false){
 
-return String(
-value == null
-? ""
-: value
-)
+    /*
+       Jika API mengirim data kosong,
+       jangan menimpa cache/data lama.
+    */
 
-.replace(
-/&/g,
-"&amp;"
-)
+    if(
+        !Array.isArray(raw) ||
+        raw.length === 0
+    ){
 
-.replace(
-/</g,
-"&lt;"
-)
+        if(fresh && allData.length){
 
-.replace(
-/>/g,
-"&gt;"
-)
+            dataLoadState =
+                "success";
 
-.replace(
-/"/g,
-"&quot;"
-)
+            setStatus(
+                "⚡ Data terakhir tetap ditampilkan. Server saat ini tidak mengirim data.",
+                "warning"
+            );
 
-.replace(
-/'/g,
-"&#039;"
-);
+            renderDashboard();
+
+            return;
+        }
+
+
+        allData = [];
+
+        filteredData = [];
+
+        displayedData = [];
+
+        dataLoadState =
+            fresh
+                ? "empty"
+                : "loading";
+
+
+        populateFilters();
+
+        renderDashboard();
+
+        return;
+
+    }
+
+
+    if(!Array.isArray(raw[0])){
+
+        if(!allData.length){
+
+            dataLoadState =
+                "error";
+
+            dataSourceError =
+                "Format data dari server tidak valid.";
+
+        }
+
+        renderDashboard();
+
+        return;
+
+    }
+
+
+    dataSourceError = "";
+
+
+    const normalized =
+        normalizeRows(raw);
+
+
+    if(!normalized.length){
+
+        if(
+            fresh &&
+            allData.length
+        ){
+
+            dataLoadState =
+                "success";
+
+            setStatus(
+                "⚡ Data terakhir tetap ditampilkan. Data server tidak valid/kosong.",
+                "warning"
+            );
+
+            renderDashboard();
+
+            return;
+
+        }
+
+
+        allData = [];
+
+        filteredData = [];
+
+        displayedData = [];
+
+        dataLoadState =
+            "error";
+
+
+        if(!dataSourceError){
+
+            dataSourceError =
+                "Data tidak memiliki baris yang dapat dibaca.";
+
+        }
+
+
+        renderDashboard();
+
+        return;
+
+    }
+
+
+    allData =
+        normalized;
+
+
+    dataLoadState =
+        "success";
+
+
+    if(fresh){
+
+        saveDataCache(raw);
+
+    }
+
+
+    populateFilters();
+
+    restoreSavedFilter();
+
+    renderDashboard();
 
 }
+
+
+/* =====================================================
+   LOAD DATA
+===================================================== */
+
+async function loadDefectData(){
+
+    /*
+       CACHE FIRST
+       Supaya dashboard langsung terasa cepat.
+    */
+
+    const cached =
+        getDataCache();
+
+
+    if(cached){
+
+        try{
+
+            setDefectData(
+                cached,
+                false
+            );
+
+            setStatus(
+                "⚡ Menampilkan cache. Memperbarui data dari server...",
+                "success"
+            );
+
+        }catch(e){
+
+            console.warn(
+                "Cache gagal:",
+                e
+            );
+
+        }
+
+    }
+
+
+    /*
+       GOOGLE APPS SCRIPT
+    */
+
+    if(
+        typeof google !== "undefined" &&
+        google.script &&
+        google.script.run
+    ){
+
+        google.script.run
+
+            .withSuccessHandler(
+                function(data){
+
+                    if(
+                        Array.isArray(data) &&
+                        data.length
+                    ){
+
+                        setDefectData(
+                            data,
+                            true
+                        );
+
+                        setStatus(
+                            "✓ Data berhasil diperbarui dari server.",
+                            "success"
+                        );
+
+                    }
+                    else{
+
+                        if(allData.length){
+
+                            setStatus(
+                                "⚡ Data terakhir tetap ditampilkan. Server tidak mengirim data baru.",
+                                "warning"
+                            );
+
+                        }
+                        else{
+
+                            dataLoadState =
+                                "empty";
+
+                            setStatus(
+                                "⚠️ Server berhasil dihubungi, tetapi data kosong.",
+                                "warning"
+                            );
+
+                            renderTable();
+
+                        }
+
+                    }
+
+                }
+            )
+
+            .withFailureHandler(
+                function(error){
+
+                    const message =
+                        error &&
+                        error.message
+                            ? error.message
+                            : "Kesalahan server";
+
+
+                    if(allData.length){
+
+                        dataLoadState =
+                            "success";
+
+                        setStatus(
+                            "⚡ Server gagal diperbarui. Data cache tetap digunakan. " +
+                            message,
+                            "warning"
+                        );
+
+                    }
+                    else{
+
+                        dataLoadState =
+                            "error";
+
+                        dataSourceError =
+                            message;
+
+                        setStatus(
+                            "❌ Gagal mengambil data dari server: " +
+                            message,
+                            "error"
+                        );
+
+                        renderTable();
+
+                    }
+
+                }
+            )
+
+            .getDefectData();
+
+
+        return;
+    }
+
+
+    /*
+       FALLBACK API
+    */
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL,
+                {
+                    method:"GET",
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "HTTP " +
+                response.status +
+                " " +
+                response.statusText
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !Array.isArray(data)
+        ){
+
+            throw new Error(
+                "Format response API tidak valid."
+            );
+
+        }
+
+
+        if(!data.length){
+
+            if(allData.length){
+
+                dataLoadState =
+                    "success";
+
+                setStatus(
+                    "⚡ Data terakhir tetap ditampilkan. Server mengirim data kosong.",
+                    "warning"
+                );
+
+            }
+            else{
+
+                dataLoadState =
+                    "empty";
+
+                setStatus(
+                    "⚠️ Server berhasil dihubungi, tetapi data kosong.",
+                    "warning"
+                );
+
+            }
+
+
+            renderTable();
+
+            return;
+        }
+
+
+        setDefectData(
+            data,
+            true
+        );
+
+
+        setStatus(
+            "✓ Data berhasil diperbarui dari server.",
+            "success"
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "API error:",
+            error
+        );
+
+
+        if(allData.length){
+
+            dataLoadState =
+                "success";
+
+            setStatus(
+                "⚡ Server gagal diakses. Data cache tetap digunakan. " +
+                error.message,
+                "warning"
+            );
+
+        }
+        else{
+
+            dataLoadState =
+                "error";
+
+            dataSourceError =
+                error.message ||
+                "Tidak dapat mengambil data.";
+
+
+            setStatus(
+                "❌ Gagal mengambil data dari server: " +
+                dataSourceError,
+                "error"
+            );
+
+
+            renderTable();
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   INITIALIZATION
+===================================================== */
+
+function initialize(){
+
+    /*
+       Tanggal dikosongkan.
+       Filter tersimpan akan dipulihkan
+       setelah data tersedia.
+    */
+
+    document.getElementById(
+        "dateFrom"
+    ).value = "";
+
+    document.getElementById(
+        "dateTo"
+    ).value = "";
+
+
+    setStatus(
+        "⏳ Memuat data...",
+        ""
+    );
+
+
+    /*
+       Render awal supaya UI tidak kosong.
+    */
+
+    renderTable();
+
+
+    /*
+       Ambil data.
+    */
+
+    loadDefectData();
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initialize
+);
 
 </script>
 
