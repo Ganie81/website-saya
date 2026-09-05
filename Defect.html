@@ -400,7 +400,6 @@ input[type="date"]:focus,
 
 /* =====================================================
    FOCUS
-   +6 PX SESUAI PERMINTAAN
 ===================================================== */
 
 .focus-grid{
@@ -440,7 +439,6 @@ input[type="date"]:focus,
 
 /* =====================================================
    RANKING
-   +6 PX SESUAI PERMINTAAN
 ===================================================== */
 
 .ranking-grid{
@@ -802,8 +800,6 @@ tbody tr:hover{
 
     <div class="filter-grid">
 
-        <!-- DATE -->
-
         <div class="filter-box filter-date">
 
             <span class="filter-label">
@@ -827,8 +823,6 @@ tbody tr:hover{
         </div>
 
 
-        <!-- KODE PRODUK -->
-
         <div class="filter-box">
 
             <span class="filter-label">
@@ -842,8 +836,6 @@ tbody tr:hover{
 
         </div>
 
-
-        <!-- MOTIF -->
 
         <div class="filter-box">
 
@@ -859,8 +851,6 @@ tbody tr:hover{
         </div>
 
 
-        <!-- JENIS DEFECT -->
-
         <div class="filter-box">
 
             <span class="filter-label">
@@ -874,8 +864,6 @@ tbody tr:hover{
 
         </div>
 
-
-        <!-- MESIN -->
 
         <div class="filter-box">
 
@@ -891,8 +879,6 @@ tbody tr:hover{
         </div>
 
 
-        <!-- GRUP -->
-
         <div class="filter-box">
 
             <span class="filter-label">
@@ -906,8 +892,6 @@ tbody tr:hover{
 
         </div>
 
-
-        <!-- ROLL ID -->
 
         <div class="filter-box">
 
@@ -1244,10 +1228,6 @@ tbody tr:hover{
 
 <script>
 
-/* =====================================================
-   CONFIG
-===================================================== */
-
 const API_URL =
 "https://script.google.com/macros/s/AKfycbwJ9bH0_V1p--6hRJqXO7yi2k4GY4jLfONJMGxIGcqfh8UmLTxphSNFhAY9ifdFhCpnag/exec?action=defect";
 
@@ -1270,25 +1250,13 @@ const MULTI_FILTER_IDS = [
     "rollId"
 ];
 
-
-/* =====================================================
-   STATE
-===================================================== */
-
 let allData = [];
-
 let filteredData = [];
-
 let displayedData = [];
-
 let currentPage = 1;
-
 let sortColumn = "";
-
 let sortDirection = 1;
-
 let dataLoadState = "loading";
-
 let dataSourceError = "";
 
 let checkboxValues = {
@@ -1300,10 +1268,6 @@ let checkboxValues = {
     rollId:[]
 };
 
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
 
 function goPage(page){
 
@@ -1319,10 +1283,6 @@ function goPage(page){
 
 }
 
-
-/* =====================================================
-   BASIC HELPERS
-===================================================== */
 
 function text(v){
 
@@ -1383,10 +1343,6 @@ function uniqueSorted(arr){
 }
 
 
-/* =====================================================
-   STATUS
-===================================================== */
-
 function setStatus(message,type=""){
 
     const el =
@@ -1403,10 +1359,6 @@ function setStatus(message,type=""){
 
 }
 
-
-/* =====================================================
-   HEADER INDEX
-===================================================== */
 
 function findHeader(headers,aliases){
 
@@ -1430,10 +1382,6 @@ function findHeader(headers,aliases){
 
 }
 
-
-/* =====================================================
-   DATE NORMALIZATION
-===================================================== */
 
 function normalizeDate(value){
 
@@ -1507,10 +1455,6 @@ function normalizeDate(value){
 
 }
 
-
-/* =====================================================
-   QTY
-===================================================== */
 
 function parseQty(value){
 
@@ -1588,10 +1532,6 @@ function parseQty(value){
 
 }
 
-
-/* =====================================================
-   NORMALIZE API DATA
-===================================================== */
 
 function normalizeRows(raw){
 
@@ -1806,10 +1746,6 @@ function normalizeRows(raw){
 }
 
 
-/* =====================================================
-   CACHE
-===================================================== */
-
 function saveDataCache(raw){
 
     try{
@@ -1874,10 +1810,6 @@ function getDataCache(){
 
 }
 
-
-/* =====================================================
-   FILTER STORAGE
-===================================================== */
 
 function normalizeFilter(f){
 
@@ -1972,10 +1904,6 @@ function getSavedFilter(){
 }
 
 
-/* =====================================================
-   SANITIZE SAVED FILTER
-===================================================== */
-
 function sanitizeFilterAgainstData(filter){
 
     const f =
@@ -2000,10 +1928,6 @@ function sanitizeFilterAgainstData(filter){
 
 }
 
-
-/* =====================================================
-   CHECKBOX FILTER
-===================================================== */
 
 function buildCheckboxFilter(id,values){
 
@@ -2361,10 +2285,6 @@ function clearAllCheckboxes(id){
 }
 
 
-/* =====================================================
-   POPULATE FILTER
-===================================================== */
-
 function populateFilters(){
 
     buildCheckboxFilter(
@@ -2399,10 +2319,6 @@ function populateFilters(){
 
 }
 
-
-/* =====================================================
-   GET FILTER
-===================================================== */
 
 function getFilter(){
 
@@ -2452,10 +2368,6 @@ function getFilter(){
 
 }
 
-
-/* =====================================================
-   ROW MATCH
-===================================================== */
 
 function rowMatchesFilter(row,f){
 
@@ -2534,10 +2446,6 @@ function rowMatchesFilter(row,f){
 }
 
 
-/* =====================================================
-   APPLY FILTER
-===================================================== */
-
 function applyFilter(){
 
     const f =
@@ -2594,10 +2502,6 @@ function applyFilter(){
 
 }
 
-
-/* =====================================================
-   RESTORE SAVED FILTER
-===================================================== */
 
 function restoreSavedFilter(){
 
@@ -2656,10 +2560,6 @@ function restoreSavedFilter(){
 
 }
 
-
-/* =====================================================
-   FILTER CHIPS
-===================================================== */
 
 function renderFilterChips(f){
 
@@ -2741,10 +2641,6 @@ function renderFilterChips(f){
 }
 
 
-/* =====================================================
-   CLEAR FILTER
-===================================================== */
-
 function clearFilter(){
 
     document.getElementById(
@@ -2789,10 +2685,6 @@ function clearFilter(){
 }
 
 
-/* =====================================================
-   RESET SAVED FILTER
-===================================================== */
-
 function resetSavedFilter(){
 
     try{
@@ -2814,10 +2706,6 @@ function resetSavedFilter(){
 
 }
 
-
-/* =====================================================
-   QUICK SEARCH
-===================================================== */
 
 function applyQuickSearch(){
 
@@ -2857,10 +2745,6 @@ function applyQuickSearch(){
 
 }
 
-
-/* =====================================================
-   SORT
-===================================================== */
 
 function sortData(column){
 
@@ -2933,10 +2817,6 @@ function sortData(column){
 }
 
 
-/* =====================================================
-   DASHBOARD
-===================================================== */
-
 function renderDashboard(){
 
     const data =
@@ -2954,10 +2834,6 @@ function renderDashboard(){
 
 }
 
-
-/* =====================================================
-   CURRENT DISPLAY DATA
-===================================================== */
 
 function getCurrentDisplayData(){
 
@@ -2982,10 +2858,6 @@ function getCurrentDisplayData(){
 
 }
 
-
-/* =====================================================
-   SUMMARY
-===================================================== */
 
 function renderSummary(data){
 
@@ -3039,10 +2911,6 @@ function renderSummary(data){
 }
 
 
-/* =====================================================
-   GROUP SUM
-===================================================== */
-
 function groupSum(data,key){
 
     const map = new Map();
@@ -3073,10 +2941,6 @@ function groupSum(data,key){
 
 }
 
-
-/* =====================================================
-   FOCUS
-===================================================== */
 
 function renderFocus(data){
 
@@ -3145,10 +3009,6 @@ function renderFocus(data){
 }
 
 
-/* =====================================================
-   RANKING
-===================================================== */
-
 function renderRankings(data){
 
     renderRankingBox(
@@ -3216,10 +3076,6 @@ function renderRankingBox(id,items){
 
 }
 
-
-/* =====================================================
-   TABLE
-===================================================== */
 
 function renderTable(){
 
@@ -3475,10 +3331,6 @@ function renderTable(){
 }
 
 
-/* =====================================================
-   PAGINATION
-===================================================== */
-
 function updatePagination(total){
 
     const totalPages =
@@ -3562,10 +3414,6 @@ function changePage(direction){
 
 }
 
-
-/* =====================================================
-   SET DATA
-===================================================== */
 
 function setDefectData(raw,fresh=false){
 
@@ -3707,10 +3555,6 @@ function setDefectData(raw,fresh=false){
 
 }
 
-
-/* =====================================================
-   LOAD DATA
-===================================================== */
 
 async function loadDefectData(){
 
@@ -3979,10 +3823,6 @@ async function loadDefectData(){
 }
 
 
-/* =====================================================
-   INITIALIZATION
-===================================================== */
-
 function initialize(){
 
     document.getElementById(
@@ -4002,15 +3842,10 @@ function initialize(){
 
     renderTable();
 
-
     loadDefectData();
 
 }
 
-
-/* =====================================================
-   START
-===================================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
