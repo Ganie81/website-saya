@@ -1,6 +1,16 @@
-<!DOCTYPE html><html lang="id">
-<head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Dashboard Defect Flat</title><style>
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard Defect Flat</title>
+
+<style>
 
 /* =====================================================
    GLOBAL
@@ -383,9 +393,10 @@ body{
     border-radius:17px;
 
     box-shadow:
-        0 14px 28px rgba(15,23,42,.10),
-        0 4px 8px rgba(15,23,42,.06),
-        inset 0 1px 0 rgba(255,255,255,.80);
+        0 18px 32px rgba(15,23,42,.16),
+        0 6px 12px rgba(15,23,42,.10),
+        inset 0 2px 0 rgba(255,255,255,.88),
+        inset 0 -2px 5px rgba(15,23,42,.08);
 
     overflow:hidden;
 
@@ -403,17 +414,23 @@ body{
     right:0;
     top:0;
 
-    height:7px;
+    height:9px;
 
     background:
         linear-gradient(
             90deg,
-            rgba(255,255,255,.80),
-            rgba(255,255,255,.15),
-            rgba(255,255,255,.70)
+            rgba(255,255,255,.92),
+            rgba(255,255,255,.28),
+            rgba(255,255,255,.82),
+            rgba(255,255,255,.18),
+            rgba(255,255,255,.88)
         );
 
-    opacity:.90;
+    opacity:.95;
+
+    z-index:2;
+
+    pointer-events:none;
 }
 
 .card::after{
@@ -421,32 +438,36 @@ body{
 
     position:absolute;
 
-    width:150px;
-    height:150px;
+    width:190px;
+    height:190px;
 
-    right:-65px;
-    top:-75px;
+    right:-75px;
+    top:-95px;
 
     border-radius:50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(255,255,255,.65),
-            rgba(255,255,255,.15) 45%,
-            transparent 72%
+            rgba(255,255,255,.78),
+            rgba(255,255,255,.30) 38%,
+            rgba(255,255,255,.08) 55%,
+            transparent 74%
         );
 
     pointer-events:none;
+
+    z-index:2;
 }
 
 .card:hover{
     transform:translateY(-2px);
 
     box-shadow:
-        0 18px 35px rgba(15,23,42,.13),
-        0 6px 10px rgba(15,23,42,.07),
-        inset 0 1px 0 rgba(255,255,255,.90);
+        0 22px 40px rgba(15,23,42,.19),
+        0 8px 15px rgba(15,23,42,.11),
+        inset 0 2px 0 rgba(255,255,255,.95),
+        inset 0 -2px 5px rgba(15,23,42,.08);
 }
 
 /* =====================================================
@@ -472,49 +493,49 @@ body{
     background:
         linear-gradient(
             145deg,
-            #f0f6ff,
-            #dceaff
+            #c4d8f5,
+            #9ebce5
         );
 
-    border-color:#c9dcfa;
+    border-color:#8eaddc;
 }
 
 .summary-card:nth-child(2){
     background:
         linear-gradient(
             145deg,
-            #effbf5,
-            #d9f3e5
+            #b9dfc9,
+            #8fc5a8
         );
 
-    border-color:#c6e9d5;
+    border-color:#7fb696;
 }
 
 .summary-card:nth-child(3){
     background:
         linear-gradient(
             145deg,
-            #fff7ed,
-            #ffe9d4
+            #f2c9a5,
+            #dda77c
         );
 
-    border-color:#f4d4b4;
+    border-color:#cf9568;
 }
 
 .summary-card:nth-child(4){
     background:
         linear-gradient(
             145deg,
-            #f5f1ff,
-            #e8defb
+            #d3c5ed,
+            #aa94d0
         );
 
-    border-color:#d9ccf5;
+    border-color:#9a81c3;
 }
 
 .summary-label{
     position:relative;
-    z-index:1;
+    z-index:3;
 
     font-size:14px;
     font-weight:900;
@@ -530,7 +551,7 @@ body{
 
 .summary-value{
     position:relative;
-    z-index:1;
+    z-index:3;
 
     font-size:36px;
 
@@ -547,7 +568,7 @@ body{
 
 .summary-small{
     position:relative;
-    z-index:1;
+    z-index:3;
 
     font-size:12px;
 
@@ -593,33 +614,33 @@ body{
     background:
         linear-gradient(
             145deg,
-            #cbdcff,
-            #b8cff8
+            #9fbceb,
+            #789bd1
         );
 
-    border-color:#a9c3f0;
+    border-color:#6d8fc5;
 }
 
 .focus-card:nth-child(2){
     background:
         linear-gradient(
             145deg,
-            #c8ead9,
-            #b4dfca
+            #9bcdb1,
+            #71ae8c
         );
 
-    border-color:#a4d1ba;
+    border-color:#649d7d;
 }
 
 .focus-card:nth-child(3){
     background:
         linear-gradient(
             145deg,
-            #ffd8bd,
-            #f9c7a2
+            #f0b98f,
+            #d99466
         );
 
-    border-color:#edb992;
+    border-color:#c77f54;
 }
 
 .focus-head{
@@ -631,7 +652,7 @@ body{
     gap:10px;
 
     position:relative;
-    z-index:1;
+    z-index:3;
 }
 
 .focus-name{
@@ -650,7 +671,7 @@ body{
 
 .focus-number{
     position:relative;
-    z-index:1;
+    z-index:3;
 
     font-size:38px;
 
@@ -686,7 +707,7 @@ body{
 
 .focus-percent{
     position:relative;
-    z-index:1;
+    z-index:3;
 
     font-size:14px;
 
@@ -701,7 +722,7 @@ body{
     margin-top:13px;
 
     position:relative;
-    z-index:1;
+    z-index:3;
 }
 
 .mini-row{
@@ -758,27 +779,27 @@ body{
     background:
         linear-gradient(
             145deg,
-            #d9e8ff,
-            #c7dcfa
+            #b2c9eb,
+            #8baad8
         );
 
-    border-color:#b4cbed;
+    border-color:#7b9aca;
 }
 
 .ranking-card:nth-child(2){
     background:
         linear-gradient(
             145deg,
-            #eadffb,
-            #d9c8f1
+            #c7b5e2,
+            #9f87c5
         );
 
-    border-color:#cdb9e8;
+    border-color:#8e75b5;
 }
 
 .ranking-title{
     position:relative;
-    z-index:1;
+    z-index:3;
 
     font-size:19px;
 
@@ -804,6 +825,9 @@ body{
 
     border-bottom:
         1px solid rgba(71,85,105,.15);
+
+    position:relative;
+    z-index:3;
 }
 
 .ranking-item:last-child{
@@ -883,7 +907,7 @@ body{
         2px solid rgba(71,85,105,.14);
 
     position:relative;
-    z-index:1;
+    z-index:3;
 
     font-size:19px;
 
@@ -900,7 +924,7 @@ body{
 
 .group-ranking-list{
     position:relative;
-    z-index:1;
+    z-index:3;
 }
 
 /* =====================================================
@@ -967,7 +991,7 @@ table{
 }
 
 thead{
-    background:#f8fafc;
+    background:#123b63;
 }
 
 th{
@@ -977,14 +1001,23 @@ th{
 
     font-size:11px;
 
-    color:#475569;
+    color:#ffffff;
 
-    border-bottom:
-        1px solid var(--border);
+    background:
+        linear-gradient(
+            145deg,
+            #123b63,
+            #082a4a
+        );
+
+    border:1px solid #ffffff;
 
     white-space:nowrap;
 
     cursor:pointer;
+
+    text-shadow:
+        0 1px 2px rgba(0,0,0,.25);
 }
 
 td{
@@ -1261,13 +1294,37 @@ tbody tr:hover{
 
 }
 
-</style></head><body><div class="container"><!-- =====================================================
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- =====================================================
      HEADER
-===================================================== --><div class="header"><div class="header-top"><div><div class="title">
+===================================================== -->
+
+<div class="header">
+
+<div class="header-top">
+
+<div>
+
+<div class="title">
 Dashboard Defect Flat
-</div><div class="subtitle">
+</div>
+
+<div class="subtitle">
 Monitoring defect hasil proses Flat
-</div></div><div class="nav"><a href="javascript:void(0)"
+</div>
+
+</div>
+
+<div class="nav">
+
+<a href="javascript:void(0)"
 onclick="navigateToPage('produksi')">
 Produksi
 </a>
@@ -1282,70 +1339,136 @@ onclick="navigateToPage('defect')">
 Defect Flat
 </a>
 
-</div></div><div id="status" class="status">
+</div>
+
+</div>
+
+<div id="status" class="status">
 ⏳ Menyiapkan dashboard...
-</div></div><!-- =====================================================
+</div>
+
+</div>
+
+<!-- =====================================================
      FILTER
-===================================================== --><div class="filter-card"><div class="filter-header"><div class="filter-title">
+===================================================== -->
+
+<div class="filter-card">
+
+<div class="filter-header">
+
+<div class="filter-title">
 Filter Data
-</div><button
+</div>
+
+<button
 class="btn btn-light"
 onclick="toggleFilter()">
 ☰ Filter
 </button>
 
-</div><div
+</div>
+
+<div
 id="activeFilterBar"
 class="active-filter-bar">
-</div><div id="filterBody"><div class="filter-grid"><div class="field"><label>Tanggal Dari</label>
+</div>
+
+<div id="filterBody">
+
+<div class="filter-grid">
+
+<div class="field">
+
+<label>Tanggal Dari</label>
 
 <input
 type="date"
 id="dateFrom">
 
-</div><div class="field"><label>Tanggal Sampai</label>
+</div>
+
+<div class="field">
+
+<label>Tanggal Sampai</label>
 
 <input
 type="date"
 id="dateTo">
 
-</div><div class="field"><label>Kode Produk</label>
+</div>
+
+<div class="field">
+
+<label>Kode Produk</label>
 
 <select
 id="kodeProduk"
 multiple>
+</select>
 
-</select></div><div class="field"><label>Motif</label>
+</div>
+
+<div class="field">
+
+<label>Motif</label>
 
 <select
 id="motif"
 multiple>
+</select>
 
-</select></div><div class="field"><label>Jenis Defect</label>
+</div>
+
+<div class="field">
+
+<label>Jenis Defect</label>
 
 <select
 id="jenisDefect"
 multiple>
+</select>
 
-</select></div><div class="field"><label>Mesin</label>
+</div>
+
+<div class="field">
+
+<label>Mesin</label>
 
 <select
 id="mesin"
 multiple>
+</select>
 
-</select></div><div class="field"><label>Grup</label>
+</div>
+
+<div class="field">
+
+<label>Grup</label>
 
 <select
 id="grup"
 multiple>
+</select>
 
-</select></div><div class="field"><label>Roll ID</label>
+</div>
+
+<div class="field">
+
+<label>Roll ID</label>
 
 <select
 id="rollId"
 multiple>
+</select>
 
-</select></div></div><div class="filter-actions"><button
+</div>
+
+</div>
+
+<div class="filter-actions">
+
+<button
 class="btn btn-primary"
 onclick="applyFilter()">
 🔎 Terapkan Filter
@@ -1363,140 +1486,341 @@ onclick="resetSavedFilter()">
 🗑 Reset Filter Tersimpan
 </button>
 
-</div></div></div><!-- =====================================================
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
      SUMMARY 4 KOTAK
-===================================================== --><div class="summary-grid"><div class="card summary-card"><div class="summary-label">
+===================================================== -->
+
+<div class="summary-grid">
+
+<div class="card summary-card">
+
+<div class="summary-label">
 Total Defect Pcs
-</div><div
+</div>
+
+<div
 class="summary-value"
 id="totalPcs">
 0
-</div><div class="summary-small">
+</div>
+
+<div class="summary-small">
 Jumlah pcs defect
-</div></div><div class="card summary-card"><div class="summary-label">
+</div>
+
+</div>
+
+<div class="card summary-card">
+
+<div class="summary-label">
 Total Roll
-</div><div
+</div>
+
+<div
 class="summary-value"
 id="totalRoll">
 0
-</div><div class="summary-small">
+</div>
+
+<div class="summary-small">
 Roll terdampak
-</div></div><div class="card summary-card"><div class="summary-label">
+</div>
+
+</div>
+
+<div class="card summary-card">
+
+<div class="summary-label">
 Jenis Defect
-</div><div
+</div>
+
+<div
 class="summary-value"
 id="totalJenis">
 0
-</div><div class="summary-small">
+</div>
+
+<div class="summary-small">
 Jenis defect berbeda
-</div></div><div class="card summary-card"><div class="summary-label">
+</div>
+
+</div>
+
+<div class="card summary-card">
+
+<div class="summary-label">
 Total Data
-</div><div
+</div>
+
+<div
 class="summary-value"
 id="totalData">
 0
-</div><div class="summary-small">
+</div>
+
+<div class="summary-small">
 Baris data
-</div></div></div><!-- =====================================================
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
      FOKUS 3 KOTAK
-===================================================== --><div class="section-title">
+===================================================== -->
+
+<div class="section-title">
 Fokus Defect
-</div><div class="focus-grid"><div class="card focus-card"><div class="focus-head"><div class="focus-name">
+</div>
+
+<div class="focus-grid">
+
+<div class="card focus-card">
+
+<div class="focus-head">
+
+<div class="focus-name">
 Defect Terbesar
-</div></div><div
+</div>
+
+</div>
+
+<div
 class="focus-number"
 id="focusDefectPcs">
 0
-</div><div
+</div>
+
+<div
 class="focus-percent"
 id="focusDefectPercent">
 -
-</div><div
+</div>
+
+<div
 id="defectMiniList"
 class="mini-list">
-</div></div><div class="card focus-card"><div class="focus-head"><div class="focus-name">
+</div>
+
+</div>
+
+<div class="card focus-card">
+
+<div class="focus-head">
+
+<div class="focus-name">
 Mesin Terbesar
-</div></div><div
+</div>
+
+</div>
+
+<div
 class="focus-number"
 id="focusMesinPcs">
 0
-</div><div
+</div>
+
+<div
 class="focus-percent"
 id="focusMesinPercent">
 -
-</div><div
+</div>
+
+<div
 id="mesinMiniList"
 class="mini-list">
-</div></div><div class="card focus-card"><div class="focus-head"><div class="focus-name">
+</div>
+
+</div>
+
+<div class="card focus-card">
+
+<div class="focus-head">
+
+<div class="focus-name">
 Grup Terbesar
-</div></div><div
+</div>
+
+</div>
+
+<div
 class="focus-number"
 id="focusGrupPcs">
 0
-</div><div
+</div>
+
+<div
 class="focus-percent"
 id="focusGrupPercent">
 -
-</div><div
+</div>
+
+<div
 id="grupMiniList"
 class="mini-list">
-</div></div></div><!-- =====================================================
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
      RANKING
-===================================================== --><div class="section-title">
+===================================================== -->
+
+<div class="section-title">
 Ranking
-</div><div class="ranking-grid"><div class="card ranking-card"><div class="ranking-title">
+</div>
+
+<div class="ranking-grid">
+
+<div class="card ranking-card">
+
+<div class="ranking-title">
 Ranking Jenis Defect
-</div><div
+</div>
+
+<div
 id="defectRanking"
 class="mini-list">
-</div></div><div class="card ranking-card"><div class="ranking-title">
+</div>
+
+</div>
+
+<div class="card ranking-card">
+
+<div class="ranking-title">
 Ranking Mesin
-</div><div
+</div>
+
+<div
 id="mesinRanking"
 class="mini-list">
-</div><div class="group-ranking-title">
+</div>
+
+<div class="group-ranking-title">
 Ranking Grup
-</div><div
+</div>
+
+<div
 id="groupRanking"
 class="group-ranking-list">
-</div></div></div><!-- =====================================================
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
      TABLE
-===================================================== --><div class="card table-card"><div class="table-toolbar"><div class="table-title">
+===================================================== -->
+
+<div class="card table-card">
+
+<div class="table-toolbar">
+
+<div class="table-title">
 Detail Data Defect Flat
-</div><div class="search-box"><input
+</div>
+
+<div class="search-box">
+
+<input
 type="text"
 id="quickSearch"
 placeholder="🔎 Cari data..."
 oninput="quickSearch()">
 
-</div></div><div class="table-wrap"><table><thead><tr><th onclick="sortTable('tgl')">
+</div>
+
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th onclick="sortTable('tgl')">
 TGL FLAT ↕
-</th><th onclick="sortTable('roll')">
+</th>
+
+<th onclick="sortTable('roll')">
 ROLL ID ↕
-</th><th onclick="sortTable('kode')">
+</th>
+
+<th onclick="sortTable('kode')">
 KODE PROD ↕
-</th><th onclick="sortTable('qty')">
+</th>
+
+<th onclick="sortTable('qty')">
 JUMLAH (Pcs) ↕
-</th><th onclick="sortTable('defect')">
+</th>
+
+<th onclick="sortTable('defect')">
 JENIS DEFECT ↕
-</th><th onclick="sortTable('mesin')">
+</th>
+
+<th onclick="sortTable('mesin')">
 MESIN ↕
-</th><th onclick="sortTable('motif')">
+</th>
+
+<th onclick="sortTable('motif')">
 MOTIF ↕
-</th><th>
+</th>
+
+<th>
 BLOK + ISIAN
-</th><th onclick="sortTable('grup')">
+</th>
+
+<th onclick="sortTable('grup')">
 GRUP ↕
-</th><th>
+</th>
+
+<th>
 OPERATOR
-</th></tr></thead><tbody id="tableBody"></tbody></table></div><div class="pagination"><div
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tableBody">
+</tbody>
+
+</table>
+
+</div>
+
+<div class="pagination">
+
+<div
 id="pageInfo"
 class="page-info">
 -
-</div><div
+</div>
+
+<div
 id="pageButtons"
 class="page-buttons">
-</div></div></div></div><script>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
 
 /* =====================================================
    CONFIG
@@ -1511,7 +1835,6 @@ const DATA_CACHE_KEY =
 const FILTER_CACHE_KEY =
 "DEFECT_FLAT_FILTER_V2";
 
-
 const PAGE_ROUTES = {
 
 produksi:"?page=produksi",
@@ -1521,7 +1844,6 @@ cuci:"?page=cuci",
 defect:"?page=defect"
 
 };
-
 
 /* =====================================================
    STATE
@@ -1546,7 +1868,6 @@ let currentSearch = "";
 const numberFormatter =
 new Intl.NumberFormat("id-ID");
 
-
 /* =====================================================
    MULTI FILTER CONFIG
 ===================================================== */
@@ -1561,7 +1882,6 @@ const MULTI_FILTER_IDS = [
 "rollId"
 
 ];
-
 
 /* =====================================================
    START
@@ -1579,7 +1899,6 @@ loadDefectData();
 
 }
 );
-
 
 /* =====================================================
    NAVIGATION
@@ -1609,7 +1928,6 @@ route;
 
 }
 
-
 /* =====================================================
    STATUS
 ===================================================== */
@@ -1627,7 +1945,6 @@ message;
 }
 
 }
-
 
 /* =====================================================
    FILTER TOGGLE
@@ -1647,7 +1964,6 @@ filterVisible
 : "none";
 
 }
-
 
 /* =====================================================
    LOAD CACHE
@@ -1694,7 +2010,6 @@ error
 
 }
 
-
 /* =====================================================
    LOAD DATA
 ===================================================== */
@@ -1708,7 +2023,6 @@ setStatus(
 );
 
 }
-
 
 if(
 typeof google !== "undefined" &&
@@ -1741,7 +2055,6 @@ setDefectData(
 return;
 
 }
-
 
 cacheData(data);
 
@@ -1792,7 +2105,6 @@ setStatus(
 return;
 
 }
-
 
 try{
 
@@ -1876,7 +2188,6 @@ setStatus(
 
 }
 
-
 /* =====================================================
    CACHE DATA
 ===================================================== */
@@ -1908,7 +2219,6 @@ error
 
 }
 
-
 /* =====================================================
    HEADER NORMALIZATION
 ===================================================== */
@@ -1926,7 +2236,6 @@ value == null
 .replace(/_/g," ");
 
 }
-
 
 function findHeaderIndex(
 headers,
@@ -1962,7 +2271,6 @@ return -1;
 
 }
 
-
 /* =====================================================
    CELL
 ===================================================== */
@@ -1983,7 +2291,6 @@ return row[index] == null
 : row[index];
 
 }
-
 
 /* =====================================================
    SET DATA
@@ -2011,13 +2318,11 @@ return;
 
 }
 
-
 const headers =
 data[0];
 
 const rows =
 data.slice(1);
-
 
 const idx = {
 
@@ -2122,7 +2427,6 @@ headers,
 )
 
 };
-
 
 allData =
 rows
@@ -2272,7 +2576,6 @@ operator
 }
 );
 
-
 populateFilters();
 
 filteredData =
@@ -2283,7 +2586,6 @@ restoreSavedFilter();
 renderDashboard();
 
 }
-
 
 /* =====================================================
    PARSE QTY
@@ -2309,7 +2611,6 @@ text
 .replace(/pcs/gi,"")
 .trim();
 
-
 if(
 text.indexOf(",") !== -1 &&
 text.indexOf(".") !== -1
@@ -2329,7 +2630,6 @@ text.replace(",", ".");
 
 }
 
-
 const number =
 parseFloat(
 text.replace(
@@ -2338,13 +2638,11 @@ text.replace(
 )
 );
 
-
 return isNaN(number)
 ? 0
 : number;
 
 }
-
 
 /* =====================================================
    DATE
@@ -2357,7 +2655,6 @@ if(!value) return null;
 const text =
 String(value).trim();
 
-
 if(
 /^\d{4}-\d{2}-\d{2}$/
 .test(text)
@@ -2366,7 +2663,6 @@ if(
 return text;
 
 }
-
 
 let match =
 text.match(
@@ -2384,7 +2680,6 @@ String(match[1]).padStart(2,"0")
 );
 
 }
-
 
 match =
 text.match(
@@ -2404,11 +2699,9 @@ String(match[1]).padStart(2,"0")
 
 }
 
-
 return null;
 
 }
-
 
 /* =====================================================
    UNIQUE
@@ -2450,7 +2743,6 @@ sensitivity:"base"
 
 }
 
-
 /* =====================================================
    MULTI SELECT
 ===================================================== */
@@ -2473,7 +2765,6 @@ select
 
 select.innerHTML = "";
 
-
 values.forEach(
 function(value){
 
@@ -2495,7 +2786,6 @@ option
 }
 );
 
-
 if(oldValues.length){
 
 setSelectedValues(
@@ -2506,7 +2796,6 @@ oldValues
 }
 
 }
-
 
 /* =====================================================
    POPULATE FILTER
@@ -2526,7 +2815,6 @@ return x.kode;
 "Semua Kode Produk"
 );
 
-
 fillSelect(
 "motif",
 uniqueSorted(
@@ -2538,7 +2826,6 @@ return x.motif;
 ),
 "Semua Motif"
 );
-
 
 fillSelect(
 "jenisDefect",
@@ -2552,7 +2839,6 @@ return x.defect;
 "Semua Jenis Defect"
 );
 
-
 fillSelect(
 "mesin",
 uniqueSorted(
@@ -2565,7 +2851,6 @@ return x.mesin;
 "Semua Mesin"
 );
 
-
 fillSelect(
 "grup",
 uniqueSorted(
@@ -2577,7 +2862,6 @@ return x.grup;
 ),
 "Semua Grup"
 );
-
 
 fillSelect(
 "rollId",
@@ -2592,7 +2876,6 @@ return x.roll;
 );
 
 }
-
 
 /* =====================================================
    GET SELECTED VALUES
@@ -2622,7 +2905,6 @@ option.value
 
 }
 
-
 /* =====================================================
    SET SELECTED VALUES
 ===================================================== */
@@ -2645,7 +2927,6 @@ return String(v);
 ? [String(values)]
 : [];
 
-
 Array.from(
 select.options
 )
@@ -2662,7 +2943,6 @@ option.value
 
 }
 
-
 /* =====================================================
    NORMALIZE SAVED FILTER
 ===================================================== */
@@ -2671,7 +2951,6 @@ function normalizeFilter(f){
 
 f =
 f || {};
-
 
 return {
 
@@ -2702,7 +2981,6 @@ toArray(f.rollId)
 };
 
 }
-
 
 /* =====================================================
    TO ARRAY
@@ -2743,7 +3021,6 @@ String(value).trim()
 ].filter(Boolean);
 
 }
-
 
 /* =====================================================
    FILTER OBJECT
@@ -2809,7 +3086,6 @@ document.getElementById(
 
 }
 
-
 /* =====================================================
    MATCH MULTI
 ===================================================== */
@@ -2838,7 +3114,6 @@ value == null
 
 }
 
-
 /* =====================================================
    FILTER ROW
 ===================================================== */
@@ -2860,7 +3135,6 @@ return false;
 
 }
 
-
 if(
 f.dateTo &&
 (
@@ -2873,7 +3147,6 @@ return false;
 
 }
 
-
 if(
 !matchesMulti(
 f.kodeProduk,
@@ -2884,7 +3157,6 @@ row.kode
 return false;
 
 }
-
 
 if(
 !matchesMulti(
@@ -2897,7 +3169,6 @@ return false;
 
 }
 
-
 if(
 !matchesMulti(
 f.jenisDefect,
@@ -2908,7 +3179,6 @@ row.defect
 return false;
 
 }
-
 
 if(
 !matchesMulti(
@@ -2921,7 +3191,6 @@ return false;
 
 }
 
-
 if(
 !matchesMulti(
 f.grup,
@@ -2932,7 +3201,6 @@ row.grup
 return false;
 
 }
-
 
 if(
 !matchesMulti(
@@ -2945,11 +3213,9 @@ return false;
 
 }
 
-
 return true;
 
 }
-
 
 /* =====================================================
    APPLY FILTER
@@ -2959,7 +3225,6 @@ function applyFilter(){
 
 const f =
 getFilter();
-
 
 filteredData =
 allData.filter(
@@ -2972,7 +3237,6 @@ f
 
 }
 );
-
 
 currentPage = 1;
 
@@ -2989,13 +3253,11 @@ search.value = "";
 
 }
 
-
 saveFilter(f);
 
 renderDashboard();
 
 }
-
 
 /* =====================================================
    CLEAR CURRENT FILTER
@@ -3010,7 +3272,6 @@ document.getElementById(
 document.getElementById(
 "dateTo"
 ).value = "";
-
 
 MULTI_FILTER_IDS.forEach(
 function(id){
@@ -3030,7 +3291,6 @@ select,
 }
 );
 
-
 filteredData =
 [...allData];
 
@@ -3049,11 +3309,9 @@ search.value = "";
 
 }
 
-
 renderDashboard();
 
 }
-
 
 /* =====================================================
    FILTER CACHE
@@ -3080,7 +3338,6 @@ error
 }
 
 }
-
 
 /* =====================================================
    RESTORE FILTER UI SAJA
@@ -3117,7 +3374,6 @@ error
 
 }
 
-
 /* =====================================================
    RESTORE FILTER SETELAH DATA TERSEDIA
 ===================================================== */
@@ -3140,7 +3396,6 @@ return;
 
 }
 
-
 const filter =
 normalizeFilter(
 JSON.parse(saved)
@@ -3159,7 +3414,6 @@ filteredData =
 
 }
 
-
 /* =====================================================
    BASIC FILTER VALUES
 ===================================================== */
@@ -3171,7 +3425,6 @@ if(!f) return;
 const filter =
 normalizeFilter(f);
 
-
 document.getElementById(
 "dateFrom"
 ).value =
@@ -3181,7 +3434,6 @@ document.getElementById(
 "dateTo"
 ).value =
 filter.dateTo;
-
 
 MULTI_FILTER_IDS.forEach(
 function(id){
@@ -3206,7 +3458,6 @@ filter[id]
 
 }
 
-
 /* =====================================================
    APPLY SAVED FILTER
 ===================================================== */
@@ -3222,14 +3473,12 @@ return;
 
 }
 
-
 const filter =
 normalizeFilter(f);
 
 setBasicFilterValues(
 filter
 );
-
 
 filteredData =
 allData.filter(
@@ -3245,7 +3494,6 @@ filter
 
 }
 
-
 /* =====================================================
    RESET SAVED FILTER
 ===================================================== */
@@ -3260,16 +3508,13 @@ FILTER_CACHE_KEY
 
 }catch(error){}
 
-
 clearFilter();
-
 
 setStatus(
 "✅ Filter tersimpan berhasil direset"
 );
 
 }
-
 
 /* =====================================================
    FILTER CHIPS
@@ -3288,7 +3533,6 @@ document.getElementById(
 if(!bar) return;
 
 bar.innerHTML = "";
-
 
 const labels = {
 
@@ -3310,9 +3554,7 @@ rollId:"Roll"
 
 };
 
-
 let count = 0;
-
 
 /*
    DATE
@@ -3350,7 +3592,6 @@ chip
 
 }
 );
-
 
 /*
    MULTI SELECT
@@ -3395,7 +3636,6 @@ chip
 }
 );
 
-
 const label =
 document.createElement(
 "span"
@@ -3403,7 +3643,6 @@ document.createElement(
 
 label.className =
 "active-filter-label";
-
 
 if(count === 0){
 
@@ -3428,7 +3667,6 @@ bar.firstChild
 
 }
 
-
 /* =====================================================
    DASHBOARD
 ===================================================== */
@@ -3447,7 +3685,6 @@ renderTable();
 
 }
 
-
 /* =====================================================
    NUMBER
 ===================================================== */
@@ -3459,7 +3696,6 @@ Number(value) || 0
 );
 
 }
-
 
 /* =====================================================
    GROUP SUM
@@ -3473,7 +3709,6 @@ field
 const map =
 new Map();
 
-
 data.forEach(
 function(row){
 
@@ -3481,7 +3716,6 @@ const key =
 String(
 row[field] || "(Kosong)"
 ).trim();
-
 
 map.set(
 key,
@@ -3491,7 +3725,6 @@ Number(row.qty || 0)
 
 }
 );
-
 
 return [
 ...map.entries()
@@ -3505,7 +3738,6 @@ return b[1] - a[1];
 );
 
 }
-
 
 /* =====================================================
    SUMMARY
@@ -3526,7 +3758,6 @@ row.qty || 0
 0
 );
 
-
 const totalRoll =
 new Set(
 filteredData
@@ -3537,7 +3768,6 @@ return x.roll;
 )
 .filter(Boolean)
 ).size;
-
 
 const totalJenis =
 new Set(
@@ -3550,24 +3780,20 @@ return x.defect;
 .filter(Boolean)
 ).size;
 
-
 document.getElementById(
 "totalPcs"
 ).textContent =
 formatNumber(totalPcs);
-
 
 document.getElementById(
 "totalRoll"
 ).textContent =
 formatNumber(totalRoll);
 
-
 document.getElementById(
 "totalJenis"
 ).textContent =
 formatNumber(totalJenis);
-
 
 document.getElementById(
 "totalData"
@@ -3577,7 +3803,6 @@ filteredData.length
 );
 
 }
-
 
 /* =====================================================
    FOCUS
@@ -3598,7 +3823,6 @@ row.qty || 0
 0
 );
 
-
 renderFocusGroup(
 "defect",
 "focusDefectPcs",
@@ -3607,7 +3831,6 @@ renderFocusGroup(
 total
 );
 
-
 renderFocusGroup(
 "mesin",
 "focusMesinPcs",
@@ -3615,7 +3838,6 @@ renderFocusGroup(
 "mesinMiniList",
 total
 );
-
 
 renderFocusGroup(
 "grup",
@@ -3626,7 +3848,6 @@ total
 );
 
 }
-
 
 /* =====================================================
    FOCUS GROUP
@@ -3646,10 +3867,8 @@ filteredData,
 field
 );
 
-
 const top =
 grouped[0];
-
 
 const numberEl =
 document.getElementById(
@@ -3666,7 +3885,6 @@ document.getElementById(
 listId
 );
 
-
 if(!top){
 
 numberEl.textContent =
@@ -3682,23 +3900,19 @@ return;
 
 }
 
-
 const percent =
 total > 0
 ? top[1] / total * 100
 : 0;
 
-
 numberEl.textContent =
 formatNumber(top[1]);
-
 
 percentEl.textContent =
 top[0] +
 " • " +
 percent.toFixed(1) +
 "%";
-
 
 listEl.innerHTML =
 grouped
@@ -3728,7 +3942,6 @@ ${formatNumber(item[1])}
 
 }
 
-
 /* =====================================================
    RANKING
 ===================================================== */
@@ -3740,12 +3953,10 @@ renderRankingList(
 "defectRanking"
 );
 
-
 renderRankingList(
 "mesin",
 "mesinRanking"
 );
-
 
 renderRankingList(
 "grup",
@@ -3753,7 +3964,6 @@ renderRankingList(
 );
 
 }
-
 
 /* =====================================================
    RANKING LIST
@@ -3769,13 +3979,11 @@ document.getElementById(
 elementId
 );
 
-
 const grouped =
 groupSum(
 filteredData,
 field
 );
-
 
 if(!grouped.length){
 
@@ -3786,7 +3994,6 @@ return;
 
 }
 
-
 list.innerHTML =
 grouped
 .slice(0,10)
@@ -3794,7 +4001,6 @@ grouped
 function(item,index){
 
 let rankClass = "";
-
 
 if(index === 0){
 
@@ -3812,7 +4018,6 @@ rankClass =
 "rank-3";
 
 }
-
 
 return `
 
@@ -3841,7 +4046,6 @@ ${formatNumber(item[1])} Pcs
 
 }
 
-
 /* =====================================================
    QUICK SEARCH
 ===================================================== */
@@ -3853,15 +4057,12 @@ document.getElementById(
 "quickSearch"
 );
 
-
 currentSearch =
 input.value
 .toLowerCase()
 .trim();
 
-
 currentPage = 1;
-
 
 if(!currentSearch){
 
@@ -3870,7 +4071,6 @@ renderTable();
 return;
 
 }
-
 
 const result =
 filteredData.filter(
@@ -3884,13 +4084,11 @@ currentSearch
 }
 );
 
-
 renderTableData(
 result
 );
 
 }
-
 
 /* =====================================================
    SORT
@@ -3912,7 +4110,6 @@ sortDirection =
 
 }
 
-
 filteredData.sort(
 function(a,b){
 
@@ -3921,7 +4118,6 @@ a[field] ?? "";
 
 let bv =
 b[field] ?? "";
-
 
 if(field === "qty"){
 
@@ -3943,14 +4139,12 @@ String(bv)
 
 }
 
-
 if(av < bv){
 
 return -1 *
 sortDirection;
 
 }
-
 
 if(av > bv){
 
@@ -3959,19 +4153,16 @@ sortDirection;
 
 }
 
-
 return 0;
 
 }
 );
-
 
 currentPage = 1;
 
 renderTable();
 
 }
-
 
 /* =====================================================
    TABLE
@@ -3993,7 +4184,6 @@ currentSearch
 }
 );
 
-
 renderTableData(
 result
 );
@@ -4002,13 +4192,11 @@ return;
 
 }
 
-
 renderTableData(
 filteredData
 );
 
 }
-
 
 /* =====================================================
    TABLE DATA
@@ -4020,7 +4208,6 @@ const tbody =
 document.getElementById(
 "tableBody"
 );
-
 
 if(
 !data ||
@@ -4043,12 +4230,10 @@ Tidak ada data sesuai filter
 
 `;
 
-
 document.getElementById(
 "pageInfo"
 ).textContent =
 "0 data";
-
 
 document.getElementById(
 "pageButtons"
@@ -4059,13 +4244,11 @@ return;
 
 }
 
-
 const totalPages =
 Math.ceil(
 data.length /
 rowsPerPage
 );
-
 
 if(
 currentPage >
@@ -4077,23 +4260,19 @@ totalPages;
 
 }
 
-
 const start =
 (currentPage - 1) *
 rowsPerPage;
 
-
 const end =
 start +
 rowsPerPage;
-
 
 const pageRows =
 data.slice(
 start,
 end
 );
-
 
 tbody.innerHTML =
 pageRows
@@ -4156,7 +4335,6 @@ ${escapeHtml(row.operator)}
 )
 .join("");
 
-
 document.getElementById(
 "pageInfo"
 ).textContent =
@@ -4171,14 +4349,12 @@ data.length
 data.length +
 " data";
 
-
 renderPagination(
 totalPages,
 data
 );
 
 }
-
 
 /* =====================================================
    PAGINATION
@@ -4194,10 +4370,8 @@ document.getElementById(
 "pageButtons"
 );
 
-
 container.innerHTML =
 "";
-
 
 if(totalPages <= 1){
 
@@ -4205,12 +4379,10 @@ return;
 
 }
 
-
 const prev =
 document.createElement(
 "button"
 );
-
 
 prev.className =
 "page-btn";
@@ -4220,7 +4392,6 @@ prev.textContent =
 
 prev.disabled =
 currentPage === 1;
-
 
 prev.onclick =
 function(){
@@ -4237,11 +4408,9 @@ data
 
 };
 
-
 container.appendChild(
 prev
 );
-
 
 let start =
 Math.max(
@@ -4249,13 +4418,11 @@ Math.max(
 currentPage - 2
 );
 
-
 let end =
 Math.min(
 totalPages,
 currentPage + 2
 );
-
 
 for(
 let i = start;
@@ -4268,7 +4435,6 @@ document.createElement(
 "button"
 );
 
-
 btn.className =
 "page-btn" +
 (
@@ -4277,10 +4443,8 @@ i === currentPage
 : ""
 );
 
-
 btn.textContent =
 i;
-
 
 btn.onclick =
 function(){
@@ -4294,19 +4458,16 @@ data
 
 };
 
-
 container.appendChild(
 btn
 );
 
 }
 
-
 const next =
 document.createElement(
 "button"
 );
-
 
 next.className =
 "page-btn";
@@ -4316,7 +4477,6 @@ next.textContent =
 
 next.disabled =
 currentPage === totalPages;
-
 
 next.onclick =
 function(){
@@ -4336,13 +4496,11 @@ data
 
 };
 
-
 container.appendChild(
 next
 );
 
 }
-
 
 /* =====================================================
    ESCAPE HTML
@@ -4383,5 +4541,8 @@ value == null
 
 }
 
-</script></body>
+</script>
+
+</body>
+
 </html>
