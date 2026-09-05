@@ -587,41 +587,111 @@ input[type="date"]:focus {
     height: 7px;
 }
 
-.group-card::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 100px;
-    height: 100px;
-
-    right: -35px;
-    top: -35px;
-
-    border-radius: 50%;
-
-    background: rgba(255,255,255,.28);
-
-    pointer-events: none;
-}
+/* =====================================================
+   GRUP A - LEBIH TUA + GLOSSY
+===================================================== */
 
 .group-card.group-a {
 
     background:
         linear-gradient(
             145deg,
-            #ffffff 0%,
-            #e6fff5 48%,
-            #c9f5e4 100%
+            #d5f5e8 0%,
+            #72c9a6 42%,
+            #399774 72%,
+            #247b5d 100%
         );
 
-    border-color: #a7dfca;
+    border-color: #4aab86;
 
     box-shadow:
-        0 6px 0 rgba(53,150,111,.13),
-        0 12px 25px rgba(30,120,85,.17),
-        inset 0 1px 0 white;
+        0 6px 0 rgba(35,105,78,.24),
+        0 12px 25px rgba(20,95,65,.25),
+        inset 0 2px 0 rgba(255,255,255,.90),
+        inset 0 -8px 16px rgba(0,70,45,.15);
+}
+
+/* =====================================================
+   GRUP B - LEBIH TUA + GLOSSY
+===================================================== */
+
+.group-card.group-b {
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff0c9 0%,
+            #f3bd55 42%,
+            #d88a18 72%,
+            #b86d0b 100%
+        );
+
+    border-color: #d49a2b;
+
+    box-shadow:
+        0 6px 0 rgba(145,88,8,.24),
+        0 12px 25px rgba(145,85,5,.25),
+        inset 0 2px 0 rgba(255,255,255,.90),
+        inset 0 -8px 16px rgba(120,65,0,.15);
+}
+
+/* =====================================================
+   GRUP C - LEBIH TUA + GLOSSY
+===================================================== */
+
+.group-card.group-c {
+
+    background:
+        linear-gradient(
+            145deg,
+            #e8e1ff 0%,
+            #a995e8 42%,
+            #7358c1 72%,
+            #563ca0 100%
+        );
+
+    border-color: #846bd0;
+
+    box-shadow:
+        0 6px 0 rgba(75,48,135,.24),
+        0 12px 25px rgba(70,45,135,.25),
+        inset 0 2px 0 rgba(255,255,255,.90),
+        inset 0 -8px 16px rgba(55,30,110,.15);
+}
+
+
+/* =========================
+   EFEK GLOSSY KOTAK GRUP
+========================= */
+
+.group-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 90px;
+
+    right: -45px;
+    top: -28px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.62),
+            rgba(255,255,255,.18),
+            rgba(255,255,255,0)
+        );
+
+    transform:
+        rotate(-18deg);
+
+    pointer-events: none;
+
+    opacity: .85;
 }
 
 .group-card.group-a::before {
@@ -629,28 +699,12 @@ input[type="date"]:focus {
     background:
         linear-gradient(
             90deg,
-            #20c997,
-            #00a878,
-            #6ee7b7
+            #15966d,
+            #087653,
+            #51c69d,
+            #087653,
+            #15966d
         );
-}
-
-.group-card.group-b {
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff 0%,
-            #fff8e7 48%,
-            #ffe9b5 100%
-        );
-
-    border-color: #efd18a;
-
-    box-shadow:
-        0 6px 0 rgba(190,130,25,.13),
-        0 12px 25px rgba(170,110,20,.17),
-        inset 0 1px 0 white;
 }
 
 .group-card.group-b::before {
@@ -658,28 +712,12 @@ input[type="date"]:focus {
     background:
         linear-gradient(
             90deg,
-            #ffb300,
-            #f57c00,
-            #ffd166
+            #e49a16,
+            #b96500,
+            #ffd36a,
+            #b96500,
+            #e49a16
         );
-}
-
-.group-card.group-c {
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff 0%,
-            #f1edff 48%,
-            #ddd4ff 100%
-        );
-
-    border-color: #c8b9ed;
-
-    box-shadow:
-        0 6px 0 rgba(104,72,170,.13),
-        0 12px 25px rgba(90,65,160,.17),
-        inset 0 1px 0 white;
 }
 
 .group-card.group-c::before {
@@ -687,9 +725,11 @@ input[type="date"]:focus {
     background:
         linear-gradient(
             90deg,
-            #7950f2,
-            #5f3dc4,
-            #b197fc
+            #6843d0,
+            #4a2b9c,
+            #a996f2,
+            #4a2b9c,
+            #6843d0
         );
 }
 
@@ -1759,6 +1799,14 @@ const URL =
 
 
 /* =====================================================
+   PENYIMPANAN FILTER DI HP
+===================================================== */
+
+const LOCAL_FILTER_KEY =
+    "DASHBOARD_PRODUKSI_FILTER_HP_V1";
+
+
+/* =====================================================
    VARIABEL DATA
 ===================================================== */
 
@@ -2670,14 +2718,134 @@ function ambilStateFilter() {
 
 
 /* =====================================================
+   SIMPAN FILTER KE HP
+===================================================== */
+
+function simpanFilterKeHP(state) {
+
+    try {
+
+        localStorage.setItem(
+            LOCAL_FILTER_KEY,
+            JSON.stringify(state)
+        );
+
+        console.log(
+            "Filter berhasil disimpan di HP."
+        );
+
+        return true;
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "Gagal menyimpan filter di HP:",
+            error
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =====================================================
+   AMBIL FILTER DARI HP
+===================================================== */
+
+function ambilFilterDariHP() {
+
+    try {
+
+        const data =
+            localStorage.getItem(
+                LOCAL_FILTER_KEY
+            );
+
+
+        if (!data) {
+
+            return null;
+
+        }
+
+
+        const state =
+            JSON.parse(
+                data
+            );
+
+
+        if (
+            !state ||
+            typeof state !== "object"
+        ) {
+
+            return null;
+
+        }
+
+
+        return state;
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "Gagal membaca filter dari HP:",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+/* =====================================================
+   HAPUS FILTER DARI HP
+===================================================== */
+
+function hapusFilterDariHP() {
+
+    try {
+
+        localStorage.removeItem(
+            LOCAL_FILTER_KEY
+        );
+
+        console.log(
+            "Filter HP berhasil dihapus."
+        );
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "Gagal menghapus filter HP:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
    JADWALKAN SIMPAN FILTER
 ===================================================== */
 
 function jadwalkanSimpanFilter() {
 
     /*
-       Sistem baru menggunakan tombol Terapkan.
-       Fungsi ini dipertahankan untuk kompatibilitas
+       Sistem menggunakan tombol Terapkan.
+       Fungsi dipertahankan untuk kompatibilitas
        dengan sistem lama.
     */
 
@@ -2707,7 +2875,8 @@ function jadwalkanSimpanFilter() {
 
 
 /* =====================================================
-   SIMPAN FILTER KE APPS SCRIPT
+   SIMPAN FILTER
+   HP + APPS SCRIPT
 ===================================================== */
 
 async function simpanFilterTerakhir() {
@@ -2724,6 +2893,21 @@ async function simpanFilterTerakhir() {
         const state =
             ambilStateFilter();
 
+
+        /*
+           SIMPAN KE HP TERLEBIH DAHULU
+           agar refresh tidak kehilangan filter.
+        */
+
+        simpanFilterKeHP(
+            state
+        );
+
+
+        /*
+           Tetap simpan ke Apps Script
+           seperti sistem MASTER sebelumnya.
+        */
 
         await fetch(
             URL,
@@ -2765,8 +2949,13 @@ async function simpanFilterTerakhir() {
 
     catch (error) {
 
+        /*
+           Walaupun server gagal,
+           filter HP tetap sudah tersimpan.
+        */
+
         console.log(
-            "Gagal menyimpan filter:",
+            "Gagal menyimpan filter ke server:",
             error
         );
 
@@ -2776,7 +2965,7 @@ async function simpanFilterTerakhir() {
 
 
 /* =====================================================
-   AMBIL FILTER TERAKHIR
+   AMBIL FILTER TERAKHIR DARI SERVER
 ===================================================== */
 
 async function ambilFilterTersimpan() {
@@ -4114,6 +4303,15 @@ async function resetFilter() {
 
 
     /*
+       =========================
+       HAPUS FILTER DARI HP
+       =========================
+    */
+
+    hapusFilterDariHP();
+
+
+    /*
        Buka kunci terlebih dahulu.
     */
 
@@ -4408,8 +4606,49 @@ async function ambilData() {
         inisialisasiFilter();
 
 
-        const filterTersimpan =
-            await ambilFilterTersimpan();
+        /*
+           =================================================
+           PRIORITAS FILTER HP
+           =================================================
+
+           Filter yang tersimpan di HP menjadi prioritas.
+           Ini penting supaya filter di HP tidak berubah
+           hanya karena data filter server berbeda.
+        */
+
+        let filterTersimpan =
+            ambilFilterDariHP();
+
+
+        /*
+           Jika HP belum mempunyai filter,
+           gunakan filter server lama sebagai fallback.
+        */
+
+        if (
+            !filterTersimpan
+        ) {
+
+            filterTersimpan =
+                await ambilFilterTersimpan();
+
+
+            /*
+               Kalau ditemukan filter server,
+               langsung salin ke HP.
+            */
+
+            if (
+                filterTersimpan
+            ) {
+
+                simpanFilterKeHP(
+                    filterTersimpan
+                );
+
+            }
+
+        }
 
 
         if (
