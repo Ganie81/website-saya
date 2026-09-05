@@ -416,25 +416,20 @@ input[type="date"]:focus,
     background:#fff;
 }
 
-/* +6 level dari 11px menjadi 17px */
 .focus-title{
-    font-size:17px;
-    font-weight:800;
+    font-size:11px;
     color:#64748b;
     margin-bottom:6px;
 }
 
-/* +6 level dari 16px menjadi 22px */
 .focus-value{
-    font-size:22px;
+    font-size:16px;
     font-weight:800;
     color:#1e293b;
 }
 
-/* +6 level dari 11px menjadi 17px */
 .focus-number{
-    font-size:17px;
-    font-weight:800;
+    font-size:11px;
     color:#64748b;
     margin-top:4px;
 }
@@ -457,11 +452,10 @@ input[type="date"]:focus,
     overflow:hidden;
 }
 
-/* +6 level dari 13px menjadi 19px */
 .ranking-title{
     padding:11px 12px;
     background:#f8fafc;
-    font-size:19px;
+    font-size:13px;
     font-weight:800;
     border-bottom:1px solid var(--border);
 }
@@ -479,7 +473,6 @@ input[type="date"]:focus,
     border-bottom:0;
 }
 
-/* +6 level dari 10px menjadi 16px */
 .rank-number{
     width:25px;
     height:25px;
@@ -487,7 +480,7 @@ input[type="date"]:focus,
     align-items:center;
     justify-content:center;
     border-radius:50%;
-    font-size:16px;
+    font-size:10px;
     font-weight:800;
     background:#e2e8f0;
 }
@@ -507,19 +500,16 @@ input[type="date"]:focus,
     color:#15803d;
 }
 
-/* +6 level dari 11px menjadi 17px */
 .rank-name{
     min-width:0;
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
-    font-size:17px;
-    font-weight:700;
+    font-size:11px;
 }
 
-/* +6 level dari 11px menjadi 17px */
 .rank-value{
-    font-size:17px;
+    font-size:11px;
     font-weight:800;
 }
 
@@ -807,6 +797,8 @@ tbody tr:hover{
 
     <div class="filter-grid">
 
+        <!-- DATE -->
+
         <div class="filter-box filter-date">
 
             <span class="filter-label">
@@ -830,6 +822,8 @@ tbody tr:hover{
         </div>
 
 
+        <!-- KODE PRODUK -->
+
         <div class="filter-box">
 
             <span class="filter-label">
@@ -843,6 +837,8 @@ tbody tr:hover{
 
         </div>
 
+
+        <!-- MOTIF -->
 
         <div class="filter-box">
 
@@ -858,6 +854,8 @@ tbody tr:hover{
         </div>
 
 
+        <!-- JENIS DEFECT -->
+
         <div class="filter-box">
 
             <span class="filter-label">
@@ -871,6 +869,8 @@ tbody tr:hover{
 
         </div>
 
+
+        <!-- MESIN -->
 
         <div class="filter-box">
 
@@ -886,6 +886,8 @@ tbody tr:hover{
         </div>
 
 
+        <!-- GRUP -->
+
         <div class="filter-box">
 
             <span class="filter-label">
@@ -899,6 +901,8 @@ tbody tr:hover{
 
         </div>
 
+
+        <!-- ROLL ID -->
 
         <div class="filter-box">
 
@@ -1261,6 +1265,10 @@ const MULTI_FILTER_IDS = [
     "rollId"
 ];
 
+
+/* =====================================================
+   STATE
+===================================================== */
 
 let allData = [];
 
@@ -2294,6 +2302,14 @@ function updateCheckboxCount(id){
 
 function selectAllCheckboxes(id){
 
+    /*
+       Dalam sistem ini:
+       tidak ada checkbox terpilih = SEMUA DATA.
+
+       Jadi tombol "Pilih Semua" cukup
+       mengosongkan pilihan agar semua aktif.
+    */
+
     const container =
         document.getElementById(
             "options-" + id
@@ -2604,6 +2620,11 @@ function restoreSavedFilter(){
     const f =
         sanitizeFilterAgainstData(saved);
 
+
+    /*
+       Simpan kembali filter yang sudah
+       dibersihkan dari pilihan lama/stale.
+    */
 
     saveFilter(f);
 
@@ -3221,6 +3242,12 @@ function renderTable(){
     }
 
 
+    /*
+       PENTING:
+       bedakan antara error server,
+       data kosong, dan filter kosong.
+    */
+
     if(
         dataLoadState === "loading" &&
         !allData.length
@@ -3556,6 +3583,11 @@ function changePage(direction){
 
 function setDefectData(raw,fresh=false){
 
+    /*
+       Jika API mengirim data kosong,
+       jangan menimpa cache/data lama.
+    */
+
     if(
         !Array.isArray(raw) ||
         raw.length === 0
@@ -3701,6 +3733,11 @@ function setDefectData(raw,fresh=false){
 
 async function loadDefectData(){
 
+    /*
+       CACHE FIRST
+       Supaya dashboard langsung terasa cepat.
+    */
+
     const cached =
         getDataCache();
 
@@ -3730,6 +3767,10 @@ async function loadDefectData(){
 
     }
 
+
+    /*
+       GOOGLE APPS SCRIPT
+    */
 
     if(
         typeof google !== "undefined" &&
@@ -3836,6 +3877,10 @@ async function loadDefectData(){
         return;
     }
 
+
+    /*
+       FALLBACK API
+    */
 
     try{
 
@@ -3972,6 +4017,12 @@ async function loadDefectData(){
 
 function initialize(){
 
+    /*
+       Tanggal dikosongkan.
+       Filter tersimpan akan dipulihkan
+       setelah data tersedia.
+    */
+
     document.getElementById(
         "dateFrom"
     ).value = "";
@@ -3987,8 +4038,16 @@ function initialize(){
     );
 
 
+    /*
+       Render awal supaya UI tidak kosong.
+    */
+
     renderTable();
 
+
+    /*
+       Ambil data.
+    */
 
     loadDefectData();
 
