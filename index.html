@@ -98,6 +98,34 @@ button:active {
 
 
 /* =========================
+   TOMBOL TERAPKAN FILTER
+========================= */
+
+.btn-apply {
+    background: linear-gradient(145deg, #2196f3, #0d6efd);
+    margin-top: 15px;
+}
+
+.btn-apply:disabled {
+    cursor: not-allowed;
+    opacity: .72;
+    transform: none;
+
+    box-shadow:
+        0 4px 0 rgba(0,0,0,.10),
+        0 7px 14px rgba(0,0,0,.10);
+}
+
+.btn-apply:disabled:hover {
+    transform: none;
+
+    box-shadow:
+        0 4px 0 rgba(0,0,0,.10),
+        0 7px 14px rgba(0,0,0,.10);
+}
+
+
+/* =========================
    STYLE UMUM KOTAK
 ========================= */
 
@@ -295,7 +323,7 @@ input[type="date"]:focus {
 
 
 /* =========================
-   SEARCH FILTER
+   FILTER SEARCH
 ========================= */
 
 .filter-search {
@@ -1380,8 +1408,7 @@ body.screenshot-mode .group-percent {
 
             <input
                 type="date"
-                id="tanggalDari"
-                onchange="terapkanSemuaFilter()">
+                id="tanggalDari">
 
         </div>
 
@@ -1394,8 +1421,7 @@ body.screenshot-mode .group-percent {
 
             <input
                 type="date"
-                id="tanggalSampai"
-                onchange="terapkanSemuaFilter()">
+                id="tanggalSampai">
 
         </div>
 
@@ -1410,6 +1436,20 @@ body.screenshot-mode .group-percent {
         class="filter-row"
         id="filterContainer">
     </div>
+
+
+    <!-- =========================
+         TOMBOL TERAPKAN
+    ========================== -->
+
+    <button
+        class="btn-apply"
+        id="btnApplyFilter"
+        onclick="terapkanFilterSekarang()">
+
+        ✅ Terapkan Filter
+
+    </button>
 
 </div>
 
@@ -1729,6 +1769,9 @@ let dataTampil = [];
 let sedangMemulihkanFilter = false;
 
 let timerSimpanFilter = null;
+
+/* STATUS FILTER */
+let filterTerkunci = false;
 
 
 /* =====================================================
@@ -2069,6 +2112,195 @@ function toggleFilter() {
 
 
 /* =====================================================
+   KUNCI / BUKA FILTER
+===================================================== */
+
+function setFilterLock(terkunci) {
+
+    filterTerkunci =
+        Boolean(terkunci);
+
+
+    const tanggalDari =
+        document.getElementById(
+            "tanggalDari"
+        );
+
+    const tanggalSampai =
+        document.getElementById(
+            "tanggalSampai"
+        );
+
+
+    if (tanggalDari) {
+
+        tanggalDari.disabled =
+            filterTerkunci;
+
+    }
+
+
+    if (tanggalSampai) {
+
+        tanggalSampai.disabled =
+            filterTerkunci;
+
+    }
+
+
+    document.querySelectorAll(
+        "#filterContainer input[type='checkbox'], #filterContainer .filter-search"
+    ).forEach(
+        input => {
+
+            input.disabled =
+                filterTerkunci;
+
+        }
+    );
+
+
+    const tombol =
+        document.getElementById(
+            "btnApplyFilter"
+        );
+
+
+    if (tombol) {
+
+        tombol.disabled =
+            filterTerkunci;
+
+
+        if (filterTerkunci) {
+
+            tombol.innerHTML =
+                "🔒 Filter Terkunci";
+
+        }
+
+        else {
+
+            tombol.innerHTML =
+                "✅ Terapkan Filter";
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   CEK APAKAH ADA FILTER AKTIF
+===================================================== */
+
+function adaFilterAktif() {
+
+    const tanggalDari =
+        document.getElementById(
+            "tanggalDari"
+        )?.value || "";
+
+
+    const tanggalSampai =
+        document.getElementById(
+            "tanggalSampai"
+        )?.value || "";
+
+
+    if (
+        tanggalDari ||
+        tanggalSampai
+    ) {
+
+        return true;
+
+    }
+
+
+    const checked =
+        document.querySelectorAll(
+            "#filterContainer input[type='checkbox']:checked"
+        );
+
+
+    return checked.length > 0;
+
+}
+
+
+/* =====================================================
+   TERAPKAN FILTER SEKARANG
+===================================================== */
+
+function terapkanFilterSekarang() {
+
+    if (filterTerkunci) {
+
+        return;
+
+    }
+
+
+    const tanggalDari =
+        document.getElementById(
+            "tanggalDari"
+        ).value;
+
+
+    const tanggalSampai =
+        document.getElementById(
+            "tanggalSampai"
+        ).value;
+
+
+    if (
+        tanggalDari &&
+        tanggalSampai &&
+        tanggalDari >
+        tanggalSampai
+    ) {
+
+        alert(
+            "Tanggal Dari tidak boleh lebih besar dari Tanggal Sampai."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Terapkan filter terlebih dahulu.
+       Belum dikunci sampai proses filter selesai.
+    */
+
+    terapkanSemuaFilter(
+        false
+    );
+
+
+    /*
+       Setelah diterapkan,
+       langsung kunci semua kontrol filter.
+    */
+
+    setFilterLock(
+        true
+    );
+
+
+    /*
+       Simpan filter beserta status terkunci.
+    */
+
+    simpanFilterTerakhir();
+
+}
+
+
+/* =====================================================
    BUAT FILTER
 ===================================================== */
 
@@ -2246,10 +2478,21 @@ function buatFilter(
                 value;
 
 
+            /*
+               PENTING:
+               Checkbox TIDAK langsung menerapkan filter.
+               User harus menekan tombol Terapkan.
+            */
+
             checkbox.onchange =
                 function() {
 
-                    terapkanSemuaFilter();
+                    if (filterTerkunci) {
+
+                        this.checked =
+                            !this.checked;
+
+                    }
 
                 };
 
@@ -2299,6 +2542,13 @@ function cariPilihan(
     input,
     filterId
 ) {
+
+    if (filterTerkunci) {
+
+        return;
+
+    }
+
 
     const keyword =
         String(
@@ -2374,7 +2624,10 @@ function ambilStateFilter() {
                 "tanggalSampai"
             )?.value || "",
 
-        selections: {}
+        selections: {},
+
+        locked:
+            filterTerkunci
 
     };
 
@@ -2421,6 +2674,12 @@ function ambilStateFilter() {
 ===================================================== */
 
 function jadwalkanSimpanFilter() {
+
+    /*
+       Sistem baru menggunakan tombol Terapkan.
+       Fungsi ini dipertahankan untuk kompatibilitas
+       dengan sistem lama.
+    */
 
     if (
         sedangMemulihkanFilter
@@ -2629,12 +2888,6 @@ function terapkanFilterTersimpan(
                 state.selections
             ).forEach(
                 id => {
-
-                    /*
-                       filterTanggal dari versi lama
-                       sengaja diabaikan karena sekarang
-                       menggunakan rentang tanggal.
-                    */
 
                     if (
                         id === "filterTanggal"
@@ -3823,6 +4076,26 @@ function updateFilterSummary() {
     );
 
 
+    /*
+       Tampilkan status jika terkunci.
+    */
+
+    if (filterTerkunci) {
+
+        html += `
+
+            <div class="filter-tag">
+
+                <span>Status:</span>
+                🔒 Terkunci
+
+            </div>
+
+        `;
+
+    }
+
+
     area.innerHTML =
         html;
 
@@ -3837,6 +4110,15 @@ async function resetFilter() {
 
     clearTimeout(
         timerSimpanFilter
+    );
+
+
+    /*
+       Buka kunci terlebih dahulu.
+    */
+
+    setFilterLock(
+        false
     );
 
 
@@ -3964,9 +4246,26 @@ async function resetFilter() {
     }
 
 
+    /*
+       Tampilkan kembali seluruh data.
+    */
+
     terapkanSemuaFilter(
         false
     );
+
+
+    /*
+       Pastikan filter tetap terbuka
+       setelah reset.
+    */
+
+    setFilterLock(
+        false
+    );
+
+
+    updateFilterSummary();
 
 }
 
@@ -4032,6 +4331,15 @@ function inisialisasiFilter() {
         "Mc",
         6,
         "filterMc"
+    );
+
+
+    /*
+       Kondisi awal selalu terbuka.
+    */
+
+    setFilterLock(
+        false
     );
 
 }
@@ -4108,18 +4416,77 @@ async function ambilData() {
             filterTersimpan
         ) {
 
+            /*
+               Pulihkan pilihan filter.
+            */
+
             terapkanFilterTersimpan(
                 filterTersimpan
             );
 
 
+            /*
+               Tampilkan hasil filter.
+            */
+
             terapkanSemuaFilter(
                 false
             );
 
+
+            /*
+               Filter tersimpan lama
+               yang belum memiliki property
+               locked tetap aman.
+
+               Jika locked === true:
+               kunci.
+
+               Jika property locked tidak ada:
+               anggap terkunci jika memang
+               ada filter aktif.
+            */
+
+            let harusTerkunci;
+
+
+            if (
+                typeof filterTersimpan.locked ===
+                "boolean"
+            ) {
+
+                harusTerkunci =
+                    filterTersimpan.locked;
+
+            }
+
+            else {
+
+                harusTerkunci =
+                    adaFilterAktif();
+
+            }
+
+
+            setFilterLock(
+                harusTerkunci
+            );
+
+
+            updateFilterSummary();
+
         }
 
         else {
+
+            /*
+               Tidak ada filter tersimpan.
+               Dashboard tampil semua data.
+            */
+
+            filterTerkunci =
+                false;
+
 
             tampilkanData();
 
@@ -4130,6 +4497,10 @@ async function ambilData() {
             updateDataMesin();
 
             updateFilterSummary();
+
+            setFilterLock(
+                false
+            );
 
         }
 
@@ -4164,4 +4535,4 @@ ambilData();
 </script>
 
 </body>
-    </html>
+</html>
