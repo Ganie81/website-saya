@@ -368,6 +368,82 @@ body{
         0 0 0 3px rgba(37,99,235,.10);
 }
 
+/* =====================================================
+   FILTER SEARCH / TELUSURI
+   HANYA MUNCUL JIKA PILIHAN > 8
+===================================================== */
+
+.filter-search-wrap{
+    display:none;
+    position:relative;
+}
+
+.filter-search-wrap.show{
+    display:block;
+}
+
+.filter-search{
+    width:100%;
+
+    min-height:36px;
+
+    border:1px solid var(--border);
+
+    border-radius:8px;
+
+    padding:7px 10px 7px 30px;
+
+    background:#f8fafc;
+
+    color:var(--text);
+
+    outline:none;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+
+.filter-search:focus{
+    background:white;
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(37,99,235,.10);
+}
+
+.filter-search-icon{
+    position:absolute;
+
+    left:10px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:13px;
+
+    pointer-events:none;
+
+    opacity:.65;
+}
+
+.filter-search-count{
+    font-size:10px;
+
+    color:var(--muted);
+
+    font-weight:700;
+
+    margin-top:3px;
+
+    min-height:12px;
+}
+
+/* =====================================================
+   FILTER ACTIONS
+===================================================== */
+
 .filter-actions{
     display:flex;
     gap:8px;
@@ -1544,6 +1620,28 @@ id="dateTo">
 
 <label>Kode Produk</label>
 
+<div
+id="kodeProdukSearchWrap"
+class="filter-search-wrap">
+
+<span class="filter-search-icon">
+🔎
+</span>
+
+<input
+type="search"
+id="kodeProdukSearch"
+class="filter-search"
+placeholder="Telusuri kode produk..."
+autocomplete="off">
+
+<div
+id="kodeProdukSearchCount"
+class="filter-search-count">
+</div>
+
+</div>
+
 <select
 id="kodeProduk"
 multiple>
@@ -1554,6 +1652,28 @@ multiple>
 <div class="field">
 
 <label>Motif</label>
+
+<div
+id="motifSearchWrap"
+class="filter-search-wrap">
+
+<span class="filter-search-icon">
+🔎
+</span>
+
+<input
+type="search"
+id="motifSearch"
+class="filter-search"
+placeholder="Telusuri motif..."
+autocomplete="off">
+
+<div
+id="motifSearchCount"
+class="filter-search-count">
+</div>
+
+</div>
 
 <select
 id="motif"
@@ -1566,6 +1686,28 @@ multiple>
 
 <label>Jenis Defect</label>
 
+<div
+id="jenisDefectSearchWrap"
+class="filter-search-wrap">
+
+<span class="filter-search-icon">
+🔎
+</span>
+
+<input
+type="search"
+id="jenisDefectSearch"
+class="filter-search"
+placeholder="Telusuri jenis defect..."
+autocomplete="off">
+
+<div
+id="jenisDefectSearchCount"
+class="filter-search-count">
+</div>
+
+</div>
+
 <select
 id="jenisDefect"
 multiple>
@@ -1576,6 +1718,28 @@ multiple>
 <div class="field">
 
 <label>Mesin</label>
+
+<div
+id="mesinSearchWrap"
+class="filter-search-wrap">
+
+<span class="filter-search-icon">
+🔎
+</span>
+
+<input
+type="search"
+id="mesinSearch"
+class="filter-search"
+placeholder="Telusuri mesin..."
+autocomplete="off">
+
+<div
+id="mesinSearchCount"
+class="filter-search-count">
+</div>
+
+</div>
 
 <select
 id="mesin"
@@ -1588,6 +1752,28 @@ multiple>
 
 <label>Grup</label>
 
+<div
+id="grupSearchWrap"
+class="filter-search-wrap">
+
+<span class="filter-search-icon">
+🔎
+</span>
+
+<input
+type="search"
+id="grupSearch"
+class="filter-search"
+placeholder="Telusuri grup..."
+autocomplete="off">
+
+<div
+id="grupSearchCount"
+class="filter-search-count">
+</div>
+
+</div>
+
 <select
 id="grup"
 multiple>
@@ -1598,6 +1784,28 @@ multiple>
 <div class="field">
 
 <label>Roll ID</label>
+
+<div
+id="rollIdSearchWrap"
+class="filter-search-wrap">
+
+<span class="filter-search-icon">
+🔎
+</span>
+
+<input
+type="search"
+id="rollIdSearch"
+class="filter-search"
+placeholder="Telusuri Roll ID..."
+autocomplete="off">
+
+<div
+id="rollIdSearchCount"
+class="filter-search-count">
+</div>
+
+</div>
 
 <select
 id="rollId"
@@ -1792,8 +2000,7 @@ Grup Terbesar
 
 </div>
 
-<div
-class="focus-number"
+<div class="focus-number"
 id="focusGrupPcs">
 0
 </div>
@@ -2007,6 +2214,12 @@ let filterVisible = true;
 
 let currentSearch = "";
 
+/*
+   Flag agar filter yang tersimpan
+   tidak ditimpa saat data refresh.
+*/
+let savedFilterLoaded = false;
+
 const numberFormatter =
 new Intl.NumberFormat("id-ID");
 
@@ -2026,6 +2239,50 @@ const MULTI_FILTER_IDS = [
 ];
 
 /* =====================================================
+   FILTER SEARCH CONFIG
+===================================================== */
+
+const FILTER_SEARCH_CONFIG = {
+
+kodeProduk:{
+    wrap:"kodeProdukSearchWrap",
+    input:"kodeProdukSearch",
+    count:"kodeProdukSearchCount"
+},
+
+motif:{
+    wrap:"motifSearchWrap",
+    input:"motifSearch",
+    count:"motifSearchCount"
+},
+
+jenisDefect:{
+    wrap:"jenisDefectSearchWrap",
+    input:"jenisDefectSearch",
+    count:"jenisDefectSearchCount"
+},
+
+mesin:{
+    wrap:"mesinSearchWrap",
+    input:"mesinSearch",
+    count:"mesinSearchCount"
+},
+
+grup:{
+    wrap:"grupSearchWrap",
+    input:"grupSearch",
+    count:"grupSearchCount"
+},
+
+rollId:{
+    wrap:"rollIdSearchWrap",
+    input:"rollIdSearch",
+    count:"rollIdSearchCount"
+}
+
+};
+
+/* =====================================================
    START
 ===================================================== */
 
@@ -2034,6 +2291,8 @@ document.addEventListener(
 function(){
 
 restoreSavedFilterOnly();
+
+setupFilterSearch();
 
 loadCachedData();
 
@@ -2720,10 +2979,31 @@ operator
 
 populateFilters();
 
+if(!savedFilterLoaded){
+
 filteredData =
 [...allData];
 
 restoreSavedFilter();
+
+}else{
+
+const currentFilter =
+getFilter();
+
+filteredData =
+allData.filter(
+function(row){
+
+return rowMatchesFilter(
+row,
+currentFilter
+);
+
+}
+);
+
+}
 
 renderDashboard();
 
@@ -2883,6 +3163,224 @@ sensitivity:"base"
 }
 );
 
+/* =====================================================
+   FILTER SEARCH SETUP
+===================================================== */
+
+function setupFilterSearch(){
+
+MULTI_FILTER_IDS.forEach(
+function(id){
+
+const config =
+FILTER_SEARCH_CONFIG[id];
+
+if(!config) return;
+
+const input =
+document.getElementById(
+config.input
+);
+
+if(!input) return;
+
+input.addEventListener(
+"input",
+function(){
+
+filterOptionSearch(
+id,
+this.value
+);
+
+}
+);
+
+}
+);
+
+}
+
+/* =====================================================
+   FILTER OPTION SEARCH
+===================================================== */
+
+function filterOptionSearch(
+selectId,
+searchValue
+){
+
+const select =
+document.getElementById(
+selectId
+);
+
+const config =
+FILTER_SEARCH_CONFIG[selectId];
+
+if(
+!select ||
+!config
+){
+
+return;
+
+}
+
+const query =
+String(
+searchValue || ""
+)
+.toLowerCase()
+.trim();
+
+const options =
+Array.from(
+select.options
+);
+
+let visible = 0;
+
+options.forEach(
+function(option){
+
+const text =
+String(
+option.textContent || ""
+)
+.toLowerCase();
+
+const matched =
+!query ||
+text.includes(query);
+
+option.hidden =
+!matched;
+
+if(matched){
+
+visible++;
+
+}
+
+}
+);
+
+const countEl =
+document.getElementById(
+config.count
+);
+
+if(countEl){
+
+if(query){
+
+countEl.textContent =
+visible +
+" pilihan ditemukan";
+
+}else{
+
+countEl.textContent =
+options.length +
+" pilihan";
+
+}
+
+}
+
+}
+
+/* =====================================================
+   UPDATE FILTER SEARCH UI
+===================================================== */
+
+function updateFilterSearch(
+selectId
+){
+
+const select =
+document.getElementById(
+selectId
+);
+
+const config =
+FILTER_SEARCH_CONFIG[selectId];
+
+if(
+!select ||
+!config
+){
+
+return;
+
+}
+
+const wrap =
+document.getElementById(
+config.wrap
+);
+
+const input =
+document.getElementById(
+config.input
+);
+
+const countEl =
+document.getElementById(
+config.count
+);
+
+if(!wrap) return;
+
+const optionCount =
+select.options.length;
+
+/*
+   Search hanya tampil jika
+   pilihan lebih dari 8.
+*/
+if(optionCount > 8){
+
+wrap.classList.add("show");
+
+if(countEl){
+
+countEl.textContent =
+optionCount +
+" pilihan";
+
+}
+
+}else{
+
+wrap.classList.remove("show");
+
+if(input){
+
+input.value = "";
+
+}
+
+Array.from(
+select.options
+)
+.forEach(
+function(option){
+
+option.hidden = false;
+
+}
+);
+
+if(countEl){
+
+countEl.textContent = "";
+
+}
+
+}
+
 }
 
 /* =====================================================
@@ -2936,6 +3434,8 @@ oldValues
 );
 
 }
+
+updateFilterSearch(id);
 
 }
 
@@ -3366,7 +3866,9 @@ return true;
 function applyFilter(){
 
 const f =
-getFilter();
+normalizeFilter(
+getFilter()
+);
 
 filteredData =
 allData.filter(
@@ -3395,14 +3897,26 @@ search.value = "";
 
 }
 
+/*
+   Simpan hanya di HP/browser ini.
+*/
 saveFilter(f);
 
+savedFilterLoaded = true;
+
 renderDashboard();
+
+setStatus(
+"🔎 Filter diterapkan • tersimpan di perangkat ini • " +
+filteredData.length +
+" data"
+);
 
 }
 
 /* =====================================================
    CLEAR CURRENT FILTER
+   Tidak menghapus filter tersimpan
 ===================================================== */
 
 function clearFilter(){
@@ -3430,6 +3944,29 @@ select,
 
 }
 
+const config =
+FILTER_SEARCH_CONFIG[id];
+
+if(config){
+
+const input =
+document.getElementById(
+config.input
+);
+
+if(input){
+
+input.value = "";
+
+filterOptionSearch(
+id,
+""
+);
+
+}
+
+}
+
 }
 );
 
@@ -3452,6 +3989,10 @@ search.value = "";
 }
 
 renderDashboard();
+
+setStatus(
+"↺ Filter tampilan dibersihkan • filter tersimpan tetap aman"
+);
 
 }
 
@@ -3505,6 +4046,8 @@ setBasicFilterValues(
 filter
 );
 
+savedFilterLoaded = true;
+
 }catch(error){
 
 console.warn(
@@ -3546,6 +4089,8 @@ JSON.parse(saved)
 setFilterValues(
 filter
 );
+
+savedFilterLoaded = true;
 
 }catch(error){
 
@@ -3650,10 +4195,79 @@ FILTER_CACHE_KEY
 
 }catch(error){}
 
-clearFilter();
+savedFilterLoaded = false;
+
+document.getElementById(
+"dateFrom"
+).value = "";
+
+document.getElementById(
+"dateTo"
+).value = "";
+
+MULTI_FILTER_IDS.forEach(
+function(id){
+
+const select =
+document.getElementById(id);
+
+if(select){
+
+setSelectedValues(
+select,
+[]
+);
+
+}
+
+const config =
+FILTER_SEARCH_CONFIG[id];
+
+if(config){
+
+const input =
+document.getElementById(
+config.input
+);
+
+if(input){
+
+input.value = "";
+
+}
+
+filterOptionSearch(
+id,
+""
+);
+
+}
+
+}
+);
+
+filteredData =
+[...allData];
+
+currentPage = 1;
+
+currentSearch = "";
+
+const search =
+document.getElementById(
+"quickSearch"
+);
+
+if(search){
+
+search.value = "";
+
+}
+
+renderDashboard();
 
 setStatus(
-"✅ Filter tersimpan berhasil direset"
+"✅ Filter tersimpan berhasil direset • menampilkan semua data"
 );
 
 }
