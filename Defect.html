@@ -370,7 +370,7 @@ body{
 
 /* =====================================================
    FILTER SEARCH / TELUSURI
-   HANYA MUNCUL JIKA PILIHAN > 8
+   HANYA MUNCUL UNTUK 3 FILTER
 ===================================================== */
 
 .filter-search-wrap{
@@ -582,7 +582,7 @@ body{
 }
 
 /* =====================================================
-   SUMMARY 4 KOTAK
+   SUMMARY
 ===================================================== */
 
 .summary-grid{
@@ -780,10 +780,6 @@ body{
         0 3px 5px rgba(15,23,42,.16);
 }
 
-/* =====================================================
-   FOKUS ANGKA UTAMA
-===================================================== */
-
 .focus-number{
     position:relative;
     z-index:3;
@@ -807,10 +803,6 @@ body{
             0 3px 3px rgba(15,23,42,.18)
         );
 }
-
-/* =====================================================
-   ANGKA FOKUS SESUAI WARNA KOTAK
-===================================================== */
 
 #focusDefectPcs{
     color:#315d96;
@@ -860,10 +852,6 @@ body{
         );
 }
 
-/* =====================================================
-   SATUAN PCS ANGKA UTAMA FOKUS
-===================================================== */
-
 .focus-number::after{
     content:" Pcs";
 
@@ -880,10 +868,6 @@ body{
     opacity:.92;
 }
 
-/* =====================================================
-   PERSENTASE FOKUS
-===================================================== */
-
 .focus-percent{
     position:relative;
     z-index:3;
@@ -896,10 +880,6 @@ body{
 
     margin-top:2px;
 }
-
-/* =====================================================
-   RINCIAN FOKUS
-===================================================== */
 
 .mini-list{
     margin-top:13px;
@@ -940,10 +920,6 @@ body{
 
     white-space:nowrap;
 }
-
-/* =====================================================
-   SATUAN PCS PADA ANGKA RINCIAN
-===================================================== */
 
 .mini-row strong::after{
     content:" Pcs";
@@ -1095,10 +1071,6 @@ body{
     text-shadow:
         0 2px 3px rgba(15,23,42,.10);
 }
-
-/* =====================================================
-   RANKING GRUP DI DALAM KOTAK MESIN
-===================================================== */
 
 .group-ranking-title{
     margin-top:20px;
@@ -1477,10 +1449,6 @@ tbody tr:hover{
 
 }
 
-/* =====================================================
-   PRINT
-===================================================== */
-
 @media print{
 
     body{
@@ -1519,10 +1487,6 @@ tbody tr:hover{
 <body>
 
 <div class="container">
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
 
 <div class="header">
 
@@ -1567,6 +1531,7 @@ Defect Flat
 
 </div>
 
+
 <!-- =====================================================
      FILTER
 ===================================================== -->
@@ -1596,6 +1561,7 @@ class="active-filter-bar">
 
 <div class="filter-grid">
 
+
 <div class="field">
 
 <label>Tanggal Dari</label>
@@ -1605,6 +1571,7 @@ type="date"
 id="dateFrom">
 
 </div>
+
 
 <div class="field">
 
@@ -1616,31 +1583,10 @@ id="dateTo">
 
 </div>
 
+
 <div class="field">
 
 <label>Kode Produk</label>
-
-<div
-id="kodeProdukSearchWrap"
-class="filter-search-wrap">
-
-<span class="filter-search-icon">
-🔎
-</span>
-
-<input
-type="search"
-id="kodeProdukSearch"
-class="filter-search"
-placeholder="Telusuri kode produk..."
-autocomplete="off">
-
-<div
-id="kodeProdukSearchCount"
-class="filter-search-count">
-</div>
-
-</div>
 
 <select
 id="kodeProduk"
@@ -1648,6 +1594,7 @@ multiple>
 </select>
 
 </div>
+
 
 <div class="field">
 
@@ -1682,6 +1629,7 @@ multiple>
 
 </div>
 
+
 <div class="field">
 
 <label>Jenis Defect</label>
@@ -1715,31 +1663,10 @@ multiple>
 
 </div>
 
+
 <div class="field">
 
 <label>Mesin</label>
-
-<div
-id="mesinSearchWrap"
-class="filter-search-wrap">
-
-<span class="filter-search-icon">
-🔎
-</span>
-
-<input
-type="search"
-id="mesinSearch"
-class="filter-search"
-placeholder="Telusuri mesin..."
-autocomplete="off">
-
-<div
-id="mesinSearchCount"
-class="filter-search-count">
-</div>
-
-</div>
 
 <select
 id="mesin"
@@ -1748,31 +1675,10 @@ multiple>
 
 </div>
 
+
 <div class="field">
 
 <label>Grup</label>
-
-<div
-id="grupSearchWrap"
-class="filter-search-wrap">
-
-<span class="filter-search-icon">
-🔎
-</span>
-
-<input
-type="search"
-id="grupSearch"
-class="filter-search"
-placeholder="Telusuri grup..."
-autocomplete="off">
-
-<div
-id="grupSearchCount"
-class="filter-search-count">
-</div>
-
-</div>
 
 <select
 id="grup"
@@ -1780,6 +1686,7 @@ multiple>
 </select>
 
 </div>
+
 
 <div class="field">
 
@@ -1816,6 +1723,7 @@ multiple>
 
 </div>
 
+
 <div class="filter-actions">
 
 <button
@@ -1842,8 +1750,9 @@ onclick="resetSavedFilter()">
 
 </div>
 
+
 <!-- =====================================================
-     SUMMARY 4 KOTAK
+     SUMMARY
 ===================================================== -->
 
 <div class="summary-grid">
@@ -1866,6 +1775,7 @@ Jumlah pcs defect
 
 </div>
 
+
 <div class="card summary-card">
 
 <div class="summary-label">
@@ -1884,6 +1794,7 @@ Roll terdampak
 
 </div>
 
+
 <div class="card summary-card">
 
 <div class="summary-label">
@@ -1901,6 +1812,7 @@ Jenis defect berbeda
 </div>
 
 </div>
+
 
 <div class="card summary-card">
 
@@ -1922,8 +1834,9 @@ Baris data
 
 </div>
 
+
 <!-- =====================================================
-     FOKUS 3 KOTAK
+     FOKUS
 ===================================================== -->
 
 <div class="section-title">
@@ -1931,6 +1844,7 @@ Fokus Defect
 </div>
 
 <div class="focus-grid">
+
 
 <div class="card focus-card">
 
@@ -1961,6 +1875,7 @@ class="mini-list">
 
 </div>
 
+
 <div class="card focus-card">
 
 <div class="focus-head">
@@ -1990,6 +1905,7 @@ class="mini-list">
 
 </div>
 
+
 <div class="card focus-card">
 
 <div class="focus-head">
@@ -2000,7 +1916,8 @@ Grup Terbesar
 
 </div>
 
-<div class="focus-number"
+<div
+class="focus-number"
 id="focusGrupPcs">
 0
 </div>
@@ -2020,6 +1937,7 @@ class="mini-list">
 
 </div>
 
+
 <!-- =====================================================
      RANKING
 ===================================================== -->
@@ -2029,6 +1947,7 @@ Ranking
 </div>
 
 <div class="ranking-grid">
+
 
 <div class="card ranking-card">
 
@@ -2042,6 +1961,7 @@ class="mini-list">
 </div>
 
 </div>
+
 
 <div class="card ranking-card">
 
@@ -2066,6 +1986,7 @@ class="group-ranking-list">
 </div>
 
 </div>
+
 
 <!-- =====================================================
      TABLE
@@ -2169,6 +2090,7 @@ class="page-buttons">
 
 </div>
 
+
 <script>
 
 /* =====================================================
@@ -2194,6 +2116,7 @@ defect:"?page=defect"
 
 };
 
+
 /* =====================================================
    STATE
 ===================================================== */
@@ -2214,17 +2137,28 @@ let filterVisible = true;
 
 let currentSearch = "";
 
-/*
-   Flag agar filter yang tersimpan
-   tidak ditimpa saat data refresh.
-*/
 let savedFilterLoaded = false;
+
+/*
+   Filter tersimpan disimpan di memory
+   supaya tidak hilang ketika data baru masuk.
+*/
+let pendingSavedFilter = null;
+
+/*
+   Signature option filter.
+   Mencegah DOM select dibangun ulang
+   kalau daftar pilihan sebenarnya sama.
+*/
+const filterOptionSignatures = {};
+
 
 const numberFormatter =
 new Intl.NumberFormat("id-ID");
 
+
 /* =====================================================
-   MULTI FILTER CONFIG
+   MULTI FILTER
 ===================================================== */
 
 const MULTI_FILTER_IDS = [
@@ -2238,17 +2172,21 @@ const MULTI_FILTER_IDS = [
 
 ];
 
+
 /* =====================================================
-   FILTER SEARCH CONFIG
+   SEARCH HANYA 3 FILTER
 ===================================================== */
 
-const FILTER_SEARCH_CONFIG = {
+const FILTER_SEARCH_IDS = [
 
-kodeProduk:{
-    wrap:"kodeProdukSearchWrap",
-    input:"kodeProdukSearch",
-    count:"kodeProdukSearchCount"
-},
+"motif",
+"jenisDefect",
+"rollId"
+
+];
+
+
+const FILTER_SEARCH_CONFIG = {
 
 motif:{
     wrap:"motifSearchWrap",
@@ -2262,18 +2200,6 @@ jenisDefect:{
     count:"jenisDefectSearchCount"
 },
 
-mesin:{
-    wrap:"mesinSearchWrap",
-    input:"mesinSearch",
-    count:"mesinSearchCount"
-},
-
-grup:{
-    wrap:"grupSearchWrap",
-    input:"grupSearch",
-    count:"grupSearchCount"
-},
-
 rollId:{
     wrap:"rollIdSearchWrap",
     input:"rollIdSearch",
@@ -2281,6 +2207,7 @@ rollId:{
 }
 
 };
+
 
 /* =====================================================
    START
@@ -2300,6 +2227,7 @@ loadDefectData();
 
 }
 );
+
 
 /* =====================================================
    NAVIGATION
@@ -2329,6 +2257,7 @@ route;
 
 }
 
+
 /* =====================================================
    STATUS
 ===================================================== */
@@ -2346,6 +2275,7 @@ message;
 }
 
 }
+
 
 /* =====================================================
    FILTER TOGGLE
@@ -2366,6 +2296,7 @@ filterVisible
 
 }
 
+
 /* =====================================================
    LOAD CACHE
 ===================================================== */
@@ -2385,8 +2316,7 @@ const data =
 JSON.parse(cached);
 
 if(
-Array.isArray(data) &&
-data.length
+Array.isArray(data)
 ){
 
 setDefectData(
@@ -2411,6 +2341,7 @@ error
 
 }
 
+
 /* =====================================================
    LOAD DATA
 ===================================================== */
@@ -2425,6 +2356,11 @@ setStatus(
 
 }
 
+
+/* =====================================================
+   GOOGLE APPS SCRIPT
+===================================================== */
+
 if(
 typeof google !== "undefined" &&
 google.script &&
@@ -2437,8 +2373,7 @@ google.script.run
 function(data){
 
 if(
-!Array.isArray(data) ||
-data.length === 0
+!Array.isArray(data)
 ){
 
 if(!allData.length){
@@ -2447,9 +2382,7 @@ setStatus(
 "⚠️ Data Defect Flat kosong"
 );
 
-setDefectData(
-[]
-);
+setDefectData([]);
 
 }
 
@@ -2466,7 +2399,7 @@ true
 
 setStatus(
 "✅ Data diperbarui: " +
-(data.length - 1) +
+Math.max(0,data.length - 1) +
 " baris"
 );
 
@@ -2507,6 +2440,11 @@ return;
 
 }
 
+
+/* =====================================================
+   FETCH API
+===================================================== */
+
 try{
 
 const response =
@@ -2533,8 +2471,7 @@ const result =
 await response.json();
 
 if(
-!Array.isArray(result) ||
-result.length === 0
+!Array.isArray(result)
 ){
 
 if(!allData.length){
@@ -2560,7 +2497,7 @@ true
 
 setStatus(
 "✅ Data diperbarui: " +
-(result.length - 1) +
+Math.max(0,result.length - 1) +
 " baris"
 );
 
@@ -2588,6 +2525,7 @@ setStatus(
 }
 
 }
+
 
 /* =====================================================
    CACHE DATA
@@ -2620,6 +2558,7 @@ error
 
 }
 
+
 /* =====================================================
    HEADER NORMALIZATION
 ===================================================== */
@@ -2637,6 +2576,7 @@ value == null
 .replace(/_/g," ");
 
 }
+
 
 function findHeaderIndex(
 headers,
@@ -2672,6 +2612,7 @@ return -1;
 
 }
 
+
 /* =====================================================
    CELL
 ===================================================== */
@@ -2692,6 +2633,7 @@ return row[index] == null
 : row[index];
 
 }
+
 
 /* =====================================================
    SET DATA
@@ -2719,11 +2661,13 @@ return;
 
 }
 
+
 const headers =
 data[0];
 
 const rows =
 data.slice(1);
+
 
 const idx = {
 
@@ -2829,109 +2773,98 @@ headers,
 
 };
 
-allData =
-rows
 
-.filter(
-function(row){
+/* =====================================================
+   NORMALIZE ROW
+===================================================== */
 
-return row.some(
-function(value){
+const newData = [];
 
-return String(
-value == null
+for(
+let i = 0;
+i < rows.length;
+i++
+){
+
+const row =
+rows[i];
+
+let hasValue = false;
+
+for(
+let j = 0;
+j < row.length;
+j++
+){
+
+if(
+String(
+row[j] == null
 ? ""
-: value
-).trim() !== "";
+: row[j]
+).trim() !== ""
+){
+
+hasValue = true;
+break;
 
 }
-);
 
 }
-)
 
-.map(
-function(row){
+if(!hasValue) continue;
+
 
 const tgl =
-getCell(
-row,
-idx.tgl
-);
+getCell(row,idx.tgl);
 
 const roll =
 String(
-getCell(
-row,
-idx.roll
-)
+getCell(row,idx.roll)
 ).trim();
 
 const kode =
 String(
-getCell(
-row,
-idx.kode
-)
+getCell(row,idx.kode)
 ).trim();
 
 const defect =
 String(
-getCell(
-row,
-idx.defect
-)
+getCell(row,idx.defect)
 ).trim();
 
 const mesin =
 String(
-getCell(
-row,
-idx.mesin
-)
+getCell(row,idx.mesin)
 ).trim();
 
 const motif =
 String(
-getCell(
-row,
-idx.motif
-)
+getCell(row,idx.motif)
 ).trim();
 
 const blok =
 String(
-getCell(
-row,
-idx.blok
-)
+getCell(row,idx.blok)
 ).trim();
 
 const grup =
 String(
-getCell(
-row,
-idx.grup
-)
+getCell(row,idx.grup)
 ).trim();
 
 const operator =
 String(
-getCell(
-row,
-idx.operator
-)
+getCell(row,idx.operator)
 ).trim();
 
 const qty =
 parseQty(
-getCell(
-row,
-idx.qty
-)
+getCell(row,idx.qty)
 );
 
-return {
+
+newData.push({
 
 tgl:tgl,
 
@@ -2972,42 +2905,47 @@ operator
 .join(" ")
 .toLowerCase()
 
-};
+});
 
 }
-);
+
+
+allData =
+newData;
+
+
+/* =====================================================
+   FILTER OPTIONS
+===================================================== */
 
 populateFilters();
 
-if(!savedFilterLoaded){
+
+/* =====================================================
+   APPLY SAVED FILTER
+===================================================== */
+
+if(
+savedFilterLoaded &&
+pendingSavedFilter
+){
+
+setFilterValues(
+pendingSavedFilter
+);
+
+}else{
 
 filteredData =
 [...allData];
 
-restoreSavedFilter();
-
-}else{
-
-const currentFilter =
-getFilter();
-
-filteredData =
-allData.filter(
-function(row){
-
-return rowMatchesFilter(
-row,
-currentFilter
-);
-
 }
-);
 
-}
 
 renderDashboard();
 
 }
+
 
 /* =====================================================
    PARSE QTY
@@ -3033,6 +2971,7 @@ text
 .replace(/pcs/gi,"")
 .trim();
 
+
 if(
 text.indexOf(",") !== -1 &&
 text.indexOf(".") !== -1
@@ -3052,6 +2991,7 @@ text.replace(",", ".");
 
 }
 
+
 const number =
 parseFloat(
 text.replace(
@@ -3060,11 +3000,13 @@ text.replace(
 )
 );
 
+
 return isNaN(number)
 ? 0
 : number;
 
 }
+
 
 /* =====================================================
    DATE
@@ -3077,6 +3019,7 @@ if(!value) return null;
 const text =
 String(value).trim();
 
+
 if(
 /^\d{4}-\d{2}-\d{2}$/
 .test(text)
@@ -3086,10 +3029,12 @@ return text;
 
 }
 
+
 let match =
 text.match(
 /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/
 );
+
 
 if(match){
 
@@ -3103,10 +3048,12 @@ String(match[1]).padStart(2,"0")
 
 }
 
+
 match =
 text.match(
 /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2})/
 );
+
 
 if(match){
 
@@ -3121,32 +3068,45 @@ String(match[1]).padStart(2,"0")
 
 }
 
+
 return null;
 
 }
 
+
 /* =====================================================
-   UNIQUE
+   SORT UNIQUE
 ===================================================== */
 
 function uniqueSorted(values){
 
-return [
-...new Set(
-values
-.map(
-function(v){
+const set =
+new Set();
 
-return String(
-v == null
+for(
+let i = 0;
+i < values.length;
+i++
+){
+
+const value =
+String(
+values[i] == null
 ? ""
-: v
+: values[i]
 ).trim();
 
+if(value){
+
+set.add(value);
+
 }
-)
-.filter(Boolean)
-)
+
+}
+
+
+return [
+...set
 ]
 .sort(
 function(a,b){
@@ -3163,13 +3123,17 @@ sensitivity:"base"
 }
 );
 
+}
+
+
 /* =====================================================
    FILTER SEARCH SETUP
+   HANYA 3 FILTER
 ===================================================== */
 
 function setupFilterSearch(){
 
-MULTI_FILTER_IDS.forEach(
+FILTER_SEARCH_IDS.forEach(
 function(id){
 
 const config =
@@ -3177,12 +3141,14 @@ FILTER_SEARCH_CONFIG[id];
 
 if(!config) return;
 
+
 const input =
 document.getElementById(
 config.input
 );
 
 if(!input) return;
+
 
 input.addEventListener(
 "input",
@@ -3201,6 +3167,7 @@ this.value
 
 }
 
+
 /* =====================================================
    FILTER OPTION SEARCH
 ===================================================== */
@@ -3218,6 +3185,7 @@ selectId
 const config =
 FILTER_SEARCH_CONFIG[selectId];
 
+
 if(
 !select ||
 !config
@@ -3227,6 +3195,7 @@ return;
 
 }
 
+
 const query =
 String(
 searchValue || ""
@@ -3234,12 +3203,15 @@ searchValue || ""
 .toLowerCase()
 .trim();
 
+
 const options =
 Array.from(
 select.options
 );
 
+
 let visible = 0;
+
 
 options.forEach(
 function(option){
@@ -3250,12 +3222,15 @@ option.textContent || ""
 )
 .toLowerCase();
 
+
 const matched =
 !query ||
 text.includes(query);
 
+
 option.hidden =
 !matched;
+
 
 if(matched){
 
@@ -3266,10 +3241,12 @@ visible++;
 }
 );
 
+
 const countEl =
 document.getElementById(
 config.count
 );
+
 
 if(countEl){
 
@@ -3291,6 +3268,7 @@ options.length +
 
 }
 
+
 /* =====================================================
    UPDATE FILTER SEARCH UI
 ===================================================== */
@@ -3307,6 +3285,7 @@ selectId
 const config =
 FILTER_SEARCH_CONFIG[selectId];
 
+
 if(
 !select ||
 !config
@@ -3315,6 +3294,7 @@ if(
 return;
 
 }
+
 
 const wrap =
 document.getElementById(
@@ -3331,18 +3311,23 @@ document.getElementById(
 config.count
 );
 
+
 if(!wrap) return;
+
 
 const optionCount =
 select.options.length;
 
+
 /*
-   Search hanya tampil jika
-   pilihan lebih dari 8.
+   Telusuri hanya muncul
+   jika pilihan > 8.
 */
+
 if(optionCount > 8){
 
 wrap.classList.add("show");
+
 
 if(countEl){
 
@@ -3356,11 +3341,13 @@ optionCount +
 
 wrap.classList.remove("show");
 
+
 if(input){
 
 input.value = "";
 
 }
+
 
 Array.from(
 select.options
@@ -3373,6 +3360,7 @@ option.hidden = false;
 }
 );
 
+
 if(countEl){
 
 countEl.textContent = "";
@@ -3383,8 +3371,9 @@ countEl.textContent = "";
 
 }
 
+
 /* =====================================================
-   MULTI SELECT
+   FILL SELECT
 ===================================================== */
 
 function fillSelect(
@@ -3398,15 +3387,50 @@ document.getElementById(id);
 
 if(!select) return;
 
+
 const oldValues =
-getSelectedValues(
-select
+getSelectedValues(select);
+
+
+const signature =
+values.join("\u0001");
+
+
+/*
+   Kalau pilihan tidak berubah,
+   jangan bangun ulang DOM.
+*/
+
+if(
+filterOptionSignatures[id] === signature &&
+select.options.length === values.length
+){
+
+setSelectedValues(
+select,
+oldValues
 );
 
-select.innerHTML = "";
+updateFilterSearch(id);
 
-values.forEach(
-function(value){
+return;
+
+}
+
+
+filterOptionSignatures[id] =
+signature;
+
+
+const fragment =
+document.createDocumentFragment();
+
+
+for(
+let i = 0;
+i < values.length;
+i++
+){
 
 const option =
 document.createElement(
@@ -3414,17 +3438,24 @@ document.createElement(
 );
 
 option.value =
-value;
+values[i];
 
 option.textContent =
-value;
+values[i];
 
-select.appendChild(
+fragment.appendChild(
 option
 );
 
 }
+
+
+select.innerHTML = "";
+
+select.appendChild(
+fragment
 );
+
 
 if(oldValues.length){
 
@@ -3435,92 +3466,140 @@ oldValues
 
 }
 
+
 updateFilterSearch(id);
 
 }
 
+
 /* =====================================================
    POPULATE FILTER
+   SATU KALI LOOP DATA
 ===================================================== */
 
 function populateFilters(){
 
+const sets = {
+
+kodeProduk:new Set(),
+
+motif:new Set(),
+
+jenisDefect:new Set(),
+
+mesin:new Set(),
+
+grup:new Set(),
+
+rollId:new Set()
+
+};
+
+
+for(
+let i = 0;
+i < allData.length;
+i++
+){
+
+const row =
+allData[i];
+
+
+if(row.kode)
+sets.kodeProduk.add(row.kode);
+
+if(row.motif)
+sets.motif.add(row.motif);
+
+if(row.defect)
+sets.jenisDefect.add(row.defect);
+
+if(row.mesin)
+sets.mesin.add(row.mesin);
+
+if(row.grup)
+sets.grup.add(row.grup);
+
+if(row.roll)
+sets.rollId.add(row.roll);
+
+}
+
+
 fillSelect(
 "kodeProduk",
-uniqueSorted(
-allData.map(
-function(x){
-return x.kode;
-}
-)
-),
+sortSet(sets.kodeProduk),
 "Semua Kode Produk"
 );
 
+
 fillSelect(
 "motif",
-uniqueSorted(
-allData.map(
-function(x){
-return x.motif;
-}
-)
-),
+sortSet(sets.motif),
 "Semua Motif"
 );
 
+
 fillSelect(
 "jenisDefect",
-uniqueSorted(
-allData.map(
-function(x){
-return x.defect;
-}
-)
-),
+sortSet(sets.jenisDefect),
 "Semua Jenis Defect"
 );
 
+
 fillSelect(
 "mesin",
-uniqueSorted(
-allData.map(
-function(x){
-return x.mesin;
-}
-)
-),
+sortSet(sets.mesin),
 "Semua Mesin"
 );
 
+
 fillSelect(
 "grup",
-uniqueSorted(
-allData.map(
-function(x){
-return x.grup;
-}
-)
-),
+sortSet(sets.grup),
 "Semua Grup"
 );
 
+
 fillSelect(
 "rollId",
-uniqueSorted(
-allData.map(
-function(x){
-return x.roll;
-}
-)
-),
+sortSet(sets.rollId),
 "Semua Roll ID"
 );
 
 }
 
+
 /* =====================================================
-   GET SELECTED VALUES
+   SORT SET
+===================================================== */
+
+function sortSet(set){
+
+return [
+...set
+]
+.sort(
+function(a,b){
+
+return String(a).localeCompare(
+String(b),
+"id",
+{
+numeric:true,
+sensitivity:"base"
+}
+);
+
+}
+);
+
+}
+
+
+/* =====================================================
+   GET SELECTED
 ===================================================== */
 
 function getSelectedValues(select){
@@ -3530,6 +3609,7 @@ if(!select){
 return [];
 
 }
+
 
 return Array.from(
 select.selectedOptions
@@ -3547,8 +3627,9 @@ option.value
 
 }
 
+
 /* =====================================================
-   SET SELECTED VALUES
+   SET SELECTED
 ===================================================== */
 
 function setSelectedValues(
@@ -3557,6 +3638,7 @@ values
 ){
 
 if(!select) return;
+
 
 const wanted =
 Array.isArray(values)
@@ -3569,6 +3651,11 @@ return String(v);
 ? [String(values)]
 : [];
 
+
+const wantedSet =
+new Set(wanted);
+
+
 Array.from(
 select.options
 )
@@ -3576,7 +3663,7 @@ select.options
 function(option){
 
 option.selected =
-wanted.includes(
+wantedSet.has(
 option.value
 );
 
@@ -3585,14 +3672,16 @@ option.value
 
 }
 
+
 /* =====================================================
-   NORMALIZE SAVED FILTER
+   NORMALIZE FILTER
 ===================================================== */
 
 function normalizeFilter(f){
 
 f =
 f || {};
+
 
 return {
 
@@ -3624,6 +3713,7 @@ toArray(f.rollId)
 
 }
 
+
 /* =====================================================
    TO ARRAY
 ===================================================== */
@@ -3648,6 +3738,7 @@ v == null
 
 }
 
+
 if(
 value === null ||
 value === undefined ||
@@ -3658,14 +3749,17 @@ return [];
 
 }
 
+
 return [
 String(value).trim()
-].filter(Boolean);
+]
+.filter(Boolean);
 
 }
 
+
 /* =====================================================
-   FILTER OBJECT
+   GET FILTER
 ===================================================== */
 
 function getFilter(){
@@ -3728,6 +3822,7 @@ document.getElementById(
 
 }
 
+
 /* =====================================================
    MATCH MULTI
 ===================================================== */
@@ -3746,6 +3841,7 @@ return true;
 
 }
 
+
 return selected.includes(
 String(
 value == null
@@ -3755,6 +3851,7 @@ value == null
 );
 
 }
+
 
 /* =====================================================
    FILTER ROW
@@ -3777,6 +3874,7 @@ return false;
 
 }
 
+
 if(
 f.dateTo &&
 (
@@ -3789,6 +3887,7 @@ return false;
 
 }
 
+
 if(
 !matchesMulti(
 f.kodeProduk,
@@ -3799,6 +3898,7 @@ row.kode
 return false;
 
 }
+
 
 if(
 !matchesMulti(
@@ -3811,6 +3911,7 @@ return false;
 
 }
 
+
 if(
 !matchesMulti(
 f.jenisDefect,
@@ -3821,6 +3922,7 @@ row.defect
 return false;
 
 }
+
 
 if(
 !matchesMulti(
@@ -3833,6 +3935,7 @@ return false;
 
 }
 
+
 if(
 !matchesMulti(
 f.grup,
@@ -3843,6 +3946,7 @@ row.grup
 return false;
 
 }
+
 
 if(
 !matchesMulti(
@@ -3855,9 +3959,11 @@ return false;
 
 }
 
+
 return true;
 
 }
+
 
 /* =====================================================
    APPLY FILTER
@@ -3869,6 +3975,22 @@ const f =
 normalizeFilter(
 getFilter()
 );
+
+
+pendingSavedFilter =
+f;
+
+savedFilterLoaded =
+true;
+
+
+/*
+   Simpan filter sebelum
+   melakukan render.
+*/
+
+saveFilter(f);
+
 
 filteredData =
 allData.filter(
@@ -3882,14 +4004,17 @@ f
 }
 );
 
+
 currentPage = 1;
 
 currentSearch = "";
+
 
 const search =
 document.getElementById(
 "quickSearch"
 );
+
 
 if(search){
 
@@ -3897,14 +4022,9 @@ search.value = "";
 
 }
 
-/*
-   Simpan hanya di HP/browser ini.
-*/
-saveFilter(f);
-
-savedFilterLoaded = true;
 
 renderDashboard();
+
 
 setStatus(
 "🔎 Filter diterapkan • tersimpan di perangkat ini • " +
@@ -3914,9 +4034,10 @@ filteredData.length +
 
 }
 
+
 /* =====================================================
-   CLEAR CURRENT FILTER
-   Tidak menghapus filter tersimpan
+   CLEAR FILTER TAMPILAN
+   TIDAK MENGHAPUS SAVED FILTER
 ===================================================== */
 
 function clearFilter(){
@@ -3925,15 +4046,18 @@ document.getElementById(
 "dateFrom"
 ).value = "";
 
+
 document.getElementById(
 "dateTo"
 ).value = "";
+
 
 MULTI_FILTER_IDS.forEach(
 function(id){
 
 const select =
 document.getElementById(id);
+
 
 if(select){
 
@@ -3944,8 +4068,10 @@ select,
 
 }
 
+
 const config =
 FILTER_SEARCH_CONFIG[id];
+
 
 if(config){
 
@@ -3954,9 +4080,13 @@ document.getElementById(
 config.input
 );
 
+
 if(input){
 
 input.value = "";
+
+}
+
 
 filterOptionSearch(
 id,
@@ -3966,21 +4096,23 @@ id,
 }
 
 }
-
-}
 );
+
 
 filteredData =
 [...allData];
+
 
 currentPage = 1;
 
 currentSearch = "";
 
+
 const search =
 document.getElementById(
 "quickSearch"
 );
+
 
 if(search){
 
@@ -3988,7 +4120,9 @@ search.value = "";
 
 }
 
+
 renderDashboard();
+
 
 setStatus(
 "↺ Filter tampilan dibersihkan • filter tersimpan tetap aman"
@@ -3996,8 +4130,9 @@ setStatus(
 
 }
 
+
 /* =====================================================
-   FILTER CACHE
+   SAVE FILTER
 ===================================================== */
 
 function saveFilter(filter){
@@ -4022,8 +4157,10 @@ error
 
 }
 
+
 /* =====================================================
-   RESTORE FILTER UI SAJA
+   RESTORE SAVED FILTER
+   HANYA BACA DULU
 ===================================================== */
 
 function restoreSavedFilterOnly(){
@@ -4035,18 +4172,26 @@ localStorage.getItem(
 FILTER_CACHE_KEY
 );
 
-if(!saved) return;
 
-const filter =
+if(!saved){
+
+pendingSavedFilter = null;
+
+savedFilterLoaded = false;
+
+return;
+
+}
+
+
+pendingSavedFilter =
 normalizeFilter(
 JSON.parse(saved)
 );
 
-setBasicFilterValues(
-filter
-);
 
 savedFilterLoaded = true;
+
 
 }catch(error){
 
@@ -4055,9 +4200,14 @@ console.warn(
 error
 );
 
+pendingSavedFilter = null;
+
+savedFilterLoaded = false;
+
 }
 
 }
+
 
 /* =====================================================
    RESTORE FILTER SETELAH DATA TERSEDIA
@@ -4065,41 +4215,24 @@ error
 
 function restoreSavedFilter(){
 
-try{
+if(
+pendingSavedFilter
+){
 
-const saved =
-localStorage.getItem(
-FILTER_CACHE_KEY
+setFilterValues(
+pendingSavedFilter
 );
-
-if(!saved){
-
-filteredData =
-[...allData];
 
 return;
 
 }
 
-const filter =
-normalizeFilter(
-JSON.parse(saved)
-);
-
-setFilterValues(
-filter
-);
-
-savedFilterLoaded = true;
-
-}catch(error){
 
 filteredData =
 [...allData];
 
 }
 
-}
 
 /* =====================================================
    BASIC FILTER VALUES
@@ -4109,24 +4242,29 @@ function setBasicFilterValues(f){
 
 if(!f) return;
 
+
 const filter =
 normalizeFilter(f);
+
 
 document.getElementById(
 "dateFrom"
 ).value =
 filter.dateFrom;
 
+
 document.getElementById(
 "dateTo"
 ).value =
 filter.dateTo;
+
 
 MULTI_FILTER_IDS.forEach(
 function(id){
 
 const el =
 document.getElementById(id);
+
 
 if(
 el &&
@@ -4145,6 +4283,7 @@ filter[id]
 
 }
 
+
 /* =====================================================
    APPLY SAVED FILTER
 ===================================================== */
@@ -4160,12 +4299,15 @@ return;
 
 }
 
+
 const filter =
 normalizeFilter(f);
+
 
 setBasicFilterValues(
 filter
 );
+
 
 filteredData =
 allData.filter(
@@ -4181,6 +4323,7 @@ filter
 
 }
 
+
 /* =====================================================
    RESET SAVED FILTER
 ===================================================== */
@@ -4193,23 +4336,36 @@ localStorage.removeItem(
 FILTER_CACHE_KEY
 );
 
-}catch(error){}
+}catch(error){
 
-savedFilterLoaded = false;
+console.warn(error);
+
+}
+
+
+pendingSavedFilter =
+null;
+
+savedFilterLoaded =
+false;
+
 
 document.getElementById(
 "dateFrom"
 ).value = "";
 
+
 document.getElementById(
 "dateTo"
 ).value = "";
+
 
 MULTI_FILTER_IDS.forEach(
 function(id){
 
 const select =
 document.getElementById(id);
+
 
 if(select){
 
@@ -4220,8 +4376,10 @@ select,
 
 }
 
+
 const config =
 FILTER_SEARCH_CONFIG[id];
+
 
 if(config){
 
@@ -4230,11 +4388,13 @@ document.getElementById(
 config.input
 );
 
+
 if(input){
 
 input.value = "";
 
 }
+
 
 filterOptionSearch(
 id,
@@ -4246,17 +4406,21 @@ id,
 }
 );
 
+
 filteredData =
 [...allData];
+
 
 currentPage = 1;
 
 currentSearch = "";
 
+
 const search =
 document.getElementById(
 "quickSearch"
 );
+
 
 if(search){
 
@@ -4264,13 +4428,16 @@ search.value = "";
 
 }
 
+
 renderDashboard();
+
 
 setStatus(
 "✅ Filter tersimpan berhasil direset • menampilkan semua data"
 );
 
 }
+
 
 /* =====================================================
    FILTER CHIPS
@@ -4281,14 +4448,18 @@ function renderFilterChips(){
 const f =
 getFilter();
 
+
 const bar =
 document.getElementById(
 "activeFilterBar"
 );
 
+
 if(!bar) return;
 
+
 bar.innerHTML = "";
+
 
 const labels = {
 
@@ -4310,11 +4481,11 @@ rollId:"Roll"
 
 };
 
+
 let count = 0;
 
-/*
-   DATE
-*/
+
+/* DATE */
 
 [
 "dateFrom",
@@ -4326,6 +4497,7 @@ function(key){
 if(f[key]){
 
 count++;
+
 
 const chip =
 document.createElement(
@@ -4349,9 +4521,8 @@ chip
 }
 );
 
-/*
-   MULTI SELECT
-*/
+
+/* MULTI */
 
 MULTI_FILTER_IDS.forEach(
 function(key){
@@ -4365,6 +4536,7 @@ f[key].forEach(
 function(value){
 
 count++;
+
 
 const chip =
 document.createElement(
@@ -4384,13 +4556,13 @@ chip
 );
 
 }
-
 );
 
 }
 
 }
 );
+
 
 const label =
 document.createElement(
@@ -4399,6 +4571,7 @@ document.createElement(
 
 label.className =
 "active-filter-label";
+
 
 if(count === 0){
 
@@ -4423,23 +4596,37 @@ bar.firstChild
 
 }
 
+
 /* =====================================================
    DASHBOARD
 ===================================================== */
 
 function renderDashboard(){
 
-renderSummary();
+const aggregate =
+buildDashboardAggregate(
+filteredData
+);
 
-renderFocus();
 
-renderRanking();
+renderSummary(
+aggregate
+);
+
+renderFocus(
+aggregate
+);
+
+renderRanking(
+aggregate
+);
 
 renderFilterChips();
 
 renderTable();
 
 }
+
 
 /* =====================================================
    NUMBER
@@ -4453,34 +4640,144 @@ Number(value) || 0
 
 }
 
+
 /* =====================================================
-   GROUP SUM
+   BUILD DASHBOARD AGGREGATE
+   SATU KALI LOOP
 ===================================================== */
 
-function groupSum(
-data,
-field
-){
+function buildDashboardAggregate(data){
 
-const map =
+const defectMap =
 new Map();
 
-data.forEach(
-function(row){
+const mesinMap =
+new Map();
 
-const key =
-String(
-row[field] || "(Kosong)"
-).trim();
+const grupMap =
+new Map();
 
-map.set(
-key,
-(map.get(key) || 0) +
-Number(row.qty || 0)
+const rollSet =
+new Set();
+
+const defectSet =
+new Set();
+
+
+let totalPcs = 0;
+
+
+for(
+let i = 0;
+i < data.length;
+i++
+){
+
+const row =
+data[i];
+
+
+const qty =
+Number(row.qty) || 0;
+
+
+totalPcs += qty;
+
+
+if(row.roll){
+
+rollSet.add(
+row.roll
 );
 
 }
+
+
+if(row.defect){
+
+defectSet.add(
+row.defect
 );
+
+}
+
+
+const defect =
+String(
+row.defect || "(Kosong)"
+).trim() ||
+"(Kosong)";
+
+
+const mesin =
+String(
+row.mesin || "(Kosong)"
+).trim() ||
+"(Kosong)";
+
+
+const grup =
+String(
+row.grup || "(Kosong)"
+).trim() ||
+"(Kosong)";
+
+
+defectMap.set(
+defect,
+(defectMap.get(defect) || 0) +
+qty
+);
+
+
+mesinMap.set(
+mesin,
+(mesinMap.get(mesin) || 0) +
+qty
+);
+
+
+grupMap.set(
+grup,
+(grupMap.get(grup) || 0) +
+qty
+);
+
+}
+
+
+return {
+
+totalPcs:totalPcs,
+
+totalRoll:rollSet.size,
+
+totalJenis:defectSet.size,
+
+totalData:data.length,
+
+defect:sortMap(
+defectMap
+),
+
+mesin:sortMap(
+mesinMap
+),
+
+grup:sortMap(
+grupMap
+)
+
+};
+
+}
+
+
+/* =====================================================
+   SORT MAP
+===================================================== */
+
+function sortMap(map){
 
 return [
 ...map.entries()
@@ -4495,108 +4792,81 @@ return b[1] - a[1];
 
 }
 
+
 /* =====================================================
    SUMMARY
 ===================================================== */
 
-function renderSummary(){
-
-const totalPcs =
-filteredData.reduce(
-function(sum,row){
-
-return sum +
-Number(
-row.qty || 0
-);
-
-},
-0
-);
-
-const totalRoll =
-new Set(
-filteredData
-.map(
-function(x){
-return x.roll;
-}
-)
-.filter(Boolean)
-).size;
-
-const totalJenis =
-new Set(
-filteredData
-.map(
-function(x){
-return x.defect;
-}
-)
-.filter(Boolean)
-).size;
+function renderSummary(
+aggregate
+){
 
 document.getElementById(
 "totalPcs"
 ).textContent =
-formatNumber(totalPcs);
+formatNumber(
+aggregate.totalPcs
+);
+
 
 document.getElementById(
 "totalRoll"
 ).textContent =
-formatNumber(totalRoll);
+formatNumber(
+aggregate.totalRoll
+);
+
 
 document.getElementById(
 "totalJenis"
 ).textContent =
-formatNumber(totalJenis);
+formatNumber(
+aggregate.totalJenis
+);
+
 
 document.getElementById(
 "totalData"
 ).textContent =
 formatNumber(
-filteredData.length
+aggregate.totalData
 );
 
 }
+
 
 /* =====================================================
    FOCUS
 ===================================================== */
 
-function renderFocus(){
+function renderFocus(
+aggregate
+){
 
 const total =
-filteredData.reduce(
-function(sum,row){
+aggregate.totalPcs;
 
-return sum +
-Number(
-row.qty || 0
-);
-
-},
-0
-);
 
 renderFocusGroup(
-"defect",
+aggregate.defect,
 "focusDefectPcs",
 "focusDefectPercent",
 "defectMiniList",
 total
 );
 
+
 renderFocusGroup(
-"mesin",
+aggregate.mesin,
 "focusMesinPcs",
 "focusMesinPercent",
 "mesinMiniList",
 total
 );
 
+
 renderFocusGroup(
-"grup",
+aggregate.grup,
 "focusGrupPcs",
 "focusGrupPercent",
 "grupMiniList",
@@ -4605,49 +4875,50 @@ total
 
 }
 
+
 /* =====================================================
    FOCUS GROUP
 ===================================================== */
 
 function renderFocusGroup(
-field,
+grouped,
 numberId,
 percentId,
 listId,
 total
 ){
 
-const grouped =
-groupSum(
-filteredData,
-field
-);
-
 const top =
 grouped[0];
+
 
 const numberEl =
 document.getElementById(
 numberId
 );
 
+
 const percentEl =
 document.getElementById(
 percentId
 );
+
 
 const listEl =
 document.getElementById(
 listId
 );
 
+
 if(!top){
 
 numberEl.textContent =
 "0";
 
+
 percentEl.textContent =
 "Tidak ada data";
+
 
 listEl.innerHTML =
 '<div class="empty">Tidak ada data</div>';
@@ -4656,13 +4927,16 @@ return;
 
 }
 
+
 const percent =
 total > 0
 ? top[1] / total * 100
 : 0;
 
+
 numberEl.textContent =
 formatNumber(top[1]);
+
 
 percentEl.textContent =
 top[0] +
@@ -4670,63 +4944,104 @@ top[0] +
 percent.toFixed(1) +
 "%";
 
-listEl.innerHTML =
+
+const fragment =
+document.createDocumentFragment();
+
+
 grouped
 .slice(0,5)
-.map(
+.forEach(
 function(item){
 
-return `
+const row =
+document.createElement(
+"div"
+);
 
-<div class="mini-row">
+row.className =
+"mini-row";
 
-<span>
-${escapeHtml(item[0])}
-</span>
 
-<strong>
-${formatNumber(item[1])}
-</strong>
+const span =
+document.createElement(
+"span"
+);
 
-</div>
+span.textContent =
+item[0];
 
-`;
+
+const strong =
+document.createElement(
+"strong"
+);
+
+strong.textContent =
+formatNumber(
+item[1]
+);
+
+
+row.appendChild(
+span
+);
+
+row.appendChild(
+strong
+);
+
+fragment.appendChild(
+row
+);
 
 }
-)
-.join("");
+);
+
+
+listEl.innerHTML = "";
+
+listEl.appendChild(
+fragment
+);
 
 }
+
 
 /* =====================================================
    RANKING
 ===================================================== */
 
-function renderRanking(){
+function renderRanking(
+aggregate
+){
 
 renderRankingList(
-"defect",
+aggregate.defect,
 "defectRanking"
 );
 
+
 renderRankingList(
-"mesin",
+aggregate.mesin,
 "mesinRanking"
 );
 
+
 renderRankingList(
-"grup",
+aggregate.grup,
 "groupRanking"
 );
 
 }
+
 
 /* =====================================================
    RANKING LIST
 ===================================================== */
 
 function renderRankingList(
-field,
+grouped,
 elementId
 ){
 
@@ -4735,11 +5050,6 @@ document.getElementById(
 elementId
 );
 
-const grouped =
-groupSum(
-filteredData,
-field
-);
 
 if(!grouped.length){
 
@@ -4750,13 +5060,18 @@ return;
 
 }
 
-list.innerHTML =
+
+const fragment =
+document.createDocumentFragment();
+
+
 grouped
 .slice(0,10)
-.map(
+.forEach(
 function(item,index){
 
 let rankClass = "";
+
 
 if(index === 0){
 
@@ -4775,32 +5090,83 @@ rankClass =
 
 }
 
-return `
 
-<div class="ranking-item">
+const rankingItem =
+document.createElement(
+"div"
+);
 
-<div
-class="rank ${rankClass}">
-${index + 1}
-</div>
+rankingItem.className =
+"ranking-item";
 
-<div class="rank-name">
-${escapeHtml(item[0])}
-</div>
 
-<div class="rank-value">
-${formatNumber(item[1])} Pcs
-</div>
+const rank =
+document.createElement(
+"div"
+);
 
-</div>
+rank.className =
+"rank " +
+rankClass;
 
-`;
+rank.textContent =
+index + 1;
+
+
+const name =
+document.createElement(
+"div"
+);
+
+name.className =
+"rank-name";
+
+name.textContent =
+item[0];
+
+
+const value =
+document.createElement(
+"div"
+);
+
+value.className =
+"rank-value";
+
+value.textContent =
+formatNumber(item[1]) +
+" Pcs";
+
+
+rankingItem.appendChild(
+rank
+);
+
+rankingItem.appendChild(
+name
+);
+
+rankingItem.appendChild(
+value
+);
+
+
+fragment.appendChild(
+rankingItem
+);
 
 }
-)
-.join("");
+);
+
+
+list.innerHTML = "";
+
+list.appendChild(
+fragment
+);
 
 }
+
 
 /* =====================================================
    QUICK SEARCH
@@ -4813,38 +5179,20 @@ document.getElementById(
 "quickSearch"
 );
 
+
 currentSearch =
 input.value
 .toLowerCase()
 .trim();
 
+
 currentPage = 1;
 
-if(!currentSearch){
 
 renderTable();
 
-return;
-
 }
 
-const result =
-filteredData.filter(
-function(row){
-
-return row.searchText
-.includes(
-currentSearch
-);
-
-}
-);
-
-renderTableData(
-result
-);
-
-}
 
 /* =====================================================
    SORT
@@ -4866,6 +5214,7 @@ sortDirection =
 
 }
 
+
 filteredData.sort(
 function(a,b){
 
@@ -4874,6 +5223,7 @@ a[field] ?? "";
 
 let bv =
 b[field] ?? "";
+
 
 if(field === "qty"){
 
@@ -4895,12 +5245,14 @@ String(bv)
 
 }
 
+
 if(av < bv){
 
 return -1 *
 sortDirection;
 
 }
+
 
 if(av > bv){
 
@@ -4909,16 +5261,20 @@ sortDirection;
 
 }
 
+
 return 0;
 
 }
 );
 
+
 currentPage = 1;
+
 
 renderTable();
 
 }
+
 
 /* =====================================================
    TABLE
@@ -4926,9 +5282,13 @@ renderTable();
 
 function renderTable(){
 
+let data =
+filteredData;
+
+
 if(currentSearch){
 
-const result =
+data =
 filteredData.filter(
 function(row){
 
@@ -4940,19 +5300,15 @@ currentSearch
 }
 );
 
-renderTableData(
-result
-);
-
-return;
-
 }
 
+
 renderTableData(
-filteredData
+data
 );
 
 }
+
 
 /* =====================================================
    TABLE DATA
@@ -4964,6 +5320,7 @@ const tbody =
 document.getElementById(
 "tableBody"
 );
+
 
 if(
 !data ||
@@ -4986,25 +5343,30 @@ Tidak ada data sesuai filter
 
 `;
 
+
 document.getElementById(
 "pageInfo"
 ).textContent =
 "0 data";
+
 
 document.getElementById(
 "pageButtons"
 ).innerHTML =
 "";
 
+
 return;
 
 }
+
 
 const totalPages =
 Math.ceil(
 data.length /
 rowsPerPage
 );
+
 
 if(
 currentPage >
@@ -5016,13 +5378,16 @@ totalPages;
 
 }
 
+
 const start =
 (currentPage - 1) *
 rowsPerPage;
 
+
 const end =
 start +
 rowsPerPage;
+
 
 const pageRows =
 data.slice(
@@ -5030,66 +5395,141 @@ start,
 end
 );
 
-tbody.innerHTML =
-pageRows
-.map(
+
+const fragment =
+document.createDocumentFragment();
+
+
+pageRows.forEach(
 function(row){
 
-return `
+const tr =
+document.createElement(
+"tr"
+);
 
-<tr>
 
-<td>
-${escapeHtml(row.tgl)}
-</td>
+function addCell(
+value,
+className
+){
 
-<td>
-${escapeHtml(row.roll)}
-</td>
+const td =
+document.createElement(
+"td"
+);
 
-<td>
-${escapeHtml(row.kode)}
-</td>
 
-<td class="qty">
-${formatNumber(row.qty)}
-</td>
+if(className){
 
-<td>
-
-<span class="defect-badge">
-${escapeHtml(row.defect)}
-</span>
-
-</td>
-
-<td>
-${escapeHtml(row.mesin)}
-</td>
-
-<td>
-${escapeHtml(row.motif)}
-</td>
-
-<td>
-${escapeHtml(row.blok)}
-</td>
-
-<td>
-${escapeHtml(row.grup)}
-</td>
-
-<td>
-${escapeHtml(row.operator)}
-</td>
-
-</tr>
-
-`;
+td.className =
+className;
 
 }
-)
-.join("");
+
+
+td.textContent =
+value == null
+? ""
+: value;
+
+
+tr.appendChild(
+td
+);
+
+}
+
+
+addCell(
+row.tgl
+);
+
+
+addCell(
+row.roll
+);
+
+
+addCell(
+row.kode
+);
+
+
+addCell(
+formatNumber(row.qty),
+"qty"
+);
+
+
+const defectTd =
+document.createElement(
+"td"
+);
+
+
+const badge =
+document.createElement(
+"span"
+);
+
+
+badge.className =
+"defect-badge";
+
+
+badge.textContent =
+row.defect || "";
+
+
+defectTd.appendChild(
+badge
+);
+
+tr.appendChild(
+defectTd
+);
+
+
+addCell(
+row.mesin
+);
+
+
+addCell(
+row.motif
+);
+
+
+addCell(
+row.blok
+);
+
+
+addCell(
+row.grup
+);
+
+
+addCell(
+row.operator
+);
+
+
+fragment.appendChild(
+tr
+);
+
+}
+);
+
+
+tbody.innerHTML = "";
+
+tbody.appendChild(
+fragment
+);
+
 
 document.getElementById(
 "pageInfo"
@@ -5105,12 +5545,14 @@ data.length
 data.length +
 " data";
 
+
 renderPagination(
 totalPages,
 data
 );
 
 }
+
 
 /* =====================================================
    PAGINATION
@@ -5126,8 +5568,10 @@ document.getElementById(
 "pageButtons"
 );
 
+
 container.innerHTML =
 "";
+
 
 if(totalPages <= 1){
 
@@ -5135,19 +5579,26 @@ return;
 
 }
 
+
+/* PREVIOUS */
+
 const prev =
 document.createElement(
 "button"
 );
 
+
 prev.className =
 "page-btn";
+
 
 prev.textContent =
 "‹";
 
+
 prev.disabled =
 currentPage === 1;
+
 
 prev.onclick =
 function(){
@@ -5164,9 +5615,13 @@ data
 
 };
 
+
 container.appendChild(
 prev
 );
+
+
+/* PAGE RANGE */
 
 let start =
 Math.max(
@@ -5174,11 +5629,13 @@ Math.max(
 currentPage - 2
 );
 
+
 let end =
 Math.min(
 totalPages,
 currentPage + 2
 );
+
 
 for(
 let i = start;
@@ -5191,6 +5648,7 @@ document.createElement(
 "button"
 );
 
+
 btn.className =
 "page-btn" +
 (
@@ -5199,8 +5657,10 @@ i === currentPage
 : ""
 );
 
+
 btn.textContent =
 i;
+
 
 btn.onclick =
 function(){
@@ -5208,11 +5668,13 @@ function(){
 currentPage =
 i;
 
+
 renderTableData(
 data
 );
 
 };
+
 
 container.appendChild(
 btn
@@ -5220,19 +5682,26 @@ btn
 
 }
 
+
+/* NEXT */
+
 const next =
 document.createElement(
 "button"
 );
 
+
 next.className =
 "page-btn";
+
 
 next.textContent =
 "›";
 
+
 next.disabled =
 currentPage === totalPages;
+
 
 next.onclick =
 function(){
@@ -5252,11 +5721,13 @@ data
 
 };
 
+
 container.appendChild(
 next
 );
 
 }
+
 
 /* =====================================================
    ESCAPE HTML
