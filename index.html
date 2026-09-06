@@ -978,6 +978,93 @@ input[type="date"]:focus {
 
     margin-bottom: 21px;
 }
+    /* =====================================================
+   GRAFIK PRODUKSI TAHUNAN
+===================================================== */
+
+.produksi-tahunan-card{
+    margin-top:20px;
+}
+
+.tahun-chart-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin:0 0 18px;
+    font-weight:800;
+    color:#5b4636;
+}
+
+.tahun-chart-header select{
+    width:auto;
+    min-width:100px;
+    padding:8px 12px;
+    border:1px solid #c9a66b;
+    border-radius:8px;
+    background:#fff;
+    color:#5b4636;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.chart-wrapper{
+    width:100%;
+    overflow-x:auto;
+}
+
+.diagram-tahunan{
+    min-width:650px;
+    height:300px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-around;
+    gap:10px;
+    padding:30px 10px 35px;
+    border-bottom:2px solid #b89b72;
+}
+
+.bulan-bar{
+    height:100%;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+    position:relative;
+}
+
+.bulan-nilai{
+    font-size:12px;
+    font-weight:900;
+    color:#5b4636;
+    margin-bottom:5px;
+    white-space:nowrap;
+}
+
+.batang-produksi{
+    width:70%;
+    max-width:55px;
+    min-height:3px;
+    border-radius:8px 8px 2px 2px;
+    background:linear-gradient(
+        to bottom,
+        #d9b56d,
+        #9a6b32
+    );
+    box-shadow:
+        0 5px 10px rgba(91,70,54,.25),
+        inset 0 1px 2px rgba(255,255,255,.6);
+    transition:height .4s ease;
+}
+
+.bulan-nama{
+    position:absolute;
+    bottom:-27px;
+    font-size:12px;
+    font-weight:900;
+    color:#5b4636;
+    }
 
 .table-title {
 
