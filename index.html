@@ -3910,76 +3910,7 @@ function updatePencapaianGrup() {
         persenC.toFixed(2) + "%";
 
 
-    const tbody =
-        document.getElementById(
-            "tabelGrup"
-        );
-
-
-    tbody.innerHTML =
-        "";
-
-
-    const dataGrup = [
-
-        [
-            "GRUP A",
-            A,
-            A / 20,
-            persenA
-        ],
-
-        [
-            "GRUP B",
-            B,
-            B / 20,
-            persenB
-        ],
-
-        [
-            "GRUP C",
-            C,
-            C / 20,
-            persenC
-        ]
-
-    ];
-
-
-    dataGrup.forEach(
-        item => {
-
-            const tr =
-                document.createElement(
-                    "tr"
-                );
-
-
-            tr.innerHTML = `
-
-                <td>${item[0]}</td>
-
-                <td>
-                    ${formatAngka(item[1])} Pcs
-                </td>
-
-                <td>
-                    ${formatAngka(item[2])}
-                </td>
-
-                <td>
-                    ${item[3].toFixed(2)}%
-                </td>
-
-            `;
-
-
-            tbody.appendChild(
-                tr
-            );
-
-        }
-    );
+    
 
 
     const totalRow =
