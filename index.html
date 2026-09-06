@@ -1777,7 +1777,35 @@ body.screenshot-mode .group-percent {
 
 </div>
 
+<!-- =====================================================
+     PRODUKSI TAHUNAN
+===================================================== -->
 
+<div class="table-card produksi-tahunan-card">
+
+    <div class="table-title">
+        📊 Produksi Tahunan
+    </div>
+
+    <div class="tahun-chart-header">
+
+        <span>Produksi per Bulan (Kodi)</span>
+
+        <select id="filterTahunChart"
+                onchange="updateDiagramTahunan()">
+        </select>
+
+    </div>
+
+    <div class="chart-wrapper">
+
+        <div id="diagramTahunan"
+             class="diagram-tahunan">
+        </div>
+
+    </div>
+
+</div>
 
 <!-- =====================================================
      DATA MESIN
