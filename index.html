@@ -4181,14 +4181,13 @@ function updateDashboard() {
         new Set();
 
 
-    dataTampil.forEach(
+        dataTampil.forEach(
         row => {
 
             total +=
                 Number(
                     row[5]
                 ) || 0;
-
 
             if (
                 row[6] !== null &&
@@ -4206,12 +4205,10 @@ function updateDashboard() {
 
             }
 
-
             const g =
                 normalisasiGrup(
                     row[1]
                 );
-
 
             if (
                 g === "A" ||
@@ -4224,6 +4221,7 @@ function updateDashboard() {
             }
 
         }
+    );
 
 
     document.getElementById(
