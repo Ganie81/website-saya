@@ -2925,8 +2925,11 @@ function renderStatusAnalysis(
 
                 <div class="status-info">
 
-                    <div class="status-name">
-    ${escapeHtml(name)}
+                    <div class="status-name ${field==="grup" ? "grup-abc" : ""}">
+    ${field==="grup"
+        ? `<span class="abc-circle abc-${name.toLowerCase()}">${escapeHtml(name)}</span>`
+        : escapeHtml(name)
+    }
 </div>
 
                     <div class="status-total">
