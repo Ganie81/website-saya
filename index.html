@@ -4882,18 +4882,20 @@ async function ambilData() {
 
 
         semuaData =
-            data.slice(1);
-        isiFilterTahunChart();
+    data.slice(1);
+
+
+dataTampil =
+    [
+        ...semuaData
+    ];
+
+
+isiFilterTahunChart();
 updateDiagramTahunan();
 
 
-        dataTampil =
-            [
-                ...semuaData
-            ];
-
-
-        inisialisasiFilter();
+inisialisasiFilter();;
 
 
         /*
