@@ -3948,7 +3948,173 @@ function updatePencapaianGrup() {
 
 }
 
+/* =====================================================
+   DIAGRAM PRODUKSI TAHUNAN
+===================================================== */
 
+let tahunDiagram = null;
+
+function isiFilterTahunChart() {
+
+    const select =
+        document.getElementById("filterTahunChart");
+
+    if (!select) return;
+
+    const tahunSet = new Set();
+
+    semuaData.forEach(row => {
+
+        const p = getTanggalParts(row[7]);
+
+        if (p && p.tahun) {
+            tahunSet.add(p.tahun);
+        }
+
+    });
+
+    const tahunList =
+        [...tahunSet].sort((a,b) => b - a);
+
+    const tahunSebelumnya =
+        tahunDiagram;
+
+    select.innerHTML = "";
+
+    tahunList.forEach(tahun => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = tahun;
+        option.textContent = tahun;
+
+        select.appendChild(option);
+
+    });
+
+    if (
+        tahunSebelumnya &&
+        tahunList.includes(Number(tahunSebelumnya))
+    ) {
+
+        select.value = tahunSebelumnya;
+
+    } else if (tahunList.length > 0) {
+
+        const tahunSekarang =
+            new Date().getFullYear();
+
+        if (tahunList.includes(tahunSekarang)) {
+            select.value = tahunSekarang;
+        } else {
+            select.value = tahunList[0];
+        }
+
+    }
+
+    tahunDiagram =
+        select.value
+            ? Number(select.value)
+            : null;
+
+}
+
+
+function updateDiagramTahunan() {
+
+    const select =
+        document.getElementById("filterTahunChart");
+
+    const area =
+        document.getElementById("diagramTahunan");
+
+    if (!select || !area) return;
+
+    const tahun =
+        Number(select.value);
+
+    tahunDiagram = tahun;
+
+    const namaBulan = [
+        "Jan","Feb","Mar","Apr","Mei","Jun",
+        "Jul","Agu","Sep","Okt","Nov","Des"
+    ];
+
+    const nilaiBulan =
+        Array(12).fill(0);
+
+    dataTampil.forEach(row => {
+
+        const p =
+            getTanggalParts(row[7]);
+
+        if (!p || p.tahun !== tahun) return;
+
+        const qty =
+            Number(row[5]) || 0;
+
+        if (p.bulan >= 1 && p.bulan <= 12) {
+
+            nilaiBulan[p.bulan - 1] +=
+                qty / 20;
+
+        }
+
+    });
+
+    const max =
+        Math.max(...nilaiBulan, 0);
+
+    area.innerHTML = "";
+
+    nilaiBulan.forEach((nilai, index) => {
+
+        const item =
+            document.createElement("div");
+
+        item.className = "bulan-bar";
+
+        const label =
+            document.createElement("div");
+
+        label.className = "bulan-nilai";
+
+        label.textContent =
+            formatAngka(nilai) + " Kodi";
+
+        const batang =
+            document.createElement("div");
+
+        batang.className =
+            "batang-produksi";
+
+        const tinggi =
+            max > 0
+                ? Math.max((nilai / max) * 220, 3)
+                : 3;
+
+        batang.style.height =
+            tinggi + "px";
+
+        const bulan =
+            document.createElement("div");
+
+        bulan.className =
+            "bulan-nama";
+
+        bulan.textContent =
+            namaBulan[index];
+
+        item.appendChild(label);
+        item.appendChild(batang);
+        item.appendChild(bulan);
+
+        area.appendChild(item);
+
+    });
+
+}
 /* =====================================================
    DATA MESIN
 ===================================================== */
