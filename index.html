@@ -4223,7 +4223,11 @@ function updateDashboard() {
         }
     );
 
-
+document.getElementById(
+    "totalProduksi"
+).textContent =
+    formatAngka(total);
+    
     document.getElementById(
         "totalKodi"
     ).textContent =
