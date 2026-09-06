@@ -3912,42 +3912,6 @@ function updatePencapaianGrup() {
         persenC.toFixed(2) + "%";
 
 
-    
-
-
-    const totalRow =
-        document.createElement(
-            "tr"
-        );
-
-
-    totalRow.className =
-        "total-row";
-
-
-    totalRow.innerHTML = `
-
-        <td>TOTAL</td>
-
-        <td>
-            ${formatAngka(total)} Pcs
-        </td>
-
-        <td>
-            ${formatAngka(total / 20)}
-        </td>
-
-        <td>
-            100.00%
-        </td>
-
-    `;
-
-
-    tbody.appendChild(
-        totalRow
-    );
-
 }
 
 /* =====================================================
