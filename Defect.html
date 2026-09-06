@@ -370,7 +370,6 @@ body{
 
 /* =====================================================
    FILTER SEARCH / TELUSURI
-   HANYA MUNCUL UNTUK 3 FILTER
 ===================================================== */
 
 .filter-search-wrap{
@@ -2139,19 +2138,9 @@ let currentSearch = "";
 
 let savedFilterLoaded = false;
 
-/*
-   Filter tersimpan disimpan di memory
-   supaya tidak hilang ketika data baru masuk.
-*/
 let pendingSavedFilter = null;
 
-/*
-   Signature option filter.
-   Mencegah DOM select dibangun ulang
-   kalau daftar pilihan sebenarnya sama.
-*/
 const filterOptionSignatures = {};
-
 
 const numberFormatter =
 new Intl.NumberFormat("id-ID");
@@ -2815,8 +2804,15 @@ break;
 if(!hasValue) continue;
 
 
-const tgl =
+const tglRaw =
 getCell(row,idx.tgl);
+
+const tglNorm =
+normalizeDate(tglRaw);
+
+const tglDisplay =
+formatDisplayDate(tglRaw);
+
 
 const roll =
 String(
@@ -2866,10 +2862,14 @@ getCell(row,idx.qty)
 
 newData.push({
 
-tgl:tgl,
+/*
+   TANGGAL:
+   tgl       = tanggal untuk ditampilkan
+   dateNorm  = tanggal standar untuk filter
+*/
+tgl:tglDisplay,
 
-dateNorm:
-normalizeDate(tgl),
+dateNorm:tglNorm,
 
 roll:roll,
 
@@ -2891,7 +2891,8 @@ operator:operator,
 
 searchText:
 [
-tgl,
+tglDisplay,
+tglNorm || "",
 roll,
 kode,
 qty,
@@ -3010,66 +3011,536 @@ return isNaN(number)
 
 /* =====================================================
    DATE
+   PERBAIKAN UTAMA
 ===================================================== */
+
+/*
+   Fungsi ini sengaja TIDAK menggunakan:
+
+   new Date(text)
+
+   secara langsung untuk format tanggal biasa,
+   karena JavaScript dapat terkena masalah timezone
+   sehingga tanggal bisa mundur/maju satu hari.
+
+   Semua tanggal akhirnya dibuat menjadi:
+
+   YYYY-MM-DD
+
+   tanpa konversi timezone.
+*/
 
 function normalizeDate(value){
 
-if(!value) return null;
+if(
+value === null ||
+value === undefined ||
+value === ""
+){
+
+return null;
+
+}
+
+
+/* =====================================================
+   1. JIKA VALUE ADALAH OBJECT DATE
+===================================================== */
+
+if(
+Object.prototype.toString.call(value) ===
+"[object Date]"
+){
+
+if(isNaN(value.getTime())){
+
+return null;
+
+}
+
+
+/*
+   Gunakan komponen lokal dari object Date.
+   Tidak menggunakan toISOString() agar tidak
+   bergeser karena UTC/timezone.
+*/
+
+return (
+String(value.getFullYear()) +
+"-" +
+String(value.getMonth() + 1).padStart(2,"0") +
+"-" +
+String(value.getDate()).padStart(2,"0")
+);
+
+}
+
 
 const text =
 String(value).trim();
 
 
-if(
-/^\d{4}-\d{2}-\d{2}$/
-.test(text)
-){
+if(!text){
 
-return text;
+return null;
 
 }
 
+
+/* =====================================================
+   2. FORMAT YYYY-MM-DD
+===================================================== */
 
 let match =
 text.match(
-/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/
+/^(\d{4})-(\d{1,2})-(\d{1,2})$/
 );
-
 
 if(match){
 
-return (
-match[3] +
-"-" +
-String(match[2]).padStart(2,"0") +
-"-" +
-String(match[1]).padStart(2,"0")
+return makeSafeDate(
+match[1],
+match[2],
+match[3]
 );
 
 }
 
 
+/* =====================================================
+   3. FORMAT YYYY-MM-DD HH:MM:SS
+       ATAU ISO
+===================================================== */
+
 match =
 text.match(
-/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2})/
+/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[T\s].*)?$/
 );
-
 
 if(match){
 
-return (
-"20" +
-match[3] +
-"-" +
-String(match[2]).padStart(2,"0") +
-"-" +
-String(match[1]).padStart(2,"0")
+return makeSafeDate(
+match[1],
+match[2],
+match[3]
 );
+
+}
+
+
+/* =====================================================
+   4. FORMAT DD/MM/YYYY
+===================================================== */
+
+match =
+text.match(
+/^(\d{1,2})[\/](\d{1,2})[\/](\d{4})/
+);
+
+if(match){
+
+return makeSafeDate(
+match[3],
+match[2],
+match[1]
+);
+
+}
+
+
+/* =====================================================
+   5. FORMAT DD-MM-YYYY
+===================================================== */
+
+match =
+text.match(
+/^(\d{1,2})[-](\d{1,2})[-](\d{4})/
+);
+
+if(match){
+
+return makeSafeDate(
+match[3],
+match[2],
+match[1]
+);
+
+}
+
+
+/* =====================================================
+   6. FORMAT DD/MM/YY
+===================================================== */
+
+match =
+text.match(
+/^(\d{1,2})[\/](\d{1,2})[\/](\d{2})/
+);
+
+if(match){
+
+return makeSafeDate(
+"20" + match[3],
+match[2],
+match[1]
+);
+
+}
+
+
+/* =====================================================
+   7. FORMAT DD-MM-YY
+===================================================== */
+
+match =
+text.match(
+/^(\d{1,2})[-](\d{1,2})[-](\d{2})/
+);
+
+if(match){
+
+return makeSafeDate(
+"20" + match[3],
+match[2],
+match[1]
+);
+
+}
+
+
+/* =====================================================
+   8. FORMAT INDONESIA
+      28 Agustus 2026
+===================================================== */
+
+const monthNames = {
+
+"januari":"01",
+"februari":"02",
+"maret":"03",
+"april":"04",
+"mei":"05",
+"juni":"06",
+"juli":"07",
+"agustus":"08",
+"september":"09",
+"oktober":"10",
+"november":"11",
+"desember":"12",
+
+"jan":"01",
+"feb":"02",
+"mar":"03",
+"apr":"04",
+"jun":"06",
+"jul":"07",
+"agu":"08",
+"agt":"08",
+"sep":"09",
+"sept":"09",
+"okt":"10",
+"nov":"11",
+"des":"12"
+
+};
+
+const monthPattern =
+"januari|februari|maret|april|mei|juni|juli|agustus|september|oktober|november|desember|jan|feb|mar|apr|jun|jul|agu|agt|sep|sept|okt|nov|des";
+
+const monthRegex =
+new RegExp(
+"^(\\d{1,2})\\s+(" +
+monthPattern +
+")\\s+(\\d{4})",
+"i"
+);
+
+match =
+text.match(monthRegex);
+
+if(match){
+
+const month =
+monthNames[
+match[2].toLowerCase()
+];
+
+return makeSafeDate(
+match[3],
+month,
+match[1]
+);
+
+}
+
+
+/* =====================================================
+   9. FORMAT ENGLISH MONTH
+      28 Aug 2026
+===================================================== */
+
+const englishMonths = {
+
+"january":"01",
+"february":"02",
+"march":"03",
+"april":"04",
+"may":"05",
+"june":"06",
+"july":"07",
+"august":"08",
+"september":"09",
+"october":"10",
+"november":"11",
+"december":"12",
+
+"jan":"01",
+"feb":"02",
+"mar":"03",
+"apr":"04",
+"may":"05",
+"jun":"06",
+"jul":"07",
+"aug":"08",
+"sep":"09",
+"oct":"10",
+"nov":"11",
+"dec":"12"
+
+};
+
+const englishMonthPattern =
+"january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|jun|jul|aug|sep|oct|nov|dec";
+
+const englishMonthRegex =
+new RegExp(
+"^(\\d{1,2})\\s+(" +
+englishMonthPattern +
+")\\s+(\\d{4})",
+"i"
+);
+
+match =
+text.match(englishMonthRegex);
+
+if(match){
+
+const month =
+englishMonths[
+match[2].toLowerCase()
+];
+
+return makeSafeDate(
+match[3],
+month,
+match[1]
+);
+
+}
+
+
+/* =====================================================
+   10. FORMAT GOOGLE / JAVASCRIPT DATE STRING
+       Contoh:
+       Fri Aug 28 2026 ...
+===================================================== */
+
+match =
+text.match(
+/^[A-Za-z]{3}\s+([A-Za-z]{3})\s+(\d{1,2})\s+(\d{4})/
+);
+
+if(match){
+
+const month =
+englishMonths[
+match[1].toLowerCase()
+];
+
+return makeSafeDate(
+match[3],
+month,
+match[2]
+);
+
+}
+
+
+/* =====================================================
+   11. ANGKA SERIAL GOOGLE SHEETS
+===================================================== */
+
+if(
+/^\d+(?:\.\d+)?$/.test(text)
+){
+
+const serial =
+Number(text);
+
+
+/*
+   Google Sheets memakai sistem tanggal serial.
+   1 = 1899-12-31 secara konseptual,
+   tetapi ada kompatibilitas Excel leap-year bug.
+*/
+
+if(
+serial > 20000 &&
+serial < 100000
+){
+
+const base =
+Date.UTC(
+1899,
+11,
+30
+);
+
+const utcDate =
+new Date(
+base +
+Math.floor(serial) *
+86400000
+);
+
+return (
+String(utcDate.getUTCFullYear()) +
+"-" +
+String(utcDate.getUTCMonth() + 1).padStart(2,"0") +
+"-" +
+String(utcDate.getUTCDate()).padStart(2,"0")
+);
+
+}
 
 }
 
 
 return null;
+
+}
+
+
+/* =====================================================
+   SAFE DATE
+===================================================== */
+
+function makeSafeDate(
+year,
+month,
+day
+){
+
+const y =
+Number(year);
+
+const m =
+Number(month);
+
+const d =
+Number(day);
+
+
+if(
+!Number.isInteger(y) ||
+!Number.isInteger(m) ||
+!Number.isInteger(d)
+){
+
+return null;
+
+}
+
+
+if(
+y < 1900 ||
+y > 2200 ||
+m < 1 ||
+m > 12 ||
+d < 1 ||
+d > 31
+){
+
+return null;
+
+}
+
+
+/*
+   Validasi supaya tanggal seperti
+   31/02/2026 tidak diterima.
+*/
+
+const test =
+new Date(
+Date.UTC(
+y,
+m - 1,
+d
+)
+);
+
+
+if(
+test.getUTCFullYear() !== y ||
+test.getUTCMonth() !== m - 1 ||
+test.getUTCDate() !== d
+){
+
+return null;
+
+}
+
+
+return (
+String(y) +
+"-" +
+String(m).padStart(2,"0") +
+"-" +
+String(d).padStart(2,"0")
+);
+
+}
+
+
+/* =====================================================
+   FORMAT DISPLAY DATE
+   OUTPUT:
+   DD/MM/YYYY
+===================================================== */
+
+function formatDisplayDate(value){
+
+const normalized =
+normalizeDate(value);
+
+
+if(!normalized){
+
+/*
+   Kalau benar-benar tidak dikenali,
+   tampilkan nilai sumber apa adanya.
+*/
+return String(
+value == null
+? ""
+: value
+).trim();
+
+}
+
+
+const parts =
+normalized.split("-");
+
+
+return (
+parts[2] +
+"/" +
+parts[1] +
+"/" +
+parts[0]
+);
 
 }
 
@@ -3128,7 +3599,6 @@ sensitivity:"base"
 
 /* =====================================================
    FILTER SEARCH SETUP
-   HANYA 3 FILTER
 ===================================================== */
 
 function setupFilterSearch(){
@@ -3319,11 +3789,6 @@ const optionCount =
 select.options.length;
 
 
-/*
-   Telusuri hanya muncul
-   jika pilihan > 8.
-*/
-
 if(optionCount > 8){
 
 wrap.classList.add("show");
@@ -3395,11 +3860,6 @@ getSelectedValues(select);
 const signature =
 values.join("\u0001");
 
-
-/*
-   Kalau pilihan tidak berubah,
-   jangan bangun ulang DOM.
-*/
 
 if(
 filterOptionSignatures[id] === signature &&
@@ -3474,7 +3934,6 @@ updateFilterSearch(id);
 
 /* =====================================================
    POPULATE FILTER
-   SATU KALI LOOP DATA
 ===================================================== */
 
 function populateFilters(){
@@ -3984,11 +4443,6 @@ savedFilterLoaded =
 true;
 
 
-/*
-   Simpan filter sebelum
-   melakukan render.
-*/
-
 saveFilter(f);
 
 
@@ -4037,7 +4491,6 @@ filteredData.length +
 
 /* =====================================================
    CLEAR FILTER TAMPILAN
-   TIDAK MENGHAPUS SAVED FILTER
 ===================================================== */
 
 function clearFilter(){
@@ -4159,8 +4612,7 @@ error
 
 
 /* =====================================================
-   RESTORE SAVED FILTER
-   HANYA BACA DULU
+   RESTORE SAVED FILTER ONLY
 ===================================================== */
 
 function restoreSavedFilterOnly(){
@@ -4210,7 +4662,7 @@ savedFilterLoaded = false;
 
 
 /* =====================================================
-   RESTORE FILTER SETELAH DATA TERSEDIA
+   RESTORE FILTER
 ===================================================== */
 
 function restoreSavedFilter(){
@@ -4485,8 +4937,6 @@ rollId:"Roll"
 let count = 0;
 
 
-/* DATE */
-
 [
 "dateFrom",
 "dateTo"
@@ -4521,8 +4971,6 @@ chip
 }
 );
 
-
-/* MULTI */
 
 MULTI_FILTER_IDS.forEach(
 function(key){
@@ -4643,7 +5091,6 @@ Number(value) || 0
 
 /* =====================================================
    BUILD DASHBOARD AGGREGATE
-   SATU KALI LOOP
 ===================================================== */
 
 function buildDashboardAggregate(data){
@@ -5232,6 +5679,19 @@ Number(av);
 
 bv =
 Number(bv);
+
+}else if(field === "tgl"){
+
+/*
+   Sort tanggal menggunakan dateNorm,
+   bukan teks DD/MM/YYYY.
+*/
+
+av =
+a.dateNorm || "";
+
+bv =
+b.dateNorm || "";
 
 }else{
 
