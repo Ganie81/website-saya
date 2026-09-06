@@ -4198,9 +4198,11 @@ function updateDashboard() {
 
 
     document.getElementById(
-        "totalProduksi"
-    ).textContent =
-        formatAngka(total);
+    "totalKodi"
+).textContent =
+    formatAngka(
+        Math.round(total / 20)
+    );
 
 
     document.getElementById(
