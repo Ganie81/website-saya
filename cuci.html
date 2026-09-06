@@ -770,6 +770,87 @@ body{
     word-break:break-word;
     margin-bottom:4px;
 }
+    /* LINGKARAN ABC 3D GLOSSY */
+
+.abc-circle{
+    width:48px;
+    height:48px;
+    min-width:48px;
+
+    border-radius:50%;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+    font-size:24px;
+    font-weight:900;
+
+    position:relative;
+
+    border:2px solid rgba(255,255,255,.8);
+
+    text-shadow:
+        0 2px 3px rgba(0,0,0,.45);
+
+    box-shadow:
+        0 6px 10px rgba(0,0,0,.35),
+        inset 0 3px 5px rgba(255,255,255,.65),
+        inset 0 -6px 8px rgba(0,0,0,.30);
+}
+
+.abc-circle::before{
+    content:"";
+    position:absolute;
+    top:5px;
+    left:8px;
+    width:25px;
+    height:12px;
+    border-radius:50%;
+    background:rgba(255,255,255,.65);
+    transform:rotate(-25deg);
+    filter:blur(1px);
+}
+
+/* A merah */
+
+.abc-a{
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffb8b8 0%,
+            #ff4d4d 25%,
+            #dc2626 58%,
+            #7f1111 100%
+        );
+}
+
+/* B biru */
+
+.abc-b{
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #c4e1ff 0%,
+            #4f9cff 25%,
+            #2563eb 58%,
+            #123c8c 100%
+        );
+}
+
+/* C hijau */
+
+.abc-c{
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #c2ffd5 0%,
+            #4ade80 25%,
+            #16a34a 58%,
+            #075c2b 100%
+        );
+}
 
 .status-total{
     color:#64748b;
