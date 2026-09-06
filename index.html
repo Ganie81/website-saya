@@ -4486,7 +4486,7 @@ function updateDiagramTahunan() {
         label.className = "bulan-nilai";
 
         label.textContent =
-            formatAngka(nilai) + " Kodi";
+    formatAngka(Math.round(nilai)) + " Kodi";
 
         const batang =
             document.createElement("div");
