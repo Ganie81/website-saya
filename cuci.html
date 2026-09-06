@@ -2773,11 +2773,20 @@ function renderStatusAnalysis(
 
 
     const entries=
-        Object.entries(groups)
-        .sort(
-            (a,b)=>
-                b[1].total-a[1].total
-        );
+    Object.entries(groups)
+    .sort(
+        (a,b)=>{
+            if(field==="grup"){
+                return a[0].localeCompare(
+                    b[0],
+                    undefined,
+                    {numeric:true}
+                );
+            }
+
+            return b[1].total-a[1].total;
+        }
+    );
 
 
     const html=[];
