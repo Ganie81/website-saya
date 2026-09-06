@@ -2845,8 +2845,10 @@ function renderStatusAnalysis(
                 <div class="status-info">
 
                     <div class="status-name">
-                        ${escapeHtml(name)}
-                    </div>
+    <span class="abc-circle abc-${name.toLowerCase()}">
+        ${escapeHtml(name)}
+    </span>
+</div>
 
                     <div class="status-total">
                         Total Data:
