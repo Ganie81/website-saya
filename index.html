@@ -45,30 +45,41 @@ h1 {
     text-align: center;
     margin: 0 0 22px 0;
 
-    background: linear-gradient(
-        to bottom,
-        #fff4bd 0%,
-        #f5d77b 18%,
-        #b8862d 48%,
-        #7a531b 68%,
-        #c99735 82%,
-        #ffe9a3 100%
-    );
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-
     font-size: 40px;
     font-weight: 900;
     letter-spacing: 1.2px;
 
+    color: #f8e7a5;
+
     text-shadow:
-        0 1px 0 #fff3b5,
-        0 3px 0 #8b641f,
-        0 5px 0 #5a3b12,
-        0 7px 10px rgba(0,0,0,.80),
-        0 0 16px rgba(255,220,130,.30);
+        0 3px 0 #8a611f,
+        0 5px 0 #654314,
+        0 7px 0 #42290c,
+        0 10px 14px rgba(0,0,0,.85);
+}
+
+.judul-3d {
+    background: linear-gradient(
+        to bottom,
+        #fff7c7 0%,
+        #ffe58a 15%,
+        #d4a63a 38%,
+        #8a5d18 58%,
+        #6b4510 72%,
+        #c08b27 88%,
+        #ffe9a0 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 1px 0 #fff1b0,
+        0 3px 0 #9a6b1f,
+        0 5px 0 #654313,
+        0 7px 0 #3d250b,
+        0 10px 12px rgba(0,0,0,.85);
 }
 
 
@@ -1428,8 +1439,7 @@ body.screenshot-mode .group-percent {
 
 <body>
 
-<h1>📊 DASHBOARD PRODUKSI</h1>
-
+<h1>📊 <span class="judul-3d">DASHBOARD PRODUKSI</span></h1>
 <div class="mode-buttons">
 
 <button
