@@ -2230,6 +2230,53 @@ function filterSelectionChanged(id){
     updateFilterText(id);
 
 }
+    function searchFilterOptions(id, keyword){
+
+    const menu=
+        document.getElementById(id+"Menu");
+
+    if(!menu) return;
+
+    keyword=
+        String(keyword||"")
+        .toLowerCase()
+        .trim();
+
+    const options=
+        menu.querySelectorAll(
+            ".multi-option"
+        );
+
+    options.forEach(option=>{
+
+        const input=
+            option.querySelector(
+                'input[type="checkbox"]'
+            );
+
+        if(!input) return;
+
+        /* "Semua" tetap tampil */
+        if(input.value==="__ALL__"){
+            option.style.display="";
+            return;
+        }
+
+        const text=
+            option
+            .querySelector("span")
+            ?.textContent
+            .toLowerCase()
+            .trim() || "";
+
+        option.style.display=
+            text.includes(keyword)
+            ? ""
+            : "none";
+
+    });
+
+}
 
 
 function updateFilterText(id){
