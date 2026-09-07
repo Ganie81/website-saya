@@ -6560,6 +6560,27 @@ function renderDefectMachineMatrix(){
         );
 
     }
+          /* =================================================
+       HEADER MATRIX
+    ================================================= */
+
+    header.innerHTML = `
+        <th>JENIS DEFECT</th>
+        ${machineOrder
+            .map(
+                function(machine){
+
+                    return `
+                        <th>
+                            ${escapeHtml(machine)}
+                        </th>
+                    `;
+
+                }
+            )
+            .join("")
+        }
+    `;
 
 
     /* =================================================
