@@ -1163,7 +1163,386 @@ body{
         inset 0 2px 2px rgba(255,255,255,.95),
         inset 0 -4px 7px rgba(105,67,8,.25);
 }      
+      /* KILAU PREMIUM BAGIAN ATAS */
 
+.matrix-card::before{
+    content:"";
+
+    position:absolute;
+
+    left:10px;
+    right:10px;
+    top:7px;
+
+    height:34px;
+
+    border-radius:15px 15px 50% 50%;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.72),
+            rgba(255,255,255,.18),
+            transparent
+        );
+
+    pointer-events:none;
+
+    z-index:1;
+}
+
+
+/* GLOW PREMIUM */
+
+.matrix-card::after{
+    content:"";
+
+    position:absolute;
+
+    width:230px;
+    height:230px;
+
+    right:-100px;
+    top:-110px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.55) 0%,
+            rgba(255,255,255,.15) 35%,
+            transparent 72%
+        );
+
+    pointer-events:none;
+
+    z-index:1;
+}
+/* =====================================================
+   JUDUL MATRIX PREMIUM
+===================================================== */
+
+.matrix-title{
+    position:relative;
+    z-index:3;
+
+    margin-bottom:5px;
+
+    color:#4b3108;
+
+    font-size:17px;
+    font-weight:950;
+
+    letter-spacing:.35px;
+
+    text-shadow:
+        0 1px 0 #fff5bd,
+        0 2px 2px rgba(72,45,4,.30);
+}
+
+
+.matrix-subtitle{
+    position:relative;
+    z-index:3;
+
+    margin-bottom:14px;
+
+    color:#72551a;
+
+    font-size:11px;
+    font-weight:750;
+
+    letter-spacing:.25px;
+}
+/* =====================================================
+   FRAME TABEL PREMIUM
+===================================================== */
+
+.matrix-wrap{
+    position:relative;
+
+    overflow:auto;
+
+    border-radius:14px;
+
+    background:#8b5e16;
+
+    border:1px solid #744b0b;
+
+    box-shadow:
+        0 7px 12px rgba(66,43,7,.32),
+        inset 0 1px 1px rgba(255,255,255,.65);
+
+    -webkit-overflow-scrolling:touch;
+}
+/* =====================================================
+   TABEL MATRIX
+===================================================== */
+
+.matrix-table{
+    width:100%;
+
+    min-width:650px;
+
+    border-collapse:separate;
+    border-spacing:0;
+
+    table-layout:fixed;
+
+    font-size:12px;
+}
+/* =====================================================
+   HEADER MATRIX PREMIUM
+===================================================== */
+
+.matrix-table thead th{
+    position:sticky;
+    top:0;
+
+    z-index:5;
+
+    height:43px;
+
+    padding:9px 10px;
+
+    color:#fffdf2;
+
+    background:
+        linear-gradient(
+            180deg,
+            #9a7025 0%,
+            #704b0d 45%,
+            #4d3107 100%
+        );
+
+    border-right:1px solid rgba(255,220,130,.30);
+    border-bottom:2px solid #3e2705;
+
+    text-align:center;
+
+    font-size:11px;
+    font-weight:950;
+
+    letter-spacing:.5px;
+
+    text-shadow:
+        0 1px 1px rgba(0,0,0,.75);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.30),
+        inset 0 -2px 3px rgba(0,0,0,.20),
+        0 2px 4px rgba(55,34,3,.35);
+}
+/* KOLOM JENIS DEFECT */
+
+.matrix-table thead th:first-child{
+    position:sticky;
+    left:0;
+
+    z-index:8;
+
+    width:210px;
+
+    text-align:left;
+
+    padding-left:14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #a97924 0%,
+            #704b0d 48%,
+            #4c3006 100%
+        );
+
+    border-right:2px solid #9c6b17;
+}
+/* =====================================================
+   ISI TABEL PREMIUM
+===================================================== */
+
+.matrix-table tbody td{
+    height:39px;
+
+    padding:7px 9px;
+
+    color:#4b360d;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff8d9 0%,
+            #f4df91 48%,
+            #e8c85c 100%
+        );
+
+    border-right:1px solid rgba(118,77,10,.38);
+    border-bottom:1px solid rgba(118,77,10,.38);
+
+    text-align:center;
+
+    font-weight:800;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.60);
+}
+/* BARIS SELANG-SELING */
+
+.matrix-table tbody tr:nth-child(even) td{
+    background:
+        linear-gradient(
+            180deg,
+            #fffbe5 0%,
+            #f0d77d 52%,
+            #dfbd4f 100%
+        );
+}
+/* =====================================================
+   KOLOM JENIS DEFECT PREMIUM
+===================================================== */
+
+.matrix-table tbody td:first-child{
+    position:sticky;
+    left:0;
+
+    z-index:4;
+
+    width:210px;
+
+    padding-left:14px;
+
+    color:#493006;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff4b7 0%,
+            #e8c45b 50%,
+            #c99b2f 100%
+        );
+
+    text-align:left;
+
+    font-weight:950;
+
+    box-shadow:
+        inset -2px 0 3px rgba(92,57,5,.20),
+        inset 0 1px 0 rgba(255,255,255,.75);
+}
+/* =====================================================
+   ANGKA CELL — 3D PREMIUM
+===================================================== */
+
+.matrix-value{
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    min-width:34px;
+    height:25px;
+
+    padding:0 7px;
+
+    border-radius:7px;
+
+    color:#4a3006;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffce9 0%,
+            #f5d978 52%,
+            #c99826 100%
+        );
+
+    border:1px solid rgba(118,77,8,.42);
+
+    box-shadow:
+        0 2px 3px rgba(75,47,5,.25),
+        inset 0 1px 1px rgba(255,255,255,.85);
+
+    font-size:11px;
+    font-weight:950;
+}
+/* NILAI 0 — LEBIH REDUP */
+
+.matrix-value.zero{
+    color:#9b8147;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f7f0d1,
+            #ded2a6
+        );
+
+    opacity:.72;
+
+    box-shadow:
+        inset 0 1px 2px rgba(80,55,10,.12);
+}
+/* =====================================================
+   NILAI TERTINGGI — GOLD 3D
+===================================================== */
+
+.matrix-value.top{
+    color:#fff;
+
+    background:
+        linear-gradient(
+            145deg,
+            #a97813 0%,
+            #704807 48%,
+            #4b2d04 100%
+        );
+
+    border-color:#392204;
+
+    box-shadow:
+        0 3px 6px rgba(61,37,3,.42),
+        inset 0 1px 1px rgba(255,255,255,.42),
+        inset 0 -2px 3px rgba(0,0,0,.25);
+
+    text-shadow:
+        0 1px 2px rgba(0,0,0,.7);
+
+    transform:translateY(-1px);
+}
+/* =====================================================
+   BAGIAN BAWAH TABEL
+===================================================== */
+
+.matrix-table tbody tr:last-child td{
+    border-bottom:none;
+}
+/* =====================================================
+   KOLOM TOTAL — PREMIUM
+===================================================== */
+
+.matrix-total{
+    font-weight:950 !important;
+
+    color:#fff8d0 !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #a87920 0%,
+            #70490b 48%,
+            #4b2d05 100%
+        ) !important;
+
+    border-left:2px solid #9d701d !important;
+
+    text-shadow:
+        0 1px 2px rgba(0,0,0,.65);
+
+    box-shadow:
+        inset 1px 0 2px rgba(255,255,255,.18),
+        inset 0 1px 1px rgba(255,255,255,.25);
+}
 /* =====================================================
    TABLE
 ===================================================== */
