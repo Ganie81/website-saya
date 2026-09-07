@@ -2049,6 +2049,12 @@ function buildFilters(){
         filterWarna:"warna",
         filterMesin:"mesin"
     };
+    const searchableFilters=[
+    "filterKode",
+    "filterRoll",
+    "filterMotif",
+    "filterWarna"
+];
 
 
     Object.keys(filterFields).forEach(id=>{
@@ -2084,7 +2090,19 @@ function buildFilters(){
 
         const values=fragmentData[id];
 
-        container.innerHTML=`
+const searchBox=
+    searchableFilters.includes(id)
+    ? `
+        <div class="filter-search">
+            <input
+                type="text"
+                placeholder="Telusuri..."
+                oninput="searchFilterOptions('${id}',this.value)">
+        </div>
+      `
+    : "";
+
+container.innerHTML=`
 
             <div class="multi-select-btn"
                  onclick="toggleMenu('${id}')">
@@ -2098,9 +2116,11 @@ function buildFilters(){
             </div>
 
             <div class="multi-select-menu"
-                 id="${id}Menu">
+     id="${id}Menu">
 
-                <label class="multi-option">
+    ${searchBox}
+
+    <label class="multi-option">
 
                     <input
                         type="checkbox"
