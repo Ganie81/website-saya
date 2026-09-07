@@ -6660,49 +6660,56 @@ function renderDefectMachineMatrix(){
 
 
     /* =================================================
-       CARI NILAI TERTINGGI
-    ================================================= */
+   CARI NILAI TERTINGGI PER FLAT
+================================================= */
 
-    let maxValue = 0;
+const maxByMachine = new Map();
+
+
+for(
+    let i = 0;
+    i < entries.length;
+    i++
+){
+
+    const machineMap =
+        entries[i][1];
 
 
     for(
-        let i = 0;
-        i < entries.length;
-        i++
+        let j = 0;
+        j < machineOrder.length;
+        j++
     ){
 
-        const machineMap =
-            entries[i][1];
+        const machine =
+            machineOrder[j];
 
 
-        for(
-            let j = 0;
-            j < machineOrder.length;
-            j++
-        ){
-
-            const machine =
-                machineOrder[j];
+        const value =
+            Number(
+                machineMap.get(machine) || 0
+            );
 
 
-            const value =
-                Number(
-                    machineMap.get(machine) || 0
-                );
+        const oldMax =
+            Number(
+                maxByMachine.get(machine) || 0
+            );
 
 
-            if(value > maxValue){
+        if(value > oldMax){
 
-                maxValue =
-                    value;
-
-            }
+            maxByMachine.set(
+                machine,
+                value
+            );
 
         }
 
     }
 
+}
 
     /* =================================================
        RENDER BARIS
