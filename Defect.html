@@ -6389,7 +6389,413 @@ fragment
 );
 
 }
+/* =====================================================
+   MATRIX MESIN × JENIS DEFECT
+===================================================== */
 
+function renderDefectMachineMatrix(){
+
+    const header =
+        document.getElementById("matrixHeader");
+
+    const body =
+        document.getElementById("matrixBody");
+
+
+    if(!header || !body){
+
+        return;
+
+    }
+
+
+    /* =================================================
+       AMBIL MESIN AKTIF DARI DATA HASIL FILTER
+       MESIN TIDAK DI-HARDCODE
+    ================================================= */
+
+    const machineSet =
+        new Set();
+
+
+    for(
+        let i = 0;
+        i < filteredData.length;
+        i++
+    ){
+
+        const machine =
+            normalizeMachineName(
+                filteredData[i].mesin
+            );
+
+
+        if(machine){
+
+            machineSet.add(
+                machine
+            );
+
+        }
+
+    }
+
+
+    /* =================================================
+       URUTKAN MESIN
+       FLAT 1
+       FLAT 2
+       FLAT 3
+       ...
+       FLAT 10
+    ================================================= */
+
+    const machineOrder =
+        Array.from(machineSet)
+            .sort(
+                function(a,b){
+
+                    const na =
+                        Number(
+                            (a.match(/\d+/) || [999])[0]
+                        );
+
+
+                    const nb =
+                        Number(
+                            (b.match(/\d+/) || [999])[0]
+                        );
+
+
+                    if(na !== nb){
+
+                        return na - nb;
+
+                    }
+
+
+                    return a.localeCompare(
+                        b,
+                        "id",
+                        {
+                            sensitivity:"base"
+                        }
+                    );
+
+                }
+            );
+
+
+    /* =================================================
+       MATRIX
+       DEFECT
+         └── MESIN
+               └── TOTAL PCS
+    ================================================= */
+
+    const matrix =
+        new Map();
+
+
+    for(
+        let i = 0;
+        i < filteredData.length;
+        i++
+    ){
+
+        const row =
+            filteredData[i];
+
+
+        const defect =
+            String(
+                row.defect || "(Kosong)"
+            )
+            .trim() ||
+            "(Kosong)";
+
+
+        const machine =
+            normalizeMachineName(
+                row.mesin
+            );
+
+
+        if(!machine){
+
+            continue;
+
+        }
+
+
+        if(!matrix.has(defect)){
+
+            matrix.set(
+                defect,
+                new Map()
+            );
+
+        }
+
+
+        const defectMap =
+            matrix.get(defect);
+
+
+        const oldValue =
+            Number(
+                defectMap.get(machine) || 0
+            );
+
+
+        const qty =
+            Number(
+                row.qty || 0
+            );
+
+
+        defectMap.set(
+            machine,
+            oldValue + qty
+        );
+
+    }
+
+
+    /* =================================================
+       HEADER
+    ================================================= */
+
+    header.innerHTML = `
+        <th>JENIS DEFECT</th>
+        ${machineOrder
+            .map(
+                function(machine){
+
+                    return `
+                        <th>
+                            ${escapeHtml(machine)}
+                        </th>
+                    `;
+
+                }
+            )
+            .join("")
+        }
+    `;
+
+
+    /* =================================================
+       TIDAK ADA DATA
+    ================================================= */
+
+    const entries =
+        Array.from(
+            matrix.entries()
+        )
+        .sort(
+            function(a,b){
+
+                return a[0].localeCompare(
+                    b[0],
+                    "id",
+                    {
+                        numeric:true,
+                        sensitivity:"base"
+                    }
+                );
+
+            }
+        );
+
+
+    if(!entries.length){
+
+        body.innerHTML = `
+            <tr>
+                <td
+                    colspan="${machineOrder.length + 1}"
+                    class="matrix-empty"
+                >
+                    Tidak ada data sesuai filter
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    /* =================================================
+       CARI NILAI TERTINGGI
+    ================================================= */
+
+    let maxValue = 0;
+
+
+    for(
+        let i = 0;
+        i < entries.length;
+        i++
+    ){
+
+        const machineMap =
+            entries[i][1];
+
+
+        for(
+            let j = 0;
+            j < machineOrder.length;
+            j++
+        ){
+
+            const machine =
+                machineOrder[j];
+
+
+            const value =
+                Number(
+                    machineMap.get(machine) || 0
+                );
+
+
+            if(value > maxValue){
+
+                maxValue =
+                    value;
+
+            }
+
+        }
+
+    }
+
+
+    /* =================================================
+       RENDER BARIS
+    ================================================= */
+
+    const html = [];
+
+
+    for(
+        let i = 0;
+        i < entries.length;
+        i++
+    ){
+
+        const defect =
+            entries[i][0];
+
+
+        const machineMap =
+            entries[i][1];
+
+
+        html.push(`
+            <tr>
+
+                <td>
+                    ${escapeHtml(defect)}
+                </td>
+
+                ${machineOrder
+                    .map(
+                        function(machine){
+
+                            const value =
+                                Number(
+                                    machineMap.get(machine) || 0
+                                );
+
+
+                            const zeroClass =
+                                value === 0
+                                    ? "zero"
+                                    : "";
+
+
+                            const topClass =
+                                value > 0 &&
+                                value === maxValue
+                                    ? "top"
+                                    : "";
+
+
+                            return `
+                                <td>
+
+                                    <span
+                                        class="
+                                            matrix-value
+                                            ${zeroClass}
+                                            ${topClass}
+                                        "
+                                    >
+                                        ${formatNumber(value)}
+                                    </span>
+
+                                </td>
+                            `;
+
+                        }
+                    )
+                    .join("")
+                }
+
+            </tr>
+        `);
+
+    }
+
+
+    body.innerHTML =
+        html.join("");
+
+}
+
+
+/* =====================================================
+   NORMALIZE NAMA MESIN
+   CONTOH:
+   FLAT1  → FLAT 1
+   FLAT 1 → FLAT 1
+   FLAT7  → FLAT 7
+   FLAT 8 → FLAT 8
+   FLAT10 → FLAT 10
+===================================================== */
+
+function normalizeMachineName(value){
+
+    const text =
+        String(
+            value || ""
+        )
+        .trim()
+        .toUpperCase()
+        .replace(
+            /\s+/g,
+            " "
+        );
+
+
+    const match =
+        text.match(
+            /^FLAT\s*([0-9]+)$/
+        );
+
+
+    if(!match){
+
+        return text;
+
+    }
+
+
+    return `FLAT ${match[1]}`;
+
+}
 
 /* =====================================================
    QUICK SEARCH
