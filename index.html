@@ -1192,7 +1192,28 @@ linear-gradient(
         inset 0 -12px 20px rgba(70,80,90,.12);
 }
 
+.diagram-tahunan::before{
+    content:"";
 
+    position:absolute;
+
+    left:8px;
+    right:8px;
+
+    top:25%;
+
+    height:1px;
+
+    background:rgba(70,145,195,.22);
+
+    box-shadow:
+        0 75px 0 rgba(70,145,195,.22),
+        0 150px 0 rgba(70,145,195,.22);
+
+    z-index:0;
+
+    pointer-events:none;
+}
 
 
 /* =========================
