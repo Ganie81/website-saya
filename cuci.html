@@ -2041,14 +2041,24 @@ function buildFilters(){
 
     const fragmentData={};
 
-    Object.keys(FILTERS).forEach(id=>{
+    const filterFields={
+        filterGrup:"grup",
+        filterKode:"kode",
+        filterRoll:"roll",
+        filterMotif:"motif",
+        filterWarna:"warna",
+        filterMesin:"mesin"
+    };
 
-        const config=FILTERS[id];
+
+    Object.keys(filterFields).forEach(id=>{
+
+        const field=filterFields[id];
 
         const values=
             [...new Set(
                 allData
-                .map(item=>item[config.index])
+                .map(item=>item[field])
                 .filter(v=>v!=="")
             )]
             .sort((a,b)=>
