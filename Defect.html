@@ -5992,7 +5992,97 @@ Number(value) || 0
 
 }
 
+/* =====================================================
+   ANALISA AI — BERDASARKAN DATA FILTER
+===================================================== */
 
+function generateAIAnalysis(){
+
+    const box =
+        document.getElementById("aiAnalysisContent");
+
+    if(!box){
+        return;
+    }
+
+    if(!filteredData || filteredData.length === 0){
+
+        box.innerHTML =
+            "TIDAK ADA DATA PADA FILTER YANG DIPILIH.";
+
+        return;
+    }
+
+
+    let totalDefect = 0;
+
+    const defectMap = new Map();
+    const machineMap = new Map();
+
+
+    filteredData.forEach(row => {
+
+        const qty =
+            Number(row.qty) || 0;
+
+        const defect =
+            String(row.defect || "TIDAK DIKETAHUI")
+            .trim();
+
+        const machine =
+            String(row.mesin || "TIDAK DIKETAHUI")
+            .trim();
+
+
+        totalDefect += qty;
+
+
+        defectMap.set(
+            defect,
+            (defectMap.get(defect) || 0) + qty
+        );
+
+
+        machineMap.set(
+            machine,
+            (machineMap.get(machine) || 0) + qty
+        );
+
+    });
+
+
+    const topDefect =
+        [...defectMap.entries()]
+        .sort((a,b) => b[1] - a[1])[0];
+
+
+    const topMachine =
+        [...machineMap.entries()]
+        .sort((a,b) => b[1] - a[1])[0];
+
+
+    box.innerHTML = `
+        <strong>RINGKASAN PENCAPAIAN</strong><br><br>
+
+        TOTAL DEFECT:
+        <strong>${formatNumber(totalDefect)} PCS</strong><br>
+
+        DEFECT DOMINAN:
+        <strong>${topDefect[0]}</strong>
+        (${formatNumber(topDefect[1])} PCS)<br>
+
+        MESIN DENGAN DEFECT TERTINGGI:
+        <strong>${topMachine[0]}</strong>
+        (${formatNumber(topMachine[1])} PCS)<br><br>
+
+        <strong>FOKUS PERBAIKAN:</strong><br>
+        PRIORITASKAN ANALISA PADA
+        <strong>${topMachine[0]}</strong>
+        DAN JENIS DEFECT
+        <strong>${topDefect[0]}</strong>.
+    `;
+
+      }
 /* =====================================================
    BUILD DASHBOARD AGGREGATE
 ===================================================== */
