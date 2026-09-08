@@ -2830,7 +2830,47 @@ function updateSummary(){
 /* =====================================================
    DASHBOARD
 ===================================================== */
+function generateAIAnalysis(){
 
+    const box =
+        document.getElementById("aiAnalysisContent");
+
+    if(!box) return;
+
+    if(!filteredData.length){
+
+        box.innerHTML =
+            "TIDAK ADA DATA UNTUK DIANALISA.";
+
+        return;
+    }
+
+    const total =
+        filteredData.length;
+
+    const layak =
+        filteredData.filter(
+            x => x.status === "layak"
+        ).length;
+
+    const tidakLayak =
+        filteredData.filter(
+            x => x.status === "tidak"
+        ).length;
+
+    const persenLayak =
+        ((layak / total) * 100).toFixed(1);
+
+    const persenTidak =
+        ((tidakLayak / total) * 100).toFixed(1);
+
+    box.innerHTML = `
+        TOTAL SAMPEL: ${total} SAMPLE<br>
+        LAYAK: ${layak} SAMPLE (${persenLayak}%)<br>
+        TIDAK LAYAK: ${tidakLayak} SAMPLE (${persenTidak}%)
+    `;
+}
+    
 function updateDashboard(){
 
     const total=
@@ -2895,11 +2935,10 @@ function updateDashboard(){
         persenTidak.toFixed(1)+"%";
 
 
-    updateSummary();
-
-    renderAnalysis();
-
-    renderTable();
+updateSummary();
+renderAnalysis();
+generateAIAnalysis();
+renderTable();
 
 }
 
