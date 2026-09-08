@@ -1493,20 +1493,20 @@ body{
     background:
         linear-gradient(
             145deg,
-            #ffd966 0%,
-            #e6ad21 48%,
-            #a96f08 100%
+            #a97813 0%,
+            #704807 48%,
+            #4b2d04 100%
         );
 
-    border-color:#805500;
+    border-color:#392204;
 
     box-shadow:
-        0 3px 7px rgba(61,37,3,.42),
-        inset 0 1px 2px rgba(255,255,255,.65),
+        0 3px 6px rgba(61,37,3,.42),
+        inset 0 1px 1px rgba(255,255,255,.42),
         inset 0 -2px 3px rgba(0,0,0,.25);
 
     text-shadow:
-        0 1px 2px rgba(0,0,0,.65);
+        0 1px 2px rgba(0,0,0,.7);
 
     transform:translateY(-1px);
 }
@@ -1798,8 +1798,8 @@ body{
 
 .matrix-value.top{
     box-shadow:
-        inset 0 1px 2px rgba(255,255,255,.65),
-        0 0 0 2px rgba(230,173,33,.45),
+        inset 0 1px 0 rgba(255,255,255,.9),
+        0 0 0 2px rgba(123,78,0,.28),
         0 4px 8px rgba(70,45,5,.30);
 }
 
@@ -6660,56 +6660,49 @@ function renderDefectMachineMatrix(){
 
 
     /* =================================================
-   CARI NILAI TERTINGGI PER FLAT
-================================================= */
+       CARI NILAI TERTINGGI
+    ================================================= */
 
-const maxByMachine = new Map();
-
-
-for(
-    let i = 0;
-    i < entries.length;
-    i++
-){
-
-    const machineMap =
-        entries[i][1];
+    let maxValue = 0;
 
 
     for(
-        let j = 0;
-        j < machineOrder.length;
-        j++
+        let i = 0;
+        i < entries.length;
+        i++
     ){
 
-        const machine =
-            machineOrder[j];
+        const machineMap =
+            entries[i][1];
 
 
-        const value =
-            Number(
-                machineMap.get(machine) || 0
-            );
+        for(
+            let j = 0;
+            j < machineOrder.length;
+            j++
+        ){
+
+            const machine =
+                machineOrder[j];
 
 
-        const oldMax =
-            Number(
-                maxByMachine.get(machine) || 0
-            );
+            const value =
+                Number(
+                    machineMap.get(machine) || 0
+                );
 
 
-        if(value > oldMax){
+            if(value > maxValue){
 
-            maxByMachine.set(
-                machine,
-                value
-            );
+                maxValue =
+                    value;
+
+            }
 
         }
 
     }
 
-}
 
     /* =================================================
        RENDER BARIS
@@ -6756,10 +6749,10 @@ for(
 
 
                             const topClass =
-    value > 0 &&
-    value === maxByMachine.get(machine)
-        ? "top"
-        : "";
+                                value > 0 &&
+                                value === maxValue
+                                    ? "top"
+                                    : "";
 
 
                             return `
@@ -7453,4 +7446,4 @@ value == null
 
 </body>
 
-      </html>
+</html>
