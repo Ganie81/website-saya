@@ -6035,6 +6035,11 @@ function generateAIAnalysis(){
         const machine =
             String(row.mesin || "TIDAK DIKETAHUI")
             .trim();
+          
+      const grup =
+    String(row.grup || "(Kosong)")
+    .trim() ||
+    "(Kosong)";
 
 
         totalDefect += qty;
@@ -6051,12 +6056,10 @@ machineMap.set(
     (machineMap.get(machine) || 0) + qty
 );
 
-const groupKey =
-    machine + " × " + defect;
 
 groupMap.set(
-    groupKey,
-    (groupMap.get(groupKey) || 0) + qty
+    grup,
+    (groupMap.get(grup) || 0) + qty
 );
 
     });
@@ -6074,6 +6077,11 @@ groupMap.set(
 const topGroup =
     [...groupMap.entries()]
     .sort((a,b) => b[1] - a[1])[0];
+
+const topGroups =
+    [...groupMap.entries()]
+    .sort((a,b) => b[1] - a[1])
+    .slice(0,3);
 
 const topGroupPercent =
     totalDefect > 0
@@ -6096,9 +6104,14 @@ const topGroupPercent =
         (${formatNumber(topMachine[1])} PCS)<br><br>
 
 <strong>GRUP FOKUS:</strong><br>
-<strong>${topGroup[0]}</strong>
-(${formatNumber(topGroup[1])} PCS — ${topGroupPercent}%)<br><br>
 
+${topGroups.map((item,index) => `
+<strong>GRUP ${String.fromCharCode(65 + index)}:</strong>
+${item[0]}
+(${formatNumber(item[1])} PCS)<br>
+`).join("")}
+
+<br>
         <strong>FOKUS PERBAIKAN:</strong><br>
         PRIORITASKAN ANALISA PADA
         <strong>${topMachine[0]}</strong>
