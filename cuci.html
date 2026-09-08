@@ -2863,6 +2863,72 @@ function generateAIAnalysis(){
 
     const persenTidak =
         ((tidakLayak / total) * 100).toFixed(1);
+    const grupData = {};
+
+filteredData.forEach(row => {
+
+    const grup =
+        String(row.grup || "LAINNYA")
+        .trim()
+        .toUpperCase();
+
+    if(!grupData[grup]){
+        grupData[grup] = 0;
+    }
+
+    if(row.status === "tidak"){
+        grupData[grup]++;
+    }
+
+});
+
+let fokusGrup = "-";
+let maxTidakGrup = 0;
+
+Object.keys(grupData).forEach(grup => {
+
+    if(grupData[grup] > maxTidakGrup){
+
+        maxTidakGrup =
+            grupData[grup];
+
+        fokusGrup = grup;
+    }
+
+});
+ const mesinData = {};
+
+filteredData.forEach(row => {
+
+    const mesin =
+        String(row.mesin || "LAINNYA")
+        .trim()
+        .toUpperCase();
+
+    if(!mesinData[mesin]){
+        mesinData[mesin] = 0;
+    }
+
+    if(row.status === "tidak"){
+        mesinData[mesin]++;
+    }
+
+});
+
+let fokusMesin = "-";
+let maxTidakMesin = 0;
+
+Object.keys(mesinData).forEach(mesin => {
+
+    if(mesinData[mesin] > maxTidakMesin){
+
+        maxTidakMesin =
+            mesinData[mesin];
+
+        fokusMesin = mesin;
+    }
+
+});   
 
     box.innerHTML = `
     TOTAL SAMPEL: ${total} SAMPLE<br><br>
@@ -2871,6 +2937,12 @@ function generateAIAnalysis(){
     (${persenLayak}%) DAN
     ${tidakLayak} TIDAK LAYAK
     (${persenTidak}%).<br><br>
+    GRUP WASHING PERLU DIPERHATIKAN:
+${fokusGrup}
+(${maxTidakGrup} TIDAK LAYAK).<br><br>
+MESIN WASHING PERLU DIPERHATIKAN:
+${fokusMesin}
+(${maxTidakMesin} TIDAK LAYAK).<br><br>
 
     HASIL ANALISA:
     ${tidakLayak === 0
