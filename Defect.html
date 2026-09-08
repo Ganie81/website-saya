@@ -6020,6 +6020,7 @@ function generateAIAnalysis(){
 
     const defectMap = new Map();
     const machineMap = new Map();
+      const groupMap = new Map();
 
 
     filteredData.forEach(row => {
@@ -6045,10 +6046,18 @@ function generateAIAnalysis(){
         );
 
 
-        machineMap.set(
-            machine,
-            (machineMap.get(machine) || 0) + qty
-        );
+machineMap.set(
+    machine,
+    (machineMap.get(machine) || 0) + qty
+);
+
+const groupKey =
+    machine + " × " + defect;
+
+groupMap.set(
+    groupKey,
+    (groupMap.get(groupKey) || 0) + qty
+);
 
     });
 
@@ -6061,6 +6070,15 @@ function generateAIAnalysis(){
     const topMachine =
         [...machineMap.entries()]
         .sort((a,b) => b[1] - a[1])[0];
+      
+const topGroup =
+    [...groupMap.entries()]
+    .sort((a,b) => b[1] - a[1])[0];
+
+const topGroupPercent =
+    totalDefect > 0
+    ? ((topGroup[1] / totalDefect) * 100).toFixed(1)
+    : 0;
 
 
     box.innerHTML = `
@@ -6076,6 +6094,10 @@ function generateAIAnalysis(){
         MESIN DENGAN DEFECT TERTINGGI:
         <strong>${topMachine[0]}</strong>
         (${formatNumber(topMachine[1])} PCS)<br><br>
+
+<strong>GRUP FOKUS:</strong><br>
+<strong>${topGroup[0]}</strong>
+(${formatNumber(topGroup[1])} PCS — ${topGroupPercent}%)<br><br>
 
         <strong>FOKUS PERBAIKAN:</strong><br>
         PRIORITASKAN ANALISA PADA
