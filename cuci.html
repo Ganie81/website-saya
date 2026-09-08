@@ -2865,10 +2865,23 @@ function generateAIAnalysis(){
         ((tidakLayak / total) * 100).toFixed(1);
 
     box.innerHTML = `
-        TOTAL SAMPEL: ${total} SAMPLE<br>
-        LAYAK: ${layak} SAMPLE (${persenLayak}%)<br>
-        TIDAK LAYAK: ${tidakLayak} SAMPLE (${persenTidak}%)
-    `;
+    TOTAL SAMPEL: ${total} SAMPLE<br><br>
+
+    HASIL UJI: ${layak} LAYAK
+    (${persenLayak}%) DAN
+    ${tidakLayak} TIDAK LAYAK
+    (${persenTidak}%).<br><br>
+
+    HASIL ANALISA:
+    ${tidakLayak === 0
+        ? "HASIL UJI CUCI SANGAT BAIK. TIDAK DITEMUKAN SAMPEL TIDAK LAYAK."
+        : persenTidak <= 5
+        ? "KONDISI PROSES CUCI RELATIF TERKENDALI, NAMUN SAMPEL TIDAK LAYAK MASIH PERLU DIPANTAU."
+        : persenTidak <= 15
+        ? "PERLU PERHATIAN PADA PROSES CUCI KARENA PROPORSI SAMPEL TIDAK LAYAK MULAI MENINGKAT."
+        : "PERLU TINDAKAN PERBAIKAN PRIORITAS KARENA PROPORSI SAMPEL TIDAK LAYAK CUKUP TINGGI."
+    }
+`;
 }
     
 function updateDashboard(){
