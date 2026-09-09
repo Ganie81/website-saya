@@ -4623,18 +4623,18 @@ function updateDiagramHarian() {
             return;
         }
 
-        const qty =
-            Number(row[5]) || 0;
+const qty =
+    Number(row[5]) || 0;
 
-        if (
-            p.hari >= 1 &&
-            p.hari <= jumlahHari
-        ) {
+if (
+    p.tanggal >= 1 &&
+    p.tanggal <= jumlahHari
+) {
 
-            nilaiHari[p.hari - 1] +=
-                qty / 20;
+    nilaiHari[p.tanggal - 1] +=
+        qty / 20;
 
-        }
+}
 
     });
 
