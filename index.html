@@ -1024,7 +1024,16 @@ input[type="date"]:focus {
     padding:30px 10px 35px;
     border-bottom:2px solid #b89b72;
 }
-
+.diagram-harian{
+    min-width:650px;
+    height:300px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-around;
+    gap:10px;
+    padding:30px 10px 35px;
+    border-bottom:2px solid #b89b72;
+}
 .bulan-bar{
     height:100%;
     flex:1;
@@ -1429,7 +1438,34 @@ box-shadow:
         inset 1px 1px 0 rgba(255,255,255,.45),
         inset 0 -7px 10px rgba(0,0,0,.28);
 }    
+.batang-harian::before{
+    content:"";
 
+    position:absolute;
+    left:0;
+    top:-6px;
+
+    width:100%;
+    height:6px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4fa878 0%,
+            #176b43 50%,
+            #0b4d31 100%
+        );
+
+    border-radius:50%;
+
+    border-top:1px solid rgba(255,255,255,.55);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.45),
+        0 -1px 3px rgba(255,255,255,.15);
+
+    pointer-events:none;
+}
 /* SISI KANAN BALOK */
 
 .batang-produksi::after{
