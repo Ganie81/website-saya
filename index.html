@@ -1427,8 +1427,7 @@ box-shadow:
 ========================= */
 
 .batang-harian{
-    width:58%;
-    max-width:42px;
+    width:32px;
     min-height:3px;
 
     position:relative;
@@ -1445,7 +1444,7 @@ box-shadow:
 
     border:1px solid #032518;
 
-    border-radius:0 0 6px 6px;
+    border-radius:0;
 
     box-shadow:
         inset 1px 1px 0 rgba(255,255,255,.45),
@@ -4706,7 +4705,13 @@ area.innerHTML = "";
                 "batang-harian";
 
 
-            const tinggi = 160;
+            const tinggi =
+    max > 0
+        ? Math.max(
+            (nilai / max) * 190,
+            0
+        )
+        : 0;
 
             batang.style.height =
                 tinggi + "px";
