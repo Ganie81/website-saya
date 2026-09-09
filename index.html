@@ -4651,23 +4651,6 @@ if (
 
     const max =
         Math.max(...nilaiHari, 0);
-    const judul =
-    document.getElementById("judulDiagramHarian");
-
-if (judul) {
-
-    judul.textContent =
-        "PENCAPAIAN PRODUKSI HARIAN - " +
-        sekarang.toLocaleString(
-            "id-ID",
-            {
-                month: "long"
-            }
-        ).toUpperCase() +
-        " " +
-        tahun;
-
-}
 
     area.innerHTML = `
     <div class="judul-harian">
