@@ -1024,10 +1024,11 @@ input[type="date"]:focus {
     padding:30px 10px 35px;
     border-bottom:2px solid #b89b72;
 }
-    .hari-nilai{
+.hari-nilai{
     font-size:13px;
     font-weight:bold;
     line-height:1.1;
+    margin-bottom:8px;
 }
     .hari-nama{
     font-size:16px;
@@ -4709,13 +4710,7 @@ area.innerHTML = "";
                 "batang-harian";
 
 
-            const tinggi =
-                max > 0
-                    ? Math.max(
-                        (nilai / max) * 190,
-                        3
-                    )
-                    : 3;
+            const tinggi = 160;
 
             batang.style.height =
                 tinggi + "px";
