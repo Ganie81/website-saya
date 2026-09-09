@@ -4652,15 +4652,7 @@ if (
     const max =
         Math.max(...nilaiHari, 0);
 
-    area.innerHTML = `
-    <div class="judul-harian">
-        PENCAPAIAN PRODUKSI HARIAN –
-        ${sekarang.toLocaleString("id-ID", {
-            month: "long"
-        }).toUpperCase()}
-        ${tahun}
-    </div>
-`;
+area.innerHTML = "";
 
 
     nilaiHari.forEach(
