@@ -1024,6 +1024,15 @@ input[type="date"]:focus {
     padding:30px 10px 35px;
     border-bottom:2px solid #b89b72;
 }
+    .hari-nilai{
+    font-size:13px;
+    font-weight:bold;
+    line-height:1.1;
+}
+    .hari-nama{
+    font-size:16px;
+    font-weight:bold;
+    }
 .diagram-harian{
     min-width:650px;
     height:300px;
@@ -2468,6 +2477,10 @@ onclick="window.location.href='cuci.html'">
     </div>
 
 <div class="chart-wrapper">
+
+    <div id="judulDiagramHarian"
+         class="judul-diagram-harian">
+    </div>
 
     <div id="diagramHarian"
          class="diagram-harian">
@@ -4638,8 +4651,33 @@ if (
 
     const max =
         Math.max(...nilaiHari, 0);
+    const judul =
+    document.getElementById("judulDiagramHarian");
 
-    area.innerHTML = "";
+if (judul) {
+
+    judul.textContent =
+        "PENCAPAIAN PRODUKSI HARIAN - " +
+        sekarang.toLocaleString(
+            "id-ID",
+            {
+                month: "long"
+            }
+        ).toUpperCase() +
+        " " +
+        tahun;
+
+}
+
+    area.innerHTML = `
+    <div class="judul-harian">
+        PENCAPAIAN PRODUKSI HARIAN –
+        ${sekarang.toLocaleString("id-ID", {
+            month: "long"
+        }).toUpperCase()}
+        ${tahun}
+    </div>
+`;
 
 
     nilaiHari.forEach(
@@ -4674,7 +4712,7 @@ if (
             const tinggi =
                 max > 0
                     ? Math.max(
-                        (nilai / max) * 220,
+                        (nilai / max) * 190,
                         3
                     )
                     : 3;
