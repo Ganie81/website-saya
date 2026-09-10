@@ -2120,16 +2120,26 @@ try{
 
     buildFilters();
 
-}catch(filterError){
+}catch(e){
 
-    console.error(
-        "ERROR BUILD FILTER:",
-        filterError
-    );
+    console.error("ERROR FILTER:", e);
 
 }
 
-updateDashboard();
+try{
+
+    updateDashboard();
+
+}catch(e){
+
+    console.error("ERROR DASHBOARD:", e);
+
+    setStatus(
+        "❌ Error Dashboard: " + e.message,
+        "error"
+    );
+
+}
 
     }catch(err){
 
