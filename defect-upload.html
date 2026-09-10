@@ -2935,32 +2935,73 @@ function renderChips(){
 
     const chips = [];
 
-    const values = [
+    const dari =
+        el("tglDari").value;
 
-        ["Tanggal Dari",el("tglDari").value],
-        ["Tanggal Ke",el("tglKe").value],
-        ["Kode",el("fKode").value],
-        ["Defect",el("fDefect").value],
-        ["Mesin",el("fMesin").value],
-        ["Motif",el("fMotif").value],
-        ["Grup",el("fGrup").value],
-        ["Roll",el("fRoll").value]
+    const ke =
+        el("tglKe").value;
 
-    ];
 
-    values.forEach(item => {
+    /* =========================
+       TANGGAL
+    ========================= */
 
-        if(item[1]){
+    if(dari){
 
-            chips.push(
-                `<span class="chip">
-                    ${escapeHtml(item[0])}: ${escapeHtml(item[1])}
-                </span>`
-            );
+        chips.push(
+            `<span class="chip">
+                Tanggal Dari: ${escapeHtml(dari)}
+            </span>`
+        );
+
+    }
+
+
+    if(ke){
+
+        chips.push(
+            `<span class="chip">
+                Tanggal Ke: ${escapeHtml(ke)}
+            </span>`
+        );
+
+    }
+
+
+    /* =========================
+       MULTI FILTER
+    ========================= */
+
+    Object.keys(selectedFilters).forEach(
+        filterName => {
+
+            const selected =
+                selectedFilters[filterName];
+
+            if(
+                selected &&
+                selected.size > 0
+            ){
+
+                const label =
+                    multiFilterConfig[filterName].label;
+
+                const text =
+                    [...selected].join(", ");
+
+
+                chips.push(
+                    `<span class="chip">
+                        ${escapeHtml(label)}:
+                        ${escapeHtml(text)}
+                    </span>`
+                );
+
+            }
 
         }
+    );
 
-    });
 
     box.innerHTML =
         chips.join("");
