@@ -2908,13 +2908,7 @@ function resetFilter(){
     el("tglDari").value = "";
     el("tglKe").value = "";
 
-    el("fKode").value = "";
-    el("fDefect").value = "";
-    el("fMesin").value = "";
-    el("fMotif").value = "";
-    el("fGrup").value = "";
-
-    el("fRoll").value = "";
+    clearMultiSelections();
 
     el("quickSearch").value = "";
 
@@ -2922,6 +2916,8 @@ function resetFilter(){
         [...allData];
 
     currentPage = 1;
+
+    renderChips();
 
     updateDashboard();
 
