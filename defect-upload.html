@@ -2733,29 +2733,13 @@ function applyFilter(){
     const ke =
         el("tglKe").value;
 
-    const kode =
-        el("fKode").value;
-
-    const defect =
-        el("fDefect").value;
-
-    const mesin =
-        el("fMesin").value;
-
-    const motif =
-        el("fMotif").value;
-
-    const grup =
-        el("fGrup").value;
-
-    const roll =
-        clean(
-            el("fRoll").value
-        ).toLowerCase();
-
 
     filteredData =
         allData.filter(r => {
+
+            /* =========================
+               TANGGAL DARI
+            ========================= */
 
             if(dari){
 
@@ -2767,6 +2751,86 @@ function applyFilter(){
                 }
 
             }
+
+
+            /* =========================
+               TANGGAL KE
+            ========================= */
+
+            if(ke){
+
+                const d =
+                    dateKey(r.tanggal);
+
+                if(!d || d > ke){
+                    return false;
+                }
+
+            }
+
+
+            /* =========================
+               MULTI FILTER
+            ========================= */
+
+            for(
+                const filterName
+                of [
+                    "kode",
+                    "defect",
+                    "mesin",
+                    "motif",
+                    "grup",
+                    "roll"
+                ]
+            ){
+
+                const selected =
+                    selectedFilters[filterName];
+
+                if(
+                    selected &&
+                    selected.size > 0
+                ){
+
+                    const value =
+                        clean(
+                            r[filterName]
+                        ).toLowerCase();
+
+
+                    const cocok =
+                        [...selected].some(
+                            item =>
+                                clean(item)
+                                    .toLowerCase()
+                                === value
+                        );
+
+
+                    if(!cocok){
+
+                        return false;
+
+                    }
+
+                }
+
+            }
+
+
+            return true;
+
+        });
+
+
+    currentPage = 1;
+
+    renderChips();
+
+    updateDashboard();
+
+}
 
             if(ke){
 
