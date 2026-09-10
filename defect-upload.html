@@ -3077,28 +3077,13 @@ function getBaseFilteredData(){
     const ke =
         el("tglKe").value;
 
-    const kode =
-        el("fKode").value;
-
-    const defect =
-        el("fDefect").value;
-
-    const mesin =
-        el("fMesin").value;
-
-    const motif =
-        el("fMotif").value;
-
-    const grup =
-        el("fGrup").value;
-
-    const roll =
-        clean(
-            el("fRoll").value
-        ).toLowerCase();
-
 
     return allData.filter(r => {
+
+
+        /* =========================
+           TANGGAL DARI
+        ========================= */
 
         if(dari){
 
@@ -3111,6 +3096,11 @@ function getBaseFilteredData(){
 
         }
 
+
+        /* =========================
+           TANGGAL KE
+        ========================= */
+
         if(ke){
 
             const d =
@@ -3122,32 +3112,57 @@ function getBaseFilteredData(){
 
         }
 
-        if(kode && r.kode !== kode){
-            return false;
-        }
 
-        if(defect && r.defect !== defect){
-            return false;
-        }
+        /* =========================
+           SEMUA MULTI FILTER
+        ========================= */
 
-        if(mesin && r.mesin !== mesin){
-            return false;
-        }
-
-        if(motif && r.motif !== motif){
-            return false;
-        }
-
-        if(grup && r.grup !== grup){
-            return false;
-        }
-
-        if(
-            roll &&
-            !r.roll.toLowerCase().includes(roll)
+        for(
+            const filterName
+            of [
+                "kode",
+                "defect",
+                "mesin",
+                "motif",
+                "grup",
+                "roll"
+            ]
         ){
-            return false;
+
+            const selected =
+                selectedFilters[filterName];
+
+
+            if(
+                selected &&
+                selected.size > 0
+            ){
+
+                const value =
+                    clean(
+                        r[filterName]
+                    ).toLowerCase();
+
+
+                const cocok =
+                    [...selected].some(
+                        item =>
+                            clean(item)
+                                .toLowerCase()
+                            === value
+                    );
+
+
+                if(!cocok){
+
+                    return false;
+
+                }
+
+            }
+
         }
+
 
         return true;
 
