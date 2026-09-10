@@ -1969,9 +1969,12 @@ function setStatus(message,type){
    FILE
 ===================================================== */
 
-async function handleFile(file){
+async function handleFile(event){
 
     alert("HANDLE FILE TERPANGGIL");
+
+    const file =
+        event.target.files[0];
 
     if(!file){
         return;
