@@ -756,180 +756,6 @@ table.detail{
     }
 }
 
-    .upload-row .btn{
-        width:100%;
-    }
-}
-
-
-/* =====================================================
-   MULTI SELECT FILTER + TELUSURI
-===================================================== */
-
-.multi-select{
-    position:relative;
-    width:100%;
-}
-
-.multi-button{
-    width:100%;
-    min-height:42px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:10px 12px;
-    border:1px solid rgba(255,255,255,.18);
-    border-radius:9px;
-    background:rgba(8,25,55,.92);
-    color:#fff;
-    font-size:13px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.multi-button:hover{
-    border-color:rgba(80,180,255,.55);
-}
-
-.multi-button span:first-child{
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-}
-
-.multi-arrow{
-    margin-left:8px;
-    font-size:11px;
-    opacity:.75;
-    flex-shrink:0;
-}
-
-.multi-panel{
-    display:none;
-    position:absolute;
-    left:0;
-    right:0;
-    top:calc(100% + 5px);
-    z-index:9999;
-    background:#071b3a;
-    border:1px solid rgba(80,180,255,.35);
-    border-radius:10px;
-    padding:9px;
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.45),
-        inset 0 1px 0 rgba(255,255,255,.06);
-}
-
-.multi-panel.show{
-    display:block;
-}
-
-.multi-search{
-    width:100%;
-    padding:9px 10px;
-    margin-bottom:8px;
-    border:1px solid rgba(255,255,255,.16);
-    border-radius:8px;
-    outline:none;
-    background:rgba(255,255,255,.08);
-    color:#fff;
-    font-size:12px;
-    font-weight:600;
-}
-
-.multi-search::placeholder{
-    color:rgba(255,255,255,.55);
-}
-
-.multi-search:focus{
-    border-color:#4db8ff;
-}
-
-.multi-options{
-    max-height:220px;
-    overflow-y:auto;
-    padding-right:3px;
-}
-
-.multi-options::-webkit-scrollbar{
-    width:5px;
-}
-
-.multi-options::-webkit-scrollbar-track{
-    background:rgba(255,255,255,.04);
-    border-radius:10px;
-}
-
-.multi-options::-webkit-scrollbar-thumb{
-    background:rgba(80,180,255,.45);
-    border-radius:10px;
-}
-
-.multi-option{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding:8px 7px;
-    border-radius:7px;
-    color:#fff;
-    font-size:12px;
-    font-weight:600;
-    cursor:pointer;
-}
-
-.multi-option:hover{
-    background:rgba(80,180,255,.12);
-}
-
-.multi-option.selected{
-    background:rgba(80,180,255,.18);
-}
-
-.multi-option input{
-    width:16px;
-    height:16px;
-    accent-color:#39a9ff;
-    flex-shrink:0;
-    cursor:pointer;
-}
-
-.multi-option-text{
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    flex:1;
-}
-
-.multi-empty{
-    padding:12px 8px;
-    text-align:center;
-    color:rgba(255,255,255,.5);
-    font-size:11px;
-    font-weight:600;
-}
-
-@media(max-width:600px){
-
-    .multi-button{
-        min-height:40px;
-        font-size:12px;
-        padding:9px 10px;
-    }
-
-    .multi-panel{
-        max-height:300px;
-    }
-
-    .multi-options{
-        max-height:190px;
-    }
-
-    .multi-option{
-        padding:9px 6px;
-    }
-
-}
-
 </style>
 </head>
 
@@ -970,21 +796,22 @@ table.detail{
 
     <div class="upload-row">
 
-        <input
-            type="file"
-            id="fileExcel"
-            accept=".xls,.xlsx"
-        >
+        <div class="file-box">
+            <input
+                type="file"
+                id="fileExcel"
+                accept=".xls,.xlsx"
+                onchange="handleFile(this.files[0])"
+            >
+        </div>
 
         <button
-            type="button"
             class="btn btn-upload"
-            onclick="pilihExcel()">
+            onclick="document.getElementById('fileExcel').click()">
             Pilih Excel
         </button>
 
         <button
-            type="button"
             class="btn btn-reset"
             onclick="resetAll()">
             Reset
@@ -1033,291 +860,56 @@ table.detail{
         id="filterBody"
         class="filter-body">
 
-<div class="filter-grid">
+        <div class="filter-grid">
 
-    <!-- =================================================
-         TANGGAL
-    ================================================== -->
+            <div class="field">
+                <label>Tanggal Dari</label>
+                <input
+                    type="date"
+                    id="tglDari">
+            </div>
 
-    <div class="field">
-        <label>Tanggal Dari</label>
-        <input
-            type="date"
-            id="tglDari">
-    </div>
+            <div class="field">
+                <label>Tanggal Ke</label>
+                <input
+                    type="date"
+                    id="tglKe">
+            </div>
 
-    <div class="field">
-        <label>Tanggal Ke</label>
-        <input
-            type="date"
-            id="tglKe">
-    </div>
+            <div class="field">
+                <label>Kode Produk</label>
+                <select id="fKode"></select>
+            </div>
 
+            <div class="field">
+                <label>Jenis Defect</label>
+                <select id="fDefect"></select>
+            </div>
 
-    <!-- =================================================
-         KODE PRODUK
-    ================================================== -->
+            <div class="field">
+                <label>Mesin</label>
+                <select id="fMesin"></select>
+            </div>
 
-    <div class="field multi-field">
+            <div class="field">
+                <label>Motif</label>
+                <select id="fMotif"></select>
+            </div>
 
-        <label>Kode Produk</label>
+            <div class="field">
+                <label>Grup</label>
+                <select id="fGrup"></select>
+            </div>
 
-        <div class="multi-select" id="msKode">
-
-            <button
-                type="button"
-                class="multi-button"
-                onclick="toggleMulti('msKode')">
-
-                <span id="msKodeText">
-                    Semua
-                </span>
-
-                <span>▼</span>
-
-            </button>
-
-            <div class="multi-panel">
-
+            <div class="field">
+                <label>Roll ID</label>
                 <input
                     type="text"
-                    class="multi-search"
-                    id="searchKode"
-                    placeholder="🔎 Telusuri Kode Produk..."
-                    oninput="searchMulti('kode')">
-
-                <div
-                    class="multi-options"
-                    id="optionsKode">
-                </div>
-
+                    id="fRoll"
+                    placeholder="Cari Roll ID...">
             </div>
 
         </div>
-
-    </div>
-
-
-    <!-- =================================================
-         JENIS DEFECT
-    ================================================== -->
-
-    <div class="field multi-field">
-
-        <label>Jenis Defect</label>
-
-        <div class="multi-select" id="msDefect">
-
-            <button
-                type="button"
-                class="multi-button"
-                onclick="toggleMulti('msDefect')">
-
-                <span id="msDefectText">
-                    Semua
-                </span>
-
-                <span>▼</span>
-
-            </button>
-
-            <div class="multi-panel">
-
-                <input
-                    type="text"
-                    class="multi-search"
-                    id="searchDefect"
-                    placeholder="🔎 Telusuri Jenis Defect..."
-                    oninput="searchMulti('defect')">
-
-                <div
-                    class="multi-options"
-                    id="optionsDefect">
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         MESIN
-    ================================================== -->
-
-    <div class="field multi-field">
-
-        <label>Mesin</label>
-
-        <div class="multi-select" id="msMesin">
-
-            <button
-                type="button"
-                class="multi-button"
-                onclick="toggleMulti('msMesin')">
-
-                <span id="msMesinText">
-                    Semua
-                </span>
-
-                <span>▼</span>
-
-            </button>
-
-            <div class="multi-panel">
-
-                <input
-                    type="text"
-                    class="multi-search"
-                    id="searchMesin"
-                    placeholder="🔎 Telusuri Mesin..."
-                    oninput="searchMulti('mesin')">
-
-                <div
-                    class="multi-options"
-                    id="optionsMesin">
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         MOTIF
-    ================================================== -->
-
-    <div class="field multi-field">
-
-        <label>Motif</label>
-
-        <div class="multi-select" id="msMotif">
-
-            <button
-                type="button"
-                class="multi-button"
-                onclick="toggleMulti('msMotif')">
-
-                <span id="msMotifText">
-                    Semua
-                </span>
-
-                <span>▼</span>
-
-            </button>
-
-            <div class="multi-panel">
-
-                <input
-                    type="text"
-                    class="multi-search"
-                    id="searchMotif"
-                    placeholder="🔎 Telusuri Motif..."
-                    oninput="searchMulti('motif')">
-
-                <div
-                    class="multi-options"
-                    id="optionsMotif">
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         GRUP
-    ================================================== -->
-
-    <div class="field multi-field">
-
-        <label>Grup</label>
-
-        <div class="multi-select" id="msGrup">
-
-            <button
-                type="button"
-                class="multi-button"
-                onclick="toggleMulti('msGrup')">
-
-                <span id="msGrupText">
-                    Semua
-                </span>
-
-                <span>▼</span>
-
-            </button>
-
-            <div class="multi-panel">
-
-                <input
-                    type="text"
-                    class="multi-search"
-                    id="searchGrup"
-                    placeholder="🔎 Telusuri Grup..."
-                    oninput="searchMulti('grup')">
-
-                <div
-                    class="multi-options"
-                    id="optionsGrup">
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         ROLL ID
-    ================================================== -->
-
-    <div class="field multi-field">
-
-        <label>Roll ID</label>
-
-        <div class="multi-select" id="msRoll">
-
-            <button
-                type="button"
-                class="multi-button"
-                onclick="toggleMulti('msRoll')">
-
-                <span id="msRollText">
-                    Semua
-                </span>
-
-                <span>▼</span>
-
-            </button>
-
-            <div class="multi-panel">
-
-                <input
-                    type="text"
-                    class="multi-search"
-                    id="searchRoll"
-                    placeholder="🔎 Telusuri Roll ID..."
-                    oninput="searchMulti('roll')">
-
-                <div
-                    class="multi-options"
-                    id="optionsRoll">
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
 
 
         <div class="filter-actions">
@@ -1968,12 +1560,7 @@ function setStatus(message,type){
    FILE
 ===================================================== */
 
-async function handleFile(event){
-
-    alert("HANDLE FILE TERPANGGIL");
-
-    const file =
-        event.target.files[0];
+async function handleFile(file){
 
     if(!file){
         return;
@@ -2120,30 +1707,9 @@ async function handleFile(event){
             "ok"
         );
 
-try{
+        buildFilters();
 
-    buildFilters();
-
-}catch(e){
-
-    console.error("ERROR FILTER:", e);
-
-}
-
-try{
-
-    updateDashboard();
-
-}catch(e){
-
-    console.error("ERROR DASHBOARD:", e);
-
-    setStatus(
-        "❌ Error Dashboard: " + e.message,
-        "error"
-    );
-
-}
+        updateDashboard();
 
     }catch(err){
 
@@ -2232,10 +1798,6 @@ function toggleFilter(){
    OPTIONS
 ===================================================== */
 
-/* =====================================================
-   MULTI SELECT FILTER
-===================================================== */
-
 function uniqueValues(key){
 
     return [
@@ -2259,468 +1821,45 @@ function uniqueValues(key){
 }
 
 
-/* =====================================================
-   KONFIGURASI SEMUA FILTER
-===================================================== */
+function fillSelect(id,key){
 
-const multiFilterConfig = {
-
-    kode:{
-        wrapper:"msKode",
-        text:"msKodeText",
-        search:"searchKode",
-        options:"optionsKode",
-        key:"kode",
-        label:"Kode Produk"
-    },
-
-    defect:{
-        wrapper:"msDefect",
-        text:"msDefectText",
-        search:"searchDefect",
-        options:"optionsDefect",
-        key:"defect",
-        label:"Jenis Defect"
-    },
-
-    mesin:{
-        wrapper:"msMesin",
-        text:"msMesinText",
-        search:"searchMesin",
-        options:"optionsMesin",
-        key:"mesin",
-        label:"Mesin"
-    },
-
-    motif:{
-        wrapper:"msMotif",
-        text:"msMotifText",
-        search:"searchMotif",
-        options:"optionsMotif",
-        key:"motif",
-        label:"Motif"
-    },
-
-    grup:{
-        wrapper:"msGrup",
-        text:"msGrupText",
-        search:"searchGrup",
-        options:"optionsGrup",
-        key:"grup",
-        label:"Grup"
-    },
-
-    roll:{
-        wrapper:"msRoll",
-        text:"msRollText",
-        search:"searchRoll",
-        options:"optionsRoll",
-        key:"roll",
-        label:"Roll ID"
-    }
-
-};
-
-
-/* =====================================================
-   NILAI YANG DIPILIH
-===================================================== */
-
-const selectedFilters = {
-
-    kode:new Set(),
-    defect:new Set(),
-    mesin:new Set(),
-    motif:new Set(),
-    grup:new Set(),
-    roll:new Set()
-
-};
-
-
-/* =====================================================
-   RENDER PILIHAN FILTER
-===================================================== */
-
-function renderMultiOptions(filterName){
-
-    const cfg =
-        multiFilterConfig[filterName];
-
-    if(!cfg) return;
-
-    const box =
-        el(cfg.options);
-
-    if(!box) return;
-
-    const searchEl =
-        el(cfg.search);
-
-    const search =
-        clean(
-            searchEl
-            ? searchEl.value
-            : ""
-        ).toLowerCase();
+    const select =
+        el(id);
 
     const values =
-        uniqueValues(cfg.key);
+        uniqueValues(key);
 
-    const selected =
-        selectedFilters[filterName];
+    select.innerHTML =
+        '<option value="">Semua</option>';
 
-    box.innerHTML = "";
+    values.forEach(v => {
 
+        const option =
+            document.createElement("option");
 
-    const filteredValues =
-        values.filter(value => {
+        option.value = v;
+        option.textContent = v;
 
-            if(!search){
-                return true;
-            }
-
-            return value
-                .toLowerCase()
-                .includes(search);
-
-        });
-
-
-    if(!filteredValues.length){
-
-        box.innerHTML =
-            '<div class="multi-empty">Tidak ada data</div>';
-
-        return;
-
-    }
-
-
-    filteredValues.forEach(value => {
-
-        const item =
-            document.createElement("label");
-
-        item.className =
-            "multi-option";
-
-        if(
-            selected.has(value)
-        ){
-            item.classList.add("selected");
-        }
-
-
-        const checkbox =
-            document.createElement("input");
-
-        checkbox.type =
-            "checkbox";
-
-        checkbox.checked =
-            selected.has(value);
-
-
-        checkbox.addEventListener(
-            "change",
-            function(){
-
-                if(this.checked){
-
-                    selected.add(value);
-
-                }else{
-
-                    selected.delete(value);
-
-                }
-
-
-                item.classList.toggle(
-                    "selected",
-                    this.checked
-                );
-
-                updateMultiButton(
-                    filterName
-                );
-
-                renderChips();
-
-            }
-        );
-
-
-        const text =
-            document.createElement("span");
-
-        text.className =
-            "multi-option-text";
-
-        text.textContent =
-            value;
-
-
-        item.appendChild(
-            checkbox
-        );
-
-        item.appendChild(
-            text
-        );
-
-
-        box.appendChild(
-            item
-        );
+        select.appendChild(option);
 
     });
 
 }
 
-
-/* =====================================================
-   UPDATE TULISAN TOMBOL
-===================================================== */
-
-function updateMultiButton(filterName){
-
-    const cfg =
-        multiFilterConfig[filterName];
-
-    if(!cfg) return;
-
-
-    const textEl =
-        el(cfg.text);
-
-    if(!textEl) return;
-
-
-    const selected =
-        [...selectedFilters[filterName]];
-
-
-    if(!selected.length){
-
-        textEl.textContent =
-            "Semua";
-
-        return;
-
-    }
-
-
-    if(selected.length === 1){
-
-        textEl.textContent =
-            selected[0];
-
-        return;
-
-    }
-
-
-    textEl.textContent =
-        selected.length +
-        " dipilih";
-
-}
-
-
-/* =====================================================
-   BUKA / TUTUP DROPDOWN
-===================================================== */
-
-function toggleMulti(filterName){
-
-    const cfg =
-        multiFilterConfig[filterName];
-
-    if(!cfg) return;
-
-
-    const panel =
-        el(cfg.wrapper)
-        ?.querySelector(".multi-panel");
-
-    if(!panel) return;
-
-
-    document
-        .querySelectorAll(".multi-panel.show")
-        .forEach(p => {
-
-            if(p !== panel){
-
-                p.classList.remove(
-                    "show"
-                );
-
-            }
-
-        });
-
-
-    panel.classList.toggle(
-        "show"
-    );
-
-
-    if(
-        panel.classList.contains("show")
-    ){
-
-        const searchEl =
-            el(cfg.search);
-
-        if(searchEl){
-
-            setTimeout(
-                () => searchEl.focus(),
-                50
-            );
-
-        }
-
-    }
-
-}
-
-
-/* =====================================================
-   TELUSURI FILTER
-===================================================== */
-
-function setupMultiSearch(filterName){
-
-    const cfg =
-        multiFilterConfig[filterName];
-
-    if(!cfg) return;
-
-
-    const searchEl =
-        el(cfg.search);
-
-    if(!searchEl) return;
-
-
-    searchEl.addEventListener(
-        "input",
-        function(){
-
-            renderMultiOptions(
-                filterName
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   RESET PILIHAN MULTI FILTER
-===================================================== */
-
-function clearMultiSelections(){
-
-    Object.keys(
-        selectedFilters
-    ).forEach(key => {
-
-        selectedFilters[key].clear();
-
-    });
-
-
-    Object.keys(
-        multiFilterConfig
-    ).forEach(key => {
-
-        const cfg =
-            multiFilterConfig[key];
-
-        const searchEl =
-            el(cfg.search);
-
-        if(searchEl){
-
-            searchEl.value = "";
-
-        }
-
-        updateMultiButton(key);
-
-        renderMultiOptions(key);
-
-    });
-
-}
-
-
-/* =====================================================
-   MEMBUAT SEMUA FILTER
-===================================================== */
 
 function buildFilters(){
 
-    Object.keys(
-        multiFilterConfig
-    ).forEach(filterName => {
+    fillSelect("fKode","kode");
 
-        updateMultiButton(
-            filterName
-        );
+    fillSelect("fDefect","defect");
 
-        renderMultiOptions(
-            filterName
-        );
+    fillSelect("fMesin","mesin");
 
-        setupMultiSearch(
-            filterName
-        );
+    fillSelect("fMotif","motif");
 
-    });
+    fillSelect("fGrup","grup");
 
 }
-
-
-/* =====================================================
-   KLIK DI LUAR DROPDOWN
-===================================================== */
-
-document.addEventListener(
-    "click",
-    function(event){
-
-        if(
-            event.target.closest(
-                ".multi-select"
-            )
-        ){
-
-            return;
-
-        }
-
-
-        document
-            .querySelectorAll(
-                ".multi-panel.show"
-            )
-            .forEach(panel => {
-
-                panel.classList.remove(
-                    "show"
-                );
-
-            });
-
-    }
-);
 
 
 /* =====================================================
@@ -2735,13 +1874,29 @@ function applyFilter(){
     const ke =
         el("tglKe").value;
 
+    const kode =
+        el("fKode").value;
+
+    const defect =
+        el("fDefect").value;
+
+    const mesin =
+        el("fMesin").value;
+
+    const motif =
+        el("fMotif").value;
+
+    const grup =
+        el("fGrup").value;
+
+    const roll =
+        clean(
+            el("fRoll").value
+        ).toLowerCase();
+
 
     filteredData =
         allData.filter(r => {
-
-            /* =========================
-               TANGGAL DARI
-            ========================= */
 
             if(dari){
 
@@ -2753,86 +1908,6 @@ function applyFilter(){
                 }
 
             }
-
-
-            /* =========================
-               TANGGAL KE
-            ========================= */
-
-            if(ke){
-
-                const d =
-                    dateKey(r.tanggal);
-
-                if(!d || d > ke){
-                    return false;
-                }
-
-            }
-
-
-            /* =========================
-               MULTI FILTER
-            ========================= */
-
-            for(
-                const filterName
-                of [
-                    "kode",
-                    "defect",
-                    "mesin",
-                    "motif",
-                    "grup",
-                    "roll"
-                ]
-            ){
-
-                const selected =
-                    selectedFilters[filterName];
-
-                if(
-                    selected &&
-                    selected.size > 0
-                ){
-
-                    const value =
-                        clean(
-                            r[filterName]
-                        ).toLowerCase();
-
-
-                    const cocok =
-                        [...selected].some(
-                            item =>
-                                clean(item)
-                                    .toLowerCase()
-                                === value
-                        );
-
-
-                    if(!cocok){
-
-                        return false;
-
-                    }
-
-                }
-
-            }
-
-
-            return true;
-
-        });
-
-
-    currentPage = 1;
-
-    renderChips();
-
-    updateDashboard();
-
-}
 
             if(ke){
 
@@ -2910,7 +1985,13 @@ function resetFilter(){
     el("tglDari").value = "";
     el("tglKe").value = "";
 
-    clearMultiSelections();
+    el("fKode").value = "";
+    el("fDefect").value = "";
+    el("fMesin").value = "";
+    el("fMotif").value = "";
+    el("fGrup").value = "";
+
+    el("fRoll").value = "";
 
     el("quickSearch").value = "";
 
@@ -2918,8 +1999,6 @@ function resetFilter(){
         [...allData];
 
     currentPage = 1;
-
-    renderChips();
 
     updateDashboard();
 
@@ -2937,73 +2016,32 @@ function renderChips(){
 
     const chips = [];
 
-    const dari =
-        el("tglDari").value;
+    const values = [
 
-    const ke =
-        el("tglKe").value;
+        ["Tanggal Dari",el("tglDari").value],
+        ["Tanggal Ke",el("tglKe").value],
+        ["Kode",el("fKode").value],
+        ["Defect",el("fDefect").value],
+        ["Mesin",el("fMesin").value],
+        ["Motif",el("fMotif").value],
+        ["Grup",el("fGrup").value],
+        ["Roll",el("fRoll").value]
 
+    ];
 
-    /* =========================
-       TANGGAL
-    ========================= */
+    values.forEach(item => {
 
-    if(dari){
+        if(item[1]){
 
-        chips.push(
-            `<span class="chip">
-                Tanggal Dari: ${escapeHtml(dari)}
-            </span>`
-        );
-
-    }
-
-
-    if(ke){
-
-        chips.push(
-            `<span class="chip">
-                Tanggal Ke: ${escapeHtml(ke)}
-            </span>`
-        );
-
-    }
-
-
-    /* =========================
-       MULTI FILTER
-    ========================= */
-
-    Object.keys(selectedFilters).forEach(
-        filterName => {
-
-            const selected =
-                selectedFilters[filterName];
-
-            if(
-                selected &&
-                selected.size > 0
-            ){
-
-                const label =
-                    multiFilterConfig[filterName].label;
-
-                const text =
-                    [...selected].join(", ");
-
-
-                chips.push(
-                    `<span class="chip">
-                        ${escapeHtml(label)}:
-                        ${escapeHtml(text)}
-                    </span>`
-                );
-
-            }
+            chips.push(
+                `<span class="chip">
+                    ${escapeHtml(item[0])}: ${escapeHtml(item[1])}
+                </span>`
+            );
 
         }
-    );
 
+    });
 
     box.innerHTML =
         chips.join("");
@@ -3079,13 +2117,28 @@ function getBaseFilteredData(){
     const ke =
         el("tglKe").value;
 
+    const kode =
+        el("fKode").value;
+
+    const defect =
+        el("fDefect").value;
+
+    const mesin =
+        el("fMesin").value;
+
+    const motif =
+        el("fMotif").value;
+
+    const grup =
+        el("fGrup").value;
+
+    const roll =
+        clean(
+            el("fRoll").value
+        ).toLowerCase();
+
 
     return allData.filter(r => {
-
-
-        /* =========================
-           TANGGAL DARI
-        ========================= */
 
         if(dari){
 
@@ -3098,11 +2151,6 @@ function getBaseFilteredData(){
 
         }
 
-
-        /* =========================
-           TANGGAL KE
-        ========================= */
-
         if(ke){
 
             const d =
@@ -3114,57 +2162,32 @@ function getBaseFilteredData(){
 
         }
 
-
-        /* =========================
-           SEMUA MULTI FILTER
-        ========================= */
-
-        for(
-            const filterName
-            of [
-                "kode",
-                "defect",
-                "mesin",
-                "motif",
-                "grup",
-                "roll"
-            ]
-        ){
-
-            const selected =
-                selectedFilters[filterName];
-
-
-            if(
-                selected &&
-                selected.size > 0
-            ){
-
-                const value =
-                    clean(
-                        r[filterName]
-                    ).toLowerCase();
-
-
-                const cocok =
-                    [...selected].some(
-                        item =>
-                            clean(item)
-                                .toLowerCase()
-                            === value
-                    );
-
-
-                if(!cocok){
-
-                    return false;
-
-                }
-
-            }
-
+        if(kode && r.kode !== kode){
+            return false;
         }
 
+        if(defect && r.defect !== defect){
+            return false;
+        }
+
+        if(mesin && r.mesin !== mesin){
+            return false;
+        }
+
+        if(motif && r.motif !== motif){
+            return false;
+        }
+
+        if(grup && r.grup !== grup){
+            return false;
+        }
+
+        if(
+            roll &&
+            !r.roll.toLowerCase().includes(roll)
+        ){
+            return false;
+        }
 
         return true;
 
@@ -3179,69 +2202,21 @@ function getBaseFilteredData(){
 
 function updateDashboard(){
 
-    try{
-        renderChips();
-    }catch(e){
-        console.error("ERROR renderChips:", e);
-        setStatus("❌ Error renderChips: " + e.message,"error");
-        return;
-    }
+    renderChips();
 
-    try{
-        updateKPI();
-    }catch(e){
-        console.error("ERROR updateKPI:", e);
-        setStatus("❌ Error updateKPI: " + e.message,"error");
-        return;
-    }
+    updateKPI();
 
-    try{
-        updateFocus();
-    }catch(e){
-        console.error("ERROR updateFocus:", e);
-        setStatus("❌ Error updateFocus: " + e.message,"error");
-        return;
-    }
+    updateFocus();
 
-    try{
-        renderCharts();
-    }catch(e){
-        console.error("ERROR renderCharts:", e);
-        setStatus("❌ Error renderCharts: " + e.message,"error");
-        return;
-    }
+    renderCharts();
 
-    try{
-        renderMatrix();
-    }catch(e){
-        console.error("ERROR renderMatrix:", e);
-        setStatus("❌ Error renderMatrix: " + e.message,"error");
-        return;
-    }
+    renderMatrix();
 
-    try{
-        renderRanking();
-    }catch(e){
-        console.error("ERROR renderRanking:", e);
-        setStatus("❌ Error renderRanking: " + e.message,"error");
-        return;
-    }
+    renderRanking();
 
-    try{
-        renderAI();
-    }catch(e){
-        console.error("ERROR renderAI:", e);
-        setStatus("❌ Error renderAI: " + e.message,"error");
-        return;
-    }
+    renderAI();
 
-    try{
-        renderTable();
-    }catch(e){
-        console.error("ERROR renderTable:", e);
-        setStatus("❌ Error renderTable: " + e.message,"error");
-        return;
-    }
+    renderTable();
 
 }
 
@@ -4197,49 +3172,7 @@ function escapeHtml(value){
    INIT
 ===================================================== */
 
-     clearDashboard();
-
-
-function pilihExcel(){
-
-    const input =
-        document.getElementById("fileExcel");
-
-    input.click();
-
-}
-
-
-document
-    .getElementById("fileExcel")
-    .addEventListener(
-        "change",
-        function(){
-
-            alert(
-                "FILE TERPILIH: " +
-                (
-                    this.files.length
-                    ? this.files[0].name
-                    : "KOSONG"
-                )
-            );
-
-            if(this.files.length){
-
-                handleFile(
-                    this.files[0]
-                );
-
-            }
-
-        }
-    );
-
-</script>
-
-</body>
-</html>
+clearDashboard();
 
 </script>
 
