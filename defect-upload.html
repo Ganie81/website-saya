@@ -1,1 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Dashboard Defect Flat - Upload Data</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+
+    min-height:100vh;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(255,255,255,.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(0,0,0,.45),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #160904,
+            #2b1208,
+            #4b2410,
+            #32170b,
+            #5a2d13,
+            #120604
+        );
+
+    color:white;
+}
+
+.container{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+    padding:18px;
+}
+
+.header{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.16),
+            rgba(255,255,255,.04)
+        );
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.15);
+
+    text-align:center;
+
+    margin-bottom:18px;
+}
+
+.judul{
+    margin:0;
+
+    font-size:25px;
+    font-weight:900;
+
+    letter-spacing:.5px;
+
+    text-shadow:
+        0 3px 0 #3b1808,
+        0 6px 12px rgba(0,0,0,.5);
+}
+
+.subjudul{
+    margin-top:7px;
+
+    font-size:12px;
+
+    opacity:.8;
+}
+
+.upload-card{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.15),
+            rgba(255,255,255,.05)
+        );
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:18px;
+
+    padding:22px;
+
+    text-align:center;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.upload-title{
+    font-size:18px;
+    font-weight:900;
+    margin-bottom:8px;
+}
+
+.upload-info{
+    font-size:12px;
+    opacity:.75;
+    margin-bottom:18px;
+}
+
+.upload-btn{
+    display:inline-block;
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #3d7f4b,
+            #174d28
+        );
+
+    color:white;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    border:1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.2);
+}
+
+.upload-btn:active{
+    transform:translateY(1px);
+}
+
+#fileInput{
+    display:none;
+}
+
+.status{
+    margin-top:18px;
+
+    padding:11px;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.08);
+
+    font-size:12px;
+
+    font-weight:700;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1 class="judul">
+            DASHBOARD DEFECT FLAT
+        </h1>
+
+        <div class="subjudul">
+            Versi Upload Data Excel
+        </div>
+
+    </div>
+
+
+    <div class="upload-card">
+
+        <div class="upload-title">
+            📂 Upload Data Defect Flat
+        </div>
+
+        <div class="upload-info">
+            Pilih file Excel (.xls / .xlsx)
+        </div>
+
+        <label
+            for="fileInput"
+            class="upload-btn"
+        >
+            📁 Pilih File Excel
+        </label>
+
+        <input
+            type="file"
+            id="fileInput"
+            accept=".xls,.xlsx"
+        >
+
+        <div
+            id="status"
+            class="status"
+        >
+            Belum ada file yang dipilih
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
