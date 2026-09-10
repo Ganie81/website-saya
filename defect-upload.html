@@ -756,6 +756,180 @@ table.detail{
     }
 }
 
+    .upload-row .btn{
+        width:100%;
+    }
+}
+
+
+/* =====================================================
+   MULTI SELECT FILTER + TELUSURI
+===================================================== */
+
+.multi-select{
+    position:relative;
+    width:100%;
+}
+
+.multi-button{
+    width:100%;
+    min-height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 12px;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:9px;
+    background:rgba(8,25,55,.92);
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.multi-button:hover{
+    border-color:rgba(80,180,255,.55);
+}
+
+.multi-button span:first-child{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.multi-arrow{
+    margin-left:8px;
+    font-size:11px;
+    opacity:.75;
+    flex-shrink:0;
+}
+
+.multi-panel{
+    display:none;
+    position:absolute;
+    left:0;
+    right:0;
+    top:calc(100% + 5px);
+    z-index:9999;
+    background:#071b3a;
+    border:1px solid rgba(80,180,255,.35);
+    border-radius:10px;
+    padding:9px;
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.multi-panel.show{
+    display:block;
+}
+
+.multi-search{
+    width:100%;
+    padding:9px 10px;
+    margin-bottom:8px;
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:8px;
+    outline:none;
+    background:rgba(255,255,255,.08);
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+}
+
+.multi-search::placeholder{
+    color:rgba(255,255,255,.55);
+}
+
+.multi-search:focus{
+    border-color:#4db8ff;
+}
+
+.multi-options{
+    max-height:220px;
+    overflow-y:auto;
+    padding-right:3px;
+}
+
+.multi-options::-webkit-scrollbar{
+    width:5px;
+}
+
+.multi-options::-webkit-scrollbar-track{
+    background:rgba(255,255,255,.04);
+    border-radius:10px;
+}
+
+.multi-options::-webkit-scrollbar-thumb{
+    background:rgba(80,180,255,.45);
+    border-radius:10px;
+}
+
+.multi-option{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 7px;
+    border-radius:7px;
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.multi-option:hover{
+    background:rgba(80,180,255,.12);
+}
+
+.multi-option.selected{
+    background:rgba(80,180,255,.18);
+}
+
+.multi-option input{
+    width:16px;
+    height:16px;
+    accent-color:#39a9ff;
+    flex-shrink:0;
+    cursor:pointer;
+}
+
+.multi-option-text{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    flex:1;
+}
+
+.multi-empty{
+    padding:12px 8px;
+    text-align:center;
+    color:rgba(255,255,255,.5);
+    font-size:11px;
+    font-weight:600;
+}
+
+@media(max-width:600px){
+
+    .multi-button{
+        min-height:40px;
+        font-size:12px;
+        padding:9px 10px;
+    }
+
+    .multi-panel{
+        max-height:300px;
+    }
+
+    .multi-options{
+        max-height:190px;
+    }
+
+    .multi-option{
+        padding:9px 6px;
+    }
+
+}
+
 </style>
 </head>
 
