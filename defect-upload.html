@@ -970,22 +970,21 @@ table.detail{
 
     <div class="upload-row">
 
-        <div class="file-box">
-            <input
-    type="file"
-    id="fileExcel"
-    accept=".xls,.xlsx"
-    onchange="handleFile(event)"
->
-        </div>
+        <input
+            type="file"
+            id="fileExcel"
+            accept=".xls,.xlsx"
+        >
 
         <button
+            type="button"
             class="btn btn-upload"
-            onclick="document.getElementById('fileExcel').click()">
+            onclick="pilihExcel()">
             Pilih Excel
         </button>
 
         <button
+            type="button"
             class="btn btn-reset"
             onclick="resetAll()">
             Reset
