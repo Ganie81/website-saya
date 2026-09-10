@@ -10,11 +10,20 @@
 
 <title>Upload Defect Flat</title>
 
+<!-- =====================================================
+     SHEETJS
+     Untuk membaca file XLS / XLSX langsung di browser
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+
 <style>
 
 *{
     box-sizing:border-box;
 }
+
 
 body{
 
@@ -23,6 +32,11 @@ body{
     font-family:Arial,sans-serif;
 
     background:
+        radial-gradient(
+            circle at top left,
+            rgba(255,255,255,.75),
+            transparent 35%
+        ),
         linear-gradient(
             145deg,
             #eef5fb,
@@ -90,17 +104,20 @@ body{
 
 .container{
 
-    max-width:900px;
+    max-width:1000px;
 
     margin:auto;
 
-    padding:18px 14px 40px;
+    padding:
+        18px
+        14px
+        40px;
 
 }
 
 
 /* =====================================================
-   UPLOAD CARD
+   CARD
 ===================================================== */
 
 .upload-card{
@@ -117,10 +134,12 @@ body{
     padding:20px;
 
     box-shadow:
-        0 8px 22px rgba(0,0,0,.12);
+        0 8px 22px
+        rgba(0,0,0,.12);
 
     border:
-        1px solid rgba(30,90,150,.18);
+        1px solid
+        rgba(30,90,150,.18);
 
 }
 
@@ -150,21 +169,24 @@ body{
 
     margin-bottom:20px;
 
+    line-height:1.5;
+
 }
 
 
 /* =====================================================
-   FILE INPUT
+   FILE BOX
 ===================================================== */
 
 .file-box{
 
     border:
-        2px dashed #1976d2;
+        2px dashed
+        #1976d2;
 
     border-radius:14px;
 
-    padding:25px 15px;
+    padding:28px 15px;
 
     text-align:center;
 
@@ -174,11 +196,85 @@ body{
 }
 
 
+.file-box strong{
+
+    font-size:16px;
+
+    color:#0d47a1;
+
+}
+
+
+.file-box small{
+
+    color:#607d8b;
+
+}
+
+
 .file-box input{
 
     width:100%;
 
-    margin-top:12px;
+    margin-top:15px;
+
+    font-size:13px;
+
+}
+
+
+/* =====================================================
+   INFO
+===================================================== */
+
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+    margin-top:15px;
+
+}
+
+
+.info-box{
+
+    background:
+        rgba(13,71,161,.07);
+
+    border-radius:11px;
+
+    padding:12px;
+
+    text-align:center;
+
+}
+
+
+.info-label{
+
+    font-size:10px;
+
+    color:#607d8b;
+
+    font-weight:700;
+
+}
+
+
+.info-value{
+
+    margin-top:4px;
+
+    font-size:17px;
+
+    font-weight:900;
+
+    color:#0d47a1;
 
 }
 
@@ -201,6 +297,8 @@ body{
     font-size:12px;
 
     font-weight:700;
+
+    line-height:1.5;
 
 }
 
@@ -237,7 +335,8 @@ body{
     cursor:pointer;
 
     box-shadow:
-        0 5px 12px rgba(13,71,161,.25);
+        0 5px 12px
+        rgba(13,71,161,.25);
 
 }
 
@@ -247,6 +346,22 @@ body{
     opacity:.5;
 
     cursor:not-allowed;
+
+}
+
+
+/* =====================================================
+   SECOND BUTTON
+===================================================== */
+
+.btn-reset{
+
+    background:
+        linear-gradient(
+            135deg,
+            #546e7a,
+            #78909c
+        );
 
 }
 
@@ -263,7 +378,13 @@ body{
 
     border-radius:12px;
 
-    border:1px solid #c8d8e6;
+    border:
+        1px solid
+        #c8d8e6;
+
+    max-height:520px;
+
+    background:white;
 
 }
 
@@ -274,12 +395,18 @@ body{
 
     border-collapse:collapse;
 
-    min-width:700px;
+    min-width:900px;
 
 }
 
 
 .preview th{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:2;
 
     background:#0d47a1;
 
@@ -298,7 +425,9 @@ body{
 
     padding:8px;
 
-    border-bottom:1px solid #dbe5ed;
+    border-bottom:
+        1px solid
+        #dbe5ed;
 
     font-size:11px;
 
@@ -308,17 +437,108 @@ body{
 
 
 /* =====================================================
-   RESPONSIVE
+   WARNING
+===================================================== */
+
+.warning{
+
+    margin-top:15px;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    background:
+        #fff3cd;
+
+    color:
+        #856404;
+
+    border:
+        1px solid
+        #ffe69c;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    line-height:1.5;
+
+}
+
+
+/* =====================================================
+   SUCCESS
+===================================================== */
+
+.success{
+
+    background:
+        #d1e7dd;
+
+    color:
+        #0f5132;
+
+    border:
+        1px solid
+        #badbcc;
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error{
+
+    background:
+        #f8d7da;
+
+    color:
+        #842029;
+
+    border:
+        1px solid
+        #f5c2c7;
+
+}
+
+
+/* =====================================================
+   MOBILE
 ===================================================== */
 
 @media(max-width:600px){
 
     .header h1{
+
         font-size:21px;
+
     }
 
+
     .upload-card{
+
         padding:16px;
+
+    }
+
+
+    .info-grid{
+
+        grid-template-columns:
+            1fr 1fr 1fr;
+
+        gap:7px;
+
+    }
+
+
+    .info-value{
+
+        font-size:15px;
+
     }
 
 }
@@ -331,80 +551,120 @@ body{
 <body>
 
 
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <div class="header">
 
-    <h1>Upload Defect Flat</h1>
+    <h1>
+        Upload Defect Flat
+    </h1>
 
     <p>
-        Input data Defect Flat ke Dashboard
+        Membaca data XLS / XLSX langsung dari perangkat
     </p>
 
 </div>
 
 
+
 <div class="container">
 
 
-    <div class="upload-card">
+<div class="upload-card">
 
 
-        <div class="card-title">
-            📤 Upload Data
-        </div>
+    <div class="card-title">
+        📊 Upload Data Excel
+    </div>
 
 
-        <div class="card-subtitle">
+    <div class="card-subtitle">
 
-            Pilih file data Defect Flat untuk
-            diproses sebelum dikirim ke sistem.
+        Pilih file Excel Defect Flat.
+        Data akan dibaca langsung di browser
+        tanpa menggunakan Apps Script.
 
-        </div>
-
-
-        <div class="file-box">
-
-            <strong>
-                Pilih File
-            </strong>
-
-            <br>
-
-            <small>
-                Format CSV
-            </small>
+    </div>
 
 
-            <input
-                type="file"
-                id="fileInput"
-                accept=".csv,text/csv"
-            >
 
-        </div>
+    <!-- =================================================
+         FILE
+    ================================================= -->
+
+    <div class="file-box">
+
+        <strong>
+            📁 Pilih File Excel
+        </strong>
+
+        <br>
+
+        <small>
+            Format yang didukung: XLS / XLSX
+        </small>
 
 
-        <div
-            id="status"
-            class="status"
+        <input
+            type="file"
+            id="fileInput"
+            accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         >
-            Belum ada file dipilih.
+
+    </div>
+
+
+
+    <!-- =================================================
+         INFO
+    ================================================= -->
+
+    <div class="info-grid">
+
+
+        <div class="info-box">
+
+            <div class="info-label">
+                FILE
+            </div>
+
+            <div
+                class="info-value"
+                id="fileName">
+                -
+            </div>
+
         </div>
 
 
-        <button
-            id="btnUpload"
-            class="btn"
-            disabled
-        >
-            UPLOAD DATA
-        </button>
+        <div class="info-box">
+
+            <div class="info-label">
+                SHEET
+            </div>
+
+            <div
+                class="info-value"
+                id="sheetName">
+                -
+            </div>
+
+        </div>
 
 
-        <div
-            id="preview"
-            class="preview"
-            style="display:none;"
-        >
+        <div class="info-box">
+
+            <div class="info-label">
+                DATA
+            </div>
+
+            <div
+                class="info-value"
+                id="dataCount">
+                0
+            </div>
 
         </div>
 
@@ -412,39 +672,157 @@ body{
     </div>
 
 
+
+    <!-- =================================================
+         STATUS
+    ================================================= -->
+
+    <div
+        id="status"
+        class="status">
+
+        Belum ada file Excel dipilih.
+
+    </div>
+
+
+
+    <!-- =================================================
+         RESET
+    ================================================= -->
+
+    <button
+        id="btnReset"
+        class="btn btn-reset">
+
+        RESET
+
+    </button>
+
+
+
+    <!-- =================================================
+         PREVIEW
+    ================================================= -->
+
+    <div
+        id="preview"
+        class="preview"
+        style="display:none;">
+
+    </div>
+
+
 </div>
+
+
+</div>
+
 
 
 <script>
 
-const fileInput =
-    document.getElementById("fileInput");
+/* =====================================================
+   DATA GLOBAL
+===================================================== */
 
-const btnUpload =
-    document.getElementById("btnUpload");
+let excelData = [];
+
+let currentFile = null;
+
+
+
+/* =====================================================
+   ELEMENT
+===================================================== */
+
+const fileInput =
+    document.getElementById(
+        "fileInput"
+    );
+
 
 const status =
-    document.getElementById("status");
+    document.getElementById(
+        "status"
+    );
+
 
 const preview =
-    document.getElementById("preview");
+    document.getElementById(
+        "preview"
+    );
 
+
+const fileName =
+    document.getElementById(
+        "fileName"
+    );
+
+
+const sheetName =
+    document.getElementById(
+        "sheetName"
+    );
+
+
+const dataCount =
+    document.getElementById(
+        "dataCount"
+    );
+
+
+const btnReset =
+    document.getElementById(
+        "btnReset"
+    );
+
+
+
+/* =====================================================
+   HEADER DEFECT FLAT
+===================================================== */
+
+const REQUIRED_HEADERS = [
+
+    "TGL FLAT",
+
+    "ROLL ID",
+
+    "KODE PROD",
+
+    "JUMLAH (Pcs)",
+
+    "JENIS DEFECT",
+
+    "MESIN",
+
+    "MOTIF",
+
+    "BLOK + ISIAN",
+
+    "GRUP",
+
+    "OPERATOR"
+
+];
+
+
+
+/* =====================================================
+   PILIH FILE
+===================================================== */
 
 fileInput.addEventListener(
     "change",
     function(){
 
-        if(!this.files.length){
+        if(
+            !this.files ||
+            !this.files.length
+        ){
 
-            btnUpload.disabled = true;
-
-            status.textContent =
-                "Belum ada file dipilih.";
-
-            preview.style.display =
-                "none";
-
-            preview.innerHTML = "";
+            resetPage();
 
             return;
 
@@ -455,31 +833,45 @@ fileInput.addEventListener(
             this.files[0];
 
 
+        const name =
+            file.name.toLowerCase();
+
+
         if(
-            !file.name.toLowerCase().endsWith(".csv")
+            !(
+                name.endsWith(".xls") ||
+                name.endsWith(".xlsx")
+            )
         ){
 
-            btnUpload.disabled = true;
+            showError(
+                "❌ File harus berformat XLS atau XLSX."
+            );
 
-            status.textContent =
-                "❌ File harus berformat CSV.";
-
-            preview.style.display =
-                "none";
-
-            preview.innerHTML = "";
+            resetInfoOnly();
 
             return;
 
         }
 
 
-        status.textContent =
-            "⏳ Membaca file: " +
+        currentFile = file;
+
+
+        fileName.textContent =
             file.name;
 
 
-        btnUpload.disabled = true;
+        status.className =
+            "status";
+
+
+        status.textContent =
+            "⏳ Membaca file Excel...";
+
+
+        preview.style.display =
+            "none";
 
 
         const reader =
@@ -491,36 +883,9 @@ fileInput.addEventListener(
 
                 try{
 
-                    const text =
-                        event.target.result;
-
-
-                    const rows =
-                        parseCSV(text);
-
-
-                    if(
-                        !rows.length
-                    ){
-
-                        throw new Error(
-                            "Data CSV kosong."
-                        );
-
-                    }
-
-
-                    renderPreview(rows);
-
-
-                    status.textContent =
-                        "✅ File berhasil dibaca • " +
-                        rows.length +
-                        " baris";
-
-
-                    btnUpload.disabled =
-                        false;
+                    readExcel(
+                        event.target.result
+                    );
 
                 }
 
@@ -528,18 +893,10 @@ fileInput.addEventListener(
 
                     console.error(error);
 
-
-                    status.textContent =
-                        "❌ Gagal membaca CSV: " +
-                        error.message;
-
-
-                    btnUpload.disabled =
-                        true;
-
-
-                    preview.style.display =
-                        "none";
+                    showError(
+                        "❌ Gagal membaca Excel: " +
+                        error.message
+                    );
 
                 }
 
@@ -549,173 +906,230 @@ fileInput.addEventListener(
         reader.onerror =
             function(){
 
-                status.textContent =
-                    "❌ File tidak dapat dibaca.";
-
-                btnUpload.disabled =
-                    true;
+                showError(
+                    "❌ File tidak dapat dibaca."
+                );
 
             };
 
 
-        reader.readAsText(
-            file,
-            "UTF-8"
+        reader.readAsArrayBuffer(
+            file
         );
 
     }
 );
 
 
+
 /* =====================================================
-   PARSE CSV
+   BACA EXCEL
 ===================================================== */
 
-function parseCSV(text){
+function readExcel(buffer){
 
-    const rows = [];
-
-    let row = [];
-
-    let cell = "";
-
-    let insideQuotes = false;
-
-
-    for(
-        let i = 0;
-        i < text.length;
-        i++
-    ){
-
-        const char =
-            text[i];
-
-        const next =
-            text[i + 1];
-
-
-        if(char === '"'){
-
-            if(
-                insideQuotes &&
-                next === '"'
-            ){
-
-                cell += '"';
-
-                i++;
-
-            }else{
-
-                insideQuotes =
-                    !insideQuotes;
-
+    const workbook =
+        XLSX.read(
+            buffer,
+            {
+                type:"array",
+                cellDates:true
             }
-
-            continue;
-
-        }
-
-
-        if(
-            char === "," &&
-            !insideQuotes
-        ){
-
-            row.push(cell);
-
-            cell = "";
-
-            continue;
-
-        }
-
-
-        if(
-            (char === "\n" ||
-             char === "\r") &&
-            !insideQuotes
-        ){
-
-            if(
-                char === "\r" &&
-                next === "\n"
-            ){
-
-                i++;
-
-            }
-
-
-            row.push(cell);
-
-            cell = "";
-
-
-            if(
-                row.some(function(value){
-
-                    return String(value)
-                        .trim() !== "";
-
-                })
-            ){
-
-                rows.push(row);
-
-            }
-
-
-            row = [];
-
-            continue;
-
-        }
-
-
-        cell += char;
-
-    }
+        );
 
 
     if(
-        cell !== "" ||
-        row.length
+        !workbook.SheetNames.length
     ){
 
-        row.push(cell);
+        throw new Error(
+            "File Excel tidak memiliki sheet."
+        );
 
     }
+
+
+    const firstSheet =
+        workbook.SheetNames[0];
+
+
+    sheetName.textContent =
+        firstSheet;
+
+
+    const worksheet =
+        workbook.Sheets[
+            firstSheet
+        ];
+
+
+    const rows =
+        XLSX.utils.sheet_to_json(
+            worksheet,
+            {
+                header:1,
+                defval:"",
+                raw:false
+            }
+        );
 
 
     if(
-        row.some(function(value){
-
-            return String(value)
-                .trim() !== "";
-
-        })
+        !rows.length
     ){
 
-        rows.push(row);
+        throw new Error(
+            "Sheet Excel kosong."
+        );
 
     }
 
 
-    return rows;
+    excelData = rows;
+
+
+    validateHeaders(
+        rows
+    );
+
+
+    const dataRows =
+        rows.slice(1).filter(
+            function(row){
+
+                return row.some(
+                    function(value){
+
+                        return String(
+                            value
+                        ).trim() !== "";
+
+                    }
+                );
+
+            }
+        );
+
+
+    if(
+        !dataRows.length
+    ){
+
+        throw new Error(
+            "Tidak ditemukan data setelah header."
+        );
+
+    }
+
+
+    dataCount.textContent =
+        dataRows.length
+        .toLocaleString(
+            "id-ID"
+        );
+
+
+    renderPreview(
+        rows
+    );
+
+
+    status.className =
+        "status success";
+
+
+    status.innerHTML =
+        "✅ File berhasil dibaca.<br>" +
+        "Sheet: <b>" +
+        escapeHtml(firstSheet) +
+        "</b><br>" +
+        "Jumlah data: <b>" +
+        dataRows.length.toLocaleString("id-ID") +
+        "</b> baris.";
 
 }
 
 
+
 /* =====================================================
-   PREVIEW CSV
+   VALIDASI HEADER
+===================================================== */
+
+function validateHeaders(rows){
+
+    const headers =
+        rows[0].map(
+            function(value){
+
+                return String(
+                    value
+                )
+                .trim()
+                .toUpperCase();
+
+            }
+        );
+
+
+    if(
+        headers.length < 10
+    ){
+
+        throw new Error(
+            "Kolom Excel kurang dari 10 kolom."
+        );
+
+    }
+
+
+    for(
+        let i = 0;
+        i < REQUIRED_HEADERS.length;
+        i++
+    ){
+
+        const expected =
+            REQUIRED_HEADERS[i]
+            .toUpperCase();
+
+
+        const actual =
+            headers[i] || "";
+
+
+        if(
+            actual !== expected
+        ){
+
+            throw new Error(
+                "Header kolom " +
+                (i + 1) +
+                " tidak sesuai. " +
+                "Seharusnya: " +
+                REQUIRED_HEADERS[i] +
+                " | Terbaca: " +
+                (actual || "(kosong)")
+            );
+
+        }
+
+    }
+
+}
+
+
+
+/* =====================================================
+   PREVIEW
 ===================================================== */
 
 function renderPreview(rows){
 
-    const maxPreviewRows =
-        Math.min(rows.length,11);
+    const maxRows =
+        Math.min(
+            rows.length,
+            31
+        );
 
 
     let html =
@@ -728,16 +1142,24 @@ function renderPreview(rows){
         "<thead><tr>";
 
 
-    rows[0].forEach(
-        function(header){
+    for(
+        let i = 0;
+        i < 10;
+        i++
+    ){
 
-            html +=
-                "<th>" +
-                escapeHtml(header) +
-                "</th>";
+        const value =
+            rows[0][i] !== undefined
+            ? rows[0][i]
+            : "";
 
-        }
-    );
+
+        html +=
+            "<th>" +
+            escapeHtml(value) +
+            "</th>";
+
+    }
 
 
     html +=
@@ -751,25 +1173,36 @@ function renderPreview(rows){
 
 
     for(
-        let i = 1;
-        i < maxPreviewRows;
-        i++
+        let r = 1;
+        r < maxRows;
+        r++
     ){
 
         html +=
             "<tr>";
 
 
-        rows[i].forEach(
-            function(value){
+        for(
+            let c = 0;
+            c < 10;
+            c++
+        ){
 
-                html +=
-                    "<td>" +
-                    escapeHtml(value) +
-                    "</td>";
+            const value =
+                rows[r] &&
+                rows[r][c] !== undefined
+                ? rows[r][c]
+                : "";
 
-            }
-        );
+
+            html +=
+                "<td>" +
+                escapeHtml(
+                    formatCell(value)
+                ) +
+                "</td>";
+
+        }
 
 
         html +=
@@ -789,7 +1222,153 @@ function renderPreview(rows){
     preview.style.display =
         "block";
 
+
+    if(
+        rows.length > 31
+    ){
+
+        const warning =
+            document.createElement(
+                "div"
+            );
+
+
+        warning.className =
+            "warning";
+
+
+        warning.innerHTML =
+            "ℹ️ Preview menampilkan " +
+            "30 baris pertama. " +
+            "Total data tetap " +
+            (rows.length - 1)
+            .toLocaleString("id-ID") +
+            " baris.";
+
+
+        preview.appendChild(
+            warning
+        );
+
+    }
+
 }
+
+
+
+/* =====================================================
+   FORMAT CELL
+===================================================== */
+
+function formatCell(value){
+
+    if(
+        value instanceof Date
+    ){
+
+        return value.toLocaleDateString(
+            "id-ID"
+        );
+
+    }
+
+
+    return value;
+
+}
+
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+btnReset.addEventListener(
+    "click",
+    function(){
+
+        resetPage();
+
+    }
+);
+
+
+
+function resetPage(){
+
+    fileInput.value = "";
+
+    excelData = [];
+
+    currentFile = null;
+
+
+    fileName.textContent =
+        "-";
+
+
+    sheetName.textContent =
+        "-";
+
+
+    dataCount.textContent =
+        "0";
+
+
+    preview.innerHTML =
+        "";
+
+
+    preview.style.display =
+        "none";
+
+
+    status.className =
+        "status";
+
+
+    status.textContent =
+        "Belum ada file Excel dipilih.";
+
+}
+
+
+
+function resetInfoOnly(){
+
+    fileName.textContent =
+        "-";
+
+    sheetName.textContent =
+        "-";
+
+    dataCount.textContent =
+        "0";
+
+    preview.innerHTML =
+        "";
+
+    preview.style.display =
+        "none";
+
+}
+
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+function showError(message){
+
+    status.className =
+        "status error";
+
+    status.textContent =
+        message;
+
+}
+
 
 
 /* =====================================================
@@ -799,13 +1378,35 @@ function renderPreview(rows){
 function escapeHtml(value){
 
     return String(
-        value == null ? "" : value
+        value == null
+        ? ""
+        : value
     )
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
 
 }
 
