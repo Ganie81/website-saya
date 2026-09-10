@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Dashboard Defect Flat - Upload Data</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Upload Defect Flat</title>
 
 <style>
 
@@ -13,221 +17,456 @@
 }
 
 body{
+
     margin:0;
+
     font-family:Arial,sans-serif;
 
-    min-height:100vh;
-
-    background:
-        radial-gradient(
-            circle at 15% 10%,
-            rgba(255,255,255,.10),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 90%,
-            rgba(0,0,0,.45),
-            transparent 40%
-        ),
-        linear-gradient(
-            135deg,
-            #160904,
-            #2b1208,
-            #4b2410,
-            #32170b,
-            #5a2d13,
-            #120604
-        );
-
-    color:white;
-}
-
-.container{
-    width:100%;
-    max-width:1200px;
-    margin:auto;
-    padding:18px;
-}
-
-.header{
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.16),
-            rgba(255,255,255,.04)
+            #eef5fb,
+            #dce8f3
         );
 
-    border:1px solid rgba(255,255,255,.15);
+    min-height:100vh;
+
+    color:#172b3a;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    background:
+        linear-gradient(
+            135deg,
+            #0d47a1,
+            #1565c0,
+            #1976d2
+        );
+
+    color:white;
+
+    padding:20px 16px;
+
+    text-align:center;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.20);
+
+}
+
+
+.header h1{
+
+    margin:0;
+
+    font-size:24px;
+
+    font-weight:900;
+
+}
+
+
+.header p{
+
+    margin:6px 0 0;
+
+    font-size:12px;
+
+    opacity:.9;
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding:18px 14px 40px;
+
+}
+
+
+/* =====================================================
+   UPLOAD CARD
+===================================================== */
+
+.upload-card{
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #edf6ff
+        );
 
     border-radius:18px;
 
     padding:20px;
 
     box-shadow:
-        0 12px 30px rgba(0,0,0,.35),
-        inset 0 1px 0 rgba(255,255,255,.15);
+        0 8px 22px rgba(0,0,0,.12);
 
-    text-align:center;
+    border:
+        1px solid rgba(30,90,150,.18);
 
-    margin-bottom:18px;
 }
 
-.judul{
-    margin:0;
 
-    font-size:25px;
-    font-weight:900;
+/* =====================================================
+   TITLE
+===================================================== */
 
-    letter-spacing:.5px;
+.card-title{
 
-    text-shadow:
-        0 3px 0 #3b1808,
-        0 6px 12px rgba(0,0,0,.5);
-}
-
-.subjudul{
-    margin-top:7px;
-
-    font-size:12px;
-
-    opacity:.8;
-}
-
-.upload-card{
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.15),
-            rgba(255,255,255,.05)
-        );
-
-    border:1px solid rgba(255,255,255,.15);
-
-    border-radius:18px;
-
-    padding:22px;
-
-    text-align:center;
-
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.35),
-        inset 0 1px 0 rgba(255,255,255,.12);
-}
-
-.upload-title{
     font-size:18px;
+
     font-weight:900;
-    margin-bottom:8px;
+
+    color:#0d47a1;
+
+    margin-bottom:6px;
+
 }
 
-.upload-info{
+
+.card-subtitle{
+
     font-size:12px;
-    opacity:.75;
-    margin-bottom:18px;
+
+    color:#607d8b;
+
+    margin-bottom:20px;
+
 }
 
-.upload-btn{
-    display:inline-block;
 
-    padding:12px 22px;
+/* =====================================================
+   FILE INPUT
+===================================================== */
 
-    border-radius:12px;
+.file-box{
+
+    border:
+        2px dashed #1976d2;
+
+    border-radius:14px;
+
+    padding:25px 15px;
+
+    text-align:center;
+
+    background:
+        rgba(33,150,243,.05);
+
+}
+
+
+.file-box input{
+
+    width:100%;
+
+    margin-top:12px;
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status{
+
+    margin-top:15px;
+
+    padding:11px 13px;
+
+    border-radius:10px;
+
+    background:
+        rgba(13,71,161,.08);
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.btn{
+
+    width:100%;
+
+    margin-top:15px;
+
+    padding:13px;
+
+    border:none;
+
+    border-radius:11px;
 
     background:
         linear-gradient(
-            145deg,
-            #3d7f4b,
-            #174d28
+            135deg,
+            #0d47a1,
+            #1976d2
         );
 
     color:white;
+
+    font-size:14px;
 
     font-weight:900;
 
     cursor:pointer;
 
-    border:1px solid rgba(255,255,255,.18);
-
     box-shadow:
-        0 6px 15px rgba(0,0,0,.35),
-        inset 0 1px 0 rgba(255,255,255,.2);
+        0 5px 12px rgba(13,71,161,.25);
+
 }
 
-.upload-btn:active{
-    transform:translateY(1px);
+
+.btn:disabled{
+
+    opacity:.5;
+
+    cursor:not-allowed;
+
 }
 
-#fileInput{
-    display:none;
+
+/* =====================================================
+   PREVIEW
+===================================================== */
+
+.preview{
+
+    margin-top:20px;
+
+    overflow:auto;
+
+    border-radius:12px;
+
+    border:1px solid #c8d8e6;
+
 }
 
-.status{
-    margin-top:18px;
 
-    padding:11px;
+.preview table{
 
-    border-radius:10px;
+    width:100%;
 
-    background:rgba(255,255,255,.08);
+    border-collapse:collapse;
 
-    font-size:12px;
+    min-width:700px;
 
-    font-weight:700;
+}
+
+
+.preview th{
+
+    background:#0d47a1;
+
+    color:white;
+
+    padding:9px;
+
+    font-size:11px;
+
+    white-space:nowrap;
+
+}
+
+
+.preview td{
+
+    padding:8px;
+
+    border-bottom:1px solid #dbe5ed;
+
+    font-size:11px;
+
+    white-space:nowrap;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:600px){
+
+    .header h1{
+        font-size:21px;
+    }
+
+    .upload-card{
+        padding:16px;
+    }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
+<div class="header">
+
+    <h1>Upload Defect Flat</h1>
+
+    <p>
+        Input data Defect Flat ke Dashboard
+    </p>
+
+</div>
+
+
 <div class="container">
-
-    <div class="header">
-
-        <h1 class="judul">
-            DASHBOARD DEFECT FLAT
-        </h1>
-
-        <div class="subjudul">
-            Versi Upload Data Excel
-        </div>
-
-    </div>
 
 
     <div class="upload-card">
 
-        <div class="upload-title">
-            📂 Upload Data Defect Flat
+
+        <div class="card-title">
+            📤 Upload Data
         </div>
 
-        <div class="upload-info">
-            Pilih file Excel (.xls / .xlsx)
+
+        <div class="card-subtitle">
+
+            Pilih file data Defect Flat untuk
+            diproses sebelum dikirim ke sistem.
+
         </div>
 
-        <label
-            for="fileInput"
-            class="upload-btn"
-        >
-            📁 Pilih File Excel
-        </label>
 
-        <input
-            type="file"
-            id="fileInput"
-            accept=".xls,.xlsx"
-        >
+        <div class="file-box">
+
+            <strong>
+                Pilih File
+            </strong>
+
+            <br>
+
+            <small>
+                Format CSV
+            </small>
+
+
+            <input
+                type="file"
+                id="fileInput"
+                accept=".csv,text/csv"
+            >
+
+        </div>
+
 
         <div
             id="status"
             class="status"
         >
-            Belum ada file yang dipilih
+            Belum ada file dipilih.
         </div>
+
+
+        <button
+            id="btnUpload"
+            class="btn"
+            disabled
+        >
+            UPLOAD DATA
+        </button>
+
+
+        <div
+            id="preview"
+            class="preview"
+            style="display:none;"
+        >
+
+        </div>
+
 
     </div>
 
+
 </div>
 
+
+<script>
+
+const fileInput =
+    document.getElementById("fileInput");
+
+const btnUpload =
+    document.getElementById("btnUpload");
+
+const status =
+    document.getElementById("status");
+
+const preview =
+    document.getElementById("preview");
+
+
+fileInput.addEventListener(
+    "change",
+    function(){
+
+        if(!this.files.length){
+
+            btnUpload.disabled = true;
+
+            status.textContent =
+                "Belum ada file dipilih.";
+
+            preview.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        const file =
+            this.files[0];
+
+
+        status.textContent =
+            "✅ File dipilih: " +
+            file.name;
+
+
+        btnUpload.disabled =
+            false;
+
+    }
+);
+
+</script>
+
+
 </body>
+
 </html>
