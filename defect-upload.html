@@ -6,10 +6,6 @@
 
 <title>Defect Flat - Upload Excel</title>
 
-<!-- =====================================================
-     SHEETJS
-     Membaca XLS dan XLSX langsung di browser
-===================================================== -->
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <style>
@@ -254,10 +250,147 @@ input[type=file]{
     outline:none;
 }
 
-.field input:focus,
-.field select:focus{
+.field input:focus{
     border-color:#17649c;
     box-shadow:0 0 0 2px rgba(23,100,156,.12);
+}
+
+/* =====================================================
+   CUSTOM MULTI SELECT
+===================================================== */
+
+.multi-select{
+    position:relative;
+    width:100%;
+}
+
+.multi-button{
+    width:100%;
+    min-height:40px;
+    border:1px solid #a9bfd2;
+    border-radius:9px;
+    padding:8px 10px;
+    background:white;
+    color:#172033;
+    font-weight:700;
+    outline:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    text-align:left;
+}
+
+.multi-button:hover,
+.multi-select.open .multi-button{
+    border-color:#17649c;
+    box-shadow:0 0 0 2px rgba(23,100,156,.12);
+}
+
+.multi-button-text{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    flex:1;
+}
+
+.multi-arrow{
+    font-size:11px;
+    color:#49677e;
+    flex:none;
+}
+
+.multi-panel{
+    display:none;
+    position:absolute;
+    left:0;
+    right:0;
+    top:calc(100% + 5px);
+    background:white;
+    border:1px solid #a9bfd2;
+    border-radius:10px;
+    padding:8px;
+    z-index:30;
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.22);
+}
+
+.multi-select.open .multi-panel{
+    display:block;
+}
+
+.multi-search{
+    width:100%;
+    min-height:36px;
+    border:1px solid #b5c8d7;
+    border-radius:8px;
+    padding:7px 9px;
+    font-size:11px;
+    font-weight:700;
+    outline:none;
+    margin-bottom:7px;
+}
+
+.multi-search:focus{
+    border-color:#17649c;
+}
+
+.multi-actions{
+    display:flex;
+    gap:5px;
+    margin-bottom:7px;
+}
+
+.multi-action{
+    flex:1;
+    border:1px solid #b5c8d7;
+    background:#f2f7fb;
+    color:#174c78;
+    border-radius:7px;
+    padding:6px;
+    font-size:10px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.multi-options{
+    max-height:210px;
+    overflow:auto;
+    border-top:1px solid #e2e9ef;
+    padding-top:5px;
+}
+
+.multi-option{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 5px;
+    border-radius:7px;
+    cursor:pointer;
+    font-size:11px;
+    font-weight:700;
+    color:#25384a;
+}
+
+.multi-option:hover{
+    background:#eef6fc;
+}
+
+.multi-option input{
+    width:16px;
+    height:16px;
+    margin:0;
+    flex:none;
+    accent-color:#17649c;
+}
+
+.multi-empty{
+    padding:12px 6px;
+    text-align:center;
+    color:#8194a5;
+    font-size:10px;
+    font-weight:800;
 }
 
 .filter-actions{
@@ -754,16 +887,25 @@ table.detail{
     .upload-row .btn{
         width:100%;
     }
+
+    .multi-panel{
+        position:fixed;
+        left:10px;
+        right:10px;
+        top:auto;
+        max-height:65vh;
+    }
+
+    .multi-options{
+        max-height:45vh;
+    }
+
 }
 
 </style>
 </head>
 
 <body>
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
 
 <header class="header">
 
@@ -797,12 +939,13 @@ table.detail{
     <div class="upload-row">
 
         <div class="file-box">
+
             <input
                 type="file"
                 id="fileExcel"
                 accept=".xls,.xlsx"
-                onchange="handleFile(this.files[0])"
-            >
+                onchange="handleFile(this.files[0])">
+
         </div>
 
         <button
@@ -848,9 +991,11 @@ table.detail{
         <button
             class="btn btn-filter"
             onclick="toggleFilter()">
+
             <span id="filterButtonText">
                 Buka Filter
             </span>
+
         </button>
 
     </div>
@@ -862,51 +1007,375 @@ table.detail{
 
         <div class="filter-grid">
 
+            <!-- TANGGAL DARI -->
+
             <div class="field">
-                <label>Tanggal Dari</label>
+
+                <label>
+                    Tanggal Dari
+                </label>
+
                 <input
                     type="date"
                     id="tglDari">
+
             </div>
 
+
+            <!-- TANGGAL KE -->
+
             <div class="field">
-                <label>Tanggal Ke</label>
+
+                <label>
+                    Tanggal Ke
+                </label>
+
                 <input
                     type="date"
                     id="tglKe">
+
             </div>
 
-            <div class="field">
-                <label>Kode Produk</label>
-                <select id="fKode"></select>
-            </div>
+
+            <!-- KODE PRODUK -->
 
             <div class="field">
-                <label>Jenis Defect</label>
-                <select id="fDefect"></select>
+
+                <label>
+                    Kode Produk
+                </label>
+
+                <div
+                    class="multi-select"
+                    id="msKode">
+
+                    <button
+                        type="button"
+                        class="multi-button"
+                        onclick="toggleMulti('msKode')">
+
+                        <span
+                            class="multi-button-text"
+                            id="textKode">
+                            Semua
+                        </span>
+
+                        <span class="multi-arrow">
+                            ▼
+                        </span>
+
+                    </button>
+
+                    <div class="multi-panel">
+
+                        <input
+                            type="text"
+                            class="multi-search"
+                            id="searchKode"
+                            placeholder="Telusuri Kode Produk..."
+                            oninput="searchMulti('kode')">
+
+                        <div class="multi-actions">
+
+                            <button
+                                type="button"
+                                class="multi-action"
+                                onclick="selectAllMulti('kode')">
+                                Pilih Semua
+                            </button>
+
+                            <button
+                                type="button"
+                                class="multi-action"
+                                onclick="clearMulti('kode')">
+                                Hapus
+                            </button>
+
+                        </div>
+
+                        <div
+                            id="optionsKode"
+                            class="multi-options">
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="field">
-                <label>Mesin</label>
-                <select id="fMesin"></select>
-            </div>
+
+            <!-- JENIS DEFECT -->
 
             <div class="field">
-                <label>Motif</label>
-                <select id="fMotif"></select>
+
+                <label>
+                    Jenis Defect
+                </label>
+
+                <div
+                    class="multi-select"
+                    id="msDefect">
+
+                    <button
+                        type="button"
+                        class="multi-button"
+                        onclick="toggleMulti('msDefect')">
+
+                        <span
+                            class="multi-button-text"
+                            id="textDefect">
+                            Semua
+                        </span>
+
+                        <span class="multi-arrow">
+                            ▼
+                        </span>
+
+                    </button>
+
+                    <div class="multi-panel">
+
+                        <input
+                            type="text"
+                            class="multi-search"
+                            id="searchDefect"
+                            placeholder="Telusuri Jenis Defect..."
+                            oninput="searchMulti('defect')">
+
+                        <div class="multi-actions">
+
+                            <button
+                                type="button"
+                                class="multi-action"
+                                onclick="selectAllMulti('defect')">
+                                Pilih Semua
+                            </button>
+
+                            <button
+                                type="button"
+                                class="multi-action"
+                                onclick="clearMulti('defect')">
+                                Hapus
+                            </button>
+
+                        </div>
+
+                        <div
+                            id="optionsDefect"
+                            class="multi-options">
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="field">
-                <label>Grup</label>
-                <select id="fGrup"></select>
-            </div>
+
+            <!-- MESIN -->
 
             <div class="field">
-                <label>Roll ID</label>
+
+                <label>
+                    Mesin
+                </label>
+
+                <div
+                    class="multi-select"
+                    id="msMesin">
+
+                    <button
+                        type="button"
+                        class="multi-button"
+                        onclick="toggleMulti('msMesin')">
+
+                        <span
+                            class="multi-button-text"
+                            id="textMesin">
+                            Semua
+                        </span>
+
+                        <span class="multi-arrow">
+                            ▼
+                        </span>
+
+                    </button>
+
+                    <div class="multi-panel">
+
+                        <div class="multi-actions">
+
+                            <button
+                                type="button"
+                                class="multi-action"
+                                onclick="selectAllMulti('mesin')">
+                                Pilih Semua
+                            </button>
+
+                            <button
+                                type="button"
+                                class="multi-action"
+                                onclick="clearMulti('mesin')">
+                                Hapus
+                            </button>
+
+                        </div>
+
+                        <div
+                            id="optionsMesin"
+                            class="multi-options">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MOTIF -->
+
+            <div class="field">
+
+                <label>
+                    Motif
+                </label>
+
+                <div
+                    class="multi-select"
+                    id="msMotif">
+
+                    <button
+                        type="button"
+                        class="multi-button"
+                        onclick="toggleMulti('msMotif')">
+
+                        <span
+                            class="multi-button-text"
+                            id="textMotif">
+                            Semua
+                        </span>
+
+                        <span class="multi-arrow">
+                            ▼
+                        </span>
+
+                    </button>
+
+                    <div class="multi-panel">
+
+                        <input
+                            type="text"
+                            class="multi-search"
+                            id="searchMotif"
+                            placeholder="Telusuri Motif..."
+                            oninput="searchMulti('motif')">
+
+                        <div class="multi-actions">
+
+                            <button
+                                type="button"
+                                class="multi-action"
+                                onclick="selectAllMulti('motif')">
+                                Pilih Semua
+                            </button>
+
+                            <button
+                                type="button"
+                                class="multi-action"
+                                onclick="clearMulti('motif')">
+                                Hapus
+                            </button>
+
+                        </div>
+
+                        <div
+                            id="optionsMotif"
+                            class="multi-options">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- GRUP -->
+
+            <div class="field">
+
+                <label>
+                    Grup
+                </label>
+
+                <div
+                    class="multi-select"
+                    id="msGrup">
+
+                    <button
+                        type="button"
+                        class="multi-button"
+                        onclick="toggleMulti('msGrup')">
+
+                        <span
+                            class="multi-button-text"
+                            id="textGrup">
+                            Semua
+                        </span>
+
+                        <span class="multi-arrow">
+                            ▼
+                        </span>
+
+                    </button>
+
+                    <div class="multi-panel">
+
+                        <div class="multi-actions">
+
+                            <button
+                                type="button"
+                                class="multi-action"
+                                onclick="selectAllMulti('grup')">
+                                Pilih Semua
+                            </button>
+
+                            <button
+                                type="button"
+                                class="multi-action"
+                                onclick="clearMulti('grup')">
+                                Hapus
+                            </button>
+
+                        </div>
+
+                        <div
+                            id="optionsGrup"
+                            class="multi-options">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ROLL ID -->
+
+            <div class="field">
+
+                <label>
+                    Roll ID
+                </label>
+
                 <input
                     type="text"
                     id="fRoll"
-                    placeholder="Cari Roll ID...">
+                    placeholder="Telusuri Roll ID...">
+
             </div>
 
         </div>
@@ -1221,31 +1690,6 @@ table.detail{
 
 
 <!-- =====================================================
-     QUICK SEARCH
-===================================================== -->
-
-<section class="card">
-
-    <div class="section-title">
-        🔍 Telusuri Detail Data
-    </div>
-
-    <div
-        class="quick-row"
-        style="margin-top:10px">
-
-        <input
-            type="text"
-            id="quickSearch"
-            placeholder="Cari kode produk, roll, defect, mesin, motif, grup..."
-            oninput="quickSearch()">
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
      DETAIL
 ===================================================== -->
 
@@ -1260,7 +1704,9 @@ table.detail{
         <table class="detail">
 
             <thead>
+
                 <tr>
+
                     <th>TGL FLAT</th>
                     <th>ROLL ID</th>
                     <th>KODE PROD</th>
@@ -1271,7 +1717,9 @@ table.detail{
                     <th>BLOK + ISIAN</th>
                     <th>GRUP</th>
                     <th>OPERATOR</th>
+
                 </tr>
+
             </thead>
 
             <tbody id="detailBody">
@@ -1329,9 +1777,11 @@ let allData = [];
 let filteredData = [];
 
 let currentPage = 1;
+
 const rowsPerPage = 50;
 
 const HEADER_EXPECTED = [
+
     "TGL FLAT",
     "ROLL ID",
     "KODE PROD",
@@ -1342,7 +1792,23 @@ const HEADER_EXPECTED = [
     "BLOK + ISIAN",
     "GRUP",
     "OPERATOR"
+
 ];
+
+
+/* =====================================================
+   STATE MULTI FILTER
+===================================================== */
+
+const filterState = {
+
+    kode: [],
+    defect: [],
+    mesin: [],
+    motif: [],
+    grup: []
+
+};
 
 
 /* =====================================================
@@ -1350,37 +1816,54 @@ const HEADER_EXPECTED = [
 ===================================================== */
 
 function el(id){
+
     return document.getElementById(id);
+
 }
 
 
 function clean(v){
-    if(v === null || v === undefined){
+
+    if(
+        v === null ||
+        v === undefined
+    ){
+
         return "";
+
     }
 
     return String(v).trim();
+
 }
 
 
 function normalizeHeader(v){
+
     return clean(v)
         .toUpperCase()
         .replace(/\s+/g," ")
         .trim();
+
 }
 
 
 function numberValue(v){
 
     if(typeof v === "number"){
-        return isFinite(v) ? v : 0;
+
+        return isFinite(v)
+            ? v
+            : 0;
+
     }
 
     let s = clean(v);
 
     if(!s){
+
         return 0;
+
     }
 
     s = s
@@ -1389,7 +1872,10 @@ function numberValue(v){
 
     let n = parseFloat(s);
 
-    return isFinite(n) ? n : 0;
+    return isFinite(n)
+        ? n
+        : 0;
+
 }
 
 
@@ -1399,17 +1885,22 @@ function numberValue(v){
 
 function parseDateValue(v){
 
-    if(v instanceof Date && !isNaN(v)){
+    if(
+        v instanceof Date &&
+        !isNaN(v)
+    ){
+
         return v;
+
     }
+
 
     if(typeof v === "number"){
 
-        /*
-           Excel serial date
-        */
-
-        if(v > 20000 && v < 60000){
+        if(
+            v > 20000 &&
+            v < 60000
+        ){
 
             const utc =
                 Math.round(
@@ -1419,23 +1910,26 @@ function parseDateValue(v){
                 );
 
             return new Date(utc);
+
         }
+
     }
+
 
     let s = clean(v);
 
     if(!s){
+
         return null;
+
     }
 
-    /*
-       yyyy-mm-dd
-    */
 
     let m =
         s.match(
             /^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})/
         );
+
 
     if(m){
 
@@ -1447,19 +1941,19 @@ function parseDateValue(v){
             );
 
         if(!isNaN(d)){
+
             return d;
+
         }
+
     }
 
-    /*
-       dd/mm/yyyy
-       dd-mm-yyyy
-    */
 
     m =
         s.match(
             /^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})/
         );
+
 
     if(m){
 
@@ -1471,53 +1965,72 @@ function parseDateValue(v){
             );
 
         if(!isNaN(d)){
+
             return d;
+
         }
+
     }
+
 
     let d = new Date(s);
 
     if(!isNaN(d)){
+
         return d;
+
     }
 
     return null;
+
 }
 
 
 function dateKey(v){
 
-    let d = parseDateValue(v);
+    let d =
+        parseDateValue(v);
 
     if(!d){
+
         return "";
+
     }
 
     return (
+
         d.getFullYear() +
         "-" +
         String(d.getMonth()+1).padStart(2,"0") +
         "-" +
         String(d.getDate()).padStart(2,"0")
+
     );
+
 }
 
 
 function formatDate(v){
 
-    let d = parseDateValue(v);
+    let d =
+        parseDateValue(v);
 
     if(!d){
+
         return clean(v);
+
     }
 
     return (
+
         String(d.getDate()).padStart(2,"0") +
         "/" +
         String(d.getMonth()+1).padStart(2,"0") +
         "/" +
         d.getFullYear()
+
     );
+
 }
 
 
@@ -1530,13 +2043,19 @@ function showLoading(text){
     el("loadingText").textContent =
         text || "Mohon tunggu";
 
-    el("loading").classList.add("show");
+    el("loading")
+        .classList
+        .add("show");
+
 }
 
 
 function hideLoading(){
 
-    el("loading").classList.remove("show");
+    el("loading")
+        .classList
+        .remove("show");
+
 }
 
 
@@ -1546,13 +2065,16 @@ function hideLoading(){
 
 function setStatus(message,type){
 
-    const box = el("status");
+    const box =
+        el("status");
 
-    box.textContent = message;
+    box.textContent =
+        message;
 
     box.className =
         "status show " +
         (type || "ok");
+
 }
 
 
@@ -1563,11 +2085,15 @@ function setStatus(message,type){
 async function handleFile(file){
 
     if(!file){
+
         return;
+
     }
+
 
     const name =
         file.name.toLowerCase();
+
 
     if(
         !name.endsWith(".xls") &&
@@ -1580,16 +2106,20 @@ async function handleFile(file){
         );
 
         return;
+
     }
+
 
     showLoading(
         "Membaca " + file.name
     );
 
+
     try{
 
         const buffer =
             await file.arrayBuffer();
+
 
         const workbook =
             XLSX.read(
@@ -1600,6 +2130,7 @@ async function handleFile(file){
                 }
             );
 
+
         if(
             !workbook.SheetNames ||
             !workbook.SheetNames.length
@@ -1608,13 +2139,17 @@ async function handleFile(file){
             throw new Error(
                 "Sheet Excel tidak ditemukan."
             );
+
         }
+
 
         const sheetName =
             workbook.SheetNames[0];
 
+
         const sheet =
             workbook.Sheets[sheetName];
+
 
         const raw =
             XLSX.utils.sheet_to_json(
@@ -1626,23 +2161,37 @@ async function handleFile(file){
                 }
             );
 
+
         if(!raw.length){
 
             throw new Error(
                 "Sheet Excel kosong."
             );
+
         }
 
+
         const header =
-            raw[0].map(normalizeHeader);
+            raw[0].map(
+                normalizeHeader
+            );
+
 
         validateHeader(header);
 
+
         allData = [];
 
-        for(let i=1;i<raw.length;i++){
 
-            const row = raw[i];
+        for(
+            let i=1;
+            i<raw.length;
+            i++
+        ){
+
+            const row =
+                raw[i];
+
 
             if(
                 !row ||
@@ -1650,12 +2199,16 @@ async function handleFile(file){
                     v => clean(v)===""
                 )
             ){
+
                 continue;
+
             }
+
 
             allData.push({
 
-                tanggal: row[0],
+                tanggal:
+                    row[0],
 
                 roll:
                     clean(row[1]),
@@ -1688,10 +2241,13 @@ async function handleFile(file){
 
         }
 
+
         filteredData =
             [...allData];
 
+
         currentPage = 1;
+
 
         el("fileInfo").textContent =
             "📄 " +
@@ -1702,28 +2258,37 @@ async function handleFile(file){
             allData.length.toLocaleString("id-ID") +
             " baris";
 
+
         setStatus(
             "✅ File berhasil dibaca. Dashboard siap digunakan.",
             "ok"
         );
 
+
+        resetFilterState();
+
         buildFilters();
 
         updateDashboard();
 
+
     }catch(err){
 
         allData = [];
+
         filteredData = [];
 
         console.error(err);
+
 
         setStatus(
             "❌ " + err.message,
             "error"
         );
 
+
         clearDashboard();
+
 
     }finally{
 
@@ -1747,6 +2312,7 @@ function validateHeader(header){
         );
 
     }
+
 
     for(
         let i=0;
@@ -1786,27 +2352,37 @@ function toggleFilter(){
     const open =
         body.classList.toggle("open");
 
+
     el("filterButtonText").textContent =
-        open ?
-        "Tutup Filter" :
-        "Buka Filter";
+        open
+        ? "Tutup Filter"
+        : "Buka Filter";
 
 }
 
 
 /* =====================================================
-   OPTIONS
+   UNIQUE VALUES
 ===================================================== */
 
 function uniqueValues(key){
 
     return [
+
         ...new Set(
+
             allData
-                .map(r => clean(r[key]))
+
+                .map(
+                    r => clean(r[key])
+                )
+
                 .filter(Boolean)
+
         )
+
     ].sort(
+
         (a,b) =>
             a.localeCompare(
                 b,
@@ -1816,48 +2392,469 @@ function uniqueValues(key){
                     sensitivity:"base"
                 }
             )
+
     );
 
 }
 
 
-function fillSelect(id,key){
+/* =====================================================
+   MULTI SELECT
+===================================================== */
 
-    const select =
-        el(id);
+function getMultiConfig(key){
 
-    const values =
-        uniqueValues(key);
+    const config = {
 
-    select.innerHTML =
-        '<option value="">Semua</option>';
+        kode:{
+            wrapper:"msKode",
+            text:"textKode",
+            options:"optionsKode",
+            search:"searchKode"
+        },
 
-    values.forEach(v => {
+        defect:{
+            wrapper:"msDefect",
+            text:"textDefect",
+            options:"optionsDefect",
+            search:"searchDefect"
+        },
 
-        const option =
-            document.createElement("option");
+        mesin:{
+            wrapper:"msMesin",
+            text:"textMesin",
+            options:"optionsMesin",
+            search:null
+        },
 
-        option.value = v;
-        option.textContent = v;
+        motif:{
+            wrapper:"msMotif",
+            text:"textMotif",
+            options:"optionsMotif",
+            search:"searchMotif"
+        },
 
-        select.appendChild(option);
+        grup:{
+            wrapper:"msGrup",
+            text:"textGrup",
+            options:"optionsGrup",
+            search:null
+        }
 
-    });
+    };
+
+    return config[key];
 
 }
 
 
+/* =====================================================
+   BUILD FILTERS
+===================================================== */
+
 function buildFilters(){
 
-    fillSelect("fKode","kode");
+    buildMultiOptions("kode");
 
-    fillSelect("fDefect","defect");
+    buildMultiOptions("defect");
 
-    fillSelect("fMesin","mesin");
+    buildMultiOptions("mesin");
 
-    fillSelect("fMotif","motif");
+    buildMultiOptions("motif");
 
-    fillSelect("fGrup","grup");
+    buildMultiOptions("grup");
+
+}
+
+
+/* =====================================================
+   BUILD MULTI OPTIONS
+===================================================== */
+
+function buildMultiOptions(key){
+
+    const config =
+        getMultiConfig(key);
+
+    if(!config){
+
+        return;
+
+    }
+
+
+    const box =
+        el(config.options);
+
+
+    const values =
+        uniqueValues(key);
+
+
+    if(!values.length){
+
+        box.innerHTML =
+            '<div class="multi-empty">Tidak ada pilihan</div>';
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+        values.map(
+            value => {
+
+                const checked =
+                    filterState[key]
+                        .includes(value)
+                        ? "checked"
+                        : "";
+
+
+                return `
+
+                    <label
+                        class="multi-option"
+                        data-value="${escapeHtml(value)}">
+
+                        <input
+                            type="checkbox"
+                            value="${escapeHtml(value)}"
+                            ${checked}
+                            onchange="changeMulti('${key}',this)">
+
+                        <span>
+                            ${escapeHtml(value)}
+                        </span>
+
+                    </label>
+
+                `;
+
+            }
+        ).join("");
+
+
+    updateMultiText(key);
+
+}
+
+
+/* =====================================================
+   CHANGE MULTI
+===================================================== */
+
+function changeMulti(key,checkbox){
+
+    const value =
+        checkbox.value;
+
+
+    if(checkbox.checked){
+
+        if(
+            !filterState[key]
+                .includes(value)
+        ){
+
+            filterState[key]
+                .push(value);
+
+        }
+
+    }else{
+
+        filterState[key] =
+            filterState[key]
+                .filter(
+                    v => v !== value
+                );
+
+    }
+
+
+    updateMultiText(key);
+
+}
+
+
+/* =====================================================
+   UPDATE BUTTON TEXT
+===================================================== */
+
+function updateMultiText(key){
+
+    const config =
+        getMultiConfig(key);
+
+    if(!config){
+
+        return;
+
+    }
+
+
+    const selected =
+        filterState[key];
+
+
+    const box =
+        el(config.text);
+
+
+    if(!selected.length){
+
+        box.textContent =
+            "Semua";
+
+        return;
+
+    }
+
+
+    if(selected.length === 1){
+
+        box.textContent =
+            selected[0];
+
+        return;
+
+    }
+
+
+    box.textContent =
+        selected.length +
+        " pilihan dipilih";
+
+}
+
+
+/* =====================================================
+   TOGGLE MULTI
+===================================================== */
+
+function toggleMulti(id){
+
+    const target =
+        el(id);
+
+
+    document
+        .querySelectorAll(".multi-select.open")
+        .forEach(item => {
+
+            if(item !== target){
+
+                item.classList.remove("open");
+
+            }
+
+        });
+
+
+    target.classList.toggle("open");
+
+}
+
+
+/* =====================================================
+   SEARCH MULTI
+===================================================== */
+
+function searchMulti(key){
+
+    const config =
+        getMultiConfig(key);
+
+    if(
+        !config ||
+        !config.search
+    ){
+
+        return;
+
+    }
+
+
+    const q =
+        clean(
+            el(config.search).value
+        ).toLowerCase();
+
+
+    const options =
+        el(config.options)
+            .querySelectorAll(
+                ".multi-option"
+            );
+
+
+    let found = 0;
+
+
+    options.forEach(option => {
+
+        const value =
+            clean(
+                option.dataset.value
+            ).toLowerCase();
+
+
+        const show =
+            !q ||
+            value.includes(q);
+
+
+        option.style.display =
+            show
+            ? "flex"
+            : "none";
+
+
+        if(show){
+
+            found++;
+
+        }
+
+    });
+
+
+    let empty =
+        el(config.options)
+            .querySelector(".multi-empty-search");
+
+
+    if(!found){
+
+        if(!empty){
+
+            empty =
+                document.createElement("div");
+
+            empty.className =
+                "multi-empty multi-empty-search";
+
+            empty.textContent =
+                "Tidak ditemukan";
+
+            el(config.options)
+                .appendChild(empty);
+
+        }
+
+    }else{
+
+        if(empty){
+
+            empty.remove();
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   SELECT ALL
+===================================================== */
+
+function selectAllMulti(key){
+
+    filterState[key] =
+        uniqueValues(key);
+
+
+    const config =
+        getMultiConfig(key);
+
+
+    if(!config){
+
+        return;
+
+    }
+
+
+    el(config.options)
+        .querySelectorAll(
+            'input[type="checkbox"]'
+        )
+        .forEach(cb => {
+
+            cb.checked = true;
+
+        });
+
+
+    updateMultiText(key);
+
+}
+
+
+/* =====================================================
+   CLEAR MULTI
+===================================================== */
+
+function clearMulti(key){
+
+    filterState[key] = [];
+
+
+    const config =
+        getMultiConfig(key);
+
+
+    if(!config){
+
+        return;
+
+    }
+
+
+    el(config.options)
+        .querySelectorAll(
+            'input[type="checkbox"]'
+        )
+        .forEach(cb => {
+
+            cb.checked = false;
+
+        });
+
+
+    if(config.search){
+
+        el(config.search).value =
+            "";
+
+        searchMulti(key);
+
+    }
+
+
+    updateMultiText(key);
+
+}
+
+
+/* =====================================================
+   RESET STATE
+===================================================== */
+
+function resetFilterState(){
+
+    filterState.kode = [];
+
+    filterState.defect = [];
+
+    filterState.mesin = [];
+
+    filterState.motif = [];
+
+    filterState.grup = [];
 
 }
 
@@ -1874,20 +2871,6 @@ function applyFilter(){
     const ke =
         el("tglKe").value;
 
-    const kode =
-        el("fKode").value;
-
-    const defect =
-        el("fDefect").value;
-
-    const mesin =
-        el("fMesin").value;
-
-    const motif =
-        el("fMotif").value;
-
-    const grup =
-        el("fGrup").value;
 
     const roll =
         clean(
@@ -1898,71 +2881,130 @@ function applyFilter(){
     filteredData =
         allData.filter(r => {
 
+
+            /* DATE FROM */
+
             if(dari){
 
                 const d =
                     dateKey(r.tanggal);
 
-                if(!d || d < dari){
+
+                if(
+                    !d ||
+                    d < dari
+                ){
+
                     return false;
+
                 }
 
             }
+
+
+            /* DATE TO */
 
             if(ke){
 
                 const d =
                     dateKey(r.tanggal);
 
-                if(!d || d > ke){
+
+                if(
+                    !d ||
+                    d > ke
+                ){
+
                     return false;
+
                 }
 
             }
 
-            if(
-                kode &&
-                r.kode !== kode
-            ){
-                return false;
-            }
+
+            /* KODE */
 
             if(
-                defect &&
-                r.defect !== defect
+                filterState.kode.length &&
+                !filterState.kode.includes(
+                    clean(r.kode)
+                )
             ){
+
                 return false;
+
             }
 
-            if(
-                mesin &&
-                r.mesin !== mesin
-            ){
-                return false;
-            }
+
+            /* DEFECT */
 
             if(
-                motif &&
-                r.motif !== motif
+                filterState.defect.length &&
+                !filterState.defect.includes(
+                    clean(r.defect)
+                )
             ){
+
                 return false;
+
             }
 
+
+            /* MESIN */
+
             if(
-                grup &&
-                r.grup !== grup
+                filterState.mesin.length &&
+                !filterState.mesin.includes(
+                    clean(r.mesin)
+                )
             ){
+
                 return false;
+
             }
+
+
+            /* MOTIF */
+
+            if(
+                filterState.motif.length &&
+                !filterState.motif.includes(
+                    clean(r.motif)
+                )
+            ){
+
+                return false;
+
+            }
+
+
+            /* GRUP */
+
+            if(
+                filterState.grup.length &&
+                !filterState.grup.includes(
+                    clean(r.grup)
+                )
+            ){
+
+                return false;
+
+            }
+
+
+            /* ROLL */
 
             if(
                 roll &&
-                !r.roll
+                !clean(r.roll)
                     .toLowerCase()
                     .includes(roll)
             ){
+
                 return false;
+
             }
+
 
             return true;
 
@@ -1970,6 +3012,7 @@ function applyFilter(){
 
 
     currentPage = 1;
+
 
     updateDashboard();
 
@@ -1982,23 +3025,39 @@ function applyFilter(){
 
 function resetFilter(){
 
-    el("tglDari").value = "";
-    el("tglKe").value = "";
+    el("tglDari").value =
+        "";
 
-    el("fKode").value = "";
-    el("fDefect").value = "";
-    el("fMesin").value = "";
-    el("fMotif").value = "";
-    el("fGrup").value = "";
+    el("tglKe").value =
+        "";
 
-    el("fRoll").value = "";
+    el("fRoll").value =
+        "";
 
-    el("quickSearch").value = "";
+
+    resetFilterState();
+
+
+    [
+        "kode",
+        "defect",
+        "mesin",
+        "motif",
+        "grup"
+    ]
+    .forEach(key => {
+
+        clearMulti(key);
+
+    });
+
 
     filteredData =
         [...allData];
 
+
     currentPage = 1;
+
 
     updateDashboard();
 
@@ -2006,7 +3065,7 @@ function resetFilter(){
 
 
 /* =====================================================
-   FILTER CHIPS
+   RENDER CHIPS
 ===================================================== */
 
 function renderChips(){
@@ -2014,93 +3073,91 @@ function renderChips(){
     const box =
         el("chips");
 
+
     const chips = [];
 
-    const values = [
 
-        ["Tanggal Dari",el("tglDari").value],
-        ["Tanggal Ke",el("tglKe").value],
-        ["Kode",el("fKode").value],
-        ["Defect",el("fDefect").value],
-        ["Mesin",el("fMesin").value],
-        ["Motif",el("fMotif").value],
-        ["Grup",el("fGrup").value],
-        ["Roll",el("fRoll").value]
-
-    ];
-
-    values.forEach(item => {
-
-        if(item[1]){
-
-            chips.push(
-                `<span class="chip">
-                    ${escapeHtml(item[0])}: ${escapeHtml(item[1])}
-                </span>`
-            );
-
-        }
-
-    });
-
-    box.innerHTML =
-        chips.join("");
-
-}
+    const dari =
+        el("tglDari").value;
 
 
-/* =====================================================
-   QUICK SEARCH
-===================================================== */
+    const ke =
+        el("tglKe").value;
 
-function quickSearch(){
 
-    const q =
-        clean(
-            el("quickSearch").value
-        ).toLowerCase();
+    if(dari){
 
-    /*
-       Mulai dari data hasil filter.
-    */
-
-    const base =
-        getBaseFilteredData();
-
-    if(!q){
-
-        filteredData = base;
-
-    }else{
-
-        filteredData =
-            base.filter(r => {
-
-                return [
-
-                    r.tanggal,
-                    r.roll,
-                    r.kode,
-                    r.pcs,
-                    r.defect,
-                    r.mesin,
-                    r.motif,
-                    r.blok,
-                    r.grup,
-                    r.operator
-
-                ]
-                .join(" ")
-                .toLowerCase()
-                .includes(q);
-
-            });
+        chips.push(
+            `<span class="chip">
+                Tanggal Dari: ${escapeHtml(dari)}
+            </span>`
+        );
 
     }
 
-    currentPage = 1;
 
-    updateDashboard(false);
+    if(ke){
+
+        chips.push(
+            `<span class="chip">
+                Tanggal Ke: ${escapeHtml(ke)}
+            </span>`
+        );
+
+    }
+
+
+    const names = {
+
+        kode:"Kode",
+
+        defect:"Defect",
+
+        mesin:"Mesin",
+
+        motif:"Motif",
+
+        grup:"Grup"
+
+    };
+
+
+    Object.keys(names)
+        .forEach(key => {
+
+            filterState[key]
+                .forEach(value => {
+
+                    chips.push(
+                        `<span class="chip">
+                            ${escapeHtml(names[key])}: ${escapeHtml(value)}
+                        </span>`
+                    );
+
+                });
+
+        });
+
+
+    const roll =
+        clean(
+            el("fRoll").value
+        );
+
+
+    if(roll){
+
+        chips.push(
+            `<span class="chip">
+                Roll: ${escapeHtml(roll)}
+            </span>`
+        );
+
+    }
+
+
+    box.innerHTML =
+        chips.join("");
 
 }
 
@@ -2117,20 +3174,6 @@ function getBaseFilteredData(){
     const ke =
         el("tglKe").value;
 
-    const kode =
-        el("fKode").value;
-
-    const defect =
-        el("fDefect").value;
-
-    const mesin =
-        el("fMesin").value;
-
-    const motif =
-        el("fMotif").value;
-
-    const grup =
-        el("fGrup").value;
 
     const roll =
         clean(
@@ -2140,54 +3183,112 @@ function getBaseFilteredData(){
 
     return allData.filter(r => {
 
+
         if(dari){
 
             const d =
                 dateKey(r.tanggal);
 
-            if(!d || d < dari){
+            if(
+                !d ||
+                d < dari
+            ){
+
                 return false;
+
             }
 
         }
+
 
         if(ke){
 
             const d =
                 dateKey(r.tanggal);
 
-            if(!d || d > ke){
+            if(
+                !d ||
+                d > ke
+            ){
+
                 return false;
+
             }
 
         }
 
-        if(kode && r.kode !== kode){
+
+        if(
+            filterState.kode.length &&
+            !filterState.kode.includes(
+                clean(r.kode)
+            )
+        ){
+
             return false;
+
         }
 
-        if(defect && r.defect !== defect){
+
+        if(
+            filterState.defect.length &&
+            !filterState.defect.includes(
+                clean(r.defect)
+            )
+        ){
+
             return false;
+
         }
 
-        if(mesin && r.mesin !== mesin){
+
+        if(
+            filterState.mesin.length &&
+            !filterState.mesin.includes(
+                clean(r.mesin)
+            )
+        ){
+
             return false;
+
         }
 
-        if(motif && r.motif !== motif){
+
+        if(
+            filterState.motif.length &&
+            !filterState.motif.includes(
+                clean(r.motif)
+            )
+        ){
+
             return false;
+
         }
 
-        if(grup && r.grup !== grup){
+
+        if(
+            filterState.grup.length &&
+            !filterState.grup.includes(
+                clean(r.grup)
+            )
+        ){
+
             return false;
+
         }
+
 
         if(
             roll &&
-            !r.roll.toLowerCase().includes(roll)
+            !clean(r.roll)
+                .toLowerCase()
+                .includes(roll)
         ){
+
             return false;
+
         }
+
 
         return true;
 
@@ -2230,6 +3331,7 @@ function updateKPI(){
     const data =
         filteredData;
 
+
     const pcs =
         data.reduce(
             (sum,r) =>
@@ -2237,12 +3339,14 @@ function updateKPI(){
             0
         );
 
+
     const defects =
         new Set(
             data
                 .map(r=>r.defect)
                 .filter(Boolean)
         ).size;
+
 
     const rolls =
         new Set(
@@ -2253,16 +3357,23 @@ function updateKPI(){
 
 
     el("kpiData").textContent =
-        data.length.toLocaleString("id-ID");
+        data.length
+            .toLocaleString("id-ID");
+
 
     el("kpiPcs").textContent =
-        pcs.toLocaleString("id-ID");
+        pcs
+            .toLocaleString("id-ID");
+
 
     el("kpiJenis").textContent =
-        defects.toLocaleString("id-ID");
+        defects
+            .toLocaleString("id-ID");
+
 
     el("kpiRoll").textContent =
-        rolls.toLocaleString("id-ID");
+        rolls
+            .toLocaleString("id-ID");
 
 }
 
@@ -2275,11 +3386,13 @@ function countBy(data,key){
 
     const map = {};
 
+
     data.forEach(r => {
 
         const name =
             clean(r[key]) ||
             "(Kosong)";
+
 
         map[name] =
             (map[name] || 0) +
@@ -2287,9 +3400,12 @@ function countBy(data,key){
 
     });
 
+
     return Object.entries(map)
+
         .sort(
-            (a,b)=>b[1]-a[1]
+            (a,b) =>
+                b[1]-a[1]
         );
 
 }
@@ -2303,17 +3419,28 @@ function updateFocus(){
 
     renderFocus(
         "focusDefect",
-        countBy(filteredData,"defect")
+        countBy(
+            filteredData,
+            "defect"
+        )
     );
+
 
     renderFocus(
         "focusMesin",
-        countBy(filteredData,"mesin")
+        countBy(
+            filteredData,
+            "mesin"
+        )
     );
+
 
     renderFocus(
         "focusGrup",
-        countBy(filteredData,"grup")
+        countBy(
+            filteredData,
+            "grup"
+        )
     );
 
 }
@@ -2321,7 +3448,9 @@ function updateFocus(){
 
 function renderFocus(id,list){
 
-    const box = el(id);
+    const box =
+        el(id);
+
 
     if(!list.length){
 
@@ -2331,6 +3460,7 @@ function renderFocus(id,list){
         return;
 
     }
+
 
     box.innerHTML =
         list
@@ -2342,11 +3472,17 @@ function renderFocus(id,list){
                     <div
                         class="focus-name"
                         title="${escapeHtml(item[0])}">
+
                         ${escapeHtml(item[0])}
+
                     </div>
 
                     <div class="focus-number">
-                        ${item[1].toLocaleString("id-ID")} pcs
+
+                        ${item[1]
+                            .toLocaleString("id-ID")}
+                        pcs
+
                     </div>
 
                 </div>
@@ -2365,22 +3501,37 @@ function renderCharts(){
 
     renderBarChart(
         "chartDefect",
-        countBy(filteredData,"defect")
+        countBy(
+            filteredData,
+            "defect"
+        )
     );
+
 
     renderBarChart(
         "chartMesin",
-        countBy(filteredData,"mesin")
+        countBy(
+            filteredData,
+            "mesin"
+        )
     );
+
 
     renderBarChart(
         "chartGrup",
-        countBy(filteredData,"grup")
+        countBy(
+            filteredData,
+            "grup"
+        )
     );
+
 
     renderBarChart(
         "chartMotif",
-        countBy(filteredData,"motif")
+        countBy(
+            filteredData,
+            "motif"
+        )
     );
 
 }
@@ -2388,7 +3539,9 @@ function renderCharts(){
 
 function renderBarChart(id,list){
 
-    const box = el(id);
+    const box =
+        el(id);
+
 
     if(!list.length){
 
@@ -2399,8 +3552,10 @@ function renderBarChart(id,list){
 
     }
 
+
     const top =
         list.slice(0,8);
+
 
     const max =
         Math.max(
@@ -2408,58 +3563,71 @@ function renderBarChart(id,list){
             1
         );
 
+
     box.innerHTML =
-        top.map(item => {
+        top
+            .map(item => {
 
-            const percent =
-                Math.max(
-                    2,
-                    (item[1]/max)*100
-                );
+                const percent =
+                    Math.max(
+                        2,
+                        (item[1]/max)*100
+                    );
 
-            return `
 
-                <div class="bar-row">
+                return `
 
-                    <div class="bar-head">
+                    <div class="bar-row">
 
-                        <span
-                            title="${escapeHtml(item[0])}">
-                            ${escapeHtml(item[0])}
-                        </span>
+                        <div class="bar-head">
 
-                        <span>
-                            ${item[1].toLocaleString("id-ID")} pcs
-                        </span>
+                            <span
+                                title="${escapeHtml(item[0])}">
 
-                    </div>
+                                ${escapeHtml(item[0])}
 
-                    <div class="bar-track">
+                            </span>
 
-                        <div
-                            class="bar-fill"
-                            style="width:${percent}%">
+                            <span>
+
+                                ${item[1]
+                                    .toLocaleString("id-ID")}
+                                pcs
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="bar-track">
+
+                            <div
+                                class="bar-fill"
+                                style="width:${percent}%">
+
+                            </div>
+
                         </div>
 
                     </div>
 
-                </div>
+                `;
 
-            `;
-
-        }).join("");
+            })
+            .join("");
 
 }
 
 
 /* =====================================================
-   MATRIX DEFECT x MESIN
+   MATRIX
 ===================================================== */
 
 function renderMatrix(){
 
     const box =
         el("matrix");
+
 
     if(!filteredData.length){
 
@@ -2470,6 +3638,7 @@ function renderMatrix(){
 
     }
 
+
     const defects =
         countBy(
             filteredData,
@@ -2477,6 +3646,7 @@ function renderMatrix(){
         )
         .slice(0,10)
         .map(x=>x[0]);
+
 
     const machines =
         countBy(
@@ -2489,13 +3659,18 @@ function renderMatrix(){
 
     const matrix = {};
 
+
     filteredData.forEach(r => {
 
         const d =
-            clean(r.defect) || "(Kosong)";
+            clean(r.defect) ||
+            "(Kosong)";
+
 
         const m =
-            clean(r.mesin) || "(Kosong)";
+            clean(r.mesin) ||
+            "(Kosong)";
+
 
         if(
             defects.includes(d) &&
@@ -2503,8 +3678,11 @@ function renderMatrix(){
         ){
 
             if(!matrix[d]){
+
                 matrix[d] = {};
+
             }
+
 
             matrix[d][m] =
                 (matrix[d][m] || 0) +
@@ -2518,10 +3696,14 @@ function renderMatrix(){
     let html =
         '<table class="matrix">';
 
-    html += "<thead><tr>";
+
+    html +=
+        "<thead><tr>";
+
 
     html +=
         "<th>Defect</th>";
+
 
     machines.forEach(m => {
 
@@ -2532,8 +3714,10 @@ function renderMatrix(){
 
     });
 
+
     html +=
         "<th>Total</th>";
+
 
     html +=
         "</tr></thead><tbody>";
@@ -2543,12 +3727,16 @@ function renderMatrix(){
 
         let total = 0;
 
-        html += "<tr>";
+
+        html +=
+            "<tr>";
+
 
         html +=
             "<th>" +
             escapeHtml(d) +
             "</th>";
+
 
         machines.forEach(m => {
 
@@ -2560,26 +3748,28 @@ function renderMatrix(){
                 :
                 0;
 
+
             total += value;
+
 
             html +=
                 "<td style='" +
-                heatStyle(
-                    value,
-                    100
-                ) +
+                heatStyle(value) +
                 "'>" +
                 value.toLocaleString("id-ID") +
                 "</td>";
 
         });
 
+
         html +=
             "<td><b>" +
             total.toLocaleString("id-ID") +
             "</b></td>";
 
-        html += "</tr>";
+
+        html +=
+            "</tr>";
 
     });
 
@@ -2587,7 +3777,9 @@ function renderMatrix(){
     html +=
         "</tbody></table>";
 
-    box.innerHTML = html;
+
+    box.innerHTML =
+        html;
 
 }
 
@@ -2595,8 +3787,11 @@ function renderMatrix(){
 function heatStyle(value){
 
     if(!value){
+
         return "background:#f4f7fa;color:#8293a1;";
+
     }
+
 
     const alpha =
         Math.min(
@@ -2604,6 +3799,7 @@ function heatStyle(value){
             .15 +
             Math.log(value+1)/5
         );
+
 
     return `
         background:rgba(20,90,135,${alpha});
@@ -2622,11 +3818,13 @@ function renderRanking(){
     const box =
         el("ranking");
 
+
     const list =
         countBy(
             filteredData,
             "defect"
         );
+
 
     if(!list.length){
 
@@ -2637,11 +3835,13 @@ function renderRanking(){
 
     }
 
+
     const total =
         list.reduce(
             (s,x)=>s+x[1],
             0
         );
+
 
     box.innerHTML =
         list
@@ -2656,6 +3856,7 @@ function renderRanking(){
                         :
                         0;
 
+
                     return `
 
                         <div class="bar-row">
@@ -2663,23 +3864,31 @@ function renderRanking(){
                             <div class="bar-head">
 
                                 <span>
+
                                     #${index+1}
                                     ${escapeHtml(item[0])}
+
                                 </span>
 
+
                                 <span>
-                                    ${item[1].toLocaleString("id-ID")}
+
+                                    ${item[1]
+                                        .toLocaleString("id-ID")}
                                     pcs
                                     (${pct.toFixed(1)}%)
+
                                 </span>
 
                             </div>
+
 
                             <div class="bar-track">
 
                                 <div
                                     class="bar-fill"
                                     style="width:${Math.max(2,pct)}%">
+
                                 </div>
 
                             </div>
@@ -2696,13 +3905,14 @@ function renderRanking(){
 
 
 /* =====================================================
-   ANALISA OTOMATIS
+   AI
 ===================================================== */
 
 function renderAI(){
 
     const box =
         el("aiContent");
+
 
     if(!filteredData.length){
 
@@ -2713,11 +3923,13 @@ function renderAI(){
 
     }
 
+
     const defect =
         countBy(
             filteredData,
             "defect"
         );
+
 
     const mesin =
         countBy(
@@ -2725,11 +3937,13 @@ function renderAI(){
             "mesin"
         );
 
+
     const grup =
         countBy(
             filteredData,
             "grup"
         );
+
 
     const motif =
         countBy(
@@ -2753,12 +3967,14 @@ function renderAI(){
         :
         "-";
 
+
     const topDefectPcs =
         defect[0]
         ?
         defect[0][1]
         :
         0;
+
 
     const topMesin =
         mesin[0]
@@ -2767,6 +3983,7 @@ function renderAI(){
         :
         "-";
 
+
     const topGrup =
         grup[0]
         ?
@@ -2774,12 +3991,14 @@ function renderAI(){
         :
         "-";
 
+
     const topMotif =
         motif[0]
         ?
         motif[0][0]
         :
         "-";
+
 
     const defectShare =
         totalPcs
@@ -2796,37 +4015,59 @@ function renderAI(){
     box.innerHTML = `
 
         <div class="ai-item">
+
             <b>1. Defect utama:</b>
+
             ${escapeHtml(topDefect)}
             dengan
-            ${topDefectPcs.toLocaleString("id-ID")} pcs
+            ${topDefectPcs
+                .toLocaleString("id-ID")}
+            pcs
             (${defectShare}% dari total pcs).
+
         </div>
 
+
         <div class="ai-item">
+
             <b>2. Mesin yang perlu diperhatikan:</b>
+
             ${escapeHtml(topMesin)}.
+
         </div>
 
+
         <div class="ai-item">
+
             <b>3. Grup dengan kontribusi terbesar:</b>
+
             ${escapeHtml(topGrup)}.
+
         </div>
 
+
         <div class="ai-item">
+
             <b>4. Motif dominan:</b>
+
             ${escapeHtml(topMotif)}.
+
         </div>
 
+
         <div class="ai-item">
+
             <b>5. Kesimpulan:</b>
+
             Prioritaskan pemeriksaan
             ${escapeHtml(topDefect)}
             terutama pada mesin
             ${escapeHtml(topMesin)}
             dan lakukan penelusuran berdasarkan
             grup serta motif yang dominan.
+
         </div>
+
 
         <div
             style="
@@ -2834,8 +4075,10 @@ function renderAI(){
                 opacity:.65;
                 font-size:10px;
             ">
+
             Analisa ini dibuat otomatis dari data Excel
             yang sedang ditampilkan dan bukan AI cloud.
+
         </div>
 
     `;
@@ -2852,23 +4095,35 @@ function renderTable(){
     const body =
         el("detailBody");
 
+
     const total =
         filteredData.length;
+
 
     if(!total){
 
         body.innerHTML = `
+
             <tr>
+
                 <td colspan="10">
+
                     <div class="empty">
+
                         Tidak ada data sesuai filter.
+
                     </div>
+
                 </td>
+
             </tr>
+
         `;
+
 
         el("pagination").innerHTML =
             "";
+
 
         return;
 
@@ -2880,14 +4135,22 @@ function renderTable(){
             total / rowsPerPage
         );
 
-    if(currentPage > totalPages){
-        currentPage = totalPages;
+
+    if(
+        currentPage >
+        totalPages
+    ){
+
+        currentPage =
+            totalPages;
+
     }
 
 
     const start =
         (currentPage-1) *
         rowsPerPage;
+
 
     const end =
         Math.min(
@@ -2909,46 +4172,93 @@ function renderTable(){
             <tr>
 
                 <td>
+
                     ${escapeHtml(
-                        formatDate(r.tanggal)
+                        formatDate(
+                            r.tanggal
+                        )
                     )}
+
                 </td>
 
-                <td>
-                    ${escapeHtml(r.roll)}
-                </td>
 
                 <td>
-                    ${escapeHtml(r.kode)}
+
+                    ${escapeHtml(
+                        r.roll
+                    )}
+
                 </td>
 
+
                 <td>
+
+                    ${escapeHtml(
+                        r.kode
+                    )}
+
+                </td>
+
+
+                <td>
+
                     ${numberValue(r.pcs)
                         .toLocaleString("id-ID")}
+
                 </td>
 
-                <td>
-                    ${escapeHtml(r.defect)}
-                </td>
 
                 <td>
-                    ${escapeHtml(r.mesin)}
+
+                    ${escapeHtml(
+                        r.defect
+                    )}
+
                 </td>
 
-                <td>
-                    ${escapeHtml(r.motif)}
-                </td>
 
                 <td>
-                    ${escapeHtml(r.blok)}
+
+                    ${escapeHtml(
+                        r.mesin
+                    )}
+
                 </td>
 
-                <td>
-                    ${escapeHtml(r.grup)}
-                </td>
 
                 <td>
-                    ${escapeHtml(r.operator)}
+
+                    ${escapeHtml(
+                        r.motif
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHtml(
+                        r.blok
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHtml(
+                        r.grup
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHtml(
+                        r.operator
+                    )}
+
                 </td>
 
             </tr>
@@ -2963,18 +4273,29 @@ function renderTable(){
 }
 
 
+/* =====================================================
+   PAGINATION
+===================================================== */
+
 function renderPagination(totalPages){
 
     const box =
         el("pagination");
 
+
     if(totalPages <= 1){
 
-        box.innerHTML =
-            `<span class="page-info">
-                ${filteredData.length.toLocaleString("id-ID")}
+        box.innerHTML = `
+
+            <span class="page-info">
+
+                ${filteredData.length
+                    .toLocaleString("id-ID")}
                 data
-            </span>`;
+
+            </span>
+
+        `;
 
         return;
 
@@ -2983,13 +4304,18 @@ function renderPagination(totalPages){
 
     let html = "";
 
+
     html += `
+
         <button
             class="page-btn"
             onclick="goPage(${currentPage-1})"
             ${currentPage===1 ? "disabled" : ""}>
+
             ‹
+
         </button>
+
     `;
 
 
@@ -2998,6 +4324,7 @@ function renderPagination(totalPages){
             1,
             currentPage-2
         );
+
 
     const end =
         Math.min(
@@ -3013,36 +4340,53 @@ function renderPagination(totalPages){
     ){
 
         html += `
+
             <button
                 class="page-btn ${i===currentPage ? "active" : ""}"
                 onclick="goPage(${i})">
+
                 ${i}
+
             </button>
+
         `;
 
     }
 
 
     html += `
+
         <button
             class="page-btn"
             onclick="goPage(${currentPage+1})"
             ${currentPage===totalPages ? "disabled" : ""}>
+
             ›
+
         </button>
+
     `;
 
 
     html += `
+
         <span class="page-info">
+
             Halaman ${currentPage}
-            / ${totalPages}
-            • ${filteredData.length.toLocaleString("id-ID")} data
+            /
+            ${totalPages}
+            •
+            ${filteredData.length
+                .toLocaleString("id-ID")}
+            data
+
         </span>
+
     `;
 
 
-    box.innerHTML = html;
+    box.innerHTML =
+        html;
 
 }
 
@@ -3055,17 +4399,28 @@ function goPage(page){
             rowsPerPage
         );
 
+
     if(page < 1){
+
         page = 1;
+
     }
+
 
     if(page > totalPages){
-        page = totalPages;
+
+        page =
+            totalPages;
+
     }
 
-    currentPage = page;
+
+    currentPage =
+        page;
+
 
     renderTable();
+
 
     document
         .querySelector(".table-card")
@@ -3078,17 +4433,58 @@ function goPage(page){
 
 
 /* =====================================================
-   CLEAR
+   CLOSE DROPDOWN KETIKA KLIK DI LUAR
+===================================================== */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            !event.target.closest(
+                ".multi-select"
+            )
+        ){
+
+            document
+                .querySelectorAll(
+                    ".multi-select.open"
+                )
+                .forEach(item => {
+
+                    item.classList.remove(
+                        "open"
+                    );
+
+                });
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CLEAR DASHBOARD
 ===================================================== */
 
 function clearDashboard(){
 
-    el("kpiData").textContent = "0";
-    el("kpiPcs").textContent = "0";
-    el("kpiJenis").textContent = "0";
-    el("kpiRoll").textContent = "0";
+    el("kpiData").textContent =
+        "0";
+
+    el("kpiPcs").textContent =
+        "0";
+
+    el("kpiJenis").textContent =
+        "0";
+
+    el("kpiRoll").textContent =
+        "0";
+
 
     [
+
         "focusDefect",
         "focusMesin",
         "focusGrup",
@@ -3098,6 +4494,7 @@ function clearDashboard(){
         "chartMotif",
         "matrix",
         "ranking"
+
     ]
     .forEach(id => {
 
@@ -3106,12 +4503,17 @@ function clearDashboard(){
 
     });
 
+
     el("aiContent").textContent =
         "Belum ada data yang dianalisa.";
 
-    el("detailBody").innerHTML = "";
 
-    el("pagination").innerHTML = "";
+    el("detailBody").innerHTML =
+        "";
+
+
+    el("pagination").innerHTML =
+        "";
 
 }
 
@@ -3123,22 +4525,57 @@ function clearDashboard(){
 function resetAll(){
 
     allData = [];
+
     filteredData = [];
 
     currentPage = 1;
 
-    el("fileExcel").value = "";
+
+    el("fileExcel").value =
+        "";
+
 
     el("fileInfo").textContent =
         "Belum ada file.";
 
+
     el("status").className =
         "status";
+
 
     el("status").textContent =
         "";
 
-    resetFilter();
+
+    resetFilterState();
+
+
+    [
+        "kode",
+        "defect",
+        "mesin",
+        "motif",
+        "grup"
+    ]
+    .forEach(key => {
+
+        clearMulti(key);
+
+    });
+
+
+    el("tglDari").value =
+        "";
+
+    el("tglKe").value =
+        "";
+
+    el("fRoll").value =
+        "";
+
+
+    filteredData = [];
+
 
     clearDashboard();
 
@@ -3152,18 +4589,40 @@ function resetAll(){
 function escapeHtml(value){
 
     return String(
+
         value === null ||
         value === undefined
         ?
         ""
         :
         value
+
     )
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
 
 }
 
@@ -3171,6 +4630,8 @@ function escapeHtml(value){
 /* =====================================================
    INIT
 ===================================================== */
+
+resetFilterState();
 
 clearDashboard();
 
