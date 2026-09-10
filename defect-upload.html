@@ -4197,7 +4197,49 @@ function escapeHtml(value){
    INIT
 ===================================================== */
 
-clearDashboard();
+     clearDashboard();
+
+
+function pilihExcel(){
+
+    const input =
+        document.getElementById("fileExcel");
+
+    input.click();
+
+}
+
+
+document
+    .getElementById("fileExcel")
+    .addEventListener(
+        "change",
+        function(){
+
+            alert(
+                "FILE TERPILIH: " +
+                (
+                    this.files.length
+                    ? this.files[0].name
+                    : "KOSONG"
+                )
+            );
+
+            if(this.files.length){
+
+                handleFile(
+                    this.files[0]
+                );
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
 
 </script>
 
