@@ -2207,6 +2207,10 @@ function toggleFilter(){
    OPTIONS
 ===================================================== */
 
+/* =====================================================
+   MULTI SELECT FILTER
+===================================================== */
+
 function uniqueValues(key){
 
     return [
@@ -2230,45 +2234,468 @@ function uniqueValues(key){
 }
 
 
-function fillSelect(id,key){
+/* =====================================================
+   KONFIGURASI SEMUA FILTER
+===================================================== */
 
-    const select =
-        el(id);
+const multiFilterConfig = {
+
+    kode:{
+        wrapper:"msKode",
+        text:"msKodeText",
+        search:"searchKode",
+        options:"optionsKode",
+        key:"kode",
+        label:"Kode Produk"
+    },
+
+    defect:{
+        wrapper:"msDefect",
+        text:"msDefectText",
+        search:"searchDefect",
+        options:"optionsDefect",
+        key:"defect",
+        label:"Jenis Defect"
+    },
+
+    mesin:{
+        wrapper:"msMesin",
+        text:"msMesinText",
+        search:"searchMesin",
+        options:"optionsMesin",
+        key:"mesin",
+        label:"Mesin"
+    },
+
+    motif:{
+        wrapper:"msMotif",
+        text:"msMotifText",
+        search:"searchMotif",
+        options:"optionsMotif",
+        key:"motif",
+        label:"Motif"
+    },
+
+    grup:{
+        wrapper:"msGrup",
+        text:"msGrupText",
+        search:"searchGrup",
+        options:"optionsGrup",
+        key:"grup",
+        label:"Grup"
+    },
+
+    roll:{
+        wrapper:"msRoll",
+        text:"msRollText",
+        search:"searchRoll",
+        options:"optionsRoll",
+        key:"roll",
+        label:"Roll ID"
+    }
+
+};
+
+
+/* =====================================================
+   NILAI YANG DIPILIH
+===================================================== */
+
+const selectedFilters = {
+
+    kode:new Set(),
+    defect:new Set(),
+    mesin:new Set(),
+    motif:new Set(),
+    grup:new Set(),
+    roll:new Set()
+
+};
+
+
+/* =====================================================
+   RENDER PILIHAN FILTER
+===================================================== */
+
+function renderMultiOptions(filterName){
+
+    const cfg =
+        multiFilterConfig[filterName];
+
+    if(!cfg) return;
+
+    const box =
+        el(cfg.options);
+
+    if(!box) return;
+
+    const searchEl =
+        el(cfg.search);
+
+    const search =
+        clean(
+            searchEl
+            ? searchEl.value
+            : ""
+        ).toLowerCase();
 
     const values =
-        uniqueValues(key);
+        uniqueValues(cfg.key);
 
-    select.innerHTML =
-        '<option value="">Semua</option>';
+    const selected =
+        selectedFilters[filterName];
 
-    values.forEach(v => {
+    box.innerHTML = "";
 
-        const option =
-            document.createElement("option");
 
-        option.value = v;
-        option.textContent = v;
+    const filteredValues =
+        values.filter(value => {
 
-        select.appendChild(option);
+            if(!search){
+                return true;
+            }
+
+            return value
+                .toLowerCase()
+                .includes(search);
+
+        });
+
+
+    if(!filteredValues.length){
+
+        box.innerHTML =
+            '<div class="multi-empty">Tidak ada data</div>';
+
+        return;
+
+    }
+
+
+    filteredValues.forEach(value => {
+
+        const item =
+            document.createElement("label");
+
+        item.className =
+            "multi-option";
+
+        if(
+            selected.has(value)
+        ){
+            item.classList.add("selected");
+        }
+
+
+        const checkbox =
+            document.createElement("input");
+
+        checkbox.type =
+            "checkbox";
+
+        checkbox.checked =
+            selected.has(value);
+
+
+        checkbox.addEventListener(
+            "change",
+            function(){
+
+                if(this.checked){
+
+                    selected.add(value);
+
+                }else{
+
+                    selected.delete(value);
+
+                }
+
+
+                item.classList.toggle(
+                    "selected",
+                    this.checked
+                );
+
+                updateMultiButton(
+                    filterName
+                );
+
+                renderChips();
+
+            }
+        );
+
+
+        const text =
+            document.createElement("span");
+
+        text.className =
+            "multi-option-text";
+
+        text.textContent =
+            value;
+
+
+        item.appendChild(
+            checkbox
+        );
+
+        item.appendChild(
+            text
+        );
+
+
+        box.appendChild(
+            item
+        );
 
     });
 
 }
 
 
-function buildFilters(){
+/* =====================================================
+   UPDATE TULISAN TOMBOL
+===================================================== */
 
-    fillSelect("fKode","kode");
+function updateMultiButton(filterName){
 
-    fillSelect("fDefect","defect");
+    const cfg =
+        multiFilterConfig[filterName];
 
-    fillSelect("fMesin","mesin");
+    if(!cfg) return;
 
-    fillSelect("fMotif","motif");
 
-    fillSelect("fGrup","grup");
+    const textEl =
+        el(cfg.text);
+
+    if(!textEl) return;
+
+
+    const selected =
+        [...selectedFilters[filterName]];
+
+
+    if(!selected.length){
+
+        textEl.textContent =
+            "Semua";
+
+        return;
+
+    }
+
+
+    if(selected.length === 1){
+
+        textEl.textContent =
+            selected[0];
+
+        return;
+
+    }
+
+
+    textEl.textContent =
+        selected.length +
+        " dipilih";
 
 }
+
+
+/* =====================================================
+   BUKA / TUTUP DROPDOWN
+===================================================== */
+
+function toggleMulti(filterName){
+
+    const cfg =
+        multiFilterConfig[filterName];
+
+    if(!cfg) return;
+
+
+    const panel =
+        el(cfg.wrapper)
+        ?.querySelector(".multi-panel");
+
+    if(!panel) return;
+
+
+    document
+        .querySelectorAll(".multi-panel.show")
+        .forEach(p => {
+
+            if(p !== panel){
+
+                p.classList.remove(
+                    "show"
+                );
+
+            }
+
+        });
+
+
+    panel.classList.toggle(
+        "show"
+    );
+
+
+    if(
+        panel.classList.contains("show")
+    ){
+
+        const searchEl =
+            el(cfg.search);
+
+        if(searchEl){
+
+            setTimeout(
+                () => searchEl.focus(),
+                50
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   TELUSURI FILTER
+===================================================== */
+
+function setupMultiSearch(filterName){
+
+    const cfg =
+        multiFilterConfig[filterName];
+
+    if(!cfg) return;
+
+
+    const searchEl =
+        el(cfg.search);
+
+    if(!searchEl) return;
+
+
+    searchEl.addEventListener(
+        "input",
+        function(){
+
+            renderMultiOptions(
+                filterName
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   RESET PILIHAN MULTI FILTER
+===================================================== */
+
+function clearMultiSelections(){
+
+    Object.keys(
+        selectedFilters
+    ).forEach(key => {
+
+        selectedFilters[key].clear();
+
+    });
+
+
+    Object.keys(
+        multiFilterConfig
+    ).forEach(key => {
+
+        const cfg =
+            multiFilterConfig[key];
+
+        const searchEl =
+            el(cfg.search);
+
+        if(searchEl){
+
+            searchEl.value = "";
+
+        }
+
+        updateMultiButton(key);
+
+        renderMultiOptions(key);
+
+    });
+
+}
+
+
+/* =====================================================
+   MEMBUAT SEMUA FILTER
+===================================================== */
+
+function buildFilters(){
+
+    Object.keys(
+        multiFilterConfig
+    ).forEach(filterName => {
+
+        updateMultiButton(
+            filterName
+        );
+
+        renderMultiOptions(
+            filterName
+        );
+
+        setupMultiSearch(
+            filterName
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   KLIK DI LUAR DROPDOWN
+===================================================== */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target.closest(
+                ".multi-select"
+            )
+        ){
+
+            return;
+
+        }
+
+
+        document
+            .querySelectorAll(
+                ".multi-panel.show"
+            )
+            .forEach(panel => {
+
+                panel.classList.remove(
+                    "show"
+                );
+
+            });
+
+    }
+);
 
 
 /* =====================================================
