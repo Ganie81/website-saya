@@ -3061,21 +3061,69 @@ function getBaseFilteredData(){
 
 function updateDashboard(){
 
-    renderChips();
+    try{
+        renderChips();
+    }catch(e){
+        console.error("ERROR renderChips:", e);
+        setStatus("❌ Error renderChips: " + e.message,"error");
+        return;
+    }
 
-    updateKPI();
+    try{
+        updateKPI();
+    }catch(e){
+        console.error("ERROR updateKPI:", e);
+        setStatus("❌ Error updateKPI: " + e.message,"error");
+        return;
+    }
 
-    updateFocus();
+    try{
+        updateFocus();
+    }catch(e){
+        console.error("ERROR updateFocus:", e);
+        setStatus("❌ Error updateFocus: " + e.message,"error");
+        return;
+    }
 
-    renderCharts();
+    try{
+        renderCharts();
+    }catch(e){
+        console.error("ERROR renderCharts:", e);
+        setStatus("❌ Error renderCharts: " + e.message,"error");
+        return;
+    }
 
-    renderMatrix();
+    try{
+        renderMatrix();
+    }catch(e){
+        console.error("ERROR renderMatrix:", e);
+        setStatus("❌ Error renderMatrix: " + e.message,"error");
+        return;
+    }
 
-    renderRanking();
+    try{
+        renderRanking();
+    }catch(e){
+        console.error("ERROR renderRanking:", e);
+        setStatus("❌ Error renderRanking: " + e.message,"error");
+        return;
+    }
 
-    renderAI();
+    try{
+        renderAI();
+    }catch(e){
+        console.error("ERROR renderAI:", e);
+        setStatus("❌ Error renderAI: " + e.message,"error");
+        return;
+    }
 
-    renderTable();
+    try{
+        renderTable();
+    }catch(e){
+        console.error("ERROR renderTable:", e);
+        setStatus("❌ Error renderTable: " + e.message,"error");
+        return;
+    }
 
 }
 
