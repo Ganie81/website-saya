@@ -860,56 +860,291 @@ table.detail{
         id="filterBody"
         class="filter-body">
 
-        <div class="filter-grid">
+<div class="filter-grid">
 
-            <div class="field">
-                <label>Tanggal Dari</label>
-                <input
-                    type="date"
-                    id="tglDari">
-            </div>
+    <!-- =================================================
+         TANGGAL
+    ================================================== -->
 
-            <div class="field">
-                <label>Tanggal Ke</label>
-                <input
-                    type="date"
-                    id="tglKe">
-            </div>
+    <div class="field">
+        <label>Tanggal Dari</label>
+        <input
+            type="date"
+            id="tglDari">
+    </div>
 
-            <div class="field">
-                <label>Kode Produk</label>
-                <select id="fKode"></select>
-            </div>
+    <div class="field">
+        <label>Tanggal Ke</label>
+        <input
+            type="date"
+            id="tglKe">
+    </div>
 
-            <div class="field">
-                <label>Jenis Defect</label>
-                <select id="fDefect"></select>
-            </div>
 
-            <div class="field">
-                <label>Mesin</label>
-                <select id="fMesin"></select>
-            </div>
+    <!-- =================================================
+         KODE PRODUK
+    ================================================== -->
 
-            <div class="field">
-                <label>Motif</label>
-                <select id="fMotif"></select>
-            </div>
+    <div class="field multi-field">
 
-            <div class="field">
-                <label>Grup</label>
-                <select id="fGrup"></select>
-            </div>
+        <label>Kode Produk</label>
 
-            <div class="field">
-                <label>Roll ID</label>
+        <div class="multi-select" id="msKode">
+
+            <button
+                type="button"
+                class="multi-button"
+                onclick="toggleMulti('msKode')">
+
+                <span id="msKodeText">
+                    Semua
+                </span>
+
+                <span>▼</span>
+
+            </button>
+
+            <div class="multi-panel">
+
                 <input
                     type="text"
-                    id="fRoll"
-                    placeholder="Cari Roll ID...">
+                    class="multi-search"
+                    id="searchKode"
+                    placeholder="🔎 Telusuri Kode Produk..."
+                    oninput="searchMulti('kode')">
+
+                <div
+                    class="multi-options"
+                    id="optionsKode">
+                </div>
+
             </div>
 
         </div>
+
+    </div>
+
+
+    <!-- =================================================
+         JENIS DEFECT
+    ================================================== -->
+
+    <div class="field multi-field">
+
+        <label>Jenis Defect</label>
+
+        <div class="multi-select" id="msDefect">
+
+            <button
+                type="button"
+                class="multi-button"
+                onclick="toggleMulti('msDefect')">
+
+                <span id="msDefectText">
+                    Semua
+                </span>
+
+                <span>▼</span>
+
+            </button>
+
+            <div class="multi-panel">
+
+                <input
+                    type="text"
+                    class="multi-search"
+                    id="searchDefect"
+                    placeholder="🔎 Telusuri Jenis Defect..."
+                    oninput="searchMulti('defect')">
+
+                <div
+                    class="multi-options"
+                    id="optionsDefect">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         MESIN
+    ================================================== -->
+
+    <div class="field multi-field">
+
+        <label>Mesin</label>
+
+        <div class="multi-select" id="msMesin">
+
+            <button
+                type="button"
+                class="multi-button"
+                onclick="toggleMulti('msMesin')">
+
+                <span id="msMesinText">
+                    Semua
+                </span>
+
+                <span>▼</span>
+
+            </button>
+
+            <div class="multi-panel">
+
+                <input
+                    type="text"
+                    class="multi-search"
+                    id="searchMesin"
+                    placeholder="🔎 Telusuri Mesin..."
+                    oninput="searchMulti('mesin')">
+
+                <div
+                    class="multi-options"
+                    id="optionsMesin">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         MOTIF
+    ================================================== -->
+
+    <div class="field multi-field">
+
+        <label>Motif</label>
+
+        <div class="multi-select" id="msMotif">
+
+            <button
+                type="button"
+                class="multi-button"
+                onclick="toggleMulti('msMotif')">
+
+                <span id="msMotifText">
+                    Semua
+                </span>
+
+                <span>▼</span>
+
+            </button>
+
+            <div class="multi-panel">
+
+                <input
+                    type="text"
+                    class="multi-search"
+                    id="searchMotif"
+                    placeholder="🔎 Telusuri Motif..."
+                    oninput="searchMulti('motif')">
+
+                <div
+                    class="multi-options"
+                    id="optionsMotif">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         GRUP
+    ================================================== -->
+
+    <div class="field multi-field">
+
+        <label>Grup</label>
+
+        <div class="multi-select" id="msGrup">
+
+            <button
+                type="button"
+                class="multi-button"
+                onclick="toggleMulti('msGrup')">
+
+                <span id="msGrupText">
+                    Semua
+                </span>
+
+                <span>▼</span>
+
+            </button>
+
+            <div class="multi-panel">
+
+                <input
+                    type="text"
+                    class="multi-search"
+                    id="searchGrup"
+                    placeholder="🔎 Telusuri Grup..."
+                    oninput="searchMulti('grup')">
+
+                <div
+                    class="multi-options"
+                    id="optionsGrup">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ROLL ID
+    ================================================== -->
+
+    <div class="field multi-field">
+
+        <label>Roll ID</label>
+
+        <div class="multi-select" id="msRoll">
+
+            <button
+                type="button"
+                class="multi-button"
+                onclick="toggleMulti('msRoll')">
+
+                <span id="msRollText">
+                    Semua
+                </span>
+
+                <span>▼</span>
+
+            </button>
+
+            <div class="multi-panel">
+
+                <input
+                    type="text"
+                    class="multi-search"
+                    id="searchRoll"
+                    placeholder="🔎 Telusuri Roll ID..."
+                    oninput="searchMulti('roll')">
+
+                <div
+                    class="multi-options"
+                    id="optionsRoll">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 
         <div class="filter-actions">
