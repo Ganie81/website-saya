@@ -778,6 +778,34 @@ input[type=file]{
 
     flex-wrap:wrap;
 }
+    /* =====================================================
+   FIX FILTER AGAR TIDAK TERPOTONG KOTAK DI BAWAH
+===================================================== */
+
+.filter-body{
+    position:relative;
+    z-index:1000;
+    overflow:visible !important;
+}
+
+.filter-grid{
+    position:relative;
+    z-index:1000;
+    overflow:visible !important;
+}
+
+.multi-select{
+    position:relative;
+    z-index:1001;
+}
+
+.multi-select.open{
+    z-index:9999;
+}
+
+.multi-panel{
+    z-index:99999;
+}
 
 /* =====================================================
    CHIPS
