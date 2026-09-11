@@ -3216,6 +3216,21 @@ async function handleFile(file){
         return;
 
     }
+        /* =================================================
+       DATA SUDAH DIMUAT
+       JANGAN BACA XLS LAGI
+    ================================================= */
+
+    if(fileLoaded && allData.length){
+
+        setStatus(
+            "🔒 DATA SUDAH TERKUNCI. FILTER MENGGUNAKAN DATA YANG SUDAH DIMUAT.",
+            "ok"
+        );
+
+        return;
+
+    }
     /* =================================================
        DATA SUDAH TERKUNCI
        JANGAN BACA XLS LAGI
