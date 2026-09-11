@@ -2895,6 +2895,7 @@ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw2tDZW1GI3jShI93SA
 
 let allData = [];
 let filteredData = [];
+    let googleDataLoaded = false;
 
 /* =====================================================
    KUNCI DATA XLS
@@ -5793,6 +5794,10 @@ function escapeHtml(value){
    INIT
 ===================================================== */
 async function loadFromGoogleSheet(){
+
+    if(googleDataLoaded && allData.length){
+        return;
+    }
 
     try{
 
