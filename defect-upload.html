@@ -2896,6 +2896,13 @@ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw2tDZW1GI3jShI93SA
 let allData = [];
 let filteredData = [];
 
+/* =====================================================
+   KUNCI DATA XLS
+===================================================== */
+
+let fileLoaded = false;
+let loadedFileName = "";
+
 let currentPage = 1;
 
 const rowsPerPage = 50;
@@ -3209,7 +3216,21 @@ async function handleFile(file){
         return;
 
     }
+    /* =================================================
+       DATA SUDAH TERKUNCI
+       JANGAN BACA XLS LAGI
+    ================================================= */
 
+    if(fileLoaded && allData.length){
+
+        setStatus(
+            "🔒 DATA SUDAH TERKUNCI. FILTER MENGGUNAKAN DATA YANG SUDAH DIMUAT.",
+            "ok"
+        );
+
+        return;
+
+    }
 
     const name =
         file.name.toLowerCase();
@@ -3377,6 +3398,10 @@ await saveToGoogleSheet(
 );
         filteredData =
             [...allData];
+                fileLoaded = true;
+
+        loadedFileName =
+            file.name;
 
 
         currentPage = 1;
