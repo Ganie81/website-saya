@@ -794,33 +794,45 @@ input[type=file]{
 
     flex-wrap:wrap;
 }
-    /* =====================================================
-   FIX FILTER AGAR TIDAK TERPOTONG KOTAK DI BAWAH
+/* =====================================================
+   FIX FILTER - DI ATAS KPI
 ===================================================== */
 
 .filter-body{
     position:relative;
-    z-index:1000;
+    z-index:9999 !important;
     overflow:visible !important;
 }
 
 .filter-grid{
     position:relative;
-    z-index:1000;
+    z-index:9999 !important;
     overflow:visible !important;
+}
+
+.filter-actions{
+    position:relative;
+    z-index:9999 !important;
 }
 
 .multi-select{
     position:relative;
-    z-index:1001;
+    z-index:10000 !important;
 }
 
 .multi-select.open{
-    z-index:9999;
+    z-index:99999 !important;
 }
 
 .multi-panel{
-    z-index:99999;
+    position:absolute;
+    z-index:999999 !important;
+}
+
+/* KPI berada di bawah filter */
+.kpi-grid{
+    position:relative;
+    z-index:1 !important;
 }
 
 /* =====================================================
