@@ -5634,77 +5634,117 @@ async function loadFromGoogleSheet(){
 
         showLoading("Mengambil data dari Google Sheet...");
 
+
         const response = await fetch(
             WEB_APP_URL + "?action=getDefectData"
         );
 
-        const data = await response.json();
 
-console.log("DATA GOOGLE SHEET:", data);
+        const data =
+            await response.json();
 
-        if(!Array.isArray(data) || data.length === 0){
+
+        console.log(
+            "DATA GOOGLE SHEET:",
+            data
+        );
+
+
+        if(
+            !Array.isArray(data) ||
+            data.length === 0
+        ){
 
             hideLoading();
+
+            clearDashboard();
 
             return;
 
         }
 
-        allData = data.map(row => ({
 
-            tanggal: row[0],
+        allData =
+            data.map(function(row){
 
-            roll: clean(row[1]),
+                return {
 
-            kode: clean(row[2]),
+                    tanggal: row[0],
 
-            pcs: numberValue(row[3]),
+                    roll:
+                        clean(row[1]),
 
-            defect: clean(row[4]),
+                    kode:
+                        clean(row[2]),
 
-            mesin: clean(row[5]),
+                    pcs:
+                        numberValue(row[3]),
 
-            motif: clean(row[6]),
+                    defect:
+                        clean(row[4]),
 
-            blok: clean(row[7]),
+                    mesin:
+                        clean(row[5]),
 
-            grup: clean(row[8]),
+                    motif:
+                        clean(row[6]),
 
-            operator: clean(row[9])
+                    blok:
+                        clean(row[7]),
 
-        }));
+                    grup:
+                        clean(row[8]),
 
-        filteredData = [...allData];
+                    operator:
+                        clean(row[9])
+
+                };
+
+            });
+
+
+        filteredData =
+            [...allData];
+
 
         currentPage = 1;
+
 
         el("fileInfo").textContent =
             "☁️ DATA GOOGLE SHEET • " +
             allData.length.toLocaleString("id-ID") +
             " baris";
 
+
         resetFilterState();
+
 
         buildFilters();
 
+
         updateDashboard();
+
 
         setStatus(
             "✅ DATA BERHASIL DIMUAT DARI GOOGLE SHEET.",
             "ok"
         );
 
+
     }catch(error){
 
         console.error(
-            "GAGAL MEMUAT DATA:",
+            "GAGAL MEMUAT GOOGLE SHEET:",
             error
         );
 
+
         setStatus(
-            "❌ GAGAL MEMUAT DATA GOOGLE SHEET.",
+            "❌ GAGAL MEMUAT DATA GOOGLE SHEET: " +
+            error.message,
             "error"
         );
+
 
     }finally{
 
