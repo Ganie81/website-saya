@@ -5628,10 +5628,89 @@ function escapeHtml(value){
 /* =====================================================
    INIT
 ===================================================== */
+async function loadFromGoogleSheet(){
 
-resetFilterState();
+    try{
 
-clearDashboard();
+        showLoading("Mengambil data dari Google Sheet...");
+
+        const response = await fetch(
+            WEB_APP_URL + "?action=getDefectData"
+        );
+
+        const data = await response.json();
+
+        if(!Array.isArray(data) || data.length === 0){
+
+            hideLoading();
+
+            return;
+
+        }
+
+        allData = data.map(row => ({
+
+            tanggal: row[0],
+
+            roll: clean(row[1]),
+
+            kode: clean(row[2]),
+
+            pcs: numberValue(row[3]),
+
+            defect: clean(row[4]),
+
+            mesin: clean(row[5]),
+
+            motif: clean(row[6]),
+
+            blok: clean(row[7]),
+
+            grup: clean(row[8]),
+
+            operator: clean(row[9])
+
+        }));
+
+        filteredData = [...allData];
+
+        currentPage = 1;
+
+        el("fileInfo").textContent =
+            "☁️ DATA GOOGLE SHEET • " +
+            allData.length.toLocaleString("id-ID") +
+            " baris";
+
+        resetFilterState();
+
+        buildFilters();
+
+        updateDashboard();
+
+        setStatus(
+            "✅ DATA BERHASIL DIMUAT DARI GOOGLE SHEET.",
+            "ok"
+        );
+
+    }catch(error){
+
+        console.error(
+            "GAGAL MEMUAT DATA:",
+            error
+        );
+
+        setStatus(
+            "❌ GAGAL MEMUAT DATA GOOGLE SHEET.",
+            "error"
+        );
+
+    }finally{
+
+        hideLoading();
+
+    }
+
+}
 
 </script>
 
