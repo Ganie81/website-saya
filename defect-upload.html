@@ -5640,6 +5640,8 @@ async function loadFromGoogleSheet(){
 
         const data = await response.json();
 
+console.log("DATA GOOGLE SHEET:", data);
+
         if(!Array.isArray(data) || data.length === 0){
 
             hideLoading();
