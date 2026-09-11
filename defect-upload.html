@@ -2895,8 +2895,8 @@ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw2tDZW1GI3jShI93SA
 
 let allData = [];
 let filteredData = [];
-    let googleDataLoaded = false;
-
+let googleDataLoaded = false;
+let filterLocked = false;
 /* =====================================================
    KUNCI DATA XLS
 ===================================================== */
@@ -4113,6 +4113,86 @@ function applyFilter(){
 
                 return false;
 
+/* =====================================================
+   APPLY FILTER
+===================================================== */
+
+function applyFilter(){
+
+    const dari =
+        el("tglDari").value;
+
+    const ke =
+        el("tglKe").value;
+
+
+    const roll =
+        clean(
+            el("fRoll").value
+        ).toLowerCase();
+
+
+    filteredData =
+        allData.filter(r => {
+
+
+            if(dari){
+
+                const d =
+                    dateKey(r.tanggal);
+
+
+                if(
+                    !d ||
+                    d < dari
+                ){
+
+                    return false;
+
+                }
+
+            }
+
+
+            if(ke){
+
+                const d =
+                    dateKey(r.tanggal);
+
+
+                if(
+                    !d ||
+                    d > ke
+                ){
+
+                    return false;
+
+                }
+
+            }
+
+
+            if(
+                filterState.kode.length &&
+                !filterState.kode.includes(
+                    clean(r.kode)
+                )
+            ){
+
+                return false;
+
+            }
+
+
+            if(
+                filterState.defect.length &&
+                !filterState.defect.includes(
+                    clean(r.defect)
+                )
+            ){
+
+                return false;
+
             }
 
 
@@ -4172,6 +4252,12 @@ function applyFilter(){
     currentPage = 1;
 
 
+    /*
+       KUNCI HASIL FILTER TERAKHIR
+    */
+    filterLocked = true;
+
+
     updateDashboard();
 
 }
@@ -4210,18 +4296,22 @@ function resetFilter(){
     });
 
 
+    /*
+       BUKA KUNCI FILTER
+    */
+    filterLocked = false;
+
+
     filteredData =
         [...allData];
 
-googleDataLoaded = true;
 
-currentPage = 1;
+    currentPage = 1;
 
 
     updateDashboard();
 
 }
-
 
 /* =====================================================
    RENDER CHIPS
