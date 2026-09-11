@@ -1039,7 +1039,48 @@ input[type=file]{
             #39215f
         );
 }
+/* =====================================================
+   FILTER HARUS BERADA DI ATAS KPI
+===================================================== */
 
+.filter-header,
+.filter-body,
+.filter-grid,
+.filter-actions{
+    position:relative;
+}
+
+.filter-header{
+    z-index:100000;
+}
+
+.filter-body{
+    z-index:100000;
+    overflow:visible !important;
+}
+
+.filter-grid{
+    z-index:100000;
+}
+
+.multi-select{
+    z-index:100001 !important;
+}
+
+.multi-select.open{
+    z-index:999999 !important;
+}
+
+.multi-panel{
+    z-index:9999999 !important;
+}
+
+/* KPI DI BAWAH FILTER */
+.kpi-grid{
+    position:relative;
+    z-index:0 !important;
+}
+    
 /* =====================================================
    FOCUS
 ===================================================== */
