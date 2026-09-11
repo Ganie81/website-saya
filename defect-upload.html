@@ -5903,24 +5903,24 @@ googleDataLoaded = true;
 
     }catch(error){
 
-        console.error(
-            "GAGAL MEMUAT GOOGLE SHEET:",
-            error
-        );
+    googleDataLoaded = false;
 
+    console.error(
+        "GAGAL MEMUAT GOOGLE SHEET:",
+        error
+    );
 
-        setStatus(
-            "❌ GAGAL MEMUAT DATA GOOGLE SHEET: " +
-            error.message,
-            "error"
-        );
+    setStatus(
+        "❌ GAGAL MEMUAT DATA GOOGLE SHEET: " +
+        error.message,
+        "error"
+    );
 
+}finally{
 
-    }finally{
+    hideLoading();
 
-        hideLoading();
-
-    }
+}
 
 }
     
