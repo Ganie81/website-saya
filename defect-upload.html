@@ -1978,6 +1978,17 @@ table.detail{
         inset 0 2px rgba(255,255,255,.95),
         inset 0 -4px 9px rgba(70,80,90,.16);
 }
+    /* =====================================================
+   FILTER AKTIF - HEADER RAMPING
+===================================================== */
+
+.filter-active{
+    font-size:12px;
+    font-weight:800;
+    color:#222;
+    line-height:1;
+    margin:0;
+}
 
 </style>
 </head>
@@ -2061,21 +2072,21 @@ table.detail{
 
     <div class="filter-header">
 
-        <div class="section-title">
-            🔎 FILTER DATA
-        </div>
-
-        <button
-            class="btn btn-filter"
-            onclick="toggleFilter()">
-
-            <span id="filterButtonText">
-                BUKA FILTER
-            </span>
-
-        </button>
-
+    <div class="filter-active">
+        Filter Aktif
     </div>
+
+    <button
+        class="btn btn-filter"
+        onclick="toggleFilter()">
+
+        <span id="filterButtonText">
+            BUKA FILTER
+        </span>
+
+    </button>
+
+</div>
 
 
     <div
