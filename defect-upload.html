@@ -2027,9 +2027,9 @@ table.detail{
 
     <div class="header-inner">
 
-        <div class="judul">
-            DASHBOARD DEFECT FLAT
-        </div>
+<div class="judul" onclick="toggleUploadPanel()">
+    DASHBOARD DEFECT FLAT
+</div>
 
         <div class="subjudul">
             Defect 2 • Upload XLS / XLSX • Analisa Lokal
@@ -5930,7 +5930,14 @@ async function loadFromGoogleSheet(){
     }
 
 }
-    
+ function toggleUploadPanel(){
+
+    const panel =
+        document.getElementById("uploadPanel");
+
+    panel.classList.toggle("show");
+
+ }   
 loadFromGoogleSheet();
 </script>
 
