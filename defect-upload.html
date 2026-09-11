@@ -485,7 +485,23 @@ input[type=file]{
         inset 0 2px 4px rgba(0,0,0,.08),
         0 4px 9px rgba(0,0,0,.14);
 }
+/* =====================================================
+   FILTER CARD - BIARKAN ISI MEMANJANG KE BAWAH
+===================================================== */
 
+.filter-body,
+.filter-grid,
+.filter-actions,
+.chips{
+    overflow:visible !important;
+}
+
+/* Pastikan kartu filter berada di atas kotak berikutnya */
+.filter-card{
+    position:relative;
+    z-index:1000;
+    overflow:visible !important;
+}
 /* =====================================================
    CUSTOM MULTI SELECT
 ===================================================== */
