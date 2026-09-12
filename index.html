@@ -6636,12 +6636,13 @@ dataTampil =
     ];
 
 
-isiFilterTahunChart();
-updateDiagramTahunan();
-updateDiagramHarian();
-
-
 inisialisasiFilter();
+
+setTimeout(() => {
+    isiFilterTahunChart();
+    updateDiagramTahunan();
+    updateDiagramHarian();
+}, 50);
 
 
         /*
