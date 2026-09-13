@@ -4768,8 +4768,11 @@ updateDiagramTahunan();
                    =========================
                 */
 
-                for (
-                const filterAktif = [];
+/*
+   =========================
+   FILTER LAIN
+   =========================
+*/
 
 for (const filter of filters) {
 
@@ -4782,18 +4785,24 @@ for (const filter of filters) {
         continue;
     }
 
-    filterAktif.push({
-        kolom: filter.kolom,
-
-        selected: new Set(
+    const selected =
+        new Set(
             [...checked].map(
                 input => input.value
             )
-        )
-    });
+        );
+
+    const value =
+        String(
+            row[filter.kolom] ?? ""
+        );
+
+    if (
+        !selected.has(value)
+    ) {
+        return false;
+    }
 }
-
-
                 return true;
 
             }
