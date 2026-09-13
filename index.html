@@ -4769,54 +4769,29 @@ updateDiagramTahunan();
                 */
 
                 for (
-                    const filter
-                    of filters
-                ) {
+                const filterAktif = [];
 
-                    const checked =
-                        document.querySelectorAll(
-                            `#${filter.id} input:checked`
-                        );
+for (const filter of filters) {
 
+    const checked =
+        document.querySelectorAll(
+            `#${filter.id} input:checked`
+        );
 
-                    if (
-                        checked.length === 0
-                    ) {
+    if (!checked.length) {
+        continue;
+    }
 
-                        continue;
+    filterAktif.push({
+        kolom: filter.kolom,
 
-                    }
-
-
-                    const selected =
-                        [
-                            ...checked
-                        ].map(
-                            input =>
-                                input.value
-                        );
-
-
-                    const value =
-                        String(
-                            row[
-                                filter.kolom
-                            ] ??
-                            ""
-                        );
-
-
-                    if (
-                        !selected.includes(
-                            value
-                        )
-                    ) {
-
-                        return false;
-
-                    }
-
-                }
+        selected: new Set(
+            [...checked].map(
+                input => input.value
+            )
+        )
+    });
+}
 
 
                 return true;
