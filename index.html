@@ -4768,41 +4768,57 @@ updateDiagramTahunan();
                    =========================
                 */
 
-/*
-   =========================
-   FILTER LAIN
-   =========================
-*/
+                for (
+                    const filter
+                    of filters
+                ) {
 
-for (const filter of filters) {
+                    const checked =
+                        document.querySelectorAll(
+                            `#${filter.id} input:checked`
+                        );
 
-    const checked =
-        document.querySelectorAll(
-            `#${filter.id} input:checked`
-        );
 
-    if (!checked.length) {
-        continue;
-    }
+                    if (
+                        checked.length === 0
+                    ) {
 
-    const selected =
-        new Set(
-            [...checked].map(
-                input => input.value
-            )
-        );
+                        continue;
 
-    const value =
-        String(
-            row[filter.kolom] ?? ""
-        );
+                    }
 
-    if (
-        !selected.has(value)
-    ) {
-        return false;
-    }
-}
+
+                    const selected =
+                        [
+                            ...checked
+                        ].map(
+                            input =>
+                                input.value
+                        );
+
+
+                    const value =
+                        String(
+                            row[
+                                filter.kolom
+                            ] ??
+                            ""
+                        );
+
+
+                    if (
+                        !selected.includes(
+                            value
+                        )
+                    ) {
+
+                        return false;
+
+                    }
+
+                }
+
+
                 return true;
 
             }
@@ -6792,4 +6808,4 @@ ambilData();
 </script>
 
 </body>
-</html>
+    </html>
