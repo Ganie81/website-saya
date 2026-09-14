@@ -5309,6 +5309,127 @@ function updateDiagramHarian() {
 
         label.className =
             "hari-nilai";
+/* =====================================================
+   DIAGRAM HARIAN
+   MENGIKUTI BULAN YANG DIPILIH
+===================================================== */
+
+function updateDiagramHarian() {
+
+    const area =
+        document.getElementById(
+            "diagramHarian"
+        );
+
+    if (!area) {
+        return;
+    }
+
+    const data =
+        bangunRingkasanData();
+
+    /*
+       Tahun dan bulan mengikuti
+       diagram tahunan.
+    */
+
+    const tahun =
+        tahunDiagram !== null
+            ? tahunDiagram
+            : data.tahunSekarang;
+
+    const bulan =
+        bulanDiagram !== null
+            ? bulanDiagram
+            : data.bulanSekarang;
+
+    /*
+       Ambil data harian dari CACHE.
+       Tidak mengambil data dari server.
+    */
+
+    const nilaiHari =
+        data.harianSemua[tahun] &&
+        data.harianSemua[tahun][bulan]
+            ? data.harianSemua[tahun][bulan]
+            : [];
+
+    const jumlahHari =
+        nilaiHari.length;
+
+    const max =
+        Math.max(
+            ...nilaiHari,
+            0
+        );
+
+    const judul =
+        document.getElementById(
+            "judulDiagramHarian"
+        );
+
+    if (judul) {
+
+        const namaBulan =
+            new Date(
+                tahun,
+                bulan - 1,
+                1
+            )
+            .toLocaleString(
+                "id-ID",
+                {
+                    month:"long"
+                }
+            )
+            .toUpperCase();
+
+        judul.textContent =
+            "PENCAPAIAN PRODUKSI HARIAN - "
+            +
+            namaBulan
+            +
+            " "
+            +
+            tahun;
+    }
+
+    area.innerHTML =
+        "";
+
+    const fragment =
+        document.createDocumentFragment();
+
+    for (
+        let index = 0;
+        index < jumlahHari;
+        index++
+    ) {
+
+        const nilai =
+            nilaiHari[index] || 0;
+
+        const item =
+            document.createElement(
+                "div"
+            );
+
+        item.className =
+            "hari-bar";
+
+        item.style.cursor =
+            "pointer";
+
+        item.title =
+            "Klik untuk melihat detail produksi";
+
+        const label =
+            document.createElement(
+                "div"
+            );
+
+        label.className =
+            "hari-nilai";
 
         label.textContent =
             formatAngka(
@@ -5320,7 +5441,9 @@ function updateDiagramHarian() {
             " Kd";
 
         const batang =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         batang.className =
             "batang-harian";
@@ -5337,7 +5460,9 @@ function updateDiagramHarian() {
             tinggi + "px";
 
         const hari =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         hari.className =
             "hari-nama";
@@ -5346,7 +5471,9 @@ function updateDiagramHarian() {
             index + 1;
 
         /*
-           Tetap klik batang.
+           Klik tanggal
+           menggunakan bulan + tahun
+           yang sedang dipilih.
         */
 
         item.onclick =
