@@ -4449,7 +4449,51 @@ function bangunRingkasanData() {
             }
         }
     }
+/*
+   TAHUNAN
+   Hanya mengikuti tahun.
+   Tidak terpengaruh filter tanggal/bulan.
+*/
 
+for (
+    let i = 0;
+    i < semuaData.length;
+    i++
+) {
+
+    const rowTahunan =
+        semuaData[i];
+
+    const qtyTahunan =
+        Number(
+            rowTahunan[5]
+        ) || 0;
+
+    const pTahunan =
+        getTanggalParts(
+            rowTahunan[7]
+        );
+
+    if (!pTahunan) {
+        continue;
+    }
+
+    if (!tahunan[pTahunan.tahun]) {
+
+        tahunan[pTahunan.tahun] =
+            Array(12).fill(0);
+    }
+
+    if (
+        pTahunan.bulan >= 1 &&
+        pTahunan.bulan <= 12
+    ) {
+
+        tahunan[pTahunan.tahun]
+            [pTahunan.bulan - 1] +=
+            qtyTahunan / 20;
+    }
+}
     ringkasanData = {
 
         total,
