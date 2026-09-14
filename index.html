@@ -20,11 +20,6 @@ body {
 
     background:
 
-
-    /* =========================================
-       CAHAYA UTAMA
-    ========================================= */
-
     radial-gradient(
         circle at 18% 5%,
         rgba(255,235,190,.24) 0%,
@@ -39,10 +34,6 @@ body {
         rgba(0,0,0,0) 45%
     ),
 
-    /* =========================================
-       GLOSSY DIAGONAL
-    ========================================= */
-
     linear-gradient(
         125deg,
         rgba(255,255,255,.10) 0%,
@@ -50,10 +41,6 @@ body {
         rgba(255,255,255,.055) 35%,
         rgba(255,255,255,0) 52%
     ),
-
-    /* =========================================
-       BATIK KOTAK 3D - POLA 1
-    ========================================= */
 
     linear-gradient(
         135deg,
@@ -69,10 +56,6 @@ body {
         transparent 50% 100%
     ),
 
-    /* =========================================
-       BATIK KOTAK 3D - POLA 2
-    ========================================= */
-
     linear-gradient(
         135deg,
         transparent 0 65%,
@@ -86,10 +69,6 @@ body {
         rgba(0,0,0,.12) 67% 71%,
         transparent 72% 100%
     ),
-
-    /* =========================================
-       DASAR COKLAT PREMIUM
-    ========================================= */
 
     linear-gradient(
         135deg,
@@ -145,7 +124,6 @@ h1 {
         0 7px 0 #3d250b,
         0 10px 12px rgba(0,0,0,.85);
 }
-
 
 /* =========================
    TOMBOL MODE
@@ -204,7 +182,6 @@ button:active {
     background: linear-gradient(145deg, #20b978, #198754);
 }
 
-
 /* =========================
    TOMBOL TERAPKAN FILTER
 ========================= */
@@ -231,7 +208,6 @@ button:active {
         0 4px 0 rgba(0,0,0,.10),
         0 7px 14px rgba(0,0,0,.10);
 }
-
 
 /* =========================
    STYLE UMUM KOTAK
@@ -268,7 +244,6 @@ button:active {
         0 14px 28px rgba(38, 91, 130, .18),
         inset 0 1px 0 rgba(255,255,255,.98);
 }
-
 
 /* =========================
    FILTER
@@ -429,7 +404,6 @@ input[type="date"]:focus {
     margin-right: 6px;
 }
 
-
 /* =========================
    FILTER SEARCH
 ========================= */
@@ -460,7 +434,6 @@ input[type="date"]:focus {
     box-shadow:
         0 0 0 3px rgba(13,110,253,.12);
 }
-
 
 /* =========================
    FILTER TANGGAL
@@ -493,7 +466,6 @@ input[type="date"]:focus {
 
     font-weight: 600;
 }
-
 
 /* =========================
    FILTER SUMMARY
@@ -560,7 +532,6 @@ input[type="date"]:focus {
 
     color: #275a7d;
 }
-
 
 /* =========================
    DASHBOARD CARDS
@@ -647,7 +618,6 @@ input[type="date"]:focus {
         2px 3px 5px rgba(0,0,0,.16);
 }
 
-
 /* =========================
    GRUP
 ========================= */
@@ -695,10 +665,6 @@ input[type="date"]:focus {
     height: 7px;
 }
 
-/* =====================================================
-   GRUP A - LEBIH TUA + GLOSSY
-===================================================== */
-
 .group-card.group-a {
 
     background:
@@ -718,10 +684,6 @@ input[type="date"]:focus {
         inset 0 2px 0 rgba(255,255,255,.90),
         inset 0 -8px 16px rgba(0,70,45,.15);
 }
-
-/* =====================================================
-   GRUP B - LEBIH TUA + GLOSSY
-===================================================== */
 
 .group-card.group-b {
 
@@ -743,10 +705,6 @@ input[type="date"]:focus {
         inset 0 -8px 16px rgba(120,65,0,.15);
 }
 
-/* =====================================================
-   GRUP C - LEBIH TUA + GLOSSY
-===================================================== */
-
 .group-card.group-c {
 
     background:
@@ -766,11 +724,6 @@ input[type="date"]:focus {
         inset 0 2px 0 rgba(255,255,255,.90),
         inset 0 -8px 16px rgba(55,30,110,.15);
 }
-
-
-/* =========================
-   EFEK GLOSSY KOTAK GRUP
-========================= */
 
 .group-card::after {
 
@@ -958,7 +911,6 @@ input[type="date"]:focus {
     color: #071b2a;
 }
 
-
 /* =========================
    TABLE
 ========================= */
@@ -978,163 +930,13 @@ input[type="date"]:focus {
 
     margin-bottom: 21px;
 }
-    /* =====================================================
+
+/* =====================================================
    GRAFIK PRODUKSI TAHUNAN
 ===================================================== */
 
 .produksi-tahunan-card{
     margin-top:20px;
-}
-
-.tahun-chart-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    margin:0 0 18px;
-    font-weight:800;
-    color:#5b4636;
-}
-
-.tahun-chart-header select{
-    width:auto;
-    min-width:100px;
-    padding:8px 12px;
-    border:1px solid #c9a66b;
-    border-radius:8px;
-    background:#fff;
-    color:#5b4636;
-    font-weight:800;
-    cursor:pointer;
-}
-
-.chart-wrapper{
-    width:100%;
-    overflow-x:auto;
-
-    background:#eaf6ff;
-}
-.diagram-tahunan{
-    min-width:650px;
-    height:300px;
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-around;
-    gap:10px;
-    padding:30px 10px 35px;
-    border-bottom:2px solid #b89b72;
-}
-.hari-nilai{
-    font-size:13px;
-    font-weight:bold;
-    line-height:1.1;
-    margin-bottom:8px;
-}
-.hari-nama{
-    width:30px;
-    height:30px;
-
-    margin:14px 0 0;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:14px;
-    font-weight:900;
-
-    color:#374151;
-    background:#ffffff;
-
-    border:1px solid #176b43;
-    border-radius:5px;
-
-    box-shadow:
-        0 2px 4px rgba(0,0,0,.18);
-
-    text-shadow:
-        1px 1px 0 #ffffff;
-}
-
-    .judul-diagram-harian{
-    text-align:left;
-    font-size:15px;
-    font-weight:bold;
-    margin:0 0 8px 8px;
-
-    position:sticky;
-    left:0;
-    z-index:10;
-    width:max-content;
-}
-.diagram-harian{
-    width:100%;
-    min-width:1400px;
-    height:330px;
-        background:
-    linear-gradient(
-        to top,
-        transparent 24.5%,
-rgba(22,107,67,0.10) 25%,
-rgba(22,107,67,0.10) 25.5%,
-transparent 26%,
-        transparent 49%,
-        rgba(22,107,67,0.10) 50%,
-        transparent 51%,
-        transparent 74%,
-        rgba(22,107,67,0.10) 75%,
-        transparent 76%
-    );
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-around;
-    gap:10px;
-    padding:30px 10px 35px;
-    border-bottom:2px solid #b89b72;
-    border:1px solid #176b43;
-border-radius:12px;
-}
-.bulan-bar{
-    height:100%;
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-end;
-    position:relative;
-}
-
-.bulan-nilai{
-    font-size:12px;
-    font-weight:900;
-    color:#5b4636;
-    margin-bottom:5px;
-    white-space:nowrap;
-}
-
-.batang-produksi{
-    width:70%;
-    max-width:55px;
-    min-height:3px;
-    border-radius:8px 8px 2px 2px;
-    background:linear-gradient(
-        to bottom,
-        #d9b56d,
-        #9a6b32
-    );
-    box-shadow:
-        0 5px 10px rgba(91,70,54,.25),
-        inset 0 1px 2px rgba(255,255,255,.6);
-    transition:height .4s ease;
-}
-
-/* =====================================================
-   GRAFIK PRODUKSI TAHUNAN - PREMIUM 3D
-===================================================== */
-
-.produksi-tahunan-card{
-    margin-top:20px;
-    overflow:hidden;
 }
 
 .tahun-chart-header{
@@ -1177,11 +979,6 @@ border-radius:12px;
         inset 0 1px 0 rgba(255,255,255,.95);
 }
 
-
-/* =========================
-   AREA DIAGRAM
-========================= */
-
 .chart-wrapper{
     width:100%;
     overflow-x:auto;
@@ -1192,11 +989,6 @@ border-radius:12px;
 
     background:#eaf6ff;
 }
-
-
-/* =========================
-   GROUND DIAGRAM
-========================= */
 
 .diagram-tahunan{
 
@@ -1215,11 +1007,8 @@ border-radius:12px;
 
     border-radius:12px;
 
-    /* GROUND ABU MUDA 3D */
-
     background:
 
-        /* cahaya glossy atas */
         linear-gradient(
             180deg,
             rgba(255,255,255,.92) 0%,
@@ -1227,7 +1016,6 @@ border-radius:12px;
             rgba(255,255,255,0) 30%
         ),
 
-        /* bidang diagonal */
         linear-gradient(
             135deg,
             rgba(255,255,255,.38) 0%,
@@ -1236,28 +1024,23 @@ border-radius:12px;
             rgba(255,255,255,.20) 100%
         ),
 
- /* warna ground BLUE SKY sangat muda */
-linear-gradient(
-    180deg,
-    #f2faff 0%,
-    #e5f5ff 48%,
-    #d5edff 100%
-);
+        linear-gradient(
+            180deg,
+            #f2faff 0%,
+            #e5f5ff 48%,
+            #d5edff 100%
+        );
 
     border:1px solid #176b43;
 
     box-shadow:
 
-        /* shadow bawah */
         0 7px 0 #aeb5bc,
 
-        /* shadow luar */
         0 12px 22px rgba(0,0,0,.23),
 
-        /* highlight atas */
         inset 0 2px 0 rgba(255,255,255,.98),
 
-        /* kedalaman bawah */
         inset 0 -12px 20px rgba(70,80,90,.12);
 }
 
@@ -1273,21 +1056,16 @@ linear-gradient(
 
     height:1px;
 
-background:rgba(50,120,175,.48);
+    background:rgba(50,120,175,.48);
 
-box-shadow:
-    0 75px 0 rgba(50,120,175,.48),
-    0 150px 0 rgba(50,120,175,.48);
+    box-shadow:
+        0 75px 0 rgba(50,120,175,.48),
+        0 150px 0 rgba(50,120,175,.48);
 
     z-index:0;
 
     pointer-events:none;
 }
-
-
-/* =========================
-   KOLOM BULAN
-========================= */
 
 .bulan-bar{
 
@@ -1305,11 +1083,6 @@ box-shadow:
     min-width:38px;
 }
 
-
-/* =========================
-   NILAI DI ATAS BATANG
-========================= */
-
 .bulan-nilai{
 
     font-size:12px;
@@ -1326,78 +1099,14 @@ box-shadow:
         0 2px 3px rgba(0,0,0,.25);
 }
 
-
-/* =========================
-   BATANG PRODUKSI 3D
-========================= */
-
 .batang-produksi{
 
-    width:54%;
-
-    max-width:38px;
-
-    min-height:3px;
-
-    position:relative;
-
-    border-radius:7px 7px 2px 2px;
-
-    /* BIRU TUA PREMIUM */
-
-    background:
-
-        /* glossy highlight */
-        linear-gradient(
-            105deg,
-            rgba(255,255,255,.40) 0%,
-            rgba(255,255,255,.10) 16%,
-            rgba(255,255,255,0) 32%
-        ),
-
-        /* warna utama */
-        linear-gradient(
-            90deg,
-            #071a35 0%,
-            #0b2d5c 28%,
-            #123f78 50%,
-            #08285a 72%,
-            #04172f 100%
-        );
-
-    border:1px solid #031326;
-
-    box-shadow:
-
-        /* sisi kanan / kedalaman */
-        5px 0 0 #04172f,
-
-        /* bayangan bawah */
-        0 5px 0 #020d1d,
-
-        /* shadow */
-        0 9px 12px rgba(0,0,0,.34),
-
-        /* glossy atas */
-        inset 1px 1px 0 rgba(255,255,255,.55),
-
-        /* bagian bawah gelap */
-        inset 0 -7px 10px rgba(0,0,0,.32);
-
-    transition:
-        height .45s ease,
-        transform .22s ease,
-        filter .22s ease;
-}
-
-.batang-produksi{
     width:58%;
     max-width:42px;
     min-height:3px;
 
     position:relative;
 
-    /* DEPAN BALOK — BIRU TUA */
     background:
         linear-gradient(
             90deg,
@@ -1411,7 +1120,6 @@ box-shadow:
     border:1px solid #031326;
     border-radius:2px 2px 0 0;
 
-    /* TETAP TEGAK — TIDAK MIRING */
     transform:none;
 
     box-shadow:
@@ -1429,9 +1137,8 @@ box-shadow:
         box-shadow .25s ease;
 }
 
-/* PERMUKAAN ATAS BALOK */
-
 .batang-produksi::before{
+
     content:"";
 
     position:absolute;
@@ -1466,65 +1173,8 @@ box-shadow:
     pointer-events:none;
 }
 
-/* =========================
-   BATANG HARIAN
-========================= */
-
-.batang-harian{
-    width:32px;
-    min-height:3px;
-
-    position:relative;
-
-    background:
-    linear-gradient(
-        90deg,
-        #04301d 0%,
-        #0b5a38 20%,
-        #176b43 45%,
-        #0b5a38 70%,
-        #04301d 100%
-    );
-
-    border:1px solid #032518;
-
-    border-radius:0;
-
-    box-shadow:
-        inset 1px 1px 0 rgba(255,255,255,.45),
-        inset 0 -7px 10px rgba(0,0,0,.28);
-}    
-.batang-harian::before{
-    content:"";
-
-    position:absolute;
-    left:0;
-    top:-6px;
-
-    width:100%;
-    height:10px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #4fa878 0%,
-            #176b43 50%,
-            #0b4d31 100%
-        );
-
-    border-radius:50%;
-
-    border-top:1px solid rgba(255,255,255,.55);
-
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,.45),
-        0 -1px 3px rgba(255,255,255,.15);
-
-    pointer-events:none;
-}
-/* SISI KANAN BALOK */
-
 .batang-produksi::after{
+
     content:"";
 
     position:absolute;
@@ -1557,24 +1207,20 @@ box-shadow:
 
     pointer-events:none;
 }
-    
-/* EFEK SAAT DISOROT */
+
 .batang-produksi:hover{
-    transform:translateY(-4px);
+
+    transform:translateY(-3px);
 
     filter:brightness(1.12);
 
     box-shadow:
-        4px 6px 0 #0b1e34,
-        7px 9px 10px rgba(0,0,0,.32),
-        0 14px 14px -7px rgba(0,0,0,.58),
-        inset 2px 0 0 rgba(255,255,255,.30),
-        inset -3px 0 0 rgba(0,0,0,.25);
+        5px 0 0 #04172f,
+        0 5px 0 #020d1d,
+        0 12px 17px rgba(0,0,0,.40),
+        inset 1px 1px 0 rgba(255,255,255,.65),
+        inset 0 -7px 10px rgba(0,0,0,.30);
 }
-
-/* =========================
-   NAMA BULAN
-========================= */
 
 .bulan-nama{
 
@@ -1594,90 +1240,167 @@ box-shadow:
         0 2px 3px rgba(0,0,0,.18);
 }
 
-
 /* =========================
-   HOVER BATANG
+   DIAGRAM HARIAN
 ========================= */
 
-.batang-produksi:hover{
+.judul-diagram-harian{
+    text-align:left;
+    font-size:15px;
+    font-weight:bold;
+    margin:0 0 8px 8px;
 
-    transform:
-        translateY(-3px);
+    position:sticky;
+    left:0;
+    z-index:10;
+    width:max-content;
+}
 
-    filter:
-        brightness(1.12);
+.diagram-harian{
+    width:100%;
+    min-width:1400px;
+    height:330px;
+
+    background:
+    linear-gradient(
+        to top,
+        transparent 24.5%,
+        rgba(22,107,67,0.10) 25%,
+        rgba(22,107,67,0.10) 25.5%,
+        transparent 26%,
+        transparent 49%,
+        rgba(22,107,67,0.10) 50%,
+        transparent 51%,
+        transparent 74%,
+        rgba(22,107,67,0.10) 75%,
+        transparent 76%
+    );
+
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-around;
+
+    gap:10px;
+
+    padding:30px 10px 35px;
+
+    border-bottom:2px solid #b89b72;
+
+    border:1px solid #176b43;
+
+    border-radius:12px;
+}
+
+.hari-bar{
+
+    height:100%;
+
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+
+    position:relative;
+
+    min-width:30px;
+}
+
+.hari-nilai{
+
+    font-size:13px;
+    font-weight:bold;
+    line-height:1.1;
+    margin-bottom:8px;
+}
+
+.hari-nama{
+
+    width:30px;
+    height:30px;
+
+    margin:14px 0 0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:14px;
+    font-weight:900;
+
+    color:#374151;
+    background:#ffffff;
+
+    border:1px solid #176b43;
+    border-radius:5px;
 
     box-shadow:
+        0 2px 4px rgba(0,0,0,.18);
 
-        5px 0 0 #04172f,
-        0 5px 0 #020d1d,
-        0 12px 17px rgba(0,0,0,.40),
-        inset 1px 1px 0 rgba(255,255,255,.65),
-        inset 0 -7px 10px rgba(0,0,0,.30);
+    text-shadow:
+        1px 1px 0 #ffffff;
 }
 
+.batang-harian{
+
+    width:32px;
+    min-height:3px;
+
+    position:relative;
+
+    background:
+    linear-gradient(
+        90deg,
+        #04301d 0%,
+        #0b5a38 20%,
+        #176b43 45%,
+        #0b5a38 70%,
+        #04301d 100%
+    );
+
+    border:1px solid #032518;
+
+    border-radius:0;
+
+    box-shadow:
+        inset 1px 1px 0 rgba(255,255,255,.45),
+        inset 0 -7px 10px rgba(0,0,0,.28);
+}
+
+.batang-harian::before{
+
+    content:"";
+
+    position:absolute;
+    left:0;
+    top:-6px;
+
+    width:100%;
+    height:10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4fa878 0%,
+            #176b43 50%,
+            #0b4d31 100%
+        );
+
+    border-radius:50%;
+
+    border-top:1px solid rgba(255,255,255,.55);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.45),
+        0 -1px 3px rgba(255,255,255,.15);
+
+    pointer-events:none;
+}
 
 /* =========================
-   MOBILE - 12 BATANG
+   TABLE
 ========================= */
-
-@media (max-width:700px){
-
-    .diagram-tahunan{
-
-        min-width:0;
-
-        width:100%;
-
-        gap:2px;
-
-        padding-left:3px;
-        padding-right:3px;
-    }
-
-    .bulan-bar{
-
-        min-width:0;
-    }
-
-   .batang-produksi{
-    width:56%;
-    max-width:26px;
-        
-        box-shadow:
-
-            3px 0 0 #04172f,
-            0 4px 0 #020d1d,
-            0 7px 9px rgba(0,0,0,.32),
-
-            inset 1px 1px 0 rgba(255,255,255,.55),
-            inset 0 -3px 6px rgba(0,0,0,.15);
-    }
-
-.batang-produksi::after{
-    right:-4px;
-    top:0;
-    bottom:auto;
-    width:4px;
-    height:100%;
-}
-
-    .bulan-nilai{
-
-        font-size:9px;
-
-        margin-bottom:5px;
-    }
-
-.bulan-nama{
-
-    font-size:15px;
-    font-weight:900;
-    text-transform:uppercase;
-    bottom:-26px;
-}
-
-}
 
 .table-title {
 
@@ -1782,7 +1505,6 @@ tbody tr:nth-child(even) {
 
     color: #154d72;
 }
-
 
 /* =========================
    DATA PRODUKSI
@@ -1903,7 +1625,6 @@ tbody tr:nth-child(even) {
     line-height: 1.25;
 }
 
-
 /* =========================
    PENCAPAIAN GRUP & MESIN
 ========================= */
@@ -1941,9 +1662,6 @@ tbody tr:nth-child(even) {
     font-size: 20px;
     font-weight: 900;
 }
-/* =========================
-   GARIS TABEL MESIN
-========================= */
 
 #tabelMesin {
     width: 100%;
@@ -1954,39 +1672,6 @@ tbody tr:nth-child(even) {
 #tabelMesin td {
     border: 1px solid rgba(120, 130, 145, 0.45);
 }
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
-
-    #tabelGrup td,
-    #tabelMesin td {
-        font-size: 18px;
-        font-weight: 800;
-        padding: 11px 9px;
-    }
-
-    .table-card:has(#tabelGrup) th,
-    .table-card:has(#tabelMesin) th {
-        font-size: 16px;
-        font-weight: 900;
-        padding: 10px 9px;
-    }
-
-    #tabelGrup .total-row td,
-    #tabelMesin .total-row td {
-        font-size: 19px;
-        font-weight: 900;
-    }
-
-    .tanggal-range {
-        grid-template-columns: 1fr;
-    }
-
-}
-
 
 /* =========================
    LOADING
@@ -2014,7 +1699,6 @@ tbody tr:nth-child(even) {
     box-shadow:
         0 5px 15px rgba(40,90,130,.1);
 }
-
 
 /* =========================
    SCROLLBAR
@@ -2044,7 +1728,6 @@ tbody tr:nth-child(even) {
 
     background: #edf6fc;
 }
-
 
 /* =========================
    SCREENSHOT MODE
@@ -2100,7 +1783,6 @@ body.screenshot-mode .group-percent {
     font-weight: bold;
 }
 
-
 /* =========================
    RESPONSIVE
 ========================= */
@@ -2120,63 +1802,119 @@ body.screenshot-mode .group-percent {
 
 @media (max-width: 700px) {
 
-    body {
+    #tabelGrup td,
+    #tabelMesin td {
+        font-size: 18px;
+        font-weight: 800;
+        padding: 11px 9px;
+    }
 
+    .table-card:has(#tabelGrup) th,
+    .table-card:has(#tabelMesin) th {
+        font-size: 16px;
+        font-weight: 900;
+        padding: 10px 9px;
+    }
+
+    #tabelGrup .total-row td,
+    #tabelMesin .total-row td {
+        font-size: 19px;
+        font-weight: 900;
+    }
+
+    .tanggal-range {
+        grid-template-columns: 1fr;
+    }
+
+    body {
         padding: 10px;
     }
 
     h1 {
-
         font-size: 22px;
     }
 
     .cards {
-
         grid-template-columns:
             repeat(2, minmax(140px, 1fr));
     }
 
     .group-cards {
-
         grid-template-columns: 1fr;
     }
 
     .group-card {
-
         min-height: 140px;
     }
 
     .table-card {
-
         padding: 11px;
     }
 
     .table-title {
-
         font-size: 17px;
     }
 
+    .diagram-tahunan {
+        min-width: 0;
+        width: 100%;
+        gap: 2px;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .bulan-bar {
+        min-width: 0;
+    }
+
+    .batang-produksi {
+        width: 56%;
+        max-width: 26px;
+
+        box-shadow:
+            3px 0 0 #04172f,
+            0 4px 0 #020d1d,
+            0 7px 9px rgba(0,0,0,.32),
+
+            inset 1px 1px 0 rgba(255,255,255,.55),
+            inset 0 -3px 6px rgba(0,0,0,.15);
+    }
+
+    .batang-produksi::after {
+        right:-4px;
+        top:0;
+        bottom:auto;
+        width:4px;
+        height:100%;
+    }
+
+    .bulan-nilai {
+        font-size:9px;
+        margin-bottom:5px;
+    }
+
+    .bulan-nama {
+        font-size:15px;
+        font-weight:900;
+        text-transform:uppercase;
+        bottom:-26px;
+    }
 }
 
 @media (max-width: 430px) {
 
     .cards {
-
         grid-template-columns: 1fr;
     }
 
     .mode-buttons {
-
         flex-direction: column;
     }
 
     button {
-
         width: 100%;
     }
-
 }
-
 
 /* =========================
    ANIMASI
@@ -2216,9 +1954,10 @@ body.screenshot-mode .group-percent {
 
 .mode-buttons .btn-cuci{
     background:#145a32 !important;
-}  
-  /* =====================================================
-   MODAL DETAIL PRODUKSI HARIAN - PREMIUM 3D
+}
+
+/* =====================================================
+   MODAL DETAIL PRODUKSI HARIAN
 ===================================================== */
 
 .modal-produksi-harian{
@@ -2249,16 +1988,10 @@ body.screenshot-mode .group-percent {
         visibility .25s ease;
 }
 
-
 .modal-produksi-harian.show{
     opacity:1;
     visibility:visible;
 }
-
-
-/* =====================================================
-   KARTU UTAMA
-===================================================== */
 
 .detail-produksi-card{
 
@@ -2293,7 +2026,6 @@ body.screenshot-mode .group-percent {
         transform .3s ease;
 }
 
-
 .modal-produksi-harian.show
 .detail-produksi-card{
 
@@ -2301,11 +2033,6 @@ body.screenshot-mode .group-percent {
         translateY(0)
         scale(1);
 }
-
-
-/* =====================================================
-   KILAU ATAS
-===================================================== */
 
 .detail-produksi-card::before{
 
@@ -2332,11 +2059,6 @@ body.screenshot-mode .group-percent {
     opacity:.8;
 }
 
-
-/* =====================================================
-   TOMBOL TUTUP
-===================================================== */
-
 .detail-tutup{
 
     position:absolute;
@@ -2346,11 +2068,14 @@ body.screenshot-mode .group-percent {
 
     width:45px;
     height:45px;
+
     display:flex;
-align-items:center;
-justify-content:center;
-line-height:1;
-padding:0;
+    align-items:center;
+    justify-content:center;
+
+    line-height:1;
+
+    padding:0;
 
     border-radius:50%;
 
@@ -2367,7 +2092,6 @@ padding:0;
     color:#fff;
 
     font-size:40px;
-    line-height:1;
 
     cursor:pointer;
 
@@ -2381,7 +2105,6 @@ padding:0;
         box-shadow .2s ease;
 }
 
-
 .detail-tutup:hover{
 
     transform:
@@ -2393,11 +2116,6 @@ padding:0;
         0 0 18px
         rgba(255,180,60,.25);
 }
-
-
-/* =====================================================
-   ICON
-===================================================== */
 
 .detail-icon{
 
@@ -2428,13 +2146,7 @@ padding:0;
         0 10px 25px rgba(0,0,0,.5),
         inset 0 2px 3px
         rgba(255,255,255,.3);
-
 }
-
-
-/* =====================================================
-   JUDUL
-===================================================== */
 
 .detail-judul{
 
@@ -2452,7 +2164,6 @@ padding:0;
         0 5px 12px rgba(0,0,0,.7);
 }
 
-
 .detail-tanggal{
 
     margin-top:6px;
@@ -2466,11 +2177,6 @@ padding:0;
 
     color:#cda879;
 }
-
-
-/* =====================================================
-   TOTAL
-===================================================== */
 
 .detail-total{
 
@@ -2500,7 +2206,6 @@ padding:0;
         0 8px 20px rgba(0,0,0,.3);
 }
 
-
 .detail-total-label{
 
     font-size:14px;
@@ -2509,7 +2214,6 @@ padding:0;
 
     color:#cda879;
 }
-
 
 .detail-total-angka{
 
@@ -2524,13 +2228,11 @@ padding:0;
         0 3px 8px rgba(0,0,0,.8);
 }
 
-
 .detail-total-angka span{
 
     font-size:14px;
     letter-spacing:1px;
 }
-
 
 .detail-total-kodi{
 
@@ -2542,11 +2244,6 @@ padding:0;
     color:#d5aa69;
 }
 
-
-/* =====================================================
-   KARTU GRUP A B C
-===================================================== */
-
 .detail-grup-container{
 
     display:grid;
@@ -2556,7 +2253,6 @@ padding:0;
 
     gap:16px;
 }
-
 
 .detail-grup{
 
@@ -2580,7 +2276,6 @@ padding:0;
         box-shadow .2s ease;
 }
 
-
 .detail-grup:hover{
 
     transform:
@@ -2590,11 +2285,6 @@ padding:0;
         0 18px 30px rgba(0,0,0,.6),
         0 0 20px rgba(255,200,100,.12);
 }
-
-
-/* =====================================================
-   GRUP A
-===================================================== */
 
 .grup-a{
 
@@ -2609,11 +2299,6 @@ padding:0;
         rgba(130,230,145,.35);
 }
 
-
-/* =====================================================
-   GRUP B
-===================================================== */
-
 .grup-b{
 
     background:
@@ -2627,11 +2312,6 @@ padding:0;
         rgba(255,190,100,.35);
 }
 
-
-/* =====================================================
-   GRUP C
-===================================================== */
-
 .grup-c{
 
     background:
@@ -2644,11 +2324,6 @@ padding:0;
     border:1px solid
         rgba(210,160,255,.35);
 }
-
-
-/* =====================================================
-   HEADER GRUP
-===================================================== */
 
 .detail-grup-header{
 
@@ -2664,11 +2339,6 @@ padding:0;
         0 2px 4px rgba(0,0,0,.7);
 }
 
-
-/* =====================================================
-   PCS
-===================================================== */
-
 .detail-grup-pcs{
 
     margin-top:10px;
@@ -2683,7 +2353,6 @@ padding:0;
         0 3px 7px rgba(0,0,0,.65);
 }
 
-
 .detail-grup-pcs span{
 
     font-size:12px;
@@ -2692,11 +2361,6 @@ padding:0;
 
     opacity:.8;
 }
-
-
-/* =====================================================
-   KODI
-===================================================== */
 
 .detail-grup-kodi{
 
@@ -2708,11 +2372,6 @@ padding:0;
 
     color:rgba(255,255,255,.85);
 }
-
-
-/* =====================================================
-   PERSENTASE
-===================================================== */
 
 .detail-grup-persen{
 
@@ -2738,11 +2397,6 @@ padding:0;
         rgba(0,0,0,.3);
 }
 
-
-/* =====================================================
-   INFO BAWAH
-===================================================== */
-
 .detail-info{
 
     margin-top:20px;
@@ -2755,11 +2409,6 @@ padding:0;
 
     letter-spacing:.5px;
 }
-
-
-/* =====================================================
-   RESPONSIVE HP
-===================================================== */
 
 @media(max-width:600px){
 
@@ -2774,7 +2423,6 @@ padding:0;
         overflow-y:auto;
     }
 
-
     .detail-icon{
 
         width:54px;
@@ -2785,7 +2433,6 @@ padding:0;
         border-radius:17px;
     }
 
-
     .detail-judul{
 
         font-size:20px;
@@ -2793,24 +2440,20 @@ padding:0;
         letter-spacing:1.5px;
     }
 
-
     .detail-tanggal{
 
         font-size:12px;
     }
-
 
     .detail-total{
 
         margin-top:18px;
     }
 
-
     .detail-total-angka{
 
         font-size:28px;
     }
-
 
     .detail-grup-container{
 
@@ -2819,58 +2462,60 @@ padding:0;
         gap:10px;
     }
 
-
     .detail-grup{
 
         padding:14px;
     }
 
-
     .detail-grup-pcs{
 
         font-size:24px;
     }
+}
 
-}  
 </style>
 </head>
 
 <body>
 
-<h1>📊 <span class="judul-3d">DASHBOARD PRODUKSI</span></h1>
+<h1>
+    📊 <span class="judul-3d">DASHBOARD PRODUKSI</span>
+</h1>
+
 <div class="mode-buttons">
 
-<button class="btn-defect"
-onclick="window.location.href='Defect.html'">
-🛠️ Defect
-</button>
+    <button
+        class="btn-defect"
+        onclick="window.location.href='Defect.html'">
+        🛠️ Defect
+    </button>
 
-<button class="btn-cuci"
-onclick="window.location.href='cuci.html'">
-🧼 Cuci
-</button>
+    <button
+        class="btn-cuci"
+        onclick="window.location.href='cuci.html'">
+        🧼 Cuci
+    </button>
 
-<button
-    class="btn-filter"
-    id="btnFilter"
-    onclick="toggleFilter()">
-    🔽 Tampilkan Filter
-</button>
+    <button
+        class="btn-filter"
+        id="btnFilter"
+        onclick="toggleFilter()">
+        🔽 Tampilkan Filter
+    </button>
 
-<button
-    class="btn-reset"
-    onclick="resetFilter()">
-    🔄 Reset Filter
-</button>
+    <button
+        class="btn-reset"
+        onclick="resetFilter()">
+        🔄 Reset Filter
+    </button>
 
-<button
-    class="btn-screenshot"
-    onclick="window.location.href='defect-upload.html'">
-    ☣️ Defect Trial
-</button>
+    <button
+        class="btn-screenshot"
+        onclick="window.location.href='defect-upload.html'">
+        ☣️ Defect Trial
+    </button>
 
 </div>
-
 
 <!-- =====================================================
      FILTER PANEL
@@ -2884,15 +2529,9 @@ onclick="window.location.href='cuci.html'">
         🔎 FILTER DATA
     </div>
 
-
-    <!-- =========================
-         FILTER TANGGAL
-    ========================== -->
-
     <div class="tanggal-range">
 
         <div class="filter-group">
-
             <label class="title">
                 📅 Tanggal Dari
             </label>
@@ -2900,12 +2539,9 @@ onclick="window.location.href='cuci.html'">
             <input
                 type="date"
                 id="tanggalDari">
-
         </div>
 
-
         <div class="filter-group">
-
             <label class="title">
                 📅 Tanggal Sampai
             </label>
@@ -2913,25 +2549,14 @@ onclick="window.location.href='cuci.html'">
             <input
                 type="date"
                 id="tanggalSampai">
-
         </div>
 
     </div>
-
-
-    <!-- =========================
-         FILTER LAIN
-    ========================== -->
 
     <div
         class="filter-row"
         id="filterContainer">
     </div>
-
-
-    <!-- =========================
-         TOMBOL TERAPKAN
-    ========================== -->
 
     <button
         class="btn-apply"
@@ -2944,16 +2569,15 @@ onclick="window.location.href='cuci.html'">
 
 </div>
 
-
-<!-- =====================================================
-     FILTER SUMMARY
-===================================================== -->
-
 <div class="filter-summary">
 
-<div class="filter-summary-title" style="display:none;">
-    🔎 FILTER DATA YANG DITAMPILKAN
-</div>
+    <div
+        class="filter-summary-title"
+        style="display:none;">
+
+        🔎 FILTER DATA YANG DITAMPILKAN
+
+    </div>
 
     <div
         id="filterSummaryContent"
@@ -2967,15 +2591,13 @@ onclick="window.location.href='cuci.html'">
 
 </div>
 
-
 <!-- =====================================================
-     DASHBOARD CARDS
+     KPI
 ===================================================== -->
 
 <div class="cards">
 
     <div class="card">
-
         <div class="card-title">
             Total Produksi (pcs)
         </div>
@@ -2985,12 +2607,9 @@ onclick="window.location.href='cuci.html'">
             id="totalProduksi">
             0
         </div>
-
     </div>
 
-
     <div class="card">
-
         <div class="card-title">
             Total Produksi (kodi)
         </div>
@@ -3000,12 +2619,9 @@ onclick="window.location.href='cuci.html'">
             id="totalKodi">
             0
         </div>
-
     </div>
 
-
     <div class="card">
-
         <div class="card-title">
             Total Data (baris)
         </div>
@@ -3015,12 +2631,9 @@ onclick="window.location.href='cuci.html'">
             id="totalData">
             0
         </div>
-
     </div>
 
-
     <div class="card">
-
         <div class="card-title">
             Jumlah Mesin
         </div>
@@ -3030,12 +2643,9 @@ onclick="window.location.href='cuci.html'">
             id="jumlahMesin">
             0
         </div>
-
     </div>
 
-
     <div class="card">
-
         <div class="card-title">
             Jumlah Grup
         </div>
@@ -3045,11 +2655,9 @@ onclick="window.location.href='cuci.html'">
             id="jumlahGrup">
             0
         </div>
-
     </div>
 
 </div>
-
 
 <!-- =====================================================
      GRUP
@@ -3059,9 +2667,7 @@ onclick="window.location.href='cuci.html'">
 
     <div class="group-card group-a">
 
-        <h3>
-            GRUP A
-        </h3>
+        <h3>GRUP A</h3>
 
         <div
             class="group-production"
@@ -3077,12 +2683,9 @@ onclick="window.location.href='cuci.html'">
 
     </div>
 
-
     <div class="group-card group-b">
 
-        <h3>
-            GRUP B
-        </h3>
+        <h3>GRUP B</h3>
 
         <div
             class="group-production"
@@ -3098,12 +2701,9 @@ onclick="window.location.href='cuci.html'">
 
     </div>
 
-
     <div class="group-card group-c">
 
-        <h3>
-            GRUP C
-        </h3>
+        <h3>GRUP C</h3>
 
         <div
             class="group-production"
@@ -3122,7 +2722,7 @@ onclick="window.location.href='cuci.html'">
 </div>
 
 <!-- =====================================================
-     PRODUKSI TAHUNAN
+     GRAFIK
 ===================================================== -->
 
 <div class="table-card produksi-tahunan-card">
@@ -3133,33 +2733,33 @@ onclick="window.location.href='cuci.html'">
 
     <div class="tahun-chart-header">
 
-    
-
-        <select id="filterTahunChart"
-                onchange="updateDiagramTahunan()">
+        <select
+            id="filterTahunChart"
+            onchange="updateDiagramTahunan()">
         </select>
 
     </div>
 
-<div class="chart-wrapper">
+    <div class="chart-wrapper">
 
-    <div id="judulDiagramHarian"
-         class="judul-diagram-harian">
+        <div
+            id="judulDiagramHarian"
+            class="judul-diagram-harian">
+        </div>
+
+        <div
+            id="diagramHarian"
+            class="diagram-harian">
+        </div>
+
     </div>
 
-<div id="diagramHarian"
-     class="diagram-harian">
-</div>
+    <div class="chart-wrapper">
 
-</div>
-
-<div class="chart-wrapper">
-
-    <div id="diagramTahunan"
-         class="diagram-tahunan">
-    </div>
-
-</div>
+        <div
+            id="diagramTahunan"
+            class="diagram-tahunan">
+        </div>
 
     </div>
 
@@ -3192,14 +2792,14 @@ onclick="window.location.href='cuci.html'">
 
             </thead>
 
-            <tbody id="tabelMesin"></tbody>
+            <tbody id="tabelMesin">
+            </tbody>
 
         </table>
 
     </div>
 
 </div>
-
 
 <!-- =====================================================
      DATA PRODUKSI
@@ -3211,8 +2811,7 @@ onclick="window.location.href='cuci.html'">
         📋 Data Produksi
     </div>
 
-    <div
-        class="table-wrapper data-wrapper">
+    <div class="table-wrapper data-wrapper">
 
         <table>
 
@@ -3232,7 +2831,8 @@ onclick="window.location.href='cuci.html'">
 
             </thead>
 
-            <tbody id="tabelData"></tbody>
+            <tbody id="tabelData">
+            </tbody>
 
         </table>
 
@@ -3240,47 +2840,67 @@ onclick="window.location.href='cuci.html'">
 
 </div>
 
-
 <div
     class="loading"
     id="loading">
-    ⏳ Mengambil data...
-</div>
 
+    ⏳ Mengambil data...
+
+</div>
 
 <script>
 
 /* =====================================================
-   URL APPS SCRIPT
+   KONFIGURASI
 ===================================================== */
 
 const URL =
 "https://script.google.com/macros/s/AKfycbwJ9bH0_V1p--6hRJqXO7yi2k4GY4jLfONJMGxIGcqfh8UmLTxphSNFhAY9ifdFhCpnag/exec?action=flat";
 
-
-/* =====================================================
-   PENYIMPANAN FILTER DI HP
-===================================================== */
-
 const LOCAL_FILTER_KEY =
     "DASHBOARD_PRODUKSI_FILTER_HP_V1";
 
-
-/* =====================================================
-   VARIABEL DATA
-===================================================== */
-
 let semuaData = [];
-
 let dataTampil = [];
 
 let sedangMemulihkanFilter = false;
 
 let timerSimpanFilter = null;
 
-/* STATUS FILTER */
 let filterTerkunci = false;
 
+let tahunDiagram = null;
+
+/*
+   CACHE TANGGAL
+
+   Ini penting untuk dataset besar.
+   Tanggal yang sama tidak diproses
+   ulang berkali-kali.
+*/
+
+const cacheTanggalParts = new Map();
+
+/*
+   CACHE RINGKASAN
+
+   Semua KPI, grup, mesin dan grafik
+   menggunakan hasil satu kali perhitungan.
+*/
+
+let ringkasanData = null;
+
+/*
+   CACHE PILIHAN FILTER
+*/
+
+const filterOptionCache = {
+    1: [],
+    2: [],
+    3: [],
+    4: [],
+    6: []
+};
 
 /* =====================================================
    FORMAT ANGKA
@@ -3291,12 +2911,8 @@ function formatAngka(value) {
     const number =
         Number(value) || 0;
 
-    return number.toLocaleString(
-        "id-ID"
-    );
-
+    return number.toLocaleString("id-ID");
 }
-
 
 /* =====================================================
    NORMALISASI GRUP
@@ -3313,8 +2929,8 @@ function normalisasiGrup(value) {
 
     const text =
         String(value)
-        .trim()
-        .toUpperCase();
+            .trim()
+            .toUpperCase();
 
     if (
         text === "A" ||
@@ -3338,14 +2954,12 @@ function normalisasiGrup(value) {
     }
 
     return text;
-
 }
 
-
 /* =====================================================
-   TANGGAL
+   PARSING TANGGAL + CACHE
 ===================================================== */
-const cacheTanggalParts = new Map();
+
 function getTanggalParts(value) {
 
     if (
@@ -3356,15 +2970,24 @@ function getTanggalParts(value) {
         return null;
     }
 
-    const text =
-        String(value).trim();
+    const cacheKey =
+        String(value);
 
+    if (
+        cacheTanggalParts.has(cacheKey)
+    ) {
+        return cacheTanggalParts.get(cacheKey);
+    }
+
+    const text =
+        cacheKey.trim();
+
+    let result = null;
 
     let match =
         text.match(
             /^(\d{4})-(\d{1,2})-(\d{1,2})T/
         );
-
 
     if (match) {
 
@@ -3381,119 +3004,100 @@ function getTanggalParts(value) {
             new Date(value);
 
         if (
-            !isNaN(
-                date.getTime()
-            )
+            !isNaN(date.getTime())
         ) {
 
-            return {
+            result = {
+                tahun: date.getFullYear(),
+                bulan: date.getMonth() + 1,
+                tanggal: date.getDate()
+            };
 
-                tahun:
-                    date.getFullYear(),
+        } else {
 
-                bulan:
-                    date.getMonth() + 1,
-
-                tanggal:
-                    date.getDate()
-
+            result = {
+                tahun: tahunUTC,
+                bulan: bulanUTC,
+                tanggal: tanggalUTC
             };
 
         }
 
-        return {
+        cacheTanggalParts.set(
+            cacheKey,
+            result
+        );
 
-            tahun: tahunUTC,
-            bulan: bulanUTC,
-            tanggal: tanggalUTC
-
-        };
-
+        return result;
     }
-
 
     match =
         text.match(
             /^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/
         );
 
-
     if (match) {
 
-        return {
-
-            tahun:
-                Number(match[1]),
-
-            bulan:
-                Number(match[2]),
-
-            tanggal:
-                Number(match[3])
-
+        result = {
+            tahun: Number(match[1]),
+            bulan: Number(match[2]),
+            tanggal: Number(match[3])
         };
 
-    }
+        cacheTanggalParts.set(
+            cacheKey,
+            result
+        );
 
+        return result;
+    }
 
     match =
         text.match(
             /^(\d{1,2})[-/](\d{1,2})[-/](\d{4})$/
         );
 
-
     if (match) {
 
-        return {
-
-            tahun:
-                Number(match[3]),
-
-            bulan:
-                Number(match[2]),
-
-            tanggal:
-                Number(match[1])
-
+        result = {
+            tahun: Number(match[3]),
+            bulan: Number(match[2]),
+            tanggal: Number(match[1])
         };
 
-    }
+        cacheTanggalParts.set(
+            cacheKey,
+            result
+        );
 
+        return result;
+    }
 
     const date =
         new Date(value);
 
-
     if (
-        !isNaN(
-            date.getTime()
-        )
+        !isNaN(date.getTime())
     ) {
 
-        return {
-
-            tahun:
-                date.getFullYear(),
-
-            bulan:
-                date.getMonth() + 1,
-
-            tanggal:
-                date.getDate()
-
+        result = {
+            tahun: date.getFullYear(),
+            bulan: date.getMonth() + 1,
+            tanggal: date.getDate()
         };
 
     }
 
+    cacheTanggalParts.set(
+        cacheKey,
+        result
+    );
 
-    return null;
-
+    return result;
 }
 
-
 /* =====================================================
-   KEY TANGGAL
-   YYYYMMDD
+   TANGGAL KEY
 ===================================================== */
 
 function getTanggalKey(value) {
@@ -3501,17 +3105,16 @@ function getTanggalKey(value) {
     const p =
         getTanggalParts(value);
 
-    if (!p)
+    if (!p) {
         return null;
+    }
 
     return (
         p.tahun * 10000 +
         p.bulan * 100 +
         p.tanggal
     );
-
 }
-
 
 /* =====================================================
    FORMAT TANGGAL
@@ -3522,25 +3125,20 @@ function formatTanggal(value) {
     const p =
         getTanggalParts(value);
 
-    if (!p)
+    if (!p) {
         return value ?? "";
+    }
 
-    return String(
-        p.tanggal
-    ).padStart(2, "0")
-
-    + "/"
-
-    + String(
-        p.bulan
-    ).padStart(2, "0")
-
-    + "/"
-
-    + p.tahun;
-
+    return (
+        String(p.tanggal).padStart(2,"0")
+        + "/"
+        +
+        String(p.bulan).padStart(2,"0")
+        + "/"
+        +
+        p.tahun
+    );
 }
-
 
 /* =====================================================
    FORMAT TANGGAL INPUT
@@ -3548,9 +3146,7 @@ function formatTanggal(value) {
 
 function formatTanggalInput(value) {
 
-    if (
-        !value
-    ) {
+    if (!value) {
         return "";
     }
 
@@ -3562,22 +3158,19 @@ function formatTanggalInput(value) {
     if (match) {
 
         return (
-            match[3] +
-            "/" +
-            match[2] +
-            "/" +
-            match[1]
+            match[3]
+            + "/"
+            + match[2]
+            + "/"
+            + match[1]
         );
-
     }
 
     return value;
-
 }
 
-
 /* =====================================================
-   FILTER PANEL
+   TOGGLE FILTER
 ===================================================== */
 
 function toggleFilter() {
@@ -3592,42 +3185,36 @@ function toggleFilter() {
             "btnFilter"
         );
 
+    if (!panel || !button) {
+        return;
+    }
 
-    panel.classList.toggle(
-        "show"
-    );
-
+    panel.classList.toggle("show");
 
     if (
-        panel.classList.contains(
-            "show"
-        )
+        panel.classList.contains("show")
     ) {
 
         button.textContent =
             "🔼 Sembunyikan Filter";
 
-    }
-
-    else {
+    } else {
 
         button.textContent =
             "🔽 Tampilkan Filter";
-
     }
-
 }
 
-
 /* =====================================================
-   KUNCI / BUKA FILTER
+   LOCK FILTER
 ===================================================== */
 
-function setFilterLock(terkunci) {
+function setFilterLock(
+    terkunci
+) {
 
     filterTerkunci =
         Boolean(terkunci);
-
 
     const tanggalDari =
         document.getElementById(
@@ -3639,68 +3226,52 @@ function setFilterLock(terkunci) {
             "tanggalSampai"
         );
 
-
     if (tanggalDari) {
-
         tanggalDari.disabled =
             filterTerkunci;
-
     }
-
 
     if (tanggalSampai) {
-
         tanggalSampai.disabled =
             filterTerkunci;
-
     }
 
-
-    document.querySelectorAll(
-        "#filterContainer input[type='checkbox'], #filterContainer .filter-search"
-    ).forEach(
-        input => {
+    document
+        .querySelectorAll(
+            "#filterContainer input[type='checkbox'], #filterContainer .filter-search"
+        )
+        .forEach(input => {
 
             input.disabled =
                 filterTerkunci;
 
-        }
-    );
-
+        });
 
     const tombol =
         document.getElementById(
             "btnApplyFilter"
         );
 
-
     if (tombol) {
 
         tombol.disabled =
             filterTerkunci;
-
 
         if (filterTerkunci) {
 
             tombol.innerHTML =
                 "🔒 Filter Terkunci";
 
-        }
-
-        else {
+        } else {
 
             tombol.innerHTML =
                 "✅ Terapkan Filter";
-
         }
-
     }
-
 }
 
-
 /* =====================================================
-   CEK APAKAH ADA FILTER AKTIF
+   CEK FILTER AKTIF
 ===================================================== */
 
 function adaFilterAktif() {
@@ -3710,33 +3281,24 @@ function adaFilterAktif() {
             "tanggalDari"
         )?.value || "";
 
-
     const tanggalSampai =
         document.getElementById(
             "tanggalSampai"
         )?.value || "";
 
-
     if (
         tanggalDari ||
         tanggalSampai
     ) {
-
         return true;
-
     }
 
-
-    const checked =
+    return (
         document.querySelectorAll(
             "#filterContainer input[type='checkbox']:checked"
-        );
-
-
-    return checked.length > 0;
-
+        ).length > 0
+    );
 }
-
 
 /* =====================================================
    TERAPKAN FILTER SEKARANG
@@ -3745,29 +3307,23 @@ function adaFilterAktif() {
 function terapkanFilterSekarang() {
 
     if (filterTerkunci) {
-
         return;
-
     }
-
 
     const tanggalDari =
         document.getElementById(
             "tanggalDari"
         ).value;
 
-
     const tanggalSampai =
         document.getElementById(
             "tanggalSampai"
         ).value;
 
-
     if (
         tanggalDari &&
         tanggalSampai &&
-        tanggalDari >
-        tanggalSampai
+        tanggalDari > tanggalSampai
     ) {
 
         alert(
@@ -3775,38 +3331,85 @@ function terapkanFilterSekarang() {
         );
 
         return;
-
     }
 
+    terapkanSemuaFilter(false);
 
-    /*
-       Terapkan filter terlebih dahulu.
-       Belum dikunci sampai proses filter selesai.
-    */
-
-    terapkanSemuaFilter(
-        false
-    );
-
-
-    /*
-       Setelah diterapkan,
-       langsung kunci semua kontrol filter.
-    */
-
-    setFilterLock(
-        true
-    );
-
-
-    /*
-       Simpan filter beserta status terkunci.
-    */
+    setFilterLock(true);
 
     simpanFilterTerakhir();
-
 }
 
+/* =====================================================
+   BANGUN CACHE PILIHAN FILTER
+===================================================== */
+
+function bangunCachePilihanFilter() {
+
+    filterOptionCache[1] = [];
+    filterOptionCache[2] = [];
+    filterOptionCache[3] = [];
+    filterOptionCache[4] = [];
+    filterOptionCache[6] = [];
+
+    const sets = {
+        1: new Set(),
+        2: new Set(),
+        3: new Set(),
+        4: new Set(),
+        6: new Set()
+    };
+
+    /*
+       HANYA SATU LOOP UNTUK SEMUA FILTER
+    */
+
+    for (
+        let i = 0;
+        i < semuaData.length;
+        i++
+    ) {
+
+        const row =
+            semuaData[i];
+
+        [1,2,3,4,6].forEach(kolom => {
+
+            const value =
+                row[kolom];
+
+            if (
+                value !== null &&
+                value !== undefined &&
+                String(value).trim() !== ""
+            ) {
+
+                sets[kolom].add(
+                    String(value)
+                );
+            }
+
+        });
+    }
+
+    [1,2,3,4,6].forEach(kolom => {
+
+        filterOptionCache[kolom] =
+            Array.from(
+                sets[kolom]
+            );
+
+        filterOptionCache[kolom].sort(
+            (a,b) =>
+                String(a).localeCompare(
+                    String(b),
+                    "id",
+                    {numeric:true}
+                )
+        );
+
+    });
+}
 
 /* =====================================================
    BUAT FILTER
@@ -3823,20 +3426,14 @@ function buatFilter(
             "filterContainer"
         );
 
-
     const group =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     group.className =
         "filter-group";
 
-
     const title =
-        document.createElement(
-            "label"
-        );
+        document.createElement("label");
 
     title.className =
         "title";
@@ -3844,20 +3441,18 @@ function buatFilter(
     title.textContent =
         nama;
 
-
-    group.appendChild(
-        title
-    );
-
+    group.appendChild(title);
 
     const box =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     box.className =
         "multi-box";
 
+    /*
+       SEARCH TETAP HANYA UNTUK
+       MOTIF DAN WARNA
+    */
 
     if (
         kolom === 4 ||
@@ -3865,9 +3460,7 @@ function buatFilter(
     ) {
 
         const search =
-            document.createElement(
-                "input"
-            );
+            document.createElement("input");
 
         search.type =
             "text";
@@ -3875,25 +3468,16 @@ function buatFilter(
         search.className =
             "filter-search";
 
-
-        if (
-            kolom === 4
-        ) {
+        if (kolom === 4) {
 
             search.placeholder =
                 "🔍 Cari motif...";
 
-        }
-
-        else if (
-            kolom === 3
-        ) {
+        } else if (kolom === 3) {
 
             search.placeholder =
                 "🔍 Cari warna blok...";
-
         }
-
 
         search.oninput =
             function() {
@@ -3905,18 +3489,11 @@ function buatFilter(
 
             };
 
-
-        box.appendChild(
-            search
-        );
-
+        box.appendChild(search);
     }
 
-
     const options =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     options.className =
         "multi-options";
@@ -3924,126 +3501,77 @@ function buatFilter(
     options.id =
         id;
 
-
     const values =
-        [
-            ...new Set(
+        filterOptionCache[kolom] || [];
 
-                semuaData
+    /*
+       DocumentFragment supaya DOM
+       tidak di-update satu-satu
+    */
 
-                    .map(
-                        row =>
-                            row[kolom]
-                    )
+    const fragment =
+        document.createDocumentFragment();
 
-                    .filter(
-                        v =>
-                            v !== null &&
-                            v !== undefined &&
-                            String(v).trim() !== ""
-                    )
+    values.forEach(value => {
 
-                    .map(
-                        v =>
-                            String(v)
-                    )
+        const label =
+            document.createElement("label");
 
-            )
-        ];
+        const checkbox =
+            document.createElement("input");
 
+        checkbox.type =
+            "checkbox";
 
-    values.sort(
-        (a, b) =>
-            String(a)
-            .localeCompare(
-                String(b),
-                "id",
-                {
-                    numeric: true
+        checkbox.value =
+            value;
+
+        checkbox.onchange =
+            function() {
+
+                if (filterTerkunci) {
+
+                    this.checked =
+                        !this.checked;
                 }
+
+            };
+
+        label.appendChild(
+            checkbox
+        );
+
+        label.appendChild(
+            document.createTextNode(
+                value
             )
+        );
+
+        fragment.appendChild(
+            label
+        );
+
+    });
+
+    options.appendChild(
+        fragment
     );
-
-
-    values.forEach(
-        value => {
-
-            const label =
-                document.createElement(
-                    "label"
-                );
-
-
-            const checkbox =
-                document.createElement(
-                    "input"
-                );
-
-            checkbox.type =
-                "checkbox";
-
-            checkbox.value =
-                value;
-
-
-            /*
-               PENTING:
-               Checkbox TIDAK langsung menerapkan filter.
-               User harus menekan tombol Terapkan.
-            */
-
-            checkbox.onchange =
-                function() {
-
-                    if (filterTerkunci) {
-
-                        this.checked =
-                            !this.checked;
-
-                    }
-
-                };
-
-
-            label.appendChild(
-                checkbox
-            );
-
-
-            label.appendChild(
-                document.createTextNode(
-                    value
-                )
-            );
-
-
-            options.appendChild(
-                label
-            );
-
-        }
-    );
-
 
     box.appendChild(
         options
     );
 
-
     group.appendChild(
         box
     );
 
-
     container.appendChild(
         group
     );
-
 }
 
-
 /* =====================================================
-   SEARCH PILIHAN FILTER
+   CARI PILIHAN
 ===================================================== */
 
 function cariPilihan(
@@ -4052,11 +3580,8 @@ function cariPilihan(
 ) {
 
     if (filterTerkunci) {
-
         return;
-
     }
-
 
     const keyword =
         String(
@@ -4065,57 +3590,36 @@ function cariPilihan(
         .trim()
         .toLowerCase();
 
-
     const area =
         document.getElementById(
             filterId
         );
 
-
-    if (!area)
+    if (!area) {
         return;
-
+    }
 
     const labels =
         area.querySelectorAll(
             "label"
         );
 
+    labels.forEach(label => {
 
-    labels.forEach(
-        label => {
-
-            const text =
-                label.textContent
+        const text =
+            label.textContent
                 .toLowerCase();
 
+        label.style.display =
+            text.includes(keyword)
+                ? "block"
+                : "none";
 
-            if (
-                text.includes(
-                    keyword
-                )
-            ) {
-
-                label.style.display =
-                    "block";
-
-            }
-
-            else {
-
-                label.style.display =
-                    "none";
-
-            }
-
-        }
-    );
-
+    });
 }
 
-
 /* =====================================================
-   AMBIL KONDISI FILTER SAAT INI
+   AMBIL STATE FILTER
 ===================================================== */
 
 function ambilStateFilter() {
@@ -4139,49 +3643,41 @@ function ambilStateFilter() {
 
     };
 
-
     const daftarFilter = [
-
         "filterGrup",
         "filterKode",
         "filterWarna",
         "filterMotif",
         "filterMc"
-
     ];
 
+    daftarFilter.forEach(id => {
 
-    daftarFilter.forEach(
-        id => {
+        state.selections[id] =
+            Array.from(
+                document.querySelectorAll(
+                    "#" +
+                    id +
+                    " input[type='checkbox']:checked"
+                )
+            )
+            .map(
+                checkbox =>
+                    checkbox.value
+            );
 
-            state.selections[id] =
-                Array.from(
-
-                    document.querySelectorAll(
-                        "#" +
-                        id +
-                        " input[type='checkbox']:checked"
-                    )
-
-                ).map(
-                    checkbox =>
-                        checkbox.value
-                );
-
-        }
-    );
-
+    });
 
     return state;
-
 }
 
-
 /* =====================================================
-   SIMPAN FILTER KE HP
+   SIMPAN LOCAL
 ===================================================== */
 
-function simpanFilterKeHP(state) {
+function simpanFilterKeHP(
+    state
+) {
 
     try {
 
@@ -4190,15 +3686,9 @@ function simpanFilterKeHP(state) {
             JSON.stringify(state)
         );
 
-        console.log(
-            "Filter berhasil disimpan di HP."
-        );
-
         return true;
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.log(
             "Gagal menyimpan filter di HP:",
@@ -4206,14 +3696,11 @@ function simpanFilterKeHP(state) {
         );
 
         return false;
-
     }
-
 }
 
-
 /* =====================================================
-   AMBIL FILTER DARI HP
+   AMBIL LOCAL
 ===================================================== */
 
 function ambilFilterDariHP() {
@@ -4225,35 +3712,23 @@ function ambilFilterDariHP() {
                 LOCAL_FILTER_KEY
             );
 
-
         if (!data) {
-
             return null;
-
         }
 
-
         const state =
-            JSON.parse(
-                data
-            );
-
+            JSON.parse(data);
 
         if (
             !state ||
             typeof state !== "object"
         ) {
-
             return null;
-
         }
-
 
         return state;
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.log(
             "Gagal membaca filter dari HP:",
@@ -4261,14 +3736,11 @@ function ambilFilterDariHP() {
         );
 
         return null;
-
     }
-
 }
 
-
 /* =====================================================
-   HAPUS FILTER DARI HP
+   HAPUS LOCAL
 ===================================================== */
 
 function hapusFilterDariHP() {
@@ -4279,35 +3751,20 @@ function hapusFilterDariHP() {
             LOCAL_FILTER_KEY
         );
 
-        console.log(
-            "Filter HP berhasil dihapus."
-        );
-
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.log(
             "Gagal menghapus filter HP:",
             error
         );
-
     }
-
 }
 
-
 /* =====================================================
-   JADWALKAN SIMPAN FILTER
+   SIMPAN FILTER DEBOUNCE
 ===================================================== */
 
 function jadwalkanSimpanFilter() {
-
-    /*
-       Sistem menggunakan tombol Terapkan.
-       Fungsi dipertahankan untuk kompatibilitas
-       dengan sistem lama.
-    */
 
     if (
         sedangMemulihkanFilter
@@ -4315,11 +3772,9 @@ function jadwalkanSimpanFilter() {
         return;
     }
 
-
     clearTimeout(
         timerSimpanFilter
     );
-
 
     timerSimpanFilter =
         setTimeout(
@@ -4330,13 +3785,10 @@ function jadwalkanSimpanFilter() {
             },
             500
         );
-
 }
 
-
 /* =====================================================
-   SIMPAN FILTER
-   HP + APPS SCRIPT
+   SIMPAN FILTER TERAKHIR
 ===================================================== */
 
 async function simpanFilterTerakhir() {
@@ -4347,44 +3799,27 @@ async function simpanFilterTerakhir() {
         return;
     }
 
-
     try {
 
         const state =
             ambilStateFilter();
 
-
-        /*
-           SIMPAN KE HP TERLEBIH DAHULU
-           agar refresh tidak kehilangan filter.
-        */
-
         simpanFilterKeHP(
             state
         );
 
-
-        /*
-           Tetap simpan ke Apps Script
-           seperti sistem MASTER sebelumnya.
-        */
-
         await fetch(
             URL,
             {
-
                 method: "POST",
 
                 headers: {
-
                     "Content-Type":
                         "text/plain;charset=utf-8"
-
                 },
 
                 body:
                     JSON.stringify({
-
                         action:
                             "saveFilter",
 
@@ -4393,39 +3828,21 @@ async function simpanFilterTerakhir() {
 
                         filter:
                             state
-
                     })
-
             }
         );
 
-
-        console.log(
-            "Filter terakhir tersimpan."
-        );
-
-
-    }
-
-    catch (error) {
-
-        /*
-           Walaupun server gagal,
-           filter HP tetap sudah tersimpan.
-        */
+    } catch (error) {
 
         console.log(
             "Gagal menyimpan filter ke server:",
             error
         );
-
     }
-
 }
 
-
 /* =====================================================
-   AMBIL FILTER TERAKHIR DARI SERVER
+   AMBIL FILTER SERVER
 ===================================================== */
 
 async function ambilFilterTersimpan() {
@@ -4438,19 +3855,12 @@ async function ambilFilterTersimpan() {
                 "?action=getFilter&sheet=FLAT"
             );
 
-
-        if (
-            !response.ok
-        ) {
-
+        if (!response.ok) {
             return null;
-
         }
-
 
         const result =
             await response.json();
-
 
         if (
             result &&
@@ -4459,25 +3869,18 @@ async function ambilFilterTersimpan() {
         ) {
 
             return result.filter;
-
         }
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.log(
             "Gagal mengambil filter terakhir:",
             error
         );
-
     }
 
-
     return null;
-
 }
-
 
 /* =====================================================
    TERAPKAN FILTER TERSIMPAN
@@ -4487,13 +3890,12 @@ function terapkanFilterTersimpan(
     state
 ) {
 
-    if (!state)
+    if (!state) {
         return;
-
+    }
 
     sedangMemulihkanFilter =
         true;
-
 
     try {
 
@@ -4502,100 +3904,75 @@ function terapkanFilterTersimpan(
                 "tanggalDari"
             );
 
-
         const tanggalSampai =
             document.getElementById(
                 "tanggalSampai"
             );
 
-
-        if (
-            tanggalDari
-        ) {
+        if (tanggalDari) {
 
             tanggalDari.value =
                 state.tanggalDari || "";
-
         }
 
-
-        if (
-            tanggalSampai
-        ) {
+        if (tanggalSampai) {
 
             tanggalSampai.value =
                 state.tanggalSampai || "";
-
         }
 
-
-        if (
-            state.selections
-        ) {
+        if (state.selections) {
 
             Object.keys(
                 state.selections
-            ).forEach(
-                id => {
+            ).forEach(id => {
 
-                    if (
-                        id === "filterTanggal"
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    const container =
-                        document.getElementById(
-                            id
-                        );
-
-
-                    if (!container)
-                        return;
-
-
-                    const nilaiTersimpan =
-                        state.selections[id] ||
-                        [];
-
-
-                    container
-                        .querySelectorAll(
-                            "input[type='checkbox']"
-                        )
-                        .forEach(
-                            checkbox => {
-
-                                checkbox.checked =
-                                    nilaiTersimpan.includes(
-                                        checkbox.value
-                                    );
-
-                            }
-                        );
-
+                if (
+                    id === "filterTanggal"
+                ) {
+                    return;
                 }
-            );
 
+                const container =
+                    document.getElementById(
+                        id
+                    );
+
+                if (!container) {
+                    return;
+                }
+
+                const nilaiTersimpan =
+                    new Set(
+                        state.selections[id] || []
+                    );
+
+                container
+                    .querySelectorAll(
+                        "input[type='checkbox']"
+                    )
+                    .forEach(checkbox => {
+
+                        checkbox.checked =
+                            nilaiTersimpan.has(
+                                checkbox.value
+                            );
+
+                    });
+
+            });
         }
 
-    }
-
-    finally {
+    } finally {
 
         sedangMemulihkanFilter =
             false;
-
     }
-
 }
-
 
 /* =====================================================
    TERAPKAN SEMUA FILTER
+   OPTIMASI UTAMA
 ===================================================== */
 
 function terapkanSemuaFilter(
@@ -4607,223 +3984,528 @@ function terapkanSemuaFilter(
             "tanggalDari"
         ).value;
 
-
     const tanggalSampai =
         document.getElementById(
             "tanggalSampai"
         ).value;
 
-
-    /*
-       Jika tanggal terbalik,
-       jangan tampilkan data.
-    */
-
     if (
         tanggalDari &&
         tanggalSampai &&
-        tanggalDari >
-        tanggalSampai
+        tanggalDari > tanggalSampai
     ) {
 
         dataTampil = [];
 
-        tampilkanData();
+        ringkasanData =
+            null;
 
-        updateDashboard();
-
-        updatePencapaianGrup();
-
-        updateDataMesin();
-
-        updateFilterSummary();
-        isiFilterTahunChart();
-updateDiagramTahunan();
-        updateDiagramHarian();
-
+        renderSemuaDashboard();
 
         if (
             simpan &&
             !sedangMemulihkanFilter
         ) {
-
             jadwalkanSimpanFilter();
-
         }
 
         return;
-
     }
 
-
     const filters = [
-
         {
-            kolom: 1,
-            id: "filterGrup"
+            kolom:1,
+            id:"filterGrup"
         },
-
         {
-            kolom: 2,
-            id: "filterKode"
+            kolom:2,
+            id:"filterKode"
         },
-
         {
-            kolom: 3,
-            id: "filterWarna"
+            kolom:3,
+            id:"filterWarna"
         },
-
         {
-            kolom: 4,
-            id: "filterMotif"
+            kolom:4,
+            id:"filterMotif"
         },
-
         {
-            kolom: 6,
-            id: "filterMc"
+            kolom:6,
+            id:"filterMc"
         }
-
     ];
 
+    /*
+       PENTING:
+
+       Sebelumnya querySelectorAll()
+       dilakukan untuk SETIAP ROW.
+
+       Sekarang checkbox dibaca hanya SEKALI.
+    */
+
+    const filterSets =
+        filters.map(filter => {
+
+            const checked =
+                document.querySelectorAll(
+                    "#" +
+                    filter.id +
+                    " input:checked"
+                );
+
+            if (!checked.length) {
+
+                return {
+                    kolom:
+                        filter.kolom,
+
+                    selected:
+                        null
+                };
+            }
+
+            return {
+
+                kolom:
+                    filter.kolom,
+
+                selected:
+                    new Set(
+                        Array.from(
+                            checked
+                        ).map(
+                            input =>
+                                input.value
+                        )
+                    )
+            };
+
+        });
 
     const keyDari =
         tanggalDari
             ? Number(
-                tanggalDari.replaceAll(
-                    "-",
-                    ""
-                )
+                tanggalDari
+                    .replaceAll(
+                        "-",
+                        ""
+                    )
               )
             : null;
-
 
     const keySampai =
         tanggalSampai
             ? Number(
-                tanggalSampai.replaceAll(
-                    "-",
-                    ""
-                )
+                tanggalSampai
+                    .replaceAll(
+                        "-",
+                        ""
+                    )
               )
             : null;
 
+    /*
+       FILTER DENGAN LOOP BIASA.
+
+       Lebih ringan daripada Array.filter()
+       + querySelectorAll berulang.
+    */
+
+    const hasil = [];
+
+    for (
+        let i = 0;
+        i < semuaData.length;
+        i++
+    ) {
+
+        const row =
+            semuaData[i];
+
+        if (
+            keyDari !== null ||
+            keySampai !== null
+        ) {
+
+            const keyTanggal =
+                getTanggalKey(
+                    row[7]
+                );
+
+            if (
+                keyTanggal === null
+            ) {
+                continue;
+            }
+
+            if (
+                keyDari !== null &&
+                keyTanggal < keyDari
+            ) {
+                continue;
+            }
+
+            if (
+                keySampai !== null &&
+                keyTanggal > keySampai
+            ) {
+                continue;
+            }
+        }
+
+        let lolos =
+            true;
+
+        for (
+            let j = 0;
+            j < filterSets.length;
+            j++
+        ) {
+
+            const filter =
+                filterSets[j];
+
+            if (!filter.selected) {
+                continue;
+            }
+
+            const value =
+                String(
+                    row[filter.kolom] ?? ""
+                );
+
+            if (
+                !filter.selected.has(
+                    value
+                )
+            ) {
+
+                lolos =
+                    false;
+
+                break;
+            }
+        }
+
+        if (lolos) {
+
+            hasil.push(
+                row
+            );
+        }
+    }
 
     dataTampil =
-        semuaData.filter(
-            row => {
+        hasil;
 
-                /*
-                   =========================
-                   FILTER RENTANG TANGGAL
-                   =========================
-                */
+    /*
+       INVALIDASI CACHE
+    */
 
-                if (
-                    keyDari !== null ||
-                    keySampai !== null
-                ) {
+    ringkasanData =
+        null;
 
-                    const keyTanggal =
-                        getTanggalKey(
-                            row[7]
-                        );
+    /*
+       RENDER SEKALI
+    */
 
+    renderSemuaDashboard();
 
-                    if (
-                        keyTanggal === null
-                    ) {
+    if (
+        simpan &&
+        !sedangMemulihkanFilter
+    ) {
 
-                        return false;
+        jadwalkanSimpanFilter();
+    }
+}
 
-                    }
+/* =====================================================
+   AGREGASI DATA
+   SATU LOOP UNTUK SEMUA KOMPONEN
+===================================================== */
 
+function bangunRingkasanData() {
 
-                    if (
-                        keyDari !== null &&
-                        keyTanggal <
-                        keyDari
-                    ) {
+    if (ringkasanData) {
 
-                        return false;
+        return ringkasanData;
+    }
 
-                    }
+    const mesinData =
+        Object.create(null);
 
+    const mesinSet =
+        new Set();
 
-                    if (
-                        keySampai !== null &&
-                        keyTanggal >
-                        keySampai
-                    ) {
+    const grupSet =
+        new Set();
 
-                        return false;
+    let total =
+        0;
 
-                    }
+    let A =
+        0;
 
-                }
+    let B =
+        0;
 
+    let C =
+        0;
 
-                /*
-                   =========================
-                   FILTER LAIN
-                   =========================
-                */
+    /*
+       Tahun -> bulan -> kodi
+    */
 
-                for (
-                    const filter
-                    of filters
-                ) {
+    const tahunan =
+        Object.create(null);
 
-                    const checked =
-                        document.querySelectorAll(
-                            `#${filter.id} input:checked`
-                        );
+    /*
+       Harian bulan berjalan
+    */
 
+    const sekarang =
+        new Date();
 
-                    if (
-                        checked.length === 0
-                    ) {
+    const tahunSekarang =
+        sekarang.getFullYear();
 
-                        continue;
+    const bulanSekarang =
+        sekarang.getMonth() + 1;
 
-                    }
+    const jumlahHari =
+        new Date(
+            tahunSekarang,
+            bulanSekarang,
+            0
+        ).getDate();
 
+    const harian =
+        Array(
+            jumlahHari
+        ).fill(0);
 
-                    const selected =
-                        [
-                            ...checked
-                        ].map(
-                            input =>
-                                input.value
-                        );
+    /*
+       Detail harian
+       hanya dibuat untuk bulan sekarang
+    */
 
+    const detailHarian =
+        Object.create(null);
 
-                    const value =
-                        String(
-                            row[
-                                filter.kolom
-                            ] ??
-                            ""
-                        );
+    for (
+        let i = 0;
+        i < dataTampil.length;
+        i++
+    ) {
 
+        const row =
+            dataTampil[i];
 
-                    if (
-                        !selected.includes(
-                            value
-                        )
-                    ) {
+        const qty =
+            Number(
+                row[5]
+            ) || 0;
 
-                        return false;
+        total +=
+            qty;
 
-                    }
+        /*
+           MESIN
+        */
 
-                }
+        const mc =
+            String(
+                row[6] ?? ""
+            ).trim();
 
+        if (mc) {
 
-                return true;
+            mesinSet.add(
+                mc
+            );
 
+            if (
+                !mesinData[mc]
+            ) {
+
+                mesinData[mc] = {
+                    A:0,
+                    B:0,
+                    C:0,
+                    total:0
+                };
             }
-        );
+        }
 
+        /*
+           GRUP
+        */
+
+        const grup =
+            normalisasiGrup(
+                row[1]
+            );
+
+        if (
+            grup === "A" ||
+            grup === "B" ||
+            grup === "C"
+        ) {
+
+            grupSet.add(
+                grup
+            );
+
+            if (grup === "A") {
+
+                A += qty;
+
+                if (mc) {
+                    mesinData[mc].A += qty;
+                }
+
+            } else if (grup === "B") {
+
+                B += qty;
+
+                if (mc) {
+                    mesinData[mc].B += qty;
+                }
+
+            } else if (grup === "C") {
+
+                C += qty;
+
+                if (mc) {
+                    mesinData[mc].C += qty;
+                }
+            }
+        }
+
+        if (mc) {
+
+            mesinData[mc].total +=
+                qty;
+        }
+
+        /*
+           TANGGAL
+        */
+
+        const p =
+            getTanggalParts(
+                row[7]
+            );
+
+        if (!p) {
+            continue;
+        }
+
+        /*
+           TAHUNAN
+        */
+
+        if (!tahunan[p.tahun]) {
+
+            tahunan[p.tahun] =
+                Array(12).fill(0);
+        }
+
+        if (
+            p.bulan >= 1 &&
+            p.bulan <= 12
+        ) {
+
+            tahunan[p.tahun]
+                [p.bulan - 1] +=
+                    qty / 20;
+        }
+
+        /*
+           HARIAN
+        */
+
+        if (
+            p.tahun === tahunSekarang &&
+            p.bulan === bulanSekarang &&
+            p.tanggal >= 1 &&
+            p.tanggal <= jumlahHari
+        ) {
+
+            harian[
+                p.tanggal - 1
+            ] += qty / 20;
+
+            if (
+                !detailHarian[p.tanggal]
+            ) {
+
+                detailHarian[p.tanggal] = {
+                    A:0,
+                    B:0,
+                    C:0
+                };
+            }
+
+            if (grup === "A") {
+
+                detailHarian[
+                    p.tanggal
+                ].A += qty;
+
+            } else if (grup === "B") {
+
+                detailHarian[
+                    p.tanggal
+                ].B += qty;
+
+            } else if (grup === "C") {
+
+                detailHarian[
+                    p.tanggal
+                ].C += qty;
+            }
+        }
+    }
+
+    ringkasanData = {
+
+        total,
+
+        mesinSet,
+
+        grupSet,
+
+        A,
+        B,
+        C,
+
+        mesinData,
+
+        tahunan,
+
+        harian,
+
+        detailHarian,
+
+        tahunSekarang,
+
+        bulanSekarang,
+
+        jumlahHari
+
+    };
+
+    return ringkasanData;
+}
+
+/* =====================================================
+   RENDER SEMUA DASHBOARD
+===================================================== */
+
+function renderSemuaDashboard() {
 
     tampilkanData();
 
@@ -4835,18 +4517,12 @@ updateDiagramTahunan();
 
     updateFilterSummary();
 
+    isiFilterTahunChart();
 
-    if (
-        simpan &&
-        !sedangMemulihkanFilter
-    ) {
+    updateDiagramTahunan();
 
-        jadwalkanSimpanFilter();
-
-    }
-
+    updateDiagramHarian();
 }
-
 
 /* =====================================================
    TAMPILKAN DATA
@@ -4859,187 +4535,136 @@ function tampilkanData() {
             "tabelData"
         );
 
+    if (!tbody) {
+        return;
+    }
 
-    tbody.innerHTML =
-        "";
+    tbody.innerHTML = "";
 
+    /*
+       DocumentFragment:
+       DOM hanya di-update sekali.
+    */
 
-    dataTampil.forEach(
-        row => {
+    const fragment =
+        document.createDocumentFragment();
 
-            const tr =
-                document.createElement(
-                    "tr"
-                );
+    for (
+        let i = 0;
+        i < dataTampil.length;
+        i++
+    ) {
 
+        const row =
+            dataTampil[i];
 
-            const tanggal =
-                formatTanggal(
-                    row[7]
-                );
+        const tr =
+            document.createElement("tr");
 
+        const values = [
 
-            const values = [
+            formatTanggal(
+                row[7]
+            ),
 
-                tanggal,
-                row[0],
-                row[1],
-                row[2],
-                row[3],
-                row[4],
-                row[5],
-                row[6],
-                row[8]
+            row[0],
 
-            ];
+            row[1],
 
+            row[2],
 
-            values.forEach(
-                value => {
+            row[3],
 
-                    const td =
-                        document.createElement(
-                            "td"
-                        );
+            row[4],
 
+            row[5],
 
-                    td.textContent =
-                        value ?? "";
+            row[6],
 
+            row[8]
 
-                    td.style.textAlign =
-                        "center";
+        ];
 
+        for (
+            let j = 0;
+            j < values.length;
+            j++
+        ) {
 
-                    tr.appendChild(
-                        td
-                    );
+            const td =
+                document.createElement("td");
 
-                }
+            td.textContent =
+                values[j] ?? "";
+
+            td.style.textAlign =
+                "center";
+
+            tr.appendChild(
+                td
             );
-
-
-            tbody.appendChild(
-                tr
-            );
-
         }
-    );
 
+        fragment.appendChild(
+            tr
+        );
+    }
 
     if (
         dataTampil.length === 0
     ) {
 
         const tr =
-            document.createElement(
-                "tr"
-            );
-
+            document.createElement("tr");
 
         const td =
-            document.createElement(
-                "td"
-            );
+            document.createElement("td");
 
-
-        td.colSpan = 9;
-
+        td.colSpan =
+            9;
 
         td.textContent =
             "Tidak ada data";
 
-
         td.style.textAlign =
             "center";
-
 
         tr.appendChild(
             td
         );
 
-
-        tbody.appendChild(
+        fragment.appendChild(
             tr
         );
-
     }
 
+    tbody.appendChild(
+        fragment
+    );
 }
 
-
 /* =====================================================
-   DASHBOARD
+   DASHBOARD KPI
 ===================================================== */
 
 function updateDashboard() {
 
-    let total =
-        0;
+    const data =
+        bangunRingkasanData();
 
+    document.getElementById(
+        "totalProduksi"
+    ).textContent =
+        formatAngka(
+            data.total
+        );
 
-    const mesin =
-        new Set();
-
-
-    const grup =
-        new Set();
-
-
-        dataTampil.forEach(
-        row => {
-
-            total +=
-                Number(
-                    row[5]
-                ) || 0;
-
-            if (
-                row[6] !== null &&
-                row[6] !== undefined &&
-                String(
-                    row[6]
-                ).trim() !== ""
-            ) {
-
-                mesin.add(
-                    String(
-                        row[6]
-                    ).trim()
-                );
-
-            }
-
-            const g =
-                normalisasiGrup(
-                    row[1]
-                );
-
-            if (
-                g === "A" ||
-                g === "B" ||
-                g === "C"
-            ) {
-
-                grup.add(g);
-
-            }
-
-        }
-    );
-
-document.getElementById(
-    "totalProduksi"
-).textContent =
-    formatAngka(total);
-    
     document.getElementById(
         "totalKodi"
     ).textContent =
         formatAngka(
-            total / 20
+            data.total / 20
         );
-
 
     document.getElementById(
         "totalData"
@@ -5048,24 +4673,20 @@ document.getElementById(
             dataTampil.length
         );
 
-
     document.getElementById(
         "jumlahMesin"
     ).textContent =
         formatAngka(
-            mesin.size
+            data.mesinSet.size
         );
-
 
     document.getElementById(
         "jumlahGrup"
     ).textContent =
         formatAngka(
-            grup.size
+            data.grupSet.size
         );
-
 }
-
 
 /* =====================================================
    PENCAPAIAN GRUP
@@ -5073,259 +4694,213 @@ document.getElementById(
 
 function updatePencapaianGrup() {
 
-    let A = 0;
-    let B = 0;
-    let C = 0;
-
-
-    dataTampil.forEach(
-        row => {
-
-            const qty =
-                Number(
-                    row[5]
-                ) || 0;
-
-
-            const grup =
-                normalisasiGrup(
-                    row[1]
-                );
-
-
-            if (
-                grup === "A"
-            ) {
-
-                A += qty;
-
-            }
-
-            else if (
-                grup === "B"
-            ) {
-
-                B += qty;
-
-            }
-
-            else if (
-                grup === "C"
-            ) {
-
-                C += qty;
-
-            }
-
-        }
-    );
-
+    const data =
+        bangunRingkasanData();
 
     const total =
-        A + B + C;
-
+        data.A +
+        data.B +
+        data.C;
 
     const persenA =
         total > 0
-            ? A / total * 100
+            ? data.A / total * 100
             : 0;
-
 
     const persenB =
         total > 0
-            ? B / total * 100
+            ? data.B / total * 100
             : 0;
-
 
     const persenC =
         total > 0
-            ? C / total * 100
+            ? data.C / total * 100
             : 0;
-
 
     document.getElementById(
         "produksiA"
     ).textContent =
-        formatAngka(A) + " Pcs";
-
+        formatAngka(
+            data.A
+        ) +
+        " Pcs";
 
     document.getElementById(
         "produksiB"
     ).textContent =
-        formatAngka(B) + " Pcs";
-
+        formatAngka(
+            data.B
+        ) +
+        " Pcs";
 
     document.getElementById(
         "produksiC"
     ).textContent =
-        formatAngka(C) + " Pcs";
-
+        formatAngka(
+            data.C
+        ) +
+        " Pcs";
 
     document.getElementById(
         "persenA"
     ).textContent =
-        persenA.toFixed(2) + "%";
-
+        persenA.toFixed(2) +
+        "%";
 
     document.getElementById(
         "persenB"
     ).textContent =
-        persenB.toFixed(2) + "%";
-
+        persenB.toFixed(2) +
+        "%";
 
     document.getElementById(
         "persenC"
     ).textContent =
-        persenC.toFixed(2) + "%";
-
-
+        persenC.toFixed(2) +
+        "%";
 }
 
 /* =====================================================
-   DIAGRAM PRODUKSI TAHUNAN
+   TAHUN CHART
 ===================================================== */
-
-let tahunDiagram = null;
 
 function isiFilterTahunChart() {
 
     const select =
-        document.getElementById("filterTahunChart");
+        document.getElementById(
+            "filterTahunChart"
+        );
 
-    if (!select) return;
+    if (!select) {
+        return;
+    }
 
-    const tahunSet = new Set();
-
-    semuaData.forEach(row => {
-
-        const p = getTanggalParts(row[7]);
-
-        if (p && p.tahun) {
-            tahunSet.add(p.tahun);
-        }
-
-    });
+    const data =
+        bangunRingkasanData();
 
     const tahunList =
-        [...tahunSet].sort((a,b) => b - a);
+        Object.keys(
+            data.tahunan
+        )
+        .map(
+            Number
+        )
+        .sort(
+            (a,b) => b - a
+        );
 
     const tahunSebelumnya =
         tahunDiagram;
 
-    select.innerHTML = "";
+    select.innerHTML =
+        "";
 
-    tahunList.forEach(tahun => {
+    const fragment =
+        document.createDocumentFragment();
 
-        const option =
-            document.createElement("option");
+    tahunList.forEach(
+        tahun => {
 
-        option.value = tahun;
-        option.textContent = tahun;
+            const option =
+                document.createElement(
+                    "option"
+                );
 
-        select.appendChild(option);
+            option.value =
+                tahun;
 
-    });
+            option.textContent =
+                tahun;
+
+            fragment.appendChild(
+                option
+            );
+        }
+    );
+
+    select.appendChild(
+        fragment
+    );
 
     if (
         tahunSebelumnya &&
-        tahunList.includes(Number(tahunSebelumnya))
+        tahunList.includes(
+            Number(
+                tahunSebelumnya
+            )
+        )
     ) {
 
-        select.value = tahunSebelumnya;
+        select.value =
+            tahunSebelumnya;
 
-    } else if (tahunList.length > 0) {
+    } else if (
+        tahunList.length > 0
+    ) {
 
         const tahunSekarang =
-            new Date().getFullYear();
+            new Date()
+                .getFullYear();
 
-        if (tahunList.includes(tahunSekarang)) {
-            select.value = tahunSekarang;
+        if (
+            tahunList.includes(
+                tahunSekarang
+            )
+        ) {
+
+            select.value =
+                tahunSekarang;
+
         } else {
-            select.value = tahunList[0];
-        }
 
+            select.value =
+                tahunList[0];
+        }
     }
 
     tahunDiagram =
         select.value
-            ? Number(select.value)
+            ? Number(
+                select.value
+              )
             : null;
-
 }
 
-
 /* =====================================================
-   DIAGRAM PRODUKSI HARIAN - INTERAKTIF
+   DIAGRAM HARIAN
 ===================================================== */
 
 function updateDiagramHarian() {
 
     const area =
-        document.getElementById("diagramHarian");
+        document.getElementById(
+            "diagramHarian"
+        );
 
-    if (!area) return;
+    if (!area) {
+        return;
+    }
 
-    const sekarang =
-        new Date();
+    const data =
+        bangunRingkasanData();
 
     const tahun =
-        sekarang.getFullYear();
+        data.tahunSekarang;
 
     const bulan =
-        sekarang.getMonth();
+        data.bulanSekarang;
 
     const jumlahHari =
-        new Date(
-            tahun,
-            bulan + 1,
-            0
-        ).getDate();
+        data.jumlahHari;
 
     const nilaiHari =
-        Array(jumlahHari).fill(0);
-
-
-    /* =================================================
-       HITUNG TOTAL PRODUKSI PER HARI
-    ================================================= */
-
-    dataTampil.forEach(row => {
-
-        const p =
-            getTanggalParts(row[7]);
-
-        if (!p) return;
-
-        if (
-            p.tahun !== tahun ||
-            p.bulan !== bulan + 1
-        ) {
-            return;
-        }
-
-        const qty =
-            Number(row[5]) || 0;
-
-        if (
-            p.tanggal >= 1 &&
-            p.tanggal <= jumlahHari
-        ) {
-
-            nilaiHari[p.tanggal - 1] +=
-                qty / 20;
-
-        }
-
-    });
-
+        data.harian;
 
     const max =
-        Math.max(...nilaiHari, 0);
-
-
-    /* =================================================
-       JUDUL
-    ================================================= */
+        Math.max(
+            ...nilaiHari,
+            0
+        );
 
     const judul =
         document.getElementById(
@@ -5334,126 +4909,134 @@ function updateDiagramHarian() {
 
     if (judul) {
 
-        judul.textContent =
-            "PENCAPAIAN PRODUKSI HARIAN - " +
-            sekarang.toLocaleString(
+        const namaBulan =
+            new Date(
+                tahun,
+                bulan - 1,
+                1
+            )
+            .toLocaleString(
                 "id-ID",
                 {
-                    month: "long"
+                    month:"long"
                 }
-            ).toUpperCase() +
-            " " +
-            tahun;
+            )
+            .toUpperCase();
 
+        judul.textContent =
+            "PENCAPAIAN PRODUKSI HARIAN - "
+            +
+            namaBulan
+            +
+            " "
+            +
+            tahun;
     }
 
+    area.innerHTML =
+        "";
 
-    area.innerHTML = "";
+    const fragment =
+        document.createDocumentFragment();
 
+    for (
+        let index = 0;
+        index < jumlahHari;
+        index++
+    ) {
 
-    /* =================================================
-       BUAT BATANG HARIAN
-    ================================================= */
+        const nilai =
+            nilaiHari[index];
 
-    nilaiHari.forEach(
-        (nilai, index) => {
+        const item =
+            document.createElement("div");
 
-            const item =
-                document.createElement("div");
+        item.className =
+            "hari-bar";
 
-            item.className =
-                "hari-bar";
+        item.style.cursor =
+            "pointer";
 
+        item.title =
+            "Klik untuk melihat detail produksi";
 
-            /* -----------------------------------------
-               NILAI KODI
-            ----------------------------------------- */
+        const label =
+            document.createElement("div");
 
-            const label =
-                document.createElement("div");
+        label.className =
+            "hari-nilai";
 
-            label.className =
-                "hari-nilai";
+        label.textContent =
+            formatAngka(
+                Math.round(
+                    nilai
+                )
+            )
+            +
+            " Kd";
 
-            label.textContent =
-                formatAngka(
-                    Math.round(nilai)
-                ) + " Kd";
+        const batang =
+            document.createElement("div");
 
+        batang.className =
+            "batang-harian";
 
-            /* -----------------------------------------
-               BATANG
-            ----------------------------------------- */
+        const tinggi =
+            max > 0
+                ? Math.max(
+                    (nilai / max) * 190,
+                    0
+                  )
+                : 0;
 
-            const batang =
-                document.createElement("div");
+        batang.style.height =
+            tinggi + "px";
 
-            batang.className =
-                "batang-harian";
+        const hari =
+            document.createElement("div");
 
+        hari.className =
+            "hari-nama";
 
-            const tinggi =
-                max > 0
-                    ? Math.max(
-                        (nilai / max) * 190,
-                        0
-                    )
-                    : 0;
+        hari.textContent =
+            index + 1;
 
-            batang.style.height =
-                tinggi + "px";
+        /*
+           Tetap klik batang.
+        */
 
+        item.onclick =
+            function() {
 
-            /* -----------------------------------------
-               TANGGAL
-            ----------------------------------------- */
+                tampilkanDetailProduksiHarian(
+                    index + 1,
+                    bulan,
+                    tahun
+                );
 
-            const hari =
-                document.createElement("div");
+            };
 
-            hari.className =
-                "hari-nama";
+        item.appendChild(
+            label
+        );
 
-            hari.textContent =
-                index + 1;
+        item.appendChild(
+            batang
+        );
 
+        item.appendChild(
+            hari
+        );
 
-            /* -----------------------------------------
-               KLIK BATANG
-            ----------------------------------------- */
+        fragment.appendChild(
+            item
+        );
+    }
 
-            item.style.cursor =
-                "pointer";
-
-            item.title =
-                "Klik untuk melihat detail produksi";
-
-
-            item.addEventListener(
-                "click",
-                function() {
-
-                    tampilkanDetailProduksiHarian(
-                        index + 1,
-                        bulan + 1,
-                        tahun
-                    );
-
-                }
-            );
-
-
-            item.appendChild(label);
-            item.appendChild(batang);
-            item.appendChild(hari);
-
-            area.appendChild(item);
-
-        }
+    area.appendChild(
+        fragment
     );
-
 }
-
 
 /* =====================================================
    DETAIL PRODUKSI HARIAN
@@ -5465,65 +5048,44 @@ function tampilkanDetailProduksiHarian(
     tahun
 ) {
 
+    const data =
+        bangunRingkasanData();
+
     let grupA = 0;
     let grupB = 0;
     let grupC = 0;
 
+    /*
+       Ambil langsung dari cache.
+       Tidak perlu loop seluruh data lagi.
+    */
 
-    /* ================================================
-       HITUNG PCS GRUP A / B / C
-    ================================================ */
+    if (
+        tahun === data.tahunSekarang &&
+        bulan === data.bulanSekarang &&
+        data.detailHarian[tanggal]
+    ) {
 
-    dataTampil.forEach(row => {
+        grupA =
+            data.detailHarian[
+                tanggal
+            ].A;
 
-        const p =
-            getTanggalParts(row[7]);
+        grupB =
+            data.detailHarian[
+                tanggal
+            ].B;
 
-        if (!p) return;
-
-        if (
-            p.tahun !== tahun ||
-            p.bulan !== bulan ||
-            p.tanggal !== tanggal
-        ) {
-            return;
-        }
-
-        const qty =
-            Number(row[5]) || 0;
-
-        const grup =
-            String(row[1] || "")
-                .trim()
-                .toUpperCase();
-
-
-        if (grup === "A") {
-
-            grupA += qty;
-
-        }
-
-        else if (grup === "B") {
-
-            grupB += qty;
-
-        }
-
-        else if (grup === "C") {
-
-            grupC += qty;
-
-        }
-
-    });
-
+        grupC =
+            data.detailHarian[
+                tanggal
+            ].C;
+    }
 
     const total =
         grupA +
         grupB +
         grupC;
-
 
     const kodiA =
         grupA / 20;
@@ -5536,11 +5098,6 @@ function tampilkanDetailProduksiHarian(
 
     const totalKodi =
         total / 20;
-
-
-    /* ================================================
-       PERSENTASE
-    ================================================ */
 
     const persenA =
         total > 0
@@ -5557,12 +5114,8 @@ function tampilkanDetailProduksiHarian(
             ? (grupC / total) * 100
             : 0;
 
-
-    /* ================================================
-       FORMAT TANGGAL
-    ================================================ */
-
     const namaBulan = [
+
         "",
         "JANUARI",
         "FEBRUARI",
@@ -5576,31 +5129,31 @@ function tampilkanDetailProduksiHarian(
         "OKTOBER",
         "NOVEMBER",
         "DESEMBER"
+
     ];
 
-
     const tanggalText =
-        tanggal +
-        " " +
-        namaBulan[bulan] +
-        " " +
+        tanggal
+        +
+        " "
+        +
+        namaBulan[bulan]
+        +
+        " "
+        +
         tahun;
-
-
-    /* ================================================
-       CEK / BUAT MODAL
-    ================================================ */
 
     let modal =
         document.getElementById(
             "modalProduksiHarian"
         );
 
-
     if (!modal) {
 
         modal =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         modal.id =
             "modalProduksiHarian";
@@ -5608,14 +5161,10 @@ function tampilkanDetailProduksiHarian(
         modal.className =
             "modal-produksi-harian";
 
-        document.body.appendChild(modal);
-
+        document.body.appendChild(
+            modal
+        );
     }
-
-
-    /* ================================================
-       ISI MODAL
-    ================================================ */
 
     modal.innerHTML = `
 
@@ -5628,27 +5177,24 @@ function tampilkanDetailProduksiHarian(
                     .getElementById(
                         'modalProduksiHarian'
                     )
-                    .classList.remove('show');
+                    .classList
+                    .remove('show');
                 "
             >
                 ×
             </button>
 
-
             <div class="detail-icon">
                 📊
             </div>
-
 
             <div class="detail-judul">
                 PRODUKSI HARIAN
             </div>
 
-
             <div class="detail-tanggal">
                 ${tanggalText}
             </div>
-
 
             <div class="detail-total">
 
@@ -5657,22 +5203,30 @@ function tampilkanDetailProduksiHarian(
                 </div>
 
                 <div class="detail-total-angka">
-                    ${formatAngka(Math.round(total))}
-                    <span>PCS</span>
+
+                    ${formatAngka(
+                        Math.round(total)
+                    )}
+
+                    <span>
+                        PCS
+                    </span>
+
                 </div>
 
                 <div class="detail-total-kodi">
-                    ${formatAngka(Math.round(totalKodi))}
+
+                    ${formatAngka(
+                        Math.round(totalKodi)
+                    )}
+
                     KODI
+
                 </div>
 
             </div>
 
-
             <div class="detail-grup-container">
-
-
-                <!-- GRUP A -->
 
                 <div class="detail-grup grup-a">
 
@@ -5681,23 +5235,34 @@ function tampilkanDetailProduksiHarian(
                     </div>
 
                     <div class="detail-grup-pcs">
-                        ${formatAngka(Math.round(grupA))}
-                        <span>PCS</span>
+
+                        ${formatAngka(
+                            Math.round(grupA)
+                        )}
+
+                        <span>
+                            PCS
+                        </span>
+
                     </div>
 
                     <div class="detail-grup-kodi">
-                        ${formatAngka(Math.round(kodiA))}
+
+                        ${formatAngka(
+                            Math.round(kodiA)
+                        )}
+
                         KODI
+
                     </div>
 
                     <div class="detail-grup-persen">
+
                         ${persenA.toFixed(1)}%
+
                     </div>
 
                 </div>
-
-
-                <!-- GRUP B -->
 
                 <div class="detail-grup grup-b">
 
@@ -5706,23 +5271,34 @@ function tampilkanDetailProduksiHarian(
                     </div>
 
                     <div class="detail-grup-pcs">
-                        ${formatAngka(Math.round(grupB))}
-                        <span>PCS</span>
+
+                        ${formatAngka(
+                            Math.round(grupB)
+                        )}
+
+                        <span>
+                            PCS
+                        </span>
+
                     </div>
 
                     <div class="detail-grup-kodi">
-                        ${formatAngka(Math.round(kodiB))}
+
+                        ${formatAngka(
+                            Math.round(kodiB)
+                        )}
+
                         KODI
+
                     </div>
 
                     <div class="detail-grup-persen">
+
                         ${persenB.toFixed(1)}%
+
                     </div>
 
                 </div>
-
-
-                <!-- GRUP C -->
 
                 <div class="detail-grup grup-c">
 
@@ -5731,121 +5307,177 @@ function tampilkanDetailProduksiHarian(
                     </div>
 
                     <div class="detail-grup-pcs">
-                        ${formatAngka(Math.round(grupC))}
-                        <span>PCS</span>
+
+                        ${formatAngka(
+                            Math.round(grupC)
+                        )}
+
+                        <span>
+                            PCS
+                        </span>
+
                     </div>
 
                     <div class="detail-grup-kodi">
-                        ${formatAngka(Math.round(kodiC))}
+
+                        ${formatAngka(
+                            Math.round(kodiC)
+                        )}
+
                         KODI
+
                     </div>
 
                     <div class="detail-grup-persen">
+
                         ${persenC.toFixed(1)}%
+
                     </div>
 
                 </div>
 
-
             </div>
-
 
             <div class="detail-info">
-                Tekan batang tanggal lain untuk melihat
-                produksi harian.
-            </div>
 
+                Tekan batang tanggal lain
+                untuk melihat produksi harian.
+
+            </div>
 
         </div>
 
     `;
 
-
-    /* ================================================
-       TAMPILKAN
-    ================================================ */
-
-    modal.classList.add("show");
-
+    modal.classList.add(
+        "show"
+    );
 }
+
+/* =====================================================
+   DIAGRAM TAHUNAN
+===================================================== */
+
 function updateDiagramTahunan() {
 
     const select =
-        document.getElementById("filterTahunChart");
+        document.getElementById(
+            "filterTahunChart"
+        );
 
     const area =
-        document.getElementById("diagramTahunan");
+        document.getElementById(
+            "diagramTahunan"
+        );
 
-    if (!select || !area) return;
+    if (
+        !select ||
+        !area
+    ) {
+        return;
+    }
 
     const tahun =
-        Number(select.value);
+        Number(
+            select.value
+        );
 
-    tahunDiagram = tahun;
+    tahunDiagram =
+        tahun;
 
     const namaBulan = [
-        "Jan","Feb","Mar","Apr","Mei","Jun",
-        "Jul","Agu","Sep","Okt","Nov","Des"
+
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "Mei",
+        "Jun",
+        "Jul",
+        "Agu",
+        "Sep",
+        "Okt",
+        "Nov",
+        "Des"
+
     ];
 
+    const data =
+        bangunRingkasanData();
+
     const nilaiBulan =
-        Array(12).fill(0);
-
-    dataTampil.forEach(row => {
-
-        const p =
-            getTanggalParts(row[7]);
-
-        if (!p || p.tahun !== tahun) return;
-
-        const qty =
-            Number(row[5]) || 0;
-
-        if (p.bulan >= 1 && p.bulan <= 12) {
-
-            nilaiBulan[p.bulan - 1] +=
-                qty / 20;
-
-        }
-
-    });
+        data.tahunan[tahun]
+            || Array(12).fill(0);
 
     const max =
-        Math.max(...nilaiBulan, 0);
+        Math.max(
+            ...nilaiBulan,
+            0
+        );
 
-    area.innerHTML = "";
+    area.innerHTML =
+        "";
 
-    nilaiBulan.forEach((nilai, index) => {
+    const fragment =
+        document.createDocumentFragment();
+
+    for (
+        let index = 0;
+        index < 12;
+        index++
+    ) {
+
+        const nilai =
+            nilaiBulan[index];
 
         const item =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        item.className = "bulan-bar";
+        item.className =
+            "bulan-bar";
 
         const label =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        label.className = "bulan-nilai";
+        label.className =
+            "bulan-nilai";
 
         label.textContent =
-    formatAngka(Math.round(nilai)) + " Kd";
+            formatAngka(
+                Math.round(
+                    nilai
+                )
+            )
+            +
+            " Kd";
 
         const batang =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         batang.className =
             "batang-produksi";
 
         const tinggi =
             max > 0
-                ? Math.max((nilai / max) * 220, 3)
+                ? Math.max(
+                    (nilai / max) * 220,
+                    3
+                  )
                 : 3;
 
         batang.style.height =
             tinggi + "px";
 
         const bulan =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         bulan.className =
             "bulan-nama";
@@ -5853,283 +5485,255 @@ function updateDiagramTahunan() {
         bulan.textContent =
             namaBulan[index];
 
-        item.appendChild(label);
-        item.appendChild(batang);
-        item.appendChild(bulan);
+        item.appendChild(
+            label
+        );
 
-        area.appendChild(item);
+        item.appendChild(
+            batang
+        );
 
-    });
+        item.appendChild(
+            bulan
+        );
 
+        fragment.appendChild(
+            item
+        );
+    }
+
+    area.appendChild(
+        fragment
+    );
 }
+
 /* =====================================================
    DATA MESIN
 ===================================================== */
 
 function updateDataMesin() {
 
-    const mesinData = {};
+    const data =
+        bangunRingkasanData();
 
-
-    dataTampil.forEach(
-        row => {
-
-            const mc =
-                String(
-                    row[6] ?? ""
-                ).trim();
-
-
-            if (!mc)
-                return;
-
-
-            const grup =
-                normalisasiGrup(
-                    row[1]
-                );
-
-
-            const qty =
-                Number(
-                    row[5]
-                ) || 0;
-
-
-            if (
-                !mesinData[mc]
-            ) {
-
-                mesinData[mc] = {
-
-                    A: 0,
-                    B: 0,
-                    C: 0
-
-                };
-
-            }
-
-
-            if (
-                grup === "A"
-            ) {
-
-                mesinData[mc].A +=
-                    qty;
-
-            }
-
-            else if (
-                grup === "B"
-            ) {
-
-                mesinData[mc].B +=
-                    qty;
-
-            }
-
-            else if (
-                grup === "C"
-            ) {
-
-                mesinData[mc].C +=
-                    qty;
-
-            }
-
-        }
-    );
-
+    const mesinData =
+        data.mesinData;
 
     const keys =
         Object.keys(
             mesinData
         );
 
-
     keys.sort(
-        (a, b) =>
+        (a,b) =>
             a.localeCompare(
                 b,
                 "id",
                 {
-                    numeric: true
+                    numeric:true
                 }
             )
     );
-
 
     const tbody =
         document.getElementById(
             "tabelMesin"
         );
 
+    if (!tbody) {
+        return;
+    }
 
     tbody.innerHTML =
         "";
 
+    const fragment =
+        document.createDocumentFragment();
 
     let grandTotal =
         0;
 
+    let totalA =
+        0;
 
-    keys.forEach(
-        mc => {
+    let totalB =
+        0;
 
-            const A =
-                mesinData[mc].A;
+    let totalC =
+        0;
 
-            const B =
-                mesinData[mc].B;
+    for (
+        let i = 0;
+        i < keys.length;
+        i++
+    ) {
 
-            const C =
-                mesinData[mc].C;
+        const mc =
+            keys[i];
 
-            const total =
-                A + B + C;
+        const item =
+            mesinData[mc];
 
+        const A =
+            item.A;
 
-            grandTotal +=
-                total;
+        const B =
+            item.B;
 
+        const C =
+            item.C;
 
-            const tr =
-                document.createElement(
-                    "tr"
-                );
+        const total =
+            item.total;
 
+        grandTotal +=
+            total;
 
-            tr.innerHTML = `
+        totalA +=
+            A;
 
-                <td>${mc}</td>
+        totalB +=
+            B;
 
-                <td>
-                    ${formatAngka(A)}
-                </td>
+        totalC +=
+            C;
+    }
 
-                <td>
-                    ${formatAngka(B)}
-                </td>
+    for (
+        let i = 0;
+        i < keys.length;
+        i++
+    ) {
 
-                <td>
-                    ${formatAngka(C)}
-                </td>
+        const mc =
+            keys[i];
 
-                <td>
-                    ${formatAngka(total)}
-                </td>
+        const item =
+            mesinData[mc];
 
-                <td>
-                    0%
-                </td>
+        const total =
+            item.total;
 
-            `;
+        const persen =
+            grandTotal > 0
+                ? total /
+                  grandTotal *
+                  100
+                : 0;
 
-
-            tbody.appendChild(
-                tr
+        const tr =
+            document.createElement(
+                "tr"
             );
 
+        const values = [
+
+            mc,
+
+            formatAngka(
+                item.A
+            ),
+
+            formatAngka(
+                item.B
+            ),
+
+            formatAngka(
+                item.C
+            ),
+
+            formatAngka(
+                total
+            ),
+
+            persen.toFixed(2)
+            + "%"
+
+        ];
+
+        for (
+            let j = 0;
+            j < values.length;
+            j++
+        ) {
+
+            const td =
+                document.createElement(
+                    "td"
+                );
+
+            td.textContent =
+                values[j];
+
+            tr.appendChild(
+                td
+            );
         }
-    );
 
-
-    keys.forEach(
-        (mc, index) => {
-
-            const row =
-                tbody.children[index];
-
-
-            const total =
-                mesinData[mc].A +
-                mesinData[mc].B +
-                mesinData[mc].C;
-
-
-            const persen =
-                grandTotal > 0
-                    ? total /
-                      grandTotal *
-                      100
-                    : 0;
-
-
-            row.children[5]
-                .textContent =
-                persen.toFixed(2) + "%";
-
-        }
-    );
-
+        fragment.appendChild(
+            tr
+        );
+    }
 
     const totalRow =
         document.createElement(
             "tr"
         );
 
-
     totalRow.className =
         "total-row";
 
+    const totalValues = [
 
-    totalRow.innerHTML = `
+        "TOTAL",
 
-        <td>TOTAL</td>
+        formatAngka(
+            totalA
+        ),
 
-        <td>
-            ${formatAngka(
-                keys.reduce(
-                    (sum, mc) =>
-                        sum +
-                        mesinData[mc].A,
-                    0
-                )
-            )}
-        </td>
+        formatAngka(
+            totalB
+        ),
 
-        <td>
-            ${formatAngka(
-                keys.reduce(
-                    (sum, mc) =>
-                        sum +
-                        mesinData[mc].B,
-                    0
-                )
-            )}
-        </td>
+        formatAngka(
+            totalC
+        ),
 
-        <td>
-            ${formatAngka(
-                keys.reduce(
-                    (sum, mc) =>
-                        sum +
-                        mesinData[mc].C,
-                    0
-                )
-            )}
-        </td>
+        formatAngka(
+            grandTotal
+        ),
 
-        <td>
-            ${formatAngka(
-                grandTotal
-            )}
-        </td>
+        "100.00%"
 
-        <td>
-            100.00%
-        </td>
+    ];
 
-    `;
+    for (
+        let i = 0;
+        i < totalValues.length;
+        i++
+    ) {
 
+        const td =
+            document.createElement(
+                "td"
+            );
 
-    tbody.appendChild(
+        td.textContent =
+            totalValues[i];
+
+        totalRow.appendChild(
+            td
+        );
+    }
+
+    fragment.appendChild(
         totalRow
     );
 
+    tbody.appendChild(
+        fragment
+    );
 }
-
 
 /* =====================================================
    FILTER SUMMARY
@@ -6142,31 +5746,25 @@ function updateFilterSummary() {
             "filterSummaryContent"
         );
 
+    if (!area) {
+        return;
+    }
 
     const tanggalDari =
         document.getElementById(
             "tanggalDari"
         ).value;
 
-
     const tanggalSampai =
         document.getElementById(
             "tanggalSampai"
         ).value;
 
-
-    let html = "";
-
-
-    /*
-       =========================
-       SUMMARY TANGGAL
-       =========================
-    */
+    let html =
+        "";
 
     let teksTanggal =
         "Semua";
-
 
     if (
         tanggalDari &&
@@ -6178,151 +5776,115 @@ function updateFilterSummary() {
                 tanggalDari
             )
             +
-            " s/d " +
+            " s/d "
+            +
             formatTanggalInput(
                 tanggalSampai
             );
 
-    }
-
-    else if (
+    } else if (
         tanggalDari
     ) {
 
         teksTanggal =
-            "Mulai " +
+            "Mulai "
+            +
             formatTanggalInput(
                 tanggalDari
             );
 
-    }
-
-    else if (
+    } else if (
         tanggalSampai
     ) {
 
         teksTanggal =
-            "Sampai " +
+            "Sampai "
+            +
             formatTanggalInput(
                 tanggalSampai
             );
-
     }
 
-
-    html += `
-
-        <div class="filter-tag">
+    html +=
+        `<div class="filter-tag">
             <span>Tanggal:</span>
             ${teksTanggal}
-        </div>
-
-    `;
-
-
-    /*
-       =========================
-       FILTER LAIN
-       =========================
-    */
+        </div>`;
 
     const filters = [
 
         {
-            nama: "Grup",
-            id: "filterGrup"
+            nama:"Grup",
+            id:"filterGrup"
         },
 
         {
-            nama: "Kode Produk",
-            id: "filterKode"
+            nama:"Kode Produk",
+            id:"filterKode"
         },
 
         {
-            nama: "Warna Ground",
-            id: "filterWarna"
+            nama:"Warna Ground",
+            id:"filterWarna"
         },
 
         {
-            nama: "Motif",
-            id: "filterMotif"
+            nama:"Motif",
+            id:"filterMotif"
         },
 
         {
-            nama: "Mc",
-            id: "filterMc"
+            nama:"Mc",
+            id:"filterMc"
         }
 
     ];
-
 
     filters.forEach(
         filter => {
 
             const checked =
                 document.querySelectorAll(
-                    `#${filter.id} input:checked`
+                    "#" +
+                    filter.id +
+                    " input:checked"
                 );
-
 
             if (
                 checked.length > 0
             ) {
 
                 const values =
-                    [
-                        ...checked
-                    ].map(
+                    Array.from(
+                        checked
+                    ).map(
                         input =>
                             input.value
                     );
 
-
-                html += `
-
-                    <div class="filter-tag">
-
+                html +=
+                    `<div class="filter-tag">
                         <span>
                             ${filter.nama}:
                         </span>
-
                         ${values.join(", ")}
-
-                    </div>
-
-                `;
-
+                    </div>`;
             }
-
         }
     );
 
-
-    /*
-       Tampilkan status jika terkunci.
-    */
-
     if (filterTerkunci) {
 
-        html += `
-
-            <div class="filter-tag">
-
+        html +=
+            `<div class="filter-tag">
                 <span>Status:</span>
                 🔒 Terkunci
-
-            </div>
-
-        `;
-
+            </div>`;
     }
-
 
     area.innerHTML =
         html;
-
 }
-
 
 /* =====================================================
    RESET FILTER
@@ -6334,28 +5896,14 @@ async function resetFilter() {
         timerSimpanFilter
     );
 
-
-    /*
-       =========================
-       HAPUS FILTER DARI HP
-       =========================
-    */
-
     hapusFilterDariHP();
-
-
-    /*
-       Buka kunci terlebih dahulu.
-    */
 
     setFilterLock(
         false
     );
 
-
     sedangMemulihkanFilter =
         true;
-
 
     try {
 
@@ -6364,142 +5912,116 @@ async function resetFilter() {
         ).value =
             "";
 
-
         document.getElementById(
             "tanggalSampai"
         ).value =
             "";
 
+        document
+            .querySelectorAll(
+                ".multi-options input"
+            )
+            .forEach(
+                checkbox => {
 
-        document.querySelectorAll(
-            ".multi-options input"
-        ).forEach(
-            checkbox => {
-
-                checkbox.checked =
-                    false;
-
-            }
-        );
-
-
-        document.querySelectorAll(
-            ".filter-search"
-        ).forEach(
-            input => {
-
-                input.value =
-                    "";
-
-
-                const area =
-                    input
-                    .parentElement
-                    .querySelector(
-                        ".multi-options"
-                    );
-
-
-                if (area) {
-
-                    area
-                        .querySelectorAll(
-                            "label"
-                        )
-                        .forEach(
-                            label => {
-
-                                label.style.display =
-                                    "block";
-
-                            }
-                        );
+                    checkbox.checked =
+                        false;
 
                 }
+            );
 
-            }
-        );
+        document
+            .querySelectorAll(
+                ".filter-search"
+            )
+            .forEach(
+                input => {
 
-    }
+                    input.value =
+                        "";
 
-    finally {
+                    const area =
+                        input.parentElement
+                            .querySelector(
+                                ".multi-options"
+                            );
+
+                    if (area) {
+
+                        area
+                            .querySelectorAll(
+                                "label"
+                            )
+                            .forEach(
+                                label => {
+
+                                    label.style.display =
+                                        "block";
+
+                                }
+                            );
+                    }
+                }
+            );
+
+    } finally {
 
         sedangMemulihkanFilter =
             false;
-
     }
-
-
-    try {
-
-        await fetch(
-            URL,
-            {
-
-                method: "POST",
-
-                headers: {
-
-                    "Content-Type":
-                        "text/plain;charset=utf-8"
-
-                },
-
-                body:
-                    JSON.stringify({
-
-                        action:
-                            "resetFilter",
-
-                        sheet:
-                            "FLAT"
-
-                    })
-
-            }
-        );
-
-
-        console.log(
-            "Filter global berhasil dihapus."
-        );
-
-
-    }
-
-    catch (error) {
-
-        console.log(
-            "Gagal menghapus filter global:",
-            error
-        );
-
-    }
-
 
     /*
-       Tampilkan kembali seluruh data.
+       Server reset tetap dijalankan,
+       tetapi tidak menunggu sebelum
+       dashboard diperbarui.
     */
 
-    terapkanSemuaFilter(
-        false
+    fetch(
+        URL,
+        {
+            method:"POST",
+
+            headers:{
+                "Content-Type":
+                    "text/plain;charset=utf-8"
+            },
+
+            body:
+                JSON.stringify({
+                    action:
+                        "resetFilter",
+
+                    sheet:
+                        "FLAT"
+                })
+        }
+    )
+    .then(
+        () =>
+            console.log(
+                "Filter global berhasil dihapus."
+            )
+    )
+    .catch(
+        error =>
+            console.log(
+                "Gagal menghapus filter global:",
+                error
+            )
     );
 
+    dataTampil =
+        semuaData;
 
-    /*
-       Pastikan filter tetap terbuka
-       setelah reset.
-    */
+    ringkasanData =
+        null;
+
+    renderSemuaDashboard();
 
     setFilterLock(
         false
     );
-
-
-    updateFilterSummary();
-
 }
-
 
 /* =====================================================
    SCREENSHOT MODE
@@ -6510,9 +6032,7 @@ function toggleScreenshotMode() {
     document.body.classList.toggle(
         "screenshot-mode"
     );
-
 }
-
 
 /* =====================================================
    INISIALISASI FILTER
@@ -6525,10 +6045,14 @@ function inisialisasiFilter() {
             "filterContainer"
         );
 
-
     container.innerHTML =
         "";
 
+    /*
+       Cache dibangun satu kali.
+    */
+
+    bangunCachePilihanFilter();
 
     buatFilter(
         "Grup",
@@ -6536,13 +6060,11 @@ function inisialisasiFilter() {
         "filterGrup"
     );
 
-
     buatFilter(
         "Kode Produk",
         2,
         "filterKode"
     );
-
 
     buatFilter(
         "Warna Ground / Warna Blok",
@@ -6550,13 +6072,11 @@ function inisialisasiFilter() {
         "filterWarna"
     );
 
-
     buatFilter(
         "Motif",
         4,
         "filterMotif"
     );
-
 
     buatFilter(
         "Mc",
@@ -6564,17 +6084,10 @@ function inisialisasiFilter() {
         "filterMc"
     );
 
-
-    /*
-       Kondisi awal selalu terbuka.
-    */
-
     setFilterLock(
         false
     );
-
 }
-
 
 /* =====================================================
    AMBIL DATA APPS SCRIPT
@@ -6587,33 +6100,28 @@ async function ambilData() {
             "loading"
         );
 
-
     try {
 
         loading.style.display =
             "block";
 
+        loading.textContent =
+            "⏳ Mengambil data...";
 
         const response =
             await fetch(
                 URL
             );
 
-
-        if (
-            !response.ok
-        ) {
+        if (!response.ok) {
 
             throw new Error(
                 "Gagal mengambil data"
             );
-
         }
-
 
         const data =
             await response.json();
-
 
         if (
             !Array.isArray(data)
@@ -6622,41 +6130,45 @@ async function ambilData() {
             throw new Error(
                 "Format data tidak valid"
             );
-
         }
 
+        /*
+           DATA DITERIMA
+        */
 
         semuaData =
-    data.slice(1);
+            data.slice(1);
 
-dataTampil =
-    semuaData;
-
-
-isiFilterTahunChart();
-updateDiagramTahunan();
-updateDiagramHarian();
-
-inisialisasiFilter();
-
+        dataTampil =
+            semuaData;
 
         /*
-           =================================================
-           PRIORITAS FILTER HP
-           =================================================
+           Cache tanggal lama dibersihkan
+           sebelum data baru digunakan.
+        */
 
-           Filter yang tersimpan di HP menjadi prioritas.
-           Ini penting supaya filter di HP tidak berubah
-           hanya karena data filter server berbeda.
+        cacheTanggalParts.clear();
+
+        ringkasanData =
+            null;
+
+        /*
+           FILTER DIBANGUN DULU.
+        */
+
+        inisialisasiFilter();
+
+        /*
+           Ambil filter HP dahulu.
+           Ini lebih cepat daripada server.
         */
 
         let filterTersimpan =
             ambilFilterDariHP();
 
-
         /*
-           Jika HP belum mempunyai filter,
-           gunakan filter server lama sebagai fallback.
+           Kalau tidak ada di HP,
+           baru tanya server.
         */
 
         if (
@@ -6666,12 +6178,6 @@ inisialisasiFilter();
             filterTersimpan =
                 await ambilFilterTersimpan();
 
-
-            /*
-               Kalau ditemukan filter server,
-               langsung salin ke HP.
-            */
-
             if (
                 filterTersimpan
             ) {
@@ -6679,125 +6185,84 @@ inisialisasiFilter();
                 simpanFilterKeHP(
                     filterTersimpan
                 );
-
             }
-
         }
 
+        /*
+           TERAPKAN FILTER TERSIMPAN
+        */
 
         if (
             filterTersimpan
         ) {
 
-            /*
-               Pulihkan pilihan filter.
-            */
-
             terapkanFilterTersimpan(
                 filterTersimpan
             );
 
-
             /*
-               Tampilkan hasil filter.
+               Filter + render hanya SATU kali.
             */
 
             terapkanSemuaFilter(
                 false
             );
 
-
-            /*
-               Filter tersimpan lama
-               yang belum memiliki property
-               locked tetap aman.
-
-               Jika locked === true:
-               kunci.
-
-               Jika property locked tidak ada:
-               anggap terkunci jika memang
-               ada filter aktif.
-            */
-
             let harusTerkunci;
 
-
             if (
-                typeof filterTersimpan.locked ===
-                "boolean"
+                typeof
+                filterTersimpan.locked
+                === "boolean"
             ) {
 
                 harusTerkunci =
                     filterTersimpan.locked;
 
-            }
-
-            else {
+            } else {
 
                 harusTerkunci =
                     adaFilterAktif();
-
             }
-
 
             setFilterLock(
                 harusTerkunci
             );
 
-
             updateFilterSummary();
 
-        }
-
-        else {
-
-            /*
-               Tidak ada filter tersimpan.
-               Dashboard tampil semua data.
-            */
+        } else {
 
             filterTerkunci =
                 false;
 
+            /*
+               Render awal hanya SATU kali.
+            */
 
-            tampilkanData();
+            ringkasanData =
+                null;
 
-            updateDashboard();
-
-            updatePencapaianGrup();
-
-            updateDataMesin();
-
-            updateFilterSummary();
+            renderSemuaDashboard();
 
             setFilterLock(
                 false
             );
-
         }
-
 
         loading.style.display =
             "none";
 
-
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(
             error
         );
 
-
         loading.textContent =
             "❌ Gagal mengambil data. Periksa koneksi Apps Script.";
-
     }
-
 }
-
 
 /* =====================================================
    JALANKAN DASHBOARD
@@ -6808,4 +6273,4 @@ ambilData();
 </script>
 
 </body>
-    </html>
+</html>
