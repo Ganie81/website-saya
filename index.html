@@ -5532,26 +5532,18 @@ function tampilkanDetailProduksiHarian(
     */
 
     if (
-        tahun === data.tahunSekarang &&
-        bulan === data.bulanSekarang &&
-        data.detailHarian[tanggal]
-    ) {
+const detail =
+    data.detailHarianSemua[tahun] &&
+    data.detailHarianSemua[tahun][bulan] &&
+    data.detailHarianSemua[tahun][bulan][tanggal];
 
-        grupA =
-            data.detailHarian[
-                tanggal
-            ].A;
+if (detail) {
 
-        grupB =
-            data.detailHarian[
-                tanggal
-            ].B;
+    grupA = detail.A || 0;
+    grupB = detail.B || 0;
+    grupC = detail.C || 0;
 
-        grupC =
-            data.detailHarian[
-                tanggal
-            ].C;
-    }
+}
 
     const total =
         grupA +
