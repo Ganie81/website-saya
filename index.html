@@ -5841,12 +5841,15 @@ function updateDiagramTahunan() {
     }
 
     const tahun =
-        Number(
-            select.value
-        );
+    Number(
+        select.value
+    );
 
-    tahunDiagram =
-        tahun;
+const tahunLama =
+    tahunDiagram;
+
+tahunDiagram =
+    tahun;
 
     const namaBulan = [
 
@@ -5887,9 +5890,9 @@ function updateDiagramTahunan() {
     */
 
     if (
-        bulanDiagram === null ||
-        tahunDiagram !== tahun
-    ) {
+    bulanDiagram === null ||
+    tahunLama !== tahun
+) {
 
         if (
             tahun === data.tahunSekarang
