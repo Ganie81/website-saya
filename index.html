@@ -6661,10 +6661,16 @@ async function ambilData() {
         loading.textContent =
             "⏳ Mengambil data...";
 
-        const response =
-            await fetch(
-                URL
-            );
+loading.textContent =
+    "⏳ Menghubungi Apps Script...";
+
+const response =
+    await fetch(
+        URL
+    );
+
+loading.textContent =
+    "✅ Apps Script sudah merespons...";
 
         if (!response.ok) {
 
