@@ -6661,16 +6661,10 @@ async function ambilData() {
         loading.textContent =
             "⏳ Mengambil data...";
 
-loading.textContent =
-    "⏳ Menghubungi Apps Script...";
-
-const response =
-    await fetch(
-        URL
-    );
-
-loading.textContent =
-    "✅ Apps Script sudah merespons...";
+        const response =
+            await fetch(
+                URL
+            );
 
         if (!response.ok) {
 
@@ -6696,12 +6690,10 @@ loading.textContent =
         */
 
         semuaData =
-    data;
+            data.slice(1);
 
-semuaData.shift();
-
-dataTampil =
-    semuaData;
+        dataTampil =
+            semuaData;
 
         /*
            Cache tanggal lama dibersihkan
@@ -6733,46 +6725,21 @@ dataTampil =
         */
 
         if (
-    !filterTersimpan
-) {
-
-    try {
-
-        filterTersimpan =
-            await Promise.race([
-
-                ambilFilterTersimpan(),
-
-                new Promise(
-                    resolve =>
-                        setTimeout(
-                            () => resolve(null),
-                            3000
-                        )
-                )
-
-            ]);
-
-        if (
-            filterTersimpan
+            !filterTersimpan
         ) {
 
-            simpanFilterKeHP(
+            filterTersimpan =
+                await ambilFilterTersimpan();
+
+            if (
                 filterTersimpan
-            );
+            ) {
+
+                simpanFilterKeHP(
+                    filterTersimpan
+                );
+            }
         }
-
-    } catch (error) {
-
-        console.warn(
-            "Filter tersimpan dilewati:",
-            error
-        );
-
-        filterTersimpan =
-            null;
-    }
-}
 
         /*
            TERAPKAN FILTER TERSIMPAN
