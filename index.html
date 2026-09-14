@@ -4402,27 +4402,7 @@ function bangunRingkasanData() {
         if (!p) {
             continue;
         }
-
-        /*
-           TAHUNAN
-        */
-
-        if (!tahunan[p.tahun]) {
-
-            tahunan[p.tahun] =
-                Array(12).fill(0);
-        }
-
-        if (
-            p.bulan >= 1 &&
-            p.bulan <= 12
-        ) {
-
-            tahunan[p.tahun]
-                [p.bulan - 1] +=
-                    qty / 20;
-        }
-
+        
         /*
            HARIAN
         */
