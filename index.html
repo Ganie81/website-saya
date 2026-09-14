@@ -6727,21 +6727,46 @@ dataTampil =
         */
 
         if (
-            !filterTersimpan
+    !filterTersimpan
+) {
+
+    try {
+
+        filterTersimpan =
+            await Promise.race([
+
+                ambilFilterTersimpan(),
+
+                new Promise(
+                    resolve =>
+                        setTimeout(
+                            () => resolve(null),
+                            3000
+                        )
+                )
+
+            ]);
+
+        if (
+            filterTersimpan
         ) {
 
-            filterTersimpan =
-                await ambilFilterTersimpan();
-
-            if (
+            simpanFilterKeHP(
                 filterTersimpan
-            ) {
-
-                simpanFilterKeHP(
-                    filterTersimpan
-                );
-            }
+            );
         }
+
+    } catch (error) {
+
+        console.warn(
+            "Filter tersimpan dilewati:",
+            error
+        );
+
+        filterTersimpan =
+            null;
+    }
+}
 
         /*
            TERAPKAN FILTER TERSIMPAN
