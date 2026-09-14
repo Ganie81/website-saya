@@ -5697,9 +5697,9 @@ function tampilkanDetailProduksiHarian(
         "show"
     );
 }
+
 /* =====================================================
    DIAGRAM TAHUNAN
-   + KLIK BULAN → UPDATE DIAGRAM HARIAN
 ===================================================== */
 
 function updateDiagramTahunan() {
@@ -5759,40 +5759,6 @@ function updateDiagramTahunan() {
             0
         );
 
-    /*
-       Jika tahun yang dipilih adalah
-       tahun berjalan → mulai dari bulan sekarang.
-
-       Jika tahun berbeda → pilih bulan
-       pertama yang memiliki data.
-    */
-
-    if (
-        bulanDiagram === null ||
-        tahunDiagram !== tahun
-    ) {
-
-        if (
-            tahun === data.tahunSekarang
-        ) {
-
-            bulanDiagram =
-                data.bulanSekarang;
-
-        } else {
-
-            const indexPertama =
-                nilaiBulan.findIndex(
-                    nilai => nilai > 0
-                );
-
-            bulanDiagram =
-                indexPertama >= 0
-                    ? indexPertama + 1
-                    : 1;
-        }
-    }
-
     area.innerHTML =
         "";
 
@@ -5815,59 +5781,6 @@ function updateDiagramTahunan() {
 
         item.className =
             "bulan-bar";
-
-        /*
-           BULAN YANG DIPILIH
-        */
-
-        if (
-            bulanDiagram ===
-            index + 1
-        ) {
-
-            item.classList.add(
-                "bulan-terpilih"
-            );
-        }
-
-        /*
-           KLIK BULAN
-        */
-
-        item.addEventListener(
-            "click",
-            function () {
-
-                bulanDiagram =
-                    index + 1;
-
-                /*
-                   Langsung update
-                   tanpa request server.
-                */
-
-                updateDiagramHarian();
-
-                /*
-                   Tandai bulan aktif
-                */
-
-                document
-                    .querySelectorAll(
-                        "#diagramTahunan .bulan-bar"
-                    )
-                    .forEach(
-                        el =>
-                            el.classList.remove(
-                                "bulan-terpilih"
-                            )
-                    );
-
-                item.classList.add(
-                    "bulan-terpilih"
-                );
-            }
-        );
 
         const label =
             document.createElement(
