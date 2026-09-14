@@ -4467,343 +4467,33 @@ for (
     const qtyTahunan =
         Number(
             rowTahunan[5]
-/* =====================================================
-   AGREGASI DATA
-   SATU LOOP UNTUK SEMUA KOMPONEN
-   + CACHE HARIAN SEMUA BULAN
-===================================================== */
+        ) || 0;
 
-function bangunRingkasanData() {
+    const pTahunan =
+        getTanggalParts(
+            rowTahunan[7]
+        );
 
-    if (ringkasanData) {
-        return ringkasanData;
+    if (!pTahunan) {
+        continue;
     }
 
-    const mesinData =
-        Object.create(null);
+    if (!tahunan[pTahunan.tahun]) {
 
-    const mesinSet =
-        new Set();
+        tahunan[pTahunan.tahun] =
+            Array(12).fill(0);
+    }
 
-    const grupSet =
-        new Set();
-
-    let total = 0;
-
-    let A = 0;
-    let B = 0;
-    let C = 0;
-
-    /*
-       Tahun -> bulan -> kodi
-    */
-
-    const tahunan =
-        Object.create(null);
-
-    /*
-       Cache harian:
-       tahun -> bulan -> array tanggal
-    */
-
-    const harianSemua =
-        Object.create(null);
-
-    /*
-       Detail harian:
-       tahun -> bulan -> tanggal -> A/B/C
-    */
-
-    const detailHarianSemua =
-        Object.create(null);
-
-    const sekarang =
-        new Date();
-
-    const tahunSekarang =
-        sekarang.getFullYear();
-
-    const bulanSekarang =
-        sekarang.getMonth() + 1;
-
-    const jumlahHari =
-        new Date(
-            tahunSekarang,
-            bulanSekarang,
-            0
-        ).getDate();
-
-    /*
-       Loop utama mengikuti FILTER AKTIF
-       untuk KPI, mesin, grup dan grafik harian.
-    */
-
-    for (
-        let i = 0;
-        i < dataTampil.length;
-        i++
+    if (
+        pTahunan.bulan >= 1 &&
+        pTahunan.bulan <= 12
     ) {
 
-        const row =
-            dataTampil[i];
-
-        const qty =
-            Number(
-                row[5]
-            ) || 0;
-
-        total += qty;
-
-        /*
-           MESIN
-        */
-
-        const mc =
-            String(
-                row[6] ?? ""
-            ).trim();
-
-        if (mc) {
-
-            mesinSet.add(mc);
-
-            if (!mesinData[mc]) {
-
-                mesinData[mc] = {
-                    A: 0,
-                    B: 0,
-                    C: 0,
-                    total: 0
-                };
-            }
-        }
-
-        /*
-           GRUP
-        */
-
-        const grup =
-            normalisasiGrup(
-                row[1]
-            );
-
-        if (
-            grup === "A" ||
-            grup === "B" ||
-            grup === "C"
-        ) {
-
-            grupSet.add(grup);
-
-            if (grup === "A") {
-
-                A += qty;
-
-                if (mc) {
-                    mesinData[mc].A += qty;
-                }
-
-            } else if (grup === "B") {
-
-                B += qty;
-
-                if (mc) {
-                    mesinData[mc].B += qty;
-                }
-
-            } else if (grup === "C") {
-
-                C += qty;
-
-                if (mc) {
-                    mesinData[mc].C += qty;
-                }
-            }
-        }
-
-        if (mc) {
-
-            mesinData[mc].total +=
-                qty;
-        }
-
-        /*
-           TANGGAL
-        */
-
-        const p =
-            getTanggalParts(
-                row[7]
-            );
-
-        if (!p) {
-            continue;
-        }
-
-        /*
-           ==========================================
-           CACHE HARIAN SEMUA BULAN
-           ==========================================
-        */
-
-        if (
-            !harianSemua[p.tahun]
-        ) {
-
-            harianSemua[p.tahun] =
-                Object.create(null);
-        }
-
-        if (
-            !harianSemua[p.tahun][p.bulan]
-        ) {
-
-            const jumlahHariBulan =
-                new Date(
-                    p.tahun,
-                    p.bulan,
-                    0
-                ).getDate();
-
-            harianSemua[p.tahun][p.bulan] =
-                Array(
-                    jumlahHariBulan
-                ).fill(0);
-        }
-
-        if (
-            p.tanggal >= 1 &&
-            p.tanggal <=
-                harianSemua[p.tahun][p.bulan].length
-        ) {
-
-            harianSemua[p.tahun][p.bulan]
-                [p.tanggal - 1] +=
-                qty / 20;
-        }
-
-        /*
-           ==========================================
-           DETAIL HARIAN SEMUA BULAN
-           ==========================================
-        */
-
-        if (
-            !detailHarianSemua[p.tahun]
-        ) {
-
-            detailHarianSemua[p.tahun] =
-                Object.create(null);
-        }
-
-        if (
-            !detailHarianSemua[p.tahun][p.bulan]
-        ) {
-
-            detailHarianSemua[p.tahun][p.bulan] =
-                Object.create(null);
-        }
-
-        if (
-            !detailHarianSemua[p.tahun][p.bulan]
-                [p.tanggal]
-        ) {
-
-            detailHarianSemua[p.tahun][p.bulan]
-                [p.tanggal] = {
-                    A: 0,
-                    B: 0,
-                    C: 0
-                };
-        }
-
-        if (grup === "A") {
-
-            detailHarianSemua[p.tahun][p.bulan]
-                [p.tanggal].A += qty;
-
-        } else if (grup === "B") {
-
-            detailHarianSemua[p.tahun][p.bulan]
-                [p.tanggal].B += qty;
-
-        } else if (grup === "C") {
-
-            detailHarianSemua[p.tahun][p.bulan]
-                [p.tanggal].C += qty;
-        }
+        tahunan[pTahunan.tahun]
+            [pTahunan.bulan - 1] +=
+            qtyTahunan / 20;
     }
-
-    /*
-       ==========================================
-       TAHUNAN
-       MENGIKUTI SEMUA DATA
-       TIDAK TERPENGARUH FILTER TANGGAL/BULAN
-       ==========================================
-    */
-
-    for (
-        let i = 0;
-        i < semuaData.length;
-        i++
-    ) {
-
-        const rowTahunan =
-            semuaData[i];
-
-        const qtyTahunan =
-            Number(
-                rowTahunan[5]
-            ) || 0;
-
-        const pTahunan =
-            getTanggalParts(
-                rowTahunan[7]
-            );
-
-        if (!pTahunan) {
-            continue;
-        }
-
-        if (
-            !tahunan[pTahunan.tahun]
-        ) {
-
-            tahunan[pTahunan.tahun] =
-                Array(12).fill(0);
-        }
-
-        if (
-            pTahunan.bulan >= 1 &&
-            pTahunan.bulan <= 12
-        ) {
-
-            tahunan[pTahunan.tahun]
-                [pTahunan.bulan - 1] +=
-                qtyTahunan / 20;
-        }
-    }
-
-    /*
-       ==========================================
-       DATA KOMPATIBILITAS
-       Tetap menyediakan data bulan berjalan
-       agar fungsi lama tidak langsung rusak.
-       ==========================================
-    */
-
-    const harian =
-        harianSemua[tahunSekarang] &&
-        harianSemua[tahunSekarang][bulanSekarang]
-            ? harianSemua[tahunSekarang][bulanSekarang]
-            : Array(jumlahHari).fill(0);
-
-    const detailHarian =
-        detailHarianSemua[tahunSekarang] &&
-        detailHarianSemua[tahunSekarang][bulanSekarang]
-            ? detailHarianSemua[tahunSekarang][bulanSekarang]
-            : Object.create(null);
-
+}
     ringkasanData = {
 
         total,
@@ -4820,31 +4510,21 @@ function bangunRingkasanData() {
 
         tahunan,
 
-        /*
-           Lama — tetap dipertahankan
-        */
-
         harian,
 
         detailHarian,
-
-        /*
-           Baru — semua bulan
-        */
-
-        harianSemua,
-
-        detailHarianSemua,
 
         tahunSekarang,
 
         bulanSekarang,
 
         jumlahHari
+
     };
 
     return ringkasanData;
 }
+
 /* =====================================================
    RENDER SEMUA DASHBOARD
 ===================================================== */
@@ -5309,127 +4989,6 @@ function updateDiagramHarian() {
 
         label.className =
             "hari-nilai";
-/* =====================================================
-   DIAGRAM HARIAN
-   MENGIKUTI BULAN YANG DIPILIH
-===================================================== */
-
-function updateDiagramHarian() {
-
-    const area =
-        document.getElementById(
-            "diagramHarian"
-        );
-
-    if (!area) {
-        return;
-    }
-
-    const data =
-        bangunRingkasanData();
-
-    /*
-       Tahun dan bulan mengikuti
-       diagram tahunan.
-    */
-
-    const tahun =
-        tahunDiagram !== null
-            ? tahunDiagram
-            : data.tahunSekarang;
-
-    const bulan =
-        bulanDiagram !== null
-            ? bulanDiagram
-            : data.bulanSekarang;
-
-    /*
-       Ambil data harian dari CACHE.
-       Tidak mengambil data dari server.
-    */
-
-    const nilaiHari =
-        data.harianSemua[tahun] &&
-        data.harianSemua[tahun][bulan]
-            ? data.harianSemua[tahun][bulan]
-            : [];
-
-    const jumlahHari =
-        nilaiHari.length;
-
-    const max =
-        Math.max(
-            ...nilaiHari,
-            0
-        );
-
-    const judul =
-        document.getElementById(
-            "judulDiagramHarian"
-        );
-
-    if (judul) {
-
-        const namaBulan =
-            new Date(
-                tahun,
-                bulan - 1,
-                1
-            )
-            .toLocaleString(
-                "id-ID",
-                {
-                    month:"long"
-                }
-            )
-            .toUpperCase();
-
-        judul.textContent =
-            "PENCAPAIAN PRODUKSI HARIAN - "
-            +
-            namaBulan
-            +
-            " "
-            +
-            tahun;
-    }
-
-    area.innerHTML =
-        "";
-
-    const fragment =
-        document.createDocumentFragment();
-
-    for (
-        let index = 0;
-        index < jumlahHari;
-        index++
-    ) {
-
-        const nilai =
-            nilaiHari[index] || 0;
-
-        const item =
-            document.createElement(
-                "div"
-            );
-
-        item.className =
-            "hari-bar";
-
-        item.style.cursor =
-            "pointer";
-
-        item.title =
-            "Klik untuk melihat detail produksi";
-
-        const label =
-            document.createElement(
-                "div"
-            );
-
-        label.className =
-            "hari-nilai";
 
         label.textContent =
             formatAngka(
@@ -5441,9 +5000,7 @@ function updateDiagramHarian() {
             " Kd";
 
         const batang =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
         batang.className =
             "batang-harian";
@@ -5460,9 +5017,7 @@ function updateDiagramHarian() {
             tinggi + "px";
 
         const hari =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
         hari.className =
             "hari-nama";
@@ -5471,9 +5026,7 @@ function updateDiagramHarian() {
             index + 1;
 
         /*
-           Klik tanggal
-           menggunakan bulan + tahun
-           yang sedang dipilih.
+           Tetap klik batang.
         */
 
         item.onclick =
@@ -5532,18 +5085,26 @@ function tampilkanDetailProduksiHarian(
     */
 
     if (
-const detail =
-    data.detailHarianSemua[tahun] &&
-    data.detailHarianSemua[tahun][bulan] &&
-    data.detailHarianSemua[tahun][bulan][tanggal];
+        tahun === data.tahunSekarang &&
+        bulan === data.bulanSekarang &&
+        data.detailHarian[tanggal]
+    ) {
 
-if (detail) {
+        grupA =
+            data.detailHarian[
+                tanggal
+            ].A;
 
-    grupA = detail.A || 0;
-    grupB = detail.B || 0;
-    grupC = detail.C || 0;
+        grupB =
+            data.detailHarian[
+                tanggal
+            ].B;
 
-}
+        grupC =
+            data.detailHarian[
+                tanggal
+            ].C;
+    }
 
     const total =
         grupA +
@@ -5816,9 +5377,9 @@ if (detail) {
         "show"
     );
 }
+
 /* =====================================================
    DIAGRAM TAHUNAN
-   + KLIK BULAN → UPDATE DIAGRAM HARIAN
 ===================================================== */
 
 function updateDiagramTahunan() {
@@ -5841,15 +5402,12 @@ function updateDiagramTahunan() {
     }
 
     const tahun =
-    Number(
-        select.value
-    );
+        Number(
+            select.value
+        );
 
-const tahunLama =
-    tahunDiagram;
-
-tahunDiagram =
-    tahun;
+    tahunDiagram =
+        tahun;
 
     const namaBulan = [
 
@@ -5881,40 +5439,6 @@ tahunDiagram =
             0
         );
 
-    /*
-       Jika tahun yang dipilih adalah
-       tahun berjalan → mulai dari bulan sekarang.
-
-       Jika tahun berbeda → pilih bulan
-       pertama yang memiliki data.
-    */
-
-    if (
-    bulanDiagram === null ||
-    tahunLama !== tahun
-) {
-
-        if (
-            tahun === data.tahunSekarang
-        ) {
-
-            bulanDiagram =
-                data.bulanSekarang;
-
-        } else {
-
-            const indexPertama =
-                nilaiBulan.findIndex(
-                    nilai => nilai > 0
-                );
-
-            bulanDiagram =
-                indexPertama >= 0
-                    ? indexPertama + 1
-                    : 1;
-        }
-    }
-
     area.innerHTML =
         "";
 
@@ -5937,59 +5461,6 @@ tahunDiagram =
 
         item.className =
             "bulan-bar";
-
-        /*
-           BULAN YANG DIPILIH
-        */
-
-        if (
-            bulanDiagram ===
-            index + 1
-        ) {
-
-            item.classList.add(
-                "bulan-terpilih"
-            );
-        }
-
-        /*
-           KLIK BULAN
-        */
-
-        item.addEventListener(
-            "click",
-            function () {
-
-                bulanDiagram =
-                    index + 1;
-
-                /*
-                   Langsung update
-                   tanpa request server.
-                */
-
-                updateDiagramHarian();
-
-                /*
-                   Tandai bulan aktif
-                */
-
-                document
-                    .querySelectorAll(
-                        "#diagramTahunan .bulan-bar"
-                    )
-                    .forEach(
-                        el =>
-                            el.classList.remove(
-                                "bulan-terpilih"
-                            )
-                    );
-
-                item.classList.add(
-                    "bulan-terpilih"
-                );
-            }
-        );
 
         const label =
             document.createElement(
@@ -6661,16 +6132,10 @@ async function ambilData() {
         loading.textContent =
             "⏳ Mengambil data...";
 
-loading.textContent =
-    "⏳ Menghubungi Apps Script...";
-
-const response =
-    await fetch(
-        URL
-    );
-
-loading.textContent =
-    "✅ Apps Script sudah merespons...";
+        const response =
+            await fetch(
+                URL
+            );
 
         if (!response.ok) {
 
@@ -6696,12 +6161,10 @@ loading.textContent =
         */
 
         semuaData =
-    data;
+            data.slice(1);
 
-semuaData.shift();
-
-dataTampil =
-    semuaData;
+        dataTampil =
+            semuaData;
 
         /*
            Cache tanggal lama dibersihkan
@@ -6733,46 +6196,21 @@ dataTampil =
         */
 
         if (
-    !filterTersimpan
-) {
-
-    try {
-
-        filterTersimpan =
-            await Promise.race([
-
-                ambilFilterTersimpan(),
-
-                new Promise(
-                    resolve =>
-                        setTimeout(
-                            () => resolve(null),
-                            3000
-                        )
-                )
-
-            ]);
-
-        if (
-            filterTersimpan
+            !filterTersimpan
         ) {
 
-            simpanFilterKeHP(
+            filterTersimpan =
+                await ambilFilterTersimpan();
+
+            if (
                 filterTersimpan
-            );
+            ) {
+
+                simpanFilterKeHP(
+                    filterTersimpan
+                );
+            }
         }
-
-    } catch (error) {
-
-        console.warn(
-            "Filter tersimpan dilewati:",
-            error
-        );
-
-        filterTersimpan =
-            null;
-    }
-}
 
         /*
            TERAPKAN FILTER TERSIMPAN
