@@ -66,37 +66,39 @@ body{
 
     border-radius:22px;
 
-    /* BIRU MUDA GLOSSY */
-    background:
-        linear-gradient(
-            145deg,
-            #d9eaf2,
-            #b4cfdd
+    /* BIRU MUDA */
+    background-color:#c9e4f2;
+
+    /* MOTIF BATIK KAWUNG */
+    background-image:
+
+        radial-gradient(
+            ellipse 18px 28px at 50% 50%,
+            transparent 48%,
+            rgba(33,75,103,.13) 50%,
+            rgba(33,75,103,.13) 58%,
+            transparent 61%
+        ),
+
+        radial-gradient(
+            ellipse 18px 28px at 0% 0%,
+            transparent 48%,
+            rgba(33,75,103,.10) 50%,
+            rgba(33,75,103,.10) 58%,
+            transparent 61%
         );
+
+    background-size:
+        56px 56px,
+        56px 56px;
+
+    background-position:
+        0 0,
+        28px 28px;
 
     border:
         1px solid
         rgba(255,255,255,.95);
-
-    /* MOTIF BATIK SAMAR */
-    background-image:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.35),
-            rgba(255,255,255,0)
-        ),
-        repeating-linear-gradient(
-            45deg,
-            transparent 0px,
-            transparent 12px,
-            rgba(33,75,103,.08) 13px,
-            rgba(33,75,103,.08) 15px,
-            transparent 16px,
-            transparent 28px
-        );
-
-    background-blend-mode:
-        overlay;
 
     box-shadow:
 
@@ -111,7 +113,6 @@ body{
 
         inset -2px -2px 5px
         rgba(0,0,0,.08);
-
 }
 
 /* JUDUL SEKALIGUS TOMBOL FILTER */
