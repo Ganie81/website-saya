@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 
-<head>
-
-<meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+«»
 
 <title>
     LAPORAN PRODUKSI HARIAN
-</title>
-
-<style>
+</title><style>
 
 /* =====================================================
    DASAR
@@ -703,6 +699,49 @@ thead th{
 
 
 /* =====================================================
+   BARIS TOTAL TABEL 1
+===================================================== */
+
+.total-row td{
+
+    background:
+        linear-gradient(
+            145deg,
+            #b8d9e8,
+            #8ebbd1
+        ) !important;
+
+    font-weight:900 !important;
+
+    color:#183c51 !important;
+
+    border-top:
+        3px solid
+        #5f8da5;
+
+    box-shadow:
+
+        inset 0 2px 4px
+        rgba(255,255,255,.65),
+
+        inset 0 -3px 5px
+        rgba(0,0,0,.12);
+}
+
+.total-row .angka{
+
+    font-size:
+        clamp(
+            19px,
+            4.9vw,
+            23px
+        ) !important;
+
+    font-weight:900 !important;
+}
+
+
+/* =====================================================
    ACV
 ===================================================== */
 
@@ -1019,287 +1058,127 @@ thead th{
 
 }
 
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-
-<!-- =====================================================
+</style></head><body><div class="container"><!-- =====================================================
      HEADER
-===================================================== -->
-
-<div class="header">
-
-<h1
+===================================================== --><div class="header"><h1
     onclick="toggleFilter()"
     title="Ketuk untuk membuka filter"
 >
     LAPORAN PRODUKSI HARIAN
-</h1>
-
-<div class="subtitle">
+</h1><div class="subtitle">
     DEPARTEMEN PRINTING
-</div>
-
-</div>
-
-
-<!-- =====================================================
+</div></div><!-- =====================================================
      FILTER
-===================================================== -->
-
-<div
+===================================================== --><div
     class="filter-panel"
     id="filterPanel"
+><div class="filter-box"><label>
+    HARI YANG DIPILIH
+</label>
+
+<input
+    type="date"
+    id="tanggal"
 >
 
-<div class="filter-box">
+</div><div class="filter-box"><label>
+    GRUP
+</label>
 
-    <label>
-        HARI YANG DIPILIH
-    </label>
+<select id="grup">
 
-    <input
-        type="date"
-        id="tanggal"
-    >
+    <option value="">
+        SEMUA GRUP
+    </option>
 
-</div>
+    <option value="A">
+        GRUP A
+    </option>
 
+    <option value="B">
+        GRUP B
+    </option>
 
-<div class="filter-box">
+    <option value="C">
+        GRUP C
+    </option>
 
-    <label>
-        GRUP
-    </label>
+</select>
 
-    <select id="grup">
+</div><button
+class="refresh-btn"
+onclick="ambilData()"
 
-        <option value="">
-            SEMUA GRUP
-        </option>
+«»
 
-        <option value="A">
-            GRUP A
-        </option>
+↻ REFRESH DATA
 
-        <option value="B">
-            GRUP B
-        </option>
-
-        <option value="C">
-            GRUP C
-        </option>
-
-    </select>
-
-</div>
-
-
-<button
-    class="refresh-btn"
-    onclick="ambilData()"
->
-    ↻ REFRESH DATA
-</button>
-
-</div>
-
-
-<!-- =====================================================
+</button></div><!-- =====================================================
      INFO HARI / GRUP
-===================================================== -->
+===================================================== --><div class="info-bar"><div class="info-chip">HARI:
 
-<div class="info-bar">
+<span id="infoTanggal">
+    -
+</span>
 
-<div class="info-chip">
+</div><div class="info-chip">GRUP:
 
-    HARI:
+<span id="infoGrup">
+    SEMUA
+</span>
 
-    <span id="infoTanggal">
-        -
-    </span>
-
-</div>
-
-
-<div class="info-chip">
-
-    GRUP:
-
-    <span id="infoGrup">
-        SEMUA
-    </span>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
+</div></div><!-- =====================================================
      LOADING
-===================================================== -->
-
-<div
+===================================================== --><div
     id="loading"
     class="loading"
 >
     ⏳ Mengambil data...
-</div>
-
-
-<!-- =====================================================
+</div><!-- =====================================================
      TABEL 1
-===================================================== -->
-
-<div class="section">
-
-<div class="section-title">
+===================================================== --><div class="section"><div class="section-title">
     PRODUKSI FLATBED PRINT
-</div>
-
-
-<div class="table-wrap">
-
-<table class="table-flat">
-
-<thead>
-
-<tr>
-
-<th>
+</div><div class="table-wrap"><table class="table-flat"><thead><tr><th>
     MC
-</th>
-
-<th>
+</th><th>
     KODE PRODUK
-</th>
-
-<th>
+</th><th>
     QTY (Pcs)
-</th>
-
-<th>
+</th><th>
     KD
-</th>
-
-<th>
+</th><th>
     TARGET (KD)
-</th>
-
-<th>
+</th><th>
     ACV (%)
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="flatBody">
-
-<tr>
-
-<td
+</th></tr></thead><tbody id="flatBody"><tr><td
     colspan="6"
     class="empty"
 >
     Belum ada data
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
+</td></tr></tbody></table></div></div><!-- =====================================================
      TABEL 2
-===================================================== -->
-
-<div class="section secondary">
-
-<div class="section-title">
+===================================================== --><div class="section secondary"><div class="section-title">
     STEAM, CURING, WASHING &amp; DLVR
-</div>
-
-
-<div class="table-wrap">
-
-<table class="table-secondary">
-
-<thead>
-
-<tr>
-
-<th>
+</div><div class="table-wrap"><table class="table-secondary"><thead><tr><th>
     PROSES
-</th>
-
-<th>
+</th><th>
     KODE PRODUK
-</th>
-
-<th>
+</th><th>
     QTY
-</th>
-
-<th>
+</th><th>
     SATUAN
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="formBody">
-
-<tr>
-
-<td
+</th></tr></thead><tbody id="formBody"><tr><td
     colspan="4"
     class="empty"
 >
     Belum ada data
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
+</td></tr></tbody></table></div></div><!-- =====================================================
      FOOTER
-===================================================== -->
-
-<div class="footer">
-
-LAPORAN PRODUKSI HARIAN
+===================================================== --><div class="footer">LAPORAN PRODUKSI HARIAN
 •
 DEPARTEMEN PRINTING
 
-</div>
-
-</div>
-
-
-<script>
+</div></div><script>
 
 
 /* =====================================================
@@ -2139,6 +2018,30 @@ function tampilkanFlat(
 
 
     /* =============================================
+       HITUNG TOTAL SELURUH TABEL
+    ============================================= */
+
+    let totalQty =
+        0;
+
+    let totalKD =
+        0;
+
+
+    hasil.forEach(
+        function(row){
+
+            totalQty +=
+                Number(row.qty) || 0;
+
+            totalKD +=
+                Number(row.kd) || 0;
+
+        }
+    );
+
+
+    /* =============================================
        TAMPILKAN
        TARGET & ACV HANYA 1x PER MESIN
     ============================================= */
@@ -2241,6 +2144,57 @@ function tampilkanFlat(
             );
 
         }
+    );
+
+
+    /* =============================================
+       BARIS TOTAL
+    ============================================= */
+
+    const totalRow =
+        document.createElement(
+            "tr"
+        );
+
+
+    totalRow.className =
+        "total-row";
+
+
+    totalRow.innerHTML =
+        `
+
+        <td>
+            TOTAL
+        </td>
+
+        <td>
+            -
+        </td>
+
+        <td class="angka">
+            ${formatAngka(totalQty)}
+            Pcs
+        </td>
+
+        <td class="angka">
+            ${formatAngka(totalKD)}
+            KD
+        </td>
+
+        <td>
+            -
+        </td>
+
+        <td>
+            -
+        </td>
+
+        `;
+
+
+    flatBody.appendChild(
+        totalRow
     );
 
 }
@@ -2390,7 +2344,5 @@ ambilData();
 
 
 </script>
-
 </body>
-
 </html>
