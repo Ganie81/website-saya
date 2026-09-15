@@ -1,7 +1,10 @@
-<!DOCTYPE html><html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+«»
+
+<title>
     LAPORAN PRODUKSI HARIAN
 </title><style>
 
@@ -1067,31 +1070,38 @@ thead th{
     id="filterPanel"
 ><div class="filter-box"><label>
     HARI YANG DIPILIH
-</label><input
-type="date"
-id="tanggal"
+</label>
 
-«»
+<input
+    type="date"
+    id="tanggal"
+>
 
 </div><div class="filter-box"><label>
     GRUP
-</label><select id="grup"><option value="">
-    SEMUA GRUP
-</option>
+</label>
 
-<option value="A">
-    GRUP A
-</option>
+<select id="grup">
 
-<option value="B">
-    GRUP B
-</option>
+    <option value="">
+        SEMUA GRUP
+    </option>
 
-<option value="C">
-    GRUP C
-</option>
+    <option value="A">
+        GRUP A
+    </option>
 
-</select></div><button
+    <option value="B">
+        GRUP B
+    </option>
+
+    <option value="C">
+        GRUP C
+    </option>
+
+</select>
+
+</div><button
 class="refresh-btn"
 onclick="ambilData()"
 
@@ -1101,13 +1111,19 @@ onclick="ambilData()"
 
 </button></div><!-- =====================================================
      INFO HARI / GRUP
-===================================================== --><div class="info-bar"><div class="info-chip">
-    HARI:<span id="infoTanggal">
+===================================================== --><div class="info-bar"><div class="info-chip">HARI:
+
+<span id="infoTanggal">
     -
-</span></div><div class="info-chip">
-    GRUP:<span id="infoGrup">
+</span>
+
+</div><div class="info-chip">GRUP:
+
+<span id="infoGrup">
     SEMUA
-</span></div></div><!-- =====================================================
+</span>
+
+</div></div><!-- =====================================================
      LOADING
 ===================================================== --><div
     id="loading"
@@ -1159,6 +1175,7 @@ onclick="ambilData()"
 DEPARTEMEN PRINTING
 
 </div></div><script>
+
 
 /* =====================================================
    URL APPS SCRIPT
@@ -1562,11 +1579,10 @@ function hitungACV(
 
 async function ambilData(){
 
-    /*
-       FILTER TIDAK DIKUNCI LAGI.
-       PANEL FILTER TETAP TERBUKA
-       SAAT DATA DIPERBARUI.
-    */
+    /* FILTER DIKUNCI TETAP TERTUTUP
+       SAAT REFRESH DATA */
+
+    kunciFilter();
 
 
     const tanggal =
@@ -2314,7 +2330,7 @@ tanggalInput.value =
 
 
 grupInput.value =
-    "";
+    "A";
 
 
 updateInfo();
@@ -2323,5 +2339,4 @@ updateInfo();
 ambilData();
 
 
-</script></body>
-</html>
+</script></body></html>
