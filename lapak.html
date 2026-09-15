@@ -1,12 +1,20 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
+<!DOCTYPE html>
+<html lang="id">
 
-«»
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>
     LAPORAN PRODUKSI HARIAN
-</title><style>
+</title>
+
+<style>
 
 /* =====================================================
    DASAR
@@ -560,7 +568,6 @@ table{
 
 /* =====================================================
    HEADER SEMUA TABEL
-   LEBIH BESAR
 ===================================================== */
 
 thead th{
@@ -619,7 +626,6 @@ thead th{
 
 /* =====================================================
    TABEL 1
-   FLAT
 ===================================================== */
 
 .table-flat{
@@ -725,7 +731,6 @@ thead th{
 
 /* =====================================================
    TABEL 2
-   DIPERKECIL 2 TINGKAT
 ===================================================== */
 
 .table-secondary{
@@ -950,8 +955,6 @@ thead th{
     }
 
 
-    /* HEADER TABEL */
-
     thead th{
 
         font-size:18px;
@@ -960,8 +963,6 @@ thead th{
             17px 10px;
     }
 
-
-    /* TABEL 1 */
 
     .table-flat tbody td{
 
@@ -979,8 +980,6 @@ thead th{
             20px !important;
     }
 
-
-    /* TABEL 2 */
 
     .table-secondary tbody td{
 
@@ -1020,9 +1019,22 @@ thead th{
 
 }
 
-</style></head><body><div class="container"><!-- =====================================================
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+<!-- =====================================================
      HEADER
-===================================================== --><div class="header"><h1
+===================================================== -->
+
+<div class="header">
+
+<h1
     onclick="toggleFilter()"
     title="Ketuk untuk membuka filter"
 >
@@ -1033,12 +1045,19 @@ thead th{
     DEPARTEMEN PRINTING
 </div>
 
-</div><!-- =====================================================
+</div>
+
+
+<!-- =====================================================
      FILTER
-===================================================== --><div
+===================================================== -->
+
+<div
     class="filter-panel"
     id="filterPanel"
-><div class="filter-box">
+>
+
+<div class="filter-box">
 
     <label>
         HARI YANG DIPILIH
@@ -1088,9 +1107,16 @@ thead th{
     ↻ REFRESH DATA
 </button>
 
-</div><!-- =====================================================
+</div>
+
+
+<!-- =====================================================
      INFO HARI / GRUP
-===================================================== --><div class="info-bar"><div class="info-chip">
+===================================================== -->
+
+<div class="info-bar">
+
+<div class="info-chip">
 
     HARI:
 
@@ -1111,138 +1137,169 @@ thead th{
 
 </div>
 
-</div><!-- =====================================================
+</div>
+
+
+<!-- =====================================================
      LOADING
-===================================================== --><div
+===================================================== -->
+
+<div
     id="loading"
     class="loading"
 >
     ⏳ Mengambil data...
-</div><!-- =====================================================
+</div>
+
+
+<!-- =====================================================
      TABEL 1
-===================================================== --><div class="section"><div class="section-title">
+===================================================== -->
+
+<div class="section">
+
+<div class="section-title">
     PRODUKSI FLATBED PRINT
 </div>
 
 
 <div class="table-wrap">
 
-    <table class="table-flat">
+<table class="table-flat">
 
-        <thead>
+<thead>
 
-            <tr>
+<tr>
 
-                <th>
-                    MC
-                </th>
+<th>
+    MC
+</th>
 
-                <th>
-                    KODE PRODUK
-                </th>
+<th>
+    KODE PRODUK
+</th>
 
-                <th>
-                    QTY (Pcs)
-                </th>
+<th>
+    QTY (Pcs)
+</th>
 
-                <th>
-                    KD
-                </th>
+<th>
+    KD
+</th>
 
-                <th>
-                    TARGET (KD)
-                </th>
+<th>
+    TARGET (KD)
+</th>
 
-                <th>
-                    ACV (%)
-                </th>
+<th>
+    ACV (%)
+</th>
 
-            </tr>
+</tr>
 
-        </thead>
+</thead>
 
 
-        <tbody id="flatBody">
+<tbody id="flatBody">
 
-            <tr>
+<tr>
 
-                <td
-                    colspan="6"
-                    class="empty"
-                >
-                    Belum ada data
-                </td>
+<td
+    colspan="6"
+    class="empty"
+>
+    Belum ada data
+</td>
 
-            </tr>
+</tr>
 
-        </tbody>
+</tbody>
 
-    </table>
+</table>
 
 </div>
 
-</div><!-- =====================================================
+</div>
+
+
+<!-- =====================================================
      TABEL 2
-===================================================== --><div class="section secondary"><div class="section-title">
+===================================================== -->
+
+<div class="section secondary">
+
+<div class="section-title">
     STEAM, CURING, WASHING &amp; DLVR
 </div>
 
 
 <div class="table-wrap">
 
-    <table class="table-secondary">
+<table class="table-secondary">
 
-        <thead>
+<thead>
 
-            <tr>
+<tr>
 
-                <th>
-                    PROSES
-                </th>
+<th>
+    PROSES
+</th>
 
-                <th>
-                    KODE PRODUK
-                </th>
+<th>
+    KODE PRODUK
+</th>
 
-                <th>
-                    QTY
-                </th>
+<th>
+    QTY
+</th>
 
-                <th>
-                    SATUAN
-                </th>
+<th>
+    SATUAN
+</th>
 
-            </tr>
+</tr>
 
-        </thead>
+</thead>
 
 
-        <tbody id="formBody">
+<tbody id="formBody">
 
-            <tr>
+<tr>
 
-                <td
-                    colspan="4"
-                    class="empty"
-                >
-                    Belum ada data
-                </td>
+<td
+    colspan="4"
+    class="empty"
+>
+    Belum ada data
+</td>
 
-            </tr>
+</tr>
 
-        </tbody>
+</tbody>
 
-    </table>
+</table>
 
 </div>
 
-</div><!-- =====================================================
+</div>
+
+
+<!-- =====================================================
      FOOTER
-===================================================== --><div class="footer">LAPORAN PRODUKSI HARIAN
+===================================================== -->
+
+<div class="footer">
+
+LAPORAN PRODUKSI HARIAN
 •
 DEPARTEMEN PRINTING
 
-</div></div><script>
+</div>
+
+</div>
+
+
+<script>
 
 
 /* =====================================================
@@ -1316,10 +1373,22 @@ const filterPanel =
 
 /* =====================================================
    FILTER BUKA / TUTUP
+   FILTER SELALU TERTUTUP SAAT AWAL
 ===================================================== */
 
 let filterTerbuka =
     false;
+
+
+function kunciFilter(){
+
+    filterTerbuka =
+        false;
+
+    filterPanel.style.display =
+        "none";
+
+}
 
 
 function toggleFilter(){
@@ -1445,6 +1514,7 @@ function updateInfo(){
 
     const tanggal =
         tanggalInput.value;
+
 
     const grup =
         grupInput.value;
@@ -1633,6 +1703,12 @@ function hitungACV(
 ===================================================== */
 
 async function ambilData(){
+
+    /* FILTER DIKUNCI TETAP TERTUTUP
+       SAAT REFRESH DATA */
+
+    kunciFilter();
+
 
     const tanggal =
         tanggalInput.value;
@@ -1882,25 +1958,8 @@ async function ambilData(){
 
 /* =====================================================
    TABEL 1
-   KODE PRODUK DIJUMlAHKAN PER KODE
-   TETAPI ACV DIHITUNG KUMULATIF PER MESIN
-
-   CONTOH:
-
-   FLAT 1
-   KODE A = 3 DATA
-   KODE B = 1 DATA
-
-   HASIL:
-   FLAT 1 | KODE A | TOTAL QTY A | TOTAL KD A
-   FLAT 1 | KODE B | TOTAL QTY B | TOTAL KD B
-
-   TOTAL KD MESIN:
-   KD A + KD B
-
-   TARGET & ACV:
-   HANYA DITAMPILKAN SATU KALI
-   PADA BARIS TERAKHIR MESIN.
+   KODE PRODUK DIJUMLAHKAN PER KODE
+   ACV DIHITUNG KUMULATIF PER MESIN
 ===================================================== */
 
 function tampilkanFlat(
@@ -2001,10 +2060,6 @@ function tampilkanFlat(
     );
 
 
-    /* =============================================
-       ARRAY HASIL
-    ============================================= */
-
     const hasil =
         Object.values(
             kelompok
@@ -2012,7 +2067,7 @@ function tampilkanFlat(
 
 
     /* =============================================
-       HITUNG TOTAL KUMULATIF PER MESIN
+       TOTAL KUMULATIF PER MESIN
     ============================================= */
 
     const totalMesin = {};
@@ -2085,9 +2140,7 @@ function tampilkanFlat(
 
     /* =============================================
        TAMPILKAN
-
        TARGET & ACV HANYA 1x PER MESIN
-       PADA BARIS TERAKHIR MESIN
     ============================================= */
 
     hasil.forEach(
@@ -2314,10 +2367,20 @@ grupInput.addEventListener(
 
 /* =====================================================
    START
+   FILTER DIKUNCI TERTUTUP
+   TANGGAL = HARI INI
+   GRUP = SEMUA
 ===================================================== */
+
+kunciFilter();
+
 
 tanggalInput.value =
     tanggalHariIni();
+
+
+grupInput.value =
+    "";
 
 
 updateInfo();
@@ -2326,4 +2389,8 @@ updateInfo();
 ambilData();
 
 
-</script></body></html>
+</script>
+
+</body>
+
+</html>
