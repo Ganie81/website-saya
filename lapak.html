@@ -1,658 +1,1188 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    padding: 14px;
-    font-family: Arial, sans-serif;
-    background: #eef3f6;
-    color: #17384d;
-}
-
-.container {
-    max-width: 1200px;
-    margin: auto;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.header {
-    text-align: center;
-    margin-bottom: 12px;
-}
-
-.header h1 {
-    margin: 0;
-    padding: 14px 10px 6px;
-    font-size: 27px;
-    font-weight: 900;
-    color: #214b67;
-    text-shadow:
-        0 2px 0 #ffffff,
-        0 4px 7px rgba(0,0,0,.20);
-    cursor: pointer;
-    user-select: none;
-}
-
-.header h1:active {
-    transform: translateY(1px);
-}
-
-.subtitle {
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #53778d;
-}
-
-/* =========================
-   FILTER
-========================= */
-
-.filter-panel {
-    display: none;
-    margin: 12px 0;
-    padding: 14px;
-    border-radius: 14px;
-    background: linear-gradient(
-        145deg,
-        #ffffff,
-        #dce8ef
-    );
-    border: 1px solid #9bb8c9;
-    box-shadow:
-        0 6px 12px rgba(0,0,0,.14),
-        inset 0 1px 0 #ffffff;
-}
-
-.filter-panel.buka {
-    display: block;
-}
-
-.filter-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
-
-.filter-item label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 12px;
-    font-weight: bold;
-    color: #315c74;
-}
-
-.filter-item input,
-.filter-item select {
-    width: 100%;
-    height: 42px;
-    padding: 0 11px;
-    border-radius: 10px;
-    border: 1px solid #8eafc1;
-    background: #ffffff;
-    color: #183e53;
-    font-size: 14px;
-    font-weight: bold;
-    outline: none;
-    box-shadow:
-        inset 0 2px 4px rgba(0,0,0,.08),
-        0 2px 4px rgba(0,0,0,.08);
-}
-
-.filter-item input:focus,
-.filter-item select:focus {
-    border-color: #39779c;
-    box-shadow:
-        0 0 0 2px rgba(63,126,163,.15),
-        inset 0 2px 4px rgba(0,0,0,.06);
-}
-
-.refresh-button {
-    width: 100%;
-    height: 42px;
-    margin-top: 12px;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(
-        145deg,
-        #5b91b1,
-        #285b7b
-    );
-    color: white;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow:
-        0 4px 7px rgba(0,0,0,.20),
-        inset 0 1px 0 rgba(255,255,255,.35);
-}
-
-.refresh-button:active {
-    transform: translateY(2px);
-    box-shadow:
-        0 2px 4px rgba(0,0,0,.18),
-        inset 0 1px 0 rgba(255,255,255,.25);
-}
-
-/* =========================
-   INFO
-========================= */
-
-.info-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    margin: 12px 0;
-    padding: 11px 14px;
-    border-radius: 11px;
-    background: linear-gradient(
-        145deg,
-        #ffffff,
-        #dbe8ef
-    );
-    border: 1px solid #9db8c8;
-    box-shadow:
-        0 4px 8px rgba(0,0,0,.12),
-        inset 0 1px 0 #ffffff;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.info-item {
-    flex: 1;
-}
-
-.info-label {
-    color: #6b8798;
-    font-size: 10px;
-    display: block;
-    margin-bottom: 3px;
-}
-
-.info-value {
-    color: #214b67;
-    font-size: 14px;
-}
-
-/* =========================
-   LOADING
-========================= */
-
-#loading {
-    display: none;
-    text-align: center;
-    padding: 18px;
-    margin: 10px 0;
-    border-radius: 10px;
-    background: #ffffff;
-    color: #3c6f8a;
-    font-weight: bold;
-    box-shadow: 0 3px 8px rgba(0,0,0,.10);
-}
-
-/* =========================
-   SECTION
-========================= */
-
-.section {
-    margin-top: 15px;
-    margin-bottom: 18px;
-}
-
-.section-title {
-    padding: 10px 13px;
-    border-radius: 10px 10px 0 0;
-    background: linear-gradient(
-        145deg,
-        #c9e4f2,
-        #9fc7dc
-    );
-    color: #214b67;
-    font-size: 15px;
-    font-weight: 900;
-    border: 1px solid #82abc1;
-    box-shadow:
-        0 4px 8px rgba(0,0,0,.14),
-        inset 0 1px 0 rgba(255,255,255,.75);
-}
-
-/* =========================
-   TABLE FRAME
-========================= */
-
-.table-wrap {
-    width: 100%;
-    overflow-x: auto;
-    border-left: 1px solid #82abc1;
-    border-right: 1px solid #82abc1;
-    border-bottom: 1px solid #82abc1;
-    background: #f4f7f9;
-    box-shadow:
-        0 5px 10px rgba(0,0,0,.12),
-        inset 0 1px 0 #ffffff;
-}
-
-table {
-    width: 100%;
-    min-width: 700px;
-    border-collapse: separate;
-    border-spacing: 0;
-}
-
-th {
-    padding: 9px 8px;
-    background: linear-gradient(
-        145deg,
-        #4f86a8,
-        #285b7b
-    );
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 900;
-    text-align: center;
-    white-space: nowrap;
-    border-right: 1px solid rgba(255,255,255,.22);
-    border-bottom: 2px solid #204d68;
-    text-shadow: 0 1px 2px rgba(0,0,0,.30);
-}
-
-td {
-    padding: 8px 7px;
-    font-size: 12px;
-    border-right: 1px solid #d1dee5;
-    border-bottom: 1px solid #d1dee5;
-    background: #edf6fb;
-    vertical-align: middle;
-}
-
-tbody tr:nth-child(even) td {
-    background: #e4f0f6;
-}
-
-td:first-child,
-th:first-child {
-    border-left: none;
-}
-
-.number {
-    text-align: right;
-    font-weight: 900;
-    white-space: nowrap;
-}
-
-.center {
-    text-align: center;
-}
-
-.code {
-    font-weight: 900;
-    color: #244f68;
-}
-
-/* =========================
-   TOTAL
-========================= */
-
-.total-row td {
-    background: linear-gradient(
-        145deg,
-        #7ca8c1,
-        #477895
-    ) !important;
-    color: #ffffff;
-    font-weight: 900;
-    border-color: #38657e;
-    text-shadow: 0 1px 2px rgba(0,0,0,.25);
-}
-
-/* =========================
-   SECOND TABLE
-========================= */
-
-.table-secondary {
-    min-width: 560px;
-}
-
-.table-secondary td {
-    background: #f3f4f5;
-    color: #354650;
-}
-
-.table-secondary tbody tr:nth-child(even) td {
-    background: #e9ecee;
-}
-
-.table-secondary th {
-    font-size: 10px;
-    padding: 8px 6px;
-}
-
-.table-secondary td {
-    font-size: 11px;
-    padding: 7px 6px;
-}
-
-/* =========================
-   EMPTY
-========================= */
-
-.empty-row td {
-    text-align: center;
-    padding: 18px;
-    color: #71838d;
-    font-style: italic;
-    background: #f4f7f9 !important;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer {
-    text-align: center;
-    margin-top: 18px;
-    padding: 10px;
-    font-size: 10px;
-    color: #718895;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 600px) {
-
-    body {
-        padding: 8px;
-    }
-
-    .header h1 {
-        font-size: 21px;
-        padding-top: 9px;
-    }
-
-    .subtitle {
-        font-size: 10px;
-        letter-spacing: 1.5px;
-    }
-
-    .filter-grid {
-        grid-template-columns: 1fr;
-        gap: 9px;
-    }
-
-    .info-bar {
-        padding: 9px 10px;
-    }
-
-    .info-label {
-        font-size: 9px;
-    }
-
-    .info-value {
-        font-size: 12px;
-    }
-
-    .section-title {
-        font-size: 13px;
-        padding: 9px 10px;
-    }
-
-    table {
-        min-width: 700px;
-    }
-
-    .table-secondary {
-        min-width: 560px;
-    }
-
-    th {
-        font-size: 10px;
-        padding: 8px 6px;
-    }
-
-    td {
-        font-size: 11px;
-        padding: 7px 6px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-    <!-- =========================
-         HEADER
-    ========================== -->
-
-    <div class="header">
-
-        <h1
-            onclick="toggleFilter()"
-            title="Ketuk untuk membuka filter"
-        >
-            LAPORAN PRODUKSI HARIAN
-        </h1>
-
-        <div class="subtitle">
-            DEPARTEMEN PRINTING
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         FILTER
-    ========================== -->
-
-    <div
-        id="filterPanel"
-        class="filter-panel"
-    >
-
-        <div class="filter-grid">
-
-            <div class="filter-item">
-                <label for="tanggal">
-                    TANGGAL
-                </label>
-
-                <input
-                    type="date"
-                    id="tanggal"
-                >
-            </div>
-
-
-            <div class="filter-item">
-                <label for="grup">
-                    GRUP
-                </label>
-
-                <select id="grup">
-                    <option value="">
-                        SEMUA GRUP
-                    </option>
-
-                    <option value="A">
-                        GRUP A
-                    </option>
-
-                    <option value="B">
-                        GRUP B
-                    </option>
-
-                    <option value="C">
-                        GRUP C
-                    </option>
-                </select>
-            </div>
-
-        </div>
-
-
-        <button
-            class="refresh-button"
-            onclick="ambilData()"
-        >
-            ↻ REFRESH DATA
-        </button>
-
-    </div>
-
-
-    <!-- =========================
-         INFO
-    ========================== -->
-
-    <div class="info-bar">
-
-        <div class="info-item">
-
-            <span class="info-label">
-                TANGGAL
-            </span>
-
-            <span
-                id="infoTanggal"
-                class="info-value"
-            >
-                -
-            </span>
-
-        </div>
-
-
-        <div class="info-item">
-
-            <span class="info-label">
-                GRUP
-            </span>
-
-            <span
-                id="infoGrup"
-                class="info-value"
-            >
-                SEMUA GRUP
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         LOADING
-    ========================== -->
-
-    <div id="loading">
-        ⏳ Mengambil data...
-    </div>
-
-
-    <!-- =========================
-         PRODUKSI FLATBED
-    ========================== -->
-
-    <div class="section">
-
-        <div class="section-title">
-            PRODUKSI FLATBED PRINT
-        </div>
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-                        <th>MC</th>
-                        <th>KODE PRODUK</th>
-                        <th>QTY (Pcs)</th>
-                        <th>KD</th>
-                        <th>TARGET (KD)</th>
-                        <th>ACV (%)</th>
-                    </tr>
-
-                </thead>
-
-                <tbody id="flatBody">
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         STEAM CURING WASHING DLVR
-    ========================== -->
-
-    <div class="section">
-
-        <div class="section-title">
-            STEAM, CURING, WASHING &amp; DLVR
-        </div>
-
-        <div class="table-wrap">
-
-            <table class="table-secondary">
-
-                <thead>
-
-                    <tr>
-                        <th>PROSES</th>
-                        <th>KODE PRODUK</th>
-                        <th>QTY</th>
-                        <th>SATUAN</th>
-                    </tr>
-
-                </thead>
-
-                <tbody id="formBody">
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <div class="footer">
-        LAPORAN PRODUKSI HARIAN • DEPARTEMEN PRINTING
-    </div>
-
-</div>
-
-
-<script>
+    <head>
+        <meta charset="UTF-8">
+        <meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+«»
+
+<title>
+    LAPORAN PRODUKSI HARIAN
+</title><style>
 
 /* =====================================================
-   KONFIGURASI
+   DASAR
+===================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    padding:14px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            145deg,
+            #eef2f5,
+            #d5dde3
+        );
+
+    color:#263238;
+}
+
+.container{
+
+    width:100%;
+
+    max-width:1100px;
+
+    margin:auto;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    text-align:center;
+
+    padding:
+        20px 12px 22px;
+
+    margin-bottom:14px;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #d7e0e6
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.95);
+
+    box-shadow:
+
+        10px 10px 22px
+        rgba(0,0,0,.20),
+
+        -7px -7px 15px
+        rgba(255,255,255,.95),
+
+        inset 2px 2px 4px
+        rgba(255,255,255,.9),
+
+        inset -2px -2px 5px
+        rgba(0,0,0,.08);
+}
+
+
+/* JUDUL SEKALIGUS TOMBOL FILTER */
+
+.header h1{
+
+    margin:0;
+
+    font-size:
+        clamp(
+            29px,
+            8vw,
+            52px
+        );
+
+    font-weight:900;
+
+    letter-spacing:.6px;
+
+    color:#203e55;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    text-shadow:
+
+        2px 2px 0
+        #ffffff,
+
+        4px 4px 0
+        rgba(45,78,101,.20),
+
+        6px 7px 9px
+        rgba(0,0,0,.28);
+
+    transition:
+        transform .15s ease,
+        text-shadow .15s ease;
+}
+
+.header h1:hover{
+
+    transform:
+        translateY(-1px);
+}
+
+.header h1:active{
+
+    transform:
+        translateY(3px);
+
+    text-shadow:
+
+        1px 1px 0
+        #ffffff,
+
+        2px 3px 4px
+        rgba(0,0,0,.25);
+}
+
+
+.header .subtitle{
+
+    margin-top:7px;
+
+    font-size:
+        clamp(
+            14px,
+            3.8vw,
+            21px
+        );
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    color:#506d80;
+
+    text-shadow:
+
+        1px 2px 0
+        #ffffff,
+
+        2px 3px 4px
+        rgba(0,0,0,.22);
+}
+
+
+/* =====================================================
+   FILTER
+   TERSEMBUNYI SAAT AWAL
+===================================================== */
+
+.filter-panel{
+
+    display:none;
+
+    grid-template-columns:
+        1fr 1fr auto;
+
+    gap:11px;
+
+    padding:13px;
+
+    margin-bottom:17px;
+
+    border-radius:19px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #eaf0f4,
+            #ccd6dc
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.9);
+
+    box-shadow:
+
+        7px 7px 16px
+        rgba(0,0,0,.18),
+
+        -5px -5px 12px
+        rgba(255,255,255,.95),
+
+        inset 2px 2px 5px
+        rgba(255,255,255,.85),
+
+        inset -3px -3px 6px
+        rgba(0,0,0,.12);
+}
+
+.filter-box{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+}
+
+.filter-box label{
+
+    font-size:14px;
+
+    font-weight:900;
+
+    color:#405b6b;
+
+    text-shadow:
+
+        1px 1px 0
+        #ffffff,
+
+        2px 2px 3px
+        rgba(0,0,0,.18);
+}
+
+.filter-box input,
+.filter-box select{
+
+    width:100%;
+
+    min-height:48px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:13px;
+
+    padding:
+        8px 12px;
+
+    background:#ffffff;
+
+    color:#263238;
+
+    font-size:17px;
+
+    font-weight:900;
+
+    box-shadow:
+
+        inset 3px 3px 6px
+        rgba(0,0,0,.13),
+
+        inset -2px -2px 4px
+        rgba(255,255,255,.95),
+
+        3px 3px 7px
+        rgba(0,0,0,.14);
+}
+
+.refresh-btn{
+
+    align-self:end;
+
+    min-height:48px;
+
+    padding:
+        8px 17px;
+
+    border:none;
+
+    border-radius:13px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    color:#ffffff;
+
+    background:
+        linear-gradient(
+            145deg,
+            #5d94b5,
+            #285d7e
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    box-shadow:
+
+        5px 5px 10px
+        rgba(0,0,0,.28),
+
+        -2px -2px 5px
+        rgba(255,255,255,.30),
+
+        inset 2px 2px 3px
+        rgba(255,255,255,.35),
+
+        inset -3px -3px 5px
+        rgba(0,0,0,.20);
+
+    text-shadow:
+
+        2px 2px 3px
+        rgba(0,0,0,.45);
+}
+
+.refresh-btn:active{
+
+    transform:
+        translateY(3px);
+
+    box-shadow:
+
+        2px 2px 5px
+        rgba(0,0,0,.25),
+
+        inset 2px 2px 4px
+        rgba(0,0,0,.20);
+}
+
+
+/* =====================================================
+   INFO HARI & GRUP
+===================================================== */
+
+.info-bar{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:11px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+}
+
+.info-chip{
+
+    padding:
+        11px 18px;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #d5dfe5
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.95);
+
+    box-shadow:
+
+        6px 6px 12px
+        rgba(0,0,0,.18),
+
+        -4px -4px 9px
+        rgba(255,255,255,.95),
+
+        inset 1px 1px 3px
+        rgba(255,255,255,.9),
+
+        inset -2px -2px 4px
+        rgba(0,0,0,.08);
+
+    font-size:20px;
+
+    font-weight:900;
+
+    color:#405563;
+
+    text-shadow:
+
+        1px 2px 0
+        #ffffff,
+
+        2px 3px 4px
+        rgba(0,0,0,.18);
+}
+
+.info-chip span{
+
+    font-size:24px;
+
+    font-weight:900;
+
+    color:#203e55;
+
+    text-shadow:
+
+        2px 2px 0
+        #ffffff,
+
+        3px 4px 5px
+        rgba(0,0,0,.25);
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section{
+
+    margin-bottom:22px;
+
+    border-radius:21px;
+
+    padding:11px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #c9e4f2,
+            #9fc7dc
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.9);
+
+    box-shadow:
+
+        10px 10px 21px
+        rgba(0,0,0,.22),
+
+        -6px -6px 14px
+        rgba(255,255,255,.95),
+
+        inset 2px 2px 5px
+        rgba(255,255,255,.75),
+
+        inset -4px -4px 7px
+        rgba(0,0,0,.13);
+}
+
+.section.secondary{
+
+    background:
+        linear-gradient(
+            145deg,
+            #c9e4f2,
+            #9fc7dc
+        );
+}
+
+
+/* =====================================================
+   JUDUL SECTION
+===================================================== */
+
+.section-title{
+
+    text-align:center;
+
+    padding:
+        13px 8px 15px;
+
+    font-size:
+        clamp(
+            21px,
+            5.5vw,
+            31px
+        );
+
+    font-weight:900;
+
+    color:#214b67;
+
+    letter-spacing:.5px;
+
+    text-shadow:
+
+        2px 2px 0
+        #ffffff,
+
+        4px 4px 0
+        rgba(42,84,108,.22),
+
+        5px 6px 8px
+        rgba(0,0,0,.27);
+}
+
+
+/* =====================================================
+   TABLE WRAP
+===================================================== */
+
+.table-wrap{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    border-radius:15px;
+
+    box-shadow:
+
+        6px 7px 14px
+        rgba(0,0,0,.25),
+
+        -2px -2px 5px
+        rgba(255,255,255,.60);
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:separate;
+
+    border-spacing:0;
+
+    min-width:700px;
+}
+
+
+/* =====================================================
+   HEADER SEMUA TABEL
+===================================================== */
+
+thead th{
+
+    padding:
+        16px 10px;
+
+    font-size:
+        clamp(
+            16px,
+            4.3vw,
+            21px
+        );
+
+    font-weight:900;
+
+    text-align:center;
+
+    color:#ffffff;
+
+    background:
+        linear-gradient(
+            145deg,
+            #4f86a8,
+            #285b7b
+        );
+
+    border-right:
+        1px solid
+        rgba(255,255,255,.35);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.45);
+
+    text-shadow:
+
+        2px 2px 0
+        rgba(0,0,0,.25),
+
+        3px 4px 5px
+        rgba(0,0,0,.45);
+
+    box-shadow:
+
+        inset 2px 2px 4px
+        rgba(255,255,255,.40),
+
+        inset -3px -4px 6px
+        rgba(0,0,0,.22),
+
+        0 3px 5px
+        rgba(0,0,0,.12);
+}
+
+
+/* =====================================================
+   TABEL 1
+===================================================== */
+
+.table-flat{
+
+    background:#e5f4fb;
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(255,255,255,.8);
+}
+
+.table-flat tbody td{
+
+    padding:
+        14px 10px;
+
+    text-align:center;
+
+    font-size:
+        clamp(
+            16px,
+            4.3vw,
+            20px
+        );
+
+    font-weight:900;
+
+    color:#294454;
+
+    border-bottom:
+        1px solid
+        #b8d7e5;
+
+    border-right:
+        1px solid
+        #c7e1eb;
+
+    text-shadow:
+
+        2px 2px 3px
+        rgba(0,0,0,.17);
+}
+
+.table-flat tbody tr:nth-child(even){
+
+    background:#d8edf6;
+}
+
+.table-flat tbody tr:nth-child(odd){
+
+    background:#edf9fd;
+}
+
+
+/* =====================================================
+   ANGKA TABEL 1
+===================================================== */
+
+.angka{
+
+    font-weight:900 !important;
+
+    font-size:
+        clamp(
+            18px,
+            4.7vw,
+            22px
+        ) !important;
+
+    text-shadow:
+
+        2px 2px 4px
+        rgba(0,0,0,.23);
+}
+
+
+/* =====================================================
+   BARIS TOTAL TABEL 1
+===================================================== */
+
+.total-row td{
+
+    background:
+        linear-gradient(
+            145deg,
+            #b8d9e8,
+            #8ebbd1
+        ) !important;
+
+    font-weight:900 !important;
+
+    color:#183c51 !important;
+
+    border-top:
+        3px solid
+        #5f8da5;
+
+    box-shadow:
+
+        inset 0 2px 4px
+        rgba(255,255,255,.65),
+
+        inset 0 -3px 5px
+        rgba(0,0,0,.12);
+}
+
+.total-row .angka{
+
+    font-size:
+        clamp(
+            19px,
+            4.9vw,
+            23px
+        ) !important;
+
+    font-weight:900 !important;
+}
+
+
+/* =====================================================
+   ACV
+===================================================== */
+
+.acv{
+
+    font-weight:900 !important;
+
+    font-size:
+        clamp(
+            18px,
+            4.7vw,
+            22px
+        ) !important;
+
+    color:#173f59;
+
+    text-shadow:
+
+        2px 2px 0
+        #ffffff,
+
+        3px 4px 5px
+        rgba(0,0,0,.22);
+}
+
+
+/* =====================================================
+   TABEL 2
+===================================================== */
+
+.table-secondary{
+
+    background:#f1f3f4;
+
+    border:
+        1px solid
+        #9eb4c1;
+}
+
+.table-secondary tbody td{
+
+    padding:
+        11px 7px;
+
+    text-align:center;
+
+    font-size:
+        clamp(
+            16px,
+            4.2vw,
+            20px
+        );
+
+    font-weight:900;
+
+    color:#37474f;
+
+    background:#eef1f3;
+
+    border-bottom:
+        1px solid
+        #c7cdd1;
+
+    border-right:
+        1px solid
+        #d4dade;
+
+    text-shadow:
+
+        2px 2px 4px
+        rgba(0,0,0,.18);
+}
+
+.table-secondary tbody tr:nth-child(even) td{
+
+    background:#e4e8ea;
+}
+
+.table-secondary tbody tr:nth-child(odd) td{
+
+    background:#f2f4f5;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+    display:none;
+
+    text-align:center;
+
+    padding:20px;
+
+    font-size:19px;
+
+    font-weight:900;
+
+    color:#41687d;
+
+    text-shadow:
+
+        2px 2px 4px
+        rgba(0,0,0,.18);
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+
+    padding:
+        25px !important;
+
+    text-align:center !important;
+
+    font-weight:900 !important;
+
+    font-size:
+        18px !important;
+
+    color:#708692 !important;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    text-align:center;
+
+    padding:13px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    color:#718792;
+
+    text-shadow:
+        1px 1px 0 #ffffff;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:650px){
+
+    body{
+
+        padding:8px;
+    }
+
+    .header{
+
+        padding:
+            17px 8px 19px;
+
+        border-radius:18px;
+    }
+
+    .header h1{
+
+        font-size:
+            clamp(
+                29px,
+                8.2vw,
+                46px
+            );
+    }
+
+    .header .subtitle{
+
+        font-size:15px;
+    }
+
+
+    .filter-panel{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        border-radius:17px;
+    }
+
+
+    .refresh-btn{
+
+        grid-column:
+            1 / -1;
+
+        width:100%;
+    }
+
+
+    .info-bar{
+
+        gap:8px;
+    }
+
+
+    .info-chip{
+
+        font-size:20px;
+
+        padding:
+            11px 15px;
+    }
+
+
+    .info-chip span{
+
+        font-size:24px;
+    }
+
+
+    .section{
+
+        padding:7px;
+
+        border-radius:18px;
+    }
+
+
+    .section-title{
+
+        padding:
+            12px 5px 14px;
+
+        font-size:
+            clamp(
+                21px,
+                5.7vw,
+                28px
+            );
+    }
+
+
+    table{
+
+        min-width:720px;
+    }
+
+
+    thead th{
+
+        font-size:18px;
+
+        padding:
+            17px 10px;
+    }
+
+
+    .table-flat tbody td{
+
+        font-size:18px;
+
+        padding:
+            15px 10px;
+    }
+
+
+    .table-flat .angka,
+    .table-flat .acv{
+
+        font-size:
+            20px !important;
+    }
+
+
+    .table-secondary tbody td{
+
+        font-size:18px;
+
+        padding:
+            11px 7px;
+
+        white-space:nowrap;
+    }
+
+}
+
+
+/* =====================================================
+   HP SANGAT KECIL
+===================================================== */
+
+@media(max-width:380px){
+
+    .filter-panel{
+
+        grid-template-columns:1fr;
+    }
+
+    .refresh-btn{
+
+        grid-column:auto;
+    }
+
+    .info-chip{
+
+        width:100%;
+
+        text-align:center;
+    }
+
+}
+
+</style></head><body><div class="container"><!-- =====================================================
+     HEADER
+===================================================== --><div class="header"><h1
+    onclick="toggleFilter()"
+    title="Ketuk untuk membuka filter"
+>
+    LAPORAN PRODUKSI HARIAN
+</h1><div class="subtitle">
+    DEPARTEMEN PRINTING
+</div></div><!-- =====================================================
+     FILTER
+===================================================== --><div
+    class="filter-panel"
+    id="filterPanel"
+><div class="filter-box"><label>
+    HARI YANG DIPILIH
+</label>
+
+<input
+    type="date"
+    id="tanggal"
+>
+
+</div><div class="filter-box"><label>
+    GRUP
+</label>
+
+<select id="grup">
+
+    <option value="">
+        SEMUA GRUP
+    </option>
+
+    <option value="A">
+        GRUP A
+    </option>
+
+    <option value="B">
+        GRUP B
+    </option>
+
+    <option value="C">
+        GRUP C
+    </option>
+
+</select>
+
+</div><button
+class="refresh-btn"
+onclick="ambilData()"
+
+«»
+
+↻ REFRESH DATA
+
+</button></div><!-- =====================================================
+     INFO HARI / GRUP
+===================================================== --><div class="info-bar"><div class="info-chip">HARI:
+
+<span id="infoTanggal">
+    -
+</span>
+
+</div><div class="info-chip">GRUP:
+
+<span id="infoGrup">
+    SEMUA
+</span>
+
+</div></div><!-- =====================================================
+     LOADING
+===================================================== --><div
+    id="loading"
+    class="loading"
+>
+    ⏳ Mengambil data...
+</div><!-- =====================================================
+     TABEL 1
+===================================================== --><div class="section"><div class="section-title">
+    PRODUKSI FLATBED PRINT
+</div><div class="table-wrap"><table class="table-flat"><thead><tr><th>
+    MC
+</th><th>
+    KODE PRODUK
+</th><th>
+    QTY (Pcs)
+</th><th>
+    KD
+</th><th>
+    TARGET (KD)
+</th><th>
+    ACV (%)
+</th></tr></thead><tbody id="flatBody"><tr><td
+    colspan="6"
+    class="empty"
+>
+    Belum ada data
+</td></tr></tbody></table></div></div><!-- =====================================================
+     TABEL 2
+===================================================== --><div class="section secondary"><div class="section-title">
+    STEAM, CURING, WASHING &amp; DLVR
+</div><div class="table-wrap"><table class="table-secondary"><thead><tr><th>
+    PROSES
+</th><th>
+    KODE PRODUK
+</th><th>
+    QTY
+</th><th>
+    SATUAN
+</th></tr></thead><tbody id="formBody"><tr><td
+    colspan="4"
+    class="empty"
+>
+    Belum ada data
+</td></tr></tbody></table></div></div><!-- =====================================================
+     FOOTER
+===================================================== --><div class="footer">LAPORAN PRODUKSI HARIAN
+•
+DEPARTEMEN PRINTING
+
+</div></div><script>
+
+
+/* =====================================================
+   URL APPS SCRIPT
 ===================================================== */
 
 const WEB_APP_URL =
@@ -660,25 +1190,24 @@ const WEB_APP_URL =
 
 
 /* =====================================================
-   TARGET MC
+   TARGET PER MESIN
 ===================================================== */
 
 const TARGET_MC = {
-    "FLAT 1": 100,
-    "FLAT 2": 100,
-    "FLAT 4": 100,
-    "FLAT 5": 133,
-    "FLAT 6": 133,
-    "FLAT 7": 133
+
+    "FLAT 1":100,
+
+    "FLAT 2":100,
+
+    "FLAT 4":100,
+
+    "FLAT 5":133,
+
+    "FLAT 6":133,
+
+    "FLAT 7":133
+
 };
-
-
-/* =====================================================
-   STORAGE FILTER
-===================================================== */
-
-const FILTER_STORAGE_KEY =
-"LAPORAN_PRODUKSI_HARIAN_FILTER_V1";
 
 
 /* =====================================================
@@ -686,58 +1215,71 @@ const FILTER_STORAGE_KEY =
 ===================================================== */
 
 const tanggalInput =
-document.getElementById("tanggal");
+    document.getElementById(
+        "tanggal"
+    );
+
 
 const grupInput =
-document.getElementById("grup");
+    document.getElementById(
+        "grup"
+    );
 
-const filterPanel =
-document.getElementById("filterPanel");
-
-const infoTanggal =
-document.getElementById("infoTanggal");
-
-const infoGrup =
-document.getElementById("infoGrup");
 
 const loading =
-document.getElementById("loading");
+    document.getElementById(
+        "loading"
+    );
+
 
 const flatBody =
-document.getElementById("flatBody");
+    document.getElementById(
+        "flatBody"
+    );
+
 
 const formBody =
-document.getElementById("formBody");
+    document.getElementById(
+        "formBody"
+    );
+
+
+const filterPanel =
+    document.getElementById(
+        "filterPanel"
+    );
 
 
 /* =====================================================
-   STATUS FILTER
+   FILTER BUKA / TUTUP
+   FILTER SELALU TERTUTUP SAAT AWAL
 ===================================================== */
 
-let filterTerbuka = false;
+let filterTerbuka =
+    false;
 
 
-/* =====================================================
-   FILTER PANEL
-===================================================== */
+function kunciFilter(){
 
-function kunciFilter() {
+    filterTerbuka =
+        false;
 
-    filterTerbuka = false;
+    filterPanel.style.display =
+        "none";
 
-    filterPanel.classList.remove("buka");
 }
 
 
-function toggleFilter() {
+function toggleFilter(){
 
-    filterTerbuka = !filterTerbuka;
+    filterTerbuka =
+        !filterTerbuka;
 
-    if (filterTerbuka) {
-        filterPanel.classList.add("buka");
-    } else {
-        filterPanel.classList.remove("buka");
-    }
+    filterPanel.style.display =
+        filterTerbuka
+        ? "grid"
+        : "none";
+
 }
 
 
@@ -745,7 +1287,7 @@ function toggleFilter() {
    TANGGAL HARI INI
 ===================================================== */
 
-function tanggalHariIni() {
+function tanggalHariIni(){
 
     const sekarang =
         new Date();
@@ -756,80 +1298,27 @@ function tanggalHariIni() {
     const bulan =
         String(
             sekarang.getMonth() + 1
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
     const hari =
         String(
             sekarang.getDate()
-        ).padStart(2, "0");
-
-    return `${tahun}-${bulan}-${hari}`;
-}
-
-
-/* =====================================================
-   SIMPAN FILTER
-===================================================== */
-
-function simpanFilter() {
-
-    const data = {
-        tanggal: tanggalInput.value,
-        grup: grupInput.value
-    };
-
-    try {
-
-        localStorage.setItem(
-            FILTER_STORAGE_KEY,
-            JSON.stringify(data)
+        ).padStart(
+            2,
+            "0"
         );
 
-    } catch (error) {
+    return (
+        tahun +
+        "-" +
+        bulan +
+        "-" +
+        hari
+    );
 
-        console.warn(
-            "Filter tidak dapat disimpan:",
-            error
-        );
-    }
-}
-
-
-/* =====================================================
-   AMBIL FILTER TERSIMPAN
-===================================================== */
-
-function ambilFilterTersimpan() {
-
-    try {
-
-        const tersimpan =
-            localStorage.getItem(
-                FILTER_STORAGE_KEY
-            );
-
-        if (!tersimpan) {
-            return null;
-        }
-
-        const data =
-            JSON.parse(tersimpan);
-
-        if (!data || typeof data !== "object") {
-            return null;
-        }
-
-        return data;
-
-    } catch (error) {
-
-        console.warn(
-            "Filter tersimpan tidak dapat dibaca:",
-            error
-        );
-
-        return null;
-    }
 }
 
 
@@ -839,45 +1328,60 @@ function ambilFilterTersimpan() {
 
 function formatTanggalIndonesia(
     tanggal
-) {
+){
 
-    if (!tanggal) {
+    if(!tanggal){
+
         return "-";
+
     }
+
 
     const bagian =
         tanggal.split("-");
 
-    if (bagian.length !== 3) {
+
+    if(
+        bagian.length !== 3
+    ){
+
         return tanggal;
+
     }
 
-    const tahun =
-        bagian[0];
-
-    const bulan =
-        Number(bagian[1]);
-
-    const hari =
-        bagian[2];
 
     const namaBulan = [
-        "",
-        "Januari",
-        "Februari",
-        "Maret",
-        "April",
-        "Mei",
-        "Juni",
-        "Juli",
-        "Agustus",
-        "September",
-        "Oktober",
-        "November",
-        "Desember"
+
+        "JANUARI",
+        "FEBRUARI",
+        "MARET",
+        "APRIL",
+        "MEI",
+        "JUNI",
+        "JULI",
+        "AGUSTUS",
+        "SEPTEMBER",
+        "OKTOBER",
+        "NOVEMBER",
+        "DESEMBER"
+
     ];
 
-    return `${hari} ${namaBulan[bulan]} ${tahun}`;
+
+    return (
+
+        bagian[2] +
+        " " +
+        namaBulan[
+            Number(
+                bagian[1]
+            ) - 1
+        ] +
+        " " +
+        bagian[0]
+
+    );
+
 }
 
 
@@ -885,25 +1389,31 @@ function formatTanggalIndonesia(
    UPDATE INFO
 ===================================================== */
 
-function updateInfo() {
+function updateInfo(){
 
-    infoTanggal.textContent =
+    const tanggal =
+        tanggalInput.value;
+
+
+    const grup =
+        grupInput.value;
+
+
+    document.getElementById(
+        "infoTanggal"
+    ).textContent =
         formatTanggalIndonesia(
-            tanggalInput.value
+            tanggal
         );
 
 
-    if (grupInput.value) {
+    document.getElementById(
+        "infoGrup"
+    ).textContent =
+        grup
+        ? "GRUP " + grup
+        : "SEMUA";
 
-        infoGrup.textContent =
-            "GRUP " +
-            grupInput.value;
-
-    } else {
-
-        infoGrup.textContent =
-            "SEMUA GRUP";
-    }
 }
 
 
@@ -911,21 +1421,47 @@ function updateInfo() {
    ESCAPE HTML
 ===================================================== */
 
-function escapeHTML(value) {
+function escapeHTML(
+    value
+){
 
-    if (
+    if(
         value === null ||
         value === undefined
-    ) {
+    ){
+
         return "";
+
     }
 
+
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
 }
 
 
@@ -933,35 +1469,76 @@ function escapeHTML(value) {
    FORMAT ANGKA
 ===================================================== */
 
-function formatAngka(value) {
+function formatAngka(
+    angka
+){
 
-    const angka =
-        Number(value) || 0;
+    const number =
+        Number(angka) || 0;
 
-    return angka.toLocaleString(
+    return number.toLocaleString(
         "id-ID"
     );
+
 }
 
 
 /* =====================================================
-   TARGET MC
+   AMBIL TARGET MC
 ===================================================== */
 
-function ambilTargetMC(mc) {
+function ambilTargetMC(
+    mc
+){
 
-    const nama =
-        String(mc || "")
-            .trim()
-            .toUpperCase();
+    if(!mc){
 
-    if (
-        TARGET_MC[nama] !== undefined
-    ) {
-        return TARGET_MC[nama];
+        return 0;
+
     }
 
+
+    const nama =
+        String(mc)
+        .trim()
+        .toUpperCase();
+
+
+    if(
+        TARGET_MC[nama] !== undefined
+    ){
+
+        return TARGET_MC[nama];
+
+    }
+
+
+    const angkaMC =
+        nama.match(
+            /\d+/
+        );
+
+
+    if(angkaMC){
+
+        const key =
+            "FLAT " +
+            angkaMC[0];
+
+
+        if(
+            TARGET_MC[key] !== undefined
+        ){
+
+            return TARGET_MC[key];
+
+        }
+
+    }
+
+
     return 0;
+
 }
 
 
@@ -970,18 +1547,33 @@ function ambilTargetMC(mc) {
 ===================================================== */
 
 function hitungACV(
-    totalKD,
+    kd,
     target
-) {
+){
 
-    if (!target) {
+    const nilaiKD =
+        Number(kd) || 0;
+
+
+    const nilaiTarget =
+        Number(target) || 0;
+
+
+    if(
+        nilaiTarget <= 0
+    ){
+
         return 0;
+
     }
 
+
     return (
-        Number(totalKD || 0) /
-        Number(target || 0)
-    ) * 100;
+        nilaiKD /
+        nilaiTarget *
+        100
+    );
+
 }
 
 
@@ -989,104 +1581,207 @@ function hitungACV(
    AMBIL DATA
 ===================================================== */
 
-async function ambilData() {
+async function ambilData(){
 
-    loading.style.display =
-        "block";
+    /* FILTER DIKUNCI TETAP TERTUTUP
+       SAAT REFRESH DATA */
 
-    loading.textContent =
-        "⏳ Mengambil data...";
-
-
-    flatBody.innerHTML = "";
-    formBody.innerHTML = "";
+    kunciFilter();
 
 
     const tanggal =
         tanggalInput.value;
 
+
     const grup =
         grupInput.value;
-
-
-    /*
-       Simpan pilihan terbaru.
-       Tidak mereset filter.
-    */
-
-    simpanFilter();
 
 
     updateInfo();
 
 
-    try {
+    loading.style.display =
+        "block";
 
-        const urlFlat =
+
+    loading.textContent =
+        "⏳ Mengambil data...";
+
+
+    flatBody.innerHTML =
+        `
+        <tr>
+
+            <td
+                colspan="6"
+                class="empty"
+            >
+                ⏳ Memuat data...
+            </td>
+
+        </tr>
+        `;
+
+
+    formBody.innerHTML =
+        `
+        <tr>
+
+            <td
+                colspan="4"
+                class="empty"
+            >
+                ⏳ Memuat data...
+            </td>
+
+        </tr>
+        `;
+
+
+    try{
+
+
+        /* =============================================
+           FLAT
+        ============================================= */
+
+        let urlFlat =
             WEB_APP_URL +
-            "?action=flat" +
-            "&tanggal=" +
-            encodeURIComponent(tanggal) +
-            "&grup=" +
-            encodeURIComponent(grup);
+            "?action=flat";
 
 
-        const urlForm =
-            WEB_APP_URL +
-            "?action=form" +
-            "&tanggal=" +
-            encodeURIComponent(tanggal) +
-            "&grup=" +
-            encodeURIComponent(grup);
+        if(tanggal){
+
+            urlFlat +=
+                "&tanggal=" +
+                encodeURIComponent(
+                    tanggal
+                );
+
+        }
 
 
-        const [
-            responseFlat,
-            responseForm
-        ] = await Promise.all([
+        if(grup){
 
-            fetch(urlFlat),
+            urlFlat +=
+                "&grup=" +
+                encodeURIComponent(
+                    grup
+                );
 
-            fetch(urlForm)
-
-        ]);
+        }
 
 
-        if (!responseFlat.ok) {
+        const responseFlat =
+            await fetch(
+                urlFlat,
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(
+            !responseFlat.ok
+        ){
 
             throw new Error(
                 "Gagal mengambil data FLAT"
             );
+
         }
 
 
-        if (!responseForm.ok) {
+        const hasilFlat =
+            await responseFlat.json();
+
+
+        if(
+            !hasilFlat.sukses
+        ){
+
+            throw new Error(
+                hasilFlat.pesan ||
+                "Data FLAT gagal"
+            );
+
+        }
+
+
+        tampilkanFlat(
+            hasilFlat.data || []
+        );
+
+
+        /* =============================================
+           FORM RESPONSES 5
+        ============================================= */
+
+        let urlForm =
+            WEB_APP_URL +
+            "?action=form";
+
+
+        if(tanggal){
+
+            urlForm +=
+                "&tanggal=" +
+                encodeURIComponent(
+                    tanggal
+                );
+
+        }
+
+
+        if(grup){
+
+            urlForm +=
+                "&grup=" +
+                encodeURIComponent(
+                    grup
+                );
+
+        }
+
+
+        const responseForm =
+            await fetch(
+                urlForm,
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(
+            !responseForm.ok
+        ){
 
             throw new Error(
                 "Gagal mengambil data FORM"
             );
+
         }
 
 
-        const [
-            dataFlat,
-            dataForm
-        ] = await Promise.all([
-
-            responseFlat.json(),
-
-            responseForm.json()
-
-        ]);
+        const hasilForm =
+            await responseForm.json();
 
 
-        tampilkanFlat(
-            dataFlat
-        );
+        if(
+            !hasilForm.sukses
+        ){
+
+            throw new Error(
+                hasilForm.pesan ||
+                "Data FORM gagal"
+            );
+
+        }
 
 
         tampilkanForm(
-            dataForm
+            hasilForm.data || []
         );
 
 
@@ -1094,644 +1789,560 @@ async function ambilData() {
             "none";
 
 
-    } catch (error) {
+    }catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
+
 
         loading.textContent =
-            "❌ Gagal mengambil data. Silakan coba refresh.";
+            "❌ " +
+            error.message;
+
+
+        flatBody.innerHTML =
+            `
+            <tr>
+
+                <td
+                    colspan="6"
+                    class="empty"
+                >
+                    ❌ Gagal mengambil data
+                </td>
+
+            </tr>
+            `;
+
+
+        formBody.innerHTML =
+            `
+            <tr>
+
+                <td
+                    colspan="4"
+                    class="empty"
+                >
+                    ❌ Gagal mengambil data
+                </td>
+
+            </tr>
+            `;
 
     }
+
 }
 
 
 /* =====================================================
-   TAMPILKAN FLAT
+   TABEL 1
+   KODE PRODUK DIJUMLAHKAN PER KODE
+   ACV DIHITUNG KUMULATIF PER MESIN
 ===================================================== */
 
-function tampilkanFlat(data) {
+function tampilkanFlat(
+    data
+){
 
-    flatBody.innerHTML = "";
-
-
-    let rows = [];
-
-
-    /*
-       Apps Script bisa mengembalikan
-       array langsung atau object.
-    */
-
-    if (Array.isArray(data)) {
-
-        rows = data;
-
-    } else if (
-        data &&
-        Array.isArray(data.data)
-    ) {
-
-        rows = data.data;
-
-    } else if (
-        data &&
-        Array.isArray(data.rows)
-    ) {
-
-        rows = data.rows;
-
-    }
+    flatBody.innerHTML =
+        "";
 
 
-    if (!rows.length) {
+    if(
+        !data ||
+        data.length === 0
+    ){
 
-        flatBody.innerHTML = `
-            <tr class="empty-row">
-                <td colspan="6">
-                    Tidak ada data produksi FLAT
-                    untuk filter yang dipilih.
+        flatBody.innerHTML =
+            `
+            <tr>
+
+                <td
+                    colspan="6"
+                    class="empty"
+                >
+                    Tidak ada produksi FLAT
+                    pada hari/grup ini
                 </td>
+
             </tr>
-        `;
+            `;
 
         return;
+
     }
 
 
-    /*
-       GROUPING:
-       MC + KODE PRODUK
-    */
+    /* =============================================
+       GABUNGKAN BERDASARKAN MC + KODE PRODUK
+    ============================================= */
 
-    const grouped =
-        {};
+    const kelompok = {};
 
 
-    rows.forEach(row => {
+    data.forEach(
+        function(row){
 
-        /*
-           Mendukung format array:
-           A = TANGGAL
-           B = MC
-           C = GRUP
-           D = KODE PRODUK
-           E = QTY
-           F = KD
-
-           Juga mendukung object
-           jika Apps Script mengembalikan header.
-        */
-
-        let mc;
-        let kode;
-        let qty;
-        let kd;
+            const mc =
+                String(
+                    row.mc || "-"
+                )
+                .trim()
+                .toUpperCase();
 
 
-        if (Array.isArray(row)) {
+            const kodeProduk =
+                String(
+                    row.kodeProduk ||
+                    row.kode ||
+                    "-"
+                )
+                .trim()
+                .toUpperCase();
 
-            mc =
-                row[1];
 
-            kode =
-                row[3];
+            const key =
+                mc +
+                "||" +
+                kodeProduk;
 
-            qty =
-                row[4];
 
-            kd =
-                row[5];
+            if(
+                !kelompok[key]
+            ){
 
-        } else {
+                kelompok[key] = {
 
-            mc =
-                row.MC ??
-                row.mc ??
-                row["MC"] ??
-                "";
+                    mc:mc,
 
-            kode =
-                row["KODE PRODUK"] ??
-                row.kodeProduk ??
-                row.kode ??
-                "";
+                    kodeProduk:
+                        kodeProduk,
 
-            qty =
-                row["QTY (PCS)"] ??
-                row.QTY ??
-                row.qty ??
-                0;
+                    qty:0,
 
-            kd =
-                row.KD ??
-                row.kd ??
-                0;
+                    kd:0
+
+                };
+
+            }
+
+
+            kelompok[key].qty +=
+                Number(row.qty) || 0;
+
+
+            kelompok[key].kd +=
+                Number(row.kd) || 0;
+
         }
+    );
 
 
-        mc =
-            String(mc ?? "")
-                .trim();
-
-        kode =
-            String(kode ?? "")
-                .trim();
+    const hasil =
+        Object.values(
+            kelompok
+        );
 
 
-        if (!mc) {
-            return;
+    /* =============================================
+       TOTAL KUMULATIF PER MESIN
+    ============================================= */
+
+    const totalMesin = {};
+
+
+    hasil.forEach(
+        function(row){
+
+            if(
+                !totalMesin[row.mc]
+            ){
+
+                totalMesin[row.mc] = {
+
+                    kd:0
+
+                };
+
+            }
+
+
+            totalMesin[row.mc].kd +=
+                Number(row.kd) || 0;
+
         }
+    );
 
 
-        const key =
-            mc +
-            "||" +
-            kode;
+    /* =============================================
+       URUTKAN
+       MC → KODE PRODUK
+    ============================================= */
 
+    hasil.sort(
+        function(a,b){
 
-        if (!grouped[key]) {
-
-            grouped[key] = {
-
-                mc: mc,
-
-                kode: kode,
-
-                qty: 0,
-
-                kd: 0
-            };
-        }
-
-
-        grouped[key].qty +=
-            Number(qty) || 0;
-
-        grouped[key].kd +=
-            Number(kd) || 0;
-
-    });
-
-
-    const groupedRows =
-        Object.values(grouped);
-
-
-    if (!groupedRows.length) {
-
-        flatBody.innerHTML = `
-            <tr class="empty-row">
-                <td colspan="6">
-                    Tidak ada data produksi FLAT
-                    untuk filter yang dipilih.
-                </td>
-            </tr>
-        `;
-
-        return;
-    }
-
-
-    /*
-       SORT MC lalu KODE
-    */
-
-    groupedRows.sort(
-        (a, b) => {
-
-            const mcCompare =
-                a.mc.localeCompare(
-                    b.mc,
+            const urutMC =
+                String(a.mc)
+                .localeCompare(
+                    String(b.mc),
                     undefined,
                     {
-                        numeric: true
+                        numeric:true
                     }
                 );
 
-            if (mcCompare !== 0) {
-                return mcCompare;
+
+            if(
+                urutMC !== 0
+            ){
+
+                return urutMC;
+
             }
 
-            return a.kode.localeCompare(
-                b.kode,
+
+            return String(
+                a.kodeProduk
+            ).localeCompare(
+                String(b.kodeProduk),
                 undefined,
                 {
-                    numeric: true
+                    numeric:true
                 }
             );
+
         }
     );
 
 
-    /*
-       TOTAL PER MC
-    */
+    /* =============================================
+       HITUNG TOTAL SELURUH TABEL
+    ============================================= */
 
-    const totalPerMC =
-        {};
+    let totalQty =
+        0;
 
-
-    groupedRows.forEach(item => {
-
-        if (!totalPerMC[item.mc]) {
-
-            totalPerMC[item.mc] = {
-                qty: 0,
-                kd: 0
-            };
-        }
+    let totalKD =
+        0;
 
 
-        totalPerMC[item.mc].qty +=
-            item.qty;
+    hasil.forEach(
+        function(row){
 
-        totalPerMC[item.mc].kd +=
-            item.kd;
-    });
+            totalQty +=
+                Number(row.qty) || 0;
 
+            totalKD +=
+                Number(row.kd) || 0;
 
-    /*
-       BUILD TABLE
-    */
-
-    let html = "";
-
-
-    groupedRows.forEach(
-        (item, index) => {
-
-            const next =
-                groupedRows[index + 1];
-
-
-            const lastOfMC =
-                !next ||
-                next.mc !== item.mc;
-
-
-            let targetHTML = "-";
-            let acvHTML = "-";
-
-
-            if (lastOfMC) {
-
-                const target =
-                    ambilTargetMC(
-                        item.mc
-                    );
-
-
-                const acv =
-                    hitungACV(
-                        totalPerMC[item.mc].kd,
-                        target
-                    );
-
-
-                targetHTML =
-                    target
-                        ? `<strong>${formatAngka(target)} KD</strong>`
-                        : "-";
-
-
-                acvHTML =
-                    target
-                        ? `<strong>${acv.toFixed(1)}%</strong>`
-                        : "-";
-            }
-
-
-            html += `
-                <tr>
-
-                    <td class="center">
-                        <strong>
-                            ${escapeHTML(item.mc)}
-                        </strong>
-                    </td>
-
-                    <td class="code">
-                        ${escapeHTML(item.kode || "-")}
-                    </td>
-
-                    <td class="number">
-                        ${formatAngka(item.qty)}
-                        Pcs
-                    </td>
-
-                    <td class="number">
-                        ${formatAngka(item.kd)}
-                        KD
-                    </td>
-
-                    <td class="number">
-                        ${targetHTML}
-                    </td>
-
-                    <td class="number">
-                        ${acvHTML}
-                    </td>
-
-                </tr>
-            `;
         }
     );
 
 
-    /*
-       TOTAL KESELURUHAN
-    */
+    /* =============================================
+       TAMPILKAN
+       TARGET & ACV HANYA 1x PER MESIN
+    ============================================= */
 
-    let totalQty = 0;
-    let totalKD = 0;
+    hasil.forEach(
+        function(row,index){
 
-
-    groupedRows.forEach(item => {
-
-        totalQty +=
-            item.qty;
-
-        totalKD +=
-            item.kd;
-    });
+            const tr =
+                document.createElement(
+                    "tr"
+                );
 
 
-    html += `
-        <tr class="total-row">
-
-            <td class="center">
-                TOTAL
-            </td>
-
-            <td class="center">
-                -
-            </td>
-
-            <td class="number">
-                ${formatAngka(totalQty)}
-                Pcs
-            </td>
-
-            <td class="number">
-                ${formatAngka(totalKD)}
-                KD
-            </td>
-
-            <td class="center">
-                -
-            </td>
-
-            <td class="center">
-                -
-            </td>
-
-        </tr>
-    `;
+            const mc =
+                row.mc || "-";
 
 
-    flatBody.innerHTML =
-        html;
-}
+            const target =
+                ambilTargetMC(
+                    mc
+                );
 
 
-/* =====================================================
-   TAMPILKAN FORM RESPONSES 5
-===================================================== */
-
-function tampilkanForm(data) {
-
-    formBody.innerHTML = "";
+            const totalKDmesin =
+                totalMesin[mc]
+                ? totalMesin[mc].kd
+                : 0;
 
 
-    let rows = [];
+            const acv =
+                hitungACV(
+                    totalKDmesin,
+                    target
+                );
 
 
-    if (Array.isArray(data)) {
-
-        rows = data;
-
-    } else if (
-        data &&
-        Array.isArray(data.data)
-    ) {
-
-        rows = data.data;
-
-    } else if (
-        data &&
-        Array.isArray(data.rows)
-    ) {
-
-        rows = data.rows;
-
-    }
+            const barisBerikutnya =
+                hasil[index + 1];
 
 
-    if (!rows.length) {
-
-        formBody.innerHTML = `
-            <tr class="empty-row">
-                <td colspan="4">
-                    Tidak ada data
-                    STEAM, CURING, WASHING
-                    &amp; DLVR untuk filter
-                    yang dipilih.
-                </td>
-            </tr>
-        `;
-
-        return;
-    }
+            const barisTerakhirMC =
+                !barisBerikutnya ||
+                barisBerikutnya.mc !== mc;
 
 
-    let html = "";
-
-
-    rows.forEach(row => {
-
-        let proses;
-        let kode;
-        let qty;
-        let satuan;
-
-
-        if (Array.isArray(row)) {
-
-            /*
-               Form Responses 5:
-               A = Timestamp
-               B = PROSES
-               C = KODE PRODUK
-               D = QTY
-               E = SATUAN
-               F = GRUP
-               G = CATATAN
-               H = TANGGAL
-            */
-
-            proses =
-                row[1];
-
-            kode =
-                row[2];
-
-            qty =
-                row[3];
-
-            satuan =
-                row[4];
-
-        } else {
-
-            proses =
-                row.PROSES ??
-                row.proses ??
-                "";
-
-            kode =
-                row["KODE PRODUK"] ??
-                row.kodeProduk ??
-                row.kode ??
-                "";
-
-            qty =
-                row.QTY ??
-                row.qty ??
-                "";
-
-            satuan =
-                row.SATUAN ??
-                row.satuan ??
-                "";
-        }
-
-
-        html += `
-            <tr>
+            tr.innerHTML =
+                `
 
                 <td>
-                    <strong>
-                        ${escapeHTML(proses || "-")}
-                    </strong>
+                    ${escapeHTML(mc)}
                 </td>
 
-                <td class="code">
-                    ${escapeHTML(kode || "-")}
+                <td>
+                    ${escapeHTML(
+                        row.kodeProduk
+                    )}
                 </td>
 
-                <td class="number">
-                    ${escapeHTML(qty || "-")}
+                <td class="angka">
+                    ${formatAngka(
+                        row.qty
+                    )}
+                    Pcs
                 </td>
 
-                <td class="center">
-                    ${escapeHTML(satuan || "-")}
+                <td class="angka">
+                    ${formatAngka(
+                        row.kd
+                    )}
+                    KD
                 </td>
 
-            </tr>
+                <td class="angka">
+
+                    ${
+                        barisTerakhirMC
+                        ? formatAngka(target) +
+                          " KD"
+                        : ""
+                    }
+
+                </td>
+
+                <td class="acv">
+
+                    ${
+                        barisTerakhirMC
+                        ? acv.toFixed(1) +
+                          "%"
+                        : ""
+                    }
+
+                </td>
+
+                `;
+
+
+            flatBody.appendChild(
+                tr
+            );
+
+        }
+    );
+
+
+    /* =============================================
+       BARIS TOTAL
+    ============================================= */
+
+    const totalRow =
+        document.createElement(
+            "tr"
+        );
+
+
+    totalRow.className =
+        "total-row";
+
+
+    totalRow.innerHTML =
+        `
+
+        <td>
+            TOTAL
+        </td>
+
+        <td>
+            -
+        </td>
+
+        <td class="angka">
+            ${formatAngka(totalQty)}
+            Pcs
+        </td>
+
+        <td class="angka">
+            ${formatAngka(totalKD)}
+            KD
+        </td>
+
+        <td>
+            -
+        </td>
+
+        <td>
+            -
+        </td>
+
         `;
-    });
 
 
-    formBody.innerHTML =
-        html;
+    flatBody.appendChild(
+        totalRow
+    );
+
 }
 
 
 /* =====================================================
-   EVENT FILTER TANGGAL
+   TABEL 2
+===================================================== */
+
+function tampilkanForm(
+    data
+){
+
+    formBody.innerHTML =
+        "";
+
+
+    if(
+        !data ||
+        data.length === 0
+    ){
+
+        formBody.innerHTML =
+            `
+            <tr>
+
+                <td
+                    colspan="4"
+                    class="empty"
+                >
+                    Tidak ada data
+                    Steam, Curing,
+                    Washing & DLVR
+                </td>
+
+            </tr>
+            `;
+
+        return;
+
+    }
+
+
+    data.forEach(
+        function(row){
+
+            const tr =
+                document.createElement(
+                    "tr"
+                );
+
+
+            tr.innerHTML =
+                `
+
+                <td>
+                    ${escapeHTML(
+                        row.proses || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        row.kodeProduk || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        row.qty || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        row.satuan || "-"
+                    )}
+                </td>
+
+                `;
+
+
+            formBody.appendChild(
+                tr
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   EVENT TANGGAL
 ===================================================== */
 
 tanggalInput.addEventListener(
     "change",
-    function() {
-
-        simpanFilter();
+    function(){
 
         updateInfo();
 
         ambilData();
+
     }
 );
 
 
 /* =====================================================
-   EVENT FILTER GRUP
+   EVENT GRUP
 ===================================================== */
 
 grupInput.addEventListener(
     "change",
-    function() {
-
-        simpanFilter();
+    function(){
 
         updateInfo();
 
         ambilData();
+
     }
 );
 
 
 /* =====================================================
-   STARTUP
+   START
+   FILTER DIKUNCI TERTUTUP
+   TANGGAL = HARI INI
+   GRUP = SEMUA
 ===================================================== */
 
-(function mulai() {
-
-    /*
-       Tutup panel filter saat awal.
-       Hanya panel yang ditutup,
-       bukan filter yang di-reset.
-    */
-
-    kunciFilter();
+kunciFilter();
 
 
-    /*
-       Ambil filter terakhir.
-    */
-
-    const tersimpan =
-        ambilFilterTersimpan();
+tanggalInput.value =
+    tanggalHariIni();
 
 
-    if (
-        tersimpan &&
-        tersimpan.tanggal
-    ) {
-
-        tanggalInput.value =
-            tersimpan.tanggal;
-
-        grupInput.value =
-            tersimpan.grup || "";
-
-    } else {
-
-        tanggalInput.value =
-            tanggalHariIni();
-
-        grupInput.value =
-            "";
-    }
+grupInput.value =
+    "";
 
 
-    /*
-       Update tulisan info.
-    */
-
-    updateInfo();
+updateInfo();
 
 
-    /*
-       Ambil data menggunakan
-       filter terakhir.
-    */
+ambilData();
 
-    ambilData();
-
-})();
 
 </script>
-
 </body>
 </html>
