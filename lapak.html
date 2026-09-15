@@ -21,24 +21,74 @@ html{
 }
 
 body{
-
+    font-family:Arial,sans-serif;
     margin:0;
+    padding:20px;
+    color:#1e2d36;
 
-    padding:14px;
+    background-color:#dfe8ed;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:
+    background-image:
+        /* motif dasar kotak kain */
         linear-gradient(
-            145deg,
-            #eef2f5,
-            #d5dde3
+            135deg,
+            rgba(255,255,255,.35) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255,255,255,.25) 50%,
+            rgba(255,255,255,.25) 75%,
+            transparent 75%
+        ),
+
+        /* garis tenun */
+        repeating-linear-gradient(
+            0deg,
+            rgba(35,72,94,.055) 0px,
+            rgba(35,72,94,.055) 1px,
+            transparent 1px,
+            transparent 7px
+        ),
+
+        repeating-linear-gradient(
+            90deg,
+            rgba(35,72,94,.045) 0px,
+            rgba(35,72,94,.045) 1px,
+            transparent 1px,
+            transparent 7px
+        ),
+
+        /* motif geometris */
+        radial-gradient(
+            ellipse 38px 22px at 25% 25%,
+            transparent 45%,
+            rgba(35,72,94,.10) 47%,
+            rgba(35,72,94,.10) 55%,
+            transparent 57%
+        ),
+
+        radial-gradient(
+            ellipse 38px 22px at 75% 75%,
+            transparent 45%,
+            rgba(35,72,94,.10) 47%,
+            rgba(35,72,94,.10) 55%,
+            transparent 57%
+        ),
+
+        linear-gradient(
+            135deg,
+            #eef4f7,
+            #cbd9e1
         );
 
-    color:#263238;
+    background-size:
+        84px 84px,
+        7px 7px,
+        7px 7px,
+        84px 84px,
+        84px 84px,
+        100% 100%;
+
+    background-attachment:fixed;
 }
 
 .container{
