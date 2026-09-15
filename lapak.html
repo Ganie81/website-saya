@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LAPORAN PRODUKSI HARIAN</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    padding:14px;
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(145deg,#f1f4f7,#dfe5ea);
+    color:#263238;
+}
+
+.container{
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+    text-align:center;
+    padding:18px 12px 20px;
+    margin-bottom:14px;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        145deg,
+        #ffffff,
+        #dfe5ea
+    );
+
+    box-shadow:
+        8px 8px 18px rgba(0,0,0,.16),
+        -5px -5px 12px rgba(255,255,255,.95);
+
+    border:1px solid rgba(255,255,255,.8);
+}
+
+.header h1{
+    margin:0;
+
+    font-size:clamp(
+        27px,
+        7vw,
+        48px
+    );
+
+    font-weight:900;
+
+    letter-spacing:.5px;
+
+    color:#263d4f;
+
+    text-shadow:
+        2px 2px 0 #ffffff,
+        4px 4px 7px rgba(0,0,0,.25);
+}
+
+.header .subtitle{
+    margin-top:5px;
+
+    font-size:clamp(
+        13px,
+        3.5vw,
+        20px
+    );
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    color:#607d8b;
+
+    text-shadow:
+        1px 2px 3px rgba(0,0,0,.22);
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+.filter-panel{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr auto;
+
+    gap:10px;
+
+    padding:12px;
+
+    margin-bottom:16px;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+        145deg,
+        #edf2f5,
+        #d6dde2
+    );
+
+    box-shadow:
+        inset 2px 2px 5px rgba(255,255,255,.9),
+        inset -3px -3px 7px rgba(0,0,0,.12),
+        6px 6px 14px rgba(0,0,0,.14);
+}
+
+.filter-box{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+}
+
+.filter-box label{
+
+    font-size:12px;
+
+    font-weight:900;
+
+    color:#536872;
+
+    text-shadow:
+        1px 1px 2px rgba(0,0,0,.15);
+}
+
+.filter-box input,
+.filter-box select{
+
+    width:100%;
+
+    min-height:44px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:12px;
+
+    padding:8px 11px;
+
+    background:#ffffff;
+
+    color:#263238;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    box-shadow:
+        inset 2px 2px 5px rgba(0,0,0,.12),
+        2px 2px 5px rgba(0,0,0,.12);
+}
+
+.refresh-btn{
+
+    align-self:end;
+
+    min-height:44px;
+
+    padding:8px 16px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    color:#ffffff;
+
+    background:linear-gradient(
+        145deg,
+        #6fa8c5,
+        #397899
+    );
+
+    box-shadow:
+        4px 4px 8px rgba(0,0,0,.25),
+        inset 1px 1px 2px rgba(255,255,255,.5);
+
+    text-shadow:
+        1px 2px 3px rgba(0,0,0,.4);
+}
+
+.refresh-btn:active{
+
+    transform:translateY(2px);
+
+    box-shadow:
+        2px 2px 4px rgba(0,0,0,.25);
+}
+
+
+/* =====================================================
+   INFO
+===================================================== */
+
+.info-bar{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:16px;
+}
+
+.info-chip{
+
+    padding:8px 15px;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        145deg,
+        #ffffff,
+        #dce4e9
+    );
+
+    box-shadow:
+        4px 4px 9px rgba(0,0,0,.16),
+        -3px -3px 7px rgba(255,255,255,.9);
+
+    font-size:14px;
+
+    font-weight:900;
+
+    color:#405563;
+
+    text-shadow:
+        1px 1px 2px rgba(0,0,0,.15);
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section{
+
+    margin-bottom:20px;
+
+    border-radius:20px;
+
+    padding:10px;
+
+    background:linear-gradient(
+        145deg,
+        #d8edf8,
+        #b8d9e9
+    );
+
+    box-shadow:
+        8px 8px 18px rgba(0,0,0,.18),
+        -5px -5px 12px rgba(255,255,255,.95);
+
+    border:1px solid rgba(255,255,255,.8);
+}
+
+.section.secondary{
+
+    background:linear-gradient(
+        145deg,
+        #d8edf8,
+        #b8d9e9
+    );
+}
+
+.section-title{
+
+    text-align:center;
+
+    padding:11px 8px 13px;
+
+    font-size:clamp(
+        17px,
+        4.7vw,
+        27px
+    );
+
+    font-weight:900;
+
+    color:#25495e;
+
+    letter-spacing:.4px;
+
+    text-shadow:
+        2px 2px 0 #ffffff,
+        3px 4px 6px rgba(0,0,0,.25);
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-wrap{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    border-radius:14px;
+
+    box-shadow:
+        4px 5px 11px rgba(0,0,0,.20);
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:separate;
+
+    border-spacing:0;
+
+    min-width:650px;
+}
+
+
+/* =====================================================
+   TABLE HEADER
+===================================================== */
+
+thead th{
+
+    padding:11px 8px;
+
+    font-size:clamp(
+        12px,
+        3.2vw,
+        16px
+    );
+
+    font-weight:900;
+
+    text-align:center;
+
+    color:#ffffff;
+
+    background:linear-gradient(
+        145deg,
+        #78b8d5,
+        #4f91b0
+    );
+
+    border-right:
+        1px solid rgba(255,255,255,.35);
+
+    text-shadow:
+        1px 2px 3px rgba(0,0,0,.45);
+
+    box-shadow:
+        inset 0 2px 3px rgba(255,255,255,.35),
+        inset 0 -3px 5px rgba(0,0,0,.15);
+}
+
+
+/* =====================================================
+   FLAT TABLE
+===================================================== */
+
+.table-flat{
+
+    background:#eaf7fc;
+}
+
+.table-flat tbody td{
+
+    padding:10px 8px;
+
+    text-align:center;
+
+    font-size:clamp(
+        13px,
+        3.5vw,
+        17px
+    );
+
+    font-weight:800;
+
+    color:#294454;
+
+    border-bottom:
+        1px solid #c7e0eb;
+
+    border-right:
+        1px solid #d4e7ef;
+
+    text-shadow:
+        1px 1px 2px rgba(0,0,0,.14);
+}
+
+.table-flat tbody tr:nth-child(even){
+
+    background:#e1f2f9;
+}
+
+.table-flat tbody tr:nth-child(odd){
+
+    background:#effaff;
+}
+
+
+/* =====================================================
+   ANGKA
+===================================================== */
+
+.angka{
+
+    font-weight:900 !important;
+
+    font-size:clamp(
+        14px,
+        3.8vw,
+        18px
+    ) !important;
+
+    text-shadow:
+        1px 2px 3px rgba(0,0,0,.20);
+}
+
+
+/* =====================================================
+   ACV
+===================================================== */
+
+.acv{
+
+    font-weight:900 !important;
+
+    font-size:clamp(
+        14px,
+        3.8vw,
+        18px
+    ) !important;
+
+    text-shadow:
+        1px 2px 3px rgba(0,0,0,.20);
+}
+
+
+/* =====================================================
+   SECOND TABLE
+===================================================== */
+
+.table-secondary{
+
+    background:#f1f3f4;
+}
+
+.table-secondary tbody td{
+
+    padding:10px 8px;
+
+    text-align:center;
+
+    font-size:clamp(
+        13px,
+        3.5vw,
+        17px
+    );
+
+    font-weight:700;
+
+    color:#37474f;
+
+    background:#eef1f3;
+
+    border-bottom:
+        1px solid #d6dadd;
+
+    border-right:
+        1px solid #dce0e3;
+
+    text-shadow:
+        1px 1px 2px rgba(0,0,0,.12);
+}
+
+.table-secondary tbody tr:nth-child(even) td{
+
+    background:#e8ebed;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+    display:none;
+
+    text-align:center;
+
+    padding:18px;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    color:#496776;
+
+    text-shadow:
+        1px 2px 3px rgba(0,0,0,.18);
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+
+    padding:20px !important;
+
+    text-align:center !important;
+
+    font-weight:900 !important;
+
+    color:#78909c !important;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    text-align:center;
+
+    padding:12px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    color:#78909c;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:650px){
+
+    body{
+
+        padding:8px;
+    }
+
+    .header{
+
+        padding:
+            15px 8px 17px;
+
+        border-radius:17px;
+    }
+
+    .filter-panel{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        border-radius:16px;
+    }
+
+    .refresh-btn{
+
+        grid-column:
+            1 / -1;
+
+        width:100%;
+    }
+
+    .section{
+
+        padding:7px;
+
+        border-radius:17px;
+    }
+
+    .section-title{
+
+        padding:
+            9px 5px 11px;
+    }
+
+    table{
+
+        min-width:650px;
+    }
+}
+
+
+@media(max-width:380px){
+
+    .filter-panel{
+
+        grid-template-columns:1fr;
+    }
+
+    .refresh-btn{
+
+        grid-column:auto;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div class="header">
+
+    <h1>
+        LAPORAN PRODUKSI HARIAN
+    </h1>
+
+    <div class="subtitle">
+        DEPARTEMEN PRINTING
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FILTER TANGGAL + GRUP
+===================================================== -->
+
+<div class="filter-panel">
+
+
+    <div class="filter-box">
+
+        <label>
+            HARI YANG DIPILIH
+        </label>
+
+        <input
+            type="date"
+            id="tanggal"
+        >
+
+    </div>
+
+
+    <div class="filter-box">
+
+        <label>
+            GRUP
+        </label>
+
+        <select id="grup">
+
+            <option value="">
+                SEMUA GRUP
+            </option>
+
+            <option value="A">
+                GRUP A
+            </option>
+
+            <option value="B">
+                GRUP B
+            </option>
+
+            <option value="C">
+                GRUP C
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <button
+        class="refresh-btn"
+        onclick="ambilData()"
+    >
+        ↻ REFRESH DATA
+    </button>
+
+
+</div>
+
+
+<!-- =====================================================
+     INFO TERPILIH
+===================================================== -->
+
+<div class="info-bar">
+
+    <div class="info-chip">
+
+        HARI:
+        <span id="infoTanggal">
+            -
+        </span>
+
+    </div>
+
+
+    <div class="info-chip">
+
+        GRUP:
+        <span id="infoGrup">
+            SEMUA
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LOADING
+===================================================== -->
+
+<div
+    id="loading"
+    class="loading"
+>
+    ⏳ Mengambil data...
+</div>
+
+
+<!-- =====================================================
+     PRODUKSI FLATBED PRINT
+===================================================== -->
+
+<div class="section">
+
+
+    <div class="section-title">
+
+        PRODUKSI FLATBED PRINT
+
+    </div>
+
+
+    <div class="table-wrap">
+
+
+        <table class="table-flat">
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        MC
+                    </th>
+
+                    <th>
+                        KODE PRODUK
+                    </th>
+
+                    <th>
+                        QTY (Pcs)
+                    </th>
+
+                    <th>
+                        KD
+                    </th>
+
+                    <th>
+                        TARGET (KD)
+                    </th>
+
+                    <th>
+                        ACV (%)
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="flatBody">
+
+                <tr>
+
+                    <td
+                        colspan="6"
+                        class="empty"
+                    >
+                        Belum ada data
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     STEAM CURING WASHING DLVR
+===================================================== -->
+
+<div class="section secondary">
+
+
+    <div class="section-title">
+
+        STEAM, CURING, WASHING &amp; DLVR
+
+    </div>
+
+
+    <div class="table-wrap">
+
+
+        <table class="table-secondary">
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        PROSES
+                    </th>
+
+                    <th>
+                        KODE PRODUK
+                    </th>
+
+                    <th>
+                        QTY
+                    </th>
+
+                    <th>
+                        SATUAN
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="formBody">
+
+                <tr>
+
+                    <td
+                        colspan="4"
+                        class="empty"
+                    >
+                        Belum ada data
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<div class="footer">
+
+    LAPORAN PRODUKSI HARIAN
+    •
+    DEPARTEMEN PRINTING
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   URL APPS SCRIPT
+===================================================== */
+
+const WEB_APP_URL =
+"https://script.google.com/macros/s/AKfycbwzhYbVJLh8X6yOveOsz1mpXVoOrGTXXOzPM-zpo6_sh31tTeeM5YFT1B2SZ2xTfAdt/exec";
+
+
+/* =====================================================
+   TARGET MC
+===================================================== */
+
+const TARGET_MC = {
+
+    "FLAT 1": 100,
+
+    "FLAT 2": 100,
+
+    "FLAT 4": 100,
+
+    "FLAT 5": 133,
+
+    "FLAT 6": 133,
+
+    "FLAT 7": 133
+
+};
+
+
+/* =====================================================
+   ELEMENT
+===================================================== */
+
+const tanggalInput =
+    document.getElementById(
+        "tanggal"
+    );
+
+
+const grupInput =
+    document.getElementById(
+        "grup"
+    );
+
+
+const loading =
+    document.getElementById(
+        "loading"
+    );
+
+
+const flatBody =
+    document.getElementById(
+        "flatBody"
+    );
+
+
+const formBody =
+    document.getElementById(
+        "formBody"
+    );
+
+
+/* =====================================================
+   TANGGAL HARI INI
+===================================================== */
+
+function tanggalHariIni(){
+
+    const sekarang =
+        new Date();
+
+
+    const tahun =
+        sekarang.getFullYear();
+
+
+    const bulan =
+        String(
+            sekarang.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const hari =
+        String(
+            sekarang.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    return (
+        tahun +
+        "-" +
+        bulan +
+        "-" +
+        hari
+    );
+
+}
+
+
+/* =====================================================
+   FORMAT TANGGAL INDONESIA
+===================================================== */
+
+function formatTanggalIndonesia(
+    tanggal
+){
+
+    if(!tanggal){
+
+        return "-";
+
+    }
+
+
+    const bagian =
+        tanggal.split("-");
+
+
+    if(
+        bagian.length !== 3
+    ){
+
+        return tanggal;
+
+    }
+
+
+    const namaBulan = [
+
+        "JANUARI",
+        "FEBRUARI",
+        "MARET",
+        "APRIL",
+        "MEI",
+        "JUNI",
+        "JULI",
+        "AGUSTUS",
+        "SEPTEMBER",
+        "OKTOBER",
+        "NOVEMBER",
+        "DESEMBER"
+
+    ];
+
+
+    return (
+
+        bagian[2] +
+        " " +
+        namaBulan[
+            Number(
+                bagian[1]
+            ) - 1
+        ] +
+        " " +
+        bagian[0]
+
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE INFO
+===================================================== */
+
+function updateInfo(){
+
+    const tanggal =
+        tanggalInput.value;
+
+
+    const grup =
+        grupInput.value;
+
+
+    document.getElementById(
+        "infoTanggal"
+    ).textContent =
+        formatTanggalIndonesia(
+            tanggal
+        );
+
+
+    document.getElementById(
+        "infoGrup"
+    ).textContent =
+        grup
+            ? "GRUP " + grup
+            : "SEMUA";
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "";
+
+    }
+
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   FORMAT ANGKA
+===================================================== */
+
+function formatAngka(
+    angka
+){
+
+    const number =
+        Number(angka) || 0;
+
+
+    return number.toLocaleString(
+        "id-ID"
+    );
+
+}
+
+
+/* =====================================================
+   TARGET MC
+===================================================== */
+
+function ambilTargetMC(
+    mc
+){
+
+    if(!mc){
+
+        return 0;
+
+    }
+
+
+    const nama =
+        String(mc)
+            .trim()
+            .toUpperCase();
+
+
+    if(
+        TARGET_MC[nama] !== undefined
+    ){
+
+        return TARGET_MC[nama];
+
+    }
+
+
+    const angkaMC =
+        nama.match(
+            /\d+/
+        );
+
+
+    if(angkaMC){
+
+        const key =
+            "FLAT " +
+            angkaMC[0];
+
+
+        if(
+            TARGET_MC[key] !== undefined
+        ){
+
+            return TARGET_MC[key];
+
+        }
+
+    }
+
+
+    return 0;
+
+}
+
+
+/* =====================================================
+   HITUNG ACV
+===================================================== */
+
+function hitungACV(
+    kd,
+    target
+){
+
+    const nilaiKD =
+        Number(kd) || 0;
+
+
+    const nilaiTarget =
+        Number(target) || 0;
+
+
+    if(
+        nilaiTarget <= 0
+    ){
+
+        return 0;
+
+    }
+
+
+    return (
+        nilaiKD /
+        nilaiTarget *
+        100
+    );
+
+}
+
+
+/* =====================================================
+   AMBIL DATA
+===================================================== */
+
+async function ambilData(){
+
+    const tanggal =
+        tanggalInput.value;
+
+
+    const grup =
+        grupInput.value;
+
+
+    updateInfo();
+
+
+    loading.style.display =
+        "block";
+
+
+    loading.textContent =
+        "⏳ Mengambil data...";
+
+
+    flatBody.innerHTML =
+        `
+        <tr>
+            <td
+                colspan="6"
+                class="empty"
+            >
+                ⏳ Memuat data...
+            </td>
+        </tr>
+        `;
+
+
+    formBody.innerHTML =
+        `
+        <tr>
+            <td
+                colspan="4"
+                class="empty"
+            >
+                ⏳ Memuat data...
+            </td>
+        </tr>
+        `;
+
+
+    try{
+
+
+        /* =========================================
+           DATA FLAT
+        ========================================= */
+
+        let urlFlat =
+            WEB_APP_URL +
+            "?action=flat";
+
+
+        if(tanggal){
+
+            urlFlat +=
+                "&tanggal=" +
+                encodeURIComponent(
+                    tanggal
+                );
+
+        }
+
+
+        if(grup){
+
+            urlFlat +=
+                "&grup=" +
+                encodeURIComponent(
+                    grup
+                );
+
+        }
+
+
+        const responseFlat =
+            await fetch(
+                urlFlat,
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(
+            !responseFlat.ok
+        ){
+
+            throw new Error(
+                "Gagal mengambil data FLAT"
+            );
+
+        }
+
+
+        const hasilFlat =
+            await responseFlat.json();
+
+
+        if(
+            !hasilFlat.sukses
+        ){
+
+            throw new Error(
+                hasilFlat.pesan ||
+                "Data FLAT gagal"
+            );
+
+        }
+
+
+        tampilkanFlat(
+            hasilFlat.data || []
+        );
+
+
+        /* =========================================
+           DATA FORM RESPONSES
+        ========================================= */
+
+        let urlForm =
+            WEB_APP_URL +
+            "?action=form";
+
+
+        if(tanggal){
+
+            urlForm +=
+                "&tanggal=" +
+                encodeURIComponent(
+                    tanggal
+                );
+
+        }
+
+
+        if(grup){
+
+            urlForm +=
+                "&grup=" +
+                encodeURIComponent(
+                    grup
+                );
+
+        }
+
+
+        const responseForm =
+            await fetch(
+                urlForm,
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(
+            !responseForm.ok
+        ){
+
+            throw new Error(
+                "Gagal mengambil data FORM"
+            );
+
+        }
+
+
+        const hasilForm =
+            await responseForm.json();
+
+
+        if(
+            !hasilForm.sukses
+        ){
+
+            throw new Error(
+                hasilForm.pesan ||
+                "Data FORM gagal"
+            );
+
+        }
+
+
+        tampilkanForm(
+            hasilForm.data || []
+        );
+
+
+        loading.style.display =
+            "none";
+
+
+    }catch(error){
+
+        console.error(
+            error
+        );
+
+
+        loading.textContent =
+            "❌ " +
+            error.message;
+
+
+        flatBody.innerHTML =
+            `
+            <tr>
+                <td
+                    colspan="6"
+                    class="empty"
+                >
+                    ❌ Gagal mengambil data
+                </td>
+            </tr>
+            `;
+
+
+        formBody.innerHTML =
+            `
+            <tr>
+                <td
+                    colspan="4"
+                    class="empty"
+                >
+                    ❌ Gagal mengambil data
+                </td>
+            </tr>
+            `;
+
+    }
+
+}
+
+
+/* =====================================================
+   TAMPILKAN DATA FLAT
+===================================================== */
+
+function tampilkanFlat(
+    data
+){
+
+    flatBody.innerHTML =
+        "";
+
+
+    if(
+        !data ||
+        data.length === 0
+    ){
+
+        flatBody.innerHTML =
+            `
+            <tr>
+                <td
+                    colspan="6"
+                    class="empty"
+                >
+                    Tidak ada produksi FLAT
+                    pada hari/grup ini
+                </td>
+            </tr>
+            `;
+
+        return;
+
+    }
+
+
+    data.sort(
+        function(a,b){
+
+            return String(
+                a.mc
+            ).localeCompare(
+                String(b.mc),
+                undefined,
+                {
+                    numeric:true
+                }
+            );
+
+        }
+    );
+
+
+    data.forEach(
+        function(row){
+
+            const mc =
+                row.mc || "-";
+
+
+            const kode =
+                row.kodeProduk || "-";
+
+
+            const qty =
+                Number(row.qty) || 0;
+
+
+            const kd =
+                Number(row.kd) || 0;
+
+
+            const target =
+                ambilTargetMC(
+                    mc
+                );
+
+
+            const acv =
+                hitungACV(
+                    kd,
+                    target
+                );
+
+
+            const tr =
+                document.createElement(
+                    "tr"
+                );
+
+
+            tr.innerHTML =
+                `
+
+                <td>
+                    ${escapeHTML(mc)}
+                </td>
+
+                <td>
+                    ${escapeHTML(kode)}
+                </td>
+
+                <td class="angka">
+                    ${formatAngka(qty)}
+                    Pcs
+                </td>
+
+                <td class="angka">
+                    ${formatAngka(kd)}
+                    KD
+                </td>
+
+                <td class="angka">
+                    ${formatAngka(target)}
+                    KD
+                </td>
+
+                <td class="acv">
+                    ${acv.toFixed(1)}%
+                </td>
+
+                `;
+
+
+            flatBody.appendChild(
+                tr
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   TAMPILKAN DATA FORM
+===================================================== */
+
+function tampilkanForm(
+    data
+){
+
+    formBody.innerHTML =
+        "";
+
+
+    if(
+        !data ||
+        data.length === 0
+    ){
+
+        formBody.innerHTML =
+            `
+            <tr>
+                <td
+                    colspan="4"
+                    class="empty"
+                >
+                    Tidak ada data
+                    Steam, Curing,
+                    Washing & DLVR
+                </td>
+            </tr>
+            `;
+
+        return;
+
+    }
+
+
+    data.forEach(
+        function(row){
+
+            const tr =
+                document.createElement(
+                    "tr"
+                );
+
+
+            tr.innerHTML =
+                `
+
+                <td>
+                    ${escapeHTML(
+                        row.proses || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        row.kodeProduk || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        row.qty || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        row.satuan || "-"
+                    )}
+                </td>
+
+                `;
+
+
+            formBody.appendChild(
+                tr
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   EVENT FILTER
+===================================================== */
+
+tanggalInput.addEventListener(
+    "change",
+    function(){
+
+        updateInfo();
+
+        ambilData();
+
+    }
+);
+
+
+grupInput.addEventListener(
+    "change",
+    function(){
+
+        updateInfo();
+
+        ambilData();
+
+    }
+);
+
+
+/* =====================================================
+   LOAD AWAL
+===================================================== */
+
+tanggalInput.value =
+    tanggalHariIni();
+
+
+updateInfo();
+
+
+ambilData();
+
+</script>
+
+
+</body>
+</html>
