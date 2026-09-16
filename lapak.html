@@ -1,12 +1,12 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-«»
+<title>LAPORAN PRODUKSI HARIAN</title>
 
-<title>
-    LAPORAN PRODUKSI HARIAN
-</title><style>
+<style>
 
 /* =====================================================
    DASAR
@@ -29,7 +29,6 @@ body{
     background-color:#dfe8ed;
 
     background-image:
-        /* motif dasar kotak kain */
         linear-gradient(
             135deg,
             rgba(255,255,255,.35) 25%,
@@ -40,7 +39,6 @@ body{
             transparent 75%
         ),
 
-        /* garis tenun */
         repeating-linear-gradient(
             0deg,
             rgba(35,72,94,.055) 0px,
@@ -57,7 +55,6 @@ body{
             transparent 7px
         ),
 
-        /* motif geometris */
         radial-gradient(
             ellipse 38px 22px at 25% 25%,
             transparent 45%,
@@ -92,11 +89,8 @@ body{
 }
 
 .container{
-
     width:100%;
-
     max-width:1100px;
-
     margin:auto;
 }
 
@@ -106,7 +100,6 @@ body{
 ===================================================== */
 
 .header{
-
     text-align:center;
 
     padding:
@@ -116,23 +109,10 @@ body{
 
     border-radius:22px;
 
-    /* =================================================
-       DASAR BIRU MUDA
-    ================================================= */
-
     background-color:#c9e4f2;
-
-
-    /* =================================================
-       MOTIF PARANG MEWAH
-       - Gelombang S diagonal
-       - Ornamen kecil
-       - Motif dibuat samar
-    ================================================= */
 
     background-image:
 
-        /* Gelombang utama */
         radial-gradient(
             ellipse 30px 18px at 0% 50%,
             transparent 52%,
@@ -149,7 +129,6 @@ body{
             transparent 64%
         ),
 
-        /* Ornamen kecil dalam motif */
         radial-gradient(
             circle 4px at 25% 25%,
             rgba(33,75,103,.16) 0%,
@@ -164,7 +143,6 @@ body{
             transparent 50%
         ),
 
-        /* Kilau lembut */
         linear-gradient(
             135deg,
             rgba(255,255,255,.42),
@@ -173,18 +151,12 @@ body{
             rgba(255,255,255,.18)
         );
 
-
-    /* Ukuran motif */
-
     background-size:
         72px 72px,
         72px 72px,
         72px 72px,
         72px 72px,
         100% 100%;
-
-
-    /* Arah susunan motif */
 
     background-position:
         0 0,
@@ -193,19 +165,9 @@ body{
         36px 36px,
         0 0;
 
-
-    /* =================================================
-       BORDER
-    ================================================= */
-
     border:
-    1px solid
-    rgba(80,80,80,.55);
-
-
-    /* =================================================
-       EFEK 3D / GLOSSY
-    ================================================= */
+        1px solid
+        rgba(80,80,80,.55);
 
     box-shadow:
 
@@ -220,13 +182,12 @@ body{
 
         inset -2px -2px 5px
         rgba(0,0,0,.08);
-
 }
+
 
 /* JUDUL SEKALIGUS TOMBOL FILTER */
 
 .header h1{
-
     margin:0;
 
     font-size:
@@ -257,20 +218,17 @@ body{
         6px 7px 9px
         rgba(0,0,0,.28);
 
-
     transition:
         transform .15s ease,
         text-shadow .15s ease;
 }
 
 .header h1:hover{
-
     transform:
         translateY(-1px);
 }
 
 .header h1:active{
-
     transform:
         translateY(3px);
 
@@ -283,9 +241,7 @@ body{
         rgba(0,0,0,.25);
 }
 
-
 .header .subtitle{
-
     margin-top:7px;
 
     font-size:
@@ -313,11 +269,9 @@ body{
 
 /* =====================================================
    FILTER
-   TERSEMBUNYI SAAT AWAL
 ===================================================== */
 
 .filter-panel{
-
     display:none;
 
     grid-template-columns:
@@ -358,40 +312,27 @@ body{
 }
 
 .filter-box{
-
     display:flex;
-
     flex-direction:column;
-
     gap:6px;
 }
 
 .filter-box label{
-
     font-size:14px;
-
     font-weight:900;
-
     color:#405b6b;
 
     text-shadow:
-
-        1px 1px 0
-        #ffffff,
-
-        2px 2px 3px
-        rgba(0,0,0,.18);
+        1px 1px 0 #ffffff,
+        2px 2px 3px rgba(0,0,0,.18);
 }
 
 .filter-box input,
 .filter-box select{
-
     width:100%;
-
     min-height:48px;
 
     border:none;
-
     outline:none;
 
     border-radius:13px;
@@ -400,11 +341,9 @@ body{
         8px 12px;
 
     background:#ffffff;
-
     color:#263238;
 
     font-size:17px;
-
     font-weight:900;
 
     box-shadow:
@@ -420,7 +359,6 @@ body{
 }
 
 .refresh-btn{
-
     align-self:end;
 
     min-height:48px;
@@ -466,13 +404,11 @@ body{
         rgba(0,0,0,.20);
 
     text-shadow:
-
         2px 2px 3px
         rgba(0,0,0,.45);
 }
 
 .refresh-btn:active{
-
     transform:
         translateY(3px);
 
@@ -487,15 +423,13 @@ body{
 
 
 /* =====================================================
-   INFO HARI & GRUP
+   INFO
 ===================================================== */
 
 .info-bar{
-
     display:flex;
 
     justify-content:center;
-
     align-items:center;
 
     gap:11px;
@@ -506,7 +440,6 @@ body{
 }
 
 .info-chip{
-
     padding:
         11px 18px;
 
@@ -538,7 +471,6 @@ body{
         rgba(0,0,0,.08);
 
     font-size:20px;
-
     font-weight:900;
 
     color:#405563;
@@ -553,9 +485,7 @@ body{
 }
 
 .info-chip span{
-
     font-size:24px;
-
     font-weight:900;
 
     color:#203e55;
@@ -575,7 +505,6 @@ body{
 ===================================================== */
 
 .section{
-
     margin-bottom:22px;
 
     border-radius:21px;
@@ -609,7 +538,6 @@ body{
 }
 
 .section.secondary{
-
     background:
         linear-gradient(
             145deg,
@@ -624,7 +552,6 @@ body{
 ===================================================== */
 
 .section-title{
-
     text-align:center;
 
     padding:
@@ -661,7 +588,6 @@ body{
 ===================================================== */
 
 .table-wrap{
-
     width:100%;
 
     overflow-x:auto;
@@ -678,7 +604,6 @@ body{
 }
 
 table{
-
     width:100%;
 
     border-collapse:separate;
@@ -694,7 +619,6 @@ table{
 ===================================================== */
 
 thead th{
-
     padding:
         16px 10px;
 
@@ -752,7 +676,6 @@ thead th{
 ===================================================== */
 
 .table-flat{
-
     background:#e5f4fb;
 
     box-shadow:
@@ -761,7 +684,6 @@ thead th{
 }
 
 .table-flat tbody td{
-
     padding:
         14px 10px;
 
@@ -787,18 +709,15 @@ thead th{
         #c7e1eb;
 
     text-shadow:
-
         2px 2px 3px
         rgba(0,0,0,.17);
 }
 
 .table-flat tbody tr:nth-child(even){
-
     background:#d8edf6;
 }
 
 .table-flat tbody tr:nth-child(odd){
-
     background:#edf9fd;
 }
 
@@ -808,7 +727,6 @@ thead th{
 ===================================================== */
 
 .angka{
-
     font-weight:900 !important;
 
     font-size:
@@ -819,7 +737,6 @@ thead th{
         ) !important;
 
     text-shadow:
-
         2px 2px 4px
         rgba(0,0,0,.23);
 }
@@ -830,7 +747,6 @@ thead th{
 ===================================================== */
 
 .total-row td{
-
     background:
         linear-gradient(
             145deg,
@@ -856,7 +772,6 @@ thead th{
 }
 
 .total-row .angka{
-
     font-size:
         clamp(
             19px,
@@ -873,7 +788,6 @@ thead th{
 ===================================================== */
 
 .acv{
-
     font-weight:900 !important;
 
     font-size:
@@ -900,7 +814,6 @@ thead th{
 ===================================================== */
 
 .table-secondary{
-
     background:#f1f3f4;
 
     border:
@@ -909,7 +822,6 @@ thead th{
 }
 
 .table-secondary tbody td{
-
     padding:
         11px 7px;
 
@@ -937,19 +849,46 @@ thead th{
         #d4dade;
 
     text-shadow:
-
         2px 2px 4px
         rgba(0,0,0,.18);
 }
 
 .table-secondary tbody tr:nth-child(even) td{
-
     background:#e4e8ea;
 }
 
 .table-secondary tbody tr:nth-child(odd) td{
-
     background:#f2f4f5;
+}
+
+
+/* =====================================================
+   TOTAL TABEL 2
+===================================================== */
+
+.table-secondary .total-proses{
+    font-weight:900;
+
+    font-size:
+        clamp(
+            17px,
+            4.3vw,
+            21px
+        );
+
+    color:#183c51;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d8e7ee,
+            #b8cfd9
+        ) !important;
+
+    text-shadow:
+
+        2px 2px 3px
+        rgba(0,0,0,.20);
 }
 
 
@@ -958,7 +897,6 @@ thead th{
 ===================================================== */
 
 .loading{
-
     display:none;
 
     text-align:center;
@@ -972,7 +910,6 @@ thead th{
     color:#41687d;
 
     text-shadow:
-
         2px 2px 4px
         rgba(0,0,0,.18);
 }
@@ -983,7 +920,6 @@ thead th{
 ===================================================== */
 
 .empty{
-
     padding:
         25px !important;
 
@@ -1003,7 +939,6 @@ thead th{
 ===================================================== */
 
 .footer{
-
     text-align:center;
 
     padding:13px;
@@ -1026,12 +961,10 @@ thead th{
 @media(max-width:650px){
 
     body{
-
         padding:8px;
     }
 
     .header{
-
         padding:
             17px 8px 19px;
 
@@ -1039,7 +972,6 @@ thead th{
     }
 
     .header h1{
-
         font-size:
             clamp(
                 29px,
@@ -1049,60 +981,45 @@ thead th{
     }
 
     .header .subtitle{
-
         font-size:19px;
     }
 
-
     .filter-panel{
-
         grid-template-columns:
             1fr 1fr;
 
         border-radius:17px;
     }
 
-
     .refresh-btn{
-
         grid-column:
             1 / -1;
 
         width:100%;
     }
 
-
     .info-bar{
-
         gap:8px;
     }
 
-
     .info-chip{
-
         font-size:20px;
 
         padding:
             11px 15px;
     }
 
-
     .info-chip span{
-
         font-size:24px;
     }
 
-
     .section{
-
         padding:7px;
 
         border-radius:18px;
     }
 
-
     .section-title{
-
         padding:
             12px 5px 14px;
 
@@ -1114,41 +1031,31 @@ thead th{
             );
     }
 
-
     table{
-
         min-width:720px;
     }
 
-
     thead th{
-
         font-size:18px;
 
         padding:
             17px 10px;
     }
 
-
     .table-flat tbody td{
-
         font-size:18px;
 
         padding:
             15px 10px;
     }
 
-
     .table-flat .angka,
     .table-flat .acv{
-
         font-size:
             20px !important;
     }
 
-
     .table-secondary tbody td{
-
         font-size:18px;
 
         padding:
@@ -1167,17 +1074,14 @@ thead th{
 @media(max-width:380px){
 
     .filter-panel{
-
         grid-template-columns:1fr;
     }
 
     .refresh-btn{
-
         grid-column:auto;
     }
 
     .info-chip{
-
         width:100%;
 
         text-align:center;
@@ -1185,131 +1089,289 @@ thead th{
 
 }
 
-</style></head><body><div class="container"><!-- =====================================================
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+
+<!-- =====================================================
      HEADER
-===================================================== --><div class="header"><h1
-    onclick="toggleFilter()"
-    title="Ketuk untuk membuka filter"
->
-    LAPORAN PRODUKSI HARIAN
-</h1><div class="subtitle">
-    DEPARTEMEN PRINTING
-</div></div><!-- =====================================================
+===================================================== -->
+
+<div class="header">
+
+    <h1
+        onclick="toggleFilter()"
+        title="Ketuk untuk membuka filter"
+    >
+        LAPORAN PRODUKSI HARIAN
+    </h1>
+
+    <div class="subtitle">
+        DEPARTEMEN PRINTING
+    </div>
+
+</div>
+
+
+<!-- =====================================================
      FILTER
-===================================================== --><div
+===================================================== -->
+
+<div
     class="filter-panel"
     id="filterPanel"
-><div class="filter-box"><label>
-    HARI YANG DIPILIH
-</label>
-
-<input
-    type="date"
-    id="tanggal"
 >
 
-</div><div class="filter-box"><label>
-    GRUP
-</label>
+    <div class="filter-box">
 
-<select id="grup">
+        <label>
+            HARI YANG DIPILIH
+        </label>
 
-    <option value="">
-        SEMUA GRUP
-    </option>
+        <input
+            type="date"
+            id="tanggal"
+        >
 
-    <option value="A">
-        GRUP A
-    </option>
+    </div>
 
-    <option value="B">
-        GRUP B
-    </option>
 
-    <option value="C">
-        GRUP C
-    </option>
+    <div class="filter-box">
 
-</select>
+        <label>
+            GRUP
+        </label>
 
-</div><button
-class="refresh-btn"
-onclick="ambilData()"
+        <select id="grup">
 
-«»
+            <option value="">
+                SEMUA GRUP
+            </option>
 
-↻ REFRESH DATA
+            <option value="A">
+                GRUP A
+            </option>
 
-</button></div><!-- =====================================================
-     INFO HARI / GRUP
-===================================================== --><div class="info-bar">
+            <option value="B">
+                GRUP B
+            </option>
+
+            <option value="C">
+                GRUP C
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <button
+        class="refresh-btn"
+        onclick="ambilData()"
+    >
+        ↻ REFRESH DATA
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     INFO
+===================================================== -->
+
+<div class="info-bar">
 
     <div class="info-chip">
+
         TANGGAL :
 
         <span id="infoTanggal">
             -
         </span>
+
     </div>
 
+
     <div class="info-chip">
+
         <span id="infoGrup">
             GRUP A
         </span>
+
     </div>
 
-</div><!-- =====================================================
+</div>
+
+
+<!-- =====================================================
      LOADING
-===================================================== --><div
+===================================================== -->
+
+<div
     id="loading"
     class="loading"
 >
     ⏳ Mengambil data...
-</div><!-- =====================================================
-     TABEL 1
-===================================================== --><div class="section"><div class="section-title">
-    PRODUKSI FLATBED PRINT
-</div><div class="table-wrap"><table class="table-flat"><thead><tr><th>
-    MC
-</th><th>
-    KODE PRODUK
-</th><th>
-    QTY (Pcs)
-</th><th>
-    KD
-</th><th>
-    TARGET (KD)
-</th><th>
-    ACV (%)
-</th></tr></thead><tbody id="flatBody"><tr><td
-    colspan="6"
-    class="empty"
->
-    Belum ada data
-</td></tr></tbody></table></div></div><!-- =====================================================
-     TABEL 2
-===================================================== --><div class="section secondary"><div class="section-title">
-    STEAM, CURING, WASHING &amp; DLVR
-</div><div class="table-wrap"><table class="table-secondary"><thead><tr><th>
-    PROSES
-</th><th>
-    KODE PRODUK
-</th><th>
-    QTY
-</th><th>
-    SATUAN
-</th></tr></thead><tbody id="formBody"><tr><td
-    colspan="4"
-    class="empty"
->
-    Belum ada data
-</td></tr></tbody></table></div></div><!-- =====================================================
-     FOOTER
-===================================================== --><div class="footer">LAPORAN PRODUKSI HARIAN
-•
-DEPARTEMEN PRINTING
+</div>
 
-</div></div><script>
+
+<!-- =====================================================
+     TABEL 1
+===================================================== -->
+
+<div class="section">
+
+    <div class="section-title">
+        PRODUKSI FLATBED PRINT
+    </div>
+
+
+    <div class="table-wrap">
+
+        <table class="table-flat">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        MC
+                    </th>
+
+                    <th>
+                        KODE PRODUK
+                    </th>
+
+                    <th>
+                        QTY (Pcs)
+                    </th>
+
+                    <th>
+                        KD
+                    </th>
+
+                    <th>
+                        TARGET (KD)
+                    </th>
+
+                    <th>
+                        ACV (%)
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="flatBody">
+
+                <tr>
+
+                    <td
+                        colspan="6"
+                        class="empty"
+                    >
+                        Belum ada data
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TABEL 2
+===================================================== -->
+
+<div class="section secondary">
+
+    <div class="section-title">
+        STEAM, CURING, WASHING &amp; DLVR
+    </div>
+
+
+    <div class="table-wrap">
+
+        <table class="table-secondary">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        PROSES
+                    </th>
+
+                    <th>
+                        KODE PRODUK
+                    </th>
+
+                    <th>
+                        QTY
+                    </th>
+
+                    <th>
+                        SATUAN
+                    </th>
+
+                    <th>
+                        TOTAL
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="formBody">
+
+                <tr>
+
+                    <td
+                        colspan="5"
+                        class="empty"
+                    >
+                        Belum ada data
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<div class="footer">
+
+    LAPORAN PRODUKSI HARIAN
+    •
+    DEPARTEMEN PRINTING
+
+</div>
+
+
+</div>
+
+
+<script>
 
 
 /* =====================================================
@@ -1383,7 +1445,6 @@ const filterPanel =
 
 /* =====================================================
    FILTER BUKA / TUTUP
-   FILTER SELALU TERTUTUP SAAT AWAL
 ===================================================== */
 
 let filterTerbuka =
@@ -1462,24 +1523,17 @@ function formatTanggalIndonesia(
 ){
 
     if(!tanggal){
-
         return "-";
-
     }
-
 
     const bagian =
         tanggal.split("-");
 
-
     if(
         bagian.length !== 3
     ){
-
         return tanggal;
-
     }
-
 
     const namaBulan = [
 
@@ -1497,7 +1551,6 @@ function formatTanggalIndonesia(
         "DESEMBER"
 
     ];
-
 
     return (
 
@@ -1525,10 +1578,8 @@ function updateInfo(){
     const tanggal =
         tanggalInput.value;
 
-
     const grup =
         grupInput.value;
-
 
     document.getElementById(
         "infoTanggal"
@@ -1536,7 +1587,6 @@ function updateInfo(){
         formatTanggalIndonesia(
             tanggal
         );
-
 
     document.getElementById(
         "infoGrup"
@@ -1564,7 +1614,6 @@ function escapeHTML(
         return "";
 
     }
-
 
     return String(value)
 
@@ -1623,17 +1672,13 @@ function ambilTargetMC(
 ){
 
     if(!mc){
-
         return 0;
-
     }
-
 
     const nama =
         String(mc)
         .trim()
         .toUpperCase();
-
 
     if(
         TARGET_MC[nama] !== undefined
@@ -1643,19 +1688,16 @@ function ambilTargetMC(
 
     }
 
-
     const angkaMC =
         nama.match(
             /\d+/
         );
-
 
     if(angkaMC){
 
         const key =
             "FLAT " +
             angkaMC[0];
-
 
         if(
             TARGET_MC[key] !== undefined
@@ -1666,7 +1708,6 @@ function ambilTargetMC(
         }
 
     }
-
 
     return 0;
 
@@ -1685,10 +1726,8 @@ function hitungACV(
     const nilaiKD =
         Number(kd) || 0;
 
-
     const nilaiTarget =
         Number(target) || 0;
-
 
     if(
         nilaiTarget <= 0
@@ -1697,7 +1736,6 @@ function hitungACV(
         return 0;
 
     }
-
 
     return (
         nilaiKD /
@@ -1714,26 +1752,16 @@ function hitungACV(
 
 async function ambilData(){
 
-    /* FILTER DIKUNCI TETAP TERTUTUP
-       SAAT REFRESH DATA */
-
-    
-
-
     const tanggal =
         tanggalInput.value;
-
 
     const grup =
         grupInput.value;
 
-
     updateInfo();
-
 
     loading.style.display =
         "block";
-
 
     loading.textContent =
         "⏳ Mengambil data...";
@@ -1742,14 +1770,12 @@ async function ambilData(){
     flatBody.innerHTML =
         `
         <tr>
-
             <td
                 colspan="6"
                 class="empty"
             >
                 ⏳ Memuat data...
             </td>
-
         </tr>
         `;
 
@@ -1757,14 +1783,12 @@ async function ambilData(){
     formBody.innerHTML =
         `
         <tr>
-
             <td
-                colspan="4"
+                colspan="5"
                 class="empty"
             >
                 ⏳ Memuat data...
             </td>
-
         </tr>
         `;
 
@@ -1845,7 +1869,7 @@ async function ambilData(){
 
 
         /* =============================================
-           FORM RESPONSES 5
+           FORM RESPONSES
         ============================================= */
 
         let urlForm =
@@ -1926,7 +1950,6 @@ async function ambilData(){
             error
         );
 
-
         loading.textContent =
             "❌ " +
             error.message;
@@ -1935,14 +1958,12 @@ async function ambilData(){
         flatBody.innerHTML =
             `
             <tr>
-
                 <td
                     colspan="6"
                     class="empty"
                 >
                     ❌ Gagal mengambil data
                 </td>
-
             </tr>
             `;
 
@@ -1950,14 +1971,12 @@ async function ambilData(){
         formBody.innerHTML =
             `
             <tr>
-
                 <td
-                    colspan="4"
+                    colspan="5"
                     class="empty"
                 >
                     ❌ Gagal mengambil data
                 </td>
-
             </tr>
             `;
 
@@ -1968,8 +1987,6 @@ async function ambilData(){
 
 /* =====================================================
    TABEL 1
-   KODE PRODUK DIJUMLAHKAN PER KODE
-   ACV DIHITUNG KUMULATIF PER MESIN
 ===================================================== */
 
 function tampilkanFlat(
@@ -1988,7 +2005,6 @@ function tampilkanFlat(
         flatBody.innerHTML =
             `
             <tr>
-
                 <td
                     colspan="6"
                     class="empty"
@@ -1996,7 +2012,6 @@ function tampilkanFlat(
                     Tidak ada produksi FLAT
                     pada hari/grup ini
                 </td>
-
             </tr>
             `;
 
@@ -2004,10 +2019,6 @@ function tampilkanFlat(
 
     }
 
-
-    /* =============================================
-       GABUNGKAN BERDASARKAN MC + KODE PRODUK
-    ============================================= */
 
     const kelompok = {};
 
@@ -2076,10 +2087,6 @@ function tampilkanFlat(
         );
 
 
-    /* =============================================
-       TOTAL KUMULATIF PER MESIN
-    ============================================= */
-
     const totalMesin = {};
 
 
@@ -2091,13 +2098,10 @@ function tampilkanFlat(
             ){
 
                 totalMesin[row.mc] = {
-
                     kd:0
-
                 };
 
             }
-
 
             totalMesin[row.mc].kd +=
                 Number(row.kd) || 0;
@@ -2105,11 +2109,6 @@ function tampilkanFlat(
         }
     );
 
-
-    /* =============================================
-       URUTKAN
-       MC → KODE PRODUK
-    ============================================= */
 
     hasil.sort(
         function(a,b){
@@ -2148,10 +2147,6 @@ function tampilkanFlat(
     );
 
 
-    /* =============================================
-       HITUNG TOTAL SELURUH TABEL
-    ============================================= */
-
     let totalQty =
         0;
 
@@ -2171,11 +2166,6 @@ function tampilkanFlat(
         }
     );
 
-
-    /* =============================================
-       TAMPILKAN
-       TARGET & ACV HANYA 1x PER MESIN
-    ============================================= */
 
     hasil.forEach(
         function(row,index){
@@ -2278,10 +2268,6 @@ function tampilkanFlat(
     );
 
 
-    /* =============================================
-       BARIS TOTAL
-    ============================================= */
-
     const totalRow =
         document.createElement(
             "tr"
@@ -2333,6 +2319,8 @@ function tampilkanFlat(
 
 /* =====================================================
    TABEL 2
+   TOTAL QTY PER PROSES
+   HANYA MUNCUL 1x PER PROSES
 ===================================================== */
 
 function tampilkanForm(
@@ -2353,7 +2341,7 @@ function tampilkanForm(
             <tr>
 
                 <td
-                    colspan="4"
+                    colspan="5"
                     class="empty"
                 >
                     Tidak ada data
@@ -2369,6 +2357,63 @@ function tampilkanForm(
     }
 
 
+    /* =============================================
+       HITUNG TOTAL QTY PER PROSES
+    ============================================= */
+
+    const totalProses = {};
+
+
+    data.forEach(
+        function(row){
+
+            const proses =
+                String(
+                    row.proses || "-"
+                )
+                .trim()
+                .toUpperCase();
+
+
+            if(
+                !totalProses[proses]
+            ){
+
+                totalProses[proses] = {
+
+                    qty:0,
+
+                    satuan:
+                        String(
+                            row.satuan || "-"
+                        )
+                        .trim()
+
+                };
+
+            }
+
+
+            totalProses[proses].qty +=
+                Number(
+                    row.qty
+                ) || 0;
+
+        }
+    );
+
+
+    /* =============================================
+       PENANDA PROSES YANG SUDAH DITAMPILKAN
+    ============================================= */
+
+    const prosesSudahTampil = {};
+
+
+    /* =============================================
+       TAMPILKAN DATA
+    ============================================= */
+
     data.forEach(
         function(row){
 
@@ -2376,6 +2421,52 @@ function tampilkanForm(
                 document.createElement(
                     "tr"
                 );
+
+
+            const proses =
+                String(
+                    row.proses || "-"
+                )
+                .trim()
+                .toUpperCase();
+
+
+            const satuan =
+                String(
+                    row.satuan || "-"
+                )
+                .trim();
+
+
+            const total =
+                totalProses[proses]
+                ? totalProses[proses].qty
+                : 0;
+
+
+            let tampilTotal =
+                "";
+
+
+            /* TOTAL HANYA BARIS PERTAMA
+               DARI PROSES YANG SAMA */
+
+            if(
+                !prosesSudahTampil[proses]
+            ){
+
+                tampilTotal =
+                    `
+                    ${formatAngka(total)}
+                    ${escapeHTML(
+                        satuan
+                    )}
+                    `;
+
+                prosesSudahTampil[proses] =
+                    true;
+
+            }
 
 
             tr.innerHTML =
@@ -2394,8 +2485,8 @@ function tampilkanForm(
                 </td>
 
                 <td>
-                    ${escapeHTML(
-                        row.qty || "-"
+                    ${formatAngka(
+                        row.qty
                     )}
                 </td>
 
@@ -2403,6 +2494,12 @@ function tampilkanForm(
                     ${escapeHTML(
                         row.satuan || "-"
                     )}
+                </td>
+
+                <td class="total-proses">
+
+                    ${tampilTotal}
+
                 </td>
 
                 `;
@@ -2452,9 +2549,9 @@ grupInput.addEventListener(
 
 /* =====================================================
    START
-   FILTER DIKUNCI TERTUTUP
+   FILTER TERTUTUP
    TANGGAL = HARI INI
-   GRUP = SEMUA
+   GRUP = A
 ===================================================== */
 
 kunciFilter();
@@ -2473,4 +2570,7 @@ updateInfo();
 ambilData();
 
 
-</script></body></html>
+</script>
+
+</body>
+</html>
