@@ -1718,6 +1718,10 @@ async function cariRoll(){
 
     const rollID =
         input.value.trim();
+    localStorage.setItem(
+  "LAST_ROLL_ID",
+  rollID
+);
 
 
     if(!rollID){
@@ -2054,6 +2058,15 @@ document
 
         }
     );
+    const rollTerakhir =
+    localStorage.getItem("LAST_ROLL_ID");
+
+if(rollTerakhir){
+
+    document.getElementById("rollID").value =
+        rollTerakhir;
+
+}
 
 </script>
 
