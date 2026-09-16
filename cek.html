@@ -1873,9 +1873,11 @@ async function cariRoll(){
 
 
             isi(
-                "qty",
-                flat["QTY"]
-            );
+    "qty",
+    flat["QTY"]
+        ? flat["QTY"] + " Pcs"
+        : "-"
+);
 
         }
 
