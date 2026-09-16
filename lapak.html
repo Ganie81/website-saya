@@ -1748,7 +1748,11 @@ function hitungACV(
 
 /* =====================================================
    AMBIL DATA
+   STABIL + PARALEL + ANTI REQUEST BENTROK
 ===================================================== */
+
+let requestDataID = 0;
+
 
 async function ambilData(){
 
@@ -1760,6 +1764,16 @@ async function ambilData(){
 
     updateInfo();
 
+
+    /* =================================================
+       ID REQUEST TERBARU
+       Mencegah request lama menimpa request baru
+    ================================================= */
+
+    const requestID =
+        ++requestDataID;
+
+
     loading.style.display =
         "block";
 
@@ -1767,218 +1781,223 @@ async function ambilData(){
         "⏳ Mengambil data...";
 
 
-    flatBody.innerHTML =
-        `
-        <tr>
-            <td
-                colspan="6"
-                class="empty"
-            >
-                ⏳ Memuat data...
-            </td>
-        </tr>
-        `;
+    /* =================================================
+       URL FLAT
+    ================================================= */
+
+    let urlFlat =
+        WEB_APP_URL +
+        "?action=flat";
 
 
-    formBody.innerHTML =
-        `
-        <tr>
-            <td
-                colspan="5"
-                class="empty"
-            >
-                ⏳ Memuat data...
-            </td>
-        </tr>
-        `;
+    if(tanggal){
+
+        urlFlat +=
+            "&tanggal=" +
+            encodeURIComponent(
+                tanggal
+            );
+
+    }
+
+
+    if(grup){
+
+        urlFlat +=
+            "&grup=" +
+            encodeURIComponent(
+                grup
+            );
+
+    }
+
+
+    /* =================================================
+       URL FORM
+    ================================================= */
+
+    let urlForm =
+        WEB_APP_URL +
+        "?action=form";
+
+
+    if(tanggal){
+
+        urlForm +=
+            "&tanggal=" +
+            encodeURIComponent(
+                tanggal
+            );
+
+    }
+
+
+    if(grup){
+
+        urlForm +=
+            "&grup=" +
+            encodeURIComponent(
+                grup
+            );
+
+    }
 
 
     try{
 
+        /* =================================================
+           FLAT + FORM DIAMBIL BERSAMAAN
+        ================================================= */
 
-        /* =============================================
-           FLAT
-        ============================================= */
+        const [
+            responseFlat,
+            responseForm
+        ] =
+            await Promise.all([
 
-        let urlFlat =
-            WEB_APP_URL +
-            "?action=flat";
+                fetch(
+                    urlFlat,
+                    {
+                        cache:"no-store"
+                    }
+                ),
 
+                fetch(
+                    urlForm,
+                    {
+                        cache:"no-store"
+                    }
+                )
 
-        if(tanggal){
-
-            urlFlat +=
-                "&tanggal=" +
-                encodeURIComponent(
-                    tanggal
-                );
-
-        }
-
-
-        if(grup){
-
-            urlFlat +=
-                "&grup=" +
-                encodeURIComponent(
-                    grup
-                );
-
-        }
+            ]);
 
 
-        const responseFlat =
-            await fetch(
-                urlFlat,
-                {
-                    cache:"no-store"
-                }
-            );
-
+        /* =================================================
+           CEK REQUEST
+           Kalau sudah ada request baru,
+           request lama langsung berhenti.
+        ================================================= */
 
         if(
-            !responseFlat.ok
+            requestID !== requestDataID
         ){
 
-            throw new Error(
+            return;
+
+        }
+
+
+        /* =================================================
+           PROSES FLAT
+        ================================================= */
+
+        if(
+            responseFlat.ok
+        ){
+
+            const hasilFlat =
+                await responseFlat.json();
+
+
+            if(
+                hasilFlat.sukses
+            ){
+
+                tampilkanFlat(
+                    hasilFlat.data || []
+                );
+
+            }else{
+
+                console.error(
+                    "FLAT:",
+                    hasilFlat.pesan
+                );
+
+            }
+
+        }else{
+
+            console.error(
                 "Gagal mengambil data FLAT"
             );
 
         }
 
 
-        const hasilFlat =
-            await responseFlat.json();
-
-
-        if(
-            !hasilFlat.sukses
-        ){
-
-            throw new Error(
-                hasilFlat.pesan ||
-                "Data FLAT gagal"
-            );
-
-        }
-
-
-        tampilkanFlat(
-            hasilFlat.data || []
-        );
-
-
-        /* =============================================
-           FORM RESPONSES
-        ============================================= */
-
-        let urlForm =
-            WEB_APP_URL +
-            "?action=form";
-
-
-        if(tanggal){
-
-            urlForm +=
-                "&tanggal=" +
-                encodeURIComponent(
-                    tanggal
-                );
-
-        }
-
-
-        if(grup){
-
-            urlForm +=
-                "&grup=" +
-                encodeURIComponent(
-                    grup
-                );
-
-        }
-
-
-        const responseForm =
-            await fetch(
-                urlForm,
-                {
-                    cache:"no-store"
-                }
-            );
-
+        /* =================================================
+           PROSES FORM
+        ================================================= */
 
         if(
-            !responseForm.ok
+            responseForm.ok
         ){
 
-            throw new Error(
+            const hasilForm =
+                await responseForm.json();
+
+
+            if(
+                hasilForm.sukses
+            ){
+
+                tampilkanForm(
+                    hasilForm.data || []
+                );
+
+            }else{
+
+                console.error(
+                    "FORM:",
+                    hasilForm.pesan
+                );
+
+            }
+
+        }else{
+
+            console.error(
                 "Gagal mengambil data FORM"
             );
 
         }
 
 
-        const hasilForm =
-            await responseForm.json();
-
+        /* =================================================
+           SELESAI
+        ================================================= */
 
         if(
-            !hasilForm.sukses
+            requestID === requestDataID
         ){
 
-            throw new Error(
-                hasilForm.pesan ||
-                "Data FORM gagal"
-            );
+            loading.style.display =
+                "none";
 
         }
-
-
-        tampilkanForm(
-            hasilForm.data || []
-        );
-
-
-        loading.style.display =
-            "none";
 
 
     }catch(error){
 
         console.error(
+            "Gagal mengambil data:",
             error
         );
 
-        loading.textContent =
-            "❌ " +
-            error.message;
 
+        /* =================================================
+           PENTING:
+           JANGAN HAPUS DATA YANG SUDAH TAMPIL
+        ================================================= */
 
-        flatBody.innerHTML =
-            `
-            <tr>
-                <td
-                    colspan="6"
-                    class="empty"
-                >
-                    ❌ Gagal mengambil data
-                </td>
-            </tr>
-            `;
+        if(
+            requestID === requestDataID
+        ){
 
+            loading.textContent =
+                "⚠️ Data belum dapat diperbarui";
 
-        formBody.innerHTML =
-            `
-            <tr>
-                <td
-                    colspan="5"
-                    class="empty"
-                >
-                    ❌ Gagal mengambil data
-                </td>
-            </tr>
-            `;
+        }
 
     }
 
