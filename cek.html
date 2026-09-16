@@ -2058,13 +2058,15 @@ document
 
         }
     );
-    const rollTerakhir =
+const rollTerakhir =
     localStorage.getItem("LAST_ROLL_ID");
 
 if(rollTerakhir){
 
     document.getElementById("rollID").value =
         rollTerakhir;
+
+    cariRoll();
 
 }
 
