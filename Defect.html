@@ -7017,6 +7017,25 @@ for(
     ================================================= */
 
     const html = [];
+      /* =================================================
+   TOTAL PER MESIN
+   HANYA UNTUK BARIS TOTAL DI BAWAH
+================================================= */
+
+const totalByMachine = new Map();
+
+for(
+    let j = 0;
+    j < machineOrder.length;
+    j++
+){
+
+    totalByMachine.set(
+        machineOrder[j],
+        0
+    );
+
+}
 
 
     for(
@@ -7047,6 +7066,12 @@ for(
                                 Number(
                                     machineMap.get(machine) || 0
                                 );
+                              totalByMachine.set(
+    machine,
+    Number(
+        totalByMachine.get(machine) || 0
+    ) + value
+);
 
 
                             const zeroClass =
@@ -7087,7 +7112,53 @@ for(
         `);
 
     }
+/* =================================================
+   TOTAL PER MESIN — BARIS PALING BAWAH
+================================================= */
 
+html.push(`
+    <tr class="matrix-total-row">
+
+        <td
+            style="
+                font-size:17px !important;
+                font-weight:900;
+                text-align:left;
+            "
+        >
+            TOTAL
+        </td>
+
+        ${machineOrder
+            .map(
+                function(machine){
+
+                    const total =
+                        Number(
+                            totalByMachine.get(machine) || 0
+                        );
+
+
+                    return `
+                        <td style="text-align:right;">
+
+                            <span
+                                class="matrix-value"
+                                style="font-weight:900;"
+                            >
+                                ${formatNumber(total)} Pcs
+                            </span>
+
+                        </td>
+                    `;
+
+                }
+            )
+            .join("")
+        }
+
+    </tr>
+`);
 
     body.innerHTML =
         html.join("");
