@@ -1,11 +1,18 @@
-<!DOCTYPE html><html lang="id">
-<head><meta charset="UTF-8"><meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
+<!DOCTYPE html>
+<html lang="id">
 
-«»
+<head>
 
-<title>CEK ROLL ID</title><style>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>CEK ROLL ID</title>
+
+<style>
 
 /* =====================================================
    DASAR
@@ -36,10 +43,6 @@ body{
   min-height:100vh;
 
   background-color:#3a1d10;
-
-  /*
-     MOTIF KOTAK ALA KAIN SARUNG
-  */
 
   background-image:
 
@@ -89,14 +92,6 @@ body{
     40px 40px,
     40px 40px;
 
-  background-position:
-    0 0,
-    0 0,
-    0 0,
-    0 0,
-    0 0,
-    0 0;
-
   background-blend-mode:
     screen,
     screen,
@@ -106,10 +101,6 @@ body{
     screen;
 
 }
-
-/* =====================================================
-   KAIN / LAPISAN GLOSSY
-===================================================== */
 
 body::before{
 
@@ -150,7 +141,7 @@ body::before{
 
 
 /* =====================================================
-   PEMBUNGKUS UTAMA
+   PEMBUNGKUS
 ===================================================== */
 
 .wrapper{
@@ -188,7 +179,6 @@ body::before{
     );
 
   border:
-
     1px solid
     rgba(255,255,255,.28);
 
@@ -204,8 +194,6 @@ body::before{
     rgba(0,0,0,.28);
 
 }
-
-/* kilau header */
 
 .header::before{
 
@@ -253,6 +241,7 @@ body::before{
   border-radius:50%;
 
   background:
+
     linear-gradient(
       90deg,
       transparent,
@@ -272,7 +261,8 @@ body::before{
 
   color:#fff9f1;
 
-  font-size:clamp(30px,8vw,48px);
+  font-size:
+    clamp(30px,8vw,48px);
 
   font-weight:900;
 
@@ -289,7 +279,7 @@ body::before{
 
 
 /* =====================================================
-   AREA PENCARIAN
+   PENCARIAN
 ===================================================== */
 
 .search-panel{
@@ -362,7 +352,6 @@ body::before{
   border-radius:15px;
 
   border:
-
     2px solid
     #8a5738;
 
@@ -464,28 +453,538 @@ body::before{
 
   transform:translateY(2px);
 
-  box-shadow:
+}
 
-    0 3px 7px
-    rgba(0,0,0,.3),
 
-    inset 0 2px 4px
-    rgba(0,0,0,.25);
+/* =====================================================
+   HASIL
+===================================================== */
+
+#hasil{
+
+  margin-top:15px;
 
 }
 
 
 /* =====================================================
-   STATUS ROLL ID
+   PESAN
+===================================================== */
+
+.message{
+
+  padding:18px;
+
+  border-radius:18px;
+
+  text-align:center;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #e0b88b,
+      #bc8050
+    );
+
+  color:#4b2412;
+
+  font-size:19px;
+
+  font-weight:800;
+
+  box-shadow:
+
+    8px 9px 16px
+    rgba(0,0,0,.3),
+
+    inset 0 2px 2px
+    rgba(255,255,255,.6);
+
+}
+
+
+/* =====================================================
+   TABEL PROSES UTAMA
+===================================================== */
+
+.process-table-box{
+
+  width:100%;
+
+  overflow:hidden;
+
+  margin-top:15px;
+
+  border-radius:22px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #e0b489,
+      #c48a5b 50%,
+      #b67848
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.78);
+
+  box-shadow:
+
+    11px 12px 22px
+    rgba(0,0,0,.38),
+
+    inset 0 2px 3px
+    rgba(255,255,255,.68),
+
+    inset 0 -7px 12px
+    rgba(86,39,18,.18);
+
+}
+
+.process-table-title{
+
+  padding:15px 10px;
+
+  text-align:center;
+
+  color:#fff8ef;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #8b5431,
+      #643219 50%,
+      #4a2110
+    );
+
+  font-size:23px;
+
+  font-weight:900;
+
+  letter-spacing:1px;
+
+  text-shadow:
+
+    0 3px 0 #2d1308,
+
+    0 5px 8px
+    rgba(0,0,0,.5);
+
+}
+
+.table-scroll{
+
+  width:100%;
+
+  overflow-x:auto;
+
+}
+
+.process-table{
+
+  width:100%;
+
+  min-width:620px;
+
+  border-collapse:separate;
+
+  border-spacing:4px;
+
+  padding:6px;
+
+}
+
+.process-table th{
+
+  padding:13px 7px;
+
+  color:#fffaf4;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #7d4929,
+      #4d2412
+    );
+
+  border-radius:10px;
+
+  font-size:15px;
+
+  font-weight:900;
+
+  text-align:center;
+
+  white-space:nowrap;
+
+  text-shadow:
+    0 2px 2px
+    rgba(0,0,0,.4);
+
+}
+
+.process-table th:first-child{
+
+  width:145px;
+
+}
+
+.process-table td{
+
+  padding:12px 7px;
+
+  min-height:52px;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #fffdf9,
+      #ead8c6
+    );
+
+  border-radius:9px;
+
+  color:#3d1c0d;
+
+  font-size:17px;
+
+  font-weight:800;
+
+  line-height:1.25;
+
+  text-align:center;
+
+  vertical-align:middle;
+
+  word-break:break-word;
+
+  overflow-wrap:anywhere;
+
+  box-shadow:
+
+    inset 0 1px 2px
+    rgba(255,255,255,.7),
+
+    0 2px 4px
+    rgba(70,30,12,.15);
+
+}
+
+.process-table td:first-child{
+
+  color:#fff8ef;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #bd8051,
+      #9f6035
+    );
+
+  font-size:15px;
+
+  font-weight:900;
+
+  text-align:left;
+
+  padding-left:10px;
+
+  text-shadow:
+    0 1px 2px
+    rgba(0,0,0,.35);
+
+  white-space:nowrap;
+
+}
+
+.process-table .flat-cell{
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #fffaf3,
+      #ead4bd
+    );
+
+}
+
+.process-table .empty-cell{
+
+  color:#876f5b;
+
+}
+
+
+/* =====================================================
+   INFORMASI ROLL
+===================================================== */
+
+.roll-info-box{
+
+  margin-top:14px;
+
+  padding:12px;
+
+  border-radius:21px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #d9aa7b,
+      #bd8050
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.78);
+
+  box-shadow:
+
+    9px 10px 18px
+    rgba(0,0,0,.34),
+
+    inset 0 2px 3px
+    rgba(255,255,255,.7),
+
+    inset 0 -6px 10px
+    rgba(75,35,17,.2);
+
+}
+
+.roll-title{
+
+  padding:5px 4px 9px;
+
+  text-align:center;
+
+  color:#47200f;
+
+  font-size:16px;
+
+  font-weight:900;
+
+  letter-spacing:1px;
+
+}
+
+.roll-number{
+
+  padding:12px 10px;
+
+  border-radius:13px;
+
+  text-align:center;
+
+  color:#48210f;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #fffdf9,
+      #ead8c6
+    );
+
+  border:
+    1px solid
+    rgba(94,45,21,.35);
+
+  font-size:25px;
+
+  font-weight:900;
+
+  letter-spacing:1px;
+
+  word-break:break-word;
+
+  box-shadow:
+
+    inset 0 2px 5px
+    rgba(0,0,0,.12),
+
+    0 3px 5px
+    rgba(0,0,0,.18);
+
+}
+
+
+/* =====================================================
+   DETAIL PRODUK
+===================================================== */
+
+.product-box{
+
+  margin-top:14px;
+
+  padding:12px;
+
+  border-radius:21px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #e0b489,
+      #c48a5b
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.75);
+
+  box-shadow:
+
+    9px 10px 18px
+    rgba(0,0,0,.34),
+
+    inset 0 2px 3px
+    rgba(255,255,255,.65),
+
+    inset 0 -6px 10px
+    rgba(75,35,17,.16);
+
+}
+
+.product-title{
+
+  margin-bottom:9px;
+
+  text-align:center;
+
+  color:#4a2110;
+
+  font-size:16px;
+
+  font-weight:900;
+
+  letter-spacing:1px;
+
+}
+
+.product-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:7px;
+
+}
+
+.product-item{
+
+  min-width:0;
+
+  border-radius:12px;
+
+  overflow:hidden;
+
+  box-shadow:
+
+    0 3px 5px
+    rgba(70,30,12,.18);
+
+}
+
+.product-label{
+
+  padding:8px 8px;
+
+  color:#fff8ef;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #a9683b,
+      #874b27
+    );
+
+  font-size:13px;
+
+  font-weight:900;
+
+  text-align:center;
+
+  text-shadow:
+    0 1px 2px
+    rgba(0,0,0,.35);
+
+}
+
+.product-value{
+
+  min-height:45px;
+
+  padding:9px 8px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #fffdf9,
+      #ead8c6
+    );
+
+  color:#3d1c0d;
+
+  font-size:16px;
+
+  font-weight:800;
+
+  line-height:1.25;
+
+  text-align:center;
+
+  word-break:break-word;
+
+  overflow-wrap:anywhere;
+
+}
+
+.product-item.qty{
+
+  grid-column:
+    1 / -1;
+
+}
+
+.product-item.qty .product-value{
+
+  font-size:23px;
+
+  font-weight:900;
+
+}
+
+
+/* =====================================================
+   STATUS PERJALANAN
 ===================================================== */
 
 .status-box{
 
   margin-top:14px;
 
-  padding:15px;
+  padding:12px;
 
-  border-radius:22px;
+  border-radius:21px;
 
   background:
 
@@ -514,56 +1013,17 @@ body::before{
 
 .status-title{
 
-  margin:0 0 10px;
+  margin:2px 0 10px;
 
   text-align:center;
 
   color:#47200f;
 
-  font-size:17px;
+  font-size:18px;
 
   font-weight:900;
 
   letter-spacing:1px;
-
-}
-
-.status-roll{
-
-  margin-bottom:13px;
-
-  padding:10px 12px;
-
-  text-align:center;
-
-  border-radius:13px;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      #fffdf9,
-      #ead8c6
-    );
-
-  border:
-    1px solid
-    rgba(94,45,21,.35);
-
-  color:#48210f;
-
-  font-size:24px;
-
-  font-weight:900;
-
-  letter-spacing:1px;
-
-  box-shadow:
-
-    inset 0 2px 5px
-    rgba(0,0,0,.12);
-
-  word-break:break-word;
 
 }
 
@@ -628,7 +1088,7 @@ body::before{
 
   display:block;
 
-  font-size:26px;
+  font-size:29px;
 
   line-height:1;
 
@@ -654,319 +1114,6 @@ body::before{
 
 
 /* =====================================================
-   HASIL
-===================================================== */
-
-#hasil{
-
-  margin-top:15px;
-
-}
-
-
-/* =====================================================
-   PESAN
-===================================================== */
-
-.message{
-
-  padding:18px;
-
-  border-radius:18px;
-
-  text-align:center;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #e0b88b,
-      #bc8050
-    );
-
-  color:#4b2412;
-
-  font-size:19px;
-
-  font-weight:800;
-
-  box-shadow:
-
-    8px 9px 16px
-    rgba(0,0,0,.3),
-
-    inset 0 2px 2px
-    rgba(255,255,255,.6);
-
-}
-
-
-/* =====================================================
-   KOTAK PROSES
-===================================================== */
-
-.process-card{
-
-  position:relative;
-
-  overflow:hidden;
-
-  margin-top:16px;
-
-  padding:0;
-
-  border-radius:23px;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #e0b489,
-      #c48a5b 50%,
-      #b67848
-    );
-
-  border:
-
-    1px solid
-    rgba(255,255,255,.78);
-
-  box-shadow:
-
-    11px 12px 22px
-    rgba(0,0,0,.38),
-
-    inset 0 2px 3px
-    rgba(255,255,255,.68),
-
-    inset 0 -7px 12px
-    rgba(86,39,18,.18);
-
-}
-
-/* kilau permukaan */
-
-.process-card::before{
-
-  content:"";
-
-  position:absolute;
-
-  top:-20%;
-
-  left:-35%;
-
-  width:170%;
-
-  height:55%;
-
-  background:
-
-    linear-gradient(
-      115deg,
-      transparent 30%,
-      rgba(255,255,255,.15) 48%,
-      transparent 63%
-    );
-
-  transform:rotate(-5deg);
-
-  pointer-events:none;
-
-}
-
-
-/* =====================================================
-   JUDUL PROSES
-===================================================== */
-
-.process-title{
-
-  position:relative;
-
-  padding:16px 14px;
-
-  text-align:center;
-
-  color:#fff8ef;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #8b5431,
-      #643219 50%,
-      #4a2110
-    );
-
-  border-bottom:
-
-    1px solid
-    rgba(255,255,255,.22);
-
-  box-shadow:
-
-    inset 0 2px 2px
-    rgba(255,255,255,.25),
-
-    inset 0 -5px 8px
-    rgba(0,0,0,.25);
-
-  font-size:24px;
-
-  font-weight:900;
-
-  letter-spacing:1px;
-
-  text-shadow:
-
-    0 3px 0 #2d1308,
-
-    0 5px 8px
-    rgba(0,0,0,.5);
-
-}
-
-
-/* =====================================================
-   DATA PROSES
-===================================================== */
-
-.process-body{
-
-  position:relative;
-
-  padding:13px;
-
-}
-
-.data-row{
-
-  display:grid;
-
-  grid-template-columns:
-    42% 58%;
-
-  align-items:stretch;
-
-  margin-bottom:7px;
-
-  min-height:48px;
-
-  border-radius:12px;
-
-  overflow:hidden;
-
-  border:
-    1px solid
-    rgba(91,45,22,.2);
-
-  box-shadow:
-
-    0 3px 5px
-    rgba(70,30,12,.16),
-
-    inset 0 1px 2px
-    rgba(255,255,255,.42);
-
-}
-
-.data-row:last-child{
-
-  margin-bottom:0;
-
-}
-
-.data-label{
-
-  display:flex;
-
-  align-items:center;
-
-  padding:9px 10px;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #bd8051,
-      #a9683b
-    );
-
-  color:#fff7ee;
-
-  font-size:16px;
-
-  font-weight:900;
-
-  line-height:1.15;
-
-  text-shadow:
-    0 1px 2px
-    rgba(0,0,0,.35);
-
-}
-
-.data-value{
-
-  display:flex;
-
-  align-items:center;
-
-  padding:9px 11px;
-
-  min-width:0;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      rgba(255,250,243,.96),
-      rgba(238,215,193,.96)
-    );
-
-  color:#3d1c0d;
-
-  font-size:18px;
-
-  font-weight:800;
-
-  line-height:1.25;
-
-  word-break:break-word;
-
-  overflow-wrap:anywhere;
-
-}
-
-
-/* =====================================================
-   QTY KHUSUS
-===================================================== */
-
-.data-row.qty-row .data-value{
-
-  font-size:22px;
-
-  font-weight:900;
-
-}
-
-
-/* =====================================================
-   NAMA
-===================================================== */
-
-.data-row.nama-row .data-value{
-
-  font-size:17px;
-
-  line-height:1.3;
-
-}
-
-
-/* =====================================================
    FOOTER
 ===================================================== */
 
@@ -983,6 +1130,43 @@ body::before{
   font-weight:700;
 
   opacity:.9;
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+  padding:25px 15px;
+
+  text-align:center;
+
+  border-radius:19px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #dfb488,
+      #bd8051
+    );
+
+  color:#4a2210;
+
+  font-size:20px;
+
+  font-weight:900;
+
+  box-shadow:
+
+    8px 9px 16px
+    rgba(0,0,0,.3),
+
+    inset 0 2px 2px
+    rgba(255,255,255,.6);
 
 }
 
@@ -1062,23 +1246,93 @@ body::before{
 
   }
 
-  .status-box{
-
-    padding:11px;
+  .process-table-box{
 
     border-radius:19px;
 
   }
 
-  .status-title{
+  .process-table-title{
+
+    font-size:20px;
+
+    padding:13px 7px;
+
+  }
+
+  .process-table{
+
+    min-width:560px;
+
+    border-spacing:3px;
+
+  }
+
+  .process-table th{
+
+    padding:11px 5px;
+
+    font-size:13px;
+
+  }
+
+  .process-table td{
+
+    padding:10px 5px;
 
     font-size:15px;
 
   }
 
-  .status-roll{
+  .process-table td:first-child{
 
-    font-size:20px;
+    font-size:13px;
+
+    padding-left:7px;
+
+  }
+
+  .roll-info-box,
+  .product-box,
+  .status-box{
+
+    border-radius:18px;
+
+  }
+
+  .roll-number{
+
+    font-size:21px;
+
+  }
+
+  .product-grid{
+
+    gap:5px;
+
+  }
+
+  .product-label{
+
+    font-size:11px;
+
+    padding:7px 5px;
+
+  }
+
+  .product-value{
+
+    font-size:14px;
+
+    min-height:43px;
+
+    padding:8px 5px;
+
+  }
+
+  .product-item.qty .product-value{
+
+    font-size:21px;
 
   }
 
@@ -1106,73 +1360,7 @@ body::before{
 
   .status-icon{
 
-    font-size:24px;
-
-  }
-
-  .process-card{
-
-    margin-top:13px;
-
-    border-radius:20px;
-
-  }
-
-  .process-title{
-
-    padding:
-      14px
-      8px;
-
-    font-size:21px;
-
-  }
-
-  .process-body{
-
-    padding:10px;
-
-  }
-
-  .data-row{
-
-    grid-template-columns:
-      39%
-      61%;
-
-    min-height:47px;
-
-  }
-
-  .data-label{
-
-    padding:
-      8px
-      8px;
-
-    font-size:14px;
-
-  }
-
-  .data-value{
-
-    padding:
-      8px
-      9px;
-
-    font-size:17px;
-
-  }
-
-  .data-row.qty-row .data-value{
-
-    font-size:21px;
-
-  }
-
-  .data-row.nama-row .data-value{
-
-    font-size:16px;
+    font-size:25px;
 
   }
 
@@ -1199,6 +1387,30 @@ body::before{
 
   }
 
+  .process-table{
+
+    min-width:530px;
+
+  }
+
+  .process-table th{
+
+    font-size:12px;
+
+  }
+
+  .process-table td{
+
+    font-size:14px;
+
+  }
+
+  .product-value{
+
+    font-size:13px;
+
+  }
+
   .status-name{
 
     font-size:10px;
@@ -1207,107 +1419,87 @@ body::before{
 
   .status-icon{
 
-    font-size:21px;
-
-  }
-
-  .process-title{
-
-    font-size:19px;
-
-  }
-
-  .data-label{
-
-    font-size:13px;
-
-  }
-
-  .data-value{
-
-    font-size:16px;
+    font-size:22px;
 
   }
 
 }
 
+</style>
 
-/* =====================================================
-   LOADING
-===================================================== */
+</head>
 
-.loading{
+<body>
 
-  padding:25px 15px;
+<div class="wrapper">
 
-  text-align:center;
 
-  border-radius:19px;
+<!-- =================================================
+     HEADER
+================================================== -->
 
-  background:
+<div class="header">
 
-    linear-gradient(
-      145deg,
-      #dfb488,
-      #bd8051
-    );
-
-  color:#4a2210;
-
-  font-size:20px;
-
-  font-weight:900;
-
-  box-shadow:
-
-    8px 9px 16px
-    rgba(0,0,0,.3),
-
-    inset 0 2px 2px
-    rgba(255,255,255,.6);
-
-}
-
-</style></head><body><div class="wrapper">  <!-- =================================================
-       HEADER
-  ================================================== -->  <div class="header"><h1>
-  CEK ROLL ID
-</h1>
-
-  </div>  <!-- =================================================
-       PENCARIAN
-  ================================================== -->  <div class="search-panel"><label
-  class="search-label"
-  for="rollID"
->
-  NOMOR ROLL ID
-</label>
-
-<div class="search-row">
-
-  <input
-    type="text"
-    id="rollID"
-    placeholder="Masukkan Roll ID"
-    autocomplete="off"
-    spellcheck="false"
-  >
-
-  <button
-    class="search-button"
-    type="button"
-    onclick="cariRoll()"
-  >
-    CARI
-  </button>
+  <h1>
+    CEK ROLL ID
+  </h1>
 
 </div>
 
-  </div>  <!-- =================================================
-       HASIL
-  ================================================== -->  <div id="hasil"></div>  <div class="footer">
-    SISTEM INFORMASI PROSES PRODUKSI
-  </div></div><script>
+
+<!-- =================================================
+     PENCARIAN
+================================================== -->
+
+<div class="search-panel">
+
+  <label
+    class="search-label"
+    for="rollID"
+  >
+    NOMOR ROLL ID
+  </label>
+
+  <div class="search-row">
+
+    <input
+      type="text"
+      id="rollID"
+      placeholder="Masukkan Roll ID"
+      autocomplete="off"
+      spellcheck="false"
+    >
+
+    <button
+      class="search-button"
+      type="button"
+      onclick="cariRoll()"
+    >
+      CARI
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =================================================
+     HASIL
+================================================== -->
+
+<div id="hasil"></div>
+
+
+<div class="footer">
+
+  SISTEM INFORMASI PROSES PRODUKSI
+
+</div>
+
+</div>
+
+
+<script>
 
 /* =====================================================
    URL APPS SCRIPT
@@ -1334,13 +1526,308 @@ function escapeHTML(value){
 
 
 /* =====================================================
-   STATUS
+   NILAI AMAN
+===================================================== */
+
+function nilai(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ""
+  ){
+
+    return "-";
+
+  }
+
+  return value;
+
+}
+
+
+/* =====================================================
+   CELL TABEL
+===================================================== */
+
+function cell(value){
+
+  const v = nilai(value);
+
+  return escapeHTML(v);
+
+}
+
+
+/* =====================================================
+   BUAT TABEL PROSES
+===================================================== */
+
+function buatTabelProses(data){
+
+  const flat =
+    data.data?.FLAT || {};
+
+  const steam =
+    data.data?.STEAM || {};
+
+  const curing =
+    data.data?.CURING || {};
+
+  const washing =
+    data.data?.WASHING || {};
+
+
+  /*
+     FLAT memakai GRUB
+     Proses lain memakai SHIFT
+  */
+
+  const flatGrup =
+    flat["GRUB"] ||
+    flat["GRUP"] ||
+    "-";
+
+  const steamShift =
+    steam["SHIFT"] || "-";
+
+  const curingShift =
+    curing["SHIFT"] || "-";
+
+  const washingShift =
+    washing["SHIFT"] || "-";
+
+
+  return `
+
+    <div class="process-table-box">
+
+      <div class="process-table-title">
+        INFORMASI PROSES PRODUKSI
+      </div>
+
+      <div class="table-scroll">
+
+        <table class="process-table">
+
+          <thead>
+
+            <tr>
+
+              <th>URAIAN</th>
+
+              <th>FLAT</th>
+
+              <th>STEAM</th>
+
+              <th>CURING</th>
+
+              <th>WASHING</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr>
+
+              <td>TANGGAL</td>
+
+              <td>${cell(flat["TANGGAL"])}</td>
+
+              <td>${cell(steam["TANGGAL"])}</td>
+
+              <td>${cell(curing["TANGGAL"])}</td>
+
+              <td>${cell(washing["TANGGAL"])}</td>
+
+            </tr>
+
+            <tr>
+
+              <td>MESIN</td>
+
+              <td>${cell(flat["MESIN"])}</td>
+
+              <td>${cell(steam["MESIN"])}</td>
+
+              <td>${cell(curing["MESIN"])}</td>
+
+              <td>${cell(washing["MESIN"])}</td>
+
+            </tr>
+
+            <tr>
+
+              <td>GRUP / SHIFT</td>
+
+              <td>${cell(flatGrup)}</td>
+
+              <td>${cell(steamShift)}</td>
+
+              <td>${cell(curingShift)}</td>
+
+              <td>${cell(washingShift)}</td>
+
+            </tr>
+
+            <tr>
+
+              <td>NAMA</td>
+
+              <td>${cell(flat["NAMA"])}</td>
+
+              <td>${cell(steam["NAMA"])}</td>
+
+              <td>${cell(curing["NAMA"])}</td>
+
+              <td>${cell(washing["NAMA"])}</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   ROLL ID
+===================================================== */
+
+function buatRollInfo(data){
+
+  return `
+
+    <div class="roll-info-box">
+
+      <div class="roll-title">
+        NOMOR ROLL ID
+      </div>
+
+      <div class="roll-number">
+        ${escapeHTML(data.rollID)}
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   DETAIL PRODUK
+===================================================== */
+
+function buatDetailProduk(data){
+
+  const flat =
+    data.data?.FLAT || {};
+
+
+  return `
+
+    <div class="product-box">
+
+      <div class="product-title">
+        INFORMASI PRODUK
+      </div>
+
+      <div class="product-grid">
+
+
+        <div class="product-item">
+
+          <div class="product-label">
+            MOTIF
+          </div>
+
+          <div class="product-value">
+            ${cell(flat["Motif Printing"])}
+          </div>
+
+        </div>
+
+
+        <div class="product-item">
+
+          <div class="product-label">
+            WARNA
+          </div>
+
+          <div class="product-value">
+            ${cell(flat["WARNA"])}
+          </div>
+
+        </div>
+
+
+        <div class="product-item">
+
+          <div class="product-label">
+            ISIAN WARNA
+          </div>
+
+          <div class="product-value">
+            ${cell(flat["ISIAN WARNA"])}
+          </div>
+
+        </div>
+
+
+        <div class="product-item">
+
+          <div class="product-label">
+            KODE PRODUK
+          </div>
+
+          <div class="product-value">
+            ${cell(flat["KODE PRODUK"])}
+          </div>
+
+        </div>
+
+
+        <div class="product-item qty">
+
+          <div class="product-label">
+            QTY
+          </div>
+
+          <div class="product-value">
+            ${cell(flat["QTY"])}
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   STATUS PERJALANAN
 ===================================================== */
 
 function buatStatus(data){
 
   const status =
     data.status || {};
+
 
   const proses = [
 
@@ -1354,6 +1841,7 @@ function buatStatus(data){
 
   ];
 
+
   let html = `
 
     <div class="status-box">
@@ -1362,23 +1850,22 @@ function buatStatus(data){
         STATUS PERJALANAN ROLL
       </div>
 
-      <div class="status-roll">
-        ROLL ID :
-        ${escapeHTML(data.rollID)}
-      </div>
-
       <div class="status-flow">
 
   `;
 
+
   proses.forEach(function(item){
 
-    const nama = item[0];
+    const nama =
+      item[0];
 
-    const key = item[1];
+    const key =
+      item[1];
 
     const selesai =
       status[key] === "✓";
+
 
     html += `
 
@@ -1401,6 +1888,7 @@ function buatStatus(data){
 
   });
 
+
   html += `
 
       </div>
@@ -1409,89 +1897,8 @@ function buatStatus(data){
 
   `;
 
+
   return html;
-
-}
-
-
-/* =====================================================
-   BARIS DATA
-===================================================== */
-
-function buatBaris(
-  label,
-  value,
-  extraClass = ""
-){
-
-  const nilai =
-    value === null ||
-    value === undefined ||
-    value === ""
-      ? "-"
-      : value;
-
-  return `
-
-    <div class="
-      data-row
-      ${extraClass}
-    ">
-
-      <div class="data-label">
-        ${escapeHTML(label)}
-      </div>
-
-      <div class="data-value">
-        ${escapeHTML(nilai)}
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   KOTAK PROSES
-===================================================== */
-
-function buatProses(
-  judul,
-  data,
-  daftar
-){
-
-  let isi = "";
-
-  daftar.forEach(function(item){
-
-    isi += buatBaris(
-      item.label,
-      data ? data[item.key] : "-",
-      item.className || ""
-    );
-
-  });
-
-  return `
-
-    <div class="process-card">
-
-      <div class="process-title">
-        ${escapeHTML(judul)}
-      </div>
-
-      <div class="process-body">
-
-        ${isi}
-
-      </div>
-
-    </div>
-
-  `;
 
 }
 
@@ -1504,6 +1911,7 @@ function tampilkanHasil(data){
 
   const hasil =
     document.getElementById("hasil");
+
 
   if(
     !data ||
@@ -1529,209 +1937,27 @@ function tampilkanHasil(data){
   }
 
 
-  const flat =
-    data.data?.FLAT;
-
-  const steam =
-    data.data?.STEAM;
-
-  const curing =
-    data.data?.CURING;
-
-  const washing =
-    data.data?.WASHING;
-
-
   let html = "";
 
 
-  /* STATUS */
+  /*
+     URUTAN TAMPILAN
+  */
+
+  html +=
+    buatTabelProses(data);
+
+
+  html +=
+    buatRollInfo(data);
+
+
+  html +=
+    buatDetailProduk(data);
+
 
   html +=
     buatStatus(data);
-
-
-  /* =================================================
-     PRINTING
-  ================================================== */
-
-  html += buatProses(
-
-    "PROSES PRINTING",
-
-    flat,
-
-    [
-
-      {
-        label:"ROLL ID",
-        key:"ROLL ID"
-      },
-
-      {
-        label:"TANGGAL",
-        key:"TANGGAL"
-      },
-
-      {
-        label:"MESIN",
-        key:"MESIN"
-      },
-
-      {
-        label:"MOTIF",
-        key:"Motif Printing"
-      },
-
-      {
-        label:"WARNA",
-        key:"WARNA"
-      },
-
-      {
-        label:"ISIAN WARNA",
-        key:"ISIAN WARNA"
-      },
-
-      {
-        label:"KODE PRODUK",
-        key:"KODE PRODUK"
-      },
-
-      {
-        label:"QTY",
-        key:"QTY",
-        className:"qty-row"
-      },
-
-      {
-        label:"GRUP",
-        key:"GRUB"
-      },
-
-      {
-        label:"NAMA",
-        key:"NAMA",
-        className:"nama-row"
-      }
-
-    ]
-
-  );
-
-
-  /* =================================================
-     STEAM
-  ================================================== */
-
-  html += buatProses(
-
-    "PROSES STEAM",
-
-    steam,
-
-    [
-
-      {
-        label:"TANGGAL",
-        key:"TANGGAL"
-      },
-
-      {
-        label:"MESIN",
-        key:"MESIN"
-      },
-
-      {
-        label:"SHIFT",
-        key:"SHIFT"
-      },
-
-      {
-        label:"NAMA",
-        key:"NAMA",
-        className:"nama-row"
-      }
-
-    ]
-
-  );
-
-
-  /* =================================================
-     CURING
-  ================================================== */
-
-  html += buatProses(
-
-    "PROSES CURING",
-
-    curing,
-
-    [
-
-      {
-        label:"TANGGAL",
-        key:"TANGGAL"
-      },
-
-      {
-        label:"MESIN",
-        key:"MESIN"
-      },
-
-      {
-        label:"SHIFT",
-        key:"SHIFT"
-      },
-
-      {
-        label:"NAMA",
-        key:"NAMA",
-        className:"nama-row"
-      }
-
-    ]
-
-  );
-
-
-  /* =================================================
-     WASHING
-  ================================================== */
-
-  html += buatProses(
-
-    "PROSES WASHING",
-
-    washing,
-
-    [
-
-      {
-        label:"TANGGAL",
-        key:"TANGGAL"
-      },
-
-      {
-        label:"MESIN",
-        key:"MESIN"
-      },
-
-      {
-        label:"SHIFT",
-        key:"SHIFT"
-      },
-
-      {
-        label:"NAMA",
-        key:"NAMA",
-        className:"nama-row"
-      }
-
-    ]
-
-  );
 
 
   hasil.innerHTML =
@@ -1861,5 +2087,8 @@ document
     }
   );
 
-</script></body>
+</script>
+
+</body>
+
 </html>
