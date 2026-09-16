@@ -1,125 +1,1865 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html><html lang="id">
+<head><meta charset="UTF-8"><meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 
-  <title>Cek Roll ID</title>
+«»
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 30px;
-      background: #f5f5f5;
-    }
+<title>CEK ROLL ID</title><style>
 
-    .box {
-      max-width: 500px;
-      margin: auto;
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,.15);
-    }
+/* =====================================================
+   DASAR
+===================================================== */
 
-    h2 {
-      text-align: center;
-    }
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
-    input {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      box-sizing: border-box;
-      margin-bottom: 10px;
-    }
+html{
+  scroll-behavior:smooth;
+}
 
-    button {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+body{
 
-    #hasil {
-      margin-top: 20px;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-  </style>
-</head>
+  margin:0;
 
-<body>
+  padding:18px 12px 35px;
 
-<div class="box">
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 
-  <h2>CEK ROLL ID</h2>
+  color:#351a0e;
 
-  <input
-    type="text"
-    id="rollID"
-    placeholder="Masukkan Roll ID"
-  >
+  min-height:100vh;
 
-  <button onclick="cariRoll()">
-    CARI
-  </button>
+  background-color:#3a1d10;
 
-  <div id="hasil"></div>
+  /*
+     MOTIF KOTAK ALA KAIN SARUNG
+  */
 
-</div>
+  background-image:
 
-<script>
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.08) 25%,
+      transparent 25%
+    ),
 
-const URL_APPS_SCRIPT =
-"https://script.google.com/macros/s/AKfycbxsJO62dtELPut4uBTJQJ2ZcIKXHqXGW9ITluy1TLul47fd97o1-v9yzJO4mH5WsXAn/exec";
+    linear-gradient(
+      315deg,
+      rgba(255,255,255,.05) 25%,
+      transparent 25%
+    ),
+
+    linear-gradient(
+      45deg,
+      rgba(0,0,0,.10) 25%,
+      transparent 25%
+    ),
+
+    linear-gradient(
+      225deg,
+      rgba(0,0,0,.08) 25%,
+      transparent 25%
+    ),
+
+    linear-gradient(
+      90deg,
+      transparent 48%,
+      rgba(255,255,255,.045) 50%,
+      transparent 52%
+    ),
+
+    linear-gradient(
+      0deg,
+      transparent 48%,
+      rgba(255,255,255,.035) 50%,
+      transparent 52%
+    );
+
+  background-size:
+    80px 80px,
+    80px 80px,
+    80px 80px,
+    80px 80px,
+    40px 40px,
+    40px 40px;
+
+  background-position:
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+
+  background-blend-mode:
+    screen,
+    screen,
+    multiply,
+    multiply,
+    screen,
+    screen;
+
+}
+
+/* =====================================================
+   KAIN / LAPISAN GLOSSY
+===================================================== */
+
+body::before{
+
+  content:"";
+
+  position:fixed;
+
+  inset:0;
+
+  pointer-events:none;
+
+  z-index:-1;
+
+  background:
+
+    radial-gradient(
+      ellipse at 20% 0%,
+      rgba(255,220,180,.18),
+      transparent 35%
+    ),
+
+    radial-gradient(
+      ellipse at 85% 25%,
+      rgba(255,255,255,.09),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      125deg,
+      transparent 0%,
+      rgba(255,255,255,.07) 42%,
+      transparent 58%
+    );
+
+  opacity:.9;
+
+}
 
 
-async function cariRoll() {
+/* =====================================================
+   PEMBUNGKUS UTAMA
+===================================================== */
 
-  const rollID =
-    document.getElementById("rollID").value.trim();
+.wrapper{
 
-  const hasil =
-    document.getElementById("hasil");
+  width:100%;
 
-  if (!rollID) {
+  max-width:700px;
 
-    hasil.textContent =
-      "Silakan masukkan Roll ID.";
+  margin:0 auto;
 
-    return;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+  position:relative;
+
+  overflow:hidden;
+
+  padding:22px 16px 20px;
+
+  border-radius:25px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #7a4528,
+      #4b2414 48%,
+      #30150b
+    );
+
+  border:
+
+    1px solid
+    rgba(255,255,255,.28);
+
+  box-shadow:
+
+    0 16px 28px
+    rgba(0,0,0,.42),
+
+    inset 0 2px 2px
+    rgba(255,255,255,.28),
+
+    inset 0 -5px 10px
+    rgba(0,0,0,.28);
+
+}
+
+/* kilau header */
+
+.header::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:-60%;
+
+  left:-25%;
+
+  width:150%;
+
+  height:100%;
+
+  background:
+
+    linear-gradient(
+      110deg,
+      transparent 35%,
+      rgba(255,255,255,.16) 48%,
+      transparent 60%
+    );
+
+  transform:rotate(-8deg);
+
+  pointer-events:none;
+
+}
+
+.header::after{
+
+  content:"";
+
+  position:absolute;
+
+  left:8%;
+
+  right:8%;
+
+  bottom:8px;
+
+  height:2px;
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,220,180,.45),
+      transparent
+    );
+
+}
+
+.header h1{
+
+  position:relative;
+
+  margin:0;
+
+  text-align:center;
+
+  color:#fff9f1;
+
+  font-size:clamp(30px,8vw,48px);
+
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  text-shadow:
+
+    0 3px 0 #291208,
+
+    0 6px 9px
+    rgba(0,0,0,.55);
+
+}
+
+
+/* =====================================================
+   AREA PENCARIAN
+===================================================== */
+
+.search-panel{
+
+  margin-top:14px;
+
+  padding:14px;
+
+  border-radius:21px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #e3b98d,
+      #c68f61
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.72);
+
+  box-shadow:
+
+    9px 10px 18px
+    rgba(0,0,0,.32),
+
+    inset 0 2px 3px
+    rgba(255,255,255,.72),
+
+    inset 0 -5px 9px
+    rgba(91,43,20,.18);
+
+}
+
+.search-label{
+
+  display:block;
+
+  margin-bottom:8px;
+
+  color:#4a2412;
+
+  font-size:17px;
+
+  font-weight:900;
+
+  text-transform:uppercase;
+
+}
+
+.search-row{
+
+  display:flex;
+
+  gap:10px;
+
+}
+
+#rollID{
+
+  min-width:0;
+
+  flex:1;
+
+  height:58px;
+
+  padding:0 16px;
+
+  border-radius:15px;
+
+  border:
+
+    2px solid
+    #8a5738;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #fffdf9,
+      #f0dfcf
+    );
+
+  color:#351a0e;
+
+  font-size:21px;
+
+  font-weight:800;
+
+  outline:none;
+
+  box-shadow:
+
+    inset 0 3px 7px
+    rgba(0,0,0,.13),
+
+    0 3px 6px
+    rgba(0,0,0,.18);
+
+}
+
+#rollID:focus{
+
+  border-color:#6a341b;
+
+  box-shadow:
+
+    0 0 0 3px
+    rgba(255,255,255,.35),
+
+    inset 0 3px 7px
+    rgba(0,0,0,.13);
+
+}
+
+#rollID::placeholder{
+
+  color:#8a725f;
+
+  font-weight:600;
+
+}
+
+.search-button{
+
+  flex:0 0 118px;
+
+  height:58px;
+
+  border:0;
+
+  border-radius:15px;
+
+  cursor:pointer;
+
+  color:#fffaf5;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #86502d,
+      #5a2c18 52%,
+      #3b1b0e
+    );
+
+  font-size:19px;
+
+  font-weight:900;
+
+  letter-spacing:.5px;
+
+  box-shadow:
+
+    0 7px 12px
+    rgba(0,0,0,.35),
+
+    inset 0 2px 2px
+    rgba(255,255,255,.25),
+
+    inset 0 -4px 7px
+    rgba(0,0,0,.3);
+
+  text-shadow:
+    0 2px 2px
+    rgba(0,0,0,.45);
+
+}
+
+.search-button:active{
+
+  transform:translateY(2px);
+
+  box-shadow:
+
+    0 3px 7px
+    rgba(0,0,0,.3),
+
+    inset 0 2px 4px
+    rgba(0,0,0,.25);
+
+}
+
+
+/* =====================================================
+   STATUS ROLL ID
+===================================================== */
+
+.status-box{
+
+  margin-top:14px;
+
+  padding:15px;
+
+  border-radius:22px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #d9aa7b,
+      #bd8050
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.78);
+
+  box-shadow:
+
+    9px 10px 18px
+    rgba(0,0,0,.34),
+
+    inset 0 2px 3px
+    rgba(255,255,255,.7),
+
+    inset 0 -6px 10px
+    rgba(75,35,17,.2);
+
+}
+
+.status-title{
+
+  margin:0 0 10px;
+
+  text-align:center;
+
+  color:#47200f;
+
+  font-size:17px;
+
+  font-weight:900;
+
+  letter-spacing:1px;
+
+}
+
+.status-roll{
+
+  margin-bottom:13px;
+
+  padding:10px 12px;
+
+  text-align:center;
+
+  border-radius:13px;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #fffdf9,
+      #ead8c6
+    );
+
+  border:
+    1px solid
+    rgba(94,45,21,.35);
+
+  color:#48210f;
+
+  font-size:24px;
+
+  font-weight:900;
+
+  letter-spacing:1px;
+
+  box-shadow:
+
+    inset 0 2px 5px
+    rgba(0,0,0,.12);
+
+  word-break:break-word;
+
+}
+
+.status-flow{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:7px;
+
+}
+
+.status-item{
+
+  min-width:0;
+
+  padding:10px 5px;
+
+  text-align:center;
+
+  border-radius:13px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #eac49c,
+      #c58c5e
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.55);
+
+  box-shadow:
+
+    0 4px 7px
+    rgba(0,0,0,.25),
+
+    inset 0 2px 2px
+    rgba(255,255,255,.5);
+
+}
+
+.status-name{
+
+  display:block;
+
+  color:#542511;
+
+  font-size:13px;
+
+  font-weight:900;
+
+  margin-bottom:5px;
+
+}
+
+.status-icon{
+
+  display:block;
+
+  font-size:26px;
+
+  line-height:1;
+
+  font-weight:900;
+
+}
+
+.status-item.done .status-icon{
+
+  color:#145b28;
+
+  text-shadow:
+    0 2px 2px
+    rgba(0,0,0,.2);
+
+}
+
+.status-item.pending .status-icon{
+
+  color:#68432c;
+
+}
+
+
+/* =====================================================
+   HASIL
+===================================================== */
+
+#hasil{
+
+  margin-top:15px;
+
+}
+
+
+/* =====================================================
+   PESAN
+===================================================== */
+
+.message{
+
+  padding:18px;
+
+  border-radius:18px;
+
+  text-align:center;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #e0b88b,
+      #bc8050
+    );
+
+  color:#4b2412;
+
+  font-size:19px;
+
+  font-weight:800;
+
+  box-shadow:
+
+    8px 9px 16px
+    rgba(0,0,0,.3),
+
+    inset 0 2px 2px
+    rgba(255,255,255,.6);
+
+}
+
+
+/* =====================================================
+   KOTAK PROSES
+===================================================== */
+
+.process-card{
+
+  position:relative;
+
+  overflow:hidden;
+
+  margin-top:16px;
+
+  padding:0;
+
+  border-radius:23px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #e0b489,
+      #c48a5b 50%,
+      #b67848
+    );
+
+  border:
+
+    1px solid
+    rgba(255,255,255,.78);
+
+  box-shadow:
+
+    11px 12px 22px
+    rgba(0,0,0,.38),
+
+    inset 0 2px 3px
+    rgba(255,255,255,.68),
+
+    inset 0 -7px 12px
+    rgba(86,39,18,.18);
+
+}
+
+/* kilau permukaan */
+
+.process-card::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:-20%;
+
+  left:-35%;
+
+  width:170%;
+
+  height:55%;
+
+  background:
+
+    linear-gradient(
+      115deg,
+      transparent 30%,
+      rgba(255,255,255,.15) 48%,
+      transparent 63%
+    );
+
+  transform:rotate(-5deg);
+
+  pointer-events:none;
+
+}
+
+
+/* =====================================================
+   JUDUL PROSES
+===================================================== */
+
+.process-title{
+
+  position:relative;
+
+  padding:16px 14px;
+
+  text-align:center;
+
+  color:#fff8ef;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #8b5431,
+      #643219 50%,
+      #4a2110
+    );
+
+  border-bottom:
+
+    1px solid
+    rgba(255,255,255,.22);
+
+  box-shadow:
+
+    inset 0 2px 2px
+    rgba(255,255,255,.25),
+
+    inset 0 -5px 8px
+    rgba(0,0,0,.25);
+
+  font-size:24px;
+
+  font-weight:900;
+
+  letter-spacing:1px;
+
+  text-shadow:
+
+    0 3px 0 #2d1308,
+
+    0 5px 8px
+    rgba(0,0,0,.5);
+
+}
+
+
+/* =====================================================
+   DATA PROSES
+===================================================== */
+
+.process-body{
+
+  position:relative;
+
+  padding:13px;
+
+}
+
+.data-row{
+
+  display:grid;
+
+  grid-template-columns:
+    42% 58%;
+
+  align-items:stretch;
+
+  margin-bottom:7px;
+
+  min-height:48px;
+
+  border-radius:12px;
+
+  overflow:hidden;
+
+  border:
+    1px solid
+    rgba(91,45,22,.2);
+
+  box-shadow:
+
+    0 3px 5px
+    rgba(70,30,12,.16),
+
+    inset 0 1px 2px
+    rgba(255,255,255,.42);
+
+}
+
+.data-row:last-child{
+
+  margin-bottom:0;
+
+}
+
+.data-label{
+
+  display:flex;
+
+  align-items:center;
+
+  padding:9px 10px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #bd8051,
+      #a9683b
+    );
+
+  color:#fff7ee;
+
+  font-size:16px;
+
+  font-weight:900;
+
+  line-height:1.15;
+
+  text-shadow:
+    0 1px 2px
+    rgba(0,0,0,.35);
+
+}
+
+.data-value{
+
+  display:flex;
+
+  align-items:center;
+
+  padding:9px 11px;
+
+  min-width:0;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      rgba(255,250,243,.96),
+      rgba(238,215,193,.96)
+    );
+
+  color:#3d1c0d;
+
+  font-size:18px;
+
+  font-weight:800;
+
+  line-height:1.25;
+
+  word-break:break-word;
+
+  overflow-wrap:anywhere;
+
+}
+
+
+/* =====================================================
+   QTY KHUSUS
+===================================================== */
+
+.data-row.qty-row .data-value{
+
+  font-size:22px;
+
+  font-weight:900;
+
+}
+
+
+/* =====================================================
+   NAMA
+===================================================== */
+
+.data-row.nama-row .data-value{
+
+  font-size:17px;
+
+  line-height:1.3;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+  margin-top:18px;
+
+  text-align:center;
+
+  color:#e9c8a7;
+
+  font-size:13px;
+
+  font-weight:700;
+
+  opacity:.9;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE HP
+===================================================== */
+
+@media(max-width:520px){
+
+  body{
+
+    padding:
+      10px
+      8px
+      25px;
+
   }
 
-  hasil.textContent =
-    "⏳ Mencari data...";
+  .header{
 
-  try {
+    border-radius:21px;
 
-    const response =
-      await fetch(
-        URL_APPS_SCRIPT +
-        "?rollID=" +
-        encodeURIComponent(rollID)
+    padding:
+      19px
+      10px
+      18px;
+
+  }
+
+  .header h1{
+
+    font-size:
+      clamp(
+        29px,
+        9vw,
+        40px
       );
 
-    const data =
-      await response.json();
+    letter-spacing:1.5px;
 
-    hasil.textContent =
-      JSON.stringify(data, null, 2);
+  }
 
-  } catch (error) {
+  .search-panel{
 
-    hasil.textContent =
-      "❌ Gagal terhubung ke server.\n\n" +
-      error.message;
+    padding:11px;
+
+    border-radius:18px;
+
+  }
+
+  .search-row{
+
+    gap:7px;
+
+  }
+
+  #rollID{
+
+    height:55px;
+
+    padding:
+      0
+      12px;
+
+    font-size:18px;
+
+  }
+
+  .search-button{
+
+    flex-basis:92px;
+
+    height:55px;
+
+    font-size:17px;
+
+  }
+
+  .status-box{
+
+    padding:11px;
+
+    border-radius:19px;
+
+  }
+
+  .status-title{
+
+    font-size:15px;
+
+  }
+
+  .status-roll{
+
+    font-size:20px;
+
+  }
+
+  .status-flow{
+
+    gap:5px;
+
+  }
+
+  .status-item{
+
+    padding:
+      8px
+      3px;
+
+    border-radius:11px;
+
+  }
+
+  .status-name{
+
+    font-size:11px;
+
+  }
+
+  .status-icon{
+
+    font-size:24px;
+
+  }
+
+  .process-card{
+
+    margin-top:13px;
+
+    border-radius:20px;
+
+  }
+
+  .process-title{
+
+    padding:
+      14px
+      8px;
+
+    font-size:21px;
+
+  }
+
+  .process-body{
+
+    padding:10px;
+
+  }
+
+  .data-row{
+
+    grid-template-columns:
+      39%
+      61%;
+
+    min-height:47px;
+
+  }
+
+  .data-label{
+
+    padding:
+      8px
+      8px;
+
+    font-size:14px;
+
+  }
+
+  .data-value{
+
+    padding:
+      8px
+      9px;
+
+    font-size:17px;
+
+  }
+
+  .data-row.qty-row .data-value{
+
+    font-size:21px;
+
+  }
+
+  .data-row.nama-row .data-value{
+
+    font-size:16px;
 
   }
 
 }
 
-</script>
 
-</body>
+/* =====================================================
+   HP SANGAT KECIL
+===================================================== */
+
+@media(max-width:360px){
+
+  .search-button{
+
+    flex-basis:82px;
+
+    font-size:15px;
+
+  }
+
+  #rollID{
+
+    font-size:16px;
+
+  }
+
+  .status-name{
+
+    font-size:10px;
+
+  }
+
+  .status-icon{
+
+    font-size:21px;
+
+  }
+
+  .process-title{
+
+    font-size:19px;
+
+  }
+
+  .data-label{
+
+    font-size:13px;
+
+  }
+
+  .data-value{
+
+    font-size:16px;
+
+  }
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+  padding:25px 15px;
+
+  text-align:center;
+
+  border-radius:19px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #dfb488,
+      #bd8051
+    );
+
+  color:#4a2210;
+
+  font-size:20px;
+
+  font-weight:900;
+
+  box-shadow:
+
+    8px 9px 16px
+    rgba(0,0,0,.3),
+
+    inset 0 2px 2px
+    rgba(255,255,255,.6);
+
+}
+
+</style></head><body><div class="wrapper">  <!-- =================================================
+       HEADER
+  ================================================== -->  <div class="header"><h1>
+  CEK ROLL ID
+</h1>
+
+  </div>  <!-- =================================================
+       PENCARIAN
+  ================================================== -->  <div class="search-panel"><label
+  class="search-label"
+  for="rollID"
+>
+  NOMOR ROLL ID
+</label>
+
+<div class="search-row">
+
+  <input
+    type="text"
+    id="rollID"
+    placeholder="Masukkan Roll ID"
+    autocomplete="off"
+    spellcheck="false"
+  >
+
+  <button
+    class="search-button"
+    type="button"
+    onclick="cariRoll()"
+  >
+    CARI
+  </button>
+
+</div>
+
+  </div>  <!-- =================================================
+       HASIL
+  ================================================== -->  <div id="hasil"></div>  <div class="footer">
+    SISTEM INFORMASI PROSES PRODUKSI
+  </div></div><script>
+
+/* =====================================================
+   URL APPS SCRIPT
+===================================================== */
+
+const URL_APPS_SCRIPT =
+"https://script.google.com/macros/s/AKfycbxsJO62dtELPut4uBTJQJ2ZcIKXHqXGW9ITluy1TLul47fd97o1-v9yzJO4mH5WsXAn/exec";
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+  return String(value ?? "-")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function buatStatus(data){
+
+  const status =
+    data.status || {};
+
+  const proses = [
+
+    ["FLAT","FLAT"],
+
+    ["STEAM","STEAM"],
+
+    ["CURING","CURING"],
+
+    ["WASHING","WASHING"]
+
+  ];
+
+  let html = `
+
+    <div class="status-box">
+
+      <div class="status-title">
+        STATUS PERJALANAN ROLL
+      </div>
+
+      <div class="status-roll">
+        ROLL ID :
+        ${escapeHTML(data.rollID)}
+      </div>
+
+      <div class="status-flow">
+
+  `;
+
+  proses.forEach(function(item){
+
+    const nama = item[0];
+
+    const key = item[1];
+
+    const selesai =
+      status[key] === "✓";
+
+    html += `
+
+      <div class="
+        status-item
+        ${selesai ? "done" : "pending"}
+      ">
+
+        <span class="status-name">
+          ${nama}
+        </span>
+
+        <span class="status-icon">
+          ${selesai ? "✓" : "-"}
+        </span>
+
+      </div>
+
+    `;
+
+  });
+
+  html += `
+
+      </div>
+
+    </div>
+
+  `;
+
+  return html;
+
+}
+
+
+/* =====================================================
+   BARIS DATA
+===================================================== */
+
+function buatBaris(
+  label,
+  value,
+  extraClass = ""
+){
+
+  const nilai =
+    value === null ||
+    value === undefined ||
+    value === ""
+      ? "-"
+      : value;
+
+  return `
+
+    <div class="
+      data-row
+      ${extraClass}
+    ">
+
+      <div class="data-label">
+        ${escapeHTML(label)}
+      </div>
+
+      <div class="data-value">
+        ${escapeHTML(nilai)}
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   KOTAK PROSES
+===================================================== */
+
+function buatProses(
+  judul,
+  data,
+  daftar
+){
+
+  let isi = "";
+
+  daftar.forEach(function(item){
+
+    isi += buatBaris(
+      item.label,
+      data ? data[item.key] : "-",
+      item.className || ""
+    );
+
+  });
+
+  return `
+
+    <div class="process-card">
+
+      <div class="process-title">
+        ${escapeHTML(judul)}
+      </div>
+
+      <div class="process-body">
+
+        ${isi}
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   TAMPILKAN HASIL
+===================================================== */
+
+function tampilkanHasil(data){
+
+  const hasil =
+    document.getElementById("hasil");
+
+  if(
+    !data ||
+    !data.sukses
+  ){
+
+    hasil.innerHTML = `
+
+      <div class="message">
+
+        ❌
+        ${escapeHTML(
+          data?.pesan ||
+          "Data tidak ditemukan."
+        )}
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  const flat =
+    data.data?.FLAT;
+
+  const steam =
+    data.data?.STEAM;
+
+  const curing =
+    data.data?.CURING;
+
+  const washing =
+    data.data?.WASHING;
+
+
+  let html = "";
+
+
+  /* STATUS */
+
+  html +=
+    buatStatus(data);
+
+
+  /* =================================================
+     PRINTING
+  ================================================== */
+
+  html += buatProses(
+
+    "PROSES PRINTING",
+
+    flat,
+
+    [
+
+      {
+        label:"ROLL ID",
+        key:"ROLL ID"
+      },
+
+      {
+        label:"TANGGAL",
+        key:"TANGGAL"
+      },
+
+      {
+        label:"MESIN",
+        key:"MESIN"
+      },
+
+      {
+        label:"MOTIF",
+        key:"Motif Printing"
+      },
+
+      {
+        label:"WARNA",
+        key:"WARNA"
+      },
+
+      {
+        label:"ISIAN WARNA",
+        key:"ISIAN WARNA"
+      },
+
+      {
+        label:"KODE PRODUK",
+        key:"KODE PRODUK"
+      },
+
+      {
+        label:"QTY",
+        key:"QTY",
+        className:"qty-row"
+      },
+
+      {
+        label:"GRUP",
+        key:"GRUB"
+      },
+
+      {
+        label:"NAMA",
+        key:"NAMA",
+        className:"nama-row"
+      }
+
+    ]
+
+  );
+
+
+  /* =================================================
+     STEAM
+  ================================================== */
+
+  html += buatProses(
+
+    "PROSES STEAM",
+
+    steam,
+
+    [
+
+      {
+        label:"TANGGAL",
+        key:"TANGGAL"
+      },
+
+      {
+        label:"MESIN",
+        key:"MESIN"
+      },
+
+      {
+        label:"SHIFT",
+        key:"SHIFT"
+      },
+
+      {
+        label:"NAMA",
+        key:"NAMA",
+        className:"nama-row"
+      }
+
+    ]
+
+  );
+
+
+  /* =================================================
+     CURING
+  ================================================== */
+
+  html += buatProses(
+
+    "PROSES CURING",
+
+    curing,
+
+    [
+
+      {
+        label:"TANGGAL",
+        key:"TANGGAL"
+      },
+
+      {
+        label:"MESIN",
+        key:"MESIN"
+      },
+
+      {
+        label:"SHIFT",
+        key:"SHIFT"
+      },
+
+      {
+        label:"NAMA",
+        key:"NAMA",
+        className:"nama-row"
+      }
+
+    ]
+
+  );
+
+
+  /* =================================================
+     WASHING
+  ================================================== */
+
+  html += buatProses(
+
+    "PROSES WASHING",
+
+    washing,
+
+    [
+
+      {
+        label:"TANGGAL",
+        key:"TANGGAL"
+      },
+
+      {
+        label:"MESIN",
+        key:"MESIN"
+      },
+
+      {
+        label:"SHIFT",
+        key:"SHIFT"
+      },
+
+      {
+        label:"NAMA",
+        key:"NAMA",
+        className:"nama-row"
+      }
+
+    ]
+
+  );
+
+
+  hasil.innerHTML =
+    html;
+
+}
+
+
+/* =====================================================
+   CARI ROLL
+===================================================== */
+
+async function cariRoll(){
+
+  const input =
+    document.getElementById("rollID");
+
+  const hasil =
+    document.getElementById("hasil");
+
+  const rollID =
+    input.value.trim();
+
+
+  if(!rollID){
+
+    hasil.innerHTML = `
+
+      <div class="message">
+
+        ⚠️
+        Silakan masukkan
+        Roll ID terlebih dahulu.
+
+      </div>
+
+    `;
+
+    input.focus();
+
+    return;
+
+  }
+
+
+  hasil.innerHTML = `
+
+    <div class="loading">
+
+      ⏳ MENCARI DATA ROLL ID...
+
+    </div>
+
+  `;
+
+
+  try{
+
+    const response =
+      await fetch(
+
+        URL_APPS_SCRIPT +
+        "?rollID=" +
+        encodeURIComponent(rollID)
+
+      );
+
+
+    if(!response.ok){
+
+      throw new Error(
+        "Server mengembalikan status " +
+        response.status
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    tampilkanHasil(data);
+
+
+  }catch(error){
+
+    hasil.innerHTML = `
+
+      <div class="message">
+
+        ❌ GAGAL TERHUBUNG KE SERVER
+
+        <br><br>
+
+        ${escapeHTML(error.message)}
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =====================================================
+   ENTER = CARI
+===================================================== */
+
+document
+  .getElementById("rollID")
+  .addEventListener(
+    "keydown",
+    function(event){
+
+      if(
+        event.key === "Enter"
+      ){
+
+        event.preventDefault();
+
+        cariRoll();
+
+      }
+
+    }
+  );
+
+</script></body>
 </html>
