@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>LAPORAN PRODUKSI HARIAN</title>
-
-<style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LAPORAN PRODUKSI HARIAN</title><style>
 
 /* =====================================================
    DASAR
@@ -1089,289 +1084,231 @@ thead th{
 
 }
 
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-
-<!-- =====================================================
+</style></head><body><div class="container"><!-- =====================================================
      HEADER
-===================================================== -->
+===================================================== --><div class="header"><h1
+    onclick="toggleFilter()"
+    title="Ketuk untuk membuka filter"
+>
+    LAPORAN PRODUKSI HARIAN
+</h1>
 
-<div class="header">
-
-    <h1
-        onclick="toggleFilter()"
-        title="Ketuk untuk membuka filter"
-    >
-        LAPORAN PRODUKSI HARIAN
-    </h1>
-
-    <div class="subtitle">
-        DEPARTEMEN PRINTING
-    </div>
-
+<div class="subtitle">
+    DEPARTEMEN PRINTING
 </div>
 
-
-<!-- =====================================================
+</div><!-- =====================================================
      FILTER
-===================================================== -->
-
-<div
+===================================================== --><div
     class="filter-panel"
     id="filterPanel"
->
+><div class="filter-box">
 
-    <div class="filter-box">
+    <label>
+        HARI YANG DIPILIH
+    </label>
 
-        <label>
-            HARI YANG DIPILIH
-        </label>
-
-        <input
-            type="date"
-            id="tanggal"
-        >
-
-    </div>
-
-
-    <div class="filter-box">
-
-        <label>
-            GRUP
-        </label>
-
-        <select id="grup">
-
-            <option value="">
-                SEMUA GRUP
-            </option>
-
-            <option value="A">
-                GRUP A
-            </option>
-
-            <option value="B">
-                GRUP B
-            </option>
-
-            <option value="C">
-                GRUP C
-            </option>
-
-        </select>
-
-    </div>
-
-
-    <button
-        class="refresh-btn"
-        onclick="ambilData()"
+    <input
+        type="date"
+        id="tanggal"
     >
-        ↻ REFRESH DATA
-    </button>
 
 </div>
 
 
-<!-- =====================================================
-     INFO
-===================================================== -->
+<div class="filter-box">
 
-<div class="info-bar">
+    <label>
+        GRUP
+    </label>
 
-    <div class="info-chip">
+    <select id="grup">
 
-        TANGGAL :
+        <option value="">
+            SEMUA GRUP
+        </option>
 
-        <span id="infoTanggal">
-            -
-        </span>
-
-    </div>
-
-
-    <div class="info-chip">
-
-        <span id="infoGrup">
+        <option value="A">
             GRUP A
-        </span>
+        </option>
 
-    </div>
+        <option value="B">
+            GRUP B
+        </option>
+
+        <option value="C">
+            GRUP C
+        </option>
+
+    </select>
 
 </div>
 
 
-<!-- =====================================================
-     LOADING
-===================================================== -->
+<button
+    class="refresh-btn"
+    onclick="ambilData()"
+>
+    ↻ REFRESH DATA
+</button>
 
-<div
+</div><!-- =====================================================
+     INFO
+===================================================== --><div class="info-bar"><div class="info-chip">
+
+    TANGGAL :
+
+    <span id="infoTanggal">
+        -
+    </span>
+
+</div>
+
+
+<div class="info-chip">
+
+    <span id="infoGrup">
+        GRUP A
+    </span>
+
+</div>
+
+</div><!-- =====================================================
+     LOADING
+===================================================== --><div
     id="loading"
     class="loading"
 >
     ⏳ Mengambil data...
-</div>
-
-
-<!-- =====================================================
+</div><!-- =====================================================
      TABEL 1
-===================================================== -->
-
-<div class="section">
-
-    <div class="section-title">
-        PRODUKSI FLATBED PRINT
-    </div>
-
-
-    <div class="table-wrap">
-
-        <table class="table-flat">
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        MC
-                    </th>
-
-                    <th>
-                        KODE PRODUK
-                    </th>
-
-                    <th>
-                        QTY (Pcs)
-                    </th>
-
-                    <th>
-                        KD
-                    </th>
-
-                    <th>
-                        TARGET (KD)
-                    </th>
-
-                    <th>
-                        ACV (%)
-                    </th>
-
-                </tr>
-
-            </thead>
-
-
-            <tbody id="flatBody">
-
-                <tr>
-
-                    <td
-                        colspan="6"
-                        class="empty"
-                    >
-                        Belum ada data
-                    </td>
-
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
+===================================================== --><div class="section"><div class="section-title">
+    PRODUKSI FLATBED PRINT
 </div>
 
 
-<!-- =====================================================
+<div class="table-wrap">
+
+    <table class="table-flat">
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    MC
+                </th>
+
+                <th>
+                    KODE PRODUK
+                </th>
+
+                <th>
+                    QTY (Pcs)
+                </th>
+
+                <th>
+                    KD
+                </th>
+
+                <th>
+                    TARGET (KD)
+                </th>
+
+                <th>
+                    ACV (%)
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody id="flatBody">
+
+            <tr>
+
+                <td
+                    colspan="6"
+                    class="empty"
+                >
+                    Belum ada data
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</div><!-- =====================================================
      TABEL 2
-===================================================== -->
-
-<div class="section secondary">
-
-    <div class="section-title">
-        STEAM, CURING, WASHING &amp; DLVR
-    </div>
-
-
-    <div class="table-wrap">
-
-        <table class="table-secondary">
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        PROSES
-                    </th>
-
-                    <th>
-                        KODE PRODUK
-                    </th>
-
-                    <th>
-                        QTY
-                    </th>
-
-                    <th>
-                        SATUAN
-                    </th>
-
-                    <th>
-                        TOTAL
-                    </th>
-
-                </tr>
-
-            </thead>
-
-
-            <tbody id="formBody">
-
-                <tr>
-
-                    <td
-                        colspan="5"
-                        class="empty"
-                    >
-                        Belum ada data
-                    </td>
-
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
+===================================================== --><div class="section secondary"><div class="section-title">
+    STEAM, CURING, WASHING &amp; DLVR
 </div>
 
 
-<!-- =====================================================
+<div class="table-wrap">
+
+    <table class="table-secondary">
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    PROSES
+                </th>
+
+                <th>
+                    KODE PRODUK
+                </th>
+
+                <th>
+                    QTY
+                </th>
+
+                <th>
+                    SATUAN
+                </th>
+
+                <th>
+                    TOTAL
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody id="formBody">
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    class="empty"
+                >
+                    Belum ada data
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</div><!-- =====================================================
      FOOTER
-===================================================== -->
+===================================================== --><div class="footer">LAPORAN PRODUKSI HARIAN
+•
+DEPARTEMEN PRINTING
 
-<div class="footer">
-
-    LAPORAN PRODUKSI HARIAN
-    •
-    DEPARTEMEN PRINTING
-
-</div>
-
-
-</div>
-
-
-<script>
+</div></div><script>
 
 
 /* =====================================================
@@ -2377,6 +2314,36 @@ function tampilkanForm(
 
 
     /* =============================================
+       URUTKAN PROSES A-Z
+       Proses yang sama otomatis berkumpul
+       ============================================= */
+
+    data = [...data].sort(
+        function(a,b){
+
+            const prosesA =
+                String(
+                    a.proses || "-"
+                )
+                .trim()
+                .toUpperCase();
+
+            const prosesB =
+                String(
+                    b.proses || "-"
+                )
+                .trim()
+                .toUpperCase();
+
+            return prosesA.localeCompare(
+                prosesB
+            );
+
+        }
+    );
+
+
+    /* =============================================
        HITUNG TOTAL QTY PER PROSES
     ============================================= */
 
@@ -2589,7 +2556,5 @@ updateInfo();
 ambilData();
 
 
-</script>
-
-</body>
+</script></body>
 </html>
