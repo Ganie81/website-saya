@@ -2491,11 +2491,15 @@ function tampilkanForm(
             tr.innerHTML =
                 `
 
-                <td>
-                    ${escapeHTML(
-                        row.proses || "-"
-                    )}
-                </td>
+        <td>
+    ${escapeHTML(
+        String(
+            row.proses || "-"
+        )
+        .trim()
+        .replace(/\s+/g, " ")
+    )}
+</td>
 
                 <td>
                     ${escapeHTML(
