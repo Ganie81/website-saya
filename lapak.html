@@ -1421,6 +1421,25 @@ function tanggalHariIni(){
     const sekarang =
         new Date();
 
+
+    /* =============================================
+       HARI PRODUKSI BERGANTI SETIAP JAM 07:00
+
+       00:00 - 06:59 = tanggal kemarin
+       07:00 - 23:59 = tanggal hari ini
+    ============================================= */
+
+    if(
+        sekarang.getHours() < 7
+    ){
+
+        sekarang.setDate(
+            sekarang.getDate() - 1
+        );
+
+    }
+
+
     const tahun =
         sekarang.getFullYear();
 
