@@ -2433,49 +2433,8 @@ function tampilkanForm(
        TAMPILKAN DATA
     ============================================= */
 
-    data
-.sort(
-    function(a,b){
-
-        const prosesA =
-            String(
-                a.proses || "-"
-            )
-            .replace(/\s/g,"")
-            .toUpperCase();
-
-        const prosesB =
-            String(
-                b.proses || "-"
-            )
-            .replace(/\s/g,"")
-            .toUpperCase();
-
-        return prosesA.localeCompare(
-            prosesB
-        );
-
-    }
-)
-.forEach(
-    function(row){
-         let proses =
-    String(
-        row.proses || "-"
-    )
-    .trim()
-    .toUpperCase()
-    .replace(/\s+/g, " ");
-
-
-if(
-    proses
-        .replace(/\s/g, "")
-    ===
-    "CUCIDR/D"
-){
-    proses = "CUCI DR/D";
-}  
+    data.forEach(
+        function(row){
 
             const tr =
                 document.createElement(
@@ -2532,15 +2491,11 @@ if(
             tr.innerHTML =
                 `
 
-        <td>
-    ${escapeHTML(
-        String(
-            row.proses || "-"
-        )
-        .trim()
-        .replace(/\s+/g, " ")
-    )}
-</td>
+                <td>
+                    ${escapeHTML(
+                        row.proses || "-"
+                    )}
+                </td>
 
                 <td>
                     ${escapeHTML(
