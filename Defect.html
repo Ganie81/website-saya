@@ -6412,36 +6412,55 @@ document.createElement(
 "strong"
 );
 
-strong.textContent =
+function renderFocusGroup(
+grouped,
+numberId,
+percentId,
+total
+){
+
+const top =
+grouped[0];
+
+const numberEl =
+document.getElementById(
+numberId
+);
+
+const percentEl =
+document.getElementById(
+percentId
+);
+
+if(!top){
+
+numberEl.textContent =
+"0";
+
+percentEl.textContent =
+"Tidak ada data";
+
+return;
+
+}
+
+const percent =
+total > 0
+? top[1] / total * 100
+: 0;
+
+numberEl.textContent =
 formatNumber(
-item[1]
+top[1]
 );
 
-
-row.appendChild(
-span
-);
-
-row.appendChild(
-strong
-);
-
-fragment.appendChild(
-row
-);
+percentEl.textContent =
+top[0] +
+" • " +
+percent.toFixed(1) +
+"%";
 
 }
-);
-
-
-listEl.innerHTML = "";
-
-listEl.appendChild(
-fragment
-);
-
-}
-
 
 /* =====================================================
    RANKING
