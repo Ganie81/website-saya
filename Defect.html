@@ -6287,24 +6287,30 @@ aggregate
 const total =
 aggregate.totalPcs;
 
+
 renderFocusGroup(
 aggregate.defect,
 "focusDefectPcs",
 "focusDefectPercent",
+"defectMiniList",
 total
 );
+
 
 renderFocusGroup(
 aggregate.mesin,
 "focusMesinPcs",
 "focusMesinPercent",
+"mesinMiniList",
 total
 );
+
 
 renderFocusGroup(
 aggregate.grup,
 "focusGrupPcs",
 "focusGrupPercent",
+"grupMiniList",
 total
 );
 
@@ -6412,55 +6418,36 @@ document.createElement(
 "strong"
 );
 
-function renderFocusGroup(
-grouped,
-numberId,
-percentId,
-total
-){
-
-const top =
-grouped[0];
-
-const numberEl =
-document.getElementById(
-numberId
-);
-
-const percentEl =
-document.getElementById(
-percentId
-);
-
-if(!top){
-
-numberEl.textContent =
-"0";
-
-percentEl.textContent =
-"Tidak ada data";
-
-return;
-
-}
-
-const percent =
-total > 0
-? top[1] / total * 100
-: 0;
-
-numberEl.textContent =
+strong.textContent =
 formatNumber(
-top[1]
+item[1]
 );
 
-percentEl.textContent =
-top[0] +
-" • " +
-percent.toFixed(1) +
-"%";
+
+row.appendChild(
+span
+);
+
+row.appendChild(
+strong
+);
+
+fragment.appendChild(
+row
+);
 
 }
+);
+
+
+listEl.innerHTML = "";
+
+listEl.appendChild(
+fragment
+);
+
+}
+
 
 /* =====================================================
    RANKING
@@ -7748,4 +7735,4 @@ value == null
 
 </body>
 
-</html>
+      </html>
