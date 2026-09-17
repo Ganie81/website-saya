@@ -971,6 +971,57 @@ transform:translateY(13px);
     margin-top:2px;
 }
 
+.mini-list{
+    margin-top:13px;
+
+    position:relative;
+    z-index:3;
+}
+
+.mini-row{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:8px 0;
+
+    border-bottom:
+        1px solid rgba(71,85,105,.14);
+
+    font-size:22px;
+
+    font-weight:800;
+}
+
+.mini-row:last-child{
+    border-bottom:0;
+}
+
+.mini-row strong{
+    font-weight:900;
+
+    font-size:20px;
+
+    text-shadow:
+        0 2px 0 rgba(255,255,255,.55),
+        0 3px 5px rgba(15,23,42,.16);
+
+    white-space:nowrap;
+}
+
+.mini-row strong::after{
+    content:" Pcs";
+
+    font-size:.8em;
+
+    font-weight:900;
+
+    margin-left:3px;
+
+    opacity:.92;
+}
 
 /* =====================================================
    RANKING
@@ -7735,4 +7786,4 @@ value == null
 
 </body>
 
-      </html>
+</html>
