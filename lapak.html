@@ -1,7 +1,16 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LAPORAN PRODUKSI HARIAN</title><style>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>LAPORAN PRODUKSI HARIAN</title>
+
+<style>
 
 /* =====================================================
    DASAR
@@ -1083,6 +1092,8 @@ thead th{
     }
 
 }
+
+
 /* =====================================================
    LOADING ICON - GRAFIK PRODUKSI ANIMASI
 ===================================================== */
@@ -1266,9 +1277,23 @@ thead th{
         opacity:.3;
     }
 }
-</style></head><body><div class="container"><!-- =====================================================
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+<!-- =====================================================
      HEADER
-===================================================== --><div class="header"><h1
+===================================================== -->
+
+<div class="header">
+
+<h1
     onclick="toggleFilter()"
     title="Ketuk untuk membuka filter"
 >
@@ -1279,12 +1304,19 @@ thead th{
     DEPARTEMEN PRINTING
 </div>
 
-</div><!-- =====================================================
+</div>
+
+
+<!-- =====================================================
      FILTER
-===================================================== --><div
+===================================================== -->
+
+<div
     class="filter-panel"
     id="filterPanel"
-><div class="filter-box">
+>
+
+<div class="filter-box">
 
     <label>
         HARI YANG DIPILIH
@@ -1334,9 +1366,16 @@ thead th{
     ↻ REFRESH DATA
 </button>
 
-</div><!-- =====================================================
+</div>
+
+
+<!-- =====================================================
      INFO
-===================================================== --><div class="info-bar"><div class="info-chip">
+===================================================== -->
+
+<div class="info-bar">
+
+<div class="info-chip">
 
     TANGGAL :
 
@@ -1355,142 +1394,173 @@ thead th{
 
 </div>
 
-</div><!-- =====================================================
+</div>
+
+
+<!-- =====================================================
      LOADING
-===================================================== --><div
+===================================================== -->
+
+<div
     id="loading"
     class="loading"
 >
-    ⏳ SABAR..,biar di sayang Allah ﷻ 
-</div><!-- =====================================================
+    ⏳ SABAR..,biar di sayang Allah ﷻ
+</div>
+
+
+<!-- =====================================================
      TABEL 1
-===================================================== --><div class="section"><div class="section-title">
+===================================================== -->
+
+<div class="section">
+
+<div class="section-title">
     PRODUKSI FLATBED PRINT
 </div>
 
 
 <div class="table-wrap">
 
-    <table class="table-flat">
+<table class="table-flat">
 
-        <thead>
+<thead>
 
-            <tr>
+<tr>
 
-                <th>
-                    MC
-                </th>
+<th>
+    MC
+</th>
 
-                <th>
-                    KODE PRODUK
-                </th>
+<th>
+    KODE PRODUK
+</th>
 
-                <th>
-                    QTY (Pcs)
-                </th>
+<th>
+    QTY (Pcs)
+</th>
 
-                <th>
-                    KD
-                </th>
+<th>
+    KD
+</th>
 
-                <th>
-                    TARGET (KD)
-                </th>
+<th>
+    TARGET (KD)
+</th>
 
-                <th>
-                    ACV (%)
-                </th>
+<th>
+    ACV (%)
+</th>
 
-            </tr>
+</tr>
 
-        </thead>
+</thead>
 
 
-        <tbody id="flatBody">
+<tbody id="flatBody">
 
-            <tr>
+<tr>
 
-                <td
-                    colspan="6"
-                    class="empty"
-                >
-                    Belum ada data
-                </td>
+<td
+    colspan="6"
+    class="empty"
+>
+    Belum ada data
+</td>
 
-            </tr>
+</tr>
 
-        </tbody>
+</tbody>
 
-    </table>
+</table>
 
 </div>
 
-</div><!-- =====================================================
+</div>
+
+
+<!-- =====================================================
      TABEL 2
-===================================================== --><div class="section secondary"><div class="section-title">
+===================================================== -->
+
+<div class="section secondary">
+
+<div class="section-title">
     STEAM, CURING, WASHING &amp; DLVR
 </div>
 
 
 <div class="table-wrap">
 
-    <table class="table-secondary">
+<table class="table-secondary">
 
-        <thead>
+<thead>
 
-            <tr>
+<tr>
 
-                <th>
-                    PROSES
-                </th>
+<th>
+    PROSES
+</th>
 
-                <th>
-                    KODE PRODUK
-                </th>
+<th>
+    KODE PRODUK
+</th>
 
-                <th>
-                    QTY
-                </th>
+<th>
+    QTY
+</th>
 
-                <th>
-                    SATUAN
-                </th>
+<th>
+    SATUAN
+</th>
 
-                <th>
-                    TOTAL
-                </th>
+<th>
+    TOTAL
+</th>
 
-            </tr>
+</tr>
 
-        </thead>
+</thead>
 
 
-        <tbody id="formBody">
+<tbody id="formBody">
 
-            <tr>
+<tr>
 
-                <td
-                    colspan="5"
-                    class="empty"
-                >
-                    Belum ada data
-                </td>
+<td
+    colspan="5"
+    class="empty"
+>
+    Belum ada data
+</td>
 
-            </tr>
+</tr>
 
-        </tbody>
+</tbody>
 
-    </table>
+</table>
 
 </div>
 
-</div><!-- =====================================================
+</div>
+
+
+<!-- =====================================================
      FOOTER
-===================================================== --><div class="footer">LAPORAN PRODUKSI HARIAN
+===================================================== -->
+
+<div class="footer">
+
+LAPORAN PRODUKSI HARIAN
 •
 DEPARTEMEN PRINTING
 
-</div></div><script>
+</div>
+
+</div>
+
+
+<script>
 
 
 /* =====================================================
@@ -1499,6 +1569,14 @@ DEPARTEMEN PRINTING
 
 const WEB_APP_URL =
 "https://script.google.com/macros/s/AKfycbwzhYbVJLh8X6yOveOsz1mpXVoOrGTXXOzPM-zpo6_sh31tTeeM5YFT1B2SZ2xTfAdt/exec";
+
+
+/* =====================================================
+   KEY PENYIMPANAN GRUP USER
+===================================================== */
+
+const STORAGE_KEY_GRUP =
+    "LAPORAN_PRODUKSI_HARIAN_GRUP_V1";
 
 
 /* =====================================================
@@ -2720,11 +2798,17 @@ tanggalInput.addEventListener(
 
 /* =====================================================
    EVENT GRUP
+   SIMPAN PILIHAN GRUP USER
 ===================================================== */
 
 grupInput.addEventListener(
     "change",
     function(){
+
+        localStorage.setItem(
+            STORAGE_KEY_GRUP,
+            grupInput.value
+        );
 
         updateInfo();
 
@@ -2738,7 +2822,7 @@ grupInput.addEventListener(
    START
    FILTER TERTUTUP
    TANGGAL = HARI INI
-   GRUP = A
+   GRUP = TERSIMPAN
 ===================================================== */
 
 kunciFilter();
@@ -2747,8 +2831,45 @@ tanggalInput.value =
     tanggalHariIni();
 
 
-grupInput.value =
-    "A";
+/* =====================================================
+   AMBIL GRUP TERAKHIR YANG TERSIMPAN
+===================================================== */
+
+const grupTersimpan =
+    localStorage.getItem(
+        STORAGE_KEY_GRUP
+    );
+
+
+/* =====================================================
+   GRUP YANG DIIZINKAN:
+   ""  = SEMUA GRUP
+   A   = GRUP A
+   B   = GRUP B
+   C   = GRUP C
+===================================================== */
+
+if(
+    grupTersimpan === "" ||
+    grupTersimpan === "A" ||
+    grupTersimpan === "B" ||
+    grupTersimpan === "C"
+){
+
+    grupInput.value =
+        grupTersimpan;
+
+}else{
+
+    /* =============================================
+       BELUM ADA PILIHAN TERSIMPAN
+       DEFAULT = GRUP A
+    ============================================= */
+
+    grupInput.value =
+        "A";
+
+}
 
 
 updateInfo();
@@ -2757,5 +2878,7 @@ updateInfo();
 ambilData();
 
 
-</script></body>
+</script>
+
+</body>
 </html>
