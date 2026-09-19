@@ -1074,7 +1074,200 @@ body::before{
     }
 
 }
+/* =====================================================
+   MENU UTAMA APLIKASI
+===================================================== */
 
+.app-menu{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:18px;
+
+    border-radius:21px;
+
+    border:1px solid
+        rgba(255,255,255,.5);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(126,76,39,.98),
+            rgba(70,38,19,.98)
+        );
+
+    box-shadow:
+
+        8px 8px 18px
+        rgba(0,0,0,.45),
+
+        inset 2px 2px 5px
+        rgba(255,255,255,.16),
+
+        inset -3px -3px 6px
+        rgba(0,0,0,.35);
+
+}
+
+
+.app-menu-title{
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+    font-size:23px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    color:#ffe7a4;
+
+    text-shadow:
+        2px 2px 4px
+        rgba(0,0,0,.55);
+
+}
+
+
+.app-menu-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+
+}
+
+
+.app-menu-item{
+
+    min-height:90px;
+
+    padding:12px;
+
+    border-radius:15px;
+
+    border:1px solid
+        rgba(255,255,255,.3);
+
+    cursor:pointer;
+
+    color:#fff;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.16),
+            rgba(0,0,0,.18)
+        );
+
+    box-shadow:
+
+        inset 1px 1px 3px
+        rgba(255,255,255,.12),
+
+        4px 4px 8px
+        rgba(0,0,0,.3);
+
+}
+
+
+.app-menu-item:active{
+
+    transform:translateY(2px);
+
+}
+
+
+.app-menu-icon{
+
+    font-size:30px;
+
+    line-height:1;
+
+    margin-bottom:8px;
+
+}
+
+
+.app-menu-name{
+
+    font-size:15px;
+
+    font-weight:900;
+
+    letter-spacing:.3px;
+
+}
+
+
+@media (max-width:600px){
+
+    .app-menu{
+
+        margin-top:12px;
+
+        padding:12px 10px;
+
+        border-radius:0;
+
+    }
+
+
+    .app-menu-title{
+
+        font-size:20px;
+
+        margin-bottom:12px;
+
+    }
+
+
+    .app-menu-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:8px;
+
+    }
+
+
+    .app-menu-item{
+
+        min-height:78px;
+
+        padding:10px 7px;
+
+        border-radius:12px;
+
+    }
+
+
+    .app-menu-icon{
+
+        font-size:27px;
+
+        margin-bottom:6px;
+
+    }
+
+
+    .app-menu-name{
+
+        font-size:14px;
+
+    }
+
+}
 </style>
 
 </head>
@@ -1539,7 +1732,51 @@ body::before{
 
 
 </div>
+<!-- =================================================
+     MENU UTAMA APLIKASI
+================================================== -->
 
+<div class="app-menu">
+
+    <div class="app-menu-title">
+        MENU SISTEM PRODUKSI
+    </div>
+
+    <div class="app-menu-grid">
+
+        <button class="app-menu-item">
+            <div class="app-menu-icon">🏭</div>
+            <div class="app-menu-name">PRODUKSI</div>
+        </button>
+
+        <button class="app-menu-item">
+            <div class="app-menu-icon">🛠️</div>
+            <div class="app-menu-name">DEFECT FLAT</div>
+        </button>
+
+        <button class="app-menu-item">
+            <div class="app-menu-icon">🧺</div>
+            <div class="app-menu-name">CUCI</div>
+        </button>
+
+        <button class="app-menu-item">
+            <div class="app-menu-icon">📋</div>
+            <div class="app-menu-name">LAPORAN HARIAN</div>
+        </button>
+
+        <button class="app-menu-item">
+            <div class="app-menu-icon">📊</div>
+            <div class="app-menu-name">LAPAK</div>
+        </button>
+
+        <button class="app-menu-item">
+            <div class="app-menu-icon">🔎</div>
+            <div class="app-menu-name">CEK ROLL ID</div>
+        </button>
+
+    </div>
+
+</div>
 
 <script>
 
