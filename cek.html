@@ -41,20 +41,44 @@ body{
 
     min-height:100vh;
 
-    background:
+    position:relative;
 
-        linear-gradient(
-            135deg,
-            rgba(58,31,15,.97),
-            rgba(111,61,28,.95),
-            rgba(48,25,12,.98)
-        );
+    background:#111;
 
 }
 
 
 /* =====================================================
-   BACKGROUND CORAK SARUNG
+   BACKGROUND GAMBAR SARUNG BHS
+===================================================== */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-2;
+
+    background-image:
+
+        url("https://bimamedia-cms.sg-sin-1.linodeobjects.com/behaestex.co.id/2020/10/19/l-images-1144cb8381aea8b7eb240d8c884e6549520201019004424-bimacms.jpeg");
+
+    background-size:cover;
+
+    background-position:center center;
+
+    background-repeat:no-repeat;
+
+    transform:scale(1.03);
+
+}
+
+
+/* =====================================================
+   LAPISAN GELAP AGAR TEKS TETAP JELAS
 ===================================================== */
 
 body::before{
@@ -65,26 +89,17 @@ body::before{
 
     inset:0;
 
-    pointer-events:none;
+    z-index:-1;
 
-    opacity:.16;
+    pointer-events:none;
 
     background:
 
-        repeating-linear-gradient(
-            0deg,
-            transparent 0px,
-            transparent 24px,
-            rgba(255,255,255,.16) 25px,
-            transparent 26px
-        ),
-
-        repeating-linear-gradient(
-            90deg,
-            transparent 0px,
-            transparent 24px,
-            rgba(255,255,255,.13) 25px,
-            transparent 26px
+        linear-gradient(
+            135deg,
+            rgba(25,12,5,.48),
+            rgba(35,18,8,.32),
+            rgba(10,10,10,.48)
         );
 
 }
@@ -440,7 +455,6 @@ body::before{
 
 /* =====================================================
    PENELUSURAN ROLL ID
-   BENAR-BENAR TERSEMBUNYI SAAT AWAL
 ===================================================== */
 
 #searchArea{
@@ -1574,7 +1588,6 @@ body::before{
 
 <!-- =================================================
      AREA PENELUSURAN
-     TERSEMBUNYI SAAT AWAL
 ================================================== -->
 
 <div id="searchArea">
