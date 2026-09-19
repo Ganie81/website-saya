@@ -1268,6 +1268,88 @@ body::before{
     }
 
 }
+    /* =====================================================
+   IKON MESIN CUCI FRONT LOADING
+===================================================== */
+
+.washing-machine-icon{
+
+    width:42px;
+    height:42px;
+
+    margin:0 auto 8px;
+
+    border-radius:8px;
+
+    border:3px solid #ffe7a4;
+
+    background:
+        linear-gradient(
+            145deg,
+            #8f8f8f,
+            #3f3f3f
+        );
+
+    position:relative;
+
+    box-shadow:
+
+        inset 2px 2px 4px
+        rgba(255,255,255,.35),
+
+        3px 3px 6px
+        rgba(0,0,0,.4);
+
+}
+
+
+.washing-door{
+
+    position:absolute;
+
+    width:25px;
+    height:25px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-45%);
+
+    border-radius:50%;
+
+    border:3px solid #d8d8d8;
+
+    background:#222;
+
+    box-shadow:
+        inset 2px 2px 4px
+        rgba(255,255,255,.2);
+
+}
+
+
+.washing-inner{
+
+    position:absolute;
+
+    width:15px;
+    height:15px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #777,
+            #222 70%
+        );
+
+}
 </style>
 
 </head>
@@ -1744,20 +1826,34 @@ body::before{
 
     <div class="app-menu-grid">
 
-        <button class="app-menu-item">
-            <div class="app-menu-icon">🏭</div>
-            <div class="app-menu-name">PRODUKSI</div>
-        </button>
+        <button
+    class="app-menu-item"
+    onclick="location.href='https://ganie81.github.io/website-saya//index.html'"
+>
+    <div class="app-menu-icon">🏭</div>
+    <div class="app-menu-name">PRODUKSI</div>
+</button>
 
-        <button class="app-menu-item">
-            <div class="app-menu-icon">🛠️</div>
-            <div class="app-menu-name">DEFECT FLAT</div>
-        </button>
+        <button
+    class="app-menu-item"
+    onclick="location.href='https://ganie81.github.io/website-saya//Defect.html'"
+>
+    <div class="app-menu-icon">🛠️</div>
+    <div class="app-menu-name">DEFECT FLAT</div>
+</button>
 
-        <button class="app-menu-item">
-            <div class="app-menu-icon">🧺</div>
-            <div class="app-menu-name">CUCI</div>
-        </button>
+        <button
+    class="app-menu-item"
+    onclick="location.href='https://ganie81.github.io/website-saya//cuci.html'"
+>
+    <div class="app-menu-icon washing-machine-icon">
+        <div class="washing-door">
+            <div class="washing-inner"></div>
+        </div>
+    </div>
+
+    <div class="app-menu-name">CUCI</div>
+</button>
 
         <button class="app-menu-item">
             <div class="app-menu-icon">📋</div>
