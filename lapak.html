@@ -965,8 +965,133 @@ thead th{
 @media(max-width:650px){
 
     body{
-        padding:8px;
+        padding:0;
     }
+
+    .container{
+        width:100%;
+        max-width:none;
+    }
+
+    .header{
+        width:100%;
+        margin:0 0 8px 0;
+
+        padding:
+            8px 6px 9px;
+
+        border-radius:
+            0 0 18px 18px;
+    }
+
+    .filter-panel{
+        margin-left:8px;
+        margin-right:8px;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        border-radius:17px;
+    }
+
+    .info-bar{
+        margin-left:8px;
+        margin-right:8px;
+
+        gap:8px;
+    }
+
+    .section{
+        margin-left:8px;
+        margin-right:8px;
+
+        padding:7px;
+
+        border-radius:18px;
+    }
+
+    .footer{
+        padding-left:8px;
+        padding-right:8px;
+    }
+
+    .header h1{
+        font-size:
+            clamp(
+                29px,
+                8.2vw,
+                46px
+            );
+    }
+
+    .header .subtitle{
+        font-size:19px;
+    }
+
+    .refresh-btn{
+        grid-column:
+            1 / -1;
+
+        width:100%;
+    }
+
+    .info-chip{
+        font-size:20px;
+
+        padding:
+            11px 15px;
+    }
+
+    .info-chip span{
+        font-size:24px;
+    }
+
+    .section-title{
+        padding:
+            1px 3px 2px;
+
+        font-size:
+            clamp(
+                21px,
+                5.7vw,
+                28px
+            );
+    }
+
+    table{
+        min-width:720px;
+    }
+
+    thead th{
+        font-size:18px;
+
+        padding:
+            17px 10px;
+    }
+
+    .table-flat tbody td{
+        font-size:18px;
+
+        padding:
+            15px 10px;
+    }
+
+    .table-flat .angka,
+    .table-flat .acv{
+        font-size:
+            20px !important;
+    }
+
+    .table-secondary tbody td{
+        font-size:18px;
+
+        padding:
+            11px 7px;
+
+        white-space:nowrap;
+    }
+
+}
 
     .header{
         padding:
