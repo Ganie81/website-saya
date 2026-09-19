@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta
+<!DOCTYPE html><html lang="id">
+<head><meta charset="UTF-8"><meta
 name="viewport"
 content="width=device-width, initial-scale=1.0"
 
@@ -41,13 +42,12 @@ body{
 
 
 /* =====================================================
-   BACKGROUND GAMBAR SARUNG BHS
+   GROUNDING UTAMA
+   3 GAMBAR BERTUMPUK VERTIKAL
    TIDAK CROP - SELURUH GAMBAR DIPERTAHANKAN
 ===================================================== */
 
-body::after{
-
-    content:"";
+.grounding-container{
 
     position:fixed;
 
@@ -55,20 +55,80 @@ body::after{
 
     z-index:-2;
 
-    background-image:
-        url("https://bimamedia-cms.sg-sin-1.linodeobjects.com/behaestex.co.id/2020/10/19/l-images-1144cb8381aea8b7eb240d8c884e6549520201019004424-bimacms.jpeg");
+    width:100%;
 
-    background-size:contain;
+    height:100%;
 
-    background-position:center center;
+    overflow:hidden;
 
-    background-repeat:no-repeat;
+    overflow-y:auto;
+
+    pointer-events:none;
+
+}
+
+
+.grounding-image{
+
+    display:block;
+
+    width:100%;
+
+    height:100vh;
+
+    min-height:100vh;
+
+    object-fit:contain;
+
+    object-position:center center;
+
+    background:#111;
 
 }
 
 
 /* =====================================================
-   LAPISAN GELAP AGAR TEKS TETAP JELAS
+   GAMBAR 1
+   GROUNDING LAMA
+===================================================== */
+
+.grounding-image-1{
+
+    content:
+        url("https://bimamedia-cms.sg-sin-1.linodeobjects.com/behaestex.co.id/2020/10/19/l-images-1144cb8381aea8b7eb240d8c884e6549520201019004424-bimacms.jpeg");
+
+}
+
+
+/* =====================================================
+   GAMBAR 2
+   SLIDE NO. 6
+===================================================== */
+
+.grounding-image-2{
+
+    content:
+        url("https://www.sarungindonesia.co.id/cdn/shop/files/15202-25.jpg?v=1780373046");
+
+}
+
+
+/* =====================================================
+   GAMBAR 3
+   SLIDE NO. 7
+===================================================== */
+
+.grounding-image-3{
+
+    content:
+        url("https://www.sarungindonesia.co.id/cdn/shop/files/12893-515.jpg?v=1780372511");
+
+}
+
+
+/* =====================================================
+   LAPISAN GELAP
+   TETAP SEPERTI SETTING SEBELUMNYA
 ===================================================== */
 
 body::before{
@@ -129,13 +189,11 @@ body::before{
     gap:18px;
 
     margin:
-
         2px
         0
         20px;
 
     padding:
-
         8px
         10px;
 
@@ -1421,564 +1479,514 @@ body::before{
 
 }
 
-</style></head><body><div class="container">
-
-<!-- =================================================
-     HEADER PERUSAHAAN
-================================================== -->
-
-<div class="company-header">
-
-<img
-    class="company-logo"
-    src="https://images.glints.com/unsafe/glints-dashboard.oss-ap-southeast-1.aliyuncs.com/company-logo/e941d780b6d2d89e5607fcab43672a3b.png"
-    alt="Logo PT BEHAESTEX"
+</style></head><body><!-- =================================================
+     GROUNDING UTAMA 3 GAMBAR
+================================================== --><div class="grounding-container"><img
+    class="grounding-image grounding-image-1"
+    alt=""
 >
 
-<div class="company-title">
+<img
+    class="grounding-image grounding-image-2"
+    alt=""
+>
 
-    <div class="company-main">
-        DEPARTMENT PRINTING
-    </div>
+<img
+    class="grounding-image grounding-image-3"
+    alt=""
+>
 
-    <div class="company-sub">
-        PT BEHAESTEX
-    </div>
+</div><div class="container"><!-- =================================================
+     HEADER PERUSAHAAN
+================================================== --><div class="company-header"><img
+class="company-logo"
+src="https://images.glints.com/unsafe/glints-dashboard.oss-ap-southeast-1.aliyuncs.com/company-logo/e941d780b6d2d89e5607fcab43672a3b.png"
+alt="Logo PT BEHAESTEX"
 
+«»
+
+<div class="company-title"><div class="company-main">
+    DEPARTMENT PRINTING
 </div>
 
+<div class="company-sub">
+    PT BEHAESTEX
 </div>
 
-
-<!-- =================================================
+</div></div><!-- =================================================
      MENU UTAMA APLIKASI
-================================================== -->
-
-<div class="app-menu">
-
-<div class="app-menu-title">
+================================================== --><div class="app-menu"><div class="app-menu-title">
     MENU SISTEM PRODUKSI
-</div>
+</div><div class="app-menu-grid"><button
+    class="app-menu-item"
+    onclick="location.href='https://ganie81.github.io/website-saya//index.html'"
+>
 
-<div class="app-menu-grid">
+    <div class="app-menu-icon">
+        🏭
+    </div>
 
+    <div class="app-menu-name">
+        PRODUKSI
+    </div>
 
-    <button
-        class="app-menu-item"
-        onclick="location.href='https://ganie81.github.io/website-saya//index.html'"
-    >
-
-        <div class="app-menu-icon">
-            🏭
-        </div>
-
-        <div class="app-menu-name">
-            PRODUKSI
-        </div>
-
-    </button>
+</button>
 
 
-    <button
-        class="app-menu-item"
-        onclick="location.href='https://ganie81.github.io/website-saya//Defect.html'"
-    >
+<button
+    class="app-menu-item"
+    onclick="location.href='https://ganie81.github.io/website-saya//Defect.html'"
+>
 
-        <div class="app-menu-icon">
-            🛠️
-        </div>
+    <div class="app-menu-icon">
+        🛠️
+    </div>
 
-        <div class="app-menu-name">
-            DEFECT FLAT
-        </div>
+    <div class="app-menu-name">
+        DEFECT FLAT
+    </div>
 
-    </button>
+</button>
 
 
-    <button
-        class="app-menu-item"
-        onclick="location.href='https://ganie81.github.io/website-saya//cuci.html'"
-    >
+<button
+    class="app-menu-item"
+    onclick="location.href='https://ganie81.github.io/website-saya//cuci.html'"
+>
 
-        <div class="app-menu-icon washing-machine-icon">
+    <div class="app-menu-icon washing-machine-icon">
 
-            <div class="washing-door">
+        <div class="washing-door">
 
-                <div class="washing-inner"></div>
-
-            </div>
+            <div class="washing-inner"></div>
 
         </div>
 
-        <div class="app-menu-name">
-            CUCI
-        </div>
+    </div>
 
-    </button>
+    <div class="app-menu-name">
+        CUCI
+    </div>
 
-
-    <button
-        class="app-menu-item"
-        onclick="location.href='https://ganie81.github.io/website-saya/lapak.html'"
-    >
-
-        <div class="app-menu-icon">
-            📋
-        </div>
-
-        <div class="app-menu-name">
-            LAPORAN HARIAN
-        </div>
-
-    </button>
+</button>
 
 
-    <button
-        class="app-menu-item"
-        onclick="bukaPengaturan()"
-    >
+<button
+    class="app-menu-item"
+    onclick="location.href='https://ganie81.github.io/website-saya/lapak.html'"
+>
 
-        <div class="app-menu-icon">
-            ⚙️
-        </div>
+    <div class="app-menu-icon">
+        📋
+    </div>
 
-        <div class="app-menu-name">
-            PENGATURAN
-        </div>
+    <div class="app-menu-name">
+        LAPORAN HARIAN
+    </div>
 
-    </button>
-
-
-    <button
-        class="app-menu-item"
-        onclick="bukaPencarianRoll()"
-    >
-
-        <div class="app-menu-icon">
-            🔎
-        </div>
-
-        <div class="app-menu-name">
-            CEK ROLL ID
-        </div>
-
-    </button>
+</button>
 
 
-</div>
+<button
+    class="app-menu-item"
+    onclick="bukaPengaturan()"
+>
 
-</div>
+    <div class="app-menu-icon">
+        ⚙️
+    </div>
+
+    <div class="app-menu-name">
+        PENGATURAN
+    </div>
+
+</button>
 
 
-<!-- =================================================
+<button
+    class="app-menu-item"
+    onclick="bukaPencarianRoll()"
+>
+
+    <div class="app-menu-icon">
+        🔎
+    </div>
+
+    <div class="app-menu-name">
+        CEK ROLL ID
+    </div>
+
+</button>
+
+</div></div><!-- =================================================
      AREA PENELUSURAN
-================================================== -->
+================================================== --><div id="searchArea"><div class="search-box"><label
+    class="search-label"
+    for="rollID"
+>
 
-<div id="searchArea">
+    PENELUSURAN ROLL ID
 
-<div class="search-box">
+</label>
 
-    <label
-        class="search-label"
-        for="rollID"
+
+<div class="search-row">
+
+    <input
+        type="text"
+        id="rollID"
+        placeholder="Masukkan Roll ID..."
+        autocomplete="off"
     >
 
-        PENELUSURAN ROLL ID
 
-    </label>
+    <button
+        class="btn-cari"
+        onclick="cariRoll()"
+    >
 
+        CARI
 
-    <div class="search-row">
-
-        <input
-            type="text"
-            id="rollID"
-            placeholder="Masukkan Roll ID..."
-            autocomplete="off"
-        >
-
-
-        <button
-            class="btn-cari"
-            onclick="cariRoll()"
-        >
-
-            CARI
-
-        </button>
-
-    </div>
+    </button>
 
 </div>
 
+</div><div id="loading">⏳ SABAR..biar di sayang Allah ﷻ
 
-<div id="loading">
-
-    ⏳ SABAR..biar di sayang Allah ﷻ
-
-</div>
-
-</div>
-
-
-<!-- =================================================
+</div></div><!-- =================================================
      HASIL PENELUSURAN
-================================================== -->
+================================================== --><div id="hasil"><div class="info-box"><div class="roll-section">
 
-<div id="hasil">
-
-<div class="info-box">
-
-
-    <div class="roll-section">
-
-        <div class="section-title">
-            NOMOR ROLL ID
-        </div>
-
-        <div
-            class="roll-value"
-            id="nomorRoll"
-        >
-            -
-        </div>
-
+    <div class="section-title">
+        NOMOR ROLL ID
     </div>
 
-
-    <div class="product-section">
-
-        <div class="section-title">
-            INFORMASI PRODUK
-        </div>
-
-
-        <div class="product-grid">
-
-
-            <div class="product-item">
-
-                <span class="product-label">
-                    Motif
-                </span>
-
-                <div
-                    class="product-value"
-                    id="motif"
-                >
-                    -
-                </div>
-
-            </div>
-
-
-            <div class="product-item">
-
-                <span class="product-label">
-                    Warna
-                </span>
-
-                <div
-                    class="product-value"
-                    id="warna"
-                >
-                    -
-                </div>
-
-            </div>
-
-
-            <div class="product-item">
-
-                <span class="product-label">
-                    Isian Warna
-                </span>
-
-                <div
-                    class="product-value"
-                    id="isianWarna"
-                >
-                    -
-                </div>
-
-            </div>
-
-
-            <div class="product-item">
-
-                <span class="product-label">
-                    Kode Produk
-                </span>
-
-                <div
-                    class="product-value"
-                    id="kodeProduk"
-                >
-                    -
-                </div>
-
-            </div>
-
-
-            <div class="product-item">
-
-                <span class="product-label">
-                    Qty
-                </span>
-
-                <div
-                    class="product-value"
-                    id="qty"
-                >
-                    -
-                </div>
-
-            </div>
-
-
-        </div>
-
+    <div
+        class="roll-value"
+        id="nomorRoll"
+    >
+        -
     </div>
-
-
-    <div class="status-section">
-
-        <div class="section-title">
-            STATUS PERJALANAN ROLL
-        </div>
-
-
-        <div class="status-grid">
-
-
-            <div class="status-item">
-
-                <div class="status-name">
-                    FLAT
-                </div>
-
-                <div
-                    class="status-icon"
-                    id="statusFlat"
-                >
-                    -
-                </div>
-
-            </div>
-
-
-            <div class="status-item">
-
-                <div class="status-name">
-                    STEAM
-                </div>
-
-                <div
-                    class="status-icon"
-                    id="statusSteam"
-                >
-                    -
-                </div>
-
-            </div>
-
-
-            <div class="status-item">
-
-                <div class="status-name">
-                    CURING
-                </div>
-
-                <div
-                    class="status-icon"
-                    id="statusCuring"
-                >
-                    -
-                </div>
-
-            </div>
-
-
-            <div class="status-item">
-
-                <div class="status-name">
-                    WASHING
-                </div>
-
-                <div
-                    class="status-icon"
-                    id="statusWashing"
-                >
-                    -
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
 
 </div>
 
 
-<div class="table-title">
+<div class="product-section">
+
+    <div class="section-title">
+        INFORMASI PRODUK
+    </div>
+
+
+    <div class="product-grid">
+
+
+        <div class="product-item">
+
+            <span class="product-label">
+                Motif
+            </span>
+
+            <div
+                class="product-value"
+                id="motif"
+            >
+                -
+            </div>
+
+        </div>
+
+
+        <div class="product-item">
+
+            <span class="product-label">
+                Warna
+            </span>
+
+            <div
+                class="product-value"
+                id="warna"
+            >
+                -
+            </div>
+
+        </div>
+
+
+        <div class="product-item">
+
+            <span class="product-label">
+                Isian Warna
+            </span>
+
+            <div
+                class="product-value"
+                id="isianWarna"
+            >
+                -
+            </div>
+
+        </div>
+
+
+        <div class="product-item">
+
+            <span class="product-label">
+                Kode Produk
+            </span>
+
+            <div
+                class="product-value"
+                id="kodeProduk"
+            >
+                -
+            </div>
+
+        </div>
+
+
+        <div class="product-item">
+
+            <span class="product-label">
+                Qty
+            </span>
+
+            <div
+                class="product-value"
+                id="qty"
+            >
+                -
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<div class="status-section">
+
+    <div class="section-title">
+        STATUS PERJALANAN ROLL
+    </div>
+
+
+    <div class="status-grid">
+
+
+        <div class="status-item">
+
+            <div class="status-name">
+                FLAT
+            </div>
+
+            <div
+                class="status-icon"
+                id="statusFlat"
+            >
+                -
+            </div>
+
+        </div>
+
+
+        <div class="status-item">
+
+            <div class="status-name">
+                STEAM
+            </div>
+
+            <div
+                class="status-icon"
+                id="statusSteam"
+            >
+                -
+            </div>
+
+        </div>
+
+
+        <div class="status-item">
+
+            <div class="status-name">
+                CURING
+            </div>
+
+            <div
+                class="status-icon"
+                id="statusCuring"
+            >
+                -
+            </div>
+
+        </div>
+
+
+        <div class="status-item">
+
+            <div class="status-name">
+                WASHING
+            </div>
+
+            <div
+                class="status-icon"
+                id="statusWashing"
+            >
+                -
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</div><div class="table-title">
     INFORMASI PROSES PRODUKSI
-</div>
+</div><div class="table-wrap"><table class="process-table">
 
 
-<div class="table-wrap">
+    <thead>
+
+        <tr>
+
+            <th>
+                URAIAN
+            </th>
+
+            <th>
+                FLAT
+            </th>
+
+            <th>
+                STEAM
+            </th>
+
+            <th>
+                CURING
+            </th>
+
+            <th>
+                WASHING
+            </th>
+
+        </tr>
+
+    </thead>
 
 
-    <table class="process-table">
+    <tbody>
 
 
-        <thead>
+        <tr>
 
-            <tr>
+            <td>
+                TANGGAL
+            </td>
 
-                <th>
-                    URAIAN
-                </th>
+            <td id="flatTanggal">
+                -
+            </td>
 
-                <th>
-                    FLAT
-                </th>
+            <td id="steamTanggal">
+                -
+            </td>
 
-                <th>
-                    STEAM
-                </th>
+            <td id="curingTanggal">
+                -
+            </td>
 
-                <th>
-                    CURING
-                </th>
+            <td id="washingTanggal">
+                -
+            </td>
 
-                <th>
-                    WASHING
-                </th>
-
-            </tr>
-
-        </thead>
+        </tr>
 
 
-        <tbody>
+        <tr>
+
+            <td>
+                MESIN
+            </td>
+
+            <td id="flatMesin">
+                -
+            </td>
+
+            <td id="steamMesin">
+                -
+            </td>
+
+            <td id="curingMesin">
+                -
+            </td>
+
+            <td id="washingMesin">
+                -
+            </td>
+
+        </tr>
 
 
-            <tr>
+        <tr>
 
-                <td>
-                    TANGGAL
-                </td>
+            <td>
+                GRUP / SHIFT
+            </td>
 
-                <td id="flatTanggal">
-                    -
-                </td>
+            <td id="flatGrupShift">
+                -
+            </td>
 
-                <td id="steamTanggal">
-                    -
-                </td>
+            <td id="steamGrupShift">
+                -
+            </td>
 
-                <td id="curingTanggal">
-                    -
-                </td>
+            <td id="curingGrupShift">
+                -
+            </td>
 
-                <td id="washingTanggal">
-                    -
-                </td>
+            <td id="washingGrupShift">
+                -
+            </td>
 
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    MESIN
-                </td>
-
-                <td id="flatMesin">
-                    -
-                </td>
-
-                <td id="steamMesin">
-                    -
-                </td>
-
-                <td id="curingMesin">
-                    -
-                </td>
-
-                <td id="washingMesin">
-                    -
-                </td>
-
-            </tr>
+        </tr>
 
 
-            <tr>
+        <tr>
 
-                <td>
-                    GRUP / SHIFT
-                </td>
+            <td>
+                NAMA
+            </td>
 
-                <td id="flatGrupShift">
-                    -
-                </td>
+            <td id="flatNama">
+                -
+            </td>
 
-                <td id="steamGrupShift">
-                    -
-                </td>
+            <td id="steamNama">
+                -
+            </td>
 
-                <td id="curingGrupShift">
-                    -
-                </td>
+            <td id="curingNama">
+                -
+            </td>
 
-                <td id="washingGrupShift">
-                    -
-                </td>
+            <td id="washingNama">
+                -
+            </td>
 
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    NAMA
-                </td>
-
-                <td id="flatNama">
-                    -
-                </td>
-
-                <td id="steamNama">
-                    -
-                </td>
-
-                <td id="curingNama">
-                    -
-                </td>
-
-                <td id="washingNama">
-                    -
-                </td>
-
-            </tr>
+        </tr>
 
 
-        </tbody>
+    </tbody>
 
 
-    </table>
+</table>
 
-
-</div>
-
-</div>
-
-</div>
-
-<script>
+</div></div></div><script>
 
 /* =====================================================
    URL APPS SCRIPT
@@ -2501,4 +2509,5 @@ function bukaPengaturan(){
 
 }
 
-</script></body></html>
+</script></body>
+</html>
