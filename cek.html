@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta
 name="viewport"
 content="width=device-width, initial-scale=1.0"
->
 
-<title>DEPARTMENT PRINTING - CEK ROLL ID</title>
+«»
 
-<style>
+<title>DEPARTMENT PRINTING - CEK ROLL ID</title><style>
 
 /* =====================================================
    DASAR
@@ -50,6 +42,7 @@ body{
 
 /* =====================================================
    BACKGROUND GAMBAR SARUNG BHS
+   TIDAK CROP - SELURUH GAMBAR DIPERTAHANKAN
 ===================================================== */
 
 body::after{
@@ -63,16 +56,13 @@ body::after{
     z-index:-2;
 
     background-image:
-
         url("https://bimamedia-cms.sg-sin-1.linodeobjects.com/behaestex.co.id/2020/10/19/l-images-1144cb8381aea8b7eb240d8c884e6549520201019004424-bimacms.jpeg");
 
-    background-size:cover;
+    background-size:contain;
 
     background-position:center center;
 
     background-repeat:no-repeat;
-
-    transform:scale(1.03);
 
 }
 
@@ -1429,565 +1419,374 @@ body::before{
 
 }
 
-</style>
-
-</head>
-
-
-<body>
-
-<div class="container">
-
-
-<!-- =================================================
+</style></head><body><div class="container"><!-- =================================================
      HEADER PERUSAHAAN
-================================================== -->
+================================================== --><div class="company-header"><img
+    class="company-logo"
+    src="https://images.glints.com/unsafe/glints-dashboard.oss-ap-southeast-1.aliyuncs.com/company-logo/e941d780b6d2d89e5607fcab43672a3b.png"
+    alt="Logo PT BEHAESTEX"
+>
 
-<div class="company-header">
+<div class="company-title">
 
-    <img
-        class="company-logo"
-        src="https://images.glints.com/unsafe/glints-dashboard.oss-ap-southeast-1.aliyuncs.com/company-logo/e941d780b6d2d89e5607fcab43672a3b.png"
-        alt="Logo PT BEHAESTEX"
+    <div class="company-main">
+        DEPARTMENT PRINTING
+    </div>
+
+    <div class="company-sub">
+        PT BEHAESTEX
+    </div>
+
+</div>
+
+</div><!-- =================================================
+     MENU UTAMA APLIKASI
+================================================== --><div class="app-menu"><div class="app-menu-title">
+    MENU SISTEM PRODUKSI
+</div>
+
+<div class="app-menu-grid">
+
+
+    <button
+        class="app-menu-item"
+        onclick="location.href='https://ganie81.github.io/website-saya//index.html'"
     >
 
-    <div class="company-title">
-
-        <div class="company-main">
-            DEPARTMENT PRINTING
+        <div class="app-menu-icon">
+            🏭
         </div>
 
-        <div class="company-sub">
-            PT BEHAESTEX
+        <div class="app-menu-name">
+            PRODUKSI
         </div>
 
-    </div>
+    </button>
+
+
+    <button
+        class="app-menu-item"
+        onclick="location.href='https://ganie81.github.io/website-saya//Defect.html'"
+    >
+
+        <div class="app-menu-icon">
+            🛠️
+        </div>
+
+        <div class="app-menu-name">
+            DEFECT FLAT
+        </div>
+
+    </button>
+
+
+    <button
+        class="app-menu-item"
+        onclick="location.href='https://ganie81.github.io/website-saya//cuci.html'"
+    >
+
+        <div class="app-menu-icon washing-machine-icon">
+
+            <div class="washing-door">
+
+                <div class="washing-inner"></div>
+
+            </div>
+
+        </div>
+
+        <div class="app-menu-name">
+            CUCI
+        </div>
+
+    </button>
+
+
+    <button
+        class="app-menu-item"
+        onclick="location.href='https://ganie81.github.io/website-saya/lapak.html'"
+    >
+
+        <div class="app-menu-icon">
+            📋
+        </div>
+
+        <div class="app-menu-name">
+            LAPORAN HARIAN
+        </div>
+
+    </button>
+
+
+    <button
+        class="app-menu-item"
+        onclick="bukaPengaturan()"
+    >
+
+        <div class="app-menu-icon">
+            ⚙️
+        </div>
+
+        <div class="app-menu-name">
+            PENGATURAN
+        </div>
+
+    </button>
+
+
+    <button
+        class="app-menu-item"
+        onclick="bukaPencarianRoll()"
+    >
+
+        <div class="app-menu-icon">
+            🔎
+        </div>
+
+        <div class="app-menu-name">
+            CEK ROLL ID
+        </div>
+
+    </button>
+
 
 </div>
 
-
-<!-- =================================================
-     MENU UTAMA APLIKASI
-================================================== -->
-
-<div class="app-menu">
-
-    <div class="app-menu-title">
-        MENU SISTEM PRODUKSI
-    </div>
-
-    <div class="app-menu-grid">
-
-
-        <button
-            class="app-menu-item"
-            onclick="location.href='https://ganie81.github.io/website-saya//index.html'"
-        >
-
-            <div class="app-menu-icon">
-                🏭
-            </div>
-
-            <div class="app-menu-name">
-                PRODUKSI
-            </div>
-
-        </button>
-
-
-        <button
-            class="app-menu-item"
-            onclick="location.href='https://ganie81.github.io/website-saya//Defect.html'"
-        >
-
-            <div class="app-menu-icon">
-                🛠️
-            </div>
-
-            <div class="app-menu-name">
-                DEFECT FLAT
-            </div>
-
-        </button>
-
-
-        <button
-            class="app-menu-item"
-            onclick="location.href='https://ganie81.github.io/website-saya//cuci.html'"
-        >
-
-            <div class="app-menu-icon washing-machine-icon">
-
-                <div class="washing-door">
-
-                    <div class="washing-inner"></div>
-
-                </div>
-
-            </div>
-
-            <div class="app-menu-name">
-                CUCI
-            </div>
-
-        </button>
-
-
-        <button
-            class="app-menu-item"
-            onclick="location.href='https://ganie81.github.io/website-saya/lapak.html'"
-        >
-
-            <div class="app-menu-icon">
-                📋
-            </div>
-
-            <div class="app-menu-name">
-                LAPORAN HARIAN
-            </div>
-
-        </button>
-
-
-        <button
-            class="app-menu-item"
-            onclick="bukaPengaturan()"
-        >
-
-            <div class="app-menu-icon">
-                ⚙️
-            </div>
-
-            <div class="app-menu-name">
-                PENGATURAN
-            </div>
-
-        </button>
-
-
-        <button
-            class="app-menu-item"
-            onclick="bukaPencarianRoll()"
-        >
-
-            <div class="app-menu-icon">
-                🔎
-            </div>
-
-            <div class="app-menu-name">
-                CEK ROLL ID
-            </div>
-
-        </button>
-
-
-    </div>
-
-</div>
-
-
-<!-- =================================================
+</div><!-- =================================================
      AREA PENELUSURAN
-================================================== -->
+================================================== --><div id="searchArea"><div class="search-box">
 
-<div id="searchArea">
+    <label
+        class="search-label"
+        for="rollID"
+    >
 
-    <div class="search-box">
+        PENELUSURAN ROLL ID
 
-        <label
-            class="search-label"
-            for="rollID"
+    </label>
+
+
+    <div class="search-row">
+
+        <input
+            type="text"
+            id="rollID"
+            placeholder="Masukkan Roll ID..."
+            autocomplete="off"
         >
 
-            PENELUSURAN ROLL ID
 
-        </label>
+        <button
+            class="btn-cari"
+            onclick="cariRoll()"
+        >
 
+            CARI
 
-        <div class="search-row">
-
-            <input
-                type="text"
-                id="rollID"
-                placeholder="Masukkan Roll ID..."
-                autocomplete="off"
-            >
-
-
-            <button
-                class="btn-cari"
-                onclick="cariRoll()"
-            >
-
-                CARI
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div id="loading">
-
-        ⏳ SABAR..biar di sayang Allah ﷻ
+        </button>
 
     </div>
 
 </div>
 
 
-<!-- =================================================
+<div id="loading">
+
+    ⏳ SABAR..biar di sayang Allah ﷻ
+
+</div>
+
+</div><!-- =================================================
      HASIL PENELUSURAN
-================================================== -->
-
-<div id="hasil">
+================================================== --><div id="hasil"><div class="info-box">
 
 
-    <div class="info-box">
+    <div class="roll-section">
 
-
-        <div class="roll-section">
-
-            <div class="section-title">
-                NOMOR ROLL ID
-            </div>
-
-            <div
-                class="roll-value"
-                id="nomorRoll"
-            >
-                -
-            </div>
-
+        <div class="section-title">
+            NOMOR ROLL ID
         </div>
 
-
-        <div class="product-section">
-
-            <div class="section-title">
-                INFORMASI PRODUK
-            </div>
-
-
-            <div class="product-grid">
-
-
-                <div class="product-item">
-
-                    <span class="product-label">
-                        Motif
-                    </span>
-
-                    <div
-                        class="product-value"
-                        id="motif"
-                    >
-                        -
-                    </div>
-
-                </div>
-
-
-                <div class="product-item">
-
-                    <span class="product-label">
-                        Warna
-                    </span>
-
-                    <div
-                        class="product-value"
-                        id="warna"
-                    >
-                        -
-                    </div>
-
-                </div>
-
-
-                <div class="product-item">
-
-                    <span class="product-label">
-                        Isian Warna
-                    </span>
-
-                    <div
-                        class="product-value"
-                        id="isianWarna"
-                    >
-                        -
-                    </div>
-
-                </div>
-
-
-                <div class="product-item">
-
-                    <span class="product-label">
-                        Kode Produk
-                    </span>
-
-                    <div
-                        class="product-value"
-                        id="kodeProduk"
-                    >
-                        -
-                    </div>
-
-                </div>
-
-
-                <div class="product-item">
-
-                    <span class="product-label">
-                        Qty
-                    </span>
-
-                    <div
-                        class="product-value"
-                        id="qty"
-                    >
-                        -
-                    </div>
-
-                </div>
-
-
-            </div>
-
+        <div
+            class="roll-value"
+            id="nomorRoll"
+        >
+            -
         </div>
-
-
-        <div class="status-section">
-
-            <div class="section-title">
-                STATUS PERJALANAN ROLL
-            </div>
-
-
-            <div class="status-grid">
-
-
-                <div class="status-item">
-
-                    <div class="status-name">
-                        FLAT
-                    </div>
-
-                    <div
-                        class="status-icon"
-                        id="statusFlat"
-                    >
-                        -
-                    </div>
-
-                </div>
-
-
-                <div class="status-item">
-
-                    <div class="status-name">
-                        STEAM
-                    </div>
-
-                    <div
-                        class="status-icon"
-                        id="statusSteam"
-                    >
-                        -
-                    </div>
-
-                </div>
-
-
-                <div class="status-item">
-
-                    <div class="status-name">
-                        CURING
-                    </div>
-
-                    <div
-                        class="status-icon"
-                        id="statusCuring"
-                    >
-                        -
-                    </div>
-
-                </div>
-
-
-                <div class="status-item">
-
-                    <div class="status-name">
-                        WASHING
-                    </div>
-
-                    <div
-                        class="status-icon"
-                        id="statusWashing"
-                    >
-                        -
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
 
     </div>
 
 
-    <div class="table-title">
-        INFORMASI PROSES PRODUKSI
+    <div class="product-section">
+
+        <div class="section-title">
+            INFORMASI PRODUK
+        </div>
+
+
+        <div class="product-grid">
+
+
+            <div class="product-item">
+
+                <span class="product-label">
+                    Motif
+                </span>
+
+                <div
+                    class="product-value"
+                    id="motif"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="product-item">
+
+                <span class="product-label">
+                    Warna
+                </span>
+
+                <div
+                    class="product-value"
+                    id="warna"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="product-item">
+
+                <span class="product-label">
+                    Isian Warna
+                </span>
+
+                <div
+                    class="product-value"
+                    id="isianWarna"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="product-item">
+
+                <span class="product-label">
+                    Kode Produk
+                </span>
+
+                <div
+                    class="product-value"
+                    id="kodeProduk"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="product-item">
+
+                <span class="product-label">
+                    Qty
+                </span>
+
+                <div
+                    class="product-value"
+                    id="qty"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+        </div>
+
     </div>
 
 
-    <div class="table-wrap">
+    <div class="status-section">
+
+        <div class="section-title">
+            STATUS PERJALANAN ROLL
+        </div>
 
 
-        <table class="process-table">
+        <div class="status-grid">
 
 
-            <thead>
+            <div class="status-item">
 
-                <tr>
+                <div class="status-name">
+                    FLAT
+                </div>
 
-                    <th>
-                        URAIAN
-                    </th>
+                <div
+                    class="status-icon"
+                    id="statusFlat"
+                >
+                    -
+                </div>
 
-                    <th>
-                        FLAT
-                    </th>
-
-                    <th>
-                        STEAM
-                    </th>
-
-                    <th>
-                        CURING
-                    </th>
-
-                    <th>
-                        WASHING
-                    </th>
-
-                </tr>
-
-            </thead>
+            </div>
 
 
-            <tbody>
+            <div class="status-item">
+
+                <div class="status-name">
+                    STEAM
+                </div>
+
+                <div
+                    class="status-icon"
+                    id="statusSteam"
+                >
+                    -
+                </div>
+
+            </div>
 
 
-                <tr>
+            <div class="status-item">
 
-                    <td>
-                        TANGGAL
-                    </td>
+                <div class="status-name">
+                    CURING
+                </div>
 
-                    <td id="flatTanggal">
-                        -
-                    </td>
+                <div
+                    class="status-icon"
+                    id="statusCuring"
+                >
+                    -
+                </div>
 
-                    <td id="steamTanggal">
-                        -
-                    </td>
-
-                    <td id="curingTanggal">
-                        -
-                    </td>
-
-                    <td id="washingTanggal">
-                        -
-                    </td>
-
-                </tr>
+            </div>
 
 
-                <tr>
+            <div class="status-item">
 
-                    <td>
-                        MESIN
-                    </td>
+                <div class="status-name">
+                    WASHING
+                </div>
 
-                    <td id="flatMesin">
-                        -
-                    </td>
+                <div
+                    class="status-icon"
+                    id="statusWashing"
+                >
+                    -
+                </div>
 
-                    <td id="steamMesin">
-                        -
-                    </td>
-
-                    <td id="curingMesin">
-                        -
-                    </td>
-
-                    <td id="washingMesin">
-                        -
-                    </td>
-
-                </tr>
+            </div>
 
 
-                <tr>
-
-                    <td>
-                        GRUP / SHIFT
-                    </td>
-
-                    <td id="flatGrupShift">
-                        -
-                    </td>
-
-                    <td id="steamGrupShift">
-                        -
-                    </td>
-
-                    <td id="curingGrupShift">
-                        -
-                    </td>
-
-                    <td id="washingGrupShift">
-                        -
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        NAMA
-                    </td>
-
-                    <td id="flatNama">
-                        -
-                    </td>
-
-                    <td id="steamNama">
-                        -
-                    </td>
-
-                    <td id="curingNama">
-                        -
-                    </td>
-
-                    <td id="washingNama">
-                        -
-                    </td>
-
-                </tr>
-
-
-            </tbody>
-
-
-        </table>
-
+        </div>
 
     </div>
 
@@ -1995,10 +1794,158 @@ body::before{
 </div>
 
 
+<div class="table-title">
+    INFORMASI PROSES PRODUKSI
 </div>
 
 
-<script>
+<div class="table-wrap">
+
+
+    <table class="process-table">
+
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    URAIAN
+                </th>
+
+                <th>
+                    FLAT
+                </th>
+
+                <th>
+                    STEAM
+                </th>
+
+                <th>
+                    CURING
+                </th>
+
+                <th>
+                    WASHING
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+
+            <tr>
+
+                <td>
+                    TANGGAL
+                </td>
+
+                <td id="flatTanggal">
+                    -
+                </td>
+
+                <td id="steamTanggal">
+                    -
+                </td>
+
+                <td id="curingTanggal">
+                    -
+                </td>
+
+                <td id="washingTanggal">
+                    -
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    MESIN
+                </td>
+
+                <td id="flatMesin">
+                    -
+                </td>
+
+                <td id="steamMesin">
+                    -
+                </td>
+
+                <td id="curingMesin">
+                    -
+                </td>
+
+                <td id="washingMesin">
+                    -
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    GRUP / SHIFT
+                </td>
+
+                <td id="flatGrupShift">
+                    -
+                </td>
+
+                <td id="steamGrupShift">
+                    -
+                </td>
+
+                <td id="curingGrupShift">
+                    -
+                </td>
+
+                <td id="washingGrupShift">
+                    -
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    NAMA
+                </td>
+
+                <td id="flatNama">
+                    -
+                </td>
+
+                <td id="steamNama">
+                    -
+                </td>
+
+                <td id="curingNama">
+                    -
+                </td>
+
+                <td id="washingNama">
+                    -
+                </td>
+
+            </tr>
+
+
+        </tbody>
+
+
+    </table>
+
+
+</div>
+
+</div></div><script>
 
 /* =====================================================
    URL APPS SCRIPT
@@ -2521,8 +2468,4 @@ function bukaPengaturan(){
 
 }
 
-</script>
-
-</body>
-
-</html>
+</script></body></html>
