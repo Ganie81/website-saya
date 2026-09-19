@@ -3074,6 +3074,19 @@ ambilData();
 
 
 </script>
+  <script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function() {
+        navigator.serviceWorker.register("./sw.js")
+            .then(function() {
+                console.log("PWA Service Worker LAPAK aktif");
+            })
+            .catch(function(error) {
+                console.log("PWA Service Worker LAPAK gagal:", error);
+            });
+    });
+}
+</script> 
 
 </body>
 </html>
