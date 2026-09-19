@@ -1855,15 +1855,21 @@ body::before{
     <div class="app-menu-name">CUCI</div>
 </button>
 
-        <button class="app-menu-item">
-            <div class="app-menu-icon">📋</div>
-            <div class="app-menu-name">LAPORAN HARIAN</div>
-        </button>
+        <button
+    class="app-menu-item"
+    onclick="location.href='https://ganie81.github.io/website-saya/lapak.html'"
+>
+    <div class="app-menu-icon">📋</div>
+    <div class="app-menu-name">LAPORAN HARIAN</div>
+</button>
 
-        <button class="app-menu-item">
-            <div class="app-menu-icon">📊</div>
-            <div class="app-menu-name">LAPAK</div>
-        </button>
+        <button
+    class="app-menu-item"
+    onclick="bukaPengaturan()"
+>
+    <div class="app-menu-icon">⚙️</div>
+    <div class="app-menu-name">PENGATURAN</div>
+</button>
 
         <button class="app-menu-item">
             <div class="app-menu-icon">🔎</div>
@@ -2402,7 +2408,15 @@ if(rollTerakhir){
     cariRoll();
 
 }
+function bukaPengaturan(){
 
+    alert(
+        "PENGATURAN APLIKASI\n\n" +
+        "Menu pengaturan akan kita aktifkan " +
+        "setelah seluruh dashboard selesai."
+    );
+
+}
 </script>
 
 
