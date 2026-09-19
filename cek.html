@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 
-<head>
+«»
 
-<meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<title>CEK ROLL ID</title>
-
-
-<style>
+<title>CEK ROLL ID</title><style>
 
 /* =====================================================
    DASAR
@@ -131,6 +122,227 @@ body::before{
         2px 2px 0 #5b2d10,
 
         4px 4px 8px rgba(0,0,0,.65);
+
+}
+
+
+/* =====================================================
+   MENU UTAMA APLIKASI
+===================================================== */
+
+.app-menu{
+
+    width:100%;
+
+    margin-top:0;
+
+    margin-bottom:18px;
+
+    padding:18px;
+
+    border-radius:21px;
+
+    border:1px solid
+        rgba(255,255,255,.5);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(126,76,39,.98),
+            rgba(70,38,19,.98)
+        );
+
+    box-shadow:
+
+        8px 8px 18px
+        rgba(0,0,0,.45),
+
+        inset 2px 2px 5px
+        rgba(255,255,255,.16),
+
+        inset -3px -3px 6px
+        rgba(0,0,0,.35);
+
+}
+
+
+.app-menu-title{
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+    font-size:23px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    color:#ffe7a4;
+
+    text-shadow:
+        2px 2px 4px
+        rgba(0,0,0,.55);
+
+}
+
+
+.app-menu-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+
+}
+
+
+.app-menu-item{
+
+    min-height:90px;
+
+    padding:12px;
+
+    border-radius:15px;
+
+    border:1px solid
+        rgba(255,255,255,.3);
+
+    cursor:pointer;
+
+    color:#fff;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.16),
+            rgba(0,0,0,.18)
+        );
+
+    box-shadow:
+
+        inset 1px 1px 3px
+        rgba(255,255,255,.12),
+
+        4px 4px 8px
+        rgba(0,0,0,.3);
+
+}
+
+
+.app-menu-item:active{
+
+    transform:translateY(2px);
+
+}
+
+
+.app-menu-icon{
+
+    font-size:30px;
+
+    line-height:1;
+
+    margin-bottom:8px;
+
+}
+
+
+.app-menu-name{
+
+    font-size:15px;
+
+    font-weight:900;
+
+    letter-spacing:.3px;
+
+}
+
+
+/* =====================================================
+   IKON MESIN CUCI FRONT LOADING
+===================================================== */
+
+.washing-machine-icon{
+
+    width:42px;
+    height:42px;
+
+    margin:0 auto 8px;
+
+    border-radius:8px;
+
+    border:3px solid #ffe7a4;
+
+    background:
+        linear-gradient(
+            145deg,
+            #8f8f8f,
+            #3f3f3f
+        );
+
+    position:relative;
+
+    box-shadow:
+
+        inset 2px 2px 4px
+        rgba(255,255,255,.35),
+
+        3px 3px 6px
+        rgba(0,0,0,.4);
+
+}
+
+
+.washing-door{
+
+    position:absolute;
+
+    width:25px;
+    height:25px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-45%);
+
+    border-radius:50%;
+
+    border:3px solid #d8d8d8;
+
+    background:#222;
+
+    box-shadow:
+        inset 2px 2px 4px
+        rgba(255,255,255,.2);
+
+}
+
+
+.washing-inner{
+
+    position:absolute;
+
+    width:15px;
+    height:15px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #777,
+            #222 70%
+        );
 
 }
 
@@ -313,7 +525,6 @@ body::before{
 
 /* =====================================================
    KOTAK UTAMA
-   NOMOR ROLL + PRODUK + STATUS
 ===================================================== */
 
 .info-box{
@@ -844,6 +1055,65 @@ body::before{
     }
 
 
+    .app-menu{
+
+        margin-top:0;
+
+        margin-bottom:12px;
+
+        padding:12px 10px;
+
+        border-radius:0;
+
+    }
+
+
+    .app-menu-title{
+
+        font-size:20px;
+
+        margin-bottom:12px;
+
+    }
+
+
+    .app-menu-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:8px;
+
+    }
+
+
+    .app-menu-item{
+
+        min-height:78px;
+
+        padding:10px 7px;
+
+        border-radius:12px;
+
+    }
+
+
+    .app-menu-icon{
+
+        font-size:27px;
+
+        margin-bottom:6px;
+
+    }
+
+
+    .app-menu-name{
+
+        font-size:14px;
+
+    }
+
+
     .search-box{
 
         border-radius:0;
@@ -1074,748 +1344,21 @@ body::before{
     }
 
 }
-/* =====================================================
-   MENU UTAMA APLIKASI
-===================================================== */
 
-.app-menu{
+</style></head><body><div class="container"><!-- =================================================
+     JUDUL
+================================================== -->
 
-    width:100%;
+<div class="judul">
 
-    margin-top:20px;
-
-    padding:18px;
-
-    border-radius:21px;
-
-    border:1px solid
-        rgba(255,255,255,.5);
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(126,76,39,.98),
-            rgba(70,38,19,.98)
-        );
-
-    box-shadow:
-
-        8px 8px 18px
-        rgba(0,0,0,.45),
-
-        inset 2px 2px 5px
-        rgba(255,255,255,.16),
-
-        inset -3px -3px 6px
-        rgba(0,0,0,.35);
-
-}
-
-
-.app-menu-title{
-
-    text-align:center;
-
-    margin-bottom:15px;
-
-    font-size:23px;
-
-    font-weight:900;
-
-    letter-spacing:1px;
-
-    color:#ffe7a4;
-
-    text-shadow:
-        2px 2px 4px
-        rgba(0,0,0,.55);
-
-}
-
-
-.app-menu-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:12px;
-
-}
-
-
-.app-menu-item{
-
-    min-height:90px;
-
-    padding:12px;
-
-    border-radius:15px;
-
-    border:1px solid
-        rgba(255,255,255,.3);
-
-    cursor:pointer;
-
-    color:#fff;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.16),
-            rgba(0,0,0,.18)
-        );
-
-    box-shadow:
-
-        inset 1px 1px 3px
-        rgba(255,255,255,.12),
-
-        4px 4px 8px
-        rgba(0,0,0,.3);
-
-}
-
-
-.app-menu-item:active{
-
-    transform:translateY(2px);
-
-}
-
-
-.app-menu-icon{
-
-    font-size:30px;
-
-    line-height:1;
-
-    margin-bottom:8px;
-
-}
-
-
-.app-menu-name{
-
-    font-size:15px;
-
-    font-weight:900;
-
-    letter-spacing:.3px;
-
-}
-
-
-@media (max-width:600px){
-
-    .app-menu{
-
-        margin-top:12px;
-
-        padding:12px 10px;
-
-        border-radius:0;
-
-    }
-
-
-    .app-menu-title{
-
-        font-size:20px;
-
-        margin-bottom:12px;
-
-    }
-
-
-    .app-menu-grid{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-        gap:8px;
-
-    }
-
-
-    .app-menu-item{
-
-        min-height:78px;
-
-        padding:10px 7px;
-
-        border-radius:12px;
-
-    }
-
-
-    .app-menu-icon{
-
-        font-size:27px;
-
-        margin-bottom:6px;
-
-    }
-
-
-    .app-menu-name{
-
-        font-size:14px;
-
-    }
-
-}
-    /* =====================================================
-   IKON MESIN CUCI FRONT LOADING
-===================================================== */
-
-.washing-machine-icon{
-
-    width:42px;
-    height:42px;
-
-    margin:0 auto 8px;
-
-    border-radius:8px;
-
-    border:3px solid #ffe7a4;
-
-    background:
-        linear-gradient(
-            145deg,
-            #8f8f8f,
-            #3f3f3f
-        );
-
-    position:relative;
-
-    box-shadow:
-
-        inset 2px 2px 4px
-        rgba(255,255,255,.35),
-
-        3px 3px 6px
-        rgba(0,0,0,.4);
-
-}
-
-
-.washing-door{
-
-    position:absolute;
-
-    width:25px;
-    height:25px;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-45%);
-
-    border-radius:50%;
-
-    border:3px solid #d8d8d8;
-
-    background:#222;
-
-    box-shadow:
-        inset 2px 2px 4px
-        rgba(255,255,255,.2);
-
-}
-
-
-.washing-inner{
-
-    position:absolute;
-
-    width:15px;
-    height:15px;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            #777,
-            #222 70%
-        );
-
-}
-</style>
-
-</head>
-
-
-<body>
-
-
-<div class="container">
-
-
-    <!-- =================================================
-         JUDUL
-    ================================================== -->
-
-    <div class="judul">
-
-        CEK ROLL ID
-
-    </div>
-
-
-    <!-- =================================================
-         PENCARIAN
-    ================================================== -->
-
-    <div class="search-box">
-
-        <label
-            class="search-label"
-            for="rollID"
-        >
-
-            NOMOR ROLL ID
-
-        </label>
-
-
-        <div class="search-row">
-
-            <input
-                type="text"
-                id="rollID"
-                placeholder="Masukkan Roll ID..."
-                autocomplete="off"
-            >
-
-
-            <button
-                class="btn-cari"
-                onclick="cariRoll()"
-            >
-
-                CARI
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         LOADING
-    ================================================== -->
-
-    <div id="loading">
-
-        ⏳ SABAR..biar di sayang Allah ﷻ
-
-    </div>
-
-
-    <!-- =================================================
-         HASIL
-    ================================================== -->
-
-    <div id="hasil">
-
-
-        <!-- =============================================
-             SATU KOTAK UTAMA
-        ============================================== -->
-
-        <div class="info-box">
-
-
-            <!-- =========================================
-                 NOMOR ROLL ID
-            ========================================== -->
-
-            <div class="roll-section">
-
-                <div class="section-title">
-
-                    NOMOR ROLL ID
-
-                </div>
-
-
-                <div
-                    class="roll-value"
-                    id="nomorRoll"
-                >
-
-                    -
-
-                </div>
-
-            </div>
-
-
-            <!-- =========================================
-                 INFORMASI PRODUK
-            ========================================== -->
-
-            <div class="product-section">
-
-                <div class="section-title">
-
-                    INFORMASI PRODUK
-
-                </div>
-
-
-                <div class="product-grid">
-
-
-                    <div class="product-item">
-
-                        <span class="product-label">
-                            Motif
-                        </span>
-
-                        <div
-                            class="product-value"
-                            id="motif"
-                        >
-                            -
-                        </div>
-
-                    </div>
-
-
-                    <div class="product-item">
-
-                        <span class="product-label">
-                            Warna
-                        </span>
-
-                        <div
-                            class="product-value"
-                            id="warna"
-                        >
-                            -
-                        </div>
-
-                    </div>
-
-
-                    <div class="product-item">
-
-                        <span class="product-label">
-                            Isian Warna
-                        </span>
-
-                        <div
-                            class="product-value"
-                            id="isianWarna"
-                        >
-                            -
-                        </div>
-
-                    </div>
-
-
-                    <div class="product-item">
-
-                        <span class="product-label">
-                            Kode Produk
-                        </span>
-
-                        <div
-                            class="product-value"
-                            id="kodeProduk"
-                        >
-                            -
-                        </div>
-
-                    </div>
-
-
-                    <div class="product-item">
-
-                        <span class="product-label">
-                            Qty
-                        </span>
-
-                        <div
-                            class="product-value"
-                            id="qty"
-                        >
-                            -
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <!-- =========================================
-                 STATUS PERJALANAN ROLL
-            ========================================== -->
-
-            <div class="status-section">
-
-                <div class="section-title">
-
-                    STATUS PERJALANAN ROLL
-
-                </div>
-
-
-                <div class="status-grid">
-
-
-                    <div class="status-item">
-
-                        <div class="status-name">
-                            FLAT
-                        </div>
-
-                        <div
-                            class="status-icon"
-                            id="statusFlat"
-                        >
-                            -
-                        </div>
-
-                    </div>
-
-
-                    <div class="status-item">
-
-                        <div class="status-name">
-                            STEAM
-                        </div>
-
-                        <div
-                            class="status-icon"
-                            id="statusSteam"
-                        >
-                            -
-                        </div>
-
-                    </div>
-
-
-                    <div class="status-item">
-
-                        <div class="status-name">
-                            CURING
-                        </div>
-
-                        <div
-                            class="status-icon"
-                            id="statusCuring"
-                        >
-                            -
-                        </div>
-
-                    </div>
-
-
-                    <div class="status-item">
-
-                        <div class="status-name">
-                            WASHING
-                        </div>
-
-                        <div
-                            class="status-icon"
-                            id="statusWashing"
-                        >
-                            -
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =============================================
-             INFORMASI PROSES PRODUKSI
-             LETAK DI BAWAH KOTAK UTAMA
-        ============================================== -->
-
-        <div class="table-title">
-
-            INFORMASI PROSES PRODUKSI
-
-        </div>
-
-
-        <div class="table-wrap">
-
-
-            <table class="process-table">
-
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            URAIAN
-                        </th>
-
-                        <th>
-                            FLAT
-                        </th>
-
-                        <th>
-                            STEAM
-                        </th>
-
-                        <th>
-                            CURING
-                        </th>
-
-                        <th>
-                            WASHING
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody>
-
-
-                    <tr>
-
-                        <td>
-                            TANGGAL
-                        </td>
-
-                        <td id="flatTanggal">
-                            -
-                        </td>
-
-                        <td id="steamTanggal">
-                            -
-                        </td>
-
-                        <td id="curingTanggal">
-                            -
-                        </td>
-
-                        <td id="washingTanggal">
-                            -
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            MESIN
-                        </td>
-
-                        <td id="flatMesin">
-                            -
-                        </td>
-
-                        <td id="steamMesin">
-                            -
-                        </td>
-
-                        <td id="curingMesin">
-                            -
-                        </td>
-
-                        <td id="washingMesin">
-                            -
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            GRUP / SHIFT
-                        </td>
-
-                        <td id="flatGrupShift">
-                            -
-                        </td>
-
-                        <td id="steamGrupShift">
-                            -
-                        </td>
-
-                        <td id="curingGrupShift">
-                            -
-                        </td>
-
-                        <td id="washingGrupShift">
-                            -
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            NAMA
-                        </td>
-
-                        <td id="flatNama">
-                            -
-                        </td>
-
-                        <td id="steamNama">
-                            -
-                        </td>
-
-                        <td id="curingNama">
-                            -
-                        </td>
-
-                        <td id="washingNama">
-                            -
-                        </td>
-
-                    </tr>
-
-
-                </tbody>
-
-
-            </table>
-
-
-        </div>
-
-
-    </div>
-
+    CEK ROLL ID
 
 </div>
+
+
 <!-- =================================================
      MENU UTAMA APLIKASI
+     SEKARANG DI ATAS PENELUSURAN ROLL ID
 ================================================== -->
 
 <div class="app-menu">
@@ -1826,61 +1369,554 @@ body::before{
 
     <div class="app-menu-grid">
 
-        <button
-    class="app-menu-item"
-    onclick="location.href='https://ganie81.github.io/website-saya//index.html'"
->
-    <div class="app-menu-icon">🏭</div>
-    <div class="app-menu-name">PRODUKSI</div>
-</button>
 
         <button
-    class="app-menu-item"
-    onclick="location.href='https://ganie81.github.io/website-saya//Defect.html'"
->
-    <div class="app-menu-icon">🛠️</div>
-    <div class="app-menu-name">DEFECT FLAT</div>
-</button>
+            class="app-menu-item"
+            onclick="location.href='https://ganie81.github.io/website-saya//index.html'"
+        >
+
+            <div class="app-menu-icon">
+                🏭
+            </div>
+
+            <div class="app-menu-name">
+                PRODUKSI
+            </div>
+
+        </button>
+
 
         <button
-    class="app-menu-item"
-    onclick="location.href='https://ganie81.github.io/website-saya//cuci.html'"
->
-    <div class="app-menu-icon washing-machine-icon">
-        <div class="washing-door">
-            <div class="washing-inner"></div>
-        </div>
+            class="app-menu-item"
+            onclick="location.href='https://ganie81.github.io/website-saya//Defect.html'"
+        >
+
+            <div class="app-menu-icon">
+                🛠️
+            </div>
+
+            <div class="app-menu-name">
+                DEFECT FLAT
+            </div>
+
+        </button>
+
+
+        <button
+            class="app-menu-item"
+            onclick="location.href='https://ganie81.github.io/website-saya//cuci.html'"
+        >
+
+            <div class="app-menu-icon washing-machine-icon">
+
+                <div class="washing-door">
+
+                    <div class="washing-inner"></div>
+
+                </div>
+
+            </div>
+
+            <div class="app-menu-name">
+                CUCI
+            </div>
+
+        </button>
+
+
+        <button
+            class="app-menu-item"
+            onclick="location.href='https://ganie81.github.io/website-saya/lapak.html'"
+        >
+
+            <div class="app-menu-icon">
+                📋
+            </div>
+
+            <div class="app-menu-name">
+                LAPORAN HARIAN
+            </div>
+
+        </button>
+
+
+        <button
+            class="app-menu-item"
+            onclick="bukaPengaturan()"
+        >
+
+            <div class="app-menu-icon">
+                ⚙️
+            </div>
+
+            <div class="app-menu-name">
+                PENGATURAN
+            </div>
+
+        </button>
+
+
+        <button
+            class="app-menu-item"
+        >
+
+            <div class="app-menu-icon">
+                🔎
+            </div>
+
+            <div class="app-menu-name">
+                CEK ROLL ID
+            </div>
+
+        </button>
+
+
     </div>
 
-    <div class="app-menu-name">CUCI</div>
-</button>
+</div>
+
+
+<!-- =================================================
+     PENCARIAN
+================================================== -->
+
+<div class="search-box">
+
+    <label
+        class="search-label"
+        for="rollID"
+    >
+
+        NOMOR ROLL ID
+
+    </label>
+
+
+    <div class="search-row">
+
+        <input
+            type="text"
+            id="rollID"
+            placeholder="Masukkan Roll ID..."
+            autocomplete="off"
+        >
+
 
         <button
-    class="app-menu-item"
-    onclick="location.href='https://ganie81.github.io/website-saya/lapak.html'"
->
-    <div class="app-menu-icon">📋</div>
-    <div class="app-menu-name">LAPORAN HARIAN</div>
-</button>
+            class="btn-cari"
+            onclick="cariRoll()"
+        >
 
-        <button
-    class="app-menu-item"
-    onclick="bukaPengaturan()"
->
-    <div class="app-menu-icon">⚙️</div>
-    <div class="app-menu-name">PENGATURAN</div>
-</button>
+            CARI
 
-        <button class="app-menu-item">
-            <div class="app-menu-icon">🔎</div>
-            <div class="app-menu-name">CEK ROLL ID</div>
         </button>
 
     </div>
 
 </div>
 
-<script>
+
+<!-- =================================================
+     LOADING
+================================================== -->
+
+<div id="loading">
+
+    ⏳ SABAR..biar di sayang Allah ﷻ
+
+</div>
+
+
+<!-- =================================================
+     HASIL PENELUSURAN
+     SEKARANG PALING BAWAH
+================================================== -->
+
+<div id="hasil">
+
+
+    <!-- =============================================
+         SATU KOTAK UTAMA
+    ============================================== -->
+
+    <div class="info-box">
+
+
+        <!-- =========================================
+             NOMOR ROLL ID
+        ========================================== -->
+
+        <div class="roll-section">
+
+            <div class="section-title">
+
+                NOMOR ROLL ID
+
+            </div>
+
+
+            <div
+                class="roll-value"
+                id="nomorRoll"
+            >
+
+                -
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             INFORMASI PRODUK
+        ========================================== -->
+
+        <div class="product-section">
+
+            <div class="section-title">
+
+                INFORMASI PRODUK
+
+            </div>
+
+
+            <div class="product-grid">
+
+
+                <div class="product-item">
+
+                    <span class="product-label">
+                        Motif
+                    </span>
+
+                    <div
+                        class="product-value"
+                        id="motif"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="product-item">
+
+                    <span class="product-label">
+                        Warna
+                    </span>
+
+                    <div
+                        class="product-value"
+                        id="warna"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="product-item">
+
+                    <span class="product-label">
+                        Isian Warna
+                    </span>
+
+                    <div
+                        class="product-value"
+                        id="isianWarna"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="product-item">
+
+                    <span class="product-label">
+                        Kode Produk
+                    </span>
+
+                    <div
+                        class="product-value"
+                        id="kodeProduk"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="product-item">
+
+                    <span class="product-label">
+                        Qty
+                    </span>
+
+                    <div
+                        class="product-value"
+                        id="qty"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             STATUS PERJALANAN ROLL
+        ========================================== -->
+
+        <div class="status-section">
+
+            <div class="section-title">
+
+                STATUS PERJALANAN ROLL
+
+            </div>
+
+
+            <div class="status-grid">
+
+
+                <div class="status-item">
+
+                    <div class="status-name">
+                        FLAT
+                    </div>
+
+                    <div
+                        class="status-icon"
+                        id="statusFlat"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <div class="status-name">
+                        STEAM
+                    </div>
+
+                    <div
+                        class="status-icon"
+                        id="statusSteam"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <div class="status-name">
+                        CURING
+                    </div>
+
+                    <div
+                        class="status-icon"
+                        id="statusCuring"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <div class="status-name">
+                        WASHING
+                    </div>
+
+                    <div
+                        class="status-icon"
+                        id="statusWashing"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =============================================
+         INFORMASI PROSES PRODUKSI
+    ============================================== -->
+
+    <div class="table-title">
+
+        INFORMASI PROSES PRODUKSI
+
+    </div>
+
+
+    <div class="table-wrap">
+
+
+        <table class="process-table">
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        URAIAN
+                    </th>
+
+                    <th>
+                        FLAT
+                    </th>
+
+                    <th>
+                        STEAM
+                    </th>
+
+                    <th>
+                        CURING
+                    </th>
+
+                    <th>
+                        WASHING
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                <tr>
+
+                    <td>
+                        TANGGAL
+                    </td>
+
+                    <td id="flatTanggal">
+                        -
+                    </td>
+
+                    <td id="steamTanggal">
+                        -
+                    </td>
+
+                    <td id="curingTanggal">
+                        -
+                    </td>
+
+                    <td id="washingTanggal">
+                        -
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        MESIN
+                    </td>
+
+                    <td id="flatMesin">
+                        -
+                    </td>
+
+                    <td id="steamMesin">
+                        -
+                    </td>
+
+                    <td id="curingMesin">
+                        -
+                    </td>
+
+                    <td id="washingMesin">
+                        -
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        GRUP / SHIFT
+                    </td>
+
+                    <td id="flatGrupShift">
+                        -
+                    </td>
+
+                    <td id="steamGrupShift">
+                        -
+                    </td>
+
+                    <td id="curingGrupShift">
+                        -
+                    </td>
+
+                    <td id="washingGrupShift">
+                        -
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        NAMA
+                    </td>
+
+                    <td id="flatNama">
+                        -
+                    </td>
+
+                    <td id="steamNama">
+                        -
+                    </td>
+
+                    <td id="curingNama">
+                        -
+                    </td>
+
+                    <td id="washingNama">
+                        -
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+</div>
+
+</div><script>
 
 /* =====================================================
    URL APPS SCRIPT
@@ -2057,10 +2093,11 @@ async function cariRoll(){
 
     const rollID =
         input.value.trim();
+
     localStorage.setItem(
-  "LAST_ROLL_ID",
-  rollID
-);
+        "LAST_ROLL_ID",
+        rollID
+    );
 
 
     if(!rollID){
@@ -2216,11 +2253,11 @@ async function cariRoll(){
 
 
             isi(
-    "qty",
-    flat["QTY"]
-        ? flat["QTY"] + " Pcs"
-        : "-"
-);
+                "qty",
+                flat["QTY"]
+                    ? flat["QTY"] + " Pcs"
+                    : "-"
+            );
 
         }
 
@@ -2239,11 +2276,6 @@ async function cariRoll(){
                 flat
             );
 
-
-            /*
-             * FLAT menggunakan GRUB
-             * sesuai data backend.
-             */
 
             isi(
                 "flatGrupShift",
@@ -2273,10 +2305,6 @@ async function cariRoll(){
             );
 
 
-            /*
-             * STEAM menggunakan SHIFT
-             */
-
             isi(
                 "steamGrupShift",
                 steam["SHIFT"]
@@ -2305,10 +2333,6 @@ async function cariRoll(){
             );
 
 
-            /*
-             * CURING menggunakan SHIFT
-             */
-
             isi(
                 "curingGrupShift",
                 curing["SHIFT"]
@@ -2336,10 +2360,6 @@ async function cariRoll(){
                 washing
             );
 
-
-            /*
-             * WASHING menggunakan SHIFT
-             */
 
             isi(
                 "washingGrupShift",
@@ -2397,8 +2417,15 @@ document
 
         }
     );
+
+
+/* =====================================================
+   ROLL TERAKHIR
+===================================================== */
+
 const rollTerakhir =
     localStorage.getItem("LAST_ROLL_ID");
+
 
 if(rollTerakhir){
 
@@ -2408,6 +2435,12 @@ if(rollTerakhir){
     cariRoll();
 
 }
+
+
+/* =====================================================
+   PENGATURAN
+===================================================== */
+
 function bukaPengaturan(){
 
     alert(
@@ -2417,9 +2450,5 @@ function bukaPengaturan(){
     );
 
 }
-</script>
 
-
-</body>
-
-</html>
+</script></body></html>
