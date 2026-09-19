@@ -1,10 +1,18 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
 name="viewport"
 content="width=device-width, initial-scale=1.0"
+>
 
-«»
+<title>DEPARTMENT PRINTING - CEK ROLL ID</title>
 
-<title>CEK ROLL ID</title><style>
+<style>
 
 /* =====================================================
    DASAR
@@ -100,16 +108,74 @@ body::before{
 
 
 /* =====================================================
-   JUDUL
+   HEADER PERUSAHAAN
 ===================================================== */
 
-.judul{
+.company-header{
 
-    text-align:center;
+    width:100%;
 
-    margin:4px 0 18px;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:18px;
+
+    margin:
+
+        2px
+        0
+        20px;
+
+    padding:
+
+        8px
+        10px;
+
+}
+
+
+.company-logo{
+
+    width:82px;
+
+    height:82px;
+
+    object-fit:contain;
+
+    flex-shrink:0;
+
+    filter:
+        drop-shadow(
+            3px
+            4px
+            5px
+            rgba(0,0,0,.55)
+        );
+
+}
+
+
+.company-title{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    text-align:left;
+
+}
+
+
+.company-main{
 
     font-size:34px;
+
+    line-height:1.05;
 
     font-weight:900;
 
@@ -121,7 +187,30 @@ body::before{
 
         2px 2px 0 #5b2d10,
 
-        4px 4px 8px rgba(0,0,0,.65);
+        4px 4px 8px
+        rgba(0,0,0,.65);
+
+}
+
+
+.company-sub{
+
+    margin-top:7px;
+
+    font-size:22px;
+
+    line-height:1;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    color:#ffe7a4;
+
+    text-shadow:
+
+        2px 2px 4px
+        rgba(0,0,0,.55);
 
 }
 
@@ -308,7 +397,8 @@ body::before{
     left:50%;
     top:50%;
 
-    transform:translate(-50%,-45%);
+    transform:
+        translate(-50%,-45%);
 
     border-radius:50%;
 
@@ -333,7 +423,8 @@ body::before{
     left:50%;
     top:50%;
 
-    transform:translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 
     border-radius:50%;
 
@@ -349,7 +440,7 @@ body::before{
 
 /* =====================================================
    PENELUSURAN ROLL ID
-   TERSEMBUNYI SAAT AWAL
+   BENAR-BENAR TERSEMBUNYI SAAT AWAL
 ===================================================== */
 
 #searchArea{
@@ -525,7 +616,6 @@ body::before{
     font-weight:800;
 
     background:
-
         rgba(0,0,0,.35);
 
 }
@@ -640,7 +730,7 @@ body::before{
     display:grid;
 
     grid-template-columns:
-        repeat(5, 1fr);
+        repeat(5,1fr);
 
     gap:12px;
 
@@ -725,7 +815,7 @@ body::before{
     display:grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4,1fr);
 
     gap:12px;
 
@@ -862,7 +952,8 @@ body::before{
 
     overflow-x:auto;
 
-    border-radius:0 0 18px 18px;
+    border-radius:
+        0 0 18px 18px;
 
     box-shadow:
 
@@ -883,7 +974,6 @@ body::before{
     table-layout:fixed;
 
     background:
-
         rgba(58,31,15,.96);
 
 }
@@ -997,32 +1087,25 @@ body::before{
 @media (max-width:900px){
 
     body{
-
         padding:10px;
-
     }
-
 
     .product-grid{
-
         grid-template-columns:
-            repeat(2, 1fr);
-
+            repeat(2,1fr);
     }
-
 
     .status-grid{
-
         grid-template-columns:
-            repeat(2, 1fr);
-
+            repeat(2,1fr);
     }
 
-
-    .judul{
-
+    .company-main{
         font-size:29px;
+    }
 
+    .company-sub{
+        font-size:20px;
     }
 
 }
@@ -1035,33 +1118,51 @@ body::before{
 @media (max-width:600px){
 
     body{
-
         padding:0;
-
     }
-
 
     .container{
-
         width:100%;
-
     }
 
+    .company-header{
 
-    .judul{
+        gap:10px;
 
         margin:
-
-            12px
+            10px
             8px
             14px;
 
-        font-size:27px;
+        padding:4px;
+
+    }
+
+    .company-logo{
+
+        width:70px;
+
+        height:70px;
+
+    }
+
+    .company-main{
+
+        font-size:24px;
 
         letter-spacing:1px;
 
     }
 
+    .company-sub{
+
+        margin-top:5px;
+
+        font-size:17px;
+
+        letter-spacing:1px;
+
+    }
 
     .app-menu{
 
@@ -1075,7 +1176,6 @@ body::before{
 
     }
 
-
     .app-menu-title{
 
         font-size:20px;
@@ -1083,7 +1183,6 @@ body::before{
         margin-bottom:12px;
 
     }
-
 
     .app-menu-grid{
 
@@ -1093,7 +1192,6 @@ body::before{
         gap:8px;
 
     }
-
 
     .app-menu-item{
 
@@ -1105,7 +1203,6 @@ body::before{
 
     }
 
-
     .app-menu-icon{
 
         font-size:27px;
@@ -1114,13 +1211,11 @@ body::before{
 
     }
 
-
     .app-menu-name{
 
         font-size:14px;
 
     }
-
 
     .search-box{
 
@@ -1132,20 +1227,17 @@ body::before{
 
     }
 
-
     .search-label{
 
         font-size:18px;
 
     }
 
-
     .search-row{
 
         gap:7px;
 
     }
-
 
     #rollID{
 
@@ -1157,7 +1249,6 @@ body::before{
 
     }
 
-
     .btn-cari{
 
         height:53px;
@@ -1168,7 +1259,6 @@ body::before{
 
     }
 
-
     .info-box{
 
         border-radius:0;
@@ -1177,32 +1267,23 @@ body::before{
 
     }
 
-
     .roll-section,
     .product-section,
     .status-section{
 
         padding:
-
             15px
             10px;
 
     }
 
-
     .section-title{
-
         font-size:18px;
-
     }
-
 
     .roll-value{
-
         font-size:27px;
-
     }
-
 
     .product-grid{
 
@@ -1213,7 +1294,6 @@ body::before{
 
     }
 
-
     .product-item{
 
         padding:11px 9px;
@@ -1222,51 +1302,34 @@ body::before{
 
     }
 
-
     .product-label{
-
         font-size:13px;
-
     }
-
 
     .product-value{
-
         font-size:17px;
-
     }
-
 
     .status-grid{
 
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(2,1fr);
 
         gap:8px;
 
     }
 
-
     .status-item{
-
         padding:12px 7px;
-
     }
-
 
     .status-name{
-
         font-size:17px;
-
     }
-
 
     .status-icon{
-
         font-size:30px;
-
     }
-
 
     .table-title{
 
@@ -1278,7 +1341,6 @@ body::before{
 
     }
 
-
     .table-wrap{
 
         border-radius:0;
@@ -1289,26 +1351,25 @@ body::before{
 
     }
 
-
     .process-table{
-
         min-width:760px;
-
     }
-
 
     .process-table th{
 
-        padding:14px 8px;
+        padding:
+            14px
+            8px;
 
         font-size:17px;
 
     }
 
-
     .process-table td{
 
-        padding:14px 8px;
+        padding:
+            14px
+            8px;
 
         font-size:17px;
 
@@ -1323,43 +1384,70 @@ body::before{
 
 @media (max-width:380px){
 
-    .judul{
+    .company-logo{
 
-        font-size:24px;
+        width:62px;
+
+        height:62px;
 
     }
 
+    .company-main{
+        font-size:21px;
+    }
+
+    .company-sub{
+        font-size:15px;
+    }
 
     .product-value{
-
         font-size:16px;
-
     }
-
 
     .status-name{
-
         font-size:16px;
-
     }
-
 
     .process-table th,
     .process-table td{
-
         font-size:16px;
-
     }
 
 }
 
-</style></head><body><div class="container"><!-- =================================================
-     JUDUL
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<!-- =================================================
+     HEADER PERUSAHAAN
 ================================================== -->
 
-<div class="judul">
+<div class="company-header">
 
-    CEK ROLL ID
+    <img
+        class="company-logo"
+        src="https://images.glints.com/unsafe/glints-dashboard.oss-ap-southeast-1.aliyuncs.com/company-logo/e941d780b6d2d89e5607fcab43672a3b.png"
+        alt="Logo PT BEHAESTEX"
+    >
+
+    <div class="company-title">
+
+        <div class="company-main">
+            DEPARTMENT PRINTING
+        </div>
+
+        <div class="company-sub">
+            PT BEHAESTEX
+        </div>
+
+    </div>
 
 </div>
 
@@ -1463,9 +1551,6 @@ body::before{
         </button>
 
 
-        <!-- CEK ROLL ID
-             SEKARANG MEMBUKA BAR PENELUSURAN -->
-
         <button
             class="app-menu-item"
             onclick="bukaPencarianRoll()"
@@ -1493,7 +1578,6 @@ body::before{
 ================================================== -->
 
 <div id="searchArea">
-
 
     <div class="search-box">
 
@@ -1531,31 +1615,21 @@ body::before{
     </div>
 
 
-    <!-- =================================================
-         LOADING
-    ================================================== -->
-
     <div id="loading">
 
         ⏳ SABAR..biar di sayang Allah ﷻ
 
     </div>
 
-
 </div>
 
 
 <!-- =================================================
      HASIL PENELUSURAN
-     PALING BAWAH
 ================================================== -->
 
 <div id="hasil">
 
-
-    <!-- =============================================
-         SATU KOTAK UTAMA
-    ============================================== -->
 
     <div class="info-box">
 
@@ -1563,19 +1637,14 @@ body::before{
         <div class="roll-section">
 
             <div class="section-title">
-
                 NOMOR ROLL ID
-
             </div>
-
 
             <div
                 class="roll-value"
                 id="nomorRoll"
             >
-
                 -
-
             </div>
 
         </div>
@@ -1584,9 +1653,7 @@ body::before{
         <div class="product-section">
 
             <div class="section-title">
-
                 INFORMASI PRODUK
-
             </div>
 
 
@@ -1681,9 +1748,7 @@ body::before{
         <div class="status-section">
 
             <div class="section-title">
-
                 STATUS PERJALANAN ROLL
-
             </div>
 
 
@@ -1763,9 +1828,7 @@ body::before{
 
 
     <div class="table-title">
-
         INFORMASI PROSES PRODUKSI
-
     </div>
 
 
@@ -1918,7 +1981,11 @@ body::before{
 
 </div>
 
-</div><script>
+
+</div>
+
+
+<script>
 
 /* =====================================================
    URL APPS SCRIPT
@@ -1929,7 +1996,7 @@ const WEB_APP_URL =
 
 
 /* =====================================================
-   BUKA PENELUSURAN ROLL ID
+   BUKA / TUTUP PENELUSURAN ROLL ID
 ===================================================== */
 
 function bukaPencarianRoll(){
@@ -1938,6 +2005,20 @@ function bukaPencarianRoll(){
         document.getElementById("searchArea");
 
     if(!searchArea) return;
+
+
+    const sedangTerbuka =
+        searchArea.style.display === "block";
+
+
+    if(sedangTerbuka){
+
+        searchArea.style.display =
+            "none";
+
+        return;
+
+    }
 
 
     searchArea.style.display =
@@ -1960,12 +2041,13 @@ function bukaPencarianRoll(){
    HELPER
 ===================================================== */
 
-function isi(id, nilai){
+function isi(id,nilai){
 
     const el =
         document.getElementById(id);
 
     if(!el) return;
+
 
     if(
         nilai === null ||
@@ -1988,7 +2070,7 @@ function isi(id, nilai){
    STATUS
 ===================================================== */
 
-function tampilStatus(id, nilai){
+function tampilStatus(id,nilai){
 
     const el =
         document.getElementById(id);
@@ -2278,13 +2360,6 @@ async function cariRoll(){
                     : "-"
             );
 
-        }
-
-
-        if(
-            flat &&
-            typeof flat === "object"
-        ){
 
             tampilProses(
                 "flat",
@@ -2383,6 +2458,7 @@ async function cariRoll(){
             "Terjadi kesalahan saat mengambil data."
         );
 
+
         hasil.style.display =
             "none";
 
@@ -2419,33 +2495,6 @@ document
 
 
 /* =====================================================
-   ROLL TERAKHIR
-===================================================== */
-
-const rollTerakhir =
-    localStorage.getItem("LAST_ROLL_ID");
-
-
-/*
- * Jika sebelumnya ada Roll ID,
- * area penelusuran dibuka otomatis
- * agar hasil sebelumnya tetap bisa ditampilkan.
- */
-
-if(rollTerakhir){
-
-    document.getElementById("searchArea").style.display =
-        "block";
-
-    document.getElementById("rollID").value =
-        rollTerakhir;
-
-    cariRoll();
-
-}
-
-
-/* =====================================================
    PENGATURAN
 ===================================================== */
 
@@ -2459,4 +2508,8 @@ function bukaPengaturan(){
 
 }
 
-</script></body></html>
+</script>
+
+</body>
+
+</html>
