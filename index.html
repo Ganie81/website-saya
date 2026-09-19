@@ -2832,39 +2832,40 @@ padding:0;
     }
 
 }  
+
 </style>
 </head>
 
 <body>
 
 <h1>📊 <span class="judul-3d">DASHBOARD PRODUKSI</span></h1>
+
 <div class="mode-buttons">
 
-<button class="btn-defect"
-onclick="window.location.href='cek.html'">
-🏠 HOME
-</button>
+    <button
+        class="btn-filter"
+        id="btnFilter"
+        onclick="toggleFilter()">
+        🔽 Tampilkan Filter
+    </button>
 
-</div>
+    <button
+        class="btn-reset"
+        onclick="resetFilter()">
+        🔄 Reset Filter
+    </button>
 
-<button
-    class="btn-filter"
-    id="btnFilter"
-    onclick="toggleFilter()">
-    🔽 Tampilkan Filter
-</button>
+    <button
+        class="btn-screenshot"
+        onclick="window.location.href='defect-upload.html'">
+        ☣️ Defect Trial
+    </button>
 
-<button
-    class="btn-reset"
-    onclick="resetFilter()">
-    🔄 Reset Filter
-</button>
-
-<button
-    class="btn-screenshot"
-    onclick="window.location.href='defect-upload.html'">
-    ☣️ Defect Trial
-</button>
+    <button
+        class="btn-defect"
+        onclick="window.location.href='cek.html'">
+        🏠 HOME
+    </button>
 
 </div>
 
