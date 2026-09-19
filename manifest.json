@@ -1,6 +1,6 @@
 {
   "name": "CEK ROLL ID",
-  "short_name": "CEK ROLL",
+  "short_name": "PRINTING",
   "start_url": "./cek.html",
   "scope": "./",
   "display": "standalone",
