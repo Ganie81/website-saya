@@ -348,8 +348,16 @@ body::before{
 
 
 /* =====================================================
-   SEARCH BOX
+   PENELUSURAN ROLL ID
+   TERSEMBUNYI SAAT AWAL
 ===================================================== */
+
+#searchArea{
+
+    display:none;
+
+}
+
 
 .search-box{
 
@@ -957,7 +965,7 @@ body::before{
 
 
 /* =====================================================
-   PESAN
+   HASIL
 ===================================================== */
 
 #hasil{
@@ -1358,7 +1366,6 @@ body::before{
 
 <!-- =================================================
      MENU UTAMA APLIKASI
-     SEKARANG DI ATAS PENELUSURAN ROLL ID
 ================================================== -->
 
 <div class="app-menu">
@@ -1456,8 +1463,12 @@ body::before{
         </button>
 
 
+        <!-- CEK ROLL ID
+             SEKARANG MEMBUKA BAR PENELUSURAN -->
+
         <button
             class="app-menu-item"
+            onclick="bukaPencarianRoll()"
         >
 
             <div class="app-menu-icon">
@@ -1477,59 +1488,66 @@ body::before{
 
 
 <!-- =================================================
-     PENCARIAN
+     AREA PENELUSURAN
+     TERSEMBUNYI SAAT AWAL
 ================================================== -->
 
-<div class="search-box">
-
-    <label
-        class="search-label"
-        for="rollID"
-    >
-
-        NOMOR ROLL ID
-
-    </label>
+<div id="searchArea">
 
 
-    <div class="search-row">
+    <div class="search-box">
 
-        <input
-            type="text"
-            id="rollID"
-            placeholder="Masukkan Roll ID..."
-            autocomplete="off"
+        <label
+            class="search-label"
+            for="rollID"
         >
 
+            PENELUSURAN ROLL ID
 
-        <button
-            class="btn-cari"
-            onclick="cariRoll()"
-        >
+        </label>
 
-            CARI
 
-        </button>
+        <div class="search-row">
+
+            <input
+                type="text"
+                id="rollID"
+                placeholder="Masukkan Roll ID..."
+                autocomplete="off"
+            >
+
+
+            <button
+                class="btn-cari"
+                onclick="cariRoll()"
+            >
+
+                CARI
+
+            </button>
+
+        </div>
 
     </div>
 
-</div>
 
+    <!-- =================================================
+         LOADING
+    ================================================== -->
 
-<!-- =================================================
-     LOADING
-================================================== -->
+    <div id="loading">
 
-<div id="loading">
+        ⏳ SABAR..biar di sayang Allah ﷻ
 
-    ⏳ SABAR..biar di sayang Allah ﷻ
+    </div>
+
 
 </div>
 
 
 <!-- =================================================
      HASIL PENELUSURAN
-     SEKARANG PALING BAWAH
+     PALING BAWAH
 ================================================== -->
 
 <div id="hasil">
@@ -1541,10 +1559,6 @@ body::before{
 
     <div class="info-box">
 
-
-        <!-- =========================================
-             NOMOR ROLL ID
-        ========================================== -->
 
         <div class="roll-section">
 
@@ -1566,10 +1580,6 @@ body::before{
 
         </div>
 
-
-        <!-- =========================================
-             INFORMASI PRODUK
-        ========================================== -->
 
         <div class="product-section">
 
@@ -1668,10 +1678,6 @@ body::before{
         </div>
 
 
-        <!-- =========================================
-             STATUS PERJALANAN ROLL
-        ========================================== -->
-
         <div class="status-section">
 
             <div class="section-title">
@@ -1755,10 +1761,6 @@ body::before{
 
     </div>
 
-
-    <!-- =============================================
-         INFORMASI PROSES PRODUKSI
-    ============================================== -->
 
     <div class="table-title">
 
@@ -1924,6 +1926,34 @@ body::before{
 
 const WEB_APP_URL =
     "https://script.google.com/macros/s/AKfycbyCnKXqqgxhn3lfES6DoDAUw8BuF10u0hwSlqe_J4R5lOqmMa8bVUCkvYQHhazTa-4j/exec";
+
+
+/* =====================================================
+   BUKA PENELUSURAN ROLL ID
+===================================================== */
+
+function bukaPencarianRoll(){
+
+    const searchArea =
+        document.getElementById("searchArea");
+
+    if(!searchArea) return;
+
+
+    searchArea.style.display =
+        "block";
+
+
+    const input =
+        document.getElementById("rollID");
+
+    if(input){
+
+        input.focus();
+
+    }
+
+}
 
 
 /* =====================================================
@@ -2094,6 +2124,7 @@ async function cariRoll(){
     const rollID =
         input.value.trim();
 
+
     localStorage.setItem(
         "LAST_ROLL_ID",
         rollID
@@ -2168,19 +2199,11 @@ async function cariRoll(){
         }
 
 
-        /* =============================================
-           NOMOR ROLL
-        ============================================== */
-
         isi(
             "nomorRoll",
             data.rollID
         );
 
-
-        /* =============================================
-           STATUS
-        ============================================== */
 
         tampilStatus(
             "statusFlat",
@@ -2213,10 +2236,6 @@ async function cariRoll(){
                 : "-"
         );
 
-
-        /* =============================================
-           INFORMASI PRODUK DARI FLAT
-        ============================================== */
 
         const flat =
             data.data &&
@@ -2262,10 +2281,6 @@ async function cariRoll(){
         }
 
 
-        /* =============================================
-           INFORMASI PROSES
-        ============================================== */
-
         if(
             flat &&
             typeof flat === "object"
@@ -2284,10 +2299,6 @@ async function cariRoll(){
 
         }
 
-
-        /* =============================================
-           STEAM
-        ============================================== */
 
         const steam =
             data.data &&
@@ -2313,10 +2324,6 @@ async function cariRoll(){
         }
 
 
-        /* =============================================
-           CURING
-        ============================================== */
-
         const curing =
             data.data &&
             data.data.CURING;
@@ -2341,10 +2348,6 @@ async function cariRoll(){
         }
 
 
-        /* =============================================
-           WASHING
-        ============================================== */
-
         const washing =
             data.data &&
             data.data.WASHING;
@@ -2368,10 +2371,6 @@ async function cariRoll(){
 
         }
 
-
-        /* =============================================
-           TAMPILKAN HASIL
-        ============================================== */
 
         hasil.style.display =
             "block";
@@ -2427,7 +2426,16 @@ const rollTerakhir =
     localStorage.getItem("LAST_ROLL_ID");
 
 
+/*
+ * Jika sebelumnya ada Roll ID,
+ * area penelusuran dibuka otomatis
+ * agar hasil sebelumnya tetap bisa ditampilkan.
+ */
+
 if(rollTerakhir){
+
+    document.getElementById("searchArea").style.display =
+        "block";
 
     document.getElementById("rollID").value =
         rollTerakhir;
