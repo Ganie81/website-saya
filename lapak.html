@@ -34,66 +34,35 @@ body{
     padding:20px;
     color:#1e2d36;
 
+    /* =================================================
+       GROUNDING LAPAK
+       GAMBAR LAPAK.jpg MENJADI BACKGROUND SELURUH HALAMAN
+    ================================================= */
+
     background-color:#dfe8ed;
 
     background-image:
         linear-gradient(
-            135deg,
-            rgba(255,255,255,.35) 25%,
-            transparent 25%,
-            transparent 50%,
-            rgba(255,255,255,.25) 50%,
-            rgba(255,255,255,.25) 75%,
-            transparent 75%
+            rgba(255,255,255,.18),
+            rgba(255,255,255,.18)
         ),
-
-        repeating-linear-gradient(
-            0deg,
-            rgba(35,72,94,.055) 0px,
-            rgba(35,72,94,.055) 1px,
-            transparent 1px,
-            transparent 7px
-        ),
-
-        repeating-linear-gradient(
-            90deg,
-            rgba(35,72,94,.045) 0px,
-            rgba(35,72,94,.045) 1px,
-            transparent 1px,
-            transparent 7px
-        ),
-
-        radial-gradient(
-            ellipse 38px 22px at 25% 25%,
-            transparent 45%,
-            rgba(35,72,94,.10) 47%,
-            rgba(35,72,94,.10) 55%,
-            transparent 57%
-        ),
-
-        radial-gradient(
-            ellipse 38px 22px at 75% 75%,
-            transparent 45%,
-            rgba(35,72,94,.10) 47%,
-            rgba(35,72,94,.10) 55%,
-            transparent 57%
-        ),
-
-        linear-gradient(
-            135deg,
-            #eef4f7,
-            #cbd9e1
-        );
+        url("LAPAK.jpg");
 
     background-size:
-        84px 84px,
-        7px 7px,
-        7px 7px,
-        84px 84px,
-        84px 84px,
-        100% 100%;
+        100% 100%,
+        cover;
 
-    background-attachment:fixed;
+    background-position:
+        center,
+        center;
+
+    background-repeat:
+        no-repeat,
+        no-repeat;
+
+    background-attachment:
+        fixed,
+        fixed;
 }
 
 .container{
@@ -1097,108 +1066,6 @@ thead th{
 
 }
 
-    .header{
-        padding:
-            8px 6px 9px;
-
-        border-radius:18px;
-    }
-
-    .header h1{
-        font-size:
-            clamp(
-                29px,
-                8.2vw,
-                46px
-            );
-    }
-
-    .header .subtitle{
-        font-size:19px;
-    }
-
-    .filter-panel{
-        grid-template-columns:
-            1fr 1fr;
-
-        border-radius:17px;
-    }
-
-    .refresh-btn{
-        grid-column:
-            1 / -1;
-
-        width:100%;
-    }
-
-    .info-bar{
-        gap:8px;
-    }
-
-    .info-chip{
-        font-size:20px;
-
-        padding:
-            11px 15px;
-    }
-
-    .info-chip span{
-        font-size:24px;
-    }
-
-    .section{
-        padding:7px;
-
-        border-radius:18px;
-    }
-
-    .section-title{
-        padding:
-            1px 3px 2px;
-
-        font-size:
-            clamp(
-                21px,
-                5.7vw,
-                28px
-            );
-    }
-
-    table{
-        min-width:720px;
-    }
-
-    thead th{
-        font-size:18px;
-
-        padding:
-            17px 10px;
-    }
-
-    .table-flat tbody td{
-        font-size:18px;
-
-        padding:
-            15px 10px;
-    }
-
-    .table-flat .angka,
-    .table-flat .acv{
-        font-size:
-            20px !important;
-    }
-
-    .table-secondary tbody td{
-        font-size:18px;
-
-        padding:
-            11px 7px;
-
-        white-space:nowrap;
-    }
-
-}
-
 
 /* =====================================================
    HP SANGAT KECIL
@@ -1406,6 +1273,8 @@ thead th{
         opacity:.3;
     }
 }
+
+
 /* =====================================================
    SUBTITLE + HOME
 ===================================================== */
@@ -1457,7 +1326,8 @@ thead th{
         0 1px 0 #57999D,
         0 3px 6px rgba(0,0,0,.16);
 }
-   .section{
+
+.section{
     position:relative;
 }
 
@@ -1467,6 +1337,7 @@ thead th{
     top:8px;
     z-index:5;
 }
+
 </style>
 
 </head>
@@ -3074,19 +2945,46 @@ ambilData();
 
 
 </script>
-  <script>
+
+<script>
+
 if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function() {
-        navigator.serviceWorker.register("./sw.js")
-            .then(function() {
-                console.log("PWA Service Worker LAPAK aktif");
-            })
-            .catch(function(error) {
-                console.log("PWA Service Worker LAPAK gagal:", error);
-            });
-    });
+
+    window.addEventListener(
+        "load",
+        function() {
+
+            navigator.serviceWorker.register(
+                "./sw.js"
+            )
+
+            .then(
+                function() {
+
+                    console.log(
+                        "PWA Service Worker LAPAK aktif"
+                    );
+
+                }
+            )
+
+            .catch(
+                function(error) {
+
+                    console.log(
+                        "PWA Service Worker LAPAK gagal:",
+                        error
+                    );
+
+                }
+            );
+
+        }
+    );
+
 }
-</script> 
+
+</script>
 
 </body>
 </html>
