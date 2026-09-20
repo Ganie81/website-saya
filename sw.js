@@ -1,4 +1,4 @@
-const CACHE_NAME = "cek-roll-id-v1";
+const CACHE_NAME = "printing-v2";
 
 const APP_FILES = [
   "./cek.html",
