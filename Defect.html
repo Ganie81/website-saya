@@ -11,6 +11,59 @@
 <title>Dashboard Defect Flat</title>
 
 <style>
+ /* =====================================================
+   DASAR
+===================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    margin:0;
+    padding:20px;
+    color:#1e2d36;
+/* =================================================
+       GROUNDING DEFECT 
+       GAMBAR DEFECT.jpg MENJADI BACKGROUND SELURUH HALAMAN
+    ================================================= */
+
+    background-color:#dfe8ed;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.18),
+            rgba(255,255,255,.18)
+        ),
+        url("DEFECT.jpg");
+
+    background-size:
+        100% 100%,
+        cover;
+
+    background-position:
+        center,
+        center;
+
+    background-repeat:
+        no-repeat,
+        no-repeat;
+
+    background-attachment:
+        fixed,
+        fixed;
+}
+
+.container{
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+}     
 
 /* =====================================================
    GLOBAL
@@ -2434,42 +2487,6 @@ tbody tr:hover{
 </head>
 
 <body>
-      /* =================================================
-       GROUNDING DEFECT 
-       GAMBAR DEFECT.jpg MENJADI BACKGROUND SELURUH HALAMAN
-    ================================================= */
-
-    background-color:#dfe8ed;
-
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,.18),
-            rgba(255,255,255,.18)
-        ),
-        url("DEFECT.jpg");
-
-    background-size:
-        100% 100%,
-        cover;
-
-    background-position:
-        center,
-        center;
-
-    background-repeat:
-        no-repeat,
-        no-repeat;
-
-    background-attachment:
-        fixed,
-        fixed;
-}
-
-.container{
-    width:100%;
-    max-width:1100px;
-    margin:auto;
-}
 
 <div class="container">
 
