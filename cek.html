@@ -1076,6 +1076,234 @@ body::before{
 
 
 /* =====================================================
+   PENGATURAN APLIKASI
+===================================================== */
+
+#pengaturanArea{
+
+    display:none;
+
+    width:100%;
+
+    margin-bottom:20px;
+
+}
+
+
+.settings-box{
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:0 auto;
+
+    padding:22px;
+
+    border-radius:22px;
+
+    border:1px solid
+        rgba(255,255,255,.6);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(126,76,39,.98),
+            rgba(70,38,19,.98)
+        );
+
+    box-shadow:
+
+        10px 10px 22px
+        rgba(0,0,0,.48),
+
+        inset 2px 2px 6px
+        rgba(255,255,255,.16),
+
+        inset -3px -3px 7px
+        rgba(0,0,0,.35);
+
+}
+
+
+.settings-title{
+
+    text-align:center;
+
+    font-size:28px;
+
+    font-weight:900;
+
+    color:#ffe7a4;
+
+    letter-spacing:1px;
+
+    margin-bottom:6px;
+
+    text-shadow:
+        2px 2px 4px
+        rgba(0,0,0,.55);
+
+}
+
+
+.settings-subtitle{
+
+    text-align:center;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#fff;
+
+    opacity:.9;
+
+    margin-bottom:20px;
+
+}
+
+
+.settings-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:14px;
+
+}
+
+
+.settings-item{
+
+    min-height:100px;
+
+    padding:18px;
+
+    border-radius:16px;
+
+    border:1px solid
+        rgba(255,255,255,.3);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.15),
+            rgba(0,0,0,.2)
+        );
+
+    box-shadow:
+
+        inset 1px 1px 3px
+        rgba(255,255,255,.12),
+
+        4px 4px 9px
+        rgba(0,0,0,.3);
+
+}
+
+
+.settings-item:active{
+
+    transform:translateY(2px);
+
+}
+
+
+.settings-icon{
+
+    font-size:30px;
+
+    margin-bottom:8px;
+
+}
+
+
+.settings-name{
+
+    font-size:18px;
+
+    font-weight:900;
+
+    color:#ffe7a4;
+
+    margin-bottom:5px;
+
+}
+
+
+.settings-desc{
+
+    font-size:14px;
+
+    line-height:1.4;
+
+    font-weight:600;
+
+    color:#fff;
+
+    opacity:.9;
+
+}
+
+
+.settings-back{
+
+    width:100%;
+
+    margin-top:18px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:900;
+
+    color:#4b260e;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #ffe8a6,
+            #d8a94c
+        );
+
+    box-shadow:
+
+        5px 5px 10px
+        rgba(0,0,0,.4),
+
+        inset 2px 2px 4px
+        rgba(255,255,255,.65);
+
+}
+
+
+.settings-back:active{
+
+    transform:translateY(2px);
+
+}
+
+
+/* =====================================================
    RESPONSIVE TABLET
 ===================================================== */
 
@@ -1372,6 +1600,107 @@ body::before{
 
     }
 
+
+    /* =================================================
+       PENGATURAN HP
+    ================================================= */
+
+    #pengaturanArea{
+
+        margin-bottom:12px;
+
+    }
+
+
+    .settings-box{
+
+        width:100%;
+
+        max-width:none;
+
+        padding:15px 10px;
+
+        border-radius:0;
+
+    }
+
+
+    .settings-title{
+
+        font-size:22px;
+
+        margin-bottom:5px;
+
+    }
+
+
+    .settings-subtitle{
+
+        font-size:14px;
+
+        margin-bottom:15px;
+
+    }
+
+
+    .settings-grid{
+
+        grid-template-columns:
+            1fr;
+
+        gap:9px;
+
+    }
+
+
+    .settings-item{
+
+        min-height:82px;
+
+        padding:14px;
+
+        border-radius:12px;
+
+    }
+
+
+    .settings-icon{
+
+        font-size:27px;
+
+        margin-bottom:5px;
+
+    }
+
+
+    .settings-name{
+
+        font-size:16px;
+
+        margin-bottom:4px;
+
+    }
+
+
+    .settings-desc{
+
+        font-size:13px;
+
+    }
+
+
+    .settings-back{
+
+        margin-top:12px;
+
+        padding:14px;
+
+        font-size:17px;
+
+        border-radius:12px;
+
+    }
+
 }
 
 
@@ -1408,6 +1737,10 @@ body::before{
     .process-table th,
     .process-table td{
         font-size:16px;
+    }
+
+    .settings-title{
+        font-size:20px;
     }
 
 }
@@ -1568,6 +1901,123 @@ body::before{
 
 
 </div>
+
+</div>
+
+
+<!-- =================================================
+     PENGATURAN APLIKASI
+===================================================== -->
+
+<div id="pengaturanArea">
+
+    <div class="settings-box">
+
+        <div class="settings-title">
+            ⚙️ PENGATURAN APLIKASI
+        </div>
+
+        <div class="settings-subtitle">
+            Pengaturan sistem Department Printing
+        </div>
+
+
+        <div class="settings-grid">
+
+
+            <button
+                class="settings-item"
+                onclick="refreshAplikasi()"
+            >
+
+                <div class="settings-icon">
+                    🔄
+                </div>
+
+                <div class="settings-name">
+                    REFRESH APLIKASI
+                </div>
+
+                <div class="settings-desc">
+                    Memuat ulang aplikasi dan mengambil tampilan terbaru.
+                </div>
+
+            </button>
+
+
+            <button
+                class="settings-item"
+                onclick="hapusRollTerakhir()"
+            >
+
+                <div class="settings-icon">
+                    🧹
+                </div>
+
+                <div class="settings-name">
+                    HAPUS ROLL TERAKHIR
+                </div>
+
+                <div class="settings-desc">
+                    Menghapus Roll ID terakhir yang tersimpan di perangkat.
+                </div>
+
+            </button>
+
+
+            <button
+                class="settings-item"
+                onclick="informasiAplikasi()"
+            >
+
+                <div class="settings-icon">
+                    ℹ️
+                </div>
+
+                <div class="settings-name">
+                    INFORMASI APLIKASI
+                </div>
+
+                <div class="settings-desc">
+                    Melihat informasi aplikasi Department Printing.
+                </div>
+
+            </button>
+
+
+            <button
+                class="settings-item"
+                onclick="cekModeAplikasi()"
+            >
+
+                <div class="settings-icon">
+                    📱
+                </div>
+
+                <div class="settings-name">
+                    PERANGKAT
+                </div>
+
+                <div class="settings-desc">
+                    Melihat apakah aplikasi sedang digunakan di HP atau desktop.
+                </div>
+
+            </button>
+
+
+        </div>
+
+
+        <button
+            class="settings-back"
+            onclick="tutupPengaturan()"
+        >
+
+            ↩️ KEMBALI KE MENU UTAMA
+
+        </button>
+
+    </div>
 
 </div>
 
@@ -2000,7 +2450,18 @@ function bukaPencarianRoll(){
     const searchArea =
         document.getElementById("searchArea");
 
+    const pengaturanArea =
+        document.getElementById("pengaturanArea");
+
     if(!searchArea) return;
+
+
+    if(pengaturanArea){
+
+        pengaturanArea.style.display =
+            "none";
+
+    }
 
 
     const sedangTerbuka =
@@ -2496,29 +2957,270 @@ document
 
 function bukaPengaturan(){
 
+    const pengaturanArea =
+        document.getElementById(
+            "pengaturanArea"
+        );
+
+    const searchArea =
+        document.getElementById(
+            "searchArea"
+        );
+
+    const hasil =
+        document.getElementById(
+            "hasil"
+        );
+
+
+    if(!pengaturanArea) return;
+
+
+    if(searchArea){
+
+        searchArea.style.display =
+            "none";
+
+    }
+
+
+    if(hasil){
+
+        hasil.style.display =
+            "none";
+
+    }
+
+
+    const sedangTerbuka =
+        pengaturanArea.style.display === "block";
+
+
+    if(sedangTerbuka){
+
+        pengaturanArea.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    pengaturanArea.style.display =
+        "block";
+
+
+    setTimeout(function(){
+
+        pengaturanArea.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    },50);
+
+}
+
+
+/* =====================================================
+   TUTUP PENGATURAN
+===================================================== */
+
+function tutupPengaturan(){
+
+    const pengaturanArea =
+        document.getElementById(
+            "pengaturanArea"
+        );
+
+
+    if(!pengaturanArea) return;
+
+
+    pengaturanArea.style.display =
+        "none";
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =====================================================
+   REFRESH APLIKASI
+===================================================== */
+
+function refreshAplikasi(){
+
+    window.location.reload();
+
+}
+
+
+/* =====================================================
+   HAPUS ROLL ID TERAKHIR
+===================================================== */
+
+function hapusRollTerakhir(){
+
+    const roll =
+        localStorage.getItem(
+            "LAST_ROLL_ID"
+        );
+
+
+    if(!roll){
+
+        alert(
+            "Belum ada Roll ID yang tersimpan."
+        );
+
+        return;
+
+    }
+
+
+    const yakin =
+        confirm(
+            "Hapus Roll ID terakhir?\n\n" +
+            roll
+        );
+
+
+    if(!yakin) return;
+
+
+    localStorage.removeItem(
+        "LAST_ROLL_ID"
+    );
+
+
+    const input =
+        document.getElementById(
+            "rollID"
+        );
+
+
+    if(input){
+
+        input.value = "";
+
+    }
+
+
     alert(
-        "PENGATURAN APLIKASI\n\n" +
-        "Menu pengaturan akan kita aktifkan " +
-        "setelah seluruh dashboard selesai."
+        "Roll ID terakhir berhasil dihapus."
+    );
+
+}
+
+
+/* =====================================================
+   INFORMASI APLIKASI
+===================================================== */
+
+function informasiAplikasi(){
+
+    alert(
+
+        "DEPARTMENT PRINTING\n\n" +
+
+        "PT BEHAESTEX\n\n" +
+
+        "Menu utama untuk mengakses:\n" +
+
+        "• Produksi\n" +
+
+        "• Defect Flat\n" +
+
+        "• Cuci\n" +
+
+        "• Laporan Harian\n" +
+
+        "• Cek Roll ID\n\n" +
+
+        "Versi aplikasi: PWA"
+
+    );
+
+}
+
+
+/* =====================================================
+   CEK PERANGKAT
+===================================================== */
+
+function cekModeAplikasi(){
+
+    const lebar =
+        window.innerWidth;
+
+
+    if(lebar <= 600){
+
+        alert(
+            "PERANGKAT SAAT INI\n\n" +
+            "📱 HP / Layar kecil\n\n" +
+            "Tampilan otomatis menggunakan mode HP."
+        );
+
+    }else{
+
+        alert(
+            "PERANGKAT SAAT INI\n\n" +
+            "💻 DESKTOP / KOMPUTER\n\n" +
+            "Tampilan otomatis menggunakan mode Desktop."
+        );
+
+    }
+
+}
+
+</script>
+
+
+<script>
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener(
+        "load",
+        function() {
+
+            navigator.serviceWorker
+                .register("./sw.js")
+
+                .then(function() {
+
+                    console.log(
+                        "PWA Service Worker aktif"
+                    );
+
+                })
+
+                .catch(function(error) {
+
+                    console.log(
+                        "PWA Service Worker gagal:",
+                        error
+                    );
+
+                });
+
+        }
     );
 
 }
 
 </script>
-   
-<script>
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function() {
-        navigator.serviceWorker.register("./sw.js")
-            .then(function() {
-                console.log("PWA Service Worker aktif");
-            })
-            .catch(function(error) {
-                console.log("PWA Service Worker gagal:", error);
-            });
-    });
-}
-</script>
+
+
 </body>
 
 </html>
