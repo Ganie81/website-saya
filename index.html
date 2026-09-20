@@ -16,13 +16,21 @@ body{
     min-height:100%;
 }
 
+html,
 body{
+    min-height:100%;
     background-image:
         linear-gradient(
             rgba(255,255,255,0.78),
             rgba(255,255,255,0.78)
         ),
-        url('PROD.jpg');
+        url('PROD.jpg') !important;
+
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+}
 
     background-size: cover;
     background-position: center center;
