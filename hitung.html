@@ -8,18 +8,18 @@
 <title>KALKULATOR 3D GLOSSY</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 :root{
   --bg:#080b12;
-  --panel:#171d29;
   --text:#f8fafc;
   --muted:#9ba8bc;
-  --blue:#3985ff;
-  --green:#16bd78;
 }
 
-html,body{
+html,
+body{
   margin:0;
   min-height:100%;
   font-family:Arial,Helvetica,sans-serif;
@@ -29,18 +29,38 @@ html,body{
 body{
   min-height:100vh;
   padding:18px 12px 35px;
-  background-color:var(--bg);
+  background-color:#080b12;
+
+  /* DOT GROUNDING CEKUNG 3D, TANPA GARIS PENGHUBUNG */
   background-image:
-    radial-gradient(circle at 1px 1px,rgba(255,255,255,.12) 1px,transparent 1.8px),
-    radial-gradient(ellipse at 50% 0%,#202d48 0%,transparent 52%),
-    linear-gradient(145deg,#0b101b,#05070c 75%);
-  background-size:12px 12px,100% 600px,100% 100%;
+    radial-gradient(
+      circle at 50% 45%,
+      #02040a 0%,
+      #02040a 24%,
+      #263044 35%,
+      #111827 49%,
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse at 50% 0%,
+      #202d48 0%,
+      transparent 65%
+    );
+
+  background-size:
+    36px 36px,
+    100% 600px;
+
+  background-position:
+    0 0,
+    center top;
+
   background-attachment:fixed;
 }
 
 .container{
   width:100%;
-  max-width:760px;
+  max-width:1000px;
   margin:0 auto;
 }
 
@@ -56,11 +76,13 @@ body{
   display:flex;
   align-items:center;
   gap:12px;
+  min-width:0;
 }
 
 .brand-icon{
   width:48px;
   height:48px;
+  flex-shrink:0;
   border-radius:15px;
   display:grid;
   place-items:center;
@@ -76,7 +98,7 @@ body{
 }
 
 .brand h1{
-  font-size:clamp(20px,5vw,29px);
+  font-size:clamp(20px,5vw,32px);
   letter-spacing:1.3px;
   margin:0;
   font-weight:900;
@@ -91,6 +113,7 @@ body{
 }
 
 .home{
+  flex-shrink:0;
   text-decoration:none;
   color:#eaf3ff;
   font-size:14px;
@@ -107,7 +130,8 @@ body{
 }
 
 .calculator{
-  padding:clamp(13px,3vw,25px);
+  width:100%;
+  padding:clamp(14px,3vw,28px);
   border-radius:28px;
   background:
     linear-gradient(145deg,#263143 0%,#141b28 38%,#101620 100%);
@@ -122,9 +146,9 @@ body{
 }
 
 .display{
-  min-height:166px;
-  padding:20px 18px;
-  margin-bottom:22px;
+  min-height:180px;
+  padding:22px 20px;
+  margin-bottom:24px;
   border-radius:21px;
   overflow:hidden;
   display:flex;
@@ -140,17 +164,18 @@ body{
 }
 
 .expression{
-  min-height:27px;
+  min-height:30px;
   margin-bottom:12px;
   color:#8ea6c7;
   text-align:right;
-  font-size:clamp(15px,3.5vw,22px);
+  font-size:clamp(16px,3.5vw,25px);
   overflow-wrap:anywhere;
 }
 
 .result{
+  width:100%;
   text-align:right;
-  font-size:clamp(42px,11vw,72px);
+  font-size:clamp(42px,9vw,78px);
   font-weight:800;
   line-height:1.15;
   white-space:nowrap;
@@ -163,30 +188,42 @@ body{
 .buttons{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:12px;
+  gap:clamp(9px,1.5vw,15px);
 }
 
 button{
   position:relative;
   isolation:isolate;
   min-width:0;
-  min-height:clamp(66px,13vw,88px);
+  min-height:clamp(70px,10vw,105px);
   border:1px solid #46546b;
   border-radius:17px;
   color:#f7faff;
-  font-size:clamp(24px,5.5vw,34px);
+  font-size:clamp(25px,4vw,38px);
   font-weight:800;
   cursor:pointer;
   user-select:none;
   -webkit-tap-highlight-color:transparent;
   touch-action:manipulation;
-  background:linear-gradient(145deg,#364256 0%,#252e3e 48%,#1a2230 100%);
+
+  background:
+    linear-gradient(
+      145deg,
+      #364256 0%,
+      #252e3e 48%,
+      #1a2230 100%
+    );
+
   box-shadow:
     inset 0 2px 2px #ffffff38,
     inset 0 -4px 5px #090e18a8,
     0 5px 0 #0b1019,
     0 8px 13px #0007;
-  transition:transform .08s ease,box-shadow .08s ease,filter .12s ease;
+
+  transition:
+    transform .08s ease,
+    box-shadow .08s ease,
+    filter .12s ease;
 }
 
 button::before{
@@ -214,12 +251,14 @@ button:active{
 }
 
 button.function{
-  background:linear-gradient(145deg,#59677b,#354154 52%,#222c3a);
+  background:
+    linear-gradient(145deg,#59677b,#354154 52%,#222c3a);
   border-color:#6a7b92;
 }
 
 button.operator{
-  background:linear-gradient(145deg,#5ca5ff 0%,#2878ef 48%,#1550bd 100%);
+  background:
+    linear-gradient(145deg,#5ca5ff 0%,#2878ef 48%,#1550bd 100%);
   border-color:#86beff;
   box-shadow:
     inset 0 2px 2px #ffffff75,
@@ -230,7 +269,8 @@ button.operator{
 }
 
 button.equal{
-  background:linear-gradient(145deg,#49edaa 0%,#13bf79 48%,#078653 100%);
+  background:
+    linear-gradient(145deg,#49edaa 0%,#13bf79 48%,#078653 100%);
   border-color:#8bffd0;
   color:#032c1d;
   box-shadow:
@@ -241,11 +281,13 @@ button.equal{
     0 0 16px #16bd7830;
 }
 
-button.zero{grid-column:span 2}
+button.zero{
+  grid-column:span 2;
+}
 
 .history-box{
-  margin-top:25px;
-  padding:19px;
+  margin-top:27px;
+  padding:20px;
   border-radius:22px;
   background:linear-gradient(145deg,#202a3a,#111722);
   border:1px solid #3c4a60;
@@ -266,13 +308,13 @@ button.zero{grid-column:span 2}
 
 .history-head h2{
   margin:0;
-  font-size:clamp(15px,4vw,20px);
+  font-size:clamp(15px,3vw,21px);
   letter-spacing:.5px;
 }
 
 .clear-history{
-  min-height:42px;
-  padding:8px 13px;
+  min-height:43px;
+  padding:8px 15px;
   font-size:14px;
   border-radius:11px;
 }
@@ -284,7 +326,7 @@ button.zero{grid-column:span 2}
 }
 
 .history-item{
-  padding:14px;
+  padding:15px;
   border-radius:13px;
   background:linear-gradient(145deg,#0b111b,#131c2a);
   border:1px solid #2e3a4d;
@@ -296,13 +338,13 @@ button.zero{grid-column:span 2}
 
 .history-expression{
   color:#9bacc5;
-  font-size:14px;
+  font-size:15px;
   margin-bottom:7px;
 }
 
 .history-result{
   color:#51edab;
-  font-size:22px;
+  font-size:23px;
   font-weight:800;
   text-align:right;
   text-shadow:0 0 12px #16bd7830;
@@ -317,28 +359,70 @@ button.zero{grid-column:span 2}
 
 .footer{
   text-align:center;
-  color:#67768e;
+  color:#8b9ab1;
   font-size:11px;
   letter-spacing:2px;
-  margin-top:23px;
+  margin-top:25px;
 }
 
-@media(max-width:420px){
-  body{padding:13px 9px 28px}
-  .header{margin-bottom:19px}
-  .brand-icon{width:41px;height:41px;border-radius:13px}
-  .brand{gap:9px}
-  .brand p{font-size:9px;letter-spacing:1.3px}
-  .home{padding:11px 12px;font-size:12px}
-  .calculator{padding:12px;border-radius:23px}
-  .display{min-height:145px;padding:15px 12px;margin-bottom:19px}
-  .buttons{gap:9px}
-  button{min-height:65px;border-radius:14px}
-  .history-box{padding:14px}
+@media(max-width:480px){
+  body{
+    padding:13px 9px 28px;
+  }
+
+  .header{
+    margin-bottom:19px;
+  }
+
+  .brand-icon{
+    width:41px;
+    height:41px;
+    border-radius:13px;
+  }
+
+  .brand{
+    gap:9px;
+  }
+
+  .brand p{
+    font-size:9px;
+    letter-spacing:1.3px;
+  }
+
+  .home{
+    padding:11px 12px;
+    font-size:12px;
+  }
+
+  .calculator{
+    padding:12px;
+    border-radius:23px;
+  }
+
+  .display{
+    min-height:150px;
+    padding:16px 12px;
+    margin-bottom:20px;
+  }
+
+  .buttons{
+    gap:9px;
+  }
+
+  button{
+    min-height:68px;
+    border-radius:14px;
+  }
+
+  .history-box{
+    padding:14px;
+  }
 }
 
 @media(prefers-reduced-motion:reduce){
-  button{transition:none}
+  button{
+    transition:none;
+  }
 }
 </style>
 </head>
@@ -354,10 +438,12 @@ button.zero{grid-column:span 2}
         <p>3D GLOSSY EDITION</p>
       </div>
     </div>
+
     <a class="home" href="cek.html">⌂ HOME</a>
   </header>
 
   <main class="calculator">
+
     <div class="display">
       <div class="expression" id="expression">Siap menghitung</div>
       <div class="result" id="result">0</div>
@@ -394,6 +480,7 @@ button.zero{grid-column:span 2}
       <button class="function" onclick="square()">x²</button>
       <button class="function" onclick="reciprocal()">1/x</button>
     </div>
+
   </main>
 
   <section class="history-box">
@@ -401,12 +488,14 @@ button.zero{grid-column:span 2}
       <h2>RIWAYAT PERHITUNGAN</h2>
       <button class="clear-history" onclick="clearHistory()">Hapus</button>
     </div>
+
     <div class="history-list" id="historyList">
       <div class="empty-history">Belum ada riwayat</div>
     </div>
   </section>
 
   <div class="footer">CALCULATOR • OFFLINE READY</div>
+
 </div>
 
 <script>
@@ -418,15 +507,20 @@ let justCalculated=false;
 let expressionText='';
 let history=[];
 
-const symbols={'+':'+','-':'−','*':'×','/':'÷'};
+const symbols={
+  '+':'+',
+  '-':'−',
+  '*':'×',
+  '/':'÷'
+};
 
 const resultDisplay=document.getElementById('result');
 const expressionDisplay=document.getElementById('expression');
 const historyList=document.getElementById('historyList');
 
 function formatNumber(value){
-  if(!Number.isFinite(value)) return 'Error';
-  if(Object.is(value,-0)) value=0;
+  if(!Number.isFinite(value))return 'Error';
+  if(Object.is(value,-0))value=0;
   return String(Number(value.toPrecision(12))).replace('.',',');
 }
 
@@ -441,7 +535,9 @@ function updateDisplay(){
 
 function updateExpressionNumber(){
   if(!expressionText||operator===null||waiting)return;
+
   const pos=expressionText.lastIndexOf(' ');
+
   if(pos>=0){
     expressionText=expressionText.substring(0,pos+1)+formatCurrent();
   }else{
@@ -469,12 +565,14 @@ function inputNumber(number){
     expressionText+=' '+formatCurrent();
   }else{
     current=current==='0'?number:current+number;
+
     if(operator!==null){
       updateExpressionNumber();
     }else{
       expressionText=formatCurrent();
     }
   }
+
   updateDisplay();
 }
 
@@ -504,6 +602,7 @@ function inputDecimal(){
       expressionText=formatCurrent();
     }
   }
+
   updateDisplay();
 }
 
@@ -529,7 +628,12 @@ function chooseOperator(nextOperator){
   }
 
   if(operator!==null&&!waiting){
-    const calculated=calculate(Number(previous),Number(current),operator);
+    const calculated=calculate(
+      Number(previous),
+      Number(current),
+      operator
+    );
+
     if(!Number.isFinite(calculated)){
       current='Error';
       expressionText='Perhitungan tidak valid';
@@ -539,8 +643,10 @@ function chooseOperator(nextOperator){
       updateDisplay();
       return;
     }
+
     current=String(Number(calculated.toPrecision(12)));
     previous=Number(current);
+
   }else if(operator===null){
     previous=Number(current);
     if(!expressionText)expressionText=formatCurrent();
@@ -548,7 +654,8 @@ function chooseOperator(nextOperator){
 
   if(waiting&&operator!==null){
     const pos=expressionText.lastIndexOf(' ');
-    expressionText=expressionText.substring(0,pos)+' '+symbols[nextOperator];
+    expressionText=
+      expressionText.substring(0,pos)+' '+symbols[nextOperator];
   }else{
     expressionText+=' '+symbols[nextOperator];
   }
@@ -562,7 +669,11 @@ function equals(){
   if(operator===null||waiting||current==='Error')return;
 
   const originalExpression=expressionText;
-  const calculated=calculate(Number(previous),Number(current),operator);
+  const calculated=calculate(
+    Number(previous),
+    Number(current),
+    operator
+  );
 
   if(!Number.isFinite(calculated)){
     current='Error';
@@ -574,14 +685,14 @@ function equals(){
     return;
   }
 
-  const answer=String(Number(calculated.toPrecision(12)));
   history.unshift({
     expression:originalExpression,
     result:formatNumber(calculated)
   });
+
   if(history.length>100)history.pop();
 
-  current=answer;
+  current=String(Number(calculated.toPrecision(12)));
   expressionText=originalExpression+' =';
   previous=null;
   operator=null;
@@ -599,15 +710,18 @@ function clearAll(clearHistoryToo=true){
   waiting=false;
   justCalculated=false;
   expressionText='';
+
   if(clearHistoryToo){
     history=[];
     renderHistory();
   }
+
   updateDisplay();
 }
 
 function clearEntry(){
   current='0';
+
   if(justCalculated){
     expressionText='';
     justCalculated=false;
@@ -619,6 +733,7 @@ function clearEntry(){
   }else if(operator===null){
     expressionText='0';
   }
+
   updateDisplay();
 }
 
@@ -627,7 +742,9 @@ function backspace(){
     if(current==='Error')clearAll(false);
     return;
   }
+
   current=current.length>1?current.slice(0,-1):'0';
+
   if(current==='-')current='0';
 
   if(operator!==null){
@@ -635,12 +752,16 @@ function backspace(){
   }else{
     expressionText=formatCurrent();
   }
+
   updateDisplay();
 }
 
 function toggleSign(){
   if(current==='Error')return;
-  if(Number(current)!==0)current=String(Number(current)*-1);
+
+  if(Number(current)!==0){
+    current=String(Number(current)*-1);
+  }
 
   if(justCalculated){
     expressionText=formatCurrent();
@@ -649,11 +770,13 @@ function toggleSign(){
   }else if(operator===null){
     expressionText=formatCurrent();
   }
+
   updateDisplay();
 }
 
 function percentage(){
   if(current==='Error')return;
+
   current=String(Number(current)/100);
 
   if(justCalculated){
@@ -663,11 +786,13 @@ function percentage(){
   }else if(operator===null){
     expressionText=formatCurrent();
   }
+
   updateDisplay();
 }
 
 function unary(label,fn){
   if(current==='Error')return;
+
   const oldValue=formatCurrent();
   const value=fn(Number(current));
 
@@ -738,15 +863,22 @@ function renderHistory(){
 document.addEventListener('keydown',event=>{
   const key=event.key;
 
-  if(key>='0'&&key<='9')inputNumber(key);
-  else if(key==='.'||key===',')inputDecimal();
-  else if(['+','-','*','/'].includes(key))chooseOperator(key);
-  else if(key==='Enter'||key==='='){
+  if(key>='0'&&key<='9'){
+    inputNumber(key);
+  }else if(key==='.'||key===','){
+    inputDecimal();
+  }else if(['+','-','*','/'].includes(key)){
+    chooseOperator(key);
+  }else if(key==='Enter'||key==='='){
     event.preventDefault();
     equals();
-  }else if(key==='Backspace')backspace();
-  else if(key==='Escape')clearAll();
-  else if(key==='%')percentage();
+  }else if(key==='Backspace'){
+    backspace();
+  }else if(key==='Escape'){
+    clearAll();
+  }else if(key==='%'){
+    percentage();
+  }
 });
 
 updateDisplay();
