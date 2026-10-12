@@ -364,6 +364,68 @@ button{
     transition:none!important;
   }
 }
+  
+/* RIWAYAT PERHITUNGAN */
+.display{
+  overflow:hidden;
+}
+
+.expression{
+  width:100%;
+  min-height:35px;
+  max-height:160px;
+  overflow-x:auto;
+  overflow-y:auto;
+  white-space:nowrap;
+  text-align:left;
+  direction:ltr;
+  scrollbar-width:thin;
+  scrollbar-color:#526782 #101722;
+  padding:5px 2px;
+  overscroll-behavior:contain;
+}
+
+.expression-line{
+  width:max-content;
+  min-width:100%;
+  padding:5px 8px;
+  text-align:left;
+  color:#9bb0ca;
+  font-size:17px;
+  line-height:1.6;
+  white-space:nowrap;
+}
+
+.expression-line:last-child{
+  color:#42e6a0;
+  font-weight:bold;
+}
+
+.expression-line .history-result{
+  color:#ffffff;
+  margin-left:10px;
+}
+
+.expression-line .history-equals{
+  color:#ffae36;
+}
+
+.result{
+  flex-shrink:0;
+}
+
+.history-area{
+  max-height:180px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  scrollbar-width:thin;
+  scrollbar-color:#526782 #101722;
+}
+
+.history-area:empty{
+  display:none;
+}
+
 </style>
 </head>
 
