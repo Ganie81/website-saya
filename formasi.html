@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#064E3B">
+
+<title>FORMASI MANPOWER</title>
+
+<style>
+
+/* =====================================================
+   DASAR
+===================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+html,
+body{
+    margin:0;
+    min-height:100%;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+body{
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.12),
+            rgba(255,255,255,0.12)
+        ),
+        url('ABC.jpg');
+
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    color:#12352b;
+
+    padding:20px 12px 40px;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+
+    width:100%;
+    max-width:900px;
+    margin:auto;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d9f3e8,
+            #a9d9c5,
+            #ccebdd
+        );
+
+    border-radius:18px;
+
+    padding:20px 15px;
+
+    box-shadow:
+        0 5px 0 #78ad95,
+        0 10px 22px rgba(0,0,0,0.22);
+
+    border:1px solid rgba(255,255,255,0.85);
+
+    cursor:pointer;
+
+    user-select:none;
+}
+
+.header h1{
+
+    margin:0;
+
+    font-size:clamp(30px,5.5vw,44px);
+
+    font-weight:900;
+
+    letter-spacing:1.2px;
+
+    color:#07583f;
+
+    text-shadow:
+        1px 1px 0 #ffffff,
+        2px 3px 4px rgba(0,0,0,0.20);
+}
+
+.header .subtitle{
+
+    margin-top:6px;
+
+    font-size:clamp(17px,3.5vw,23px);
+
+    font-weight:900;
+
+    color:#28654f;
+}
+
+
+/* =====================================================
+   INFO TANGGAL / GRUP
+===================================================== */
+
+.info{
+    margin-top:15px;
+    text-align:center;
+    font-weight:900;
+    color:#000000;
+    font-size:clamp(18px,3.4vw,23px);
+
+    display:table;
+    margin-left:auto;
+    margin-right:auto;
+
+    padding:7px 16px;
+    border-radius:10px;
+
+    background:rgba(255,255,255,0.72);
+
+    box-shadow:
+        0 3px 8px rgba(0,0,0,0.15);
+
+    text-shadow:
+        0 1px 1px rgba(255,255,255,0.8);
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+.filter-box{
+
+    margin-top:12px;
+
+    padding:14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e7f8ef,
+            #b9e2cf
+        );
+
+    border-radius:16px;
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,0.9),
+        0 5px 15px rgba(0,0,0,0.18);
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:10px;
+
+    overflow:hidden;
+
+    transition:
+        max-height .3s ease,
+        opacity .3s ease,
+        padding .3s ease,
+        margin .3s ease;
+}
+
+.filter-box.hidden{
+
+    max-height:0;
+
+    opacity:0;
+
+    padding-top:0;
+    padding-bottom:0;
+
+    margin-top:0;
+}
+
+.filter-item label{
+
+    display:block;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    margin-bottom:5px;
+
+    color:#28654f;
+}
+
+.filter-item input,
+.filter-item select{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:10px;
+
+    padding:11px;
+
+    background:#ffffff;
+
+    color:#174c3a;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    box-shadow:
+        inset 0 2px 5px rgba(0,0,0,0.10),
+        0 2px 5px rgba(0,0,0,0.12);
+}
+
+
+/* =====================================================
+   TOMBOL FILTER
+===================================================== */
+
+.filter-button{
+
+    grid-column:1 / -1;
+
+    border:none;
+
+    border-radius:11px;
+
+    padding:12px;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    color:#ffffff;
+
+    background:
+        linear-gradient(
+            145deg,
+            #4f9b7d,
+            #287357
+        );
+
+    box-shadow:
+        0 4px 0 #19533e,
+        0 7px 12px rgba(0,0,0,0.18);
+
+    cursor:pointer;
+}
+
+.filter-button:active{
+
+    transform:translateY(3px);
+
+    box-shadow:
+        0 1px 0 #19533e,
+        0 3px 6px rgba(0,0,0,0.15);
+}
+
+
+/* =====================================================
+   KOTAK UTAMA
+===================================================== */
+
+.card{
+
+    margin-top:16px;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e7f8ef,
+            #b6dec9,
+            #d8f0e3
+        );
+
+    border:1px solid rgba(255,255,255,0.9);
+
+    box-shadow:
+        0 5px 0 #79ad95,
+        0 10px 20px rgba(0,0,0,0.20);
+}
+
+
+/* =====================================================
+   JUDUL KOTAK
+===================================================== */
+
+.card-title{
+
+    padding:14px 17px;
+
+    font-size:clamp(16px,3vw,21px);
+
+    font-weight:900;
+
+    color:#07583f;
+
+    background:
+        linear-gradient(
+            145deg,
+            #c9ebda,
+            #91c8ad
+        );
+
+    text-shadow:
+        1px 1px 0 #ffffff;
+}
+
+
+/* =====================================================
+   TABEL POSISI
+   FRAME 3D KANAN - KIRI - BAWAH
+===================================================== */
+
+#tableArea{
+
+    position:relative;
+
+    margin:0 5px 7px;
+
+    padding:12px;
+
+    border-left:
+        5px solid #72aF91;
+
+    border-right:
+        5px solid #72aF91;
+
+    border-bottom:
+        5px solid #4f8e71;
+
+    border-radius:
+        0 0 12px 12px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #b9dfcc,
+            #8fbea7
+        );
+
+    box-shadow:
+
+        inset 2px 0 0 rgba(255,255,255,0.75),
+
+        inset -2px 0 0 rgba(255,255,255,0.35),
+
+        inset 0 -2px 0 rgba(255,255,255,0.45),
+
+        0 4px 0 #39745a,
+
+        0 7px 10px rgba(0,0,0,0.18);
+
+    overflow:hidden;
+}
+
+
+/* =====================================================
+   EFEK HIGHLIGHT FRAME
+===================================================== */
+
+#tableArea::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.15),
+            rgba(255,255,255,0.85),
+            rgba(255,255,255,0.15)
+        );
+
+    pointer-events:none;
+
+    z-index:3;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,0.18),
+            rgba(255,255,255,0.08)
+        );
+}
+
+thead th{
+
+    padding:14px 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #75b99a,
+            #4d9979
+        );
+
+    color:white;
+
+    font-size:clamp(20px,4vw,24px);
+
+    font-weight:900;
+
+    text-shadow:
+        1px 1px 2px rgba(0,0,0,0.30);
+
+    border-bottom:
+        3px solid #3d795e;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.55);
+}
+
+tbody td{
+
+    padding:12px 10px;
+
+    border-bottom:
+        1px solid rgba(65,120,96,0.20);
+
+    font-size:clamp(16px,3vw,20px);
+
+    font-weight:900;
+}
+
+
+/* =====================================================
+   DETAIL POSISI DIPERBESAR 2 TINGKAT
+===================================================== */
+
+tbody td:first-child{
+
+    font-size:clamp(20px,4vw,24px);
+
+    font-weight:900;
+
+    padding-left:55px;
+}
+
+tbody tr:last-child td{
+
+    border-bottom:none;
+}
+
+tbody td:last-child{
+
+    text-align:center;
+
+    font-size:clamp(21px,4.5vw,28px);
+
+    font-weight:900;
+
+    color:#07583f;
+
+    text-shadow:
+        1px 1px 0 #ffffff;
+}
+
+tbody tr:nth-child(even){
+
+    background:
+        rgba(255,255,255,0.28);
+}
+
+
+/* =====================================================
+   IKON ORANG DALAM KOTAK
+===================================================== */
+
+.jumlah-orang{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    font-size:clamp(21px,4.5vw,28px);
+
+    font-weight:900;
+
+    color:#07583f;
+
+    text-shadow:
+        1px 1px 0 #ffffff;
+}
+
+.ikon-orang{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:25px;
+
+    height:25px;
+
+    border:1px solid #000000;
+
+    border-radius:5px;
+
+    background:rgba(255,255,255,0.38);
+
+    font-size:14px;
+
+    line-height:1;
+
+    text-shadow:none;
+
+    flex-shrink:0;
+}
+
+
+/* =====================================================
+   RINGKASAN
+===================================================== */
+
+.summary{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+    padding:12px;
+}
+
+.summary-box{
+
+    text-align:center;
+
+    padding:15px 8px;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #dff5e9,
+            #a8d6be
+        );
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,0.95),
+        0 4px 9px rgba(0,0,0,0.16);
+}
+
+.summary-label{
+
+    font-size:clamp(13px,2.8vw,17px);
+
+    font-weight:900;
+
+    color:#28654f;
+}
+
+.summary-value{
+
+    margin-top:6px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    font-size:clamp(24px,4vw,32px);
+
+    font-weight:900;
+
+    color:#07583f;
+
+    text-shadow:
+        1px 1px 0 #ffffff;
+}
+
+
+/* =====================================================
+   WARNA ANGKA RINGKASAN
+===================================================== */
+
+#totalKaryawan > span:first-child{
+
+    color:#000000;
+
+    font-weight:900;
+}
+
+#hadir > span:first-child{
+
+    color:#064E3B;
+
+    font-weight:900;
+}
+
+#tidakHadir > span:first-child{
+
+    color:#B00020;
+
+    font-weight:900;
+}
+
+
+/* =====================================================
+   CATATAN
+===================================================== */
+
+.note{
+
+    padding:17px;
+
+    min-height:60px;
+
+    font-size:clamp(16px,3vw,20px);
+
+    font-weight:900;
+
+    color:#235b47;
+
+    white-space:pre-wrap;
+}
+
+
+/* =====================================================
+   GOOGLE FORM
+===================================================== */
+
+.form-button{
+
+    display:block;
+
+    width:100%;
+
+    margin-top:18px;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    border:none;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-weight:900;
+
+    font-size:clamp(17px,3vw,21px);
+
+    color:white;
+
+    background:
+        linear-gradient(
+            145deg,
+            #65aa8b,
+            #347c5e,
+            #65aa8b
+        );
+
+    box-shadow:
+        0 5px 0 #1d5b42,
+        0 10px 18px rgba(0,0,0,0.20);
+
+    text-shadow:
+        1px 1px 2px rgba(0,0,0,0.35);
+}
+
+.form-button:active{
+
+    transform:translateY(4px);
+
+    box-shadow:
+        0 1px 0 #1d5b42,
+        0 4px 8px rgba(0,0,0,0.15);
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+    text-align:center;
+
+    padding:28px;
+
+    font-size:17px;
+
+    font-weight:900;
+
+    color:#28654f;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error{
+
+    margin-top:15px;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    background:#ffe5e5;
+
+    color:#9b2226;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    text-align:center;
+
+    display:none;
+}
+
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media(min-width:700px){
+
+    body{
+        padding:35px 20px 50px;
+    }
+
+    .header{
+        padding:22px 18px;
+    }
+
+    .summary{
+        gap:15px;
+    }
+
+    tbody td{
+        padding:14px 17px;
+    }
+
+    #tableArea{
+        margin-left:7px;
+        margin-right:7px;
+        margin-bottom:9px;
+    }
+
+}
+
+
+/* =====================================================
+   HP
+===================================================== */
+
+@media(max-width:600px){
+
+    body{
+        padding:15px 10px 35px;
+    }
+
+    .filter-box{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .summary{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .header{
+
+        padding:17px 10px;
+
+    }
+
+    .card{
+
+        margin-top:14px;
+
+    }
+
+    tbody td{
+
+        padding:12px 9px;
+
+    }
+
+    #tableArea{
+
+        margin-left:4px;
+        margin-right:4px;
+        margin-bottom:7px;
+
+        border-left-width:4px;
+        border-right-width:4px;
+        border-bottom-width:6px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <div class="header"
+         onclick="toggleFilter()">
+
+        <h1>FORMASI MANPOWER</h1>
+
+        <div class="subtitle">
+            DEPARTEMEN PRINTING
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         INFO
+    ================================================== -->
+
+    <div class="info"
+         id="infoTanggal">
+
+        Tanggal: -
+        &nbsp; | &nbsp;
+        Grup: -
+
+    </div>
+
+
+    <!-- =================================================
+         FILTER
+    ================================================== -->
+
+    <div class="filter-box"
+         id="filterBox">
+
+        <div class="filter-item">
+
+            <label>
+                TANGGAL
+            </label>
+
+            <input
+                type="date"
+                id="tanggal">
+
+        </div>
+
+
+        <div class="filter-item">
+
+            <label>
+                GRUP
+            </label>
+
+            <select id="grup">
+
+                <option value="A">
+                    GRUP A
+                </option>
+
+                <option value="B">
+                    GRUP B
+                </option>
+
+                <option value="C">
+                    GRUP C
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            class="filter-button"
+            onclick="loadData()">
+
+            🔄 TAMPILKAN DATA
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         ERROR
+    ================================================== -->
+
+    <div
+        class="error"
+        id="errorBox">
+    </div>
+
+
+    <!-- =================================================
+         TABEL POSISI
+    ================================================== -->
+
+    <div class="card">
+
+        <div class="card-title">
+
+            FORMASI POSISI MANPOWER
+
+        </div>
+
+
+        <div id="tableArea">
+
+            <div class="loading">
+
+                ⏳ Memuat data...
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         RINGKASAN
+    ================================================== -->
+
+    <div class="card">
+
+        <div class="summary">
+
+            <div class="summary-box">
+
+                <div class="summary-label">
+                    JUMLAH KARYAWAN
+                </div>
+
+                <div
+                    class="summary-value"
+                    id="totalKaryawan">
+
+                    <span>0</span>
+
+                    <span class="ikon-orang">
+                        👤
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <div class="summary-label">
+                    KARYAWAN HADIR
+                </div>
+
+                <div
+                    class="summary-value"
+                    id="hadir">
+
+                    <span>0</span>
+
+                    <span class="ikon-orang">
+                        👤
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-box">
+
+                <div class="summary-label">
+                    LIBUR + IJIN
+                </div>
+
+                <div
+                    class="summary-value"
+                    id="tidakHadir">
+
+                    <span>0</span>
+
+                    <span class="ikon-orang">
+                        👤
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CATATAN
+    ================================================== -->
+
+    <div class="card">
+
+        <div class="card-title">
+            CATATAN
+        </div>
+
+        <div
+            class="note"
+            id="catatan">
+
+            -
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         GOOGLE FORM
+    ================================================== -->
+
+    <a
+        class="form-button"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSd6Q0X_ds9tl7AvASCy0LFmJ07Igc1VueX5jcAF9ooz5HIPfQ/viewform?usp=pp_url&entry.452882648=1&entry.1351674041=1&entry.591460049=3&entry.1226966794=3&entry.1990644202=3&entry.1466743513=4&entry.1145224439=4&entry.2143490206=4&entry.1194690087=4&entry.1223260343=3&entry.384554897=3&entry.1401245842=6&entry.1679289820=2&entry.1116442469=1&entry.445576204=1&entry.1386901531=2&entry.1581597590=1&entry.978076058=A&entry.701024016=Ijin - Orang+"        target="_blank">
+
+        📝 ISI FORMASI MANPOWER
+
+    </a>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   URL WEB APP
+===================================================== */
+
+const WEB_APP_URL =
+'https://script.google.com/macros/s/AKfycbzF5nt1VoapVz-Sqk0yPDaJtGXaM2hBRfHE0VXz54y-6qdNeTZ-jJGP9Q5KvNh7qsiA/exec';
+
+
+/* =====================================================
+   DEFAULT TANGGAL
+===================================================== */
+
+function tanggalOperasional(){
+
+    const sekarang =
+        new Date();
+
+    const jam =
+        sekarang.getHours();
+
+    if(jam < 6){
+
+        sekarang.setDate(
+            sekarang.getDate() - 1
+        );
+
+    }
+
+    const tahun =
+        sekarang.getFullYear();
+
+    const bulan =
+        String(
+            sekarang.getMonth() + 1
+        ).padStart(2,'0');
+
+    const hari =
+        String(
+            sekarang.getDate()
+        ).padStart(2,'0');
+
+    return (
+        tahun +
+        '-' +
+        bulan +
+        '-' +
+        hari
+    );
+}
+
+
+/* =====================================================
+   FORMAT TANGGAL
+===================================================== */
+
+function formatTanggalIndonesia(tanggal){
+
+    if(!tanggal){
+        return '-';
+    }
+
+    const bagian =
+        tanggal.split('-');
+
+    if(bagian.length !== 3){
+        return tanggal;
+    }
+
+    return (
+        bagian[2] +
+        '-' +
+        bagian[1] +
+        '-' +
+        bagian[0]
+    );
+}
+
+
+/* =====================================================
+   LOAD DATA
+===================================================== */
+
+async function loadData(){
+
+    const tanggal =
+        document.getElementById(
+            'tanggal'
+        ).value;
+
+    const grup =
+        document.getElementById(
+            'grup'
+        ).value;
+
+
+    const tableArea =
+        document.getElementById(
+            'tableArea'
+        );
+
+    const errorBox =
+        document.getElementById(
+            'errorBox'
+        );
+
+
+    errorBox.style.display =
+        'none';
+
+
+    tableArea.innerHTML =
+        '<div class="loading">⏳ Memuat data...</div>';
+
+
+    try{
+
+        const url =
+            WEB_APP_URL +
+            '?tanggal=' +
+            encodeURIComponent(tanggal) +
+            '&grup=' +
+            encodeURIComponent(grup);
+
+
+        const response =
+            await fetch(url);
+
+
+        if(!response.ok){
+
+            throw new Error(
+                'Web App tidak dapat diakses.'
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if(!data.success){
+
+            throw new Error(
+                data.message ||
+                'Data gagal dibaca.'
+            );
+
+        }
+
+
+        tampilkanData(data);
+
+
+    }catch(error){
+
+        tableArea.innerHTML = '';
+
+        errorBox.innerText =
+            '❌ ' +
+            error.message;
+
+        errorBox.style.display =
+            'block';
+
+    }
+
+}
+
+
+/* =====================================================
+   TAMPILKAN DATA
+===================================================== */
+
+function tampilkanData(data){
+
+    /* ---------------------------------------------------
+       INFO
+    --------------------------------------------------- */
+
+    document.getElementById(
+        'infoTanggal'
+    ).innerHTML =
+
+        'Tanggal: ' +
+        formatTanggalIndonesia(
+            data.tanggal
+        ) +
+        ' &nbsp; | &nbsp; Grup: ' +
+        data.grup;
+
+
+    /* ---------------------------------------------------
+       TABEL
+    --------------------------------------------------- */
+
+    let html = '';
+
+    html += '<table>';
+
+    html += '<thead>';
+
+    html += '<tr>';
+
+    html += '<th>POSISI</th>';
+
+    html += '<th>JUMLAH ORANG</th>';
+
+    html += '</tr>';
+
+    html += '</thead>';
+
+    html += '<tbody>';
+
+
+    data.posisi.forEach(
+        function(item){
+
+
+            /* -------------------------------------------
+               POSISI
+            ------------------------------------------- */
+
+            html +=
+                '<td>' +
+                escapeHtml(
+                    item.posisi
+                ) +
+                '</td>';
+
+
+            /* -------------------------------------------
+               JUMLAH ORANG
+            ------------------------------------------- */
+
+            html +=
+                '<td>' +
+
+                '<span class="jumlah-orang">' +
+
+                '<span>' +
+                Number(
+                    item.jumlah || 0
+                ) +
+                '</span>' +
+
+                '<span class="ikon-orang">👤</span>' +
+
+                '</span>' +
+
+                '</td>';
+
+
+            html += '</tr>';
+
+        }
+    );
+
+
+    html += '</tbody>';
+
+    html += '</table>';
+
+
+    document.getElementById(
+        'tableArea'
+    ).innerHTML = html;
+
+
+    /* ---------------------------------------------------
+       RINGKASAN
+    --------------------------------------------------- */
+
+    document.getElementById(
+        'totalKaryawan'
+    ).innerHTML =
+
+        '<span>' +
+        Number(
+            data.totalKaryawan || 0
+        ) +
+        '</span>' +
+
+        '<span class="ikon-orang">👤</span>';
+
+
+    document.getElementById(
+        'hadir'
+    ).innerHTML =
+
+        '<span>' +
+        Number(
+            data.hadir || 0
+        ) +
+        '</span>' +
+
+        '<span class="ikon-orang">👤</span>';
+
+
+    document.getElementById(
+        'tidakHadir'
+    ).innerHTML =
+
+        '<span>' +
+        Number(
+            data.tidakHadir || 0
+        ) +
+        '</span>' +
+
+        '<span class="ikon-orang">👤</span>';
+
+
+    /* ---------------------------------------------------
+       CATATAN
+    --------------------------------------------------- */
+
+    document.getElementById(
+        'catatan'
+    ).innerText =
+        data.catatan ||
+        '-';
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(text){
+
+    return String(text)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
+
+}
+
+
+/* =====================================================
+   TOGGLE FILTER
+===================================================== */
+
+function toggleFilter(){
+
+    const box =
+        document.getElementById(
+            'filterBox'
+        );
+
+    box.classList.toggle(
+        'hidden'
+    );
+
+}
+
+
+/* =====================================================
+   SET DEFAULT
+===================================================== */
+
+document.getElementById(
+    'tanggal'
+).value =
+    tanggalOperasional();
+
+
+/* =====================================================
+   LOAD AWAL
+===================================================== */
+
+loadData();
+
+</script>
+
+</body>
+</html>
