@@ -1,0 +1,672 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b12">
+<meta name="description" content="Kalkulator standar hitam modern, ringan dan dapat digunakan offline.">
+<title>KALKULATOR STANDAR</title>
+
+<style>
+:root{
+  --bg:#080b12;
+  --panel:#111722;
+  --screen:#090d14;
+  --key:#1b2330;
+  --key-hover:#293446;
+  --orange:#ff9418;
+  --green:#09a95d;
+  --text:#f5f7ff;
+  --muted:#8c9bb5;
+  --border:#303b4d;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  min-height:100%;
+  background:var(--bg);
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  min-height:100dvh;
+  padding:24px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(ellipse at top,#17202e 0%,transparent 55%),
+    linear-gradient(145deg,#0d111a,#05070b);
+}
+
+.app{
+  width:100%;
+  max-width:440px;
+}
+
+.header{
+  text-align:center;
+  margin-bottom:22px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  font-size:clamp(25px,7vw,36px);
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.logo-icon{
+  width:43px;
+  height:43px;
+  display:grid;
+  place-items:center;
+  border:2px solid #5db8ff;
+  border-radius:13px;
+  color:#5db8ff;
+  font-size:27px;
+  box-shadow:0 0 20px #2388ff22;
+}
+
+.subtitle{
+  margin-top:9px;
+  color:var(--muted);
+  font-size:13px;
+  letter-spacing:4px;
+  font-weight:bold;
+}
+
+.header p{
+  margin:12px 0 0;
+  font-size:13px;
+  color:#8593ab;
+}
+
+.calculator{
+  padding:17px;
+  background:linear-gradient(145deg,#171e29,#0b0f16);
+  border:1px solid var(--border);
+  border-radius:26px;
+  box-shadow:
+    0 22px 55px #0008,
+    inset 0 1px 0 #ffffff0b;
+}
+
+.display{
+  min-height:145px;
+  padding:18px 16px;
+  margin-bottom:16px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:stretch;
+  background:var(--screen);
+  border:1px solid #293243;
+  border-radius:17px;
+  overflow:hidden;
+}
+
+.expression{
+  min-height:26px;
+  color:var(--muted);
+  font-size:clamp(15px,4vw,19px);
+  text-align:right;
+  overflow-wrap:anywhere;
+  margin-bottom:9px;
+}
+
+.result{
+  width:100%;
+  min-height:47px;
+  text-align:right;
+  font-size:clamp(32px,9vw,46px);
+  font-weight:700;
+  letter-spacing:-1px;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+  line-height:1.15;
+}
+
+.result.small{
+  font-size:29px;
+}
+
+.keys{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+}
+
+.key{
+  min-width:0;
+  height:68px;
+  border:1px solid #344052;
+  border-radius:17px;
+  background:linear-gradient(145deg,#252e3b,#151b25);
+  color:var(--text);
+  font-size:25px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:
+    0 4px 8px #0005,
+    inset 0 1px 0 #ffffff0b;
+  transition:background .12s,transform .08s;
+  touch-action:manipulation;
+  user-select:none;
+}
+
+.key:hover{
+  background:var(--key-hover);
+}
+
+.key:active{
+  transform:scale(.95);
+}
+
+.key.utility{
+  background:linear-gradient(145deg,#343e4e,#222a38);
+}
+
+.key.operator{
+  background:linear-gradient(145deg,#ffad35,#f07800);
+  border-color:#ffb24c;
+  color:#fff;
+  font-size:29px;
+}
+
+.key.operator.selected{
+  background:#fff;
+  color:#f07800;
+}
+
+.key.equal{
+  background:linear-gradient(145deg,#13c879,#008b4b);
+  border-color:#16d989;
+  font-size:30px;
+}
+
+.key.zero{
+  grid-column:span 2;
+}
+
+.footer{
+  text-align:center;
+  margin-top:20px;
+  color:#8190aa;
+  font-size:11px;
+  line-height:1.8;
+}
+
+.footer strong{
+  color:#a9b7ce;
+}
+
+@media(min-width:600px){
+  body{
+    padding:30px 20px;
+  }
+
+  .app{
+    max-width:420px;
+  }
+
+  .key{
+    height:74px;
+    font-size:27px;
+  }
+
+  .calculator{
+    padding:20px;
+  }
+}
+
+@media(max-height:650px){
+  body{
+    align-items:flex-start;
+  }
+
+  .header{
+    margin-bottom:14px;
+  }
+
+  .key{
+    height:55px;
+  }
+
+  .display{
+    min-height:110px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{
+    transition:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="app">
+
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">±</span>
+      <span>KALKULATOR</span>
+    </div>
+
+    <div class="subtitle">STANDAR</div>
+
+    <p>Hitung dengan cepat dan mudah</p>
+  </header>
+
+  <section class="calculator" aria-label="Kalkulator standar">
+
+    <div class="display" aria-live="polite">
+      <div class="expression" id="expression"></div>
+      <div class="result" id="result">0</div>
+    </div>
+
+    <div class="keys">
+
+      <button class="key utility" data-action="clear">AC</button>
+      <button class="key utility" data-action="sign">+/−</button>
+      <button class="key utility" data-action="percent">%</button>
+      <button class="key operator" data-op="/" aria-label="Bagi">÷</button>
+
+      <button class="key" data-num="7">7</button>
+      <button class="key" data-num="8">8</button>
+      <button class="key" data-num="9">9</button>
+      <button class="key operator" data-op="*" aria-label="Kali">×</button>
+
+      <button class="key" data-num="4">4</button>
+      <button class="key" data-num="5">5</button>
+      <button class="key" data-num="6">6</button>
+      <button class="key operator" data-op="-" aria-label="Kurang">−</button>
+
+      <button class="key" data-num="1">1</button>
+      <button class="key" data-num="2">2</button>
+      <button class="key" data-num="3">3</button>
+      <button class="key operator" data-op="+" aria-label="Tambah">+</button>
+
+      <button class="key zero" data-num="0">0</button>
+      <button class="key" data-action="decimal">,</button>
+      <button class="key equal" data-action="equals" aria-label="Sama dengan">=</button>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <strong>● HITAM MODERN</strong><br>
+    Bisa digunakan offline | Responsif di HP dan PC
+  </footer>
+
+</main>
+
+<script>
+(function(){
+
+  "use strict";
+
+  const resultEl = document.getElementById("result");
+  const expressionEl = document.getElementById("expression");
+  const keys = document.querySelector(".keys");
+
+  let current = "0";
+  let previous = null;
+  let operator = null;
+  let waiting = false;
+  let justCalculated = false;
+  let expression = "";
+
+  const symbols = {
+    "+":"+",
+    "-":"−",
+    "*":"×",
+    "/":"÷"
+  };
+
+  function formatNumber(value){
+
+    if(!Number.isFinite(value)){
+      return "Error";
+    }
+
+    if(Object.is(value,-0)){
+      value = 0;
+    }
+
+    const rounded = Number(value.toPrecision(12));
+
+    if(Math.abs(rounded) >= 1e15 ||
+       (Math.abs(rounded) > 0 &&
+        Math.abs(rounded) < 1e-7)){
+      return rounded.toExponential(6)
+        .replace(/\.?0+e/,"e")
+        .replace("e+","e");
+    }
+
+    return String(rounded).replace(".",",");
+  }
+
+  function updateDisplay(){
+
+    resultEl.textContent = formatNumber(Number(current));
+
+    if(current === "Error"){
+      resultEl.textContent = "Error";
+    }
+
+    resultEl.classList.toggle(
+      "small",
+      resultEl.textContent.length > 12
+    );
+
+    expressionEl.textContent = expression;
+
+    document.querySelectorAll("[data-op]").forEach(function(button){
+      button.classList.toggle(
+        "selected",
+        button.dataset.op === operator && waiting
+      );
+    });
+  }
+
+  function clearAll(){
+
+    current = "0";
+    previous = null;
+    operator = null;
+    waiting = false;
+    justCalculated = false;
+    expression = "";
+
+    updateDisplay();
+  }
+
+  function inputNumber(number){
+
+    if(current === "Error"){
+      clearAll();
+    }
+
+    if(waiting || justCalculated){
+      current = number;
+      waiting = false;
+      justCalculated = false;
+      expression = "";
+    }else if(current === "0"){
+      current = number;
+    }else if(current === "-0"){
+      current = "-" + number;
+    }else if(current.replace("-","").replace(".","").length < 15){
+      current += number;
+    }
+
+    updateDisplay();
+  }
+
+  function inputDecimal(){
+
+    if(current === "Error"){
+      clearAll();
+    }
+
+    if(waiting || justCalculated){
+      current = "0.";
+      waiting = false;
+      justCalculated = false;
+      expression = "";
+    }else if(!current.includes(".")){
+      current += ".";
+    }
+
+    updateDisplay();
+  }
+
+  function calculate(a,b,op){
+
+    switch(op){
+      case "+": return a + b;
+      case "-": return a - b;
+      case "*": return a * b;
+      case "/": return b === 0 ? NaN : a / b;
+      default: return b;
+    }
+  }
+
+  function chooseOperator(nextOperator){
+
+    if(current === "Error"){
+      return;
+    }
+
+    const inputValue = Number(current);
+
+    if(operator && !waiting){
+
+      const calculated = calculate(
+        previous,
+        inputValue,
+        operator
+      );
+
+      if(!Number.isFinite(calculated)){
+        current = "Error";
+        previous = null;
+        operator = null;
+        waiting = false;
+        justCalculated = true;
+        expression = "Tidak dapat dibagi dengan nol";
+        updateDisplay();
+        return;
+      }
+
+      current = String(Number(calculated.toPrecision(12)));
+      previous = Number(current);
+
+    }else{
+      previous = inputValue;
+    }
+
+    operator = nextOperator;
+    waiting = true;
+    justCalculated = false;
+
+    expression = formatNumber(previous) + " " +
+      symbols[operator];
+
+    updateDisplay();
+  }
+
+  function equals(){
+
+    if(operator === null ||
+       previous === null ||
+       waiting ||
+       current === "Error"){
+      return;
+    }
+
+    const a = previous;
+    const b = Number(current);
+    const op = operator;
+
+    const calculated = calculate(a,b,op);
+
+    expression = formatNumber(a) + " " +
+      symbols[op] + " " +
+      formatNumber(b) + " =";
+
+    if(!Number.isFinite(calculated)){
+      current = "Error";
+      expression = "Tidak dapat membagi dengan nol";
+    }else{
+      current = String(Number(calculated.toPrecision(12)));
+    }
+
+    previous = null;
+    operator = null;
+    waiting = false;
+    justCalculated = true;
+
+    updateDisplay();
+  }
+
+  function toggleSign(){
+
+    if(current === "Error"){
+      return;
+    }
+
+    if(Number(current) !== 0){
+      current = String(-Number(current));
+    }
+
+    updateDisplay();
+  }
+
+  function percent(){
+
+    if(current === "Error"){
+      return;
+    }
+
+    current = String(Number(current) / 100);
+    waiting = false;
+    justCalculated = false;
+
+    updateDisplay();
+  }
+
+  function backspace(){
+
+    if(current === "Error"){
+      clearAll();
+      return;
+    }
+
+    if(waiting || justCalculated){
+      return;
+    }
+
+    if(current.length <= 1 ||
+       (current.length === 2 && current.startsWith("-"))){
+      current = "0";
+    }else{
+      current = current.slice(0,-1);
+    }
+
+    updateDisplay();
+  }
+
+  keys.addEventListener("click",function(event){
+
+    const button = event.target.closest("button");
+
+    if(!button){
+      return;
+    }
+
+    if(button.dataset.num !== undefined){
+      inputNumber(button.dataset.num);
+      return;
+    }
+
+    if(button.dataset.op){
+      chooseOperator(button.dataset.op);
+      return;
+    }
+
+    switch(button.dataset.action){
+      case "clear":
+        clearAll();
+        break;
+
+      case "sign":
+        toggleSign();
+        break;
+
+      case "percent":
+        percent();
+        break;
+
+      case "decimal":
+        inputDecimal();
+        break;
+
+      case "equals":
+        equals();
+        break;
+
+      case "backspace":
+        backspace();
+        break;
+    }
+  });
+
+  document.addEventListener("keydown",function(event){
+
+    const key = event.key;
+
+    if(/^[0-9]$/.test(key)){
+      inputNumber(key);
+      event.preventDefault();
+      return;
+    }
+
+    if(key === "." || key === ","){
+      inputDecimal();
+      event.preventDefault();
+      return;
+    }
+
+    if(["+","-","*","/"].includes(key)){
+      chooseOperator(key);
+      event.preventDefault();
+      return;
+    }
+
+    if(key === "Enter" || key === "="){
+      equals();
+      event.preventDefault();
+      return;
+    }
+
+    if(key === "Escape"){
+      clearAll();
+      event.preventDefault();
+      return;
+    }
+
+    if(key === "Backspace"){
+      backspace();
+      event.preventDefault();
+      return;
+    }
+
+    if(key === "%"){
+      percent();
+      event.preventDefault();
+    }
+  });
+
+  updateDisplay();
+
+})();
+</script>
+
+</body>
+</html>
