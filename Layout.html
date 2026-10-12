@@ -508,6 +508,62 @@ body{
     height:42px;
   }
 }
+/* =========================
+   STICKY HEADER + STATUS + SEARCH
+   TAMBAHAN SAJA
+========================= */
+
+@media (min-width:601px){
+  .container{
+    padding-top:18px;
+  }
+}
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:linear-gradient(
+    145deg,
+    #374151,
+    #111827
+  );
+}
+
+.status{
+  position:sticky;
+  top:125px;
+  z-index:999;
+  background:rgba(17,24,39,.96);
+  border-radius:15px;
+}
+
+.search-box{
+  position:sticky;
+  top:205px;
+  z-index:998;
+  background:linear-gradient(
+    145deg,
+    rgba(31,41,55,.98),
+    rgba(17,24,39,.98)
+  );
+}
+
+/* HP */
+@media(max-width:600px){
+  .header{
+    top:0;
+  }
+
+  .status{
+    top:112px;
+  }
+
+  .search-box{
+    top:180px;
+  }
+}
+      
 </style>
 </head>
 
