@@ -5,21 +5,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080b12">
-<meta name="description" content="Kalkulator standar hitam modern, ringan dan dapat digunakan offline.">
+<meta name="description" content="Kalkulator standar hitam modern, offline, untuk HP dan PC.">
 <title>KALKULATOR STANDAR</title>
 
 <style>
 :root{
   --bg:#080b12;
   --panel:#111722;
-  --screen:#090d14;
-  --key:#1b2330;
-  --key-hover:#293446;
+  --screen:#070b12;
+  --key:#202a39;
   --orange:#ff9418;
-  --green:#09a95d;
+  --green:#09b96b;
   --text:#f5f7ff;
-  --muted:#8c9bb5;
-  --border:#303b4d;
+  --muted:#93a3bd;
+  --border:#303d51;
 }
 
 *{
@@ -36,216 +35,327 @@ body{
   margin:0;
   min-height:100vh;
   min-height:100dvh;
-  padding:24px 14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  padding:12px;
   font-family:Arial,Helvetica,sans-serif;
   color:var(--text);
   background:
-    radial-gradient(ellipse at top,#17202e 0%,transparent 55%),
+    radial-gradient(ellipse at top,#1a293d 0%,transparent 58%),
     linear-gradient(145deg,#0d111a,#05070b);
+}
+
+button{
+  font-family:inherit;
 }
 
 .app{
   width:100%;
-  max-width:440px;
+  max-width:600px;
+  margin:0 auto;
 }
 
 .header{
-  text-align:center;
-  margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:4px 0 16px;
 }
 
 .logo{
   display:flex;
   align-items:center;
-  justify-content:center;
-  gap:12px;
-  font-size:clamp(25px,7vw,36px);
-  font-weight:900;
-  letter-spacing:2px;
+  gap:10px;
+  min-width:0;
 }
 
 .logo-icon{
-  width:43px;
-  height:43px;
+  width:48px;
+  height:48px;
+  flex-shrink:0;
   display:grid;
   place-items:center;
   border:2px solid #5db8ff;
-  border-radius:13px;
+  border-radius:15px;
   color:#5db8ff;
-  font-size:27px;
+  font-size:32px;
+  font-weight:bold;
   box-shadow:0 0 20px #2388ff22;
 }
 
-.subtitle{
-  margin-top:9px;
-  color:var(--muted);
-  font-size:13px;
-  letter-spacing:4px;
-  font-weight:bold;
+.logo-text{
+  font-size:clamp(19px,5vw,29px);
+  font-weight:900;
+  letter-spacing:1px;
 }
 
-.header p{
-  margin:12px 0 0;
+.subtitle{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:4px;
+}
+
+.home-btn{
+  min-height:46px;
+  padding:0 15px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  border:1px solid #355274;
+  border-radius:13px;
+  background:linear-gradient(145deg,#203650,#111d2e);
+  color:#8ed0ff;
+  font-size:14px;
+  font-weight:800;
+  text-decoration:none;
+  box-shadow:0 4px 12px #0004;
+}
+
+.home-btn:active{
+  transform:scale(.96);
+}
+
+.description{
+  margin:0 0 15px;
+  color:#92a2ba;
   font-size:13px;
-  color:#8593ab;
+  text-align:center;
 }
 
 .calculator{
-  padding:17px;
-  background:linear-gradient(145deg,#171e29,#0b0f16);
+  padding:clamp(12px,3.5vw,22px);
+  background:linear-gradient(145deg,#182231,#0a0e16);
   border:1px solid var(--border);
-  border-radius:26px;
+  border-radius:25px;
   box-shadow:
-    0 22px 55px #0008,
-    inset 0 1px 0 #ffffff0b;
+    0 20px 55px #0009,
+    inset 0 1px 0 #ffffff0c;
 }
 
 .display{
-  min-height:145px;
+  min-height:190px;
   padding:18px 16px;
   margin-bottom:16px;
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
-  align-items:stretch;
   background:var(--screen);
-  border:1px solid #293243;
-  border-radius:17px;
+  border:1px solid #29374b;
+  border-radius:18px;
   overflow:hidden;
+  box-shadow:inset 0 3px 15px #0007;
+}
+
+.display-label{
+  margin-bottom:12px;
+  color:#60758f;
+  font-size:11px;
+  font-weight:bold;
+  letter-spacing:2px;
+  text-align:right;
 }
 
 .expression{
-  min-height:26px;
-  color:var(--muted);
-  font-size:clamp(15px,4vw,19px);
+  min-height:30px;
+  color:#9bb0ca;
+  font-size:clamp(17px,4.5vw,23px);
+  line-height:1.4;
   text-align:right;
   overflow-wrap:anywhere;
-  margin-bottom:9px;
+  word-break:break-word;
 }
 
 .result{
   width:100%;
-  min-height:47px;
-  text-align:right;
-  font-size:clamp(32px,9vw,46px);
-  font-weight:700;
-  letter-spacing:-1px;
-  overflow-wrap:anywhere;
-  word-break:break-word;
+  min-height:65px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  color:#fff;
+  font-size:clamp(43px,12vw,66px);
+  font-weight:800;
+  letter-spacing:-2px;
   line-height:1.15;
+  text-align:right;
+  overflow-wrap:anywhere;
+  word-break:break-all;
+  font-variant-numeric:tabular-nums;
 }
 
 .result.small{
-  font-size:29px;
+  font-size:clamp(28px,7vw,39px);
+}
+
+.preview{
+  min-height:22px;
+  margin-top:9px;
+  color:#36d99a;
+  font-size:clamp(13px,3.5vw,17px);
+  font-weight:bold;
+  text-align:right;
+  overflow-wrap:anywhere;
 }
 
 .keys{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:10px;
+  gap:11px;
 }
 
 .key{
   min-width:0;
-  height:68px;
-  border:1px solid #344052;
-  border-radius:17px;
-  background:linear-gradient(145deg,#252e3b,#151b25);
+  height:clamp(72px,14vw,88px);
+  border:1px solid #34445a;
+  border-radius:19px;
+  background:linear-gradient(145deg,#293648,#151d29);
   color:var(--text);
-  font-size:25px;
+  font-size:clamp(25px,7vw,34px);
   font-weight:700;
   cursor:pointer;
-  box-shadow:
-    0 4px 8px #0005,
-    inset 0 1px 0 #ffffff0b;
-  transition:background .12s,transform .08s;
-  touch-action:manipulation;
   user-select:none;
-}
-
-.key:hover{
-  background:var(--key-hover);
+  touch-action:manipulation;
+  box-shadow:
+    0 5px 9px #0005,
+    inset 0 1px 0 #ffffff0c;
+  transition:transform .08s,filter .12s;
 }
 
 .key:active{
-  transform:scale(.95);
+  transform:scale(.94);
+  filter:brightness(1.3);
 }
 
 .key.utility{
-  background:linear-gradient(145deg,#343e4e,#222a38);
+  background:linear-gradient(145deg,#3a475a,#222d3d);
+  color:#c9d8ed;
+  font-size:clamp(19px,5vw,27px);
 }
 
 .key.operator{
-  background:linear-gradient(145deg,#ffad35,#f07800);
-  border-color:#ffb24c;
+  background:linear-gradient(145deg,#ffb64c,#f07800);
+  border-color:#ffc16b;
   color:#fff;
-  font-size:29px;
+  font-size:clamp(31px,8vw,40px);
 }
 
 .key.operator.selected{
   background:#fff;
   color:#f07800;
+  border-color:#fff;
 }
 
 .key.equal{
-  background:linear-gradient(145deg,#13c879,#008b4b);
-  border-color:#16d989;
-  font-size:30px;
+  background:linear-gradient(145deg,#18d78a,#00894d);
+  border-color:#27e79c;
+  color:#fff;
+  font-size:clamp(34px,9vw,43px);
 }
 
 .key.zero{
   grid-column:span 2;
 }
 
+.key.delete{
+  color:#ffadad;
+}
+
 .footer{
+  padding:18px 5px 10px;
+  color:#8292aa;
+  font-size:12px;
+  line-height:1.9;
   text-align:center;
-  margin-top:20px;
-  color:#8190aa;
-  font-size:11px;
-  line-height:1.8;
 }
 
 .footer strong{
-  color:#a9b7ce;
+  color:#43d99a;
+  letter-spacing:1px;
 }
 
 @media(min-width:600px){
   body{
-    padding:30px 20px;
-  }
-
-  .app{
-    max-width:420px;
-  }
-
-  .key{
-    height:74px;
-    font-size:27px;
-  }
-
-  .calculator{
-    padding:20px;
-  }
-}
-
-@media(max-height:650px){
-  body{
-    align-items:flex-start;
+    padding:22px;
   }
 
   .header{
-    margin-bottom:14px;
+    margin-bottom:20px;
   }
 
-  .key{
-    height:55px;
+  .calculator{
+    padding:23px;
   }
 
   .display{
-    min-height:110px;
+    min-height:210px;
+    padding:22px;
+    margin-bottom:19px;
+  }
+
+  .keys{
+    gap:13px;
+  }
+
+  .key{
+    height:86px;
+  }
+}
+
+@media(max-width:360px){
+  body{
+    padding:8px;
+  }
+
+  .calculator{
+    padding:10px;
+    border-radius:20px;
+  }
+
+  .keys{
+    gap:7px;
+  }
+
+  .key{
+    height:66px;
+    border-radius:14px;
+  }
+
+  .display{
+    min-height:165px;
+    padding:13px 10px;
+  }
+
+  .home-btn{
+    padding:0 10px;
+    font-size:12px;
+  }
+}
+
+@media(max-height:650px) and (min-width:500px){
+  body{
+    padding-top:10px;
+  }
+
+  .header{
+    margin-bottom:10px;
+  }
+
+  .description{
+    margin-bottom:9px;
+  }
+
+  .display{
+    min-height:130px;
+  }
+
+  .key{
+    height:58px;
+  }
+
+  .footer{
+    padding-top:8px;
   }
 }
 
@@ -262,55 +372,105 @@ body{
 <main class="app">
 
   <header class="header">
+
     <div class="logo">
-      <span class="logo-icon">±</span>
-      <span>KALKULATOR</span>
+      <div class="logo-icon">±</div>
+      <div>
+        <div class="logo-text">KALKULATOR</div>
+        <div class="subtitle">STANDAR</div>
+      </div>
     </div>
 
-    <div class="subtitle">STANDAR</div>
+    <a class="home-btn" href="cek.html" aria-label="Kembali ke halaman cek">
+      <span>⌂</span>
+      <span>HOME</span>
+    </a>
 
-    <p>Hitung dengan cepat dan mudah</p>
   </header>
+
+  <p class="description">
+    Kalkulator digital • Hitung cepat dan mudah
+  </p>
 
   <section class="calculator" aria-label="Kalkulator standar">
 
     <div class="display" aria-live="polite">
-      <div class="expression" id="expression"></div>
+
+      <div class="display-label">PERHITUNGAN</div>
+
+      <div class="expression" id="expression">
+        Siap menghitung
+      </div>
+
       <div class="result" id="result">0</div>
+
+      <div class="preview" id="preview"></div>
+
     </div>
 
     <div class="keys">
 
-      <button class="key utility" data-action="clear">AC</button>
-      <button class="key utility" data-action="sign">+/−</button>
-      <button class="key utility" data-action="percent">%</button>
-      <button class="key operator" data-op="/" aria-label="Bagi">÷</button>
+      <button type="button" class="key utility"
+        data-action="clear">AC</button>
 
-      <button class="key" data-num="7">7</button>
-      <button class="key" data-num="8">8</button>
-      <button class="key" data-num="9">9</button>
-      <button class="key operator" data-op="*" aria-label="Kali">×</button>
+      <button type="button" class="key utility"
+        data-action="sign">+/−</button>
 
-      <button class="key" data-num="4">4</button>
-      <button class="key" data-num="5">5</button>
-      <button class="key" data-num="6">6</button>
-      <button class="key operator" data-op="-" aria-label="Kurang">−</button>
+      <button type="button" class="key utility"
+        data-action="percent">%</button>
 
-      <button class="key" data-num="1">1</button>
-      <button class="key" data-num="2">2</button>
-      <button class="key" data-num="3">3</button>
-      <button class="key operator" data-op="+" aria-label="Tambah">+</button>
+      <button type="button" class="key utility delete"
+        data-action="backspace" aria-label="Hapus satu angka">⌫</button>
 
-      <button class="key zero" data-num="0">0</button>
-      <button class="key" data-action="decimal">,</button>
-      <button class="key equal" data-action="equals" aria-label="Sama dengan">=</button>
+      <button type="button" class="key" data-num="7">7</button>
+      <button type="button" class="key" data-num="8">8</button>
+      <button type="button" class="key" data-num="9">9</button>
+
+      <button type="button" class="key operator"
+        data-op="/" aria-label="Bagi">÷</button>
+
+      <button type="button" class="key" data-num="4">4</button>
+      <button type="button" class="key" data-num="5">5</button>
+      <button type="button" class="key" data-num="6">6</button>
+
+      <button type="button" class="key operator"
+        data-op="*" aria-label="Kali">×</button>
+
+      <button type="button" class="key" data-num="1">1</button>
+      <button type="button" class="key" data-num="2">2</button>
+      <button type="button" class="key" data-num="3">3</button>
+
+      <button type="button" class="key operator"
+        data-op="-" aria-label="Kurang">−</button>
+
+      <button type="button" class="key zero" data-num="0">0</button>
+
+      <button type="button" class="key"
+        data-action="decimal">,</button>
+
+      <button type="button" class="key operator"
+        data-op="+" aria-label="Tambah">+</button>
+
+      <button type="button" class="key utility"
+        data-action="clear-entry">CE</button>
+
+      <button type="button" class="key utility"
+        data-action="sign">+/−</button>
+
+      <button type="button" class="key utility"
+        data-action="percent">%</button>
+
+      <button type="button" class="key equal"
+        data-action="equals" aria-label="Sama dengan">=</button>
 
     </div>
+
   </section>
 
   <footer class="footer">
     <strong>● HITAM MODERN</strong><br>
-    Bisa digunakan offline | Responsif di HP dan PC
+    Offline • Responsif HP dan PC<br>
+    <span>Gunakan tombol HOME untuk kembali ke cek.html</span>
   </footer>
 
 </main>
@@ -322,6 +482,7 @@ body{
 
   const resultEl = document.getElementById("result");
   const expressionEl = document.getElementById("expression");
+  const previewEl = document.getElementById("preview");
   const keys = document.querySelector(".keys");
 
   let current = "0";
@@ -330,6 +491,7 @@ body{
   let waiting = false;
   let justCalculated = false;
   let expression = "";
+  let errorMessage = "";
 
   const symbols = {
     "+":"+",
@@ -353,6 +515,7 @@ body{
     if(Math.abs(rounded) >= 1e15 ||
        (Math.abs(rounded) > 0 &&
         Math.abs(rounded) < 1e-7)){
+
       return rounded.toExponential(6)
         .replace(/\.?0+e/,"e")
         .replace("e+","e");
@@ -361,26 +524,74 @@ body{
     return String(rounded).replace(".",",");
   }
 
-  function updateDisplay(){
-
-    resultEl.textContent = formatNumber(Number(current));
+  function formatCurrent(){
 
     if(current === "Error"){
-      resultEl.textContent = "Error";
+      return "Error";
     }
+
+    if(current.endsWith(".")){
+      return formatNumber(Number(current)).replace(/,$/,"") + ",";
+    }
+
+    return formatNumber(Number(current));
+  }
+
+  function updateDisplay(){
+
+    let shownResult = formatCurrent();
+    let shownExpression = expression;
+    let shownPreview = "";
+
+    if(current === "Error"){
+      shownResult = "Error";
+      shownExpression = errorMessage || "Perhitungan tidak valid";
+    }else if(operator !== null && previous !== null){
+
+      if(waiting){
+
+        shownExpression =
+          formatNumber(previous) + " " + symbols[operator];
+
+      }else{
+
+        shownExpression =
+          formatNumber(previous) + " " +
+          symbols[operator] + " " +
+          formatCurrent();
+
+        const calculated = calculate(
+          previous,
+          Number(current),
+          operator
+        );
+
+        if(Number.isFinite(calculated)){
+          shownResult = formatNumber(calculated);
+          shownPreview = "HASIL SEMENTARA";
+        }else{
+          shownResult = "Error";
+          shownPreview = "Tidak dapat membagi dengan nol";
+        }
+      }
+    }
+
+    resultEl.textContent = shownResult;
+    expressionEl.textContent = shownExpression || "Siap menghitung";
+    previewEl.textContent = shownPreview;
 
     resultEl.classList.toggle(
       "small",
-      resultEl.textContent.length > 12
+      shownResult.length > 12
     );
 
-    expressionEl.textContent = expression;
-
     document.querySelectorAll("[data-op]").forEach(function(button){
+
       button.classList.toggle(
         "selected",
         button.dataset.op === operator && waiting
       );
+
     });
   }
 
@@ -392,6 +603,7 @@ body{
     waiting = false;
     justCalculated = false;
     expression = "";
+    errorMessage = "";
 
     updateDisplay();
   }
@@ -403,18 +615,33 @@ body{
     }
 
     if(waiting || justCalculated){
+
       current = number;
+
+      if(justCalculated){
+        previous = null;
+        operator = null;
+        expression = "";
+      }
+
       waiting = false;
       justCalculated = false;
-      expression = "";
+
     }else if(current === "0"){
+
       current = number;
+
     }else if(current === "-0"){
+
       current = "-" + number;
+
     }else if(current.replace("-","").replace(".","").length < 15){
+
       current += number;
+
     }
 
+    errorMessage = "";
     updateDisplay();
   }
 
@@ -425,12 +652,22 @@ body{
     }
 
     if(waiting || justCalculated){
+
       current = "0.";
+
+      if(justCalculated){
+        previous = null;
+        operator = null;
+        expression = "";
+      }
+
       waiting = false;
       justCalculated = false;
-      expression = "";
+
     }else if(!current.includes(".")){
+
       current += ".";
+
     }
 
     updateDisplay();
@@ -455,7 +692,7 @@ body{
 
     const inputValue = Number(current);
 
-    if(operator && !waiting){
+    if(operator !== null && !waiting){
 
       const calculated = calculate(
         previous,
@@ -464,12 +701,14 @@ body{
       );
 
       if(!Number.isFinite(calculated)){
+
         current = "Error";
+        errorMessage = "Perhitungan tidak valid";
         previous = null;
         operator = null;
         waiting = false;
         justCalculated = true;
-        expression = "Tidak dapat dibagi dengan nol";
+
         updateDisplay();
         return;
       }
@@ -477,16 +716,19 @@ body{
       current = String(Number(calculated.toPrecision(12)));
       previous = Number(current);
 
-    }else{
+    }else if(operator === null){
+
       previous = inputValue;
+
     }
 
     operator = nextOperator;
     waiting = true;
     justCalculated = false;
+    errorMessage = "";
 
-    expression = formatNumber(previous) + " " +
-      symbols[operator];
+    expression =
+      formatNumber(previous) + " " + symbols[operator];
 
     updateDisplay();
   }
@@ -506,15 +748,21 @@ body{
 
     const calculated = calculate(a,b,op);
 
-    expression = formatNumber(a) + " " +
+    expression =
+      formatNumber(a) + " " +
       symbols[op] + " " +
-      formatNumber(b) + " =";
+      formatCurrent() + " =";
 
     if(!Number.isFinite(calculated)){
+
       current = "Error";
-      expression = "Tidak dapat membagi dengan nol";
+      errorMessage = "Tidak dapat membagi dengan nol";
+
     }else{
+
       current = String(Number(calculated.toPrecision(12)));
+      errorMessage = "";
+
     }
 
     previous = null;
@@ -532,7 +780,9 @@ body{
     }
 
     if(Number(current) !== 0){
+
       current = String(-Number(current));
+
     }
 
     updateDisplay();
@@ -545,6 +795,20 @@ body{
     }
 
     current = String(Number(current) / 100);
+    waiting = false;
+    justCalculated = false;
+
+    updateDisplay();
+  }
+
+  function clearEntry(){
+
+    if(current === "Error"){
+      clearAll();
+      return;
+    }
+
+    current = "0";
     waiting = false;
     justCalculated = false;
 
@@ -564,9 +828,13 @@ body{
 
     if(current.length <= 1 ||
        (current.length === 2 && current.startsWith("-"))){
+
       current = "0";
+
     }else{
+
       current = current.slice(0,-1);
+
     }
 
     updateDisplay();
@@ -591,8 +859,13 @@ body{
     }
 
     switch(button.dataset.action){
+
       case "clear":
         clearAll();
+        break;
+
+      case "clear-entry":
+        clearEntry();
         break;
 
       case "sign":
@@ -614,7 +887,9 @@ body{
       case "backspace":
         backspace();
         break;
+
     }
+
   });
 
   document.addEventListener("keydown",function(event){
@@ -661,6 +936,7 @@ body{
       percent();
       event.preventDefault();
     }
+
   });
 
   updateDisplay();
