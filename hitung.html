@@ -49,7 +49,7 @@ button{
 
 .app{
   width:100%;
-  max-width:600px;
+  max-width:900px;
   margin:0 auto;
 }
 
@@ -58,32 +58,32 @@ button{
   align-items:center;
   justify-content:space-between;
   gap:12px;
-  margin:4px 0 16px;
+  margin:8px 0 22px;
 }
 
 .logo{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
   min-width:0;
 }
 
 .logo-icon{
-  width:48px;
-  height:48px;
+  width:60px;
+  height:60px;
   flex-shrink:0;
   display:grid;
   place-items:center;
   border:2px solid #5db8ff;
-  border-radius:15px;
+  border-radius:18px;
   color:#5db8ff;
-  font-size:32px;
+  font-size:40px;
   font-weight:bold;
   box-shadow:0 0 20px #2388ff22;
 }
 
 .logo-text{
-  font-size:clamp(19px,5vw,29px);
+  font-size:clamp(23px,5vw,35px);
   font-weight:900;
   letter-spacing:1px;
 }
@@ -91,24 +91,24 @@ button{
 .subtitle{
   margin-top:5px;
   color:var(--muted);
-  font-size:12px;
+  font-size:13px;
   font-weight:bold;
-  letter-spacing:4px;
+  letter-spacing:5px;
 }
 
 .home-btn{
-  min-height:46px;
-  padding:0 15px;
+  min-height:56px;
+  padding:0 20px;
   flex-shrink:0;
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:7px;
+  gap:8px;
   border:1px solid #355274;
-  border-radius:13px;
+  border-radius:15px;
   background:linear-gradient(145deg,#203650,#111d2e);
   color:#8ed0ff;
-  font-size:14px;
+  font-size:16px;
   font-weight:800;
   text-decoration:none;
   box-shadow:0 4px 12px #0004;
@@ -119,65 +119,111 @@ button{
 }
 
 .description{
-  margin:0 0 15px;
+  margin:0 0 20px;
   color:#92a2ba;
-  font-size:13px;
+  font-size:15px;
   text-align:center;
 }
 
 .calculator{
-  padding:clamp(12px,3.5vw,22px);
+  padding:clamp(16px,4vw,30px);
   background:linear-gradient(145deg,#182231,#0a0e16);
   border:1px solid var(--border);
-  border-radius:25px;
+  border-radius:28px;
   box-shadow:
     0 20px 55px #0009,
     inset 0 1px 0 #ffffff0c;
 }
 
 .display{
-  min-height:190px;
-  padding:18px 16px;
-  margin-bottom:16px;
+  min-height:250px;
+  padding:24px 22px;
+  margin-bottom:22px;
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
   background:var(--screen);
   border:1px solid #29374b;
-  border-radius:18px;
+  border-radius:22px;
   overflow:hidden;
   box-shadow:inset 0 3px 15px #0007;
 }
 
 .display-label{
-  margin-bottom:12px;
+  margin-bottom:14px;
   color:#60758f;
-  font-size:11px;
+  font-size:13px;
   font-weight:bold;
-  letter-spacing:2px;
+  letter-spacing:3px;
   text-align:right;
 }
 
+/* RIWAYAT HORIZONTAL */
 .expression{
-  min-height:30px;
+  width:100%;
+  min-height:54px;
+  margin-bottom:12px;
+  padding:8px 2px 12px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:thin;
+  scrollbar-color:#526782 #101722;
+  overscroll-behavior-x:contain;
+  direction:ltr;
+}
+
+.history-content{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  gap:18px;
+  width:max-content;
+  min-width:100%;
+  white-space:nowrap;
+}
+
+.expression-line{
+  flex:0 0 auto;
+  width:max-content;
+  padding:8px 12px;
+  border:1px solid #29374b;
+  border-radius:12px;
+  background:#111a27;
   color:#9bb0ca;
-  font-size:clamp(17px,4.5vw,23px);
-  line-height:1.4;
-  text-align:right;
-  overflow-wrap:anywhere;
-  word-break:break-word;
+  font-size:clamp(17px,4vw,23px);
+  line-height:1.5;
+  white-space:nowrap;
+}
+
+.expression-line:last-child{
+  border-color:#087b50;
+  background:#09251e;
+  color:#42e6a0;
+  font-weight:bold;
+}
+
+.expression-line .history-equals{
+  margin:0 6px;
+  color:#ffae36;
+}
+
+.expression-line .history-result{
+  margin-left:5px;
+  color:#ffffff;
+  font-weight:900;
 }
 
 .result{
   width:100%;
-  min-height:65px;
+  min-height:95px;
+  flex-shrink:0;
   display:flex;
   align-items:center;
   justify-content:flex-end;
   color:#fff;
-  font-size:clamp(43px,12vw,66px);
+  font-size:clamp(58px,13vw,94px);
   font-weight:800;
-  letter-spacing:-2px;
+  letter-spacing:-3px;
   line-height:1.15;
   text-align:right;
   overflow-wrap:anywhere;
@@ -186,14 +232,14 @@ button{
 }
 
 .result.small{
-  font-size:clamp(28px,7vw,39px);
+  font-size:clamp(35px,8vw,56px);
 }
 
 .preview{
-  min-height:22px;
-  margin-top:9px;
+  min-height:28px;
+  margin-top:12px;
   color:#36d99a;
-  font-size:clamp(13px,3.5vw,17px);
+  font-size:clamp(15px,3.5vw,20px);
   font-weight:bold;
   text-align:right;
   overflow-wrap:anywhere;
@@ -202,23 +248,23 @@ button{
 .keys{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:11px;
+  gap:14px;
 }
 
 .key{
   min-width:0;
-  height:clamp(72px,14vw,88px);
+  height:clamp(88px,15vw,118px);
   border:1px solid #34445a;
-  border-radius:19px;
+  border-radius:22px;
   background:linear-gradient(145deg,#293648,#151d29);
   color:var(--text);
-  font-size:clamp(25px,7vw,34px);
+  font-size:clamp(32px,7vw,44px);
   font-weight:700;
   cursor:pointer;
   user-select:none;
   touch-action:manipulation;
   box-shadow:
-    0 5px 9px #0005,
+    0 6px 12px #0005,
     inset 0 1px 0 #ffffff0c;
   transition:transform .08s,filter .12s;
 }
@@ -231,14 +277,14 @@ button{
 .key.utility{
   background:linear-gradient(145deg,#3a475a,#222d3d);
   color:#c9d8ed;
-  font-size:clamp(19px,5vw,27px);
+  font-size:clamp(24px,5vw,34px);
 }
 
 .key.operator{
   background:linear-gradient(145deg,#ffb64c,#f07800);
   border-color:#ffc16b;
   color:#fff;
-  font-size:clamp(31px,8vw,40px);
+  font-size:clamp(39px,8vw,52px);
 }
 
 .key.operator.selected{
@@ -251,7 +297,7 @@ button{
   background:linear-gradient(145deg,#18d78a,#00894d);
   border-color:#27e79c;
   color:#fff;
-  font-size:clamp(34px,9vw,43px);
+  font-size:clamp(42px,9vw,56px);
 }
 
 .key.zero{
@@ -263,10 +309,10 @@ button{
 }
 
 .footer{
-  padding:18px 5px 10px;
+  padding:24px 5px 12px;
   color:#8292aa;
-  font-size:12px;
-  line-height:1.9;
+  font-size:14px;
+  line-height:2;
   text-align:center;
 }
 
@@ -277,85 +323,124 @@ button{
 
 @media(min-width:600px){
   body{
-    padding:22px;
+    padding:24px;
   }
 
   .header{
-    margin-bottom:20px;
+    margin-bottom:25px;
   }
 
   .calculator{
-    padding:23px;
+    padding:30px;
   }
 
   .display{
-    min-height:210px;
-    padding:22px;
-    margin-bottom:19px;
+    min-height:285px;
+    padding:28px;
+    margin-bottom:25px;
   }
 
   .keys{
-    gap:13px;
+    gap:17px;
   }
 
   .key{
-    height:86px;
+    height:112px;
   }
 }
 
-@media(max-width:360px){
+@media(max-width:420px){
   body{
-    padding:8px;
+    padding:9px;
   }
 
-  .calculator{
-    padding:10px;
-    border-radius:20px;
+  .header{
+    gap:8px;
+    margin-bottom:18px;
   }
 
-  .keys{
-    gap:7px;
+  .logo{
+    gap:8px;
   }
 
-  .key{
-    height:66px;
+  .logo-icon{
+    width:48px;
+    height:48px;
     border-radius:14px;
+    font-size:32px;
   }
 
-  .display{
-    min-height:165px;
-    padding:13px 10px;
+  .logo-text{
+    font-size:clamp(18px,5vw,23px);
+  }
+
+  .subtitle{
+    font-size:10px;
+    letter-spacing:3px;
   }
 
   .home-btn{
-    padding:0 10px;
-    font-size:12px;
-  }
-}
-
-@media(max-height:650px) and (min-width:500px){
-  body{
-    padding-top:10px;
+    min-height:46px;
+    padding:0 11px;
+    font-size:13px;
   }
 
-  .header{
-    margin-bottom:10px;
-  }
-
-  .description{
-    margin-bottom:9px;
+  .calculator{
+    padding:12px;
+    border-radius:22px;
   }
 
   .display{
-    min-height:130px;
+    min-height:220px;
+    padding:15px 12px;
+    margin-bottom:15px;
+    border-radius:17px;
+  }
+
+  .result{
+    min-height:80px;
+    font-size:clamp(53px,14vw,68px);
+  }
+
+  .keys{
+    gap:9px;
   }
 
   .key{
-    height:58px;
+    height:clamp(82px,19vw,96px);
+    border-radius:17px;
+    font-size:clamp(29px,8vw,37px);
   }
 
-  .footer{
-    padding-top:8px;
+  .key.utility{
+    font-size:clamp(21px,5.5vw,27px);
+  }
+
+  .key.operator{
+    font-size:clamp(36px,9vw,43px);
+  }
+
+  .key.equal{
+    font-size:clamp(39px,10vw,47px);
+  }
+
+  .expression-line{
+    font-size:17px;
+  }
+}
+
+@media(max-width:340px){
+  .keys{
+    gap:6px;
+  }
+
+  .key{
+    height:74px;
+    border-radius:13px;
+  }
+
+  .calculator{
+    padding:9px;
   }
 }
 
@@ -364,68 +449,6 @@ button{
     transition:none!important;
   }
 }
-  
-/* RIWAYAT PERHITUNGAN */
-.display{
-  overflow:hidden;
-}
-
-.expression{
-  width:100%;
-  min-height:35px;
-  max-height:160px;
-  overflow-x:auto;
-  overflow-y:auto;
-  white-space:nowrap;
-  text-align:left;
-  direction:ltr;
-  scrollbar-width:thin;
-  scrollbar-color:#526782 #101722;
-  padding:5px 2px;
-  overscroll-behavior:contain;
-}
-
-.expression-line{
-  width:max-content;
-  min-width:100%;
-  padding:5px 8px;
-  text-align:left;
-  color:#9bb0ca;
-  font-size:17px;
-  line-height:1.6;
-  white-space:nowrap;
-}
-
-.expression-line:last-child{
-  color:#42e6a0;
-  font-weight:bold;
-}
-
-.expression-line .history-result{
-  color:#ffffff;
-  margin-left:10px;
-}
-
-.expression-line .history-equals{
-  color:#ffae36;
-}
-
-.result{
-  flex-shrink:0;
-}
-
-.history-area{
-  max-height:180px;
-  overflow-y:auto;
-  overflow-x:hidden;
-  scrollbar-width:thin;
-  scrollbar-color:#526782 #101722;
-}
-
-.history-area:empty{
-  display:none;
-}
-
 </style>
 </head>
 
@@ -434,7 +457,6 @@ button{
 <main class="app">
 
   <header class="header">
-
     <div class="logo">
       <div class="logo-icon">±</div>
       <div>
@@ -447,7 +469,6 @@ button{
       <span>⌂</span>
       <span>HOME</span>
     </a>
-
   </header>
 
   <p class="description">
@@ -458,10 +479,12 @@ button{
 
     <div class="display" aria-live="polite">
 
-      <div class="display-label">PERHITUNGAN</div>
+      <div class="display-label">RIWAYAT PERHITUNGAN</div>
 
       <div class="expression" id="expression">
-        Siap menghitung
+        <div class="history-content" id="historyContent">
+          <div class="expression-line">Siap menghitung</div>
+        </div>
       </div>
 
       <div class="result" id="result">0</div>
@@ -544,6 +567,7 @@ button{
 
   const resultEl = document.getElementById("result");
   const expressionEl = document.getElementById("expression");
+  const historyContent = document.getElementById("historyContent");
   const previewEl = document.getElementById("preview");
   const keys = document.querySelector(".keys");
 
@@ -554,6 +578,7 @@ button{
   let justCalculated = false;
   let expression = "";
   let errorMessage = "";
+  let history = [];
 
   const symbols = {
     "+":"+",
@@ -599,28 +624,71 @@ button{
     return formatNumber(Number(current));
   }
 
+  function renderHistory(){
+
+    historyContent.replaceChildren();
+
+    if(history.length === 0){
+
+      const emptyLine = document.createElement("div");
+      emptyLine.className = "expression-line";
+      emptyLine.textContent = "Siap menghitung";
+      historyContent.appendChild(emptyLine);
+
+      return;
+    }
+
+    history.forEach(function(item,index){
+
+      const line = document.createElement("div");
+      line.className = "expression-line";
+
+      if(index === history.length - 1){
+        line.classList.add("latest");
+      }
+
+      line.textContent = item.expression + " ";
+
+      const equals = document.createElement("span");
+      equals.className = "history-equals";
+      equals.textContent = "=";
+
+      const answer = document.createElement("span");
+      answer.className = "history-result";
+      answer.textContent = item.result;
+
+      line.appendChild(equals);
+      line.appendChild(answer);
+      historyContent.appendChild(line);
+    });
+
+    requestAnimationFrame(function(){
+      expressionEl.scrollLeft = expressionEl.scrollWidth;
+    });
+  }
+
+  function addHistory(expressionText,resultText){
+
+    history.push({
+      expression:expressionText,
+      result:resultText
+    });
+
+    renderHistory();
+  }
+
   function updateDisplay(){
 
     let shownResult = formatCurrent();
-    let shownExpression = expression;
     let shownPreview = "";
 
     if(current === "Error"){
+
       shownResult = "Error";
-      shownExpression = errorMessage || "Perhitungan tidak valid";
+
     }else if(operator !== null && previous !== null){
 
-      if(waiting){
-
-        shownExpression =
-          formatNumber(previous) + " " + symbols[operator];
-
-      }else{
-
-        shownExpression =
-          formatNumber(previous) + " " +
-          symbols[operator] + " " +
-          formatCurrent();
+      if(!waiting){
 
         const calculated = calculate(
           previous,
@@ -639,7 +707,6 @@ button{
     }
 
     resultEl.textContent = shownResult;
-    expressionEl.textContent = shownExpression || "Siap menghitung";
     previewEl.textContent = shownPreview;
 
     resultEl.classList.toggle(
@@ -667,13 +734,23 @@ button{
     expression = "";
     errorMessage = "";
 
+    // AC menghapus seluruh riwayat.
+    history = [];
+    renderHistory();
+
     updateDisplay();
   }
 
   function inputNumber(number){
 
     if(current === "Error"){
-      clearAll();
+      current = "0";
+      previous = null;
+      operator = null;
+      waiting = false;
+      justCalculated = false;
+      expression = "";
+      errorMessage = "";
     }
 
     if(waiting || justCalculated){
@@ -710,7 +787,13 @@ button{
   function inputDecimal(){
 
     if(current === "Error"){
-      clearAll();
+      current = "0";
+      previous = null;
+      operator = null;
+      waiting = false;
+      justCalculated = false;
+      expression = "";
+      errorMessage = "";
     }
 
     if(waiting || justCalculated){
@@ -807,13 +890,12 @@ button{
     const a = previous;
     const b = Number(current);
     const op = operator;
-
-    const calculated = calculate(a,b,op);
-
-    expression =
+    const expressionText =
       formatNumber(a) + " " +
       symbols[op] + " " +
-      formatCurrent() + " =";
+      formatCurrent();
+
+    const calculated = calculate(a,b,op);
 
     if(!Number.isFinite(calculated)){
 
@@ -825,6 +907,8 @@ button{
       current = String(Number(calculated.toPrecision(12)));
       errorMessage = "";
 
+      // Setiap hasil baru ditambahkan; riwayat lama tidak ditimpa.
+      addHistory(expressionText,formatNumber(calculated));
     }
 
     previous = null;
@@ -842,9 +926,7 @@ button{
     }
 
     if(Number(current) !== 0){
-
       current = String(-Number(current));
-
     }
 
     updateDisplay();
@@ -866,7 +948,14 @@ button{
   function clearEntry(){
 
     if(current === "Error"){
-      clearAll();
+      current = "0";
+      previous = null;
+      operator = null;
+      waiting = false;
+      justCalculated = false;
+      expression = "";
+      errorMessage = "";
+      updateDisplay();
       return;
     }
 
@@ -880,7 +969,14 @@ button{
   function backspace(){
 
     if(current === "Error"){
-      clearAll();
+      current = "0";
+      previous = null;
+      operator = null;
+      waiting = false;
+      justCalculated = false;
+      expression = "";
+      errorMessage = "";
+      updateDisplay();
       return;
     }
 
@@ -949,9 +1045,7 @@ button{
       case "backspace":
         backspace();
         break;
-
     }
-
   });
 
   document.addEventListener("keydown",function(event){
@@ -998,9 +1092,9 @@ button{
       percent();
       event.preventDefault();
     }
-
   });
 
+  renderHistory();
   updateDisplay();
 
 })();
