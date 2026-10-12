@@ -582,13 +582,10 @@ button{
   let operator = null;
   let waiting = false;
   let justCalculated = false;
-  let errorMessage = "";
-
-  // Riwayat perhitungan yang sudah selesai.
   let history = [];
 
-  // Baris perhitungan yang sedang berlangsung.
-  let activeHistoryLine = "";
+  // Teks lengkap hitungan yang sedang dikerjakan.
+  let expressionText = "";
 
   const symbols = {
     "+":"+",
@@ -644,12 +641,28 @@ button{
     });
   }
 
-  // Menampilkan riwayat lama dan perhitungan yang sedang berjalan.
+  // Memperbarui angka terakhir dalam ekspresi yang sedang diketik.
+  function updateExpressionNumber(){
+
+    if(!expressionText || operator === null || waiting){
+      return;
+    }
+
+    const lastSpace = expressionText.lastIndexOf(" ");
+
+    if(lastSpace >= 0){
+      expressionText =
+        expressionText.substring(0,lastSpace + 1) +
+        formatCurrent();
+    }
+  }
+
+  // Riwayat selesai tetap tersimpan, ekspresi aktif tampil di ujung kanan.
   function renderHistory(){
 
     historyContent.replaceChildren();
 
-    if(history.length === 0 && !activeHistoryLine){
+    if(history.length === 0 && !expressionText){
 
       const emptyLine = document.createElement("div");
       emptyLine.className = "expression-line";
@@ -664,7 +677,7 @@ button{
       const line = document.createElement("div");
       line.className = "expression-line";
 
-      if(index === history.length - 1 && !activeHistoryLine){
+      if(index === history.length - 1 && !expressionText){
         line.classList.add("latest");
       }
 
@@ -682,14 +695,15 @@ button{
 
       line.appendChild(equals);
       line.appendChild(answer);
+
       historyContent.appendChild(line);
     });
 
-    if(activeHistoryLine){
+    if(expressionText){
 
       const activeLine = document.createElement("div");
       activeLine.className = "expression-line active";
-      activeLine.textContent = activeHistoryLine;
+      activeLine.textContent = expressionText;
 
       historyContent.appendChild(activeLine);
     }
@@ -697,40 +711,15 @@ button{
     scrollHistoryToEnd();
   }
 
-  function syncActiveHistory(){
+  function calculate(a,b,op){
 
-    if(
-      operator !== null &&
-      previous !== null &&
-      !justCalculated &&
-      current !== "Error"
-    ){
-
-      activeHistoryLine =
-        formatNumber(previous) + " " +
-        symbols[operator];
-
-      if(!waiting){
-        activeHistoryLine += " " + formatCurrent();
-      }
-
-    }else{
-
-      activeHistoryLine = "";
+    switch(op){
+      case "+": return a + b;
+      case "-": return a - b;
+      case "*": return a * b;
+      case "/": return b === 0 ? NaN : a / b;
+      default: return b;
     }
-
-    renderHistory();
-  }
-
-  function addHistory(expressionText,resultText){
-
-    history.push({
-      expression:expressionText,
-      result:resultText
-    });
-
-    activeHistoryLine = "";
-    renderHistory();
   }
 
   function updateDisplay(){
@@ -742,23 +731,20 @@ button{
 
       shownResult = "Error";
 
-    }else if(operator !== null && previous !== null){
+    }else if(operator !== null && previous !== null && !waiting){
 
-      if(!waiting){
+      const calculated = calculate(
+        previous,
+        Number(current),
+        operator
+      );
 
-        const calculated = calculate(
-          previous,
-          Number(current),
-          operator
-        );
-
-        if(Number.isFinite(calculated)){
-          shownResult = formatNumber(calculated);
-          shownPreview = "HASIL SEMENTARA";
-        }else{
-          shownResult = "Error";
-          shownPreview = "Tidak dapat membagi dengan nol";
-        }
+      if(Number.isFinite(calculated)){
+        shownResult = formatNumber(calculated);
+        shownPreview = "HASIL SEMENTARA";
+      }else{
+        shownResult = "Error";
+        shownPreview = "Tidak dapat membagi dengan nol";
       }
     }
 
@@ -787,10 +773,7 @@ button{
     operator = null;
     waiting = false;
     justCalculated = false;
-    errorMessage = "";
-    activeHistoryLine = "";
-
-    // AC menghapus seluruh riwayat.
+    expressionText = "";
     history = [];
 
     renderHistory();
@@ -800,96 +783,88 @@ button{
   function inputNumber(number){
 
     if(current === "Error"){
-
       current = "0";
       previous = null;
       operator = null;
       waiting = false;
       justCalculated = false;
-      activeHistoryLine = "";
-      errorMessage = "";
+      expressionText = "";
     }
 
-    if(waiting || justCalculated){
+    if(justCalculated){
 
+      // Angka baru memulai hitungan baru, tanpa menghapus riwayat lama.
       current = number;
-
-      if(justCalculated){
-        previous = null;
-        operator = null;
-        activeHistoryLine = "";
-      }
-
+      previous = null;
+      operator = null;
+      expressionText = "";
       waiting = false;
       justCalculated = false;
+
+    }else if(waiting){
+
+      current = number;
+      waiting = false;
+
+      // Tambahkan angka baru setelah operator.
+      expressionText += " " + formatCurrent();
 
     }else if(current === "0"){
 
       current = number;
+      updateExpressionNumber();
 
     }else if(current === "-0"){
 
       current = "-" + number;
+      updateExpressionNumber();
 
     }else if(
       current.replace("-","").replace(".","").length < 15
     ){
 
       current += number;
-
+      updateExpressionNumber();
     }
 
-    errorMessage = "";
-
-    syncActiveHistory();
+    renderHistory();
     updateDisplay();
   }
 
   function inputDecimal(){
 
     if(current === "Error"){
-
       current = "0";
       previous = null;
       operator = null;
       waiting = false;
       justCalculated = false;
-      activeHistoryLine = "";
-      errorMessage = "";
+      expressionText = "";
     }
 
-    if(waiting || justCalculated){
+    if(justCalculated){
 
       current = "0.";
-
-      if(justCalculated){
-        previous = null;
-        operator = null;
-        activeHistoryLine = "";
-      }
-
+      previous = null;
+      operator = null;
+      expressionText = "";
       waiting = false;
       justCalculated = false;
+
+    }else if(waiting){
+
+      current = "0.";
+      waiting = false;
+      expressionText += " " + formatCurrent();
 
     }else if(!current.includes(".")){
 
       current += ".";
-
+      updateExpressionNumber();
     }
 
-    syncActiveHistory();
+    renderHistory();
     updateDisplay();
-  }
-
-  function calculate(a,b,op){
-
-    switch(op){
-      case "+": return a + b;
-      case "-": return a - b;
-      case "*": return a * b;
-      case "/": return b === 0 ? NaN : a / b;
-      default: return b;
-    }
   }
 
   function chooseOperator(nextOperator){
@@ -898,25 +873,31 @@ button{
       return;
     }
 
-    const inputValue = Number(current);
+    if(justCalculated){
+
+      // Gunakan hasil terakhir untuk hitungan baru.
+      expressionText = formatCurrent();
+      previous = Number(current);
+      operator = null;
+      justCalculated = false;
+    }
 
     if(operator !== null && !waiting){
 
+      // Perhitungan berantai dilakukan dari kiri ke kanan.
       const calculated = calculate(
         previous,
-        inputValue,
+        Number(current),
         operator
       );
 
       if(!Number.isFinite(calculated)){
-
         current = "Error";
-        errorMessage = "Perhitungan tidak valid";
+        expressionText = "";
         previous = null;
         operator = null;
         waiting = false;
         justCalculated = true;
-        activeHistoryLine = "";
 
         renderHistory();
         updateDisplay();
@@ -926,18 +907,41 @@ button{
       current = String(Number(calculated.toPrecision(12)));
       previous = Number(current);
 
+      // Ekspresi lengkap tetap dipertahankan.
+      expressionText =
+        expressionText.substring(
+          0,
+          expressionText.lastIndexOf(" ")
+        );
+
     }else if(operator === null){
 
-      previous = inputValue;
+      previous = Number(current);
+
+      if(!expressionText){
+        expressionText = formatCurrent();
+      }
+    }
+
+    // Jika operator ditekan dua kali, ganti operator terakhir.
+    if(waiting && operator !== null){
+
+      const lastSpace = expressionText.lastIndexOf(" ");
+
+      expressionText =
+        expressionText.substring(0,lastSpace) +
+        " " + symbols[nextOperator];
+
+    }else{
+
+      expressionText += " " + symbols[nextOperator];
 
     }
 
     operator = nextOperator;
     waiting = true;
-    justCalculated = false;
-    errorMessage = "";
 
-    syncActiveHistory();
+    renderHistory();
     updateDisplay();
   }
 
@@ -956,30 +960,27 @@ button{
     const b = Number(current);
     const op = operator;
 
-    const expressionText =
-      formatNumber(a) + " " +
-      symbols[op] + " " +
-      formatCurrent();
+    // Pastikan angka terakhir masuk ke ekspresi sebelum hasil.
+    updateExpressionNumber();
 
     const calculated = calculate(a,b,op);
 
     if(!Number.isFinite(calculated)){
 
       current = "Error";
-      errorMessage = "Tidak dapat membagi dengan nol";
-
-      activeHistoryLine = "";
-      renderHistory();
+      expressionText = "";
 
     }else{
 
       current = String(Number(calculated.toPrecision(12)));
-      errorMessage = "";
 
-      addHistory(
-        expressionText,
-        formatNumber(calculated)
-      );
+      // Simpan seluruh rangkaian, bukan hanya dua angka terakhir.
+      history.push({
+        expression:expressionText,
+        result:formatNumber(calculated)
+      });
+
+      expressionText = "";
     }
 
     previous = null;
@@ -987,6 +988,7 @@ button{
     waiting = false;
     justCalculated = true;
 
+    renderHistory();
     updateDisplay();
   }
 
@@ -1000,7 +1002,8 @@ button{
       current = String(-Number(current));
     }
 
-    syncActiveHistory();
+    updateExpressionNumber();
+    renderHistory();
     updateDisplay();
   }
 
@@ -1014,21 +1017,20 @@ button{
     waiting = false;
     justCalculated = false;
 
-    syncActiveHistory();
+    updateExpressionNumber();
+    renderHistory();
     updateDisplay();
   }
 
   function clearEntry(){
 
     if(current === "Error"){
-
       current = "0";
       previous = null;
       operator = null;
       waiting = false;
       justCalculated = false;
-      activeHistoryLine = "";
-      errorMessage = "";
+      expressionText = "";
 
       renderHistory();
       updateDisplay();
@@ -1039,21 +1041,20 @@ button{
     waiting = false;
     justCalculated = false;
 
-    syncActiveHistory();
+    updateExpressionNumber();
+    renderHistory();
     updateDisplay();
   }
 
   function backspace(){
 
     if(current === "Error"){
-
       current = "0";
       previous = null;
       operator = null;
       waiting = false;
       justCalculated = false;
-      activeHistoryLine = "";
-      errorMessage = "";
+      expressionText = "";
 
       renderHistory();
       updateDisplay();
@@ -1074,10 +1075,10 @@ button{
     }else{
 
       current = current.slice(0,-1);
-
     }
 
-    syncActiveHistory();
+    updateExpressionNumber();
+    renderHistory();
     updateDisplay();
   }
 
