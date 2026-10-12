@@ -4,50 +4,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080b12">
-<meta name="description" content="Kalkulator standar hitam modern, offline, untuk HP dan PC.">
-<title>KALKULATOR STANDAR</title>
+<meta name="theme-color" content="#09090b">
+<title>KALKULATOR</title>
 
 <style>
-:root{
-  --bg:#080b12;
-  --panel:#111722;
-  --screen:#070b12;
-  --key:#202a39;
-  --orange:#ff9418;
-  --green:#09b96b;
-  --text:#f5f7ff;
-  --muted:#93a3bd;
-  --border:#303d51;
-}
+*{box-sizing:border-box}
 
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
-html{
-  min-height:100%;
-  background:var(--bg);
-}
-
-body{
+html,body{
   margin:0;
-  min-height:100vh;
-  min-height:100dvh;
-  padding:12px;
+  min-height:100%;
+  background:#09090b;
+  color:#fff;
   font-family:Arial,Helvetica,sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(ellipse at top,#1a293d 0%,transparent 58%),
-    linear-gradient(145deg,#0d111a,#05070b);
 }
 
-button{
-  font-family:inherit;
-}
+body{padding:14px}
 
-.app{
+.container{
   width:100%;
   max-width:900px;
   margin:0 auto;
@@ -58,1131 +31,609 @@ button{
   align-items:center;
   justify-content:space-between;
   gap:12px;
-  margin:8px 0 22px;
+  margin-bottom:18px;
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  min-width:0;
-}
-
-.logo-icon{
-  width:60px;
-  height:60px;
-  flex-shrink:0;
-  display:grid;
-  place-items:center;
-  border:2px solid #5db8ff;
-  border-radius:18px;
-  color:#5db8ff;
-  font-size:40px;
-  font-weight:bold;
-  box-shadow:0 0 20px #2388ff22;
-}
-
-.logo-text{
-  font-size:clamp(23px,5vw,35px);
-  font-weight:900;
+.header h1{
+  font-size:clamp(22px,5vw,34px);
+  margin:0;
   letter-spacing:1px;
 }
 
-.subtitle{
-  margin-top:5px;
-  color:var(--muted);
-  font-size:13px;
-  font-weight:bold;
-  letter-spacing:5px;
-}
-
-.home-btn{
-  min-height:56px;
-  padding:0 20px;
-  flex-shrink:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  border:1px solid #355274;
-  border-radius:15px;
-  background:linear-gradient(145deg,#203650,#111d2e);
-  color:#8ed0ff;
-  font-size:16px;
-  font-weight:800;
+.home{
+  color:#fff;
+  background:#27272a;
+  border:1px solid #3f3f46;
+  border-radius:12px;
+  padding:12px 18px;
   text-decoration:none;
-  box-shadow:0 4px 12px #0004;
-}
-
-.home-btn:active{
-  transform:scale(.96);
-}
-
-.description{
-  margin:0 0 20px;
-  color:#92a2ba;
-  font-size:15px;
-  text-align:center;
+  font-size:16px;
+  font-weight:bold;
 }
 
 .calculator{
-  padding:clamp(16px,4vw,30px);
-  background:linear-gradient(145deg,#182231,#0a0e16);
-  border:1px solid var(--border);
-  border-radius:28px;
-  box-shadow:
-    0 20px 55px #0009,
-    inset 0 1px 0 #ffffff0c;
+  background:#18181b;
+  border:1px solid #27272a;
+  border-radius:24px;
+  padding:clamp(14px,3vw,26px);
+  box-shadow:0 12px 40px #0008;
 }
 
 .display{
-  min-height:250px;
-  padding:24px 22px;
-  margin-bottom:22px;
+  background:#09090b;
+  border:1px solid #27272a;
+  border-radius:18px;
+  min-height:170px;
+  padding:18px;
+  margin-bottom:18px;
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
-  background:var(--screen);
-  border:1px solid #29374b;
-  border-radius:22px;
   overflow:hidden;
-  box-shadow:inset 0 3px 15px #0007;
-}
-
-.display-label{
-  margin-bottom:14px;
-  color:#60758f;
-  font-size:13px;
-  font-weight:bold;
-  letter-spacing:3px;
-  text-align:right;
 }
 
 .expression{
-  width:100%;
-  min-height:54px;
+  min-height:30px;
+  color:#a1a1aa;
+  font-size:clamp(16px,3.5vw,25px);
+  text-align:right;
+  overflow-wrap:anywhere;
   margin-bottom:12px;
-  padding:8px 2px 12px;
-  overflow-x:auto;
-  overflow-y:hidden;
-  scrollbar-width:thin;
-  scrollbar-color:#526782 #101722;
-  overscroll-behavior-x:contain;
-  direction:ltr;
-}
-
-.history-content{
-  display:flex;
-  flex-direction:row;
-  align-items:center;
-  gap:18px;
-  width:max-content;
-  min-width:100%;
-  white-space:nowrap;
-}
-
-.expression-line{
-  flex:0 0 auto;
-  width:max-content;
-  padding:8px 12px;
-  border:1px solid #29374b;
-  border-radius:12px;
-  background:#111a27;
-  color:#9bb0ca;
-  font-size:clamp(17px,4vw,23px);
-  line-height:1.5;
-  white-space:nowrap;
-}
-
-.expression-line.latest{
-  border-color:#087b50;
-  background:#09251e;
-  color:#42e6a0;
-  font-weight:bold;
-}
-
-.expression-line.active{
-  border-color:#087b50;
-  background:#09251e;
-  color:#42e6a0;
-  font-weight:bold;
-}
-
-.expression-line .history-equals{
-  margin:0 6px;
-  color:#ffae36;
-}
-
-.expression-line .history-result{
-  margin-left:5px;
-  color:#ffffff;
-  font-weight:900;
 }
 
 .result{
   width:100%;
-  min-height:95px;
-  flex-shrink:0;
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  color:#fff;
-  font-size:clamp(58px,13vw,94px);
-  font-weight:800;
-  letter-spacing:-3px;
-  line-height:1.15;
-  text-align:right;
-  overflow-wrap:anywhere;
-  word-break:break-all;
-  font-variant-numeric:tabular-nums;
-}
-
-.result.small{
-  font-size:clamp(35px,8vw,56px);
-}
-
-.preview{
-  min-height:28px;
-  margin-top:12px;
-  color:#36d99a;
-  font-size:clamp(15px,3.5vw,20px);
+  font-size:clamp(40px,10vw,76px);
   font-weight:bold;
   text-align:right;
+  white-space:nowrap;
+  overflow-x:auto;
+  color:#fff;
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+}
+
+button{
+  border:0;
+  border-radius:16px;
+  min-height:clamp(64px,12vw,100px);
+  font-size:clamp(23px,5vw,36px);
+  font-weight:bold;
+  color:#fff;
+  background:#27272a;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+
+button:active{transform:scale(.97)}
+
+button.function{background:#3f3f46}
+button.operator{background:#2563eb}
+button.equal{background:#16a34a}
+button.zero{grid-column:span 2}
+
+.history-box{
+  margin-top:20px;
+  background:#18181b;
+  border:1px solid #27272a;
+  border-radius:18px;
+  padding:18px;
+}
+
+.history-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.history-head h2{
+  margin:0;
+  font-size:20px;
+}
+
+.clear-history{
+  background:#3f3f46;
+  min-height:42px;
+  border-radius:10px;
+  padding:8px 14px;
+  font-size:14px;
+}
+
+.history-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.history-item{
+  padding:13px;
+  background:#09090b;
+  border:1px solid #27272a;
+  border-radius:12px;
   overflow-wrap:anywhere;
 }
 
-.keys{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:14px;
+.history-expression{
+  color:#a1a1aa;
+  font-size:15px;
+  margin-bottom:6px;
 }
 
-.key{
-  min-width:0;
-  height:clamp(88px,15vw,118px);
-  border:1px solid #34445a;
-  border-radius:22px;
-  background:linear-gradient(145deg,#293648,#151d29);
-  color:var(--text);
-  font-size:clamp(32px,7vw,44px);
-  font-weight:700;
-  cursor:pointer;
-  user-select:none;
-  touch-action:manipulation;
-  box-shadow:
-    0 6px 12px #0005,
-    inset 0 1px 0 #ffffff0c;
-  transition:transform .08s,filter .12s;
+.history-result{
+  color:#4ade80;
+  font-size:22px;
+  font-weight:bold;
+  text-align:right;
 }
 
-.key:active{
-  transform:scale(.94);
-  filter:brightness(1.3);
-}
-
-.key.utility{
-  background:linear-gradient(145deg,#3a475a,#222d3d);
-  color:#c9d8ed;
-  font-size:clamp(24px,5vw,34px);
-}
-
-.key.operator{
-  background:linear-gradient(145deg,#ffb64c,#f07800);
-  border-color:#ffc16b;
-  color:#fff;
-  font-size:clamp(39px,8vw,52px);
-}
-
-.key.operator.selected{
-  background:#fff;
-  color:#f07800;
-  border-color:#fff;
-}
-
-.key.equal{
-  background:linear-gradient(145deg,#18d78a,#00894d);
-  border-color:#27e79c;
-  color:#fff;
-  font-size:clamp(42px,9vw,56px);
-}
-
-.key.zero{
-  grid-column:span 2;
-}
-
-.key.delete{
-  color:#ffadad;
-}
-
-.footer{
-  padding:24px 5px 12px;
-  color:#8292aa;
-  font-size:14px;
-  line-height:2;
+.empty-history{
+  color:#71717a;
   text-align:center;
-}
-
-.footer strong{
-  color:#43d99a;
-  letter-spacing:1px;
-}
-
-@media(min-width:600px){
-  body{
-    padding:24px;
-  }
-
-  .header{
-    margin-bottom:25px;
-  }
-
-  .calculator{
-    padding:30px;
-  }
-
-  .display{
-    min-height:285px;
-    padding:28px;
-    margin-bottom:25px;
-  }
-
-  .keys{
-    gap:17px;
-  }
-
-  .key{
-    height:112px;
-  }
+  padding:18px 5px;
 }
 
 @media(max-width:420px){
-  body{
-    padding:9px;
-  }
-
-  .header{
-    gap:8px;
-    margin-bottom:18px;
-  }
-
-  .logo{
-    gap:8px;
-  }
-
-  .logo-icon{
-    width:48px;
-    height:48px;
-    border-radius:14px;
-    font-size:32px;
-  }
-
-  .logo-text{
-    font-size:clamp(18px,5vw,23px);
-  }
-
-  .subtitle{
-    font-size:10px;
-    letter-spacing:3px;
-  }
-
-  .home-btn{
-    min-height:46px;
-    padding:0 11px;
-    font-size:13px;
-  }
-
-  .calculator{
-    padding:12px;
-    border-radius:22px;
-  }
-
-  .display{
-    min-height:220px;
-    padding:15px 12px;
-    margin-bottom:15px;
-    border-radius:17px;
-  }
-
-  .result{
-    min-height:80px;
-    font-size:clamp(53px,14vw,68px);
-  }
-
-  .keys{
-    gap:9px;
-  }
-
-  .key{
-    height:clamp(82px,19vw,96px);
-    border-radius:17px;
-    font-size:clamp(29px,8vw,37px);
-  }
-
-  .key.utility{
-    font-size:clamp(21px,5.5vw,27px);
-  }
-
-  .key.operator{
-    font-size:clamp(36px,9vw,43px);
-  }
-
-  .key.equal{
-    font-size:clamp(39px,10vw,47px);
-  }
-
-  .expression-line{
-    font-size:17px;
-  }
-}
-
-@media(max-width:340px){
-  .keys{
-    gap:6px;
-  }
-
-  .key{
-    height:74px;
-    border-radius:13px;
-  }
-
-  .calculator{
-    padding:9px;
-  }
-}
-
-@media(prefers-reduced-motion:reduce){
-  *{
-    transition:none!important;
-  }
+  body{padding:9px}
+  .calculator{padding:10px}
+  .buttons{gap:7px}
+  button{border-radius:12px}
+  .display{padding:13px;min-height:145px}
 }
 </style>
 </head>
 
 <body>
+<div class="container">
 
-<main class="app">
+  <div class="header">
+    <h1>KALKULATOR</h1>
+    <a class="home" href="cek.html">⌂ HOME</a>
+  </div>
 
-  <header class="header">
-    <div class="logo">
-      <div class="logo-icon">±</div>
-      <div>
-        <div class="logo-text">KALKULATOR</div>
-        <div class="subtitle">STANDAR</div>
-      </div>
-    </div>
-
-    <a class="home-btn" href="cek.html" aria-label="Kembali ke halaman cek">
-      <span>⌂</span>
-      <span>HOME</span>
-    </a>
-  </header>
-
-  <p class="description">
-    Kalkulator digital • Hitung cepat dan mudah
-  </p>
-
-  <section class="calculator" aria-label="Kalkulator standar">
-
-    <div class="display" aria-live="polite">
-
-      <div class="display-label">RIWAYAT PERHITUNGAN</div>
-
-      <div class="expression" id="expression">
-        <div class="history-content" id="historyContent">
-          <div class="expression-line">Siap menghitung</div>
-        </div>
-      </div>
-
+  <div class="calculator">
+    <div class="display">
+      <div class="expression" id="expression">Siap menghitung</div>
       <div class="result" id="result">0</div>
-
-      <div class="preview" id="preview"></div>
-
     </div>
 
-    <div class="keys">
+    <div class="buttons">
+      <button class="function" onclick="clearAll()">AC</button>
+      <button class="function" onclick="clearEntry()">CE</button>
+      <button class="function" onclick="backspace()">⌫</button>
+      <button class="operator" onclick="chooseOperator('/')">÷</button>
 
-      <button type="button" class="key utility"
-        data-action="clear">AC</button>
+      <button onclick="inputNumber('7')">7</button>
+      <button onclick="inputNumber('8')">8</button>
+      <button onclick="inputNumber('9')">9</button>
+      <button class="operator" onclick="chooseOperator('*')">×</button>
 
-      <button type="button" class="key utility"
-        data-action="sign">+/−</button>
+      <button onclick="inputNumber('4')">4</button>
+      <button onclick="inputNumber('5')">5</button>
+      <button onclick="inputNumber('6')">6</button>
+      <button class="operator" onclick="chooseOperator('-')">−</button>
 
-      <button type="button" class="key utility"
-        data-action="percent">%</button>
+      <button onclick="inputNumber('1')">1</button>
+      <button onclick="inputNumber('2')">2</button>
+      <button onclick="inputNumber('3')">3</button>
+      <button class="operator" onclick="chooseOperator('+')">+</button>
 
-      <button type="button" class="key utility delete"
-        data-action="backspace" aria-label="Hapus satu angka">⌫</button>
+      <button class="function" onclick="toggleSign()">±</button>
+      <button onclick="inputNumber('0')">0</button>
+      <button onclick="inputDecimal()">,</button>
+      <button class="equal" onclick="equals()">=</button>
 
-      <button type="button" class="key" data-num="7">7</button>
-      <button type="button" class="key" data-num="8">8</button>
-      <button type="button" class="key" data-num="9">9</button>
-
-      <button type="button" class="key operator"
-        data-op="/" aria-label="Bagi">÷</button>
-
-      <button type="button" class="key" data-num="4">4</button>
-      <button type="button" class="key" data-num="5">5</button>
-      <button type="button" class="key" data-num="6">6</button>
-
-      <button type="button" class="key operator"
-        data-op="*" aria-label="Kali">×</button>
-
-      <button type="button" class="key" data-num="1">1</button>
-      <button type="button" class="key" data-num="2">2</button>
-      <button type="button" class="key" data-num="3">3</button>
-
-      <button type="button" class="key operator"
-        data-op="-" aria-label="Kurang">−</button>
-
-      <button type="button" class="key zero" data-num="0">0</button>
-
-      <button type="button" class="key"
-        data-action="decimal">,</button>
-
-      <button type="button" class="key operator"
-        data-op="+" aria-label="Tambah">+</button>
-
-      <button type="button" class="key utility"
-        data-action="clear-entry">CE</button>
-
-      <button type="button" class="key utility"
-        data-action="sign">+/−</button>
-
-      <button type="button" class="key utility"
-        data-action="percent">%</button>
-
-      <button type="button" class="key equal"
-        data-action="equals" aria-label="Sama dengan">=</button>
-
+      <button class="function" onclick="percentage()">%</button>
+      <button class="function" onclick="squareRoot()">√</button>
+      <button class="function" onclick="square()">x²</button>
+      <button class="function" onclick="reciprocal()">1/x</button>
     </div>
+  </div>
 
-  </section>
+  <div class="history-box">
+    <div class="history-head">
+      <h2>RIWAYAT PERHITUNGAN</h2>
+      <button class="clear-history" onclick="clearHistory()">Hapus</button>
+    </div>
+    <div class="history-list" id="historyList">
+      <div class="empty-history">Belum ada riwayat</div>
+    </div>
+  </div>
 
-  <footer class="footer">
-    <strong>● HITAM MODERN</strong><br>
-    Offline • Responsif HP dan PC<br>
-    <span>Gunakan tombol HOME untuk kembali ke cek.html</span>
-  </footer>
-
-</main>
+</div>
 
 <script>
-(function(){
+let current = '0';
+let previous = null;
+let operator = null;
+let waiting = false;
+let justCalculated = false;
+let expressionText = '';
+let history = [];
 
-  "use strict";
+const symbols = {
+  '+': '+',
+  '-': '−',
+  '*': '×',
+  '/': '÷'
+};
 
-  const resultEl = document.getElementById("result");
-  const expressionEl = document.getElementById("expression");
-  const historyContent = document.getElementById("historyContent");
-  const previewEl = document.getElementById("preview");
-  const keys = document.querySelector(".keys");
+const resultDisplay = document.getElementById('result');
+const expressionDisplay = document.getElementById('expression');
+const historyList = document.getElementById('historyList');
 
-  let current = "0";
-  let previous = null;
-  let operator = null;
-  let waiting = false;
-  let justCalculated = false;
-  let history = [];
+function formatNumber(value){
+  if(!Number.isFinite(value)) return 'Error';
+  if(Object.is(value,-0)) value = 0;
+  return String(Number(value.toPrecision(12))).replace('.', ',');
+}
 
-  // Teks lengkap hitungan yang sedang dikerjakan.
-  let expressionText = "";
+function formatCurrent(){
+  if(current === 'Error') return 'Error';
+  return current.replace('.', ',');
+}
 
-  const symbols = {
-    "+":"+",
-    "-":"−",
-    "*":"×",
-    "/":"÷"
-  };
+function updateDisplay(){
+  resultDisplay.textContent = formatCurrent();
+  expressionDisplay.textContent = expressionText || 'Siap menghitung';
+}
 
-  function formatNumber(value){
+function updateExpressionNumber(){
+  if(!expressionText || operator === null || waiting) return;
 
-    if(!Number.isFinite(value)){
-      return "Error";
-    }
+  const lastSpace = expressionText.lastIndexOf(' ');
 
-    if(Object.is(value,-0)){
-      value = 0;
-    }
+  if(lastSpace >= 0){
+    expressionText =
+      expressionText.substring(0,lastSpace + 1) + formatCurrent();
+  }else{
+    expressionText = formatCurrent();
+  }
+}
 
-    const rounded = Number(value.toPrecision(12));
+function inputNumber(number){
+  if(current === 'Error') clearAll(false);
 
-    if(
-      Math.abs(rounded) >= 1e15 ||
-      (
-        Math.abs(rounded) > 0 &&
-        Math.abs(rounded) < 1e-7
-      )
-    ){
-      return rounded.toExponential(6)
-        .replace(/\.?0+e/,"e")
-        .replace("e+","e");
-    }
-
-    return String(rounded).replace(".",",");
+  if(justCalculated){
+    current = number;
+    previous = null;
+    operator = null;
+    waiting = false;
+    justCalculated = false;
+    expressionText = number;
+    updateDisplay();
+    return;
   }
 
-  function formatCurrent(){
-
-    if(current === "Error"){
-      return "Error";
-    }
-
-    if(current.endsWith(".")){
-      return formatNumber(Number(current)).replace(/,$/,"") + ",";
-    }
-
-    return formatNumber(Number(current));
-  }
-
-  function scrollHistoryToEnd(){
-
-    requestAnimationFrame(function(){
-      expressionEl.scrollLeft = expressionEl.scrollWidth;
-    });
-  }
-
-  // Memperbarui angka terakhir dalam ekspresi yang sedang diketik.
-  function updateExpressionNumber(){
-
-    if(!expressionText || operator === null || waiting){
-      return;
-    }
-
-    const lastSpace = expressionText.lastIndexOf(" ");
-
-    if(lastSpace >= 0){
-      expressionText =
-        expressionText.substring(0,lastSpace + 1) +
-        formatCurrent();
-    }
-  }
-
-  // Riwayat selesai tetap tersimpan, ekspresi aktif tampil di ujung kanan.
-  function renderHistory(){
-
-    historyContent.replaceChildren();
-
-    if(history.length === 0 && !expressionText){
-
-      const emptyLine = document.createElement("div");
-      emptyLine.className = "expression-line";
-      emptyLine.textContent = "Siap menghitung";
-      historyContent.appendChild(emptyLine);
-
-      return;
-    }
-
-    history.forEach(function(item,index){
-
-      const line = document.createElement("div");
-      line.className = "expression-line";
-
-      if(index === history.length - 1 && !expressionText){
-        line.classList.add("latest");
-      }
-
-      line.appendChild(
-        document.createTextNode(item.expression + " ")
-      );
-
-      const equals = document.createElement("span");
-      equals.className = "history-equals";
-      equals.textContent = "=";
-
-      const answer = document.createElement("span");
-      answer.className = "history-result";
-      answer.textContent = item.result;
-
-      line.appendChild(equals);
-      line.appendChild(answer);
-
-      historyContent.appendChild(line);
-    });
+  if(waiting){
+    current = number;
+    waiting = false;
 
     if(expressionText){
-
-      const activeLine = document.createElement("div");
-      activeLine.className = "expression-line active";
-      activeLine.textContent = expressionText;
-
-      historyContent.appendChild(activeLine);
+      expressionText += ' ' + formatCurrent();
+    }else{
+      expressionText = formatCurrent();
     }
+  }else{
+    current = current === '0' ? number : current + number;
+    updateExpressionNumber();
 
-    scrollHistoryToEnd();
-  }
-
-  function calculate(a,b,op){
-
-    switch(op){
-      case "+": return a + b;
-      case "-": return a - b;
-      case "*": return a * b;
-      case "/": return b === 0 ? NaN : a / b;
-      default: return b;
+    if(!expressionText){
+      expressionText = formatCurrent();
     }
   }
 
-  function updateDisplay(){
+  updateDisplay();
+}
 
-    let shownResult = formatCurrent();
-    let shownPreview = "";
+function inputDecimal(){
+  if(current === 'Error') clearAll(false);
 
-    if(current === "Error"){
+  if(justCalculated){
+    current = '0.';
+    expressionText = '0,';
+    previous = null;
+    operator = null;
+    waiting = false;
+    justCalculated = false;
+    updateDisplay();
+    return;
+  }
 
-      shownResult = "Error";
+  if(waiting){
+    current = '0.';
+    waiting = false;
+    expressionText += ' 0,';
+  }else if(!current.includes('.')){
+    current += '.';
+    updateExpressionNumber();
 
-    }else if(operator !== null && previous !== null && !waiting){
-
-      const calculated = calculate(
-        previous,
-        Number(current),
-        operator
-      );
-
-      if(Number.isFinite(calculated)){
-        shownResult = formatNumber(calculated);
-        shownPreview = "HASIL SEMENTARA";
-      }else{
-        shownResult = "Error";
-        shownPreview = "Tidak dapat membagi dengan nol";
-      }
+    if(!expressionText){
+      expressionText = '0,';
     }
+  }
 
-    resultEl.textContent = shownResult;
-    previewEl.textContent = shownPreview;
+  updateDisplay();
+}
 
-    resultEl.classList.toggle(
-      "small",
-      shownResult.length > 12
+function calculate(a,b,op){
+  switch(op){
+    case '+': return a + b;
+    case '-': return a - b;
+    case '*': return a * b;
+    case '/': return b === 0 ? NaN : a / b;
+    default: return b;
+  }
+}
+
+function chooseOperator(nextOperator){
+  if(current === 'Error') return;
+
+  if(justCalculated){
+    expressionText = formatCurrent();
+    previous = Number(current);
+    operator = null;
+    waiting = false;
+    justCalculated = false;
+  }
+
+  if(operator !== null && !waiting){
+    const calculated = calculate(
+      Number(previous),
+      Number(current),
+      operator
     );
 
-    document.querySelectorAll("[data-op]").forEach(function(button){
-
-      button.classList.toggle(
-        "selected",
-        button.dataset.op === operator && waiting
-      );
-
-    });
-  }
-
-  function clearAll(){
-
-    current = "0";
-    previous = null;
-    operator = null;
-    waiting = false;
-    justCalculated = false;
-    expressionText = "";
-    history = [];
-
-    renderHistory();
-    updateDisplay();
-  }
-
-  function inputNumber(number){
-
-    if(current === "Error"){
-      current = "0";
-      previous = null;
-      operator = null;
-      waiting = false;
-      justCalculated = false;
-      expressionText = "";
-    }
-
-    if(justCalculated){
-
-      // Angka baru memulai hitungan baru, tanpa menghapus riwayat lama.
-      current = number;
-      previous = null;
-      operator = null;
-      expressionText = "";
-      waiting = false;
-      justCalculated = false;
-
-    }else if(waiting){
-
-      current = number;
-      waiting = false;
-
-      // Tambahkan angka baru setelah operator.
-      expressionText += " " + formatCurrent();
-
-    }else if(current === "0"){
-
-      current = number;
-      updateExpressionNumber();
-
-    }else if(current === "-0"){
-
-      current = "-" + number;
-      updateExpressionNumber();
-
-    }else if(
-      current.replace("-","").replace(".","").length < 15
-    ){
-
-      current += number;
-      updateExpressionNumber();
-    }
-
-    renderHistory();
-    updateDisplay();
-  }
-
-  function inputDecimal(){
-
-    if(current === "Error"){
-      current = "0";
-      previous = null;
-      operator = null;
-      waiting = false;
-      justCalculated = false;
-      expressionText = "";
-    }
-
-    if(justCalculated){
-
-      current = "0.";
-      previous = null;
-      operator = null;
-      expressionText = "";
-      waiting = false;
-      justCalculated = false;
-
-    }else if(waiting){
-
-      current = "0.";
-      waiting = false;
-      expressionText += " " + formatCurrent();
-
-    }else if(!current.includes(".")){
-
-      current += ".";
-      updateExpressionNumber();
-    }
-
-    renderHistory();
-    updateDisplay();
-  }
-
-  function chooseOperator(nextOperator){
-
-    if(current === "Error"){
-      return;
-    }
-
-    if(justCalculated){
-
-      // Gunakan hasil terakhir untuk hitungan baru.
-      expressionText = formatCurrent();
-      previous = Number(current);
-      operator = null;
-      justCalculated = false;
-    }
-
-    if(operator !== null && !waiting){
-
-      // Perhitungan berantai dilakukan dari kiri ke kanan.
-      const calculated = calculate(
-        previous,
-        Number(current),
-        operator
-      );
-
-      if(!Number.isFinite(calculated)){
-        current = "Error";
-        expressionText = "";
-        previous = null;
-        operator = null;
-        waiting = false;
-        justCalculated = true;
-
-        renderHistory();
-        updateDisplay();
-        return;
-      }
-
-      current = String(Number(calculated.toPrecision(12)));
-      previous = Number(current);
-
-      // Ekspresi lengkap tetap dipertahankan.
-      expressionText =
-        expressionText.substring(
-          0,
-          expressionText.lastIndexOf(" ")
-        );
-
-    }else if(operator === null){
-
-      previous = Number(current);
-
-      if(!expressionText){
-        expressionText = formatCurrent();
-      }
-    }
-
-    // Jika operator ditekan dua kali, ganti operator terakhir.
-    if(waiting && operator !== null){
-
-      const lastSpace = expressionText.lastIndexOf(" ");
-
-      expressionText =
-        expressionText.substring(0,lastSpace) +
-        " " + symbols[nextOperator];
-
-    }else{
-
-      expressionText += " " + symbols[nextOperator];
-
-    }
-
-    operator = nextOperator;
-    waiting = true;
-
-    renderHistory();
-    updateDisplay();
-  }
-
-  function equals(){
-
-    if(
-      operator === null ||
-      previous === null ||
-      waiting ||
-      current === "Error"
-    ){
-      return;
-    }
-
-    const a = previous;
-    const b = Number(current);
-    const op = operator;
-
-    // Pastikan angka terakhir masuk ke ekspresi sebelum hasil.
-    updateExpressionNumber();
-
-    const calculated = calculate(a,b,op);
-
     if(!Number.isFinite(calculated)){
-
-      current = "Error";
-      expressionText = "";
-
-    }else{
-
-      current = String(Number(calculated.toPrecision(12)));
-
-      // Simpan seluruh rangkaian, bukan hanya dua angka terakhir.
-      history.push({
-        expression:expressionText,
-        result:formatNumber(calculated)
-      });
-
-      expressionText = "";
+      current = 'Error';
+      expressionText = 'Tidak bisa dibagi dengan nol';
+      previous = null;
+      operator = null;
+      waiting = true;
+      updateDisplay();
+      return;
     }
 
+    current = String(Number(calculated.toPrecision(12)));
+    previous = Number(current);
+  }else if(operator === null){
+    previous = Number(current);
+
+    if(!expressionText){
+      expressionText = formatCurrent();
+    }
+  }
+
+  if(waiting && operator !== null){
+    const lastSpace = expressionText.lastIndexOf(' ');
+    expressionText =
+      expressionText.substring(0,lastSpace) +
+      ' ' + symbols[nextOperator];
+  }else{
+    expressionText += ' ' + symbols[nextOperator];
+  }
+
+  operator = nextOperator;
+  waiting = true;
+  updateDisplay();
+}
+
+function equals(){
+  if(operator === null || waiting || current === 'Error') return;
+
+  const originalExpression = expressionText;
+  const calculated = calculate(
+    Number(previous),
+    Number(current),
+    operator
+  );
+
+  if(!Number.isFinite(calculated)){
+    current = 'Error';
+    expressionText = 'Tidak bisa dibagi dengan nol';
     previous = null;
     operator = null;
-    waiting = false;
-    justCalculated = true;
-
-    renderHistory();
+    waiting = true;
     updateDisplay();
+    return;
   }
 
-  function toggleSign(){
-
-    if(current === "Error"){
-      return;
-    }
-
-    if(Number(current) !== 0){
-      current = String(-Number(current));
-    }
-
-    updateExpressionNumber();
-    renderHistory();
-    updateDisplay();
-  }
-
-  function percent(){
-
-    if(current === "Error"){
-      return;
-    }
-
-    current = String(Number(current) / 100);
-    waiting = false;
-    justCalculated = false;
-
-    updateExpressionNumber();
-    renderHistory();
-    updateDisplay();
-  }
-
-  function clearEntry(){
-
-    if(current === "Error"){
-      current = "0";
-      previous = null;
-      operator = null;
-      waiting = false;
-      justCalculated = false;
-      expressionText = "";
-
-      renderHistory();
-      updateDisplay();
-      return;
-    }
-
-    current = "0";
-    waiting = false;
-    justCalculated = false;
-
-    updateExpressionNumber();
-    renderHistory();
-    updateDisplay();
-  }
-
-  function backspace(){
-
-    if(current === "Error"){
-      current = "0";
-      previous = null;
-      operator = null;
-      waiting = false;
-      justCalculated = false;
-      expressionText = "";
-
-      renderHistory();
-      updateDisplay();
-      return;
-    }
-
-    if(waiting || justCalculated){
-      return;
-    }
-
-    if(
-      current.length <= 1 ||
-      (current.length === 2 && current.startsWith("-"))
-    ){
-
-      current = "0";
-
-    }else{
-
-      current = current.slice(0,-1);
-    }
-
-    updateExpressionNumber();
-    renderHistory();
-    updateDisplay();
-  }
-
-  keys.addEventListener("click",function(event){
-
-    const button = event.target.closest("button");
-
-    if(!button){
-      return;
-    }
-
-    if(button.dataset.num !== undefined){
-      inputNumber(button.dataset.num);
-      return;
-    }
-
-    if(button.dataset.op){
-      chooseOperator(button.dataset.op);
-      return;
-    }
-
-    switch(button.dataset.action){
-
-      case "clear":
-        clearAll();
-        break;
-
-      case "clear-entry":
-        clearEntry();
-        break;
-
-      case "sign":
-        toggleSign();
-        break;
-
-      case "percent":
-        percent();
-        break;
-
-      case "decimal":
-        inputDecimal();
-        break;
-
-      case "equals":
-        equals();
-        break;
-
-      case "backspace":
-        backspace();
-        break;
-    }
+  history.unshift({
+    expression: originalExpression,
+    result: formatNumber(calculated)
   });
 
-  document.addEventListener("keydown",function(event){
+  if(history.length > 100) history.pop();
 
-    const key = event.key;
-
-    if(/^[0-9]$/.test(key)){
-      inputNumber(key);
-      event.preventDefault();
-      return;
-    }
-
-    if(key === "." || key === ","){
-      inputDecimal();
-      event.preventDefault();
-      return;
-    }
-
-    if(["+","-","*","/"].includes(key)){
-      chooseOperator(key);
-      event.preventDefault();
-      return;
-    }
-
-    if(key === "Enter" || key === "="){
-      equals();
-      event.preventDefault();
-      return;
-    }
-
-    if(key === "Escape"){
-      clearAll();
-      event.preventDefault();
-      return;
-    }
-
-    if(key === "Backspace"){
-      backspace();
-      event.preventDefault();
-      return;
-    }
-
-    if(key === "%"){
-      percent();
-      event.preventDefault();
-    }
-  });
+  current = String(Number(calculated.toPrecision(12)));
+  expressionText = originalExpression + ' =';
+  previous = null;
+  operator = null;
+  waiting = true;
+  justCalculated = true;
 
   renderHistory();
   updateDisplay();
+}
 
-})();
+function clearAll(clearHistoryToo = true){
+  current = '0';
+  previous = null;
+  operator = null;
+  waiting = false;
+  justCalculated = false;
+  expressionText = '';
+
+  if(clearHistoryToo){
+    history = [];
+    renderHistory();
+  }
+
+  updateDisplay();
+}
+
+function clearEntry(){
+  current = '0';
+
+  if(justCalculated){
+    expressionText = '';
+    justCalculated = false;
+    previous = null;
+    operator = null;
+    waiting = false;
+  }else{
+    updateExpressionNumber();
+  }
+
+  updateDisplay();
+}
+
+function backspace(){
+  if(waiting || justCalculated || current === 'Error'){
+    if(current === 'Error') clearAll(false);
+    return;
+  }
+
+  if(current.length > 1){
+    current = current.slice(0,-1);
+    if(current === '-') current = '0';
+  }else{
+    current = '0';
+  }
+
+  updateExpressionNumber();
+  updateDisplay();
+}
+
+function toggleSign(){
+  if(current === 'Error') return;
+
+  if(Number(current) !== 0){
+    current = String(Number(current) * -1);
+  }
+
+  if(justCalculated){
+    expressionText = formatCurrent();
+  }else{
+    updateExpressionNumber();
+  }
+
+  updateDisplay();
+}
+
+function percentage(){
+  if(current === 'Error') return;
+
+  current = String(Number(current) / 100);
+
+  if(justCalculated){
+    expressionText = formatCurrent();
+  }else{
+    updateExpressionNumber();
+  }
+
+  updateDisplay();
+}
+
+function applyUnary(label, fn){
+  if(current === 'Error') return;
+
+  const value = Number(current);
+  const calculated = fn(value);
+
+  if(!Number.isFinite(calculated)){
+    current = 'Error';
+    expressionText = 'Perhitungan tidak valid';
+    updateDisplay();
+    return;
+  }
+
+  const oldValue = formatCurrent();
+  current = String(Number(calculated.toPrecision(12)));
+
+  if(operator !== null && !waiting){
+    updateExpressionNumber();
+  }else{
+    expressionText = label + '(' + oldValue + ')';
+  }
+
+  justCalculated = false;
+  updateDisplay();
+}
+
+function squareRoot(){
+  applyUnary('√', value => value < 0 ? NaN : Math.sqrt(value));
+}
+
+function square(){
+  applyUnary('kuadrat', value => value * value);
+}
+
+function reciprocal(){
+  applyUnary('1/', value => value === 0 ? NaN : 1 / value);
+}
+
+function clearHistory(){
+  history = [];
+  renderHistory();
+}
+
+function renderHistory(){
+  if(history.length === 0){
+    historyList.innerHTML =
+      '<div class="empty-history">Belum ada riwayat</div>';
+    return;
+  }
+
+  historyList.replaceChildren();
+
+  history.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'history-item';
+
+    const expression = document.createElement('div');
+    expression.className = 'history-expression';
+    expression.textContent = item.expression + ' ' + item.result;
+
+    const result = document.createElement('div');
+    result.className = 'history-result';
+    result.textContent = '= ' + item.result;
+
+    card.appendChild(expression);
+    card.appendChild(result);
+    historyList.appendChild(card);
+  });
+}
+
+document.addEventListener('keydown', event => {
+  const key = event.key;
+
+  if(key >= '0' && key <= '9'){
+    inputNumber(key);
+  }else if(key === '.' || key === ','){
+    inputDecimal();
+  }else if(['+','-','*','/'].includes(key)){
+    chooseOperator(key);
+  }else if(key === 'Enter' || key === '='){
+    event.preventDefault();
+    equals();
+  }else if(key === 'Backspace'){
+    backspace();
+  }else if(key === 'Escape'){
+    clearAll();
+  }else if(key === '%'){
+    percentage();
+  }
+});
+
+updateDisplay();
+renderHistory();
 </script>
-
 </body>
 </html>
