@@ -1,0 +1,1270 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#111827">
+
+<title>KATALOG DOKUMEN PDF</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  min-height:100%;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+
+  /* =========================
+     BACKGROUND DEFECT.jpg
+  ========================= */
+
+  background:
+    linear-gradient(
+      rgba(0,0,0,.38),
+      rgba(0,0,0,.38)
+    ),
+    url("DEFECT.jpg");
+
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+
+  min-height:100vh;
+
+  color:#fff;
+}
+
+.container{
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+  padding:18px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  background:linear-gradient(
+    145deg,
+    #374151,
+    #111827
+  );
+
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:22px;
+
+  padding:24px 20px;
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.08);
+
+  text-align:center;
+}
+
+.header h1{
+  font-size:clamp(24px,5vw,38px);
+  letter-spacing:1px;
+  font-weight:800;
+}
+
+/* TAMBAHAN: JUDUL HEADER BISA DIKLIK KE HOME */
+.header h1 a{
+  color:inherit;
+  text-decoration:none;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.header h1 a:hover{
+  opacity:.85;
+}
+
+.header p{
+  margin-top:8px;
+  color:#d1d5db;
+  font-size:14px;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+  margin-top:15px;
+
+  display:grid;
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:10px;
+}
+
+.status-box{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:15px;
+  padding:14px 8px;
+  text-align:center;
+}
+
+.status-number{
+  font-size:22px;
+  font-weight:800;
+}
+
+.status-label{
+  margin-top:5px;
+  font-size:11px;
+  color:#9ca3af;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+  margin-top:18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.10),
+      rgba(255,255,255,.04)
+    );
+
+  border:1px solid rgba(255,255,255,.12);
+
+  border-radius:20px;
+
+  padding:18px;
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.35);
+}
+
+.search-title{
+  font-size:15px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.search-row{
+  display:flex;
+  gap:10px;
+}
+
+.search-input{
+  flex:1;
+
+  min-width:0;
+
+  padding:15px 16px;
+
+  border-radius:14px;
+
+  border:1px solid #4b5563;
+
+  background:#111827;
+
+  color:#fff;
+
+  font-size:16px;
+
+  outline:none;
+}
+
+.search-input:focus{
+  border-color:#9ca3af;
+  box-shadow:
+    0 0 0 3px rgba(156,163,175,.12);
+}
+
+.btn{
+  border:none;
+
+  border-radius:14px;
+
+  padding:0 20px;
+
+  font-size:15px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.btn:active{
+  transform:scale(.97);
+}
+
+.btn-search{
+  background:#f3f4f6;
+  color:#111827;
+}
+
+.btn-update{
+  background:#374151;
+  color:#fff;
+
+  border:1px solid #6b7280;
+}
+
+/* =========================
+   INFO
+========================= */
+
+.info{
+  margin-top:14px;
+
+  padding:13px 15px;
+
+  border-radius:13px;
+
+  background:rgba(255,255,255,.05);
+
+  color:#d1d5db;
+
+  font-size:13px;
+
+  line-height:1.5;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading{
+  display:none;
+
+  margin-top:18px;
+
+  text-align:center;
+
+  padding:25px;
+
+  background:rgba(0,0,0,.25);
+
+  border-radius:17px;
+}
+
+.spinner{
+  width:35px;
+  height:35px;
+
+  border:4px solid rgba(255,255,255,.2);
+
+  border-top-color:#fff;
+
+  border-radius:50%;
+
+  margin:auto;
+
+  animation:
+    spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+.loading-text{
+  margin-top:10px;
+  color:#d1d5db;
+  font-size:13px;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.result-area{
+  margin-top:18px;
+}
+
+.result-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:10px;
+}
+
+.result-header h2{
+  font-size:18px;
+}
+
+.result-count{
+  font-size:12px;
+  color:#9ca3af;
+}
+
+.result-list{
+  display:grid;
+  gap:12px;
+}
+
+.card{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.09),
+      rgba(255,255,255,.035)
+    );
+
+  border:1px solid rgba(255,255,255,.10);
+
+  border-radius:17px;
+
+  padding:16px;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.30);
+}
+
+.card-name{
+  font-size:15px;
+  line-height:1.45;
+
+  font-weight:700;
+
+  word-break:break-word;
+}
+
+.card-wom{
+  margin-top:8px;
+
+  display:inline-block;
+
+  background:#1f2937;
+
+  border:1px solid #4b5563;
+
+  border-radius:8px;
+
+  padding:5px 8px;
+
+  font-size:12px;
+
+  color:#e5e7eb;
+}
+
+.card-actions{
+  display:flex;
+  gap:9px;
+
+  margin-top:14px;
+}
+
+.open-btn{
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  flex:1;
+
+  min-height:43px;
+
+  border-radius:12px;
+
+  text-decoration:none;
+
+  background:#f3f4f6;
+
+  color:#111827;
+
+  font-size:13px;
+
+  font-weight:800;
+}
+
+.copy-btn{
+  border:1px solid #4b5563;
+
+  background:#1f2937;
+
+  color:#fff;
+
+  border-radius:12px;
+
+  padding:0 16px;
+
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+  display:none;
+
+  text-align:center;
+
+  padding:35px 20px;
+
+  background:rgba(255,255,255,.04);
+
+  border:1px dashed #4b5563;
+
+  border-radius:17px;
+
+  color:#9ca3af;
+}
+
+.empty-icon{
+  font-size:35px;
+  margin-bottom:8px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  text-align:center;
+
+  margin-top:25px;
+
+  padding:15px;
+
+  color:#6b7280;
+
+  font-size:11px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+  .container{
+    padding:12px;
+  }
+
+  .header{
+    padding:20px 14px;
+    border-radius:18px;
+  }
+
+  .status{
+    gap:7px;
+  }
+
+  .status-box{
+    padding:11px 5px;
+  }
+
+  .status-number{
+    font-size:18px;
+  }
+
+  .status-label{
+    font-size:10px;
+  }
+
+  .search-box{
+    padding:14px;
+  }
+
+  .search-row{
+    flex-direction:column;
+  }
+
+  .btn-search{
+    height:46px;
+  }
+
+  .btn-update{
+    height:44px;
+  }
+
+  .card-actions{
+    flex-direction:column;
+  }
+
+  .copy-btn{
+    height:42px;
+  }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+
+    <h1>
+      <a href="https://ganie81.github.io/website-saya/cek.html"
+         title="Kembali ke Home">
+        📚 KATALOG DOKUMEN PDF
+      </a>
+    </h1>
+
+    <p>
+      Pencarian dokumen berdasarkan nama PDF
+      dan hasil OCR
+    </p>
+
+  </div>
+
+
+  <!-- STATUS -->
+  <div class="status">
+
+    <div class="status-box">
+
+      <div
+        class="status-number"
+        id="totalPDF">
+        -
+      </div>
+
+      <div class="status-label">
+        TOTAL PDF
+      </div>
+
+    </div>
+
+
+    <div class="status-box">
+
+      <div
+        class="status-number"
+        id="totalOCR">
+        -
+      </div>
+
+      <div class="status-label">
+        SUDAH OCR
+      </div>
+
+    </div>
+
+
+    <div class="status-box">
+
+      <div
+        class="status-number"
+        id="sisaOCR">
+        -
+      </div>
+
+      <div class="status-label">
+        SISA OCR
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- SEARCH -->
+  <div class="search-box">
+
+    <div class="search-title">
+      🔎 CARI DOKUMEN
+    </div>
+
+
+    <div class="search-row">
+
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="Contoh: WOM/2604/00008"
+        autocomplete="off"
+      >
+
+      <button
+        class="btn btn-search"
+        onclick="cariDokumen()">
+        CARI
+      </button>
+
+    </div>
+
+
+    <div class="info">
+      Masukkan nomor WOM, kode, atau kata yang
+      tercetak di dalam PDF. Pencarian menggunakan
+      data OCR yang tersimpan di Spreadsheet.
+    </div>
+
+  </div>
+
+
+  <!-- UPDATE -->
+  <button
+    class="btn btn-update"
+    style="
+      width:100%;
+      height:46px;
+      margin-top:12px;
+    "
+    onclick="updateData()">
+
+    🔄 UPDATE DATA
+
+  </button>
+
+
+  <!-- LOADING -->
+  <div
+    class="loading"
+    id="loading">
+
+    <div class="spinner"></div>
+
+    <div
+      class="loading-text"
+      id="loadingText">
+      Memproses...
+    </div>
+
+  </div>
+
+
+  <!-- RESULT -->
+  <div
+    class="result-area"
+    id="resultArea"
+    style="display:none;">
+
+    <div class="result-header">
+
+      <h2>HASIL PENCARIAN</h2>
+
+      <div
+        class="result-count"
+        id="resultCount">
+        0 dokumen
+      </div>
+
+    </div>
+
+
+    <div
+      class="result-list"
+      id="resultList">
+    </div>
+
+
+    <div
+      class="empty"
+      id="emptyResult">
+
+      <div class="empty-icon">
+        📄
+      </div>
+
+      <div>
+        Dokumen tidak ditemukan.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer">
+    KATALOG DOKUMEN PDF • INDEX DRIVE + OCR
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   URL WEB APP APPS SCRIPT
+========================================================= */
+
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbznX4q8l1urowCrgvI8E-rRxlXG0MS2AzfOIN_rd6keO4WO16ZRu7QtZv587-dY8wtY/exec";
+
+
+/* =========================================================
+   ELEMENT
+========================================================= */
+
+const searchInput =
+  document.getElementById(
+    "searchInput"
+  );
+
+const loading =
+  document.getElementById(
+    "loading"
+  );
+
+const loadingText =
+  document.getElementById(
+    "loadingText"
+  );
+
+const resultArea =
+  document.getElementById(
+    "resultArea"
+  );
+
+const resultList =
+  document.getElementById(
+    "resultList"
+  );
+
+const emptyResult =
+  document.getElementById(
+    "emptyResult"
+  );
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+function showLoading(text){
+
+  loadingText.textContent =
+    text || "Memproses...";
+
+  loading.style.display =
+    "block";
+
+}
+
+
+function hideLoading(){
+
+  loading.style.display =
+    "none";
+
+}
+
+
+/* =========================================================
+   API
+========================================================= */
+
+async function api(action, params = {}){
+
+  const url =
+    new URL(API_URL);
+
+  url.searchParams.set(
+    "action",
+    action
+  );
+
+
+  Object.keys(params)
+    .forEach(function(key){
+
+      url.searchParams.set(
+        key,
+        params[key]
+      );
+
+    });
+
+
+  const response =
+    await fetch(
+      url.toString(),
+      {
+        method:"GET",
+        cache:"no-store"
+      }
+    );
+
+
+  if(!response.ok){
+
+    throw new Error(
+      "HTTP " +
+      response.status
+    );
+
+  }
+
+
+  const data =
+    await response.json();
+
+
+  if(
+    data &&
+    data.sukses === false &&
+    data.error
+  ){
+
+    throw new Error(
+      data.error
+    );
+
+  }
+
+
+  return data;
+
+}
+
+
+/* =========================================================
+   STATUS OCR
+========================================================= */
+
+async function loadStatus(){
+
+  try{
+
+    const data =
+      await api(
+        "status"
+      );
+
+
+    document.getElementById(
+      "totalPDF"
+    ).textContent =
+      data.totalPDF ?? 0;
+
+
+    document.getElementById(
+      "totalOCR"
+    ).textContent =
+      data.totalOCR ?? 0;
+
+
+    document.getElementById(
+      "sisaOCR"
+    ).textContent =
+      data.sisa ?? 0;
+
+
+  }catch(error){
+
+    console.error(
+      "STATUS ERROR:",
+      error
+    );
+
+    document.getElementById(
+      "totalPDF"
+    ).textContent =
+      "ERR";
+
+    document.getElementById(
+      "totalOCR"
+    ).textContent =
+      "ERR";
+
+    document.getElementById(
+      "sisaOCR"
+    ).textContent =
+      "ERR";
+
+  }
+
+}
+
+
+/* =========================================================
+   CARI DOKUMEN
+========================================================= */
+
+async function cariDokumen(){
+
+  const kata =
+    searchInput.value.trim();
+
+
+  if(!kata){
+
+    searchInput.focus();
+
+    return;
+
+  }
+
+
+  showLoading(
+    "Mencari dokumen..."
+  );
+
+
+  resultArea.style.display =
+    "block";
+
+
+  resultList.innerHTML =
+    "";
+
+
+  emptyResult.style.display =
+    "none";
+
+
+  try{
+
+    const hasil =
+      await api(
+        "cari",
+        {
+          kata:kata
+        }
+      );
+
+
+    tampilkanHasil(
+      hasil
+    );
+
+
+  }catch(error){
+
+    resultList.innerHTML =
+      `
+      <div class="empty"
+           style="display:block">
+
+        <div class="empty-icon">
+          ⚠️
+        </div>
+
+        <div>
+          Gagal mencari dokumen.
+        </div>
+
+        <div style="
+          margin-top:7px;
+          font-size:11px;
+        ">
+          ${escapeHTML(error.message)}
+        </div>
+
+      </div>
+      `;
+
+  }finally{
+
+    hideLoading();
+
+  }
+
+}
+
+
+/* =========================================================
+   TAMPIL HASIL
+========================================================= */
+
+function tampilkanHasil(hasil){
+
+  resultList.innerHTML =
+    "";
+
+
+  let data = [];
+
+
+  if(Array.isArray(hasil)){
+
+    data = hasil;
+
+  }
+
+  else if(
+    hasil &&
+    Array.isArray(hasil.data)
+  ){
+
+    data = hasil.data;
+
+  }
+
+  else if(
+    hasil &&
+    Array.isArray(hasil.hasil)
+  ){
+
+    data = hasil.hasil;
+
+  }
+
+
+  const jumlah =
+    data.length;
+
+
+  document.getElementById(
+    "resultCount"
+  ).textContent =
+    jumlah +
+    " dokumen";
+
+
+  if(jumlah === 0){
+
+    emptyResult.style.display =
+      "block";
+
+    return;
+
+  }
+
+
+  emptyResult.style.display =
+    "none";
+
+
+  data.forEach(
+    function(item){
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "card";
+
+
+      const nama =
+        item.nama ||
+        item.namaPDF ||
+        item["NAMA PDF"] ||
+        "Tanpa nama";
+
+
+      const wom =
+        item.noWOM ||
+        item.noWom ||
+        item.wom ||
+        item["NO WOM"] ||
+        "";
+
+
+      const url =
+        item.url ||
+        item.urlPDF ||
+        item["URL PDF"] ||
+        "#";
+
+
+      card.innerHTML = `
+
+        <div class="card-name">
+          ${escapeHTML(nama)}
+        </div>
+
+        ${
+          wom
+          ?
+          `
+          <div class="card-wom">
+            ${escapeHTML(wom)}
+          </div>
+          `
+          :
+          ""
+        }
+
+        <div class="card-actions">
+
+          <a
+            class="open-btn"
+            href="${escapeAttribute(url)}"
+            target="_blank"
+            rel="noopener">
+            📄 BUKA PDF
+          </a>
+
+          <button
+            class="copy-btn"
+            onclick="copyText(
+              '${escapeJS(nama)}'
+            )">
+            SALIN NAMA
+          </button>
+
+        </div>
+
+      `;
+
+
+      resultList.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   UPDATE DATA
+========================================================= */
+
+async function updateData(){
+
+  showLoading(
+    "Memperbarui index PDF..."
+  );
+
+
+  try{
+
+    const data =
+      await api(
+        "update"
+      );
+
+
+    alert(
+      data.pesan ||
+      "Update selesai."
+    );
+
+
+    await loadStatus();
+
+
+  }catch(error){
+
+    alert(
+      "Gagal update:\n" +
+      error.message
+    );
+
+  }finally{
+
+    hideLoading();
+
+  }
+
+}
+
+
+/* =========================================================
+   ENTER UNTUK CARI
+========================================================= */
+
+searchInput.addEventListener(
+  "keydown",
+  function(event){
+
+    if(
+      event.key === "Enter"
+    ){
+
+      cariDokumen();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+async function copyText(text){
+
+  try{
+
+    await navigator.clipboard.writeText(
+      text
+    );
+
+    alert(
+      "Nama PDF berhasil disalin."
+    );
+
+  }catch(error){
+
+    alert(
+      "Tidak bisa menyalin."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   SECURITY / HTML
+========================================================= */
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttribute(text){
+
+  return String(text)
+    .replace(/"/g,"%22")
+    .replace(/</g,"%3C")
+    .replace(/>/g,"%3E");
+
+}
+
+
+function escapeJS(text){
+
+  return String(text)
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'")
+    .replace(/\r/g,"")
+    .replace(/\n/g,"\\n");
+
+}
+
+
+/* =========================================================
+   MULAI
+========================================================= */
+
+loadStatus();
+
+</script>
+
+</body>
+</html>
