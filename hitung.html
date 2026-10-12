@@ -158,7 +158,6 @@ button{
   text-align:right;
 }
 
-/* RIWAYAT HORIZONTAL */
 .expression{
   width:100%;
   min-height:54px;
@@ -195,7 +194,14 @@ button{
   white-space:nowrap;
 }
 
-.expression-line:last-child{
+.expression-line.latest{
+  border-color:#087b50;
+  background:#09251e;
+  color:#42e6a0;
+  font-weight:bold;
+}
+
+.expression-line.active{
   border-color:#087b50;
   background:#09251e;
   color:#42e6a0;
@@ -576,9 +582,13 @@ button{
   let operator = null;
   let waiting = false;
   let justCalculated = false;
-  let expression = "";
   let errorMessage = "";
+
+  // Riwayat perhitungan yang sudah selesai.
   let history = [];
+
+  // Baris perhitungan yang sedang berlangsung.
+  let activeHistoryLine = "";
 
   const symbols = {
     "+":"+",
@@ -599,10 +609,13 @@ button{
 
     const rounded = Number(value.toPrecision(12));
 
-    if(Math.abs(rounded) >= 1e15 ||
-       (Math.abs(rounded) > 0 &&
-        Math.abs(rounded) < 1e-7)){
-
+    if(
+      Math.abs(rounded) >= 1e15 ||
+      (
+        Math.abs(rounded) > 0 &&
+        Math.abs(rounded) < 1e-7
+      )
+    ){
       return rounded.toExponential(6)
         .replace(/\.?0+e/,"e")
         .replace("e+","e");
@@ -624,11 +637,19 @@ button{
     return formatNumber(Number(current));
   }
 
+  function scrollHistoryToEnd(){
+
+    requestAnimationFrame(function(){
+      expressionEl.scrollLeft = expressionEl.scrollWidth;
+    });
+  }
+
+  // Menampilkan riwayat lama dan perhitungan yang sedang berjalan.
   function renderHistory(){
 
     historyContent.replaceChildren();
 
-    if(history.length === 0){
+    if(history.length === 0 && !activeHistoryLine){
 
       const emptyLine = document.createElement("div");
       emptyLine.className = "expression-line";
@@ -643,11 +664,13 @@ button{
       const line = document.createElement("div");
       line.className = "expression-line";
 
-      if(index === history.length - 1){
+      if(index === history.length - 1 && !activeHistoryLine){
         line.classList.add("latest");
       }
 
-      line.textContent = item.expression + " ";
+      line.appendChild(
+        document.createTextNode(item.expression + " ")
+      );
 
       const equals = document.createElement("span");
       equals.className = "history-equals";
@@ -662,9 +685,41 @@ button{
       historyContent.appendChild(line);
     });
 
-    requestAnimationFrame(function(){
-      expressionEl.scrollLeft = expressionEl.scrollWidth;
-    });
+    if(activeHistoryLine){
+
+      const activeLine = document.createElement("div");
+      activeLine.className = "expression-line active";
+      activeLine.textContent = activeHistoryLine;
+
+      historyContent.appendChild(activeLine);
+    }
+
+    scrollHistoryToEnd();
+  }
+
+  function syncActiveHistory(){
+
+    if(
+      operator !== null &&
+      previous !== null &&
+      !justCalculated &&
+      current !== "Error"
+    ){
+
+      activeHistoryLine =
+        formatNumber(previous) + " " +
+        symbols[operator];
+
+      if(!waiting){
+        activeHistoryLine += " " + formatCurrent();
+      }
+
+    }else{
+
+      activeHistoryLine = "";
+    }
+
+    renderHistory();
   }
 
   function addHistory(expressionText,resultText){
@@ -674,6 +729,7 @@ button{
       result:resultText
     });
 
+    activeHistoryLine = "";
     renderHistory();
   }
 
@@ -731,25 +787,26 @@ button{
     operator = null;
     waiting = false;
     justCalculated = false;
-    expression = "";
     errorMessage = "";
+    activeHistoryLine = "";
 
     // AC menghapus seluruh riwayat.
     history = [];
-    renderHistory();
 
+    renderHistory();
     updateDisplay();
   }
 
   function inputNumber(number){
 
     if(current === "Error"){
+
       current = "0";
       previous = null;
       operator = null;
       waiting = false;
       justCalculated = false;
-      expression = "";
+      activeHistoryLine = "";
       errorMessage = "";
     }
 
@@ -760,7 +817,7 @@ button{
       if(justCalculated){
         previous = null;
         operator = null;
-        expression = "";
+        activeHistoryLine = "";
       }
 
       waiting = false;
@@ -774,25 +831,30 @@ button{
 
       current = "-" + number;
 
-    }else if(current.replace("-","").replace(".","").length < 15){
+    }else if(
+      current.replace("-","").replace(".","").length < 15
+    ){
 
       current += number;
 
     }
 
     errorMessage = "";
+
+    syncActiveHistory();
     updateDisplay();
   }
 
   function inputDecimal(){
 
     if(current === "Error"){
+
       current = "0";
       previous = null;
       operator = null;
       waiting = false;
       justCalculated = false;
-      expression = "";
+      activeHistoryLine = "";
       errorMessage = "";
     }
 
@@ -803,7 +865,7 @@ button{
       if(justCalculated){
         previous = null;
         operator = null;
-        expression = "";
+        activeHistoryLine = "";
       }
 
       waiting = false;
@@ -815,6 +877,7 @@ button{
 
     }
 
+    syncActiveHistory();
     updateDisplay();
   }
 
@@ -853,7 +916,9 @@ button{
         operator = null;
         waiting = false;
         justCalculated = true;
+        activeHistoryLine = "";
 
+        renderHistory();
         updateDisplay();
         return;
       }
@@ -872,24 +937,25 @@ button{
     justCalculated = false;
     errorMessage = "";
 
-    expression =
-      formatNumber(previous) + " " + symbols[operator];
-
+    syncActiveHistory();
     updateDisplay();
   }
 
   function equals(){
 
-    if(operator === null ||
-       previous === null ||
-       waiting ||
-       current === "Error"){
+    if(
+      operator === null ||
+      previous === null ||
+      waiting ||
+      current === "Error"
+    ){
       return;
     }
 
     const a = previous;
     const b = Number(current);
     const op = operator;
+
     const expressionText =
       formatNumber(a) + " " +
       symbols[op] + " " +
@@ -902,13 +968,18 @@ button{
       current = "Error";
       errorMessage = "Tidak dapat membagi dengan nol";
 
+      activeHistoryLine = "";
+      renderHistory();
+
     }else{
 
       current = String(Number(calculated.toPrecision(12)));
       errorMessage = "";
 
-      // Setiap hasil baru ditambahkan; riwayat lama tidak ditimpa.
-      addHistory(expressionText,formatNumber(calculated));
+      addHistory(
+        expressionText,
+        formatNumber(calculated)
+      );
     }
 
     previous = null;
@@ -929,6 +1000,7 @@ button{
       current = String(-Number(current));
     }
 
+    syncActiveHistory();
     updateDisplay();
   }
 
@@ -942,19 +1014,23 @@ button{
     waiting = false;
     justCalculated = false;
 
+    syncActiveHistory();
     updateDisplay();
   }
 
   function clearEntry(){
 
     if(current === "Error"){
+
       current = "0";
       previous = null;
       operator = null;
       waiting = false;
       justCalculated = false;
-      expression = "";
+      activeHistoryLine = "";
       errorMessage = "";
+
+      renderHistory();
       updateDisplay();
       return;
     }
@@ -963,19 +1039,23 @@ button{
     waiting = false;
     justCalculated = false;
 
+    syncActiveHistory();
     updateDisplay();
   }
 
   function backspace(){
 
     if(current === "Error"){
+
       current = "0";
       previous = null;
       operator = null;
       waiting = false;
       justCalculated = false;
-      expression = "";
+      activeHistoryLine = "";
       errorMessage = "";
+
+      renderHistory();
       updateDisplay();
       return;
     }
@@ -984,8 +1064,10 @@ button{
       return;
     }
 
-    if(current.length <= 1 ||
-       (current.length === 2 && current.startsWith("-"))){
+    if(
+      current.length <= 1 ||
+      (current.length === 2 && current.startsWith("-"))
+    ){
 
       current = "0";
 
@@ -995,6 +1077,7 @@ button{
 
     }
 
+    syncActiveHistory();
     updateDisplay();
   }
 
