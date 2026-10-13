@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#061a36">
+<meta name="description" content="Kalkulator tekstil lengkap PT BEHAESTEX Departemen Printing">
+<title>KALKULATOR TEKSTIL PRO | PT BEHAESTEX</title>
+<style>
+:root{--navy:#041329;--navy2:#08264b;--blue:#087cf0;--cyan:#43d8ff;--gold:#ffd878;--green:#00bd7b;--white:#f5f9ff;--muted:#b8c9e2;--line:#28649b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 15% 0%,#123c70 0,#061a36 38%,#020916 100%);color:var(--white);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+button,input,select{font:inherit}
+.topbar{position:relative;overflow:hidden;display:flex;align-items:center;gap:18px;padding:18px clamp(12px,3vw,34px);border-bottom:1px solid #2c9bff;background:linear-gradient(110deg,#031126,#0a3670 55%,#041329);box-shadow:0 7px 22px #0008,inset 0 1px #ffffff35}
+.topbar:after{content:"";position:absolute;right:-50px;top:-110px;width:360px;height:260px;border-radius:50%;background:#168aff22;filter:blur(10px);pointer-events:none}
+.company-logo{width:76px;height:76px;object-fit:contain;flex-shrink:0;filter:drop-shadow(3px 4px 5px #0009)}
+.brand{z-index:1;min-width:0}
+.brand h1{margin:0;font-size:clamp(23px,4vw,42px);font-weight:1000;letter-spacing:1.4px;text-shadow:0 2px #000,0 0 18px #1497ff65}
+.brand .sub{margin-top:7px;font-size:clamp(12px,2vw,18px);font-weight:800;letter-spacing:1.3px;color:#c8e7ff}
+.brand .tag{margin-top:5px;font-size:12px;color:#a9c5e7;letter-spacing:1px}
+.shell{width:min(1600px,100%);margin:auto;padding:18px}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 18px;margin-bottom:16px;border:1px solid #367cb5;border-radius:17px;background:linear-gradient(145deg,#103a68,#061a35);box-shadow:7px 7px 15px #0007,inset 2px 2px 5px #ffffff15,inset -3px -3px 7px #0006}
+.hero strong{font-size:clamp(18px,2.6vw,26px);letter-spacing:.8px}
+.pill{padding:8px 12px;border:1px solid #3c9fe9;border-radius:99px;background:#06284a;color:#8fe6ff;font-weight:800;font-size:12px}
+.nav{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;margin-bottom:17px}
+.nav button{padding:11px 5px;border:1px solid #2b6395;border-radius:12px;color:#eaf6ff;font-weight:800;background:linear-gradient(145deg,#123b68,#06172d);box-shadow:3px 4px 8px #0006,inset 1px 1px 2px #ffffff17;cursor:pointer}
+.nav button:hover,.nav button.active{background:linear-gradient(145deg,#0b9cff,#0752b5);border-color:#66dfff;box-shadow:0 0 12px #078cff55,inset 1px 1px 3px #ffffff55}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;align-items:stretch}
+.card{min-width:0;overflow:hidden;border:1px solid #276ba5;border-radius:17px;background:linear-gradient(145deg,#0a2b50ed,#031329f5);box-shadow:7px 8px 17px #0008,inset 2px 2px 4px #ffffff12,inset -3px -3px 6px #0008;scroll-margin-top:12px}
+.card-head{display:flex;align-items:center;gap:11px;padding:14px 15px;border-bottom:1px solid #286394;background:linear-gradient(110deg,#104579,#071b36)}
+.number{display:grid;place-items:center;width:40px;height:40px;flex-shrink:0;border-radius:50%;font-size:21px;font-weight:1000;background:linear-gradient(145deg,#5be4ff,#0064e6);box-shadow:3px 4px 7px #0008,inset 2px 2px 4px #ffffffa6,inset -2px -3px 4px #003c9c}
+.card-head h2{margin:0;font-size:17px;line-height:1.2}
+.card-head p{margin:4px 0 0;font-size:12px;color:#b8d9f7;line-height:1.35}
+.card-body{padding:15px}
+.field{margin-bottom:12px}
+label{display:block;margin-bottom:6px;font-size:13px;font-weight:800;color:#dceeff}
+input,select{width:100%;min-width:0;padding:11px 12px;border:1px solid #3677ac;border-radius:9px;outline:none;color:#fff;background:linear-gradient(145deg,#173e67,#09213d);box-shadow:inset 2px 2px 5px #0007,0 1px #ffffff12}
+input:focus,select:focus{border-color:#48d5ff;box-shadow:0 0 0 2px #159eff2a,inset 2px 2px 5px #0007}
+select option{background:#09213d;color:#fff}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{width:100%;padding:12px;border:1px solid #4fc9ff;border-radius:10px;cursor:pointer;font-weight:900;color:white;background:linear-gradient(180deg,#1bb4ff 0%,#0875ed 48%,#064ab0 100%);box-shadow:4px 5px 9px #0007,inset 1px 2px 3px #ffffff8a,inset -1px -2px 3px #002e7c}
+.btn:active{transform:translateY(2px);box-shadow:1px 2px 4px #0008,inset 1px 1px 3px #00366e}
+.result{margin-top:13px;padding:14px;border:1px solid #1af0a0;border-radius:12px;background:linear-gradient(145deg,#007c56,#00472f);box-shadow:4px 5px 10px #0007,inset 2px 2px 4px #ffffff32,inset -2px -3px 5px #002c20}
+.result .label{font-size:12px;color:#c9ffeb;font-weight:800}
+.result .value{margin-top:5px;font-size:clamp(21px,2.4vw,29px);font-weight:1000;overflow-wrap:anywhere;text-shadow:0 2px 3px #003b27}
+.result .small{margin-top:8px;font-size:12px;color:#d4ffed;line-height:1.6}
+.formula{margin-top:10px;padding:10px;border:1px solid #234d75;border-radius:9px;color:#b6d4f1;font-size:11px;line-height:1.55;background:#020e20}
+.mini-result{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+.mini-result>div{padding:10px;border-radius:9px;background:#042e31;border:1px solid #167e70}
+.mini-result span{display:block;font-size:11px;color:#b5e9e2}
+.mini-result b{display:block;margin-top:5px;font-size:17px;overflow-wrap:anywhere}
+.wide{grid-column:1/-1}
+.basic-calculator{max-width:520px;margin:auto}
+.calc-display{width:100%;height:75px;margin-bottom:12px;text-align:right;font-size:clamp(27px,5vw,40px);font-weight:800;background:linear-gradient(145deg,#03101f,#0c2b4b)}
+.calc-keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.calc-keys button{min-height:57px;border:1px solid #4778a5;border-radius:12px;color:#fff;font-size:21px;font-weight:900;background:linear-gradient(145deg,#1c4770,#09213d);box-shadow:4px 4px 7px #0008,inset 1px 1px 3px #ffffff2b;cursor:pointer}
+.calc-keys button.op{background:linear-gradient(145deg,#126fca,#073c84)}
+.calc-keys button.eq{background:linear-gradient(145deg,#00bd7b,#006b4b)}
+.calc-keys button.clear{background:linear-gradient(145deg,#e45c72,#92243b)}
+.tips{margin-top:16px;padding:15px;border:1px solid #285b88;border-radius:14px;background:#061a32;color:#bfd7f0;font-size:13px;line-height:1.65}
+footer{text-align:center;padding:20px 10px;color:#91b5d7;font-size:12px}
+.hidden{display:none!important}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nav{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:650px){.topbar{gap:11px;padding:14px 12px}.company-logo{width:60px;height:60px}.brand h1{font-size:22px;letter-spacing:.4px}.brand .sub{font-size:11px;letter-spacing:.4px}.brand .tag{font-size:10px}.shell{padding:10px}.hero{padding:12px;border-radius:12px}.nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.nav button{font-size:12px;padding:12px 5px}.grid{grid-template-columns:1fr;gap:12px}.card-head{padding:12px}.card-body{padding:12px}.card-head h2{font-size:17px}.field{margin-bottom:10px}.wide{grid-column:auto}.calc-keys button{min-height:55px}}
+@media(min-width:1500px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header class="topbar">
+<img class="company-logo" src="https://images.glints.com/unsafe/glints-dashboard.oss-ap-southeast-1.aliyuncs.com/company-logo/e941d780b6d2d89e5607fcab43672a3b.png" alt="Logo PT BEHAESTEX">
+<div class="brand"><h1>KALKULATOR TEKSTIL PRO</h1><div class="sub">PT BEHAESTEX · DEPARTEMEN PRINTING</div><div class="tag">HITUNG TEPAT • PRODUKSI EFISIEN • HASIL MAKSIMAL</div></div>
+</header>
+<main class="shell">
+<div class="hero"><strong>🧵 PUSAT PERHITUNGAN TEKSTIL</strong><span class="pill">● SIAP DIGUNAKAN · TANPA APPS SCRIPT</span></div>
+<nav class="nav" aria-label="Menu kalkulator">
+<button class="active" onclick="go('pcs',this)">🔢 PCS ↔ KD</button><button onclick="go('pasta',this)">🎨 Pasta & Warna</button><button onclick="go('kain',this)">🧶 Kain</button><button onclick="go('gsm',this)">⚖️ Gramasi</button><button onclick="go('target',this)">📈 Target</button><button onclick="go('benang',this)">🧵 Benang</button><button onclick="go('satuan',this)">🔄 Satuan</button><button onclick="go('kalkulator',this)">🧮 Kalkulator</button>
+</nav>
+<section class="grid">
+<article class="card" id="pcs"><div class="card-head"><span class="number">1</span><div><h2>PCS ↔ KD</h2><p>Konversi PCS dan kodi</p></div></div><div class="card-body">
+<div class="field"><label for="pcsMode">Jenis perhitungan</label><select id="pcsMode" onchange="calcPCS()"><option value="pk">PCS → KD</option><option value="kp">KD → PCS</option></select></div>
+<div class="field"><label for="pcsInput" id="pcsLabel">Jumlah PCS</label><input id="pcsInput" type="number" min="0" step="any" value="400" oninput="calcPCS()"></div>
+<div class="result"><div class="label">HASIL KONVERSI</div><div class="value" id="pcsResult">20 KD</div><div class="small" id="pcsExplain">400 PCS ÷ 20 = 20 KD</div></div><div class="formula">Rumus: 1 KD = 20 PCS · KD = PCS ÷ 20 · PCS = KD × 20</div>
+</div></article>
+<article class="card" id="pasta"><div class="card-head"><span class="number">2</span><div><h2>Pasta & Warna</h2><p>Estimasi kebutuhan campuran pasta</p></div></div><div class="card-body">
+<div class="field"><label for="pastaMode">Dasar perhitungan</label><select id="pastaMode" onchange="calcPasta()"><option value="kg">Berat kain (kg)</option><option value="meter">Panjang kain (meter) × konsumsi</option></select></div>
+<div class="field"><label for="pastaBerat" id="pastaBeratLabel">Berat kain (kg)</label><input id="pastaBerat" type="number" min="0" step="any" value="1000" oninput="calcPasta()"></div>
+<div class="two"><div class="field"><label for="pastaRasio">Rasio pasta (%)</label><input id="pastaRasio" type="number" min="0" step="any" value="2.5" oninput="calcPasta()"></div><div class="field"><label for="pastaWarna">Jumlah warna</label><input id="pastaWarna" type="number" min="1" step="1" value="4" oninput="calcPasta()"></div></div>
+<div class="two"><div class="field"><label for="pastaLoss">Faktor loss (%)</label><input id="pastaLoss" type="number" min="0" step="any" value="10" oninput="calcPasta()"></div><div class="field"><label for="pastaKonsumsi">Konsumsi (kg/100 m)</label><input id="pastaKonsumsi" type="number" min="0" step="any" value="2.5" oninput="calcPasta()"></div></div>
+<button class="btn" onclick="calcPasta()">HITUNG KEBUTUHAN PASTA</button>
+<div class="result"><div class="label">TOTAL PASTA TERMASUK LOSS</div><div class="value" id="pastaResult">27,50 kg</div><div class="mini-result"><div><span>Sebelum loss</span><b id="pastaBase">25,00 kg</b></div><div><span>Rata-rata per warna</span><b id="pastaPer">6,88 kg</b></div></div><div class="small" id="pastaExplain">Estimasi berdasarkan rasio input.</div></div>
+<div class="formula">Catatan: hasil adalah estimasi matematis dari rasio/konsumsi yang dimasukkan. Sesuaikan dengan resep pasta, pickup, jenis kain, dan standar proses aktual.</div>
+</div></article>
+<article class="card" id="kain"><div class="card-head"><span class="number">3</span><div><h2>Kain: Kg ↔ Meter ↔ Yard</h2><p>Estimasi panjang kain</p></div></div><div class="card-body">
+<div class="field"><label for="kainMode">Hitung berdasarkan</label><select id="kainMode" onchange="calcKain()"><option value="kg">Berat kain (kg) → panjang</option><option value="meter">Panjang (meter) → berat</option></select></div>
+<div class="field"><label for="kainBerat" id="kainBeratLabel">Berat kain (kg)</label><input id="kainBerat" type="number" min="0" step="any" value="100" oninput="calcKain()"></div>
+<div class="two"><div class="field"><label for="kainGsm">Gramasi (GSM)</label><input id="kainGsm" type="number" min="0" step="any" value="150" oninput="calcKain()"></div><div class="field"><label for="kainLebar">Lebar kain (cm)</label><input id="kainLebar" type="number" min="0" step="any" value="160" oninput="calcKain()"></div></div>
+<div class="result"><div class="label">HASIL ESTIMASI</div><div class="value" id="kainResult">416,67 meter</div><div class="mini-result"><div><span>Meter</span><b id="kainMeter">416,67 m</b></div><div><span>Yard</span><b id="kainYard">455,38 yd</b></div></div><div class="small" id="kainExplain">Berdasarkan GSM dan lebar kain.</div></div>
+<div class="formula">Panjang (m) = berat (kg) × 100.000 ÷ [GSM × lebar (cm)]. 1 meter = 1,09361 yard. Hasil teoritis, belum memperhitungkan susut/kelembapan.</div>
+</div></article>
+<article class="card" id="gsm"><div class="card-head"><span class="number">4</span><div><h2>Gramasi & Berat Kain</h2><p>Hitung berat kain berdasarkan ukuran</p></div></div><div class="card-body">
+<div class="field"><label for="gsmMode">Jenis perhitungan</label><select id="gsmMode" onchange="calcGSM()"><option value="berat">Panjang + lebar + GSM → berat</option><option value="gsm">Berat + panjang + lebar → GSM</option></select></div>
+<div class="two"><div class="field"><label for="gsmPanjang">Panjang (meter)</label><input id="gsmPanjang" type="number" min="0" step="any" value="100" oninput="calcGSM()"></div><div class="field"><label for="gsmLebar">Lebar (cm)</label><input id="gsmLebar" type="number" min="0" step="any" value="160" oninput="calcGSM()"></div></div>
+<div class="two"><div class="field"><label for="gsmNilai">Gramasi (GSM)</label><input id="gsmNilai" type="number" min="0" step="any" value="150" oninput="calcGSM()"></div><div class="field"><label for="gsmBerat">Berat (kg)</label><input id="gsmBerat" type="number" min="0" step="any" value="24" oninput="calcGSM()"></div></div>
+<div class="result"><div class="label" id="gsmResultLabel">ESTIMASI BERAT KAIN</div><div class="value" id="gsmResult">24,00 kg</div><div class="small" id="gsmExplain">Volume kain dihitung dari panjang × lebar.</div></div>
+<div class="formula">Berat (kg) = panjang (m) × lebar (m) × GSM ÷ 1.000. Untuk lebar cm, gunakan lebar ÷ 100.</div>
+</div></article>
+<article class="card" id="target"><div class="card-head"><span class="number">5</span><div><h2>Target & Produktivitas</h2><p>Estimasi target mesin dan shift</p></div></div><div class="card-body">
+<div class="two"><div class="field"><label for="targetUnit">Satuan target</label><select id="targetUnit"><option value="KD">KD</option><option value="PCS">PCS</option><option value="meter">Meter</option><option value="yard">Yard</option></select></div><div class="field"><label for="targetDasar">Target per mesin/shift</label><input id="targetDasar" type="number" min="0" step="any" value="100" oninput="calcTarget()"></div></div>
+<div class="two"><div class="field"><label for="targetMesin">Jumlah mesin</label><input id="targetMesin" type="number" min="1" step="1" value="6" oninput="calcTarget()"></div><div class="field"><label for="targetJam">Jam kerja/shift</label><input id="targetJam" type="number" min="0.1" step="any" value="7" oninput="calcTarget()"></div></div>
+<div class="field"><label for="targetEfisiensi">Efisiensi mesin (%)</label><input id="targetEfisiensi" type="number" min="0" max="100" step="any" value="85" oninput="calcTarget()"></div>
+<button class="btn" onclick="calcTarget()">HITUNG TARGET</button>
+<div class="result"><div class="label">TARGET EFEKTIF</div><div class="value" id="targetResult">510 KD</div><div class="mini-result"><div><span>Target semua mesin (100%)</span><b id="targetKotor">600 KD</b></div><div><span>Target per jam per mesin</span><b id="targetPerJam">12,14 KD</b></div></div><div class="small" id="targetExplain">Target efektif = target dasar × mesin × efisiensi.</div></div>
+<div class="formula">Gunakan target dasar per mesin untuk satu shift. Perhitungan tidak mengambil data produksi aktual secara otomatis.</div>
+</div></article>
+<article class="card" id="benang"><div class="card-head"><span class="number">6</span><div><h2>Benang (Ne Kapas)</h2><p>Estimasi panjang benang berdasarkan nomor Ne</p></div></div><div class="card-body">
+<div class="field"><label for="benangNe">Nomor benang Ne</label><input id="benangNe" type="number" min="0" step="any" value="40" oninput="calcBenang()"></div>
+<div class="field"><label for="benangKg">Berat benang (kg)</label><input id="benangKg" type="number" min="0" step="any" value="1" oninput="calcBenang()"></div>
+<div class="result"><div class="label">ESTIMASI PANJANG BENANG</div><div class="value" id="benangResult">67.736 meter</div><div class="mini-result"><div><span>Panjang (meter)</span><b id="benangMeter">67.736 m</b></div><div><span>Panjang (yard)</span><b id="benangYard">74.079 yd</b></div></div><div class="small">Estimasi teoritis untuk sistem Ne kapas (cotton count).</div></div>
+<div class="formula">Perkiraan: 1 kg ≈ Ne × 1.693,4 meter. Tidak berlaku langsung untuk Nm, denier, tex, atau sistem nomor benang lainnya.</div>
+</div></article>
+<article class="card" id="satuan"><div class="card-head"><span class="number">7</span><div><h2>Konversi Satuan</h2><p>Panjang, berat, luas, dan volume</p></div></div><div class="card-body">
+<div class="field"><label for="unitType">Kategori satuan</label><select id="unitType" onchange="updateUnits()"><option value="length">Panjang</option><option value="weight">Berat</option><option value="area">Luas</option><option value="volume">Volume</option></select></div>
+<div class="two"><div class="field"><label for="unitFrom">Dari</label><select id="unitFrom" onchange="calcUnit()"></select></div><div class="field"><label for="unitTo">Menjadi</label><select id="unitTo" onchange="calcUnit()"></select></div></div>
+<div class="field"><label for="unitValue">Nilai</label><input id="unitValue" type="number" step="any" value="100" oninput="calcUnit()"></div>
+<div class="result"><div class="label">HASIL KONVERSI</div><div class="value" id="unitResult">109,36 yd</div><div class="small" id="unitExplain">100 m = 109,36 yd</div></div>
+<div class="formula">Konversi menggunakan faktor satuan standar. Untuk kain, panjang aktual dapat berbeda karena lebar, gramasi, susut, dan kondisi bahan.</div>
+</div></article>
+<article class="card" id="kalkulator"><div class="card-head"><span class="number">8</span><div><h2>Kalkulator Umum</h2><p>Operasi hitung dasar</p></div></div><div class="card-body"><div class="basic-calculator">
+<input class="calc-display" id="display" value="0" aria-label="Tampilan kalkulator" readonly>
+<div class="calc-keys">
+<button class="clear" onclick="clearCalc()">AC</button><button onclick="backCalc()">⌫</button><button class="op" onclick="appendCalc('%')">%</button><button class="op" onclick="appendCalc('/')">÷</button>
+<button onclick="appendCalc('7')">7</button><button onclick="appendCalc('8')">8</button><button onclick="appendCalc('9')">9</button><button class="op" onclick="appendCalc('*')">×</button>
+<button onclick="appendCalc('4')">4</button><button onclick="appendCalc('5')">5</button><button onclick="appendCalc('6')">6</button><button class="op" onclick="appendCalc('-')">−</button>
+<button onclick="appendCalc('1')">1</button><button onclick="appendCalc('2')">2</button><button onclick="appendCalc('3')">3</button><button class="op" onclick="appendCalc('+')">+</button>
+<button onclick="appendCalc('(')">(</button><button onclick="appendCalc('0')">0</button><button onclick="appendCalc('.')">.</button><button class="eq" onclick="calculateCalc()">=</button>
+</div></div><div class="formula">Kalkulator umum untuk penjumlahan, pengurangan, perkalian, pembagian, persen, dan tanda kurung.</div></div></article>
+</section>
+<div class="tips"><b>💡 CATATAN PENTING</b><br>• Gunakan titik atau koma desimal sesuai keyboard; hasil ditampilkan dengan format angka Indonesia.<br>• Hasil kain, pasta, dan benang adalah estimasi matematis. Validasi dengan spesifikasi bahan, resep proses, serta standar produksi di lapangan.<br>• Kalkulator ini tidak mengirim data ke server. Setelah halaman dan aset tersimpan, akses offline bergantung pada cache browser/PWA.</div>
+</main>
+<footer>PT BEHAESTEX · DEPARTEMEN PRINTING<br>KALKULATOR TEKSTIL PRO · Perhitungan langsung di perangkat</footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>{const v=String($(id).value).trim().replace(',','.');const n=Number(v);return Number.isFinite(n)?n:0};
+const fmt=(n,d=2)=>Number.isFinite(n)?n.toLocaleString('id-ID',{maximumFractionDigits:d,minimumFractionDigits:0}):'—';
+const safe=(n)=>Number.isFinite(n)&&n>=0;
+function go(id,btn){$(id).scrollIntoView({behavior:'smooth',block:'start'});document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active')}
+function calcPCS(){const mode=$('pcsMode').value,v=num('pcsInput');$('pcsLabel').textContent=mode==='pk'?'Jumlah PCS':'Jumlah KD';if(!safe(v)){$('pcsResult').textContent='Periksa input';return}const out=mode==='pk'?v/20:v*20;$('pcsResult').textContent=fmt(out)+' '+(mode==='pk'?'KD':'PCS');$('pcsExplain').textContent=mode==='pk'?fmt(v)+' PCS ÷ 20 = '+fmt(out)+' KD':fmt(v)+' KD × 20 = '+fmt(out)+' PCS'}
+function calcPasta(){const mode=$('pastaMode').value;const v=num('pastaBerat'),ratio=num('pastaRasio'),warna=Math.max(1,num('pastaWarna')),loss=num('pastaLoss'),konsumsi=num('pastaKonsumsi');$('pastaBeratLabel').textContent=mode==='kg'?'Berat kain (kg)':'Panjang kain (meter)';let base=mode==='kg'?v*ratio/100:v*konsumsi/100;if(![v,ratio,loss,konsumsi].every(safe)||!safe(warna)){ $('pastaResult').textContent='Periksa input';return}const total=base*(1+loss/100);$('pastaResult').textContent=fmt(total)+' kg';$('pastaBase').textContent=fmt(base)+' kg';$('pastaPer').textContent=fmt(total/warna)+' kg';$('pastaExplain').textContent='Loss '+fmt(loss)+'% ditambahkan ke kebutuhan dasar. Estimasi per warna dibagi rata.'}
+function calcKain(){const mode=$('kainMode').value,v=num('kainBerat'),gsm=num('kainGsm'),lebar=num('kainLebar');$('kainBeratLabel').textContent=mode==='kg'?'Berat kain (kg)':'Panjang kain (meter)';if(!safe(v)||!safe(gsm)||!safe(lebar)||gsm===0||lebar===0){$('kainResult').textContent='Periksa input';return}let meter=mode==='kg'?v*100000/(gsm*lebar):v;let kg=mode==='kg'?v:meter*gsm*lebar/100000;let yard=meter*1.0936133;$('kainResult').textContent=mode==='kg'?fmt(meter)+' meter':fmt(kg)+' kg';$('kainMeter').textContent=fmt(meter)+' m';$('kainYard').textContent=fmt(yard)+' yd';$('kainExplain').textContent=mode==='kg'?'Estimasi panjang dari berat, GSM, dan lebar.':'Estimasi berat dari panjang, GSM, dan lebar.'}
+function calcGSM(){const mode=$('gsmMode').value,p=num('gsmPanjang'),w=num('gsmLebar'),g=num('gsmNilai'),kg=num('gsmBerat');if(![p,w,g,kg].every(safe)||p===0||w===0){$('gsmResult').textContent='Periksa input';return}if(mode==='berat'){const out=p*(w/100)*g/1000;$('gsmResultLabel').textContent='ESTIMASI BERAT KAIN';$('gsmResult').textContent=fmt(out)+' kg';$('gsmExplain').textContent=fmt(p)+' m × '+fmt(w)+' cm × '+fmt(g)+' GSM.'}else{if(kg===0){$('gsmResult').textContent='Berat harus lebih dari 0';return}const out=kg*1000/(p*(w/100));$('gsmResultLabel').textContent='ESTIMASI GRAMASI';$('gsmResult').textContent=fmt(out)+' GSM';$('gsmExplain').textContent='Gramasi hasil hitung berdasarkan berat aktual yang dimasukkan.'}}
+function calcTarget(){const unit=$('targetUnit').value,base=num('targetDasar'),mesin=num('targetMesin'),jam=num('targetJam'),eff=num('targetEfisiensi');if(![base,mesin,jam,eff].every(safe)||mesin<1||jam===0||eff>100){$('targetResult').textContent='Periksa input';return}const kotor=base*mesin,efektif=kotor*eff/100,perJam=base*eff/100/jam;$('targetResult').textContent=fmt(efektif)+' '+unit;$('targetKotor').textContent=fmt(kotor)+' '+unit;$('targetPerJam').textContent=fmt(perJam)+' '+unit;$('targetExplain').textContent='Efisiensi '+fmt(eff)+'% × '+fmt(mesin)+' mesin × target dasar '+fmt(base)+' '+unit+'.'}
+function calcBenang(){const ne=num('benangNe'),kg=num('benangKg');if(!safe(ne)||!safe(kg)){$('benangResult').textContent='Periksa input';return}const meter=ne*1693.4*kg,yard=meter/0.9144;$('benangResult').textContent=fmt(meter,0)+' meter';$('benangMeter').textContent=fmt(meter,0)+' m';$('benangYard').textContent=fmt(yard,0)+' yd'}
+const units={length:{mm:0.001,cm:0.01,m:1,km:1000,inch:0.0254,ft:0.3048,yd:0.9144},weight:{mg:0.000001,g:0.001,kg:1,ton:1000,lb:0.45359237},area:{'cm²':0.0001,'m²':1,'yd²':0.83612736,'ft²':0.09290304},volume:{ml:0.001,l:1,'m³':1000,gal:3.78541178}};
+const labels={length:{mm:'Milimeter (mm)',cm:'Sentimeter (cm)',m:'Meter (m)',km:'Kilometer (km)',inch:'Inci (in)',ft:'Kaki (ft)',yd:'Yard (yd)'},weight:{mg:'Miligram (mg)',g:'Gram (g)',kg:'Kilogram (kg)',ton:'Ton metrik',lb:'Pound (lb)'},area:{'cm²':'Sentimeter persegi (cm²)','m²':'Meter persegi (m²)','yd²':'Yard persegi (yd²)','ft²':'Kaki persegi (ft²)'},volume:{ml:'Mililiter (ml)',l:'Liter (l)','m³':'Meter kubik (m³)',gal:'Galon AS (gal)'}};
+function updateUnits(){const type=$('unitType').value,from=$('unitFrom'),to=$('unitTo'),keys=Object.keys(units[type]);from.innerHTML='';to.innerHTML='';keys.forEach(k=>{from.add(new Option(labels[type][k],k));to.add(new Option(labels[type][k],k))});if(type==='length'){from.value='m';to.value='yd'}else if(type==='weight'){from.value='kg';to.value='g'}else if(type==='area'){from.value='m²';to.value='yd²'}else{from.value='l';to.value='ml'}calcUnit()}
+function calcUnit(){if(!$('unitFrom').value)return;const type=$('unitType').value,v=num('unitValue'),from=$('unitFrom').value,to=$('unitTo').value;if(!Number.isFinite(v))return;const out=v*units[type][from]/units[type][to];$('unitResult').textContent=fmt(out,6)+' '+to;$('unitExplain').textContent=fmt(v,6)+' '+from+' = '+fmt(out,6)+' '+to}
+let calcExpr='0',justEvaluated=false;
+function showCalc(){$('display').value=calcExpr.replace(/\*/g,' × ').replace(/\//g,' ÷ ')}
+function appendCalc(s){if(justEvaluated&&/[0-9.(]/.test(s)){calcExpr='0';}justEvaluated=false;if(calcExpr==='0'&&/[0-9.]/.test(s))calcExpr=s;else calcExpr+=s;showCalc()}
+function clearCalc(){calcExpr='0';justEvaluated=false;showCalc()}
+function backCalc(){calcExpr=calcExpr.length>1?calcExpr.slice(0,-1):'0';showCalc()}
+function calculateCalc(){try{if(!/^[0-9+\-*/().%\s]+$/.test(calcExpr))throw Error();let exp=calcExpr.replace(/(\d+(?:\.\d+)?)%/g,'($1/100)');if(!exp||!/[0-9)]$/.test(exp))throw Error();const result=Function('"use strict";return ('+exp+')')();if(!Number.isFinite(result))throw Error();calcExpr=String(Number(result.toPrecision(12)));justEvaluated=true;showCalc()}catch(e){$('display').value='Input tidak valid';calcExpr='0';justEvaluated=true}}
+['pcsInput','pastaBerat','pastaRasio','pastaWarna','pastaLoss','pastaKonsumsi','kainBerat','kainGsm','kainLebar','gsmPanjang','gsmLebar','gsmNilai','gsmBerat','targetDasar','targetMesin','targetJam','targetEfisiensi','benangNe','benangKg','unitValue'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter'){({pcsInput:calcPCS,pastaBerat:calcPasta,pastaRasio:calcPasta,pastaWarna:calcPasta,pastaLoss:calcPasta,pastaKonsumsi:calcPasta,kainBerat:calcKain,kainGsm:calcKain,kainLebar:calcKain,gsmPanjang:calcGSM,gsmLebar:calcGSM,gsmNilai:calcGSM,gsmBerat:calcGSM,targetDasar:calcTarget,targetMesin:calcTarget,targetJam:calcTarget,targetEfisiensi:calcTarget,benangNe:calcBenang,benangKg:calcBenang,unitValue:calcUnit})[id]?.()}}));
+calcPCS();calcPasta();calcKain();calcGSM();calcTarget();calcBenang();updateUnits();
+if('serviceWorker'in navigator && location.protocol.startsWith('http')){window.addEventListener('load',()=>{navigator.serviceWorker.register('./sw.js').catch(()=>{});});}
+</script>
+</body>
+</html>
