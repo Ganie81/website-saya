@@ -489,16 +489,21 @@ tbody tr:hover td {
 tbody td:first-child {
   font-weight: 900;
 }
-/* =====================================================
-   KHUSUS KOLOM FP: ANGKA BESAR DAN CENTER
+  /* =====================================================
+   KOLOM FP: ANGKA BESAR, CENTER, DAN LINGKARAN
 ===================================================== */
 
 tbody tr > td:nth-child(3) {
-  font-size: 20px !important;
-  font-weight: 900 !important;
   text-align: center !important;
   vertical-align: middle !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
 }
+
+tbody tr > td:nth-child(3)::first-line {
+  line-height: 1.2;
+}
+
 /* =====================================================
    WARNA KHUSUS KOLOM KEY
 ===================================================== */
