@@ -19,7 +19,6 @@
   --border: rgba(151,190,235,.19);
   --green: #20d6a0;
 
-  /* Lebar tiga kolom pertama untuk freeze */
   --col-hari: 90px;
   --col-tanggal: 125px;
   --col-fp: 65px;
@@ -51,13 +50,13 @@ body {
 }
 
 /* =====================================================
-   HEADER UTAMA
+   HEADER UTAMA + TOMBOL HOME
 ===================================================== */
 
 .header {
   position: relative;
   overflow: hidden;
-  padding: 20px 18px;
+  padding: 20px 82px 20px 18px;
   border-radius: 17px;
   border: 1px solid rgba(110,190,255,.35);
   background: linear-gradient(135deg, #164c80, #0b2340 65%, #102e50);
@@ -75,6 +74,7 @@ body {
   top: -130px;
   border-radius: 50%;
   background: rgba(67,217,255,.12);
+  pointer-events: none;
 }
 
 .header h1 {
@@ -94,6 +94,58 @@ body {
   font-size: 14px;
   font-weight: 700;
   line-height: 1.6;
+}
+
+/* TOMBOL HOME DI SUDUT KANAN ATAS HEADER */
+
+.header-home {
+  position: absolute;
+  z-index: 5;
+  top: 12px;
+  right: 12px;
+  width: 52px;
+  height: 52px;
+  min-height: 52px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  border-radius: 13px;
+  border: 1px solid rgba(255,255,255,.45);
+  background: linear-gradient(145deg, #36b8ff, #0870df 60%, #064ba9);
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.3),
+    inset 0 1px 2px rgba(255,255,255,.4);
+  color: #fff;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.header-home .home-icon {
+  display: block;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.header-home .home-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: .5px;
+}
+
+.header-home:hover {
+  background: linear-gradient(145deg, #58c8ff, #1685ff 60%, #075ac7);
+  box-shadow:
+    0 5px 14px rgba(0,0,0,.35),
+    inset 0 1px 2px rgba(255,255,255,.45);
+}
+
+.header-home:active {
+  transform: scale(.95);
 }
 
 /* =====================================================
@@ -217,6 +269,11 @@ button:disabled {
   cursor: wait;
 }
 
+.header-home:disabled {
+  opacity: 1;
+  cursor: pointer;
+}
+
 .info-line {
   display: flex;
   flex-wrap: wrap;
@@ -256,6 +313,7 @@ table {
 }
 
 /* Lebar kolom 1, 2, dan 3 */
+
 thead tr > th:nth-child(1),
 tbody tr > td:nth-child(1) {
   min-width: var(--col-hari);
@@ -320,38 +378,25 @@ thead th.dev-header {
 
 /* =====================================================
    FREEZE KOLOM 1, 2, DAN 3
-   HARI | TANGGAL | FP
-
-   Berlaku saat scroll horizontal.
-   Posisi kiri dihitung berdasarkan lebar kolom.
 ===================================================== */
 
-/* Kolom pertama: HARI */
 thead tr.header-level-1 th:nth-child(1),
 tbody tr > td:nth-child(1) {
   position: sticky;
   left: 0;
 }
 
-/* Kolom kedua: TANGGAL */
 thead tr.header-level-1 th:nth-child(2),
 tbody tr > td:nth-child(2) {
   position: sticky;
   left: var(--col-hari);
 }
 
-/* Kolom ketiga: FP */
 thead tr.header-level-1 th:nth-child(3),
 tbody tr > td:nth-child(3) {
   position: sticky;
   left: calc(var(--col-hari) + var(--col-tanggal));
 }
-
-/*
-   Karena header memiliki colspan dan rowspan,
-   penentuan posisi header freeze juga menggunakan
-   kelas khusus yang dipasang melalui JavaScript.
-*/
 
 thead th.freeze-col-1 {
   left: 0 !important;
@@ -365,7 +410,6 @@ thead th.freeze-col-3 {
   left: calc(var(--col-hari) + var(--col-tanggal)) !important;
 }
 
-/* Lapisan header freeze berada di atas header biasa */
 thead th.freeze-col-1,
 thead th.freeze-col-2,
 thead th.freeze-col-3 {
@@ -374,7 +418,6 @@ thead th.freeze-col-3 {
   background-clip: padding-box;
 }
 
-/* Latar kolom freeze mengikuti warna baris */
 tbody tr > td:nth-child(1),
 tbody tr > td:nth-child(2),
 tbody tr > td:nth-child(3) {
@@ -382,7 +425,6 @@ tbody tr > td:nth-child(3) {
   background-clip: padding-box;
 }
 
-/* Bayangan pembatas kolom yang dibekukan */
 tbody tr > td:nth-child(3) {
   box-shadow: 3px 0 5px rgba(0,0,0,.28);
 }
@@ -435,7 +477,6 @@ tbody tr.fp-7 td {
   background-color: #ead6c3;
 }
 
-/* Garis hitam tipis pada seluruh isi tabel */
 tbody tr td {
   border-right: 1px solid #000000;
   border-bottom: 1px solid #000000;
@@ -493,7 +534,6 @@ tbody tr td.key-ac {
   font-weight: 900 !important;
 }
 
-/* Warna KEY tetap jelas saat baris disentuh */
 tbody tr:hover td.key-ah {
   background: #111111 !important;
   background-color: #111111 !important;
@@ -521,10 +561,6 @@ tbody tr:hover td.key-ac {
 
 /* =====================================================
    WARNA ANAK HEADER BLOK
-   MENGIKUTI NILAI KOLOM KEY
-
-   Nilai BLOK yang cocok dengan awalan KEY
-   mendapatkan warna yang sama.
 ===================================================== */
 
 tbody tr td.blok-ah {
@@ -567,7 +603,6 @@ tbody tr td.blok-ac {
   font-weight: 900 !important;
 }
 
-/* Pertahankan warna BLOK ketika baris disentuh */
 tbody tr:hover td[class*="blok-"] {
   filter: brightness(1);
 }
@@ -663,7 +698,7 @@ tbody tr:hover td.dev-pcs.dev-negative {
   }
 
   .header {
-    padding: 17px 13px;
+    padding: 17px 66px 17px 13px;
     border-radius: 13px;
   }
 
@@ -673,6 +708,23 @@ tbody tr:hover td.dev-pcs.dev-negative {
 
   .header p {
     font-size: 13px;
+  }
+
+  .header-home {
+    top: 10px;
+    right: 9px;
+    width: 45px;
+    height: 45px;
+    min-height: 45px;
+    border-radius: 11px;
+  }
+
+  .header-home .home-icon {
+    font-size: 22px;
+  }
+
+  .header-home .home-label {
+    font-size: 8px;
   }
 
   .status-grid {
@@ -768,11 +820,25 @@ tbody tr:hover td.dev-pcs.dev-negative {
 <div class="container">
 
   <header class="header">
+
+    <!-- TOMBOL HOME: MENUJU cek.html -->
+    <button
+      type="button"
+      class="header-home"
+      onclick="window.location.href='./cek.html'"
+      aria-label="Kembali ke halaman Home"
+      title="Kembali ke Home">
+      <span class="home-icon">🏠</span>
+      <span class="home-label">HOME</span>
+    </button>
+
     <h1>PLANNING 1</h1>
+
     <p>
       DATA PRODUKSI &amp; PERENCANAAN<br>
       SPREADSHEET PROTOTYPE#4
     </p>
+
   </header>
 
   <section class="status-grid">
@@ -1041,7 +1107,6 @@ function nilaiNegatif(nilai) {
 
 /* =====================================================
    WARNA KEY DAN BLOK
-   MENGGUNAKAN ATURAN WARNA YANG SAMA
 ===================================================== */
 
 function awalanKEY(nilai) {
@@ -1076,11 +1141,6 @@ function kelasKEY(nilai) {
   return daftarKelas[awalanKEY(nilai)] || '';
 }
 
-/*
- * BLOK menggunakan peta warna yang sama.
- * Nilai BLOK diperiksa berdasarkan dua huruf awalnya.
- */
-
 function kelasBLOK(nilai) {
   const daftarKelas = {
     'AH': 'blok-ah',
@@ -1100,10 +1160,6 @@ function kelasBLOK(nilai) {
 function pasangFreezeHeader() {
   const kepala = el('kepalaTabel');
 
-  /*
-   * Kolom HARI, TANGGAL, dan FP adalah sel rowspan=3
-   * pada baris header pertama.
-   */
   const barisPertama = kepala.querySelector(
     'tr.header-level-1'
   );
@@ -1321,9 +1377,7 @@ function tampilkanTabel() {
 
         let nilaiTampil = nilai;
 
-        /*
-         * KEY = KOLOM F / INDEX 5.
-         */
+        /* KEY = KOLOM F / INDEX 5 */
 
         if (index === 5) {
           const warna = warnaKEY(nilai);
@@ -1341,10 +1395,7 @@ function tampilkanTabel() {
           }
         }
 
-        /*
-         * BLOK = KOLOM M / INDEX 12.
-         * Mengikuti aturan warna KEY.
-         */
+        /* BLOK = KOLOM M / INDEX 12 */
 
         if (index === 12) {
           const warna = warnaKEY(nilai);
@@ -1362,18 +1413,14 @@ function tampilkanTabel() {
           }
         }
 
-        /*
-         * ORDER, ACV, DEV = KOLOM I, J, K.
-         */
+        /* ORDER, ACV, DEV = KOLOM I, J, K */
 
         if (index === 8 || index === 9 || index === 10) {
           kelasTambahan.push('pcs-cell');
           nilaiTampil = formatPcs(nilai);
         }
 
-        /*
-         * DEV negatif berwarna merah.
-         */
+        /* DEV negatif berwarna merah */
 
         if (index === 10) {
           kelasTambahan.push('dev-pcs');
