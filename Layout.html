@@ -1,11 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#111827">
 
 <title>KATALOG DOKUMEN PDF</title>
@@ -23,25 +20,17 @@ html{
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-
-  /* =========================
-     BACKGROUND DEFECT.jpg
-  ========================= */
-
   background:
     linear-gradient(
       rgba(0,0,0,.38),
       rgba(0,0,0,.38)
     ),
     url("DEFECT.jpg");
-
   background-size:cover;
   background-position:center center;
   background-repeat:no-repeat;
   background-attachment:fixed;
-
   min-height:100vh;
-
   color:#fff;
 }
 
@@ -52,11 +41,13 @@ body{
   padding:18px;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
   background:linear-gradient(
     145deg,
     #374151,
@@ -65,7 +56,6 @@ body{
 
   border:1px solid rgba(255,255,255,.12);
   border-radius:22px;
-
   padding:24px 20px;
 
   box-shadow:
@@ -81,7 +71,6 @@ body{
   font-weight:800;
 }
 
-/* TAMBAHAN: JUDUL HEADER BISA DIKLIK KE HOME */
 .header h1 a{
   color:inherit;
   text-decoration:none;
@@ -99,18 +88,21 @@ body{
   font-size:14px;
 }
 
-/* =========================
-   STATUS
-========================= */
+/* STATUS */
 
 .status{
+  position:sticky;
+  top:125px;
+  z-index:999;
+
   margin-top:15px;
 
   display:grid;
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:10px;
+
+  background:rgba(17,24,39,.96);
+  border-radius:15px;
 }
 
 .status-box{
@@ -132,28 +124,26 @@ body{
   color:#9ca3af;
 }
 
-/* =========================
-   SEARCH
-========================= */
+/* SEARCH */
 
 .search-box{
+  position:sticky;
+  top:205px;
+  z-index:998;
+
   margin-top:18px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.10),
-      rgba(255,255,255,.04)
-    );
+  background:linear-gradient(
+    145deg,
+    rgba(31,41,55,.98),
+    rgba(17,24,39,.98)
+  );
 
   border:1px solid rgba(255,255,255,.12);
-
   border-radius:20px;
-
   padding:18px;
 
-  box-shadow:
-    0 12px 30px rgba(0,0,0,.35);
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
 }
 
 .search-title{
@@ -169,43 +159,28 @@ body{
 
 .search-input{
   flex:1;
-
   min-width:0;
-
   padding:15px 16px;
-
   border-radius:14px;
-
   border:1px solid #4b5563;
-
   background:#111827;
-
   color:#fff;
-
   font-size:16px;
-
   outline:none;
 }
 
 .search-input:focus{
   border-color:#9ca3af;
-  box-shadow:
-    0 0 0 3px rgba(156,163,175,.12);
+  box-shadow:0 0 0 3px rgba(156,163,175,.12);
 }
 
 .btn{
   border:none;
-
   border-radius:14px;
-
   padding:0 20px;
-
   font-size:15px;
-
   font-weight:700;
-
   cursor:pointer;
-
   transition:.2s;
 }
 
@@ -221,68 +196,44 @@ body{
 .btn-update{
   background:#374151;
   color:#fff;
-
   border:1px solid #6b7280;
 }
 
-/* =========================
-   INFO
-========================= */
+/* INFO */
 
 .info{
   margin-top:14px;
-
   padding:13px 15px;
-
   border-radius:13px;
-
   background:rgba(255,255,255,.05);
-
   color:#d1d5db;
-
   font-size:13px;
-
   line-height:1.5;
 }
 
-/* =========================
-   LOADING
-========================= */
+/* LOADING */
 
 .loading{
   display:none;
-
   margin-top:18px;
-
   text-align:center;
-
   padding:25px;
-
   background:rgba(0,0,0,.25);
-
   border-radius:17px;
 }
 
 .spinner{
   width:35px;
   height:35px;
-
   border:4px solid rgba(255,255,255,.2);
-
   border-top-color:#fff;
-
   border-radius:50%;
-
   margin:auto;
-
-  animation:
-    spin .8s linear infinite;
+  animation:spin .8s linear infinite;
 }
 
 @keyframes spin{
-  to{
-    transform:rotate(360deg);
-  }
+  to{transform:rotate(360deg);}
 }
 
 .loading-text{
@@ -291,9 +242,7 @@ body{
   font-size:13px;
 }
 
-/* =========================
-   RESULT
-========================= */
+/* RESULT */
 
 .result-area{
   margin-top:18px;
@@ -303,7 +252,7 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-
+  gap:10px;
   margin-bottom:10px;
 }
 
@@ -313,7 +262,7 @@ body{
 
 .result-count{
   font-size:12px;
-  color:#9ca3af;
+  color:#d1d5db;
 }
 
 .result-list{
@@ -322,114 +271,77 @@ body{
 }
 
 .card{
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.09),
-      rgba(255,255,255,.035)
-    );
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.09),
+    rgba(255,255,255,.035)
+  );
 
   border:1px solid rgba(255,255,255,.10);
-
   border-radius:17px;
-
   padding:16px;
 
-  box-shadow:
-    0 8px 25px rgba(0,0,0,.30);
+  box-shadow:0 8px 25px rgba(0,0,0,.30);
 }
 
 .card-name{
   font-size:15px;
   line-height:1.45;
-
   font-weight:700;
-
   word-break:break-word;
 }
 
 .card-wom{
   margin-top:8px;
-
   display:inline-block;
-
   background:#1f2937;
-
   border:1px solid #4b5563;
-
   border-radius:8px;
-
   padding:5px 8px;
-
   font-size:12px;
-
   color:#e5e7eb;
 }
 
 .card-actions{
   display:flex;
   gap:9px;
-
   margin-top:14px;
 }
 
 .open-btn{
   display:inline-flex;
-
   align-items:center;
   justify-content:center;
-
   flex:1;
-
   min-height:43px;
-
   border-radius:12px;
-
   text-decoration:none;
-
   background:#f3f4f6;
-
   color:#111827;
-
   font-size:13px;
-
   font-weight:800;
 }
 
 .copy-btn{
   border:1px solid #4b5563;
-
   background:#1f2937;
-
   color:#fff;
-
   border-radius:12px;
-
   padding:0 16px;
-
   font-weight:700;
-
   cursor:pointer;
 }
 
-/* =========================
-   EMPTY
-========================= */
+/* EMPTY */
 
 .empty{
   display:none;
-
   text-align:center;
-
   padding:35px 20px;
-
   background:rgba(255,255,255,.04);
-
   border:1px dashed #4b5563;
-
   border-radius:17px;
-
-  color:#9ca3af;
+  color:#d1d5db;
 }
 
 .empty-icon{
@@ -437,25 +349,17 @@ body{
   margin-bottom:8px;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 .footer{
   text-align:center;
-
   margin-top:25px;
-
   padding:15px;
-
-  color:#6b7280;
-
+  color:#d1d5db;
   font-size:11px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:600px){
 
@@ -469,6 +373,7 @@ body{
   }
 
   .status{
+    top:112px;
     gap:7px;
   }
 
@@ -485,6 +390,7 @@ body{
   }
 
   .search-box{
+    top:180px;
     padding:14px;
   }
 
@@ -508,76 +414,20 @@ body{
     height:42px;
   }
 }
-/* =========================
-   STICKY HEADER + STATUS + SEARCH
-   TAMBAHAN SAJA
-========================= */
-
-@media (min-width:601px){
-  .container{
-    padding-top:18px;
-  }
-}
-
-.header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:linear-gradient(
-    145deg,
-    #374151,
-    #111827
-  );
-}
-
-.status{
-  position:sticky;
-  top:125px;
-  z-index:999;
-  background:rgba(17,24,39,.96);
-  border-radius:15px;
-}
-
-.search-box{
-  position:sticky;
-  top:205px;
-  z-index:998;
-  background:linear-gradient(
-    145deg,
-    rgba(31,41,55,.98),
-    rgba(17,24,39,.98)
-  );
-}
-
-/* HP */
-@media(max-width:600px){
-  .header{
-    top:0;
-  }
-
-  .status{
-    top:112px;
-  }
-
-  .search-box{
-    top:180px;
-  }
-}
-      
 </style>
 </head>
-
 
 <body>
 
 <div class="container">
 
   <!-- HEADER -->
-  <div class="header">
 
+  <div class="header">
     <h1>
-      <a href="https://ganie81.github.io/website-saya/cek.html"
-         title="Kembali ke Home">
+      <a
+        href="https://ganie81.github.io/website-saya/cek.html"
+        title="Kembali ke Home">
         📚 KATALOG DOKUMEN PDF
       </a>
     </h1>
@@ -586,67 +436,36 @@ body{
       Pencarian dokumen berdasarkan nama PDF
       dan hasil OCR
     </p>
-
   </div>
 
-
   <!-- STATUS -->
+
   <div class="status">
 
     <div class="status-box">
-
-      <div
-        class="status-number"
-        id="totalPDF">
-        -
-      </div>
-
-      <div class="status-label">
-        TOTAL PDF
-      </div>
-
+      <div class="status-number" id="totalPDF">-</div>
+      <div class="status-label">TOTAL PDF</div>
     </div>
 
-
     <div class="status-box">
-
-      <div
-        class="status-number"
-        id="totalOCR">
-        -
-      </div>
-
-      <div class="status-label">
-        SUDAH OCR
-      </div>
-
+      <div class="status-number" id="totalOCR">-</div>
+      <div class="status-label">SUDAH OCR</div>
     </div>
 
-
     <div class="status-box">
-
-      <div
-        class="status-number"
-        id="sisaOCR">
-        -
-      </div>
-
-      <div class="status-label">
-        SISA OCR
-      </div>
-
+      <div class="status-number" id="sisaOCR">-</div>
+      <div class="status-label">SISA OCR</div>
     </div>
 
   </div>
 
-
   <!-- SEARCH -->
+
   <div class="search-box">
 
     <div class="search-title">
       🔎 CARI DOKUMEN
     </div>
-
 
     <div class="search-row">
 
@@ -655,8 +474,7 @@ body{
         id="searchInput"
         class="search-input"
         placeholder="Contoh: WOM/2604/00008"
-        autocomplete="off"
-      >
+        autocomplete="off">
 
       <button
         class="btn btn-search"
@@ -666,7 +484,6 @@ body{
 
     </div>
 
-
     <div class="info">
       Masukkan nomor WOM, kode, atau kata yang
       tercetak di dalam PDF. Pencarian menggunakan
@@ -675,79 +492,54 @@ body{
 
   </div>
 
-
   <!-- UPDATE -->
+
   <button
     class="btn btn-update"
-    style="
-      width:100%;
-      height:46px;
-      margin-top:12px;
-    "
+    id="updateButton"
+    style="width:100%;height:46px;margin-top:12px;"
     onclick="updateData()">
 
     🔄 UPDATE DATA
 
   </button>
 
-
   <!-- LOADING -->
-  <div
-    class="loading"
-    id="loading">
+
+  <div class="loading" id="loading">
 
     <div class="spinner"></div>
 
-    <div
-      class="loading-text"
-      id="loadingText">
+    <div class="loading-text" id="loadingText">
       Memproses...
     </div>
 
   </div>
 
-
   <!-- RESULT -->
-  <div
-    class="result-area"
-    id="resultArea"
-    style="display:none;">
+
+  <div class="result-area" id="resultArea">
 
     <div class="result-header">
 
-      <h2>HASIL PENCARIAN</h2>
+      <h2 id="resultTitle">
+        📂 10 PDF LAYOUT ACAK
+      </h2>
 
-      <div
-        class="result-count"
-        id="resultCount">
-        0 dokumen
+      <div class="result-count" id="resultCount">
+        Memuat...
       </div>
 
     </div>
 
+    <div class="result-list" id="resultList"></div>
 
-    <div
-      class="result-list"
-      id="resultList">
-    </div>
-
-
-    <div
-      class="empty"
-      id="emptyResult">
-
-      <div class="empty-icon">
-        📄
-      </div>
-
-      <div>
-        Dokumen tidak ditemukan.
-      </div>
-
+    <div class="empty" id="emptyResult">
+      <div class="empty-icon">📄</div>
+      <div>Dokumen tidak ditemukan.</div>
     </div>
 
   </div>
-
 
   <div class="footer">
     KATALOG DOKUMEN PDF • INDEX DRIVE + OCR
@@ -755,11 +547,10 @@ body{
 
 </div>
 
-
 <script>
 
 /* =========================================================
-   URL WEB APP APPS SCRIPT
+   API APPS SCRIPT
 ========================================================= */
 
 const API_URL =
@@ -771,34 +562,28 @@ const API_URL =
 ========================================================= */
 
 const searchInput =
-  document.getElementById(
-    "searchInput"
-  );
+  document.getElementById("searchInput");
 
 const loading =
-  document.getElementById(
-    "loading"
-  );
+  document.getElementById("loading");
 
 const loadingText =
-  document.getElementById(
-    "loadingText"
-  );
+  document.getElementById("loadingText");
 
 const resultArea =
-  document.getElementById(
-    "resultArea"
-  );
+  document.getElementById("resultArea");
 
 const resultList =
-  document.getElementById(
-    "resultList"
-  );
+  document.getElementById("resultList");
 
 const emptyResult =
-  document.getElementById(
-    "emptyResult"
-  );
+  document.getElementById("emptyResult");
+
+const resultTitle =
+  document.getElementById("resultTitle");
+
+const resultCount =
+  document.getElementById("resultCount");
 
 
 /* =========================================================
@@ -810,16 +595,13 @@ function showLoading(text){
   loadingText.textContent =
     text || "Memproses...";
 
-  loading.style.display =
-    "block";
+  loading.style.display = "block";
 
 }
 
-
 function hideLoading(){
 
-  loading.style.display =
-    "none";
+  loading.style.display = "none";
 
 }
 
@@ -830,62 +612,34 @@ function hideLoading(){
 
 async function api(action, params = {}){
 
-  const url =
-    new URL(API_URL);
+  const url = new URL(API_URL);
 
-  url.searchParams.set(
-    "action",
-    action
-  );
+  url.searchParams.set("action", action);
 
+  Object.keys(params).forEach(function(key){
 
-  Object.keys(params)
-    .forEach(function(key){
+    url.searchParams.set(key, params[key]);
 
-      url.searchParams.set(
-        key,
-        params[key]
-      );
+  });
 
-    });
-
-
-  const response =
-    await fetch(
-      url.toString(),
-      {
-        method:"GET",
-        cache:"no-store"
-      }
-    );
-
+  const response = await fetch(url.toString(), {
+    method:"GET",
+    cache:"no-store"
+  });
 
   if(!response.ok){
 
-    throw new Error(
-      "HTTP " +
-      response.status
-    );
+    throw new Error("HTTP " + response.status);
 
   }
 
+  const data = await response.json();
 
-  const data =
-    await response.json();
+  if(data && data.sukses === false && data.error){
 
-
-  if(
-    data &&
-    data.sukses === false &&
-    data.error
-  ){
-
-    throw new Error(
-      data.error
-    );
+    throw new Error(data.error);
 
   }
-
 
   return data;
 
@@ -900,51 +654,24 @@ async function loadStatus(){
 
   try{
 
-    const data =
-      await api(
-        "status"
-      );
+    const data = await api("status");
 
-
-    document.getElementById(
-      "totalPDF"
-    ).textContent =
+    document.getElementById("totalPDF").textContent =
       data.totalPDF ?? 0;
 
-
-    document.getElementById(
-      "totalOCR"
-    ).textContent =
+    document.getElementById("totalOCR").textContent =
       data.totalOCR ?? 0;
 
-
-    document.getElementById(
-      "sisaOCR"
-    ).textContent =
+    document.getElementById("sisaOCR").textContent =
       data.sisa ?? 0;
-
 
   }catch(error){
 
-    console.error(
-      "STATUS ERROR:",
-      error
-    );
+    console.error("STATUS ERROR:", error);
 
-    document.getElementById(
-      "totalPDF"
-    ).textContent =
-      "ERR";
-
-    document.getElementById(
-      "totalOCR"
-    ).textContent =
-      "ERR";
-
-    document.getElementById(
-      "sisaOCR"
-    ).textContent =
-      "ERR";
+    document.getElementById("totalPDF").textContent = "ERR";
+    document.getElementById("totalOCR").textContent = "ERR";
+    document.getElementById("sisaOCR").textContent = "ERR";
 
   }
 
@@ -952,81 +679,184 @@ async function loadStatus(){
 
 
 /* =========================================================
-   CARI DOKUMEN
+   AMBIL ARRAY HASIL API
+========================================================= */
+
+function ambilArray(hasil){
+
+  if(Array.isArray(hasil)){
+    return hasil;
+  }
+
+  if(hasil && Array.isArray(hasil.data)){
+    return hasil.data;
+  }
+
+  if(hasil && Array.isArray(hasil.hasil)){
+    return hasil.hasil;
+  }
+
+  return [];
+
+}
+
+
+/* =========================================================
+   10 PDF LAYOUT ACAK
+   MENGGUNAKAN API YANG SUDAH ADA
+========================================================= */
+
+async function loadLayoutTerbaru(){
+
+  resultTitle.textContent = "📂 10 PDF LAYOUT ACAK";
+
+  resultCount.textContent = "Memuat...";
+
+  resultList.innerHTML = "";
+
+  emptyResult.style.display = "none";
+
+  try{
+
+    /*
+      Tidak memindai ulang Google Drive.
+      Hanya meminta hasil dari API pencarian yang tersedia.
+    */
+
+    const data = await api("cari", {
+      kata:"layout"
+    });
+
+    const daftar = ambilArray(data);
+
+    /*
+      Hilangkan duplikat berdasarkan ID.
+    */
+
+    const unik = [];
+    const ids = new Set();
+
+    daftar.forEach(function(item){
+
+      const id = String(item.id || "");
+
+      if(!id){
+        return;
+      }
+
+      if(ids.has(id)){
+        return;
+      }
+
+      ids.add(id);
+      unik.push(item);
+
+    });
+
+    /*
+      Acak hasil agar variasi tampilannya berubah.
+    */
+
+    for(let i = unik.length - 1; i > 0; i--){
+
+      const j = Math.floor(Math.random() * (i + 1));
+
+      [unik[i], unik[j]] = [unik[j], unik[i]];
+
+    }
+
+    /*
+      Maksimal 10 kartu.
+    */
+
+    const pilihan = unik.slice(0, 10);
+
+    tampilkanHasil(pilihan);
+
+    resultTitle.textContent = "📂 10 PDF LAYOUT ACAK";
+
+    if(pilihan.length === 0){
+
+      emptyResult.style.display = "block";
+
+      emptyResult.innerHTML = `
+        <div class="empty-icon">📄</div>
+        <div>Belum ada hasil PDF layout.</div>
+      `;
+
+      resultCount.textContent = "0 dokumen";
+
+    }
+
+  }catch(error){
+
+    console.error("LAYOUT ERROR:", error);
+
+    resultList.innerHTML = `
+      <div class="card">
+        <div class="card-name">
+          ⚠️ Gagal memuat daftar PDF layout.
+        </div>
+        <div style="margin-top:8px;font-size:12px;color:#d1d5db;">
+          ${escapeHTML(error.message)}
+        </div>
+      </div>
+    `;
+
+    resultCount.textContent = "Gagal";
+
+  }
+
+}
+
+
+/* =========================================================
+   CARI DOKUMEN OCR
 ========================================================= */
 
 async function cariDokumen(){
 
-  const kata =
-    searchInput.value.trim();
-
+  const kata = searchInput.value.trim();
 
   if(!kata){
 
     searchInput.focus();
-
     return;
 
   }
 
+  showLoading("Mencari dokumen...");
 
-  showLoading(
-    "Mencari dokumen..."
-  );
+  resultArea.style.display = "block";
 
+  resultTitle.textContent = "🔎 HASIL PENCARIAN";
 
-  resultArea.style.display =
-    "block";
+  resultList.innerHTML = "";
 
-
-  resultList.innerHTML =
-    "";
-
-
-  emptyResult.style.display =
-    "none";
-
+  emptyResult.style.display = "none";
 
   try{
 
-    const hasil =
-      await api(
-        "cari",
-        {
-          kata:kata
-        }
-      );
+    const hasil = await api("cari", {
+      kata:kata
+    });
 
-
-    tampilkanHasil(
-      hasil
-    );
-
+    tampilkanHasil(hasil);
 
   }catch(error){
 
-    resultList.innerHTML =
-      `
-      <div class="empty"
-           style="display:block">
-
-        <div class="empty-icon">
-          ⚠️
+    resultList.innerHTML = `
+      <div class="card">
+        <div class="card-name">
+          ⚠️ Gagal mencari dokumen.
         </div>
-
-        <div>
-          Gagal mencari dokumen.
-        </div>
-
-        <div style="
-          margin-top:7px;
-          font-size:11px;
-        ">
+        <div style="margin-top:7px;font-size:12px;">
           ${escapeHTML(error.message)}
         </div>
-
       </div>
-      `;
+    `;
+
+    resultCount.textContent = "Error";
 
   }finally{
 
@@ -1038,150 +868,122 @@ async function cariDokumen(){
 
 
 /* =========================================================
-   TAMPIL HASIL
+   TAMPILKAN HASIL
 ========================================================= */
 
 function tampilkanHasil(hasil){
 
-  resultList.innerHTML =
-    "";
+  resultList.innerHTML = "";
 
+  const data = ambilArray(hasil);
 
-  let data = [];
+  resultCount.textContent =
+    data.length + " dokumen";
 
+  if(data.length === 0){
 
-  if(Array.isArray(hasil)){
-
-    data = hasil;
-
-  }
-
-  else if(
-    hasil &&
-    Array.isArray(hasil.data)
-  ){
-
-    data = hasil.data;
-
-  }
-
-  else if(
-    hasil &&
-    Array.isArray(hasil.hasil)
-  ){
-
-    data = hasil.hasil;
-
-  }
-
-
-  const jumlah =
-    data.length;
-
-
-  document.getElementById(
-    "resultCount"
-  ).textContent =
-    jumlah +
-    " dokumen";
-
-
-  if(jumlah === 0){
-
-    emptyResult.style.display =
-      "block";
-
+    emptyResult.style.display = "block";
     return;
 
   }
 
+  emptyResult.style.display = "none";
 
-  emptyResult.style.display =
-    "none";
+  data.forEach(function(item){
 
+    const nama =
+      item.nama ||
+      item.namaPDF ||
+      item["NAMA PDF"] ||
+      "Tanpa nama";
 
-  data.forEach(
-    function(item){
+    const wom =
+      item.noWOM ||
+      item.noWom ||
+      item.wom ||
+      item["NO WOM"] ||
+      "";
 
-      const card =
-        document.createElement(
-          "div"
-        );
+    const id =
+      item.id ||
+      item.ID ||
+      "";
 
+    let url =
+      item.url ||
+      item.urlPDF ||
+      item["URL PDF"] ||
+      "";
 
-      card.className =
-        "card";
+    /*
+      Jika URL tidak tersedia, buat dari ID Drive.
+    */
 
+    if(!url && id){
 
-      const nama =
-        item.nama ||
-        item.namaPDF ||
-        item["NAMA PDF"] ||
-        "Tanpa nama";
-
-
-      const wom =
-        item.noWOM ||
-        item.noWom ||
-        item.wom ||
-        item["NO WOM"] ||
-        "";
-
-
-      const url =
-        item.url ||
-        item.urlPDF ||
-        item["URL PDF"] ||
-        "#";
-
-
-      card.innerHTML = `
-
-        <div class="card-name">
-          ${escapeHTML(nama)}
-        </div>
-
-        ${
-          wom
-          ?
-          `
-          <div class="card-wom">
-            ${escapeHTML(wom)}
-          </div>
-          `
-          :
-          ""
-        }
-
-        <div class="card-actions">
-
-          <a
-            class="open-btn"
-            href="${escapeAttribute(url)}"
-            target="_blank"
-            rel="noopener">
-            📄 BUKA PDF
-          </a>
-
-          <button
-            class="copy-btn"
-            onclick="copyText(
-              '${escapeJS(nama)}'
-            )">
-            SALIN NAMA
-          </button>
-
-        </div>
-
-      `;
-
-
-      resultList.appendChild(
-        card
-      );
+      url = "https://drive.google.com/file/d/" +
+        encodeURIComponent(id) + "/view";
 
     }
-  );
+
+    const card = document.createElement("div");
+
+    card.className = "card";
+
+    const nameElement = document.createElement("div");
+
+    nameElement.className = "card-name";
+    nameElement.textContent = nama;
+
+    card.appendChild(nameElement);
+
+    if(wom){
+
+      const womElement = document.createElement("div");
+
+      womElement.className = "card-wom";
+      womElement.textContent = wom;
+
+      card.appendChild(womElement);
+
+    }
+
+    const actions = document.createElement("div");
+
+    actions.className = "card-actions";
+
+    if(url){
+
+      const openButton = document.createElement("a");
+
+      openButton.className = "open-btn";
+      openButton.href = url;
+      openButton.target = "_blank";
+      openButton.rel = "noopener noreferrer";
+      openButton.textContent = "📄 BUKA PDF";
+
+      actions.appendChild(openButton);
+
+    }
+
+    const copyButton = document.createElement("button");
+
+    copyButton.className = "copy-btn";
+    copyButton.textContent = "SALIN NAMA";
+
+    copyButton.addEventListener("click", function(){
+
+      copyText(nama);
+
+    });
+
+    actions.appendChild(copyButton);
+
+    card.appendChild(actions);
+
+    resultList.appendChild(card);
+
+  });
 
 }
 
@@ -1192,38 +994,31 @@ function tampilkanHasil(hasil){
 
 async function updateData(){
 
-  showLoading(
-    "Memperbarui index PDF..."
-  );
+  const tombol = document.getElementById("updateButton");
 
+  tombol.disabled = true;
+
+  showLoading("Memperbarui index PDF...");
 
   try{
 
-    const data =
-      await api(
-        "update"
-      );
+    const data = await api("update");
 
-
-    alert(
-      data.pesan ||
-      "Update selesai."
-    );
-
+    alert(data.pesan || "Permintaan update selesai.");
 
     await loadStatus();
 
+    await loadLayoutTerbaru();
 
   }catch(error){
 
-    alert(
-      "Gagal update:\n" +
-      error.message
-    );
+    alert("Gagal update:\n" + error.message);
 
   }finally{
 
     hideLoading();
+
+    tombol.disabled = false;
 
   }
 
@@ -1234,43 +1029,57 @@ async function updateData(){
    ENTER UNTUK CARI
 ========================================================= */
 
-searchInput.addEventListener(
-  "keydown",
-  function(event){
+searchInput.addEventListener("keydown", function(event){
 
-    if(
-      event.key === "Enter"
-    ){
+  if(event.key === "Enter"){
 
-      cariDokumen();
-
-    }
+    cariDokumen();
 
   }
-);
+
+});
 
 
 /* =========================================================
-   COPY
+   SALIN NAMA PDF
 ========================================================= */
 
 async function copyText(text){
 
   try{
 
-    await navigator.clipboard.writeText(
-      text
-    );
+    if(navigator.clipboard && window.isSecureContext){
 
-    alert(
-      "Nama PDF berhasil disalin."
-    );
+      await navigator.clipboard.writeText(text);
+
+    }else{
+
+      const textarea = document.createElement("textarea");
+
+      textarea.value = text;
+
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+
+      document.body.appendChild(textarea);
+
+      textarea.select();
+
+      const berhasil = document.execCommand("copy");
+
+      textarea.remove();
+
+      if(!berhasil){
+        throw new Error("Salin gagal");
+      }
+
+    }
+
+    alert("Nama PDF berhasil disalin.");
 
   }catch(error){
 
-    alert(
-      "Tidak bisa menyalin."
-    );
+    alert("Tidak bisa menyalin nama PDF.");
 
   }
 
@@ -1284,32 +1093,11 @@ async function copyText(text){
 function escapeHTML(text){
 
   return String(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-function escapeAttribute(text){
-
-  return String(text)
-    .replace(/"/g,"%22")
-    .replace(/</g,"%3C")
-    .replace(/>/g,"%3E");
-
-}
-
-
-function escapeJS(text){
-
-  return String(text)
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'")
-    .replace(/\r/g,"")
-    .replace(/\n/g,"\\n");
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
 }
 
@@ -1319,6 +1107,7 @@ function escapeJS(text){
 ========================================================= */
 
 loadStatus();
+loadLayoutTerbaru();
 
 </script>
 
