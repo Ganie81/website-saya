@@ -489,21 +489,28 @@ tbody tr:hover td {
 tbody td:first-child {
   font-weight: 900;
 }
-  /* =====================================================
-   KOLOM FP: ANGKA BESAR, CENTER, DAN LINGKARAN
-===================================================== */
-
-tbody tr > td:nth-child(3) {
+/* ANGKA FP DALAM LINGKARAN */
+tbody td:nth-child(3) {
   text-align: center !important;
   vertical-align: middle !important;
   font-size: 20px !important;
   font-weight: 900 !important;
 }
 
-tbody tr > td:nth-child(3)::first-line {
-  line-height: 1.2;
+.fp-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 2px solid #111;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
 }
-
 /* =====================================================
    WARNA KHUSUS KOLOM KEY
 ===================================================== */
