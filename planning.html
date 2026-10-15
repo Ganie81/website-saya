@@ -1394,9 +1394,16 @@ function tampilkanTabel() {
 
       const sel = NAMA_KOLOM.map(function(nama, index) {
         const nilai = baris[index] ?? '';
-        const kelasTambahan = [];
+const kelasTambahan = [];
 
-        let nilaiTampil = nilai;
+let nilaiTampil = nilai;
+
+/* FP DALAM LINGKARAN */
+if (index === 2) {
+  return '<td><span class="fp-circle">' +
+    aman(nilai) +
+    '</span></td>';
+}
 
         /* KEY = KOLOM F / INDEX 5 */
 
