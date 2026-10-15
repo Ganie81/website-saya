@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
+
+<title>PLANNING 1 | PROTOTYPE#4</title>
+
+<style>
+:root {
+  --bg: #071426;
+  --panel: #10233b;
+  --panel2: #162e49;
+  --blue: #1685ff;
+  --cyan: #43d9ff;
+  --text: #f3f8ff;
+  --muted: #9fb4ce;
+  --border: rgba(151,190,235,.19);
+  --green: #20d6a0;
+
+  /* Lebar tiga kolom pertama untuk freeze */
+  --col-hari: 90px;
+  --col-tanggal: 125px;
+  --col-fp: 65px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 10px;
+  background:
+    radial-gradient(ellipse at top left, #17385b 0, transparent 42%),
+    linear-gradient(145deg, #06101e, var(--bg));
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1800px;
+  margin: auto;
+}
+
+/* =====================================================
+   HEADER UTAMA
+===================================================== */
+
+.header {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 18px;
+  border-radius: 17px;
+  border: 1px solid rgba(110,190,255,.35);
+  background: linear-gradient(135deg, #164c80, #0b2340 65%, #102e50);
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.24),
+    inset 0 1px 1px rgba(255,255,255,.16);
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  right: -90px;
+  top: -130px;
+  border-radius: 50%;
+  background: rgba(67,217,255,.12);
+}
+
+.header h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(24px, 4vw, 35px);
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.header p {
+  position: relative;
+  z-index: 1;
+  margin: 7px 0 0;
+  color: #c9e6ff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  margin: 9px 0;
+}
+
+.status-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  padding: 7px 9px;
+  border-radius: 9px;
+  background: linear-gradient(145deg, #142b45, #0c1b2e);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.05);
+}
+
+.status-label {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .2px;
+  line-height: 1.3;
+}
+
+.status-value {
+  margin: 0;
+  font-size: clamp(17px, 3vw, 23px);
+  font-weight: 900;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.blue {
+  color: var(--cyan);
+}
+
+.green {
+  color: var(--green);
+}
+
+/* =====================================================
+   PANEL
+===================================================== */
+
+.panel {
+  padding: 11px;
+  margin-top: 9px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #10243b, #0a1728);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 22px rgba(0,0,0,.18);
+}
+
+.toolbar {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.search-box input {
+  width: 100%;
+  min-height: 44px;
+  padding: 11px 13px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid rgba(109,177,255,.3);
+  background: #071629;
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.search-box input::placeholder {
+  color: #9fb4ce;
+  font-weight: 700;
+}
+
+.search-box input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(67,217,255,.1);
+}
+
+button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: white;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+  background: linear-gradient(145deg, #2095ff, #075ac7);
+  box-shadow:
+    0 4px 10px rgba(0,0,0,.24),
+    inset 0 1px 1px rgba(255,255,255,.25);
+}
+
+button:active {
+  transform: scale(.98);
+}
+
+button:disabled {
+  opacity: .55;
+  cursor: wait;
+}
+
+.info-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+
+/* =====================================================
+   TABEL
+===================================================== */
+
+.table-wrapper {
+  width: 100%;
+  max-height: 72vh;
+  overflow: auto;
+  position: relative;
+  isolation: isolate;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  background: #081729;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: auto;
+}
+
+table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+/* Lebar kolom 1, 2, dan 3 */
+thead tr > th:nth-child(1),
+tbody tr > td:nth-child(1) {
+  min-width: var(--col-hari);
+  width: var(--col-hari);
+}
+
+thead tr > th:nth-child(2),
+tbody tr > td:nth-child(2) {
+  min-width: var(--col-tanggal);
+  width: var(--col-tanggal);
+}
+
+thead tr > th:nth-child(3),
+tbody tr > td:nth-child(3) {
+  min-width: var(--col-fp);
+  width: var(--col-fp);
+}
+
+/* =====================================================
+   HEADER TIGA TINGKAT
+===================================================== */
+
+thead th {
+  position: sticky;
+  padding: 11px 10px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  color: #fff;
+  background: linear-gradient(180deg, #1769a7, #104674);
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  font-size: 15px;
+  font-weight: 900;
+  text-shadow: 0 1px 1px rgba(0,0,0,.45);
+}
+
+thead tr.header-level-1 th {
+  top: 0;
+  z-index: 20;
+  height: 40px;
+  border-bottom: 2px solid #ffffff;
+}
+
+thead tr.header-level-2 th {
+  top: 40px;
+  z-index: 19;
+  height: 40px;
+  border-bottom: 2px solid #ffffff;
+}
+
+thead tr.header-level-3 th {
+  top: 80px;
+  z-index: 18;
+  height: 38px;
+  border-bottom: 2px solid #ffffff;
+}
+
+thead th.dev-header {
+  color: #fff !important;
+}
+
+/* =====================================================
+   FREEZE KOLOM 1, 2, DAN 3
+   HARI | TANGGAL | FP
+
+   Berlaku saat scroll horizontal.
+   Posisi kiri dihitung berdasarkan lebar kolom.
+===================================================== */
+
+/* Kolom pertama: HARI */
+thead tr.header-level-1 th:nth-child(1),
+tbody tr > td:nth-child(1) {
+  position: sticky;
+  left: 0;
+}
+
+/* Kolom kedua: TANGGAL */
+thead tr.header-level-1 th:nth-child(2),
+tbody tr > td:nth-child(2) {
+  position: sticky;
+  left: var(--col-hari);
+}
+
+/* Kolom ketiga: FP */
+thead tr.header-level-1 th:nth-child(3),
+tbody tr > td:nth-child(3) {
+  position: sticky;
+  left: calc(var(--col-hari) + var(--col-tanggal));
+}
+
+/*
+   Karena header memiliki colspan dan rowspan,
+   penentuan posisi header freeze juga menggunakan
+   kelas khusus yang dipasang melalui JavaScript.
+*/
+
+thead th.freeze-col-1 {
+  left: 0 !important;
+}
+
+thead th.freeze-col-2 {
+  left: var(--col-hari) !important;
+}
+
+thead th.freeze-col-3 {
+  left: calc(var(--col-hari) + var(--col-tanggal)) !important;
+}
+
+/* Lapisan header freeze berada di atas header biasa */
+thead th.freeze-col-1,
+thead th.freeze-col-2,
+thead th.freeze-col-3 {
+  z-index: 40 !important;
+  background: linear-gradient(180deg, #1769a7, #104674) !important;
+  background-clip: padding-box;
+}
+
+/* Latar kolom freeze mengikuti warna baris */
+tbody tr > td:nth-child(1),
+tbody tr > td:nth-child(2),
+tbody tr > td:nth-child(3) {
+  z-index: 5;
+  background-clip: padding-box;
+}
+
+/* Bayangan pembatas kolom yang dibekukan */
+tbody tr > td:nth-child(3) {
+  box-shadow: 3px 0 5px rgba(0,0,0,.28);
+}
+
+thead th.freeze-col-3 {
+  box-shadow: 3px 0 5px rgba(0,0,0,.28);
+}
+
+/* =====================================================
+   ISI TABEL
+===================================================== */
+
+tbody td {
+  padding: 12px 11px;
+  white-space: nowrap;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  color: #111111;
+  font-size: 15px;
+  font-weight: 900;
+  vertical-align: middle;
+  text-shadow: none;
+}
+
+/* =====================================================
+   WARNA BARIS BERDASARKAN FP
+===================================================== */
+
+tbody tr.fp-1 td {
+  background-color: #ffdce5;
+}
+
+tbody tr.fp-2 td {
+  background-color: #d9edff;
+}
+
+tbody tr.fp-4 td {
+  background-color: #fff2bf;
+}
+
+tbody tr.fp-5 td {
+  background-color: #d9f5df;
+}
+
+tbody tr.fp-6 td {
+  background-color: #eadfff;
+}
+
+tbody tr.fp-7 td {
+  background-color: #ead6c3;
+}
+
+/* Garis hitam tipis pada seluruh isi tabel */
+tbody tr td {
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+}
+
+tbody tr:hover td {
+  filter: brightness(.96);
+}
+
+tbody td:first-child {
+  font-weight: 900;
+}
+
+/* =====================================================
+   WARNA KHUSUS KOLOM KEY
+===================================================== */
+
+tbody tr td.key-ah {
+  background: #111111 !important;
+  background-color: #111111 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody tr td.key-am {
+  background: #800020 !important;
+  background-color: #800020 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody tr td.key-ag {
+  background: #005b35 !important;
+  background-color: #005b35 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody tr td.key-ab {
+  background: #071a44 !important;
+  background-color: #071a44 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody tr td.key-ac {
+  background: #4a2c20 !important;
+  background-color: #4a2c20 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+/* Warna KEY tetap jelas saat baris disentuh */
+tbody tr:hover td.key-ah {
+  background: #111111 !important;
+  background-color: #111111 !important;
+}
+
+tbody tr:hover td.key-am {
+  background: #800020 !important;
+  background-color: #800020 !important;
+}
+
+tbody tr:hover td.key-ag {
+  background: #005b35 !important;
+  background-color: #005b35 !important;
+}
+
+tbody tr:hover td.key-ab {
+  background: #071a44 !important;
+  background-color: #071a44 !important;
+}
+
+tbody tr:hover td.key-ac {
+  background: #4a2c20 !important;
+  background-color: #4a2c20 !important;
+}
+
+/* =====================================================
+   WARNA ANAK HEADER BLOK
+   MENGIKUTI NILAI KOLOM KEY
+
+   Nilai BLOK yang cocok dengan awalan KEY
+   mendapatkan warna yang sama.
+===================================================== */
+
+tbody tr td.blok-ah {
+  background: #111111 !important;
+  background-color: #111111 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody tr td.blok-am {
+  background: #800020 !important;
+  background-color: #800020 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody tr td.blok-ag {
+  background: #005b35 !important;
+  background-color: #005b35 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody tr td.blok-ab {
+  background: #071a44 !important;
+  background-color: #071a44 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+tbody tr td.blok-ac {
+  background: #4a2c20 !important;
+  background-color: #4a2c20 !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-weight: 900 !important;
+}
+
+/* Pertahankan warna BLOK ketika baris disentuh */
+tbody tr:hover td[class*="blok-"] {
+  filter: brightness(1);
+}
+
+/* =====================================================
+   ORDER, ACV, DEV
+===================================================== */
+
+tbody td.pcs-cell {
+  text-align: right !important;
+  padding-right: 10px !important;
+  font-variant-numeric: tabular-nums;
+  font-weight: 900 !important;
+}
+
+/* =====================================================
+   DEV NEGATIF MERAH
+===================================================== */
+
+tbody td.dev-pcs {
+  color: #111111 !important;
+  font-weight: 900 !important;
+  text-align: right !important;
+}
+
+tbody td.dev-pcs.dev-negative {
+  color: #c00000 !important;
+  font-weight: 900 !important;
+}
+
+tbody tr:hover td.dev-pcs.dev-negative {
+  color: #c00000 !important;
+}
+
+/* =====================================================
+   PESAN KOSONG
+===================================================== */
+
+.empty {
+  padding: 30px !important;
+  text-align: center;
+  color: var(--muted) !important;
+  background: #081729 !important;
+  white-space: normal !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+}
+
+/* =====================================================
+   PESAN STATUS
+===================================================== */
+
+.message {
+  margin: 10px 0;
+  padding: 11px 13px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.6;
+  display: none;
+}
+
+.message.error {
+  display: block;
+  color: #ffd9df;
+  background: rgba(255,70,100,.12);
+  border: 1px solid rgba(255,70,100,.35);
+}
+
+.message.success {
+  display: block;
+  color: #b8ffe8;
+  background: rgba(32,214,160,.09);
+  border: 1px solid rgba(32,214,160,.25);
+}
+
+.footer {
+  padding: 15px 5px 7px;
+  text-align: center;
+  color: #829ab6;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.8;
+}
+
+/* =====================================================
+   RESPONSIVE HP
+===================================================== */
+
+@media (max-width: 600px) {
+  body {
+    padding: 8px;
+  }
+
+  .header {
+    padding: 17px 13px;
+    border-radius: 13px;
+  }
+
+  .header h1 {
+    font-size: 25px;
+  }
+
+  .header p {
+    font-size: 13px;
+  }
+
+  .status-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+    margin: 8px 0;
+  }
+
+  .status-card {
+    padding: 7px 6px;
+    border-radius: 9px;
+    gap: 4px;
+  }
+
+  .status-label {
+    font-size: 9px;
+    letter-spacing: 0;
+    line-height: 1.25;
+  }
+
+  .status-value {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  #statusData {
+    font-size: 14px !important;
+  }
+
+  .panel {
+    padding: 9px;
+    border-radius: 12px;
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .search-box {
+    flex-basis: 100%;
+  }
+
+  .toolbar button {
+    width: 100%;
+  }
+
+  .info-line {
+    font-size: 12px;
+  }
+
+  .table-wrapper {
+    max-height: 68vh;
+  }
+
+  table {
+    font-size: 15px;
+  }
+
+  thead th {
+    padding: 11px 9px;
+    font-size: 15px;
+  }
+
+  tbody td {
+    padding: 12px 10px;
+    font-size: 15px;
+  }
+
+  thead tr.header-level-1 th {
+    top: 0;
+    height: 40px;
+  }
+
+  thead tr.header-level-2 th {
+    top: 40px;
+    height: 40px;
+  }
+
+  thead tr.header-level-3 th {
+    top: 80px;
+    height: 38px;
+  }
+
+  .footer {
+    font-size: 11px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <header class="header">
+    <h1>PLANNING 1</h1>
+    <p>
+      DATA PRODUKSI &amp; PERENCANAAN<br>
+      SPREADSHEET PROTOTYPE#4
+    </p>
+  </header>
+
+  <section class="status-grid">
+
+    <div class="status-card">
+      <div class="status-label">TOTAL DATA</div>
+      <div class="status-value blue" id="totalData">0</div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-label">HASIL CARI</div>
+      <div class="status-value green" id="hasilData">0</div>
+    </div>
+
+    <div class="status-card">
+      <div class="status-label">STATUS</div>
+      <div class="status-value" id="statusData"
+           style="font-size:14px">MEMUAT</div>
+    </div>
+
+  </section>
+
+  <main class="panel">
+
+    <div class="toolbar">
+
+      <div class="search-box">
+        <input
+          id="cari"
+          type="search"
+          placeholder="Cari HARI, KODE PRODUK, WOM, MOTIF..."
+          autocomplete="off"
+          aria-label="Cari data planning">
+      </div>
+
+      <button id="btnMuat" onclick="muatData()">
+        ↻ MUAT ULANG
+      </button>
+
+    </div>
+
+    <div class="info-line">
+      <span id="infoJumlah">Menyiapkan data...</span>
+      <span id="waktuUpdate">Belum diperbarui</span>
+    </div>
+
+    <div id="pesan" class="message"></div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead id="kepalaTabel"></thead>
+        <tbody id="isiTabel">
+          <tr>
+            <td class="empty" colspan="18">Sedang mengambil data...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    PLANNING 1 · PROTOTYPE#4<br>
+    Data ditampilkan dari Google Spreadsheet
+  </footer>
+
+</div>
+
+<script>
+'use strict';
+
+/* =====================================================
+   API GOOGLE APPS SCRIPT
+===================================================== */
+
+const API_URL =
+  'https://script.google.com/macros/s/AKfycbyYpUDf9FDKgX8AgoDavdcQtUi1jzxc6OTHsfsRF5N2fRBX7LytBYM6zIFlOG1IOJAL/exec';
+
+let semuaData = [];
+let sedangMemuat = false;
+
+const el = id => document.getElementById(id);
+
+/* =====================================================
+   STRUKTUR KOLOM
+===================================================== */
+
+const NAMA_KOLOM = [
+  'HARI',
+  'TANGGAL',
+  'FP',
+  'KODE PRODUK',
+  'MOTIF',
+  'KEY',
+  'WOM',
+  'TIPE PRINT',
+  'ORDER (PCS)',
+  'ACV (PCS)',
+  'DEV (PCS)',
+  'KAIN',
+  'BLOK',
+  'ISIAN 1',
+  'ISIAN 2',
+  'ISIAN 3',
+  'ISIAN 4',
+  'KETERANGAN'
+];
+
+/* =====================================================
+   FUNGSI DASAR
+===================================================== */
+
+function aman(teks) {
+  return String(teks ?? '').replace(/[&<>"']/g, function(c) {
+    return {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[c];
+  });
+}
+
+function normalisasi(teks) {
+  return String(teks ?? '')
+    .toLocaleLowerCase('id-ID')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/* =====================================================
+   MEMBACA FORMAT API BARU DAN LAMA
+===================================================== */
+
+function siapkanDataAPI(hasil) {
+  if (!hasil || typeof hasil !== 'object') {
+    throw new Error('Respons API tidak valid.');
+  }
+
+  if (hasil.success === false || hasil.sukses === false) {
+    throw new Error(
+      hasil.error ||
+      hasil.pesan ||
+      'Apps Script mengembalikan kesalahan.'
+    );
+  }
+
+  const headerAPI =
+    Array.isArray(hasil.headers)
+      ? hasil.headers
+      : hasil.header;
+
+  if (!Array.isArray(headerAPI)) {
+    throw new Error(
+      'Header tidak ditemukan. Periksa respons Apps Script.'
+    );
+  }
+
+  if (!Array.isArray(hasil.data)) {
+    throw new Error(
+      'Data tidak ditemukan pada respons Apps Script.'
+    );
+  }
+
+  const baris = hasil.data.map(function(item) {
+    if (Array.isArray(item)) {
+      return item;
+    }
+
+    if (item && Array.isArray(item.values)) {
+      return item.values;
+    }
+
+    return null;
+  }).filter(Boolean);
+
+  return {
+    header: headerAPI,
+    data: baris
+  };
+}
+
+/* =====================================================
+   FILTER FP KOSONG
+===================================================== */
+
+function dataDenganFP() {
+  return semuaData.filter(function(baris) {
+    return String(baris[2] ?? '').trim() !== '';
+  });
+}
+
+/* =====================================================
+   WARNA BARIS BERDASARKAN FP
+===================================================== */
+
+function kelasFP(baris) {
+  const fp = String(baris[2] ?? '').trim();
+
+  const daftar = {
+    '1': 'fp-1',
+    '2': 'fp-2',
+    '4': 'fp-4',
+    '5': 'fp-5',
+    '6': 'fp-6',
+    '7': 'fp-7'
+  };
+
+  return daftar[fp] || '';
+}
+
+/* =====================================================
+   FORMAT NILAI PCS
+===================================================== */
+
+function formatPcs(nilai) {
+  const teks = String(nilai ?? '').trim();
+
+  if (teks === '') {
+    return '';
+  }
+
+  if (/pcs\s*$/i.test(teks)) {
+    return teks.replace(/\s*pcs\s*$/i, '').trim() + ' Pcs';
+  }
+
+  return teks + ' Pcs';
+}
+
+/* =====================================================
+   MENENTUKAN NILAI NEGATIF
+===================================================== */
+
+function nilaiNegatif(nilai) {
+  let teks = String(nilai ?? '').trim();
+
+  if (!teks) {
+    return false;
+  }
+
+  teks = teks.replace(/\s*pcs\s*$/i, '').trim();
+
+  if (/^[−-]\s*\d/.test(teks)) {
+    return true;
+  }
+
+  if (/^\(\s*\d[\d.,]*\s*\)$/.test(teks)) {
+    return true;
+  }
+
+  const angka = teks.replace(/[−]/g, '-');
+
+  if (/^-\d{1,3}(\.\d{3})+(,\d+)?$/.test(angka)) {
+    return true;
+  }
+
+  if (/^-\d+,\d+$/.test(angka)) {
+    return true;
+  }
+
+  const hasil = Number(angka.replace(/,/g, '.'));
+
+  return Number.isFinite(hasil) && hasil < 0;
+}
+
+/* =====================================================
+   WARNA KEY DAN BLOK
+   MENGGUNAKAN ATURAN WARNA YANG SAMA
+===================================================== */
+
+function awalanKEY(nilai) {
+  return String(nilai ?? '')
+    .replace(/\u00a0/g, ' ')
+    .trim()
+    .toUpperCase()
+    .substring(0, 2);
+}
+
+function warnaKEY(nilai) {
+  const daftarWarna = {
+    'AH': '#111111',
+    'AM': '#800020',
+    'AG': '#005B35',
+    'AB': '#071A44',
+    'AC': '#4A2C20'
+  };
+
+  return daftarWarna[awalanKEY(nilai)] || '';
+}
+
+function kelasKEY(nilai) {
+  const daftarKelas = {
+    'AH': 'key-ah',
+    'AM': 'key-am',
+    'AG': 'key-ag',
+    'AB': 'key-ab',
+    'AC': 'key-ac'
+  };
+
+  return daftarKelas[awalanKEY(nilai)] || '';
+}
+
+/*
+ * BLOK menggunakan peta warna yang sama.
+ * Nilai BLOK diperiksa berdasarkan dua huruf awalnya.
+ */
+
+function kelasBLOK(nilai) {
+  const daftarKelas = {
+    'AH': 'blok-ah',
+    'AM': 'blok-am',
+    'AG': 'blok-ag',
+    'AB': 'blok-ab',
+    'AC': 'blok-ac'
+  };
+
+  return daftarKelas[awalanKEY(nilai)] || '';
+}
+
+/* =====================================================
+   FREEZE HEADER TIGA KOLOM
+===================================================== */
+
+function pasangFreezeHeader() {
+  const kepala = el('kepalaTabel');
+
+  /*
+   * Kolom HARI, TANGGAL, dan FP adalah sel rowspan=3
+   * pada baris header pertama.
+   */
+  const barisPertama = kepala.querySelector(
+    'tr.header-level-1'
+  );
+
+  if (!barisPertama) return;
+
+  const sel = barisPertama.querySelectorAll('th');
+
+  if (sel.length >= 3) {
+    sel[0].classList.add('freeze-col-1');
+    sel[1].classList.add('freeze-col-2');
+    sel[2].classList.add('freeze-col-3');
+  }
+}
+
+/* =====================================================
+   PESAN STATUS
+===================================================== */
+
+function tampilPesan(teks, jenis) {
+  const kotak = el('pesan');
+  kotak.className = 'message ' + jenis;
+  kotak.textContent = teks;
+}
+
+function hapusPesan() {
+  const kotak = el('pesan');
+  kotak.className = 'message';
+  kotak.textContent = '';
+}
+
+/* =====================================================
+   MEMUAT DATA API
+===================================================== */
+
+async function muatData() {
+  if (sedangMemuat) return;
+
+  sedangMemuat = true;
+
+  el('btnMuat').disabled = true;
+  el('btnMuat').textContent = 'MEMUAT...';
+  el('statusData').textContent = 'MEMUAT';
+
+  hapusPesan();
+
+  if (semuaData.length === 0) {
+    el('isiTabel').innerHTML =
+      '<tr><td class="empty" colspan="18">' +
+      'Sedang mengambil data...' +
+      '</td></tr>';
+  }
+
+  try {
+    const url = API_URL +
+      (API_URL.includes('?') ? '&' : '?') +
+      '_=' + Date.now();
+
+    const response = await fetch(url, {
+      method: 'GET',
+      redirect: 'follow',
+      cache: 'no-store'
+    });
+
+    if (!response.ok) {
+      throw new Error('HTTP ' + response.status);
+    }
+
+    const hasilJSON = await response.json();
+    const hasil = siapkanDataAPI(hasilJSON);
+
+    semuaData = hasil.data
+      .filter(function(baris) {
+        return String(baris[2] ?? '').trim() !== '';
+      })
+      .map(function(baris) {
+        const salin = baris.slice(0, 18);
+
+        while (salin.length < 18) {
+          salin.push('');
+        }
+
+        return salin;
+      });
+
+    el('statusData').textContent = 'ONLINE';
+
+    el('waktuUpdate').textContent =
+      'Diperbarui: ' +
+      new Date().toLocaleTimeString('id-ID');
+
+    tampilkanTabel();
+
+    tampilPesan(
+      'Data berhasil dimuat. Baris tanpa FP disembunyikan.',
+      'success'
+    );
+
+  } catch (error) {
+    console.error('Kesalahan PLANNING:', error);
+
+    el('statusData').textContent = 'ERROR';
+
+    tampilPesan(
+      'Data gagal dimuat. Periksa URL deployment Apps Script, ' +
+      'izin akses, dan format respons API. Detail: ' +
+      error.message,
+      'error'
+    );
+
+    if (semuaData.length === 0) {
+      el('kepalaTabel').innerHTML = '';
+
+      el('isiTabel').innerHTML =
+        '<tr><td class="empty" colspan="18">' +
+        'Data belum berhasil dimuat. Tekan MUAT ULANG setelah ' +
+        'memastikan Apps Script sudah di-deploy.' +
+        '</td></tr>';
+
+      el('infoJumlah').textContent = 'Data tidak tersedia';
+      el('totalData').textContent = '0';
+      el('hasilData').textContent = '0';
+    }
+
+  } finally {
+    sedangMemuat = false;
+
+    el('btnMuat').disabled = false;
+    el('btnMuat').textContent = '↻ MUAT ULANG';
+  }
+}
+
+/* =====================================================
+   MEMBANGUN HEADER 3 TINGKAT
+===================================================== */
+
+function buatHeader() {
+  const finalBaris1 = `
+    <tr class="header-level-1">
+      <th rowspan="3">HARI</th>
+      <th rowspan="3">TANGGAL</th>
+      <th rowspan="3">FP</th>
+      <th rowspan="3">KODE PRODUK</th>
+      <th rowspan="3">MOTIF</th>
+      <th rowspan="3">KEY</th>
+      <th rowspan="3">WOM</th>
+      <th rowspan="3">TIPE PRINT</th>
+      <th colspan="3">PRODUKSI</th>
+      <th colspan="6">WARNA</th>
+      <th rowspan="3">KETERANGAN</th>
+    </tr>
+  `;
+
+  const finalBaris2 = `
+    <tr class="header-level-2">
+      <th rowspan="2">ORDER (PCS)</th>
+      <th rowspan="2">ACV (PCS)</th>
+      <th rowspan="2" class="dev-header">DEV (PCS)</th>
+      <th rowspan="2">KAIN</th>
+      <th rowspan="2">BLOK</th>
+      <th colspan="4">ISIAN</th>
+    </tr>
+  `;
+
+  const finalBaris3 = `
+    <tr class="header-level-3">
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  `;
+
+  el('kepalaTabel').innerHTML =
+    finalBaris1 + finalBaris2 + finalBaris3;
+
+  pasangFreezeHeader();
+}
+
+/* =====================================================
+   MENAMPILKAN DATA
+===================================================== */
+
+function tampilkanTabel() {
+  const kata = normalisasi(el('cari').value);
+  const dataAktif = dataDenganFP();
+
+  const hasil = dataAktif.filter(function(baris) {
+    if (kata === '') return true;
+
+    return baris.some(function(nilai) {
+      return normalisasi(nilai).includes(kata);
+    });
+  });
+
+  buatHeader();
+
+  if (hasil.length === 0) {
+    el('isiTabel').innerHTML =
+      '<tr><td class="empty" colspan="18">' +
+      (
+        dataAktif.length === 0
+          ? 'Tidak ada data dengan FP terisi pada rentang tanggal ini.'
+          : 'Data tidak ditemukan.'
+      ) +
+      '</td></tr>';
+
+  } else {
+    el('isiTabel').innerHTML = hasil.map(function(baris) {
+      const kelas = kelasFP(baris);
+
+      const sel = NAMA_KOLOM.map(function(nama, index) {
+        const nilai = baris[index] ?? '';
+        const kelasTambahan = [];
+
+        let nilaiTampil = nilai;
+
+        /*
+         * KEY = KOLOM F / INDEX 5.
+         */
+
+        if (index === 5) {
+          const warna = warnaKEY(nilai);
+          const kelasWarna = kelasKEY(nilai);
+
+          if (warna && kelasWarna) {
+            return '<td class="' + kelasWarna + '"' +
+              ' style="' +
+              'background-color:' + warna + ' !important;' +
+              'color:#ffffff !important;' +
+              'border:1px solid #ffffff !important;' +
+              'box-sizing:border-box;">' +
+              aman(nilai) +
+              '</td>';
+          }
+        }
+
+        /*
+         * BLOK = KOLOM M / INDEX 12.
+         * Mengikuti aturan warna KEY.
+         */
+
+        if (index === 12) {
+          const warna = warnaKEY(nilai);
+          const kelasWarna = kelasBLOK(nilai);
+
+          if (warna && kelasWarna) {
+            return '<td class="' + kelasWarna + '"' +
+              ' style="' +
+              'background-color:' + warna + ' !important;' +
+              'color:#ffffff !important;' +
+              'border:1px solid #ffffff !important;' +
+              'box-sizing:border-box;">' +
+              aman(nilai) +
+              '</td>';
+          }
+        }
+
+        /*
+         * ORDER, ACV, DEV = KOLOM I, J, K.
+         */
+
+        if (index === 8 || index === 9 || index === 10) {
+          kelasTambahan.push('pcs-cell');
+          nilaiTampil = formatPcs(nilai);
+        }
+
+        /*
+         * DEV negatif berwarna merah.
+         */
+
+        if (index === 10) {
+          kelasTambahan.push('dev-pcs');
+
+          if (nilaiNegatif(nilai)) {
+            kelasTambahan.push('dev-negative');
+          }
+        }
+
+        const atributClass = kelasTambahan.length
+          ? ' class="' + kelasTambahan.join(' ') + '"'
+          : '';
+
+        return '<td' + atributClass + '>' +
+          aman(nilaiTampil) +
+          '</td>';
+
+      }).join('');
+
+      return '<tr class="' + kelas + '">' + sel + '</tr>';
+    }).join('');
+  }
+
+  el('totalData').textContent =
+    dataAktif.length.toLocaleString('id-ID');
+
+  el('hasilData').textContent =
+    hasil.length.toLocaleString('id-ID');
+
+  el('infoJumlah').textContent =
+    'Menampilkan ' +
+    hasil.length.toLocaleString('id-ID') +
+    ' dari ' +
+    dataAktif.length.toLocaleString('id-ID') +
+    ' baris ber-FP';
+}
+
+/* =====================================================
+   PENCARIAN LANGSUNG
+===================================================== */
+
+el('cari').addEventListener('input', tampilkanTabel);
+
+/* =====================================================
+   MULAI APLIKASI
+===================================================== */
+
+muatData();
+</script>
+
+</body>
+</html>
