@@ -491,7 +491,8 @@ tbody td:first-child {
 }
 
 /* =====================================================
-   FP: BOLA BILLIARD 3D
+   FP: BOLA SOLID
+   TANPA KILAUAN PUTIH
    UKURAN TETAP 34 X 34 PX
 ===================================================== */
 
@@ -518,228 +519,82 @@ tbody td:nth-child(3) {
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.75);
+  border: 1px solid rgba(0,0,0,.65);
 
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   font-weight: 900;
   line-height: 1;
-
   text-align: center;
   font-variant-numeric: tabular-nums;
 
-  box-shadow:
-    inset 1px 2px 3px rgba(255,255,255,.75),
-    inset -3px -5px 7px rgba(0,0,0,.48),
-    inset 2px 0 3px rgba(255,255,255,.2),
-    0 2px 3px rgba(0,0,0,.48);
-
-  text-shadow:
-    0 1px 1px rgba(0,0,0,.45),
-    0 -1px 1px rgba(255,255,255,.15);
-
+  box-shadow: 0 2px 3px rgba(0,0,0,.35);
+  text-shadow: none;
   transform: translateZ(0);
 }
 
-/* KILAUAN UTAMA BOLA */
+/* MATIKAN SELURUH EFEK KILAUAN */
 
-.fp-circle::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-
-  top: 2px;
-  left: 5px;
-  width: 19px;
-  height: 9px;
-
-  border-radius: 50%;
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,.95),
-    rgba(255,255,255,.40) 55%,
-    rgba(255,255,255,0)
-  );
-
-  transform: rotate(-35deg);
-  filter: blur(.25px);
-  pointer-events: none;
-}
-
-/* PANTULAN CAHAYA DI BAGIAN BAWAH */
-
+.fp-circle::before,
 .fp-circle::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-
-  left: 5px;
-  right: 5px;
-  bottom: 2px;
-  height: 5px;
-
-  border-radius: 50%;
-  background: rgba(255,255,255,.12);
-  filter: blur(1px);
-  pointer-events: none;
+  content: none !important;
+  display: none !important;
 }
 
-/* FP 1 — MERAH */
+/* FP 1 — MERAH SOLID */
 
 .fp-ball-1 {
-  background:
-    radial-gradient(
-      ellipse at 28% 19%,
-      #ffb5b5 0%,
-      #ff5656 16%,
-      #e60012 43%,
-      #a00008 75%,
-      #4d0004 100%
-    );
-
-  color: #ffffff;
-
-  text-shadow:
-    0 1px 2px #4d0000,
-    0 0 2px rgba(0,0,0,.8);
+  background: #e60012 !important;
+  color: #ffffff !important;
 }
 
-/* FP 2 — BIRU */
+/* FP 2 — BIRU SOLID */
 
 .fp-ball-2 {
-  background:
-    radial-gradient(
-      ellipse at 28% 19%,
-      #c8f4ff 0%,
-      #63d5ff 15%,
-      #0877ed 43%,
-      #0643a2 75%,
-      #021d52 100%
-    );
-
-  color: #fff52a;
-
-  text-shadow:
-    0 1px 2px #001a57,
-    0 0 2px rgba(0,0,0,.8);
+  background: #0877ed !important;
+  color: #fff52a !important;
 }
 
-/* FP 3 — UNGU */
+/* FP 3 — UNGU SOLID */
 
 .fp-ball-3 {
-  background:
-    radial-gradient(
-      ellipse at 28% 19%,
-      #f1d7ff 0%,
-      #c47aff 16%,
-      #7d16e8 44%,
-      #4b079a 75%,
-      #210345 100%
-    );
-
-  color: #ffffff;
-
-  text-shadow:
-    0 1px 2px #270044,
-    0 0 2px rgba(0,0,0,.8);
+  background: #7d16e8 !important;
+  color: #ffffff !important;
 }
 
-/* FP 4 — KUNING */
+/* FP 4 — KUNING SOLID */
 
 .fp-ball-4 {
-  background:
-    radial-gradient(
-      ellipse at 28% 19%,
-      #ffffff 0%,
-      #fff7a3 15%,
-      #ffdc18 42%,
-      #d99b00 74%,
-      #805000 100%
-    );
-
-  color: #111111;
-
-  text-shadow:
-    0 1px 1px rgba(255,255,255,.35);
+  background: #ffdc18 !important;
+  color: #111111 !important;
 }
 
-/* FP 5 — HIJAU */
+/* FP 5 — HIJAU SOLID */
 
 .fp-ball-5 {
-  background:
-    radial-gradient(
-      ellipse at 28% 19%,
-      #d6ffda 0%,
-      #70f99b 16%,
-      #08a944 43%,
-      #00652c 75%,
-      #003216 100%
-    );
-
-  color: #ffffff;
-
-  text-shadow:
-    0 1px 2px #003b17,
-    0 0 2px rgba(0,0,0,.8);
+  background: #08a944 !important;
+  color: #ffffff !important;
 }
 
-/* FP 6 — ORANYE */
+/* FP 6 — ORANYE SOLID */
 
 .fp-ball-6 {
-  background:
-    radial-gradient(
-      ellipse at 28% 19%,
-      #ffe4b9 0%,
-      #ffbd62 16%,
-      #f07808 43%,
-      #b74700 75%,
-      #592000 100%
-    );
-
-  color: #ffffff;
-
-  text-shadow:
-    0 1px 2px #572000,
-    0 0 2px rgba(0,0,0,.8);
+  background: #f07808 !important;
+  color: #ffffff !important;
 }
 
-/* FP 7 — MERAH MUDA */
+/* FP 7 — MERAH MUDA SOLID */
 
 .fp-ball-7 {
-  background:
-    radial-gradient(
-      ellipse at 28% 19%,
-      #ffe6f5 0%,
-      #ff9fd8 16%,
-      #e52c91 43%,
-      #a20c5d 75%,
-      #4e0630 100%
-    );
-
-  color: #ffffff;
-
-  text-shadow:
-    0 1px 2px #57002e,
-    0 0 2px rgba(0,0,0,.8);
+  background: #e52c91 !important;
+  color: #ffffff !important;
 }
 
-/* FP LAINNYA — PERAK */
+/* FP LAINNYA — ABU-ABU SOLID */
 
 .fp-ball-other {
-  background:
-    radial-gradient(
-      ellipse at 28% 19%,
-      #ffffff 0%,
-      #e8edf5 16%,
-      #aeb9ca 43%,
-      #65758b 75%,
-      #29384c 100%
-    );
-
-  color: #101827;
-
-  text-shadow:
-    0 1px 1px rgba(255,255,255,.55);
+  background: #aeb9ca !important;
+  color: #101827 !important;
 }
 
 /* =====================================================
@@ -1629,7 +1484,7 @@ function tampilkanTabel() {
 
         let nilaiTampil = nilai;
 
-        /* FP DALAM BOLA BILLIARD 3D */
+        /* FP DALAM BOLA SOLID */
 
         if (index === 2) {
           const nomorFP = String(nilai ?? '').trim();
