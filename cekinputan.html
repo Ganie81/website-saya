@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
+
+<title>CEK INPUTAN PROD FLAT</title>
+
+<style>
+:root {
+  --bg: #071426;
+  --panel: #10233b;
+  --panel2: #162e49;
+  --blue: #1685ff;
+  --text: #eef6ff;
+  --muted: #9eb3ca;
+  --border: #29445f;
+  --green: #16c784;
+  --orange: #ffad42;
+  --red: #ff647c;
+  --col-timestamp: 205px;
+  --col-kashift: 135px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  width: 100%;
+  max-width: 1800px;
+  margin: auto;
+}
+
+.header {
+  background: linear-gradient(135deg, #12365c, #10233b);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 5px 18px #0004;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.subtitle {
+  margin-top: 7px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 15px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.btn-refresh {
+  background: var(--blue);
+  color: white;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 16px;
+  min-width: 0;
+}
+
+.card-label {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.card-value {
+  margin-top: 9px;
+  font-size: 27px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.card:nth-child(1) .card-value { color: #5eaeff; }
+.card:nth-child(2) .card-value { color: var(--green); }
+.card:nth-child(3) .card-value { color: var(--orange); }
+
+.filter-panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.filter-title {
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 10px;
+}
+
+input, select {
+  width: 100%;
+  min-width: 0;
+  background: #071426;
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 12px;
+  outline: none;
+  font-size: 13px;
+}
+
+input:focus, select:focus {
+  border-color: var(--blue);
+}
+
+.periods-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.periods {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.period {
+  font-size: 11px;
+  padding: 7px 10px;
+  border-radius: 20px;
+  background: #1b3b58;
+  color: #dcecff;
+  border: 1px solid #345675;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .2s, border-color .2s, box-shadow .2s;
+  user-select: none;
+}
+
+.period.today {
+  background: #123f39;
+  border-color: #1a8d6a;
+}
+
+.period.yesterday {
+  background: #47371b;
+  border-color: #a87925;
+}
+
+.period.before {
+  background: #302654;
+  border-color: #6d58aa;
+}
+
+.period:hover { filter: brightness(1.2); }
+
+.period.active {
+  font-weight: 900;
+  box-shadow: 0 0 0 2px #ffffff inset, 0 0 10px #1685ff55;
+}
+
+.period.before.active {
+  background: #6048a0;
+  border-color: #c4b5fd;
+  color: white;
+}
+
+.period.yesterday.active {
+  background: #8a5a12;
+  border-color: #fcd34d;
+  color: white;
+}
+
+.period.today.active {
+  background: #087f5b;
+  border-color: #6ee7b7;
+  color: white;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-home, .btn-edit-sheet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 15px;
+  border-radius: 9px;
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 3px 8px #0003;
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+
+.btn-home {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border: 1px solid #60a5fa;
+}
+
+.btn-edit-sheet {
+  background: linear-gradient(135deg, #16a34a, #087443);
+  border: 1px solid #32d583;
+}
+
+.btn-home:hover, .btn-edit-sheet:hover {
+  transform: translateY(-1px);
+}
+
+.btn-home:active, .btn-edit-sheet:active {
+  transform: scale(.98);
+}
+
+.table-panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  overflow: hidden;
+}
+
+.table-top {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.table-title {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.table-info {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.table-wrap {
+  position: relative;
+  width: 100%;
+  overflow: auto;
+  max-height: 70vh;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  isolation: isolate;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: max-content;
+  min-width: 100%;
+  font-size: 12px;
+  table-layout: auto;
+}
+
+th:nth-child(1), td:nth-child(1) {
+  min-width: var(--col-timestamp);
+  width: var(--col-timestamp);
+  max-width: var(--col-timestamp);
+}
+
+th:nth-child(2), td:nth-child(2) {
+  min-width: var(--col-kashift);
+  width: var(--col-kashift);
+  max-width: var(--col-kashift);
+}
+
+th:nth-child(3), td:nth-child(3) { min-width: 90px; }
+th:nth-child(4), td:nth-child(4) { min-width: 90px; }
+th:nth-child(5), td:nth-child(5) { min-width: 140px; }
+th:nth-child(6), td:nth-child(6) { min-width: 110px; }
+th:nth-child(7), td:nth-child(7) { min-width: 140px; }
+th:nth-child(8), td:nth-child(8) { min-width: 105px; }
+th:nth-child(9), td:nth-child(9) { min-width: 80px; }
+th:nth-child(10), td:nth-child(10) { min-width: 120px; }
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #183957;
+  color: white;
+  padding: 13px 11px;
+  border-bottom: 1px solid #43627f;
+  border-right: 1px solid #29445f;
+  text-align: left;
+  white-space: nowrap;
+}
+
+thead th:nth-child(1) {
+  position: sticky;
+  left: 0;
+  z-index: 40;
+  background: #183957;
+  box-shadow: 2px 0 4px #0003;
+}
+
+tbody td:nth-child(1) {
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background: #10233b;
+  box-shadow: 2px 0 4px #0003;
+}
+
+thead th:nth-child(2) {
+  position: sticky;
+  left: var(--col-timestamp);
+  z-index: 40;
+  background: #183957;
+  box-shadow: 2px 0 4px #0003;
+}
+
+tbody td:nth-child(2) {
+  position: sticky;
+  left: var(--col-timestamp);
+  z-index: 10;
+  background: #10233b;
+  box-shadow: 2px 0 4px #0003;
+}
+
+tbody tr:nth-child(even) td:nth-child(1),
+tbody tr:nth-child(even) td:nth-child(2) {
+  background: #122a42;
+}
+
+tbody tr:hover td:nth-child(1),
+tbody tr:hover td:nth-child(2) {
+  background: #1c3b59;
+}
+
+thead th:nth-child(2),
+tbody td:nth-child(2) {
+  border-right: 2px solid #5b7896;
+}
+
+tbody td {
+  padding: 11px;
+  border-bottom: 1px solid #203950;
+  border-right: 1px solid #203950;
+  white-space: nowrap;
+}
+
+tbody tr:nth-child(even) { background: #122a42; }
+tbody tr:hover { background: #1c3b59; }
+
+td.qty {
+  text-align: right;
+  font-weight: 800;
+  color: #65e5ae;
+}
+
+td.timestamp {
+  color: #8dc7ff;
+  font-weight: 700;
+}
+
+td.product-code {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.product-code-badge {
+  display: inline-block;
+  padding: 5px 9px;
+  border: 1px solid var(--code-border);
+  border-radius: 6px;
+  background: var(--code-bg);
+  color: var(--code-text);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.25;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px #0002;
+}
+
+.product-code-original {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  box-shadow: none;
+}
+
+.day-badge {
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.day-today { background: #124a3b; color: #76ffd0; }
+.day-yesterday { background: #59431b; color: #ffdb83; }
+.day-before { background: #3c305f; color: #d2c3ff; }
+
+.status {
+  padding: 22px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.error {
+  color: #ff8291;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+.footer {
+  padding: 15px 4px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+@media(max-width:700px) {
+  :root {
+    --col-timestamp: 175px;
+    --col-kashift: 120px;
+  }
+
+  body { padding: 8px; }
+  .header { padding: 14px; }
+  .header h1 { font-size: 18px; }
+
+  .summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .card { padding: 12px; }
+  .card-value { font-size: 22px; }
+  .filters { grid-template-columns: 1fr; }
+  .periods-row { align-items: stretch; }
+  .periods { flex-basis: 100%; }
+
+  .btn-edit-sheet {
+    width: 100%;
+    min-height: 42px;
+  }
+
+  .btn-home {
+    flex: 1;
+    min-height: 42px;
+  }
+
+  .action-buttons { width: 100%; }
+  .table-wrap { max-height: 65vh; }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header class="header">
+  <div class="header-row">
+    <div>
+      <h1>CEK INPUTAN PROD FLAT</h1>
+      <div class="subtitle">
+        MONITORING INPUT PRODUKSI • DEPARTMENT PRINTING
+      </div>
+    </div>
+    <button class="btn-refresh" onclick="loadData(true)">↻ REFRESH</button>
+  </div>
+</header>
+
+<section class="summary">
+  <div class="card">
+    <div class="card-label">Jumlah Input</div>
+    <div class="card-value" id="totalData">0</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Total QTY (PCS)</div>
+    <div class="card-value" id="totalQty">0</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Data Ditampilkan</div>
+    <div class="card-value" id="shownData">0</div>
+  </div>
+</section>
+
+<section class="filter-panel">
+  <div class="filter-title">🔎 FILTER DATA PRODUKSI</div>
+
+  <div class="filters">
+    <input id="search" type="search"
+      placeholder="Cari kode, motif, warna, grup, MC..."
+      oninput="handleFilterChange()">
+
+    <select id="filterShift" onchange="handleFilterChange()">
+      <option value="">Semua Shift</option>
+    </select>
+
+    <select id="filterGrup" onchange="handleFilterChange()">
+      <option value="">Semua Grup</option>
+    </select>
+  </div>
+
+  <div class="periods-row">
+    <div class="periods">
+      <button type="button" class="period before" id="periodBefore"
+        aria-pressed="false" onclick="togglePeriod('before')">
+        HARI SEBELUM KEMARIN
+      </button>
+
+      <button type="button" class="period yesterday" id="periodYesterday"
+        aria-pressed="false" onclick="togglePeriod('yesterday')">
+        KEMARIN
+      </button>
+
+      <button type="button" class="period today" id="periodToday"
+        aria-pressed="false" onclick="togglePeriod('today')">
+        HARI INI
+      </button>
+    </div>
+
+    <div class="action-buttons">
+      <a class="btn-home"
+        href="https://ganie81.github.io/website-saya/cek.html"
+        aria-label="Kembali ke halaman Home">
+        🏠 HOME
+      </a>
+
+      <a class="btn-edit-sheet"
+        href="https://docs.google.com/spreadsheets/d/1_NwrtP3r1kuN9QNbuPkw0YNmpVNHf2lILSvMGEWND14/edit?usp=drivesdk"
+        target="_blank" rel="noopener noreferrer"
+        aria-label="Buka spreadsheet untuk mengedit data">
+        ✏️ EDIT SPREADSHEET ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="table-panel">
+  <div class="table-top">
+    <div>
+      <div class="table-title">📋 DATA INPUT PRODUKSI FLAT</div>
+      <div class="table-info" id="updateInfo">Menyiapkan dashboard...</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr id="tableHead"></tr></thead>
+      <tbody id="tableBody">
+        <tr><td colspan="10" class="status">
+          Mengambil data dari Google Spreadsheet...
+        </td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer class="footer">
+  CEK INPUTAN PROD FLAT • ASIA/JAKARTA
+  <br>Pembaruan otomatis setiap 60 detik
+</footer>
+
+</div>
+
+<script>
+/* =====================================================
+   KONFIGURASI GITHUB PAGES
+===================================================== */
+
+const API_URL =
+'https://script.google.com/macros/s/AKfycbxEhxSwqltsqNCQBh-5TL9QMxW3bJIPFxYSznNPvj-ZDl_Pau6vM7smulEffP4DgjsF/exec';
+
+const HEADERS = [
+  'Timestamp',
+  'KASHIFT/PC',
+  'SHIFT',
+  'GRUP',
+  'KODE PRODUK',
+  'WARNA',
+  'MOTIF',
+  'QTY (PCS)',
+  'MC',
+  'TANGGAL'
+];
+
+const SEARCH_HEADERS = HEADERS;
+const FILTER_STORAGE_KEY = 'CEK_INPUTAN_PROD_FLAT_FILTER_V1';
+
+let allRows = [];
+let currentFilters = loadSavedFilters();
+let isLoading = false;
+
+/* =====================================================
+   PENYIMPANAN FILTER
+===================================================== */
+
+function getDefaultFilters() {
+  return { search: '', shift: '', grup: '', period: '' };
+}
+
+function loadSavedFilters() {
+  try {
+    const saved = localStorage.getItem(FILTER_STORAGE_KEY);
+    if (!saved) return getDefaultFilters();
+
+    const parsed = JSON.parse(saved);
+
+    return {
+      search: typeof parsed.search === 'string' ? parsed.search : '',
+      shift: typeof parsed.shift === 'string' ? parsed.shift : '',
+      grup: typeof parsed.grup === 'string' ? parsed.grup : '',
+      period: ['before', 'yesterday', 'today'].includes(parsed.period)
+        ? parsed.period : ''
+    };
+  } catch (e) {
+    return getDefaultFilters();
+  }
+}
+
+function saveFilters() {
+  try {
+    localStorage.setItem(
+      FILTER_STORAGE_KEY,
+      JSON.stringify(currentFilters)
+    );
+  } catch (e) {}
+}
+
+function restoreFilterInputs() {
+  document.getElementById('search').value = currentFilters.search;
+  document.getElementById('filterShift').value = currentFilters.shift;
+  document.getElementById('filterGrup').value = currentFilters.grup;
+  updatePeriodButtons();
+}
+
+function handleFilterChange() {
+  currentFilters.search = document.getElementById('search').value;
+  currentFilters.shift = document.getElementById('filterShift').value;
+  currentFilters.grup = document.getElementById('filterGrup').value;
+
+  saveFilters();
+  renderTable();
+}
+
+/* =====================================================
+   FILTER PERIODE
+===================================================== */
+
+function togglePeriod(period) {
+  if (!['before', 'yesterday', 'today'].includes(period)) return;
+
+  currentFilters.period =
+    currentFilters.period === period ? '' : period;
+
+  saveFilters();
+  updatePeriodButtons();
+  renderTable();
+}
+
+function updatePeriodButtons() {
+  const buttons = {
+    before: document.getElementById('periodBefore'),
+    yesterday: document.getElementById('periodYesterday'),
+    today: document.getElementById('periodToday')
+  };
+
+  Object.keys(buttons).forEach(key => {
+    const active = currentFilters.period === key;
+    buttons[key].classList.toggle('active', active);
+    buttons[key].setAttribute('aria-pressed', String(active));
+  });
+}
+
+/* =====================================================
+   WARNA KODE PRODUK
+===================================================== */
+
+const PRODUCT_COLOR_PALETTE = [
+  { bg:'#e0f2fe', border:'#38bdf8', text:'#075985' },
+  { bg:'#dcfce7', border:'#4ade80', text:'#166534' },
+  { bg:'#fef3c7', border:'#fbbf24', text:'#92400e' },
+  { bg:'#f3e8ff', border:'#c084fc', text:'#6b21a8' },
+  { bg:'#ffe4e6', border:'#fb7185', text:'#9f1239' },
+  { bg:'#ccfbf1', border:'#2dd4bf', text:'#115e59' },
+  { bg:'#e0e7ff', border:'#818cf8', text:'#3730a3' },
+  { bg:'#ffedd5', border:'#fb923c', text:'#9a3412' },
+  { bg:'#fce7f3', border:'#f472b6', text:'#9d174d' },
+  { bg:'#ecfccb', border:'#a3e635', text:'#3f6212' },
+  { bg:'#dbeafe', border:'#60a5fa', text:'#1e40af' },
+  { bg:'#fae8ff', border:'#e879f9', text:'#86198f' },
+  { bg:'#fef9c3', border:'#facc15', text:'#854d0e' },
+  { bg:'#d1fae5', border:'#34d399', text:'#065f46' },
+  { bg:'#ede9fe', border:'#a78bfa', text:'#5b21b6' },
+  { bg:'#ffe4c7', border:'#fdba74', text:'#9a3412' },
+  { bg:'#e5f4e3', border:'#86c98a', text:'#245b2a' },
+  { bg:'#e0f7fa', border:'#4dd0e1', text:'#006064' },
+  { bg:'#f1f5f9', border:'#94a3b8', text:'#334155' },
+  { bg:'#fce7d6', border:'#f59e0b', text:'#78350f' }
+];
+
+function getProductColorIndex(code) {
+  const normalized = String(code ?? '').trim().toUpperCase();
+  let hash = 0;
+
+  for (let i = 0; i < normalized.length; i++) {
+    hash = ((hash * 31) + normalized.charCodeAt(i)) >>> 0;
+  }
+
+  return hash % PRODUCT_COLOR_PALETTE.length;
+}
+
+function getProductColor(code) {
+  return PRODUCT_COLOR_PALETTE[getProductColorIndex(code)];
+}
+
+function renderProductCode(value) {
+  const code = String(value ?? '').trim();
+  if (!code) return '';
+
+  if (code.toUpperCase() === 'T-43') {
+    return '<span class="product-code-original">' +
+      escapeHTML(code) + '</span>';
+  }
+
+  const color = getProductColor(code);
+
+  return '<span class="product-code-badge" style="' +
+    '--code-bg:' + color.bg + ';' +
+    '--code-border:' + color.border + ';' +
+    '--code-text:' + color.text + ';">' +
+    escapeHTML(code) + '</span>';
+}
+
+/* =====================================================
+   FUNGSI DASAR
+===================================================== */
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[ch]);
+}
+
+function formatNumber(value) {
+  return Number(value || 0).toLocaleString('id-ID');
+}
+
+function localDateKey(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+function getDayKey(timestamp) {
+  const value = String(timestamp || '').trim();
+  let match = value.match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+
+  if (match) return `${match[3]}-${match[2]}-${match[1]}`;
+
+  match = value.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (match) return `${match[1]}-${match[2]}-${match[3]}`;
+
+  return '';
+}
+
+function getPeriodDateKey(period) {
+  const date = new Date();
+
+  if (period === 'yesterday') date.setDate(date.getDate() - 1);
+  else if (period === 'before') date.setDate(date.getDate() - 2);
+
+  return localDateKey(date);
+}
+
+function formatDateID(date) {
+  return date.toLocaleDateString('id-ID', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  });
+}
+
+/* =====================================================
+   HEADER DAN DROPDOWN
+===================================================== */
+
+function initHeaders() {
+  document.getElementById('tableHead').innerHTML =
+    HEADERS.map(header => '<th>' + escapeHTML(header) + '</th>').join('');
+}
+
+function setOptions(id, firstLabel, values) {
+  const select = document.getElementById(id);
+
+  select.innerHTML =
+    '<option value="">' + escapeHTML(firstLabel) + '</option>' +
+    values.map(value =>
+      '<option value="' + escapeHTML(value) + '">' +
+      escapeHTML(value) + '</option>'
+    ).join('');
+}
+
+function populateFilters() {
+  const shifts = [...new Set(
+    allRows.map(r => String(r['SHIFT'] ?? '').trim()).filter(Boolean)
+  )].sort();
+
+  const grups = [...new Set(
+    allRows.map(r => String(r['GRUP'] ?? '').trim()).filter(Boolean)
+  )].sort();
+
+  setOptions('filterShift', 'Semua Shift', shifts);
+  setOptions('filterGrup', 'Semua Grup', grups);
+
+  if (!shifts.includes(currentFilters.shift)) currentFilters.shift = '';
+  if (!grups.includes(currentFilters.grup)) currentFilters.grup = '';
+
+  restoreFilterInputs();
+  saveFilters();
+}
+
+/* =====================================================
+   AMBIL DATA DARI WEB APP
+===================================================== */
+
+/*
+  PENTING:
+  Web App harus menyediakan JSON melalui doGet().
+  Jika doGet() hanya mengembalikan halaman HTML, fetch()
+  tidak bisa langsung mendapatkan hasil getData().
+*/
+
+async function loadData(force) {
+  if (isLoading) return;
+  isLoading = true;
+
+  const body = document.getElementById('tableBody');
+
+  if (force) {
+    body.innerHTML =
+      '<tr><td colspan="10" class="status">Memperbarui data...</td></tr>';
+  }
+
+  try {
+    const separator = API_URL.includes('?') ? '&' : '?';
+    const response = await fetch(
+      API_URL + separator + 'action=getData&_=' + Date.now(),
+      { method: 'GET', redirect: 'follow' }
+    );
+
+    if (!response.ok) {
+      throw new Error('HTTP ' + response.status);
+    }
+
+    const contentType = response.headers.get('content-type') || '';
+
+    if (!contentType.includes('application/json')) {
+      throw new Error(
+        'Web App masih mengembalikan HTML, bukan JSON. ' +
+        'Code.gs perlu menyediakan endpoint JSON.'
+      );
+    }
+
+    const result = await response.json();
+
+    if (!result || !result.success) {
+      throw new Error('Respons data tidak valid.');
+    }
+
+    allRows = result.rows || [];
+
+    document.getElementById('totalData').textContent =
+      formatNumber(result.total ?? allRows.length);
+
+    document.getElementById('totalQty').textContent =
+      formatNumber(result.totalQty);
+
+    document.getElementById('updateInfo').textContent =
+      'Terakhir diperbarui: ' + (result.updatedAt || '-');
+
+    updatePeriodLabels();
+    populateFilters();
+    updatePeriodButtons();
+    renderTable();
+
+  } catch (error) {
+    showError(
+      'Gagal mengambil data dari Web App.\n\n' +
+      (error.message || error) +
+      '\n\nPeriksa apakah Web App sudah menyediakan JSON ' +
+      'dan dapat diakses dari GitHub Pages.'
+    );
+  } finally {
+    isLoading = false;
+  }
+}
+
+/* =====================================================
+   LABEL PERIODE
+===================================================== */
+
+function updatePeriodLabels() {
+  const now = new Date();
+
+  const yesterday = new Date(now);
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  const before = new Date(now);
+  before.setDate(before.getDate() - 2);
+
+  document.getElementById('periodBefore').textContent =
+    'H-2 • ' + formatDateID(before);
+
+  document.getElementById('periodYesterday').textContent =
+    'KEMARIN • ' + formatDateID(yesterday);
+
+  document.getElementById('periodToday').textContent =
+    'HARI INI • ' + formatDateID(now);
+}
+
+/* =====================================================
+   RENDER TABEL
+===================================================== */
+
+function renderTable() {
+  const query = currentFilters.search.trim().toLowerCase();
+  const shift = currentFilters.shift;
+  const grup = currentFilters.grup;
+
+  const selectedDateKey = currentFilters.period
+    ? getPeriodDateKey(currentFilters.period)
+    : '';
+
+  const rows = allRows.filter(row => {
+    if (shift && String(row['SHIFT'] ?? '').trim() !== shift) {
+      return false;
+    }
+
+    if (grup && String(row['GRUP'] ?? '').trim() !== grup) {
+      return false;
+    }
+
+    if (selectedDateKey) {
+      if (getDayKey(row['Timestamp']) !== selectedDateKey) {
+        return false;
+      }
+    }
+
+    if (query) {
+      const text = SEARCH_HEADERS
+        .map(header => String(row[header] ?? ''))
+        .join(' ')
+        .toLowerCase();
+
+      if (!text.includes(query)) return false;
+    }
+
+    return true;
+  });
+
+  document.getElementById('shownData').textContent =
+    formatNumber(rows.length);
+
+  const body = document.getElementById('tableBody');
+
+  if (!rows.length) {
+    body.innerHTML =
+      '<tr><td colspan="10" class="status">' +
+      'Tidak ada data yang cocok dengan filter.</td></tr>';
+    return;
+  }
+
+  const todayKey = localDateKey(new Date());
+
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  const before = new Date();
+  before.setDate(before.getDate() - 2);
+
+  const yesterdayKey = localDateKey(yesterday);
+  const beforeKey = localDateKey(before);
+
+  body.innerHTML = rows.map(row => {
+    const dateKey = getDayKey(row['Timestamp']);
+    let badge = '';
+
+    if (dateKey === todayKey) {
+      badge = '<span class="day-badge day-today">HARI INI</span>';
+    } else if (dateKey === yesterdayKey) {
+      badge = '<span class="day-badge day-yesterday">KEMARIN</span>';
+    } else if (dateKey === beforeKey) {
+      badge = '<span class="day-badge day-before">H-2</span>';
+    }
+
+    return '<tr>' + HEADERS.map(header => {
+      const value = row[header] ?? '';
+
+      if (header === 'Timestamp') {
+        return '<td class="timestamp">' +
+          escapeHTML(value) + '<br>' + badge + '</td>';
+      }
+
+      if (header === 'KODE PRODUK') {
+        return '<td class="product-code">' +
+          renderProductCode(value) + '</td>';
+      }
+
+      if (header === 'QTY (PCS)') {
+        return '<td class="qty">' + escapeHTML(value) + '</td>';
+      }
+
+      return '<td>' + escapeHTML(value) + '</td>';
+    }).join('') + '</tr>';
+  }).join('');
+}
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+function showError(message) {
+  document.getElementById('tableBody').innerHTML =
+    '<tr><td colspan="10" class="status error">' +
+    escapeHTML(message) + '</td></tr>';
+
+  document.getElementById('updateInfo').textContent =
+    'Gagal mengambil data.';
+}
+
+/* =====================================================
+   INISIALISASI
+===================================================== */
+
+initHeaders();
+updatePeriodLabels();
+restoreFilterInputs();
+updatePeriodButtons();
+loadData(false);
+
+setInterval(function() {
+  loadData(false);
+}, 60000);
+</script>
+
+</body>
+</html>
