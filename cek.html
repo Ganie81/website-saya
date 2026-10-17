@@ -3535,12 +3535,50 @@ if ("serviceWorker" in navigator) {
         return;
       }
 
-      /*
-       * Pengajuan baru menggunakan POST.
-       * Respons pengajuan harus dikonfirmasi pada tahap pengujian.
-       */
+            // Kirim pengajuan email ke Apps Script.
+      const response = await fetch(API_AKSES, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify({
+          action: 'requestAccess',
+          nama: nama,
+          email: email
+        })
+      });
+
+      const hasil = await response.json();
+
+      if (hasil.success && hasil.approved === true) {
+        simpanIdentitas(email, nama);
+        bukaAplikasi();
+        return;
+      }
+
+      if (hasil.status === 'MENUNGGU') {
+        tampilkanOverlay(
+          '⏳ ' + hasil.message
+        );
+        return;
+      }
+
+      if (hasil.status === 'DITOLAK') {
+        tampilkanOverlay(
+          '❌ ' + hasil.message
+        );
+        return;
+      }
+
+      if (!hasil.success) {
+        tampilkanOverlay(
+          hasil.message || 'Pengajuan belum berhasil.'
+        );
+        return;
+      }
+
       tampilkanOverlay(
-        'Email belum terdaftar. Sistem perlu mengirim pengajuan ke server. Jika tombol ini belum menyimpan pengajuan, beri tahu Bos agar kita sesuaikan koneksi pengajuannya.'
+        hasil.message || 'Pengajuan akses berhasil diproses.'
       );
 
     }catch(error){
