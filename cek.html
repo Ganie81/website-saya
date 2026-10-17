@@ -3536,12 +3536,288 @@ function tampilkanOverlay(teks){
         return;
       }
 
-      if(data.status === 'DITOLAK'){
-        tampilkanOverlay('❌ Email ditolak. Silakan hubungi admin.');
+<script>
+(function(){
+  'use strict';
+
+  const API_AKSES =
+    'https://script.google.com/macros/s/AKfycbxA8OLvFoMVZ6O4i_TmuaD_HLv-XNiyyZnMtHr6pNc-Qek0IvZ9AJ5jfEFlD-AvYGId/exec';
+
+  const KUNCI_EMAIL = 'BEHAESTEX_EMAIL_AKSES_V1';
+  const KUNCI_NAMA = 'BEHAESTEX_NAMA_AKSES_V1';
+  const KUNCI_PERSETUJUAN = 'BEHAESTEX_PERSETUJUAN_AT_V1';
+
+  const MASA_AKSES = 24 * 60 * 60 * 1000;
+  const COBA_LAGI = 5 * 60 * 1000;
+
+  const overlay = document.getElementById('aksesOverlay');
+  const pesan = document.getElementById('aksesPesan');
+  const tombol = document.getElementById('aksesTombol');
+  const inputEmail = document.getElementById('aksesEmail');
+  const inputNama = document.getElementById('aksesNama');
+
+  let sedangMemeriksa = false;
+  let timerPemeriksaan = null;
+
+  function tampilkanOverlay(teks){
+    overlay.style.visibility = 'visible';
+    overlay.style.display = 'flex';
+    pesan.textContent = teks;
+  }
+
+  function bukaAplikasi(){
+    overlay.style.display = 'none';
+    overlay.style.visibility = 'hidden';
+  }
+
+  function ambilEmail(){
+    return (inputEmail.value || '').trim().toLowerCase();
+  }
+
+  function simpanIdentitas(email, nama){
+    localStorage.setItem(KUNCI_EMAIL, email);
+
+    if(nama){
+      localStorage.setItem(KUNCI_NAMA, nama);
+    }
+  }
+
+  function simpanPersetujuan(){
+    localStorage.setItem(
+      KUNCI_PERSETUJUAN,
+      String(Date.now())
+    );
+  }
+
+  function hapusPersetujuan(){
+    localStorage.removeItem(KUNCI_PERSETUJUAN);
+
+    if(timerPemeriksaan){
+      clearTimeout(timerPemeriksaan);
+      timerPemeriksaan = null;
+    }
+  }
+
+  function waktuPersetujuan(){
+    return Number(
+      localStorage.getItem(KUNCI_PERSETUJUAN) || 0
+    );
+  }
+
+  function persetujuanMasihBerlaku(){
+    const waktu = waktuPersetujuan();
+
+    return waktu > 0 &&
+      Date.now() - waktu < MASA_AKSES;
+  }
+
+  async function periksaAkses(email){
+    const url =
+      API_AKSES +
+      '?action=checkAccess&email=' +
+      encodeURIComponent(email) +
+      '&_=' + Date.now();
+
+    const response = await fetch(url, {
+      method: 'GET',
+      cache: 'no-store',
+      redirect: 'follow'
+    });
+
+    if(!response.ok){
+      throw new Error('Server memberikan respons ' + response.status);
+    }
+
+    return await response.json();
+  }
+
+  function jadwalkanPemeriksaan(email){
+    if(timerPemeriksaan){
+      clearTimeout(timerPemeriksaan);
+    }
+
+    const waktu = waktuPersetujuan();
+
+    const sisaWaktu = Math.max(
+      1000,
+      MASA_AKSES - (Date.now() - waktu)
+    );
+
+    timerPemeriksaan = setTimeout(function(){
+      periksaBerkala(email);
+    }, sisaWaktu);
+  }
+
+  async function periksaBerkala(email){
+    if(sedangMemeriksa){
+      timerPemeriksaan = setTimeout(function(){
+        periksaBerkala(email);
+      }, 10000);
+
+      return;
+    }
+
+    sedangMemeriksa = true;
+
+    try{
+      const data = await periksaAkses(email);
+
+      if(data.success && data.approved === true){
+        simpanPersetujuan();
+
+        bukaAplikasi();
+
+        jadwalkanPemeriksaan(email);
+
         return;
       }
 
-            // Kirim pengajuan email ke Apps Script.
+      hapusPersetujuan();
+
+      if(data.status === 'DITOLAK'){
+        tampilkanOverlay(
+          '❌ Akses aplikasi ditolak oleh admin. ' +
+          'Silakan hubungi admin.'
+        );
+      }else if(data.status === 'MENUNGGU'){
+        tampilkanOverlay(
+          '⏳ Akses aplikasi sedang menunggu persetujuan admin.'
+        );
+      }else{
+        tampilkanOverlay(
+          '🔒 Akses belum disetujui. Silakan periksa status akses.'
+        );
+      }
+
+    }catch(error){
+      /*
+       * Jika server sementara tidak bisa dihubungi,
+       * aplikasi tetap terbuka dan pemeriksaan dicoba lagi.
+       */
+      bukaAplikasi();
+
+      timerPemeriksaan = setTimeout(function(){
+        periksaBerkala(email);
+      }, COBA_LAGI);
+
+    }finally{
+      sedangMemeriksa = false;
+    }
+  }
+
+  async function prosesPemeriksaan(email){
+    if(sedangMemeriksa) return;
+
+    sedangMemeriksa = true;
+
+    tampilkanOverlay(
+      'Sedang memeriksa status persetujuan...'
+    );
+
+    try{
+      const data = await periksaAkses(email);
+
+      if(data.success && data.approved === true){
+        simpanPersetujuan();
+
+        bukaAplikasi();
+
+        jadwalkanPemeriksaan(email);
+
+        return;
+      }
+
+      hapusPersetujuan();
+
+      if(data.status === 'MENUNGGU'){
+        tampilkanOverlay(
+          '⏳ Pengajuan email ' + email +
+          ' sedang menunggu persetujuan admin.'
+        );
+
+      }else if(data.status === 'DITOLAK'){
+        tampilkanOverlay(
+          '❌ Pengajuan akses ditolak. Silakan hubungi admin.'
+        );
+
+      }else if(data.status === 'BELUM TERDAFTAR'){
+        tampilkanOverlay(
+          'Email belum terdaftar. Isi nama dan email, ' +
+          'lalu tekan AJUKAN / PERIKSA AKSES.'
+        );
+
+      }else{
+        tampilkanOverlay(
+          data.message || 'Status akses belum dapat dipastikan.'
+        );
+      }
+
+    }catch(error){
+      tampilkanOverlay(
+        'Tidak bisa memeriksa server. ' +
+        'Periksa koneksi internet lalu coba lagi.'
+      );
+
+    }finally{
+      sedangMemeriksa = false;
+    }
+  }
+
+  window.kirimPengajuanAkses = async function(){
+    const email = ambilEmail();
+    const nama = inputNama.value.trim();
+
+    if(!nama){
+      tampilkanOverlay('Nama pengguna wajib diisi.');
+      inputNama.focus();
+      return;
+    }
+
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      tampilkanOverlay('Masukkan alamat email yang valid.');
+      inputEmail.focus();
+      return;
+    }
+
+    simpanIdentitas(email, nama);
+
+    tombol.disabled = true;
+    tombol.textContent = 'MEMERIKSA...';
+
+    try{
+      const data = await periksaAkses(email);
+
+      if(data.success && data.approved === true){
+        simpanPersetujuan();
+
+        bukaAplikasi();
+
+        jadwalkanPemeriksaan(email);
+
+        return;
+      }
+
+      if(data.status === 'MENUNGGU'){
+        hapusPersetujuan();
+
+        tampilkanOverlay(
+          '⏳ Email sudah diajukan dan sedang menunggu ' +
+          'persetujuan admin.'
+        );
+
+        return;
+      }
+
+      if(data.status === 'DITOLAK'){
+        hapusPersetujuan();
+
+        tampilkanOverlay(
+          '❌ Email ditolak. Silakan hubungi admin.'
+        );
+
+        return;
+      }
+
       const response = await fetch(API_AKSES, {
         method: 'POST',
         headers: {
@@ -3556,30 +3832,42 @@ function tampilkanOverlay(teks){
 
       const hasil = await response.json();
 
-      if (hasil.success && hasil.approved === true) {
+      if(hasil.success && hasil.approved === true){
         simpanIdentitas(email, nama);
+        simpanPersetujuan();
+
         bukaAplikasi();
+
+        jadwalkanPemeriksaan(email);
+
         return;
       }
 
-      if (hasil.status === 'MENUNGGU') {
+      if(hasil.status === 'MENUNGGU'){
+        hapusPersetujuan();
+
         tampilkanOverlay(
           '⏳ ' + hasil.message
         );
+
         return;
       }
 
-      if (hasil.status === 'DITOLAK') {
+      if(hasil.status === 'DITOLAK'){
+        hapusPersetujuan();
+
         tampilkanOverlay(
           '❌ ' + hasil.message
         );
+
         return;
       }
 
-      if (!hasil.success) {
+      if(!hasil.success){
         tampilkanOverlay(
           hasil.message || 'Pengajuan belum berhasil.'
         );
+
         return;
       }
 
@@ -3588,7 +3876,10 @@ function tampilkanOverlay(teks){
       );
 
     }catch(error){
-      tampilkanOverlay('Gagal menghubungi server. Periksa koneksi internet.');
+      tampilkanOverlay(
+        'Gagal menghubungi server. Periksa koneksi internet.'
+      );
+
     }finally{
       tombol.disabled = false;
       tombol.textContent = 'AJUKAN / PERIKSA AKSES';
@@ -3596,18 +3887,38 @@ function tampilkanOverlay(teks){
   };
 
   document.addEventListener('DOMContentLoaded', function(){
-    const emailTersimpan = localStorage.getItem(KUNCI_EMAIL) || '';
-    const namaTersimpan = localStorage.getItem(KUNCI_NAMA) || '';
+    const emailTersimpan =
+      localStorage.getItem(KUNCI_EMAIL) || '';
+
+    const namaTersimpan =
+      localStorage.getItem(KUNCI_NAMA) || '';
 
     inputEmail.value = emailTersimpan;
     inputNama.value = namaTersimpan;
 
-    tampilkanOverlay('Sedang memeriksa akses aplikasi...');
+    if(
+      emailTersimpan &&
+      persetujuanMasihBerlaku()
+    ){
+      /*
+       * Persetujuan masih berlaku.
+       * Buka aplikasi tanpa memanggil server.
+       */
+      bukaAplikasi();
 
-    if(emailTersimpan){
+      jadwalkanPemeriksaan(emailTersimpan);
+
+    }else if(emailTersimpan){
+      /*
+       * Masa persetujuan sudah habis.
+       * Periksa status terbaru dari server.
+       */
       prosesPemeriksaan(emailTersimpan);
+
     }else{
-      tampilkanOverlay('Masukkan nama dan email untuk memulai pengajuan akses.');
+      tampilkanOverlay(
+        'Masukkan nama dan email untuk memulai pengajuan akses.'
+      );
     }
   });
 
