@@ -1368,133 +1368,92 @@ async function muatData() {
       'Diperbarui: ' +
       new Date().toLocaleTimeString('id-ID');
 
-   /* =====================================================
-   PENYARINGAN TANGGAL DAN DEV (PCS)
-   KOLOM 2  = TANGGAL
-   KOLOM 11 = DEV (PCS)
-   TIMEZONE = ASIA/JAKARTA
+    tampilkanTabel();
 
-   HARI INI:
-   Semua nilai DEV ditampilkan.
+    tampilPesan(
+      'Data berhasil dimuat. Baris tanpa FP disembunyikan.',
+      'success'
+    );
 
-   TANGGAL SELAIN HARI INI:
-   DEV 0 atau positif disembunyikan.
-   DEV negatif tetap ditampilkan.
+  } catch (error) {
+    console.error('Kesalahan PLANNING:', error);
+
+    el('statusData').textContent = 'ERROR';
+
+    tampilPesan(
+      'Data gagal dimuat. Periksa URL deployment Apps Script, ' +
+      'izin akses, dan format respons API. Detail: ' +
+      error.message,
+      'error'
+    );
+
+    if (semuaData.length === 0) {
+      el('kepalaTabel').innerHTML = '';
+
+      el('isiTabel').innerHTML =
+        '<tr><td class="empty" colspan="18">' +
+        'Data belum berhasil dimuat. Tekan MUAT ULANG setelah ' +
+        'memastikan Apps Script sudah di-deploy.' +
+        '</td></tr>';
+
+      el('infoJumlah').textContent = 'Data tidak tersedia';
+      el('totalData').textContent = '0';
+      el('hasilData').textContent = '0';
+    }
+
+  } finally {
+    sedangMemuat = false;
+
+    el('btnMuat').disabled = false;
+    el('btnMuat').textContent = '↻ MUAT ULANG';
+  }
+}
+
+/* =====================================================
+   MEMBANGUN HEADER 3 TINGKAT
 ===================================================== */
 
-function tanggalJakarta(nilai) {
-  if (nilai === null || nilai === undefined || nilai === '') {
-    return '';
-  }
+function buatHeader() {
+  const finalBaris1 = `
+    <tr class="header-level-1">
+      <th rowspan="3">HARI</th>
+      <th rowspan="3">TANGGAL</th>
+      <th rowspan="3">FP</th>
+      <th rowspan="3">KODE PRODUK</th>
+      <th rowspan="3">MOTIF</th>
+      <th rowspan="3">KEY</th>
+      <th rowspan="3">WOM</th>
+      <th rowspan="3">TIPE PRINT</th>
+      <th colspan="3">PRODUKSI</th>
+      <th colspan="6">WARNA</th>
+      <th rowspan="3">KETERANGAN</th>
+    </tr>
+  `;
 
-  const teks = String(nilai).trim();
+  const finalBaris2 = `
+    <tr class="header-level-2">
+      <th rowspan="2">ORDER (PCS)</th>
+      <th rowspan="2">ACV (PCS)</th>
+      <th rowspan="2" class="dev-header">DEV (PCS)</th>
+      <th rowspan="2">KAIN</th>
+      <th rowspan="2">BLOK</th>
+      <th colspan="4">ISIAN</th>
+    </tr>
+  `;
 
-  // Format tanggal: DD/MM/YYYY atau DD-MM-YYYY
-  let cocok = teks.match(
-    /^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/
-  );
+  const finalBaris3 = `
+    <tr class="header-level-3">
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  `;
 
-  if (cocok) {
-    const hari = cocok[1].padStart(2, '0');
-    const bulan = cocok[2].padStart(2, '0');
-    const tahun = cocok[3];
+  el('kepalaTabel').innerHTML =
+    finalBaris1 + finalBaris2 + finalBaris3;
 
-    return tahun + '-' + bulan + '-' + hari;
-  }
-
-  // Format tanggal: YYYY-MM-DD
-  cocok = teks.match(
-    /^(\d{4})-(\d{1,2})-(\d{1,2})/
-  );
-
-  if (cocok) {
-    return cocok[1] + '-' +
-      cocok[2].padStart(2, '0') + '-' +
-      cocok[3].padStart(2, '0');
-  }
-
-  // Format tanggal lain yang dapat dibaca JavaScript
-  const tanggal = new Date(teks);
-
-  if (Number.isNaN(tanggal.getTime())) {
-    return '';
-  }
-
-  return new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Asia/Jakarta',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  }).format(tanggal);
-}
-
-function hariIniJakarta() {
-  return new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Asia/Jakarta',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  }).format(new Date());
-}
-
-function angkaDEV(nilai) {
-  let teks = String(nilai ?? '').trim();
-
-  if (!teks) {
-    return null;
-  }
-
-  teks = teks
-    .replace(/\s*pcs\s*$/i, '')
-    .replace(/[−]/g, '-')
-    .replace(/\s/g, '');
-
-  // Angka negatif dalam tanda kurung
-  if (/^\(.*\)$/.test(teks)) {
-    teks = '-' + teks.slice(1, -1);
-  }
-
-  // Format Indonesia, misalnya -1.250 atau 1.250,5
-  if (/^-?\d{1,3}(\.\d{3})+(,\d+)?$/.test(teks)) {
-    teks = teks.replace(/\./g, '').replace(',', '.');
-  } else if (/^-?\d+,\d+$/.test(teks)) {
-    teks = teks.replace(',', '.');
-  } else {
-    // Format angka biasa
-    teks = teks.replace(/,/g, '');
-  }
-
-  const angka = Number(teks);
-
-  return Number.isFinite(angka) ? angka : null;
-}
-
-function lolosFilterTanggalDEV(baris) {
-  // Kolom ke-2: TANGGAL
-  const tanggalData = tanggalJakarta(baris[1]);
-
-  // Jika tanggal tidak valid, jangan menebak.
-  // Data tetap ditampilkan agar tidak hilang tanpa sengaja.
-  if (!tanggalData) {
-    return true;
-  }
-
-  // Hari ini: tampilkan semua nilai DEV.
-  if (tanggalData === hariIniJakarta()) {
-    return true;
-  }
-
-  // Kolom ke-11: DEV (PCS)
-  const dev = angkaDEV(baris[10]);
-
-  // DEV kosong atau tidak terbaca: pertahankan data.
-  if (dev === null) {
-    return true;
-  }
-
-  // Tanggal selain hari ini:
-  // hanya DEV negatif yang ditampilkan.
-  return dev < 0;
+  pasangFreezeHeader();
 }
 
 /* =====================================================
@@ -1503,17 +1462,9 @@ function lolosFilterTanggalDEV(baris) {
 
 function tampilkanTabel() {
   const kata = normalisasi(el('cari').value);
-
-  // Tetap sembunyikan baris yang FP-nya kosong.
   const dataAktif = dataDenganFP();
 
-  // Penyaringan tambahan berdasarkan tanggal dan DEV.
-  const dataTampil = dataAktif.filter(function(baris) {
-    return lolosFilterTanggalDEV(baris);
-  });
-
-  // Pencarian tetap berjalan setelah filter tanggal dan DEV.
-  const hasil = dataTampil.filter(function(baris) {
+  const hasil = dataAktif.filter(function(baris) {
     if (kata === '') return true;
 
     return baris.some(function(nilai) {
@@ -1528,8 +1479,8 @@ function tampilkanTabel() {
       '<tr><td class="empty" colspan="18">' +
       (
         dataAktif.length === 0
-          ? 'Tidak ada data dengan FP terisi.'
-          : 'Tidak ada data yang sesuai dengan filter tanggal, DEV, dan pencarian.'
+          ? 'Tidak ada data dengan FP terisi pada rentang tanggal ini.'
+          : 'Data tidak ditemukan.'
       ) +
       '</td></tr>';
 
@@ -1645,9 +1596,21 @@ function tampilkanTabel() {
     'Menampilkan ' +
     hasil.length.toLocaleString('id-ID') +
     ' dari ' +
-    dataTampil.length.toLocaleString('id-ID') +
-    ' baris setelah filter tanggal dan DEV';
-} 
+    dataAktif.length.toLocaleString('id-ID') +
+    ' baris ber-FP';
+}
+
+/* =====================================================
+   PENCARIAN LANGSUNG
+===================================================== */
+
+el('cari').addEventListener('input', tampilkanTabel);
+
+/* =====================================================
+   MULAI APLIKASI
+===================================================== */
+
+muatData();
 </script>
 
 </body>
