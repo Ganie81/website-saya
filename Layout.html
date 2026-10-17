@@ -32,6 +32,9 @@ body{
   background-attachment:fixed;
   min-height:100vh;
   color:#fff;
+  font-weight:600;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
 }
 
 .container{
@@ -41,7 +44,7 @@ body{
   padding:18px;
 }
 
-/* HEADER */
+/* HEADER - 3D METAL GELAP */
 
 .header{
   position:sticky;
@@ -49,26 +52,54 @@ body{
   z-index:1000;
 
   background:linear-gradient(
-    145deg,
-    #374151,
-    #111827
+    160deg,
+    #59616d 0%,
+    #374151 24%,
+    #252e3d 58%,
+    #111827 100%
   );
 
-  border:1px solid rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.24);
   border-radius:22px;
   padding:24px 20px;
 
   box-shadow:
-    0 15px 35px rgba(0,0,0,.45),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    0 16px 28px rgba(0,0,0,.48),
+    0 5px 0 rgba(0,0,0,.25),
+    inset 0 2px 2px rgba(255,255,255,.22),
+    inset 0 -3px 5px rgba(0,0,0,.38);
 
   text-align:center;
+  position:sticky;
+  overflow:hidden;
+}
+
+/* Kilau halus header */
+
+.header::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:8%;
+  width:84%;
+  height:42%;
+  border-radius:0 0 50% 50%;
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,.10),
+    rgba(255,255,255,0)
+  );
+  pointer-events:none;
 }
 
 .header h1{
-  font-size:clamp(24px,5vw,38px);
+  position:relative;
+  font-size:clamp(26px,5.4vw,40px);
   letter-spacing:1px;
-  font-weight:800;
+  font-weight:900;
+  text-shadow:
+    0 2px 1px rgba(0,0,0,.65),
+    0 4px 8px rgba(0,0,0,.4);
 }
 
 .header h1 a{
@@ -83,16 +114,20 @@ body{
 }
 
 .header p{
-  margin-top:8px;
-  color:#d1d5db;
-  font-size:14px;
+  position:relative;
+  margin-top:9px;
+  color:#e5e7eb;
+  font-size:15px;
+  font-weight:700;
+  line-height:1.5;
+  text-shadow:0 2px 3px rgba(0,0,0,.6);
 }
 
-/* STATUS */
+/* STATUS - KOTAK 3D */
 
 .status{
   position:sticky;
-  top:125px;
+  top:145px;
   z-index:999;
 
   margin-top:15px;
@@ -101,55 +136,92 @@ body{
   grid-template-columns:repeat(3,1fr);
   gap:10px;
 
-  background:rgba(17,24,39,.96);
-  border-radius:15px;
+  background:linear-gradient(
+    145deg,
+    rgba(55,65,81,.97),
+    rgba(17,24,39,.98)
+  );
+
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:16px;
+
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.38),
+    inset 0 2px 3px rgba(255,255,255,.12),
+    inset 0 -2px 4px rgba(0,0,0,.3);
 }
 
 .status-box{
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.09);
+  position:relative;
+
+  background:linear-gradient(
+    145deg,
+    rgba(156,163,175,.25),
+    rgba(255,255,255,.07) 45%,
+    rgba(0,0,0,.12)
+  );
+
+  border:1px solid rgba(255,255,255,.16);
   border-radius:15px;
-  padding:14px 8px;
+  padding:15px 8px;
   text-align:center;
+
+  box-shadow:
+    0 4px 8px rgba(0,0,0,.18),
+    inset 0 1px 2px rgba(255,255,255,.20),
+    inset 0 -2px 3px rgba(0,0,0,.20);
 }
 
 .status-number{
-  font-size:22px;
-  font-weight:800;
+  font-size:25px;
+  font-weight:900;
+  color:#fff;
+  text-shadow:
+    0 2px 3px rgba(0,0,0,.65),
+    0 0 1px rgba(255,255,255,.4);
 }
 
 .status-label{
-  margin-top:5px;
-  font-size:11px;
-  color:#9ca3af;
+  margin-top:6px;
+  font-size:12px;
+  font-weight:800;
+  color:#e5e7eb;
+  text-shadow:0 1px 2px rgba(0,0,0,.6);
 }
 
-/* SEARCH */
+/* SEARCH - PANEL 3D */
 
 .search-box{
   position:sticky;
-  top:205px;
+  top:225px;
   z-index:998;
 
   margin-top:18px;
 
   background:linear-gradient(
     145deg,
-    rgba(31,41,55,.98),
-    rgba(17,24,39,.98)
+    rgba(107,114,128,.82),
+    rgba(55,65,81,.94) 35%,
+    rgba(17,24,39,.97) 100%
   );
 
-  border:1px solid rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.23);
   border-radius:20px;
-  padding:18px;
+  padding:19px;
 
-  box-shadow:0 12px 30px rgba(0,0,0,.35);
+  box-shadow:
+    0 14px 28px rgba(0,0,0,.42),
+    0 4px 0 rgba(0,0,0,.18),
+    inset 0 2px 3px rgba(255,255,255,.20),
+    inset 0 -3px 5px rgba(0,0,0,.25);
 }
 
 .search-title{
-  font-size:15px;
-  font-weight:700;
-  margin-bottom:10px;
+  font-size:18px;
+  font-weight:900;
+  margin-bottom:12px;
+  color:#fff;
+  text-shadow:0 2px 3px rgba(0,0,0,.6);
 }
 
 .search-row{
@@ -160,55 +232,140 @@ body{
 .search-input{
   flex:1;
   min-width:0;
-  padding:15px 16px;
+  padding:16px;
   border-radius:14px;
-  border:1px solid #4b5563;
-  background:#111827;
+
+  border:1px solid #9ca3af;
+
+  background:linear-gradient(
+    145deg,
+    #1f2937,
+    #111827
+  );
+
   color:#fff;
-  font-size:16px;
+  font-size:17px;
+  font-weight:700;
   outline:none;
+
+  box-shadow:
+    inset 0 3px 6px rgba(0,0,0,.40),
+    inset 0 1px 2px rgba(255,255,255,.10),
+    0 2px 4px rgba(0,0,0,.18);
+}
+
+.search-input::placeholder{
+  color:#d1d5db;
+  opacity:1;
+  font-weight:600;
 }
 
 .search-input:focus{
-  border-color:#9ca3af;
-  box-shadow:0 0 0 3px rgba(156,163,175,.12);
+  border-color:#e5e7eb;
+  box-shadow:
+    0 0 0 3px rgba(229,231,235,.20),
+    inset 0 3px 6px rgba(0,0,0,.35);
 }
+
+/* TOMBOL */
 
 .btn{
   border:none;
   border-radius:14px;
   padding:0 20px;
-  font-size:15px;
-  font-weight:700;
+  font-size:16px;
+  font-weight:900;
   cursor:pointer;
-  transition:.2s;
+  transition:transform .15s,box-shadow .15s;
+  -webkit-tap-highlight-color:transparent;
 }
 
 .btn:active{
-  transform:scale(.97);
+  transform:translateY(2px) scale(.98);
 }
+
+/* TOMBOL CARI - PUTIH 3D */
 
 .btn-search{
-  background:#f3f4f6;
+  background:linear-gradient(
+    160deg,
+    #ffffff 0%,
+    #f3f4f6 35%,
+    #d1d5db 75%,
+    #9ca3af 100%
+  );
+
   color:#111827;
+  border:1px solid #f9fafb;
+
+  box-shadow:
+    0 5px 0 #6b7280,
+    0 8px 12px rgba(0,0,0,.30),
+    inset 0 2px 2px rgba(255,255,255,.95),
+    inset 0 -2px 3px rgba(107,114,128,.35);
 }
+
+.btn-search:active{
+  box-shadow:
+    0 2px 0 #6b7280,
+    0 3px 5px rgba(0,0,0,.25),
+    inset 0 2px 3px rgba(0,0,0,.12);
+}
+
+/* TOMBOL UPDATE - ABU-ABU 3D */
 
 .btn-update{
-  background:#374151;
+  background:linear-gradient(
+    155deg,
+    #6b7280 0%,
+    #374151 45%,
+    #1f2937 100%
+  );
+
   color:#fff;
-  border:1px solid #6b7280;
+  border:1px solid rgba(255,255,255,.30);
+
+  box-shadow:
+    0 5px 0 #111827,
+    0 9px 15px rgba(0,0,0,.32),
+    inset 0 2px 2px rgba(255,255,255,.24),
+    inset 0 -2px 3px rgba(0,0,0,.35);
+
+  font-size:16px;
+  font-weight:900;
 }
 
-/* INFO */
+.btn-update:disabled{
+  opacity:.65;
+  cursor:wait;
+}
+
+/* INFO - KACA ABU-ABU */
 
 .info{
-  margin-top:14px;
-  padding:13px 15px;
+  margin-top:15px;
+  padding:15px;
+
   border-radius:13px;
-  background:rgba(255,255,255,.05);
-  color:#d1d5db;
-  font-size:13px;
-  line-height:1.5;
+
+  background:linear-gradient(
+    145deg,
+    rgba(209,213,219,.25),
+    rgba(156,163,175,.15) 50%,
+    rgba(31,41,55,.24)
+  );
+
+  border:1px solid rgba(255,255,255,.15);
+
+  color:#f3f4f6;
+  font-size:15px;
+  font-weight:700;
+  line-height:1.65;
+
+  box-shadow:
+    0 4px 10px rgba(0,0,0,.18),
+    inset 0 1px 2px rgba(255,255,255,.18),
+    inset 0 -2px 3px rgba(0,0,0,.15);
 }
 
 /* LOADING */
@@ -218,14 +375,25 @@ body{
   margin-top:18px;
   text-align:center;
   padding:25px;
-  background:rgba(0,0,0,.25);
+
+  background:linear-gradient(
+    145deg,
+    rgba(156,163,175,.25),
+    rgba(0,0,0,.35)
+  );
+
+  border:1px solid rgba(255,255,255,.15);
   border-radius:17px;
+
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.3),
+    inset 0 1px 2px rgba(255,255,255,.12);
 }
 
 .spinner{
-  width:35px;
-  height:35px;
-  border:4px solid rgba(255,255,255,.2);
+  width:38px;
+  height:38px;
+  border:4px solid rgba(255,255,255,.25);
   border-top-color:#fff;
   border-radius:50%;
   margin:auto;
@@ -237,15 +405,16 @@ body{
 }
 
 .loading-text{
-  margin-top:10px;
-  color:#d1d5db;
-  font-size:13px;
+  margin-top:12px;
+  color:#f3f4f6;
+  font-size:15px;
+  font-weight:800;
 }
 
 /* RESULT */
 
 .result-area{
-  margin-top:18px;
+  margin-top:20px;
 }
 
 .result-header{
@@ -253,83 +422,253 @@ body{
   justify-content:space-between;
   align-items:center;
   gap:10px;
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 .result-header h2{
-  font-size:18px;
+  font-size:20px;
+  font-weight:900;
+  text-shadow:0 2px 4px rgba(0,0,0,.65);
 }
 
 .result-count{
-  font-size:12px;
-  color:#d1d5db;
+  font-size:14px;
+  font-weight:800;
+  color:#f3f4f6;
+  text-shadow:0 2px 3px rgba(0,0,0,.7);
 }
+
+/* KARTU PDF - ABU-ABU MUDA TRANSPARAN 3D */
 
 .result-list{
   display:grid;
-  gap:12px;
+  gap:14px;
 }
 
 .card{
+  position:relative;
+  overflow:hidden;
+
+  /*
+    Abu-abu muda seperti kaca.
+    Tetap transparan sehingga background terlihat.
+  */
+
   background:linear-gradient(
     145deg,
-    rgba(255,255,255,.09),
-    rgba(255,255,255,.035)
+    rgba(229,231,235,.57) 0%,
+    rgba(209,213,219,.43) 28%,
+    rgba(156,163,175,.35) 62%,
+    rgba(107,114,128,.31) 100%
   );
 
-  border:1px solid rgba(255,255,255,.10);
+  border:1px solid rgba(243,244,246,.55);
   border-radius:17px;
-  padding:16px;
+  padding:17px;
 
-  box-shadow:0 8px 25px rgba(0,0,0,.30);
+  box-shadow:
+    0 10px 20px rgba(0,0,0,.34),
+    0 3px 0 rgba(31,41,55,.35),
+    inset 0 2px 3px rgba(255,255,255,.60),
+    inset 0 -3px 5px rgba(31,41,55,.20);
+
+  /*
+    Blur tipis agar kesan kaca lebih terasa.
+    Background tetap terlihat melalui kartu.
+  */
+
+  -webkit-backdrop-filter:blur(5px);
+  backdrop-filter:blur(5px);
+}
+
+/* Kilau kaca bagian atas kartu */
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:4%;
+  width:92%;
+  height:38%;
+
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,.19),
+    rgba(255,255,255,0)
+  );
+
+  border-radius:0 0 50% 50%;
+  pointer-events:none;
+}
+
+/* Isi kartu berada di atas efek kaca */
+
+.card-name,
+.card-wom,
+.card-actions{
+  position:relative;
+  z-index:1;
 }
 
 .card-name{
-  font-size:15px;
-  line-height:1.45;
-  font-weight:700;
+  font-size:17px;
+  line-height:1.55;
+  font-weight:900;
+  color:#fff;
   word-break:break-word;
+
+  text-shadow:
+    0 2px 3px rgba(0,0,0,.85),
+    0 0 2px rgba(0,0,0,.6);
 }
 
+/* LABEL WOM */
+
 .card-wom{
-  margin-top:8px;
+  margin-top:10px;
   display:inline-block;
-  background:#1f2937;
-  border:1px solid #4b5563;
-  border-radius:8px;
-  padding:5px 8px;
-  font-size:12px;
-  color:#e5e7eb;
+
+  background:linear-gradient(
+    145deg,
+    #4b5563,
+    #1f2937 60%,
+    #111827
+  );
+
+  border:1px solid rgba(255,255,255,.32);
+  border-radius:9px;
+  padding:7px 11px;
+
+  font-size:14px;
+  font-weight:900;
+  color:#fff;
+
+  box-shadow:
+    0 3px 0 rgba(0,0,0,.35),
+    0 5px 8px rgba(0,0,0,.20),
+    inset 0 1px 2px rgba(255,255,255,.20),
+    inset 0 -2px 3px rgba(0,0,0,.25);
 }
+
+/* AKSI KARTU */
 
 .card-actions{
   display:flex;
-  gap:9px;
-  margin-top:14px;
+  gap:10px;
+  margin-top:17px;
 }
 
+/* TOMBOL BUKA PDF - PUTIH MENGILAP 3D */
+
 .open-btn{
+  position:relative;
+
   display:inline-flex;
   align-items:center;
   justify-content:center;
   flex:1;
-  min-height:43px;
+  min-height:47px;
+
   border-radius:12px;
   text-decoration:none;
-  background:#f3f4f6;
+
+  background:linear-gradient(
+    160deg,
+    #ffffff 0%,
+    #f9fafb 20%,
+    #e5e7eb 55%,
+    #cbd5e1 82%,
+    #9ca3af 100%
+  );
+
   color:#111827;
-  font-size:13px;
-  font-weight:800;
+  border:1px solid #f9fafb;
+
+  font-size:16px;
+  font-weight:900;
+  letter-spacing:.25px;
+
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.9);
+
+  box-shadow:
+    0 5px 0 #6b7280,
+    0 8px 12px rgba(0,0,0,.28),
+    inset 0 2px 2px rgba(255,255,255,1),
+    inset 0 -3px 4px rgba(75,85,99,.30);
+
+  overflow:hidden;
+
+  -webkit-tap-highlight-color:transparent;
 }
 
+/* Pantulan mengilap tombol BUKA */
+
+.open-btn::before{
+  content:"";
+  position:absolute;
+  top:1px;
+  left:8%;
+  width:84%;
+  height:43%;
+
+  border-radius:0 0 50% 50%;
+
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,.95),
+    rgba(255,255,255,.18)
+  );
+
+  pointer-events:none;
+}
+
+.open-btn:active{
+  transform:translateY(3px);
+
+  box-shadow:
+    0 2px 0 #6b7280,
+    0 4px 6px rgba(0,0,0,.24),
+    inset 0 2px 3px rgba(107,114,128,.25);
+}
+
+/* TOMBOL SALIN - 3D */
+
 .copy-btn{
-  border:1px solid #4b5563;
-  background:#1f2937;
+  position:relative;
+
+  border:1px solid rgba(255,255,255,.30);
+
+  background:linear-gradient(
+    155deg,
+    #6b7280 0%,
+    #374151 45%,
+    #1f2937 100%
+  );
+
   color:#fff;
   border-radius:12px;
-  padding:0 16px;
-  font-weight:700;
+  padding:0 17px;
+
+  font-size:14px;
+  font-weight:900;
+
   cursor:pointer;
+
+  box-shadow:
+    0 4px 0 #111827,
+    0 6px 9px rgba(0,0,0,.24),
+    inset 0 2px 2px rgba(255,255,255,.18),
+    inset 0 -2px 3px rgba(0,0,0,.30);
+
+  -webkit-tap-highlight-color:transparent;
+}
+
+.copy-btn:active{
+  transform:translateY(2px);
+  box-shadow:
+    0 2px 0 #111827,
+    inset 0 2px 3px rgba(0,0,0,.25);
 }
 
 /* EMPTY */
@@ -338,25 +677,59 @@ body{
   display:none;
   text-align:center;
   padding:35px 20px;
-  background:rgba(255,255,255,.04);
-  border:1px dashed #4b5563;
+
+  background:linear-gradient(
+    145deg,
+    rgba(209,213,219,.28),
+    rgba(107,114,128,.20),
+    rgba(31,41,55,.28)
+  );
+
+  border:1px dashed #9ca3af;
   border-radius:17px;
-  color:#d1d5db;
+
+  color:#fff;
+  font-size:16px;
+  font-weight:800;
+
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.28),
+    inset 0 2px 3px rgba(255,255,255,.20),
+    inset 0 -2px 3px rgba(0,0,0,.18);
 }
 
 .empty-icon{
-  font-size:35px;
-  margin-bottom:8px;
+  font-size:38px;
+  margin-bottom:10px;
 }
 
-/* FOOTER */
+/* FOOTER - 3D */
 
 .footer{
   text-align:center;
   margin-top:25px;
-  padding:15px;
-  color:#d1d5db;
-  font-size:11px;
+  padding:16px;
+
+  color:#f3f4f6;
+  font-size:13px;
+  font-weight:800;
+  line-height:1.6;
+
+  background:linear-gradient(
+    145deg,
+    rgba(107,114,128,.35),
+    rgba(31,41,55,.35)
+  );
+
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:13px;
+
+  text-shadow:0 2px 3px rgba(0,0,0,.8);
+
+  box-shadow:
+    0 5px 12px rgba(0,0,0,.22),
+    inset 0 1px 2px rgba(255,255,255,.14),
+    inset 0 -2px 3px rgba(0,0,0,.20);
 }
 
 /* MOBILE */
@@ -372,17 +745,132 @@ body{
     border-radius:18px;
   }
 
+  .header h1{
+    font-size:clamp(25px,6vw,32px);
+    line-height:1.3;
+  }
+
+  .header p{
+    font-size:14px;
+  }
+
   .status{
-    top:112px;
+    top:125px;
     gap:7px;
   }
 
   .status-box{
-    padding:11px 5px;
+    padding:12px 5px;
   }
 
   .status-number{
+    font-size:22px;
+  }
+
+  .status-label{
+    font-size:11px;
+    line-height:1.4;
+  }
+
+  .search-box{
+    top:205px;
+    padding:15px;
+  }
+
+  .search-title{
     font-size:18px;
+  }
+
+  .search-row{
+    flex-direction:column;
+  }
+
+  .search-input{
+    min-height:49px;
+    font-size:17px;
+    padding:14px;
+  }
+
+  .btn{
+    font-size:16px;
+  }
+
+  .btn-search{
+    height:48px;
+  }
+
+  .btn-update{
+    height:47px;
+    font-size:16px;
+  }
+
+  .info{
+    font-size:14px;
+    line-height:1.7;
+    padding:13px;
+  }
+
+  .result-header h2{
+    font-size:18px;
+  }
+
+  .result-count{
+    font-size:13px;
+  }
+
+  .card{
+    padding:16px;
+    border-radius:16px;
+  }
+
+  .card-name{
+    font-size:17px;
+    line-height:1.6;
+  }
+
+  .card-wom{
+    font-size:14px;
+    padding:7px 10px;
+  }
+
+  .card-actions{
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .open-btn{
+    min-height:49px;
+    font-size:16px;
+  }
+
+  .copy-btn{
+    min-height:46px;
+    font-size:15px;
+  }
+
+  .footer{
+    font-size:12px;
+  }
+}
+
+/* HP LAYAR KECIL */
+
+@media(max-width:360px){
+
+  .container{
+    padding:9px;
+  }
+
+  .header h1{
+    font-size:24px;
+  }
+
+  .status{
+    gap:5px;
+  }
+
+  .status-number{
+    font-size:20px;
   }
 
   .status-label{
@@ -390,28 +878,19 @@ body{
   }
 
   .search-box{
-    top:180px;
-    padding:14px;
+    padding:12px;
   }
 
-  .search-row{
-    flex-direction:column;
+  .result-header h2{
+    font-size:16px;
   }
 
-  .btn-search{
-    height:46px;
+  .result-count{
+    font-size:12px;
   }
 
-  .btn-update{
-    height:44px;
-  }
-
-  .card-actions{
-    flex-direction:column;
-  }
-
-  .copy-btn{
-    height:42px;
+  .card-name{
+    font-size:16px;
   }
 }
 </style>
@@ -797,7 +1276,7 @@ async function loadLayoutTerbaru(){
         <div class="card-name">
           ⚠️ Gagal memuat daftar PDF layout.
         </div>
-        <div style="margin-top:8px;font-size:12px;color:#d1d5db;">
+        <div style="margin-top:8px;font-size:14px;color:#fff;font-weight:700;">
           ${escapeHTML(error.message)}
         </div>
       </div>
@@ -850,7 +1329,7 @@ async function cariDokumen(){
         <div class="card-name">
           ⚠️ Gagal mencari dokumen.
         </div>
-        <div style="margin-top:7px;font-size:12px;">
+        <div style="margin-top:7px;font-size:14px;font-weight:700;">
           ${escapeHTML(error.message)}
         </div>
       </div>
