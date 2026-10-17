@@ -3427,8 +3427,9 @@ if ("serviceWorker" in navigator) {
   }
 
   function bukaAplikasi(){
-    overlay.style.display = 'none';
-  }
+  overlay.style.display = 'none';
+  overlay.style.visibility = 'hidden';
+}
 
   function ambilEmail(){
     return (inputEmail.value || '').trim().toLowerCase();
