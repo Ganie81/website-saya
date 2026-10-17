@@ -3421,10 +3421,11 @@ if ("serviceWorker" in navigator) {
 
   let sedangMemeriksa = false;
 
-  function tampilkanOverlay(teks){
-    overlay.style.display = 'flex';
-    pesan.textContent = teks;
-  }
+function tampilkanOverlay(teks){
+  overlay.style.visibility = 'visible';
+  overlay.style.display = 'flex';
+  pesan.textContent = teks;
+}
 
   function bukaAplikasi(){
   overlay.style.display = 'none';
