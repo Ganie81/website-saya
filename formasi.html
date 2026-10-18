@@ -126,7 +126,55 @@ body{
 
     color:#28654f;
 }
+/* =====================================================
+   LOGO IDENTITAS PT BEHAESTEX
+===================================================== */
 
+.header-brand{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    text-align:left;
+}
+
+.header-logo{
+    width:76px;
+    height:76px;
+    object-fit:contain;
+    flex-shrink:0;
+    filter:drop-shadow(0 3px 5px rgba(0,0,0,0.20));
+}
+
+.header-text{
+    min-width:0;
+}
+
+.header-text .company-name{
+    margin-top:5px;
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:1px;
+    color:#07583f;
+}
+
+@media(max-width:600px){
+
+    .header-brand{
+        gap:10px;
+    }
+
+    .header-logo{
+        width:58px;
+        height:58px;
+    }
+
+    .header-text .company-name{
+        font-size:11px;
+        letter-spacing:.5px;
+    }
+
+}
 
 /* =====================================================
    INFO TANGGAL / GRUP
