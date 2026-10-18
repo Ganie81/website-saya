@@ -95,7 +95,69 @@ body {
   font-weight: 700;
   line-height: 1.6;
 }
+/* =====================================================
+   LOGO PT BEHAESTEX DI SEBELAH KIRI JUDUL
+===================================================== */
 
+.header-brand {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  min-width: 0;
+}
+
+.header-logo {
+  display: block;
+  width: 76px;
+  height: 76px;
+  flex: 0 0 76px;
+  object-fit: contain;
+}
+
+.header-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.header-text h1 {
+  margin: 0;
+  font-size: clamp(24px, 4vw, 35px);
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.header-text p {
+  margin: 7px 0 0;
+  color: #c9e6ff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .header-brand {
+    gap: 9px;
+  }
+
+  .header-logo {
+    width: 55px;
+    height: 55px;
+    flex-basis: 55px;
+  }
+
+  .header-text h1 {
+    font-size: 24px;
+    letter-spacing: 0;
+  }
+
+  .header-text p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
 /* TOMBOL HOME DI SUDUT KANAN ATAS HEADER */
 
 .header-home {
