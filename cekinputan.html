@@ -26,9 +26,8 @@
 * { box-sizing: border-box; }
 
 /* ==========================================
-   BACKGROUND GROUNDING
+   BACKGROUND GROUNDING FULL SCREEN
    PT BEHAESTEX
-   GAMBAR JERNIH TANPA BLUR
 ========================================== */
 
 html {
@@ -40,9 +39,9 @@ body {
   margin: 0;
   padding: 14px;
   font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
 
   background-color: #071426;
-
   background-image:
     linear-gradient(
       rgba(7, 20, 38, 0.18),
@@ -50,22 +49,38 @@ body {
     ),
     url("https://raw.githubusercontent.com/Ganie81/website-saya/main/15202-25_960x960.jpg");
 
-  background-position: center center;
   background-repeat: no-repeat;
+  background-position: center top;
   background-size: cover;
   background-attachment: fixed;
-
-  color: var(--text);
 }
 
-/* HP: gambar tetap menyesuaikan layar */
+/* ==========================================
+   BACKGROUND HP
+========================================== */
 
 @media (max-width: 700px) {
+  html {
+    min-height: 100%;
+    background: #071426;
+  }
+
   body {
+    min-height: 100vh;
+    min-height: 100dvh;
     padding: 8px;
-    background-attachment: scroll;
+
+    background-image:
+      linear-gradient(
+        rgba(7, 20, 38, 0.18),
+        rgba(7, 20, 38, 0.18)
+      ),
+      url("https://raw.githubusercontent.com/Ganie81/website-saya/main/15202-25_960x960.jpg");
+
+    background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    background-attachment: scroll;
   }
 }
 
