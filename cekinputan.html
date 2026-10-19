@@ -28,6 +28,7 @@
 /* ==========================================
    BACKGROUND GROUNDING FULL SCREEN
    PT BEHAESTEX
+   KOMPUTER DAN HP
 ========================================== */
 
 html {
@@ -36,12 +37,37 @@ html {
 }
 
 body {
+  position: relative;
+  isolation: isolate;
+
   margin: 0;
   padding: 14px;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
   font-family: Arial, Helvetica, sans-serif;
   color: var(--text);
 
+  background: transparent;
+}
+
+/* LAPISAN GAMBAR MEMENUHI LAYAR */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  z-index: -1;
+  pointer-events: none;
+
   background-color: #071426;
+
   background-image:
     linear-gradient(
       rgba(7, 20, 38, 0.18),
@@ -50,37 +76,30 @@ body {
     url("https://raw.githubusercontent.com/Ganie81/website-saya/main/15202-25_960x960.jpg");
 
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: center center;
   background-size: cover;
-  background-attachment: fixed;
 }
 
 /* ==========================================
-   BACKGROUND HP
+   RESPONSIVE HP
 ========================================== */
 
 @media (max-width: 700px) {
-  html {
-    min-height: 100%;
-    background: #071426;
+  body {
+    padding: 8px;
   }
 
-  body {
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding: 8px;
+  body::before {
+    position: fixed;
+    inset: 0;
 
-    background-image:
-      linear-gradient(
-        rgba(7, 20, 38, 0.18),
-        rgba(7, 20, 38, 0.18)
-      ),
-      url("https://raw.githubusercontent.com/Ganie81/website-saya/main/15202-25_960x960.jpg");
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
 
-    background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    background-attachment: scroll;
+    background-repeat: no-repeat;
   }
 }
 
