@@ -789,12 +789,24 @@ tbody tr:hover td[class*="blok-"] {
 /* =====================================================
    ORDER, ACV, DEV
 ===================================================== */
+/* =========================================
+   BESARKAN FONT ISI KOLOM PRODUKSI
+   ORDER, ACV, DEV
+========================================= */
 
 tbody td.pcs-cell {
   text-align: right !important;
   padding-right: 10px !important;
   font-variant-numeric: tabular-nums;
   font-weight: 900 !important;
+  font-size: 20px !important;
+}
+
+/* DEV NEGATIF TETAP MERAH */
+tbody td.dev-pcs.dev-negative {
+  color: #c00000 !important;
+  font-weight: 900 !important;
+  font-size: 20px !important;
 }
 
 /* =====================================================
