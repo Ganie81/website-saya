@@ -1512,6 +1512,16 @@ function renderTable() {
             renderProductCode(value) +
             '</td>';
         }
+        if (header === 'WARNA') {
+  return '<td style="padding:5px;">' +
+    '<div style="border:1px solid #ffffff;' +
+    'border-radius:5px;padding:6px 8px;' +
+    'text-align:center;font-weight:800;' +
+    'color:#ffffff;background:' +
+    getWarnaBackground(value) + ';">' +
+    escapeHTML(value) +
+    '</div></td>';
+        }
 
         if (header === 'QTY (PCS)') {
           return '<td class="qty">' +
