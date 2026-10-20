@@ -1178,6 +1178,17 @@ function renderWarnaCode(value) {
     escapeHTML(warna) +
     '</span>';
   }
+  function getWarnaBackground(value) {
+  const kode = String(value ?? '').trim().toUpperCase();
+
+  if (kode.startsWith('AH')) return '#111111';
+  if (kode.startsWith('AM')) return '#800020';
+  if (kode.startsWith('AG')) return '#18794e';
+  if (kode.startsWith('AB')) return '#245a8d';
+  if (kode.startsWith('AC')) return '#4a2c20';
+
+  return '#10233b';
+  }
 /* =====================================================
    FUNGSI DASAR
 ===================================================== */
