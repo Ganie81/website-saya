@@ -458,8 +458,8 @@ box-shadow:
 
 
 /* =====================================================
-   INFO TANGGAL + GRUP DALAM SATU KOTAK
-   POSISI RATA KIRI SEJAJAR HEADER
+   INFO TANGGAL + GRUP
+   TRANSPARAN DENGAN BINGKAI BIRU MUDA
 ===================================================== */
 
 .info-bar{
@@ -467,67 +467,53 @@ box-shadow:
     justify-content:flex-start;
     align-items:center;
     gap:0;
+
     width:100%;
     margin:0 0 16px 0;
 }
 
 .info-chip{
-    display:flex;
+    display:inline-flex;
     align-items:center;
     justify-content:flex-start;
     flex-wrap:wrap;
-    gap:8px;
+    gap:7px;
 
-    width:100%;
-    min-height:48px;
+    width:fit-content;
+    max-width:100%;
+    min-height:0;
 
-    padding:8px 16px;
+    padding:5px 10px;
 
-    border-radius:16px;
+    background:transparent;
 
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #d5dfe5
-        );
+    border:1.5px solid #8DEBFF;
+    border-radius:9px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.95);
+    box-shadow:none;
 
-    box-shadow:
-        6px 6px 12px
-        rgba(0,0,0,.18),
-        -4px -4px 9px
-        rgba(255,255,255,.95),
-        inset 1px 1px 3px
-        rgba(255,255,255,.9),
-        inset -2px -2px 4px
-        rgba(0,0,0,.08);
-
-    font-size:17px;
+    font-size:16px;
     font-weight:900;
-    color:#405563;
+    color:#ffffff;
 
     text-shadow:
-        1px 2px 0 #ffffff,
-        2px 3px 4px rgba(0,0,0,.18);
+        1px 1px 2px #000000,
+        0 0 4px rgba(0,0,0,.65);
 }
 
 .info-chip span{
-    font-size:19px;
+    font-size:17px;
     font-weight:900;
-    color:#203e55;
+    color:#ffffff;
 
     text-shadow:
-        2px 2px 0 #ffffff,
-        3px 4px 5px rgba(0,0,0,.25);
+        1px 1px 2px #000000,
+        0 0 4px rgba(0,0,0,.65);
 }
 
 .info-separator{
-    margin:0 5px;
-    color:#78909c;
+    margin:0 2px;
+    color:#8DEBFF !important;
     font-weight:900;
 }
 /* =====================================================
@@ -1021,10 +1007,9 @@ thead th{
     }
 
     .info-bar{
-        margin-left:8px;
-        margin-right:8px;
-
-        gap:8px;
+        width:auto;
+        margin:0 8px 16px 8px;
+        justify-content:flex-start;
     }
 
     .section{
@@ -1062,21 +1047,27 @@ thead th{
         width:100%;
     }
 
-        .info-chip{
-        display:flex;
-        align-items:center;
-        justify-content:flex-start;
-        flex-wrap:wrap;
-        gap:6px;
+           
+    .info-chip{
+        display:inline-flex;
+        width:fit-content;
+        max-width:100%;
 
-        width:100%;
+        gap:5px;
+        padding:5px 8px;
 
         font-size:14px;
-        padding:9px 12px;
+        border:1.5px solid #8DEBFF;
+        border-radius:8px;
+
+        background:transparent;
+        box-shadow:none;
     }
 
     .info-chip span{
-        font-size:15px;
+        font-size:14px;
+        font-weight:900;
+        color:#ffffff;
     }
 
     .section-title{
