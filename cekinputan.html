@@ -1145,7 +1145,39 @@ function renderProductCode(value) {
     '--code-text:' + color.text + ';">' +
     escapeHTML(code) + '</span>';
 }
+/* =====================================================
+   WARNA OTOMATIS KOLOM WARNA
+===================================================== */
 
+function renderWarnaCode(value) {
+  const warna = String(value ?? '').trim();
+
+  if (!warna) return '';
+
+  const kode = warna.toUpperCase();
+
+  let kelas = '';
+
+  if (kode.startsWith('AH')) {
+    kelas = 'warna-ah';
+  } else if (kode.startsWith('AM')) {
+    kelas = 'warna-am';
+  } else if (kode.startsWith('AG')) {
+    kelas = 'warna-ag';
+  } else if (kode.startsWith('AB')) {
+    kelas = 'warna-ab';
+  } else if (kode.startsWith('AC')) {
+    kelas = 'warna-ac';
+  }
+
+  if (!kelas) {
+    return escapeHTML(warna);
+  }
+
+  return '<span class="warna-code ' + kelas + '">' +
+    escapeHTML(warna) +
+    '</span>';
+  }
 /* =====================================================
    FUNGSI DASAR
 ===================================================== */
