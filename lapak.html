@@ -458,25 +458,30 @@ box-shadow:
 
 
 /* =====================================================
-   INFO
+   INFO TANGGAL + GRUP DALAM SATU KOTAK
+   POSISI RATA KIRI SEJAJAR HEADER
 ===================================================== */
 
 .info-bar{
     display:flex;
-
-    justify-content:center;
+    justify-content:flex-start;
     align-items:center;
-
-    gap:11px;
-
-    flex-wrap:wrap;
-
-    margin-bottom:16px;
+    gap:0;
+    width:100%;
+    margin:0 0 16px 0;
 }
 
 .info-chip{
-    padding:
-        3px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+    gap:8px;
+
+    width:100%;
+    min-height:48px;
+
+    padding:8px 16px;
 
     border-radius:16px;
 
@@ -492,49 +497,39 @@ box-shadow:
         rgba(255,255,255,.95);
 
     box-shadow:
-
         6px 6px 12px
         rgba(0,0,0,.18),
-
         -4px -4px 9px
         rgba(255,255,255,.95),
-
         inset 1px 1px 3px
         rgba(255,255,255,.9),
-
         inset -2px -2px 4px
         rgba(0,0,0,.08);
 
-    font-size:20px;
+    font-size:17px;
     font-weight:900;
-
     color:#405563;
 
     text-shadow:
-
-        1px 2px 0
-        #ffffff,
-
-        2px 3px 4px
-        rgba(0,0,0,.18);
+        1px 2px 0 #ffffff,
+        2px 3px 4px rgba(0,0,0,.18);
 }
 
 .info-chip span{
-    font-size:24px;
+    font-size:19px;
     font-weight:900;
-
     color:#203e55;
 
     text-shadow:
-
-        2px 2px 0
-        #ffffff,
-
-        3px 4px 5px
-        rgba(0,0,0,.25);
+        2px 2px 0 #ffffff,
+        3px 4px 5px rgba(0,0,0,.25);
 }
 
-
+.info-separator{
+    margin:0 5px;
+    color:#78909c;
+    font-weight:900;
+}
 /* =====================================================
    SECTION
 ===================================================== */
@@ -1067,15 +1062,21 @@ thead th{
         width:100%;
     }
 
-    .info-chip{
-        font-size:20px;
+        .info-chip{
+        display:flex;
+        align-items:center;
+        justify-content:flex-start;
+        flex-wrap:wrap;
+        gap:6px;
 
-        padding:
-            11px 15px;
+        width:100%;
+
+        font-size:14px;
+        padding:9px 12px;
     }
 
     .info-chip span{
-        font-size:24px;
+        font-size:15px;
     }
 
     .section-title{
@@ -1503,33 +1504,24 @@ thead th{
 
 
 <!-- =====================================================
-     INFO
+     INFO TANGGAL + GRUP DALAM SATU KOTAK
 ===================================================== -->
 
 <div class="info-bar">
 
-<div class="info-chip">
+    <div class="info-chip">
 
-    TANGGAL :
+        <span>TANGGAL:</span>
 
-    <span id="infoTanggal">
-        -
-    </span>
+        <span id="infoTanggal">-</span>
 
-</div>
+        <span class="info-separator">|</span>
 
+        <span id="infoGrup">GRUP A</span>
 
-<div class="info-chip">
-
-    <span id="infoGrup">
-        GRUP A
-    </span>
+    </div>
 
 </div>
-
-</div>
-
-
 <!-- =====================================================
      LOADING
 ===================================================== -->
