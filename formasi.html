@@ -1457,6 +1457,12 @@ async function loadData(){
             'grup'
         ).value;
 
+    // SIMPAN PILIHAN GRUP TERAKHIR
+    localStorage.setItem(
+        'FORMASI_MANPOWER_GRUP_TERAKHIR',
+        grup
+    );
+
 
     const tableArea =
         document.getElementById(
@@ -1725,13 +1731,32 @@ function toggleFilter(){
 
 
 /* =====================================================
-   SET DEFAULT
+   SET DEFAULT TANGGAL DAN GRUP TERAKHIR
 ===================================================== */
 
+// TANGGAL OPERASIONAL
 document.getElementById(
     'tanggal'
 ).value =
     tanggalOperasional();
+
+
+// AMBIL PILIHAN GRUP TERAKHIR
+const grupTerakhir =
+    localStorage.getItem(
+        'FORMASI_MANPOWER_GRUP_TERAKHIR'
+    );
+
+
+// PULIHKAN GRUP YANG TERAKHIR DIPILIH
+if (
+    grupTerakhir &&
+    ['A', 'B', 'C'].includes(grupTerakhir)
+) {
+    document.getElementById(
+        'grup'
+    ).value = grupTerakhir;
+}
 
 
 /* =====================================================
