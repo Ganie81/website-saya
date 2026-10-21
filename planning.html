@@ -55,28 +55,29 @@ thead th:nth-child(2),tbody td:nth-child(2){min-width:var(--col-tanggal);width:v
 thead th:nth-child(3),tbody td:nth-child(3){min-width:var(--col-fp);width:var(--col-fp)}
 thead th:nth-child(4),tbody td:nth-child(4){min-width:var(--col-kode);width:var(--col-kode)}
 thead th:nth-child(5),tbody td:nth-child(5){min-width:var(--col-motif);width:var(--col-motif)}
+
 /* KAIN: lebar mengikuti isi tulisan */
 thead tr.header-level-2 th:nth-child(4),
 tbody td:nth-child(12){
-  width: auto;
-  min-width: 0;
-  max-width: none;
-  padding-left: 5px !important;
-  padding-right: 5px !important;
-  text-align: center !important;
-  white-space: nowrap;
+  width:auto;
+  min-width:0;
+  max-width:none;
+  padding-left:5px!important;
+  padding-right:5px!important;
+  text-align:center!important;
+  white-space:nowrap;
 }
 
 /* BLOK: lebar mengikuti isi tulisan */
 thead tr.header-level-2 th:nth-child(5),
 tbody td:nth-child(13){
-  width: auto;
-  min-width: 0;
-  max-width: none;
-  padding-left: 5px !important;
-  padding-right: 5px !important;
-  text-align: center !important;
-  white-space: nowrap;
+  width:auto;
+  min-width:0;
+  max-width:none;
+  padding-left:5px!important;
+  padding-right:5px!important;
+  text-align:center!important;
+  white-space:nowrap;
 }
 
 /* ISIAN 1, 2, 3, 4: rapat dan seragam */
@@ -85,47 +86,190 @@ tbody td:nth-child(14),
 tbody td:nth-child(15),
 tbody td:nth-child(16),
 tbody td:nth-child(17){
-  width: auto;
-  min-width: 0;
-  max-width: none;
-  padding-left: 5px !important;
-  padding-right: 5px !important;
-  text-align: center !important;
-  white-space: nowrap;
+  width:auto;
+  min-width:0;
+  max-width:none;
+  padding-left:5px!important;
+  padding-right:5px!important;
+  text-align:center!important;
+  white-space:nowrap;
 }
-/* Freeze dasar: HARI, TANGGAL, FP. KODE PRODUK dan MOTIF dikendalikan tombol masing-masing. */
-.freeze-base-1{position:sticky!important;left:0!important;background-clip:padding-box}
-.freeze-base-2{position:sticky!important;left:var(--col-hari)!important;background-clip:padding-box}
-.freeze-base-3{position:sticky!important;left:calc(var(--col-hari) + var(--col-tanggal))!important;background-clip:padding-box}
-.freeze-kode{position:sticky!important;left:calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp))!important;background-clip:padding-box}
-.freeze-motif{position:sticky!important;left:var(--left-motif, calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp)))!important;background-clip:padding-box}
-thead th.freeze-base-1,thead th.freeze-base-2,thead th.freeze-base-3{z-index:50!important}
-thead th.freeze-kode{z-index:49!important}
-thead th.freeze-motif{z-index:48!important}
-tbody td.freeze-base-1,tbody td.freeze-base-2,tbody td.freeze-base-3{z-index:8!important}
-tbody td.freeze-kode{z-index:7!important}
-tbody td.freeze-motif{z-index:6!important}
-thead .freeze-base-1,thead .freeze-base-2,thead .freeze-base-3,thead .freeze-kode,thead .freeze-motif{background:linear-gradient(180deg,#1769a7,#104674)!important}
-tbody .freeze-base-1,tbody .freeze-base-2,tbody .freeze-base-3,tbody .freeze-kode,tbody .freeze-motif{background-clip:padding-box}
-tbody td.freeze-base-3,thead th.freeze-base-3{box-shadow:3px 0 5px rgba(0,0,0,.28)}
-thead th.freeze-kode,thead th.freeze-motif{box-shadow:3px 0 5px rgba(0,0,0,.2)}
-.freeze-toggle{display:inline-flex;align-items:center;justify-content:center;gap:4px;margin-left:5px;min-height:23px;padding:3px 6px;border:1px solid rgba(255,255,255,.55);border-radius:6px;background:rgba(0,0,0,.22);color:#fff;font-size:12px;font-weight:900;line-height:1;vertical-align:middle;box-shadow:none}
-.freeze-toggle[aria-pressed="true"]{background:#20d6a0;color:#06251d;border-color:#a8ffe5}
-.freeze-toggle:focus-visible{outline:2px solid #43d9ff;outline-offset:2px}
+
+/* FREEZE DASAR: HARI DAN FP.
+   TANGGAL, KODE PRODUK, DAN MOTIF DIKENDALIKAN TOMBOL MASING-MASING. */
+.freeze-base-1{
+  position:sticky!important;
+  left:0!important;
+  background-clip:padding-box;
+}
+.freeze-base-3{
+  position:sticky!important;
+  left:calc(var(--col-hari) + var(--col-tanggal))!important;
+  background-clip:padding-box;
+}
+
+/* FREEZE TANGGAL: hanya aktif ketika tombol TANGGAL dikunci */
+.freeze-tanggal{
+  position:sticky!important;
+  left:var(--col-hari)!important;
+  background-clip:padding-box;
+}
+
+/* FREEZE KODE PRODUK */
+.freeze-kode{
+  position:sticky!important;
+  left:calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp))!important;
+  background-clip:padding-box;
+}
+
+/* FREEZE MOTIF */
+.freeze-motif{
+  position:sticky!important;
+  left:var(--left-motif, calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp)))!important;
+  background-clip:padding-box;
+}
+
+/* Urutan lapisan header */
+thead th.freeze-base-1,
+thead th.freeze-base-3{
+  z-index:50!important;
+}
+thead th.freeze-tanggal{
+  z-index:49!important;
+}
+thead th.freeze-kode{
+  z-index:48!important;
+}
+thead th.freeze-motif{
+  z-index:47!important;
+}
+
+/* Urutan lapisan isi tabel */
+tbody td.freeze-base-1,
+tbody td.freeze-base-3{
+  z-index:8!important;
+}
+tbody td.freeze-tanggal{
+  z-index:7!important;
+}
+tbody td.freeze-kode{
+  z-index:6!important;
+}
+tbody td.freeze-motif{
+  z-index:5!important;
+}
+
+/* Warna header untuk semua kolom yang dikunci */
+thead .freeze-base-1,
+thead .freeze-base-3,
+thead .freeze-tanggal,
+thead .freeze-kode,
+thead .freeze-motif{
+  background:linear-gradient(180deg,#1769a7,#104674)!important;
+}
+tbody .freeze-base-1,
+tbody .freeze-base-3,
+tbody .freeze-tanggal,
+tbody .freeze-kode,
+tbody .freeze-motif{
+  background-clip:padding-box;
+}
+
+/* Bayangan batas panel freeze */
+tbody td.freeze-base-3,
+thead th.freeze-base-3{
+  box-shadow:3px 0 5px rgba(0,0,0,.28);
+}
+thead th.freeze-tanggal,
+thead th.freeze-kode,
+thead th.freeze-motif{
+  box-shadow:3px 0 5px rgba(0,0,0,.2);
+}
+
+/* Tombol kunci */
+.freeze-toggle{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  margin-left:5px;
+  min-height:23px;
+  padding:3px 6px;
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:6px;
+  background:rgba(0,0,0,.22);
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  line-height:1;
+  vertical-align:middle;
+  box-shadow:none;
+}
+.freeze-toggle[aria-pressed="true"]{
+  background:#20d6a0;
+  color:#06251d;
+  border-color:#a8ffe5;
+}
+.freeze-toggle:focus-visible{
+  outline:2px solid #43d9ff;
+  outline-offset:2px;
+}
+
 tbody td{padding:12px 11px;white-space:nowrap;border-right:1px solid #000;border-bottom:1px solid #000;color:#111;font-size:17px;font-weight:900;vertical-align:middle;text-shadow:none}
-tbody tr.fp-1 td{background-color:#ffdce5}tbody tr.fp-2 td{background-color:#d9edff}tbody tr.fp-4 td{background-color:#fff2bf}tbody tr.fp-5 td{background-color:#d9f5df}tbody tr.fp-6 td{background-color:#eadfff}tbody tr.fp-7 td{background-color:#ead6c3}
-tbody tr td{border-right:1px solid #000;border-bottom:1px solid #000}tbody tr:hover td{filter:brightness(.96)}tbody td:first-child{font-weight:900}
+tbody tr.fp-1 td{background-color:#ffdce5}
+tbody tr.fp-2 td{background-color:#d9edff}
+tbody tr.fp-4 td{background-color:#fff2bf}
+tbody tr.fp-5 td{background-color:#d9f5df}
+tbody tr.fp-6 td{background-color:#eadfff}
+tbody tr.fp-7 td{background-color:#ead6c3}
+tbody tr td{border-right:1px solid #000;border-bottom:1px solid #000}
+tbody tr:hover td{filter:brightness(.96)}
+tbody td:first-child{font-weight:900}
 tbody td:nth-child(3){text-align:center!important;vertical-align:middle!important;font-size:20px!important;font-weight:900!important;padding:5px 2px!important}
-.fp-circle{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;min-width:34px;min-height:34px;box-sizing:border-box;overflow:hidden;border-radius:50%;border:3px double #111;outline:1px solid rgba(255,255,255,.75);outline-offset:-5px;font-family:Arial,Helvetica,sans-serif;font-size:20px;font-weight:900;line-height:1;text-align:center;font-variant-numeric:tabular-nums;box-shadow:0 2px 3px rgba(0,0,0,.45),inset 0 0 0 1px rgba(0,0,0,.12);text-shadow:none;transform:translateZ(0)}
+
+.fp-circle{
+  position:relative;
+  isolation:isolate;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  min-width:34px;
+  min-height:34px;
+  box-sizing:border-box;
+  overflow:hidden;
+  border-radius:50%;
+  border:3px double #111;
+  outline:1px solid rgba(255,255,255,.75);
+  outline-offset:-5px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:20px;
+  font-weight:900;
+  line-height:1;
+  text-align:center;
+  font-variant-numeric:tabular-nums;
+  box-shadow:0 2px 3px rgba(0,0,0,.45),inset 0 0 0 1px rgba(0,0,0,.12);
+  text-shadow:none;
+  transform:translateZ(0);
+}
 .fp-circle::before,.fp-circle::after{content:none!important;display:none!important}
-.fp-ball-1{background:#e60012!important;color:#fff!important}.fp-ball-2{background:#0877ed!important;color:#fff52a!important}.fp-ball-3{background:#7d16e8!important;color:#fff!important}.fp-ball-4{background:#ffdc18!important;color:#111!important}.fp-ball-5{background:#08a944!important;color:#fff!important}.fp-ball-6{background:#f07808!important;color:#fff!important}.fp-ball-7{background:#e52c91!important;color:#fff!important}.fp-ball-other{background:#aeb9ca!important;color:#101827!important}
+.fp-ball-1{background:#e60012!important;color:#fff!important}
+.fp-ball-2{background:#0877ed!important;color:#fff52a!important}
+.fp-ball-3{background:#7d16e8!important;color:#fff!important}
+.fp-ball-4{background:#ffdc18!important;color:#111!important}
+.fp-ball-5{background:#08a944!important;color:#fff!important}
+.fp-ball-6{background:#f07808!important;color:#fff!important}
+.fp-ball-7{background:#e52c91!important;color:#fff!important}
+.fp-ball-other{background:#aeb9ca!important;color:#101827!important}
+
 tbody tr td.key-ah,tbody tr td.blok-ah{background:#111!important;color:#fff!important;border:1px solid #fff!important;font-weight:900!important}
 tbody tr td.key-am,tbody tr td.blok-am{background:#800020!important;color:#fff!important;border:1px solid #fff!important;font-weight:900!important}
 tbody tr td.key-ag,tbody tr td.blok-ag{background:#005b35!important;color:#fff!important;border:1px solid #fff!important;font-weight:900!important}
 tbody tr td.key-ab,tbody tr td.blok-ab{background:#071a44!important;color:#fff!important;border:1px solid #fff!important;font-weight:900!important}
 tbody tr td.key-ac,tbody tr td.blok-ac{background:#4a2c20!important;color:#fff!important;border:1px solid #fff!important;font-weight:900!important}
 tbody tr:hover td[class*="blok-"]{filter:brightness(1)}
-tbody td.pcs-cell{ text-align:right!important;padding-right:10px!important;font-variant-numeric:tabular-nums;font-weight:900!important;font-size:18px!important}
+tbody td.pcs-cell{text-align:right!important;padding-right:10px!important;font-variant-numeric:tabular-nums;font-weight:900!important;font-size:18px!important}
 tbody td.dev-pcs{color:#111!important;font-weight:900!important;text-align:right!important}
 tbody td.dev-pcs.dev-negative{color:#c00000!important;font-weight:900!important;font-size:18px!important}
 tbody tr:hover td.dev-pcs.dev-negative{color:#c00000!important}
@@ -134,18 +278,36 @@ tbody tr:hover td.dev-pcs.dev-negative{color:#c00000!important}
 .message.error{display:block;color:#ffd9df;background:rgba(255,70,100,.12);border:1px solid rgba(255,70,100,.35)}
 .message.success{display:block;color:#b8ffe8;background:rgba(32,214,160,.09);border:1px solid rgba(32,214,160,.25)}
 .footer{padding:15px 5px 7px;text-align:center;color:#829ab6;font-size:12px;font-weight:800;line-height:1.8}
+
 @media(max-width:600px){
  body{padding:8px;background-image:linear-gradient(rgba(7,20,38,.18),rgba(7,20,38,.18)),url("https://raw.githubusercontent.com/Ganie81/website-saya/main/15202-25_960x960.jpg");background-position:center center;background-repeat:no-repeat;background-size:cover;background-attachment:scroll}
- .header{padding:17px 66px 17px 13px;border-radius:13px}.header-brand{gap:9px}.header-logo{width:55px;height:55px;flex-basis:55px}
- .header-text h1{font-size:24px;letter-spacing:0}.header-text p{font-size:12px;line-height:1.5}
- .header-home{top:10px;right:9px;width:45px;height:45px;min-height:45px;border-radius:11px}.header-home .home-icon{font-size:22px}.header-home .home-label{font-size:8px}
- .status-grid{grid-template-columns:1fr 1fr 1fr;gap:5px;margin:8px 0}.status-card{padding:7px 6px;border-radius:9px;gap:4px}
- .status-label{font-size:9px;letter-spacing:0;line-height:1.25}.status-value{font-size:18px;line-height:1.2}#statusData{font-size:14px!important}
- .panel{padding:9px;border-radius:12px}.toolbar{flex-wrap:wrap;gap:7px}.search-box{flex-basis:100%}.toolbar button{width:100%}
- .info-line{font-size:12px}.table-wrapper{max-height:68vh}table{font-size:15px}
- thead th{padding:11px 9px;font-size:15px}tbody td{padding:12px 10px;font-size:15px}
- thead tr.header-level-1 th{top:0;height:40px}thead tr.header-level-2 th{top:40px;height:40px}thead tr.header-level-3 th{top:80px;height:38px}
- .freeze-toggle{font-size:11px;padding:3px 5px;margin-left:3px}.footer{font-size:11px}
+ .header{padding:17px 66px 17px 13px;border-radius:13px}
+ .header-brand{gap:9px}
+ .header-logo{width:55px;height:55px;flex-basis:55px}
+ .header-text h1{font-size:24px;letter-spacing:0}
+ .header-text p{font-size:12px;line-height:1.5}
+ .header-home{top:10px;right:9px;width:45px;height:45px;min-height:45px;border-radius:11px}
+ .header-home .home-icon{font-size:22px}
+ .header-home .home-label{font-size:8px}
+ .status-grid{grid-template-columns:1fr 1fr 1fr;gap:5px;margin:8px 0}
+ .status-card{padding:7px 6px;border-radius:9px;gap:4px}
+ .status-label{font-size:9px;letter-spacing:0;line-height:1.25}
+ .status-value{font-size:18px;line-height:1.2}
+ #statusData{font-size:14px!important}
+ .panel{padding:9px;border-radius:12px}
+ .toolbar{flex-wrap:wrap;gap:7px}
+ .search-box{flex-basis:100%}
+ .toolbar button{width:100%}
+ .info-line{font-size:12px}
+ .table-wrapper{max-height:68vh}
+ table{font-size:15px}
+ thead th{padding:11px 9px;font-size:15px}
+ tbody td{padding:12px 10px;font-size:15px}
+ thead tr.header-level-1 th{top:0;height:40px}
+ thead tr.header-level-2 th{top:40px;height:40px}
+ thead tr.header-level-3 th{top:80px;height:38px}
+ .freeze-toggle{font-size:11px;padding:3px 5px;margin-left:3px}
+ .footer{font-size:11px}
 }
 </style>
 </head>
@@ -186,178 +348,472 @@ tbody tr:hover td.dev-pcs.dev-negative{color:#c00000!important}
 
 <script>
 'use strict';
-const API_URL='https://script.google.com/macros/s/AKfycbyYpUDf9FDKgX8AgoDavdcQtUi1jzxc6OTHsfsRF5N2fRBX7LytBYM6zIFlOG1IOJAL/exec';
-let semuaData=[];let sedangMemuat=false;
-const el=id=>document.getElementById(id);
-const NAMA_KOLOM=['HARI','TANGGAL','FP','KODE PRODUK','MOTIF','KEY','WOM','TIPE PRINT','ORDER (PCS)','ACV (PCS)','DEV (PCS)','KAIN','BLOK','ISIAN 1','ISIAN 2','ISIAN 3','ISIAN 4','KETERANGAN'];
 
-/* Status kunci terpisah disimpan agar pilihan tetap ada saat muat ulang. */
+const API_URL='https://script.google.com/macros/s/AKfycbyYpUDf9FDKgX8AgoDavdcQtUi1jzxc6OTHsfsRF5N2fRBX7LytBYM6zIFlOG1IOJAL/exec';
+let semuaData=[];
+let sedangMemuat=false;
+
+const el=id=>document.getElementById(id);
+
+const NAMA_KOLOM=[
+ 'HARI','TANGGAL','FP','KODE PRODUK','MOTIF','KEY','WOM',
+ 'TIPE PRINT','ORDER (PCS)','ACV (PCS)','DEV (PCS)',
+ 'KAIN','BLOK','ISIAN 1','ISIAN 2','ISIAN 3','ISIAN 4','KETERANGAN'
+];
+
+/* Status kunci disimpan agar pilihan tetap ada saat halaman dimuat ulang. */
 const KUNCI_STORAGE='PLANNING_FREEZE_KODE_MOTIF_V1';
-let freezePilihan={kode:false,motif:false};
+
+let freezePilihan={
+ tanggal:false,
+ kode:false,
+ motif:false
+};
+
 try{
   const tersimpan=JSON.parse(localStorage.getItem(KUNCI_STORAGE)||'{}');
+
+  freezePilihan.tanggal=tersimpan.tanggal===true;
   freezePilihan.kode=tersimpan.kode===true;
   freezePilihan.motif=tersimpan.motif===true;
 }catch(e){}
 
-function aman(teks){return String(teks??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function normalisasi(teks){return String(teks??'').toLocaleLowerCase('id-ID').replace(/\s+/g,' ').trim();}
-function siapkanDataAPI(hasil){
-  if(!hasil||typeof hasil!=='object')throw new Error('Respons API tidak valid.');
-  if(hasil.success===false||hasil.sukses===false)throw new Error(hasil.error||hasil.pesan||'Apps Script mengembalikan kesalahan.');
-  const headerAPI=Array.isArray(hasil.headers)?hasil.headers:hasil.header;
-  if(!Array.isArray(headerAPI))throw new Error('Header tidak ditemukan. Periksa respons Apps Script.');
-  if(!Array.isArray(hasil.data))throw new Error('Data tidak ditemukan pada respons Apps Script.');
-  const baris=hasil.data.map(item=>Array.isArray(item)?item:(item&&Array.isArray(item.values)?item.values:null)).filter(Boolean);
-  return{header:headerAPI,data:baris};
+function aman(teks){
+ return String(teks??'').replace(/[&<>"']/g,c=>({
+  '&':'&amp;',
+  '<':'&lt;',
+  '>':'&gt;',
+  '"':'&quot;',
+  "'":'&#39;'
+ }[c]));
 }
-function dataDenganFP(){return semuaData.filter(baris=>String(baris[2]??'').trim()!=='');}
-function kelasFP(baris){const fp=String(baris[2]??'').trim();return({'1':'fp-1','2':'fp-2','4':'fp-4','5':'fp-5','6':'fp-6','7':'fp-7'})[fp]||'';}
-function formatPcs(nilai){const teks=String(nilai??'').trim();if(teks==='')return'';if(/pcs\s*$/i.test(teks))return teks.replace(/\s*pcs\s*$/i,'').trim()+' Pcs';return teks+' Pcs';}
-function nilaiNegatif(nilai){
- let teks=String(nilai??'').trim();if(!teks)return false;teks=teks.replace(/\s*pcs\s*$/i,'').trim();
- if(/^[−-]\s*\d/.test(teks)||/^\(\s*\d[\d.,]*\s*\)$/.test(teks))return true;
- const angka=teks.replace(/[−]/g,'-');
- if(/^-\d{1,3}(\.\d{3})+(,\d+)?$/.test(angka)||/^-\d+,\d+$/.test(angka))return true;
- const hasil=Number(angka.replace(/,/g,'.'));return Number.isFinite(hasil)&&hasil<0;
-}
-function awalanKEY(nilai){return String(nilai??'').replace(/\u00a0/g,' ').trim().toUpperCase().substring(0,2);}
-function warnaKEY(nilai){return({'AH':'#111111','AM':'#800020','AG':'#005B35','AB':'#1557A0','AC':'#4A2C20'})[awalanKEY(nilai)]||'';}
-function kelasKEY(nilai){return({'AH':'key-ah','AM':'key-am','AG':'key-ag','AB':'key-ab','AC':'key-ac'})[awalanKEY(nilai)]||'';}
-function kelasBLOK(nilai){return({'AH':'blok-ah','AM':'blok-am','AG':'blok-ag','AB':'blok-ab','AC':'blok-ac'})[awalanKEY(nilai)]||'';}
 
-function simpanPilihanFreeze(){try{localStorage.setItem(KUNCI_STORAGE,JSON.stringify(freezePilihan));}catch(e){}}
+function normalisasi(teks){
+ return String(teks??'').toLocaleLowerCase('id-ID').replace(/\s+/g,' ').trim();
+}
+
+function siapkanDataAPI(hasil){
+ if(!hasil||typeof hasil!=='object')throw new Error('Respons API tidak valid.');
+ if(hasil.success===false||hasil.sukses===false)throw new Error(hasil.error||hasil.pesan||'Apps Script mengembalikan kesalahan.');
+
+ const headerAPI=Array.isArray(hasil.headers)?hasil.headers:hasil.header;
+
+ if(!Array.isArray(headerAPI))throw new Error('Header tidak ditemukan. Periksa respons Apps Script.');
+ if(!Array.isArray(hasil.data))throw new Error('Data tidak ditemukan pada respons Apps Script.');
+
+ const baris=hasil.data.map(item=>
+  Array.isArray(item)?item:(item&&Array.isArray(item.values)?item.values:null)
+ ).filter(Boolean);
+
+ return{header:headerAPI,data:baris};
+}
+
+function dataDenganFP(){
+ return semuaData.filter(baris=>String(baris[2]??'').trim()!=='');
+}
+
+function kelasFP(baris){
+ const fp=String(baris[2]??'').trim();
+ return({'1':'fp-1','2':'fp-2','4':'fp-4','5':'fp-5','6':'fp-6','7':'fp-7'})[fp]||'';
+}
+
+function formatPcs(nilai){
+ const teks=String(nilai??'').trim();
+ if(teks==='')return'';
+ if(/pcs\s*$/i.test(teks))return teks.replace(/\s*pcs\s*$/i,'').trim()+' Pcs';
+ return teks+' Pcs';
+}
+
+function nilaiNegatif(nilai){
+ let teks=String(nilai??'').trim();
+ if(!teks)return false;
+
+ teks=teks.replace(/\s*pcs\s*$/i,'').trim();
+
+ if(/^[−-]\s*\d/.test(teks)||/^\(\s*\d[\d.,]*\s*\)$/.test(teks))return true;
+
+ const angka=teks.replace(/[−]/g,'-');
+
+ if(/^-\d{1,3}(\.\d{3})+(,\d+)?$/.test(angka)||/^-\d+,\d+$/.test(angka))return true;
+
+ const hasil=Number(angka.replace(/,/g,'.'));
+ return Number.isFinite(hasil)&&hasil<0;
+}
+
+function awalanKEY(nilai){
+ return String(nilai??'').replace(/\u00a0/g,' ').trim().toUpperCase().substring(0,2);
+}
+
+function warnaKEY(nilai){
+ return({'AH':'#111111','AM':'#800020','AG':'#005B35','AB':'#1557A0','AC':'#4A2C20'})[awalanKEY(nilai)]||'';
+}
+
+function kelasKEY(nilai){
+ return({'AH':'key-ah','AM':'key-am','AG':'key-ag','AB':'key-ab','AC':'key-ac'})[awalanKEY(nilai)]||'';
+}
+
+function kelasBLOK(nilai){
+ return({'AH':'blok-ah','AM':'blok-am','AG':'blok-ag','AB':'blok-ab','AC':'blok-ac'})[awalanKEY(nilai)]||'';
+}
+
+function simpanPilihanFreeze(){
+ try{
+  localStorage.setItem(KUNCI_STORAGE,JSON.stringify(freezePilihan));
+ }catch(e){}
+}
+
+/* Memperbarui tampilan tombol sesuai status kunci masing-masing kolom. */
 function aturTombolFreeze(){
  const tombol=[
+  {id:'btnFreezeTanggal',key:'tanggal',label:'TANGGAL'},
   {id:'btnFreezeKode',key:'kode',label:'KODE PRODUK'},
   {id:'btnFreezeMotif',key:'motif',label:'MOTIF'}
  ];
+
  tombol.forEach(item=>{
-  const b=el(item.id);if(!b)return;
+  const b=el(item.id);
+  if(!b)return;
+
   const aktif=freezePilihan[item.key];
+
   b.setAttribute('aria-pressed',String(aktif));
   b.textContent=aktif?'🔒':'🔓';
   b.title=(aktif?'Lepas kunci ':'Kunci ')+item.label;
   b.setAttribute('aria-label',b.title);
  });
 }
+
+/* Memasang freeze sesuai tombol yang sedang aktif. */
 function pasangFreeze(){
  const kepala=el('kepalaTabel');
- const semuaBaris=[...kepala.querySelectorAll('tr'),...el('isiTabel').querySelectorAll('tr')];
 
- /* Bersihkan kelas freeze lama dari semua sel agar tidak ada kelas tertinggal. */
+ const semuaBaris=[
+  ...kepala.querySelectorAll('tr'),
+  ...el('isiTabel').querySelectorAll('tr')
+ ];
+
+ /* Bersihkan kelas freeze lama dari semua sel. */
  semuaBaris.forEach(tr=>{
   [...tr.children].forEach(cell=>{
    cell.classList.remove(
-    'freeze-base-1','freeze-base-2','freeze-base-3',
-    'freeze-kode','freeze-motif'
+    'freeze-base-1',
+    'freeze-base-2',
+    'freeze-base-3',
+    'freeze-tanggal',
+    'freeze-kode',
+    'freeze-motif'
    );
   });
  });
 
- /* Kolom isi tabel: indeks selalu sama dengan urutan 18 kolom data. */
+ /* Kolom isi tabel: indeks sesuai urutan 18 kolom data. */
  el('isiTabel').querySelectorAll('tr').forEach(tr=>{
   [...tr.children].forEach((cell,i)=>{
    const idx=i+1;
-   if(idx===1)cell.classList.add('freeze-base-1');
-   if(idx===2)cell.classList.add('freeze-base-2');
-   if(idx===3)cell.classList.add('freeze-base-3');
-   if(idx===4&&freezePilihan.kode)cell.classList.add('freeze-kode');
-   if(idx===5&&freezePilihan.motif)cell.classList.add('freeze-motif');
+
+   if(idx===1){
+    cell.classList.add('freeze-base-1');
+   }
+
+   if(idx===2&&freezePilihan.tanggal){
+    cell.classList.add('freeze-tanggal');
+   }
+
+   if(idx===3){
+    cell.classList.add('freeze-base-3');
+   }
+
+   if(idx===4&&freezePilihan.kode){
+    cell.classList.add('freeze-kode');
+   }
+
+   if(idx===5&&freezePilihan.motif){
+    cell.classList.add('freeze-motif');
+   }
   });
  });
 
- /* Header tingkat pertama memakai rowspan, sehingga kelas dipasang langsung di TH. */
+ /* Header tingkat pertama menggunakan rowspan. */
  const baris1=kepala.querySelector('tr.header-level-1');
+
  if(baris1){
   const th=[...baris1.children];
+
   if(th[0])th[0].classList.add('freeze-base-1');
-  if(th[1])th[1].classList.add('freeze-base-2');
+
+  if(th[1]&&freezePilihan.tanggal){
+   th[1].classList.add('freeze-tanggal');
+  }
+
   if(th[2])th[2].classList.add('freeze-base-3');
-  if(th[3]&&freezePilihan.kode)th[3].classList.add('freeze-kode');
-  if(th[4]&&freezePilihan.motif)th[4].classList.add('freeze-motif');
+
+  if(th[3]&&freezePilihan.kode){
+   th[3].classList.add('freeze-kode');
+  }
+
+  if(th[4]&&freezePilihan.motif){
+   th[4].classList.add('freeze-motif');
+  }
  }
 
- /* MOTIF bergeser ke kanan jika KODE PRODUK juga dikunci.
-    Jika hanya MOTIF dikunci, ia berada tepat selepas FP. */
+ /*
+  MOTIF bergeser ke kanan jika KODE PRODUK juga dikunci.
+  Jika hanya MOTIF dikunci, posisinya tepat selepas FP.
+ */
  const leftMotif=freezePilihan.kode
   ?'calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp) + var(--col-kode))'
   :'calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp))';
+
  document.documentElement.style.setProperty('--left-motif',leftMotif);
+
  aturTombolFreeze();
 }
+
+/* Mengubah status kunci TANGGAL, KODE PRODUK, atau MOTIF. */
 function ubahFreeze(kunci){
+ if(!Object.prototype.hasOwnProperty.call(freezePilihan,kunci))return;
+
  freezePilihan[kunci]=!freezePilihan[kunci];
+
  simpanPilihanFreeze();
  pasangFreeze();
 }
-function tampilPesan(teks,jenis){const kotak=el('pesan');kotak.className='message '+jenis;kotak.textContent=teks;}
-function hapusPesan(){const kotak=el('pesan');kotak.className='message';kotak.textContent='';}
+
+function tampilPesan(teks,jenis){
+ const kotak=el('pesan');
+ kotak.className='message '+jenis;
+ kotak.textContent=teks;
+}
+
+function hapusPesan(){
+ const kotak=el('pesan');
+ kotak.className='message';
+ kotak.textContent='';
+}
 
 async function muatData(){
- if(sedangMemuat)return;sedangMemuat=true;el('btnMuat').disabled=true;el('btnMuat').textContent='MEMUAT...';el('statusData').textContent='MEMUAT';hapusPesan();
- if(semuaData.length===0)el('isiTabel').innerHTML='<tr><td class="empty" colspan="18">Sedang mengambil data...</td></tr>';
+ if(sedangMemuat)return;
+
+ sedangMemuat=true;
+ el('btnMuat').disabled=true;
+ el('btnMuat').textContent='MEMUAT...';
+ el('statusData').textContent='MEMUAT';
+
+ hapusPesan();
+
+ if(semuaData.length===0){
+  el('isiTabel').innerHTML='<tr><td class="empty" colspan="18">Sedang mengambil data...</td></tr>';
+ }
+
  try{
   const url=API_URL+(API_URL.includes('?')?'&':'?')+'_='+Date.now();
-  const response=await fetch(url,{method:'GET',redirect:'follow',cache:'no-store'});
+
+  const response=await fetch(url,{
+   method:'GET',
+   redirect:'follow',
+   cache:'no-store'
+  });
+
   if(!response.ok)throw new Error('HTTP '+response.status);
-  const hasilJSON=await response.json();const hasil=siapkanDataAPI(hasilJSON);
-  semuaData=hasil.data.filter(baris=>String(baris[2]??'').trim()!=='').map(baris=>{const salin=baris.slice(0,18);while(salin.length<18)salin.push('');return salin;});
-  el('statusData').textContent='ONLINE';el('waktuUpdate').textContent='Diperbarui: '+new Date().toLocaleTimeString('id-ID');
-  tampilkanTabel();tampilPesan('Data berhasil dimuat. Baris tanpa FP disembunyikan.','success');
+
+  const hasilJSON=await response.json();
+  const hasil=siapkanDataAPI(hasilJSON);
+
+  semuaData=hasil.data
+   .filter(baris=>String(baris[2]??'').trim()!=='')
+   .map(baris=>{
+    const salin=baris.slice(0,18);
+    while(salin.length<18)salin.push('');
+    return salin;
+   });
+
+  el('statusData').textContent='ONLINE';
+  el('waktuUpdate').textContent='Diperbarui: '+new Date().toLocaleTimeString('id-ID');
+
+  tampilkanTabel();
+
+  tampilPesan('Data berhasil dimuat. Baris tanpa FP disembunyikan.','success');
+
  }catch(error){
-  console.error('Kesalahan PLANNING:',error);el('statusData').textContent='ERROR';
-  tampilPesan('Data gagal dimuat. Periksa URL deployment Apps Script, izin akses, dan format respons API. Detail: '+error.message,'error');
-  if(semuaData.length===0){el('kepalaTabel').innerHTML='';el('isiTabel').innerHTML='<tr><td class="empty" colspan="18">Data belum berhasil dimuat. Tekan MUAT ULANG setelah memastikan Apps Script sudah di-deploy.</td></tr>';el('infoJumlah').textContent='Data tidak tersedia';el('totalData').textContent='0';el('hasilData').textContent='0';}
- }finally{sedangMemuat=false;el('btnMuat').disabled=false;el('btnMuat').textContent='↻ MUAT ULANG';}
+  console.error('Kesalahan PLANNING:',error);
+
+  el('statusData').textContent='ERROR';
+
+  tampilPesan(
+   'Data gagal dimuat. Periksa URL deployment Apps Script, izin akses, dan format respons API. Detail: '+error.message,
+   'error'
+  );
+
+  if(semuaData.length===0){
+   el('kepalaTabel').innerHTML='';
+   el('isiTabel').innerHTML='<tr><td class="empty" colspan="18">Data belum berhasil dimuat. Tekan MUAT ULANG setelah memastikan Apps Script sudah di-deploy.</td></tr>';
+   el('infoJumlah').textContent='Data tidak tersedia';
+   el('totalData').textContent='0';
+   el('hasilData').textContent='0';
+  }
+
+ }finally{
+  sedangMemuat=false;
+  el('btnMuat').disabled=false;
+  el('btnMuat').textContent='↻ MUAT ULANG';
+ }
 }
+
 function buatHeader(){
  const finalBaris1=`
  <tr class="header-level-1">
-  <th rowspan="3">HARI</th><th rowspan="3">TANGGAL</th><th rowspan="3">FP</th>
-  <th rowspan="3">KODE PRODUK <button type="button" class="freeze-toggle" id="btnFreezeKode" aria-pressed="false" title="Kunci KODE PRODUK">🔓</button></th>
-  <th rowspan="3">MOTIF <button type="button" class="freeze-toggle" id="btnFreezeMotif" aria-pressed="false" title="Kunci MOTIF">🔓</button></th>
-  <th rowspan="3">KEY</th><th rowspan="3">WOM</th><th rowspan="3">TIPE PRINT</th>
-  <th colspan="3">PRODUKSI</th><th colspan="6">WARNA</th><th rowspan="3">KETERANGAN</th>
+  <th rowspan="3">HARI</th>
+
+  <th rowspan="3">
+   TANGGAL
+   <button type="button" class="freeze-toggle" id="btnFreezeTanggal" aria-pressed="false" title="Kunci TANGGAL">🔓</button>
+  </th>
+
+  <th rowspan="3">FP</th>
+
+  <th rowspan="3">
+   KODE PRODUK
+   <button type="button" class="freeze-toggle" id="btnFreezeKode" aria-pressed="false" title="Kunci KODE PRODUK">🔓</button>
+  </th>
+
+  <th rowspan="3">
+   MOTIF
+   <button type="button" class="freeze-toggle" id="btnFreezeMotif" aria-pressed="false" title="Kunci MOTIF">🔓</button>
+  </th>
+
+  <th rowspan="3">KEY</th>
+  <th rowspan="3">WOM</th>
+  <th rowspan="3">TIPE PRINT</th>
+  <th colspan="3">PRODUKSI</th>
+  <th colspan="6">WARNA</th>
+  <th rowspan="3">KETERANGAN</th>
  </tr>`;
- const finalBaris2=`<tr class="header-level-2"><th rowspan="2">ORDER (PCS)</th><th rowspan="2">ACV (PCS)</th><th rowspan="2" class="dev-header">DEV (PCS)</th><th rowspan="2">KAIN</th><th rowspan="2">BLOK</th><th colspan="4">ISIAN</th></tr>`;
- const finalBaris3=`<tr class="header-level-3"><th>1</th><th>2</th><th>3</th><th>4</th></tr>`;
+
+ const finalBaris2=`
+ <tr class="header-level-2">
+  <th rowspan="2">ORDER (PCS)</th>
+  <th rowspan="2">ACV (PCS)</th>
+  <th rowspan="2" class="dev-header">DEV (PCS)</th>
+  <th rowspan="2">KAIN</th>
+  <th rowspan="2">BLOK</th>
+  <th colspan="4">ISIAN</th>
+ </tr>`;
+
+ const finalBaris3=`
+ <tr class="header-level-3">
+  <th>1</th>
+  <th>2</th>
+  <th>3</th>
+  <th>4</th>
+ </tr>`;
+
  el('kepalaTabel').innerHTML=finalBaris1+finalBaris2+finalBaris3;
+
+ el('btnFreezeTanggal').addEventListener('click',()=>ubahFreeze('tanggal'));
  el('btnFreezeKode').addEventListener('click',()=>ubahFreeze('kode'));
  el('btnFreezeMotif').addEventListener('click',()=>ubahFreeze('motif'));
 }
+
 function tampilkanTabel(){
- const kata=normalisasi(el('cari').value);const dataAktif=dataDenganFP();
- const hasil=dataAktif.filter(baris=>kata===''||baris.some(nilai=>normalisasi(nilai).includes(kata)));
+ const kata=normalisasi(el('cari').value);
+ const dataAktif=dataDenganFP();
+
+ const hasil=dataAktif.filter(baris=>
+  kata===''||baris.some(nilai=>normalisasi(nilai).includes(kata))
+ );
+
  buatHeader();
+
  if(hasil.length===0){
-  el('isiTabel').innerHTML='<tr><td class="empty" colspan="18">'+(dataAktif.length===0?'Tidak ada data dengan FP terisi pada rentang tanggal ini.':'Data tidak ditemukan.')+'</td></tr>';
+  el('isiTabel').innerHTML=
+   '<tr><td class="empty" colspan="18">'+
+   (dataAktif.length===0
+    ?'Tidak ada data dengan FP terisi pada rentang tanggal ini.'
+    :'Data tidak ditemukan.')+
+   '</td></tr>';
+
  }else{
   el('isiTabel').innerHTML=hasil.map(baris=>{
    const kelas=kelasFP(baris);
+
    const sel=NAMA_KOLOM.map((nama,index)=>{
-    const nilai=baris[index]??'';const kelasTambahan=[];let nilaiTampil=nilai;
+    const nilai=baris[index]??'';
+    const kelasTambahan=[];
+    let nilaiTampil=nilai;
+
     if(index===2){
      const nomorFP=String(nilai??'').trim();
-     const kelasBola=({'1':'fp-ball-1','2':'fp-ball-2','3':'fp-ball-3','4':'fp-ball-4','5':'fp-ball-5','6':'fp-ball-6','7':'fp-ball-7'})[nomorFP]||'fp-ball-other';
+
+     const kelasBola=({
+      '1':'fp-ball-1',
+      '2':'fp-ball-2',
+      '3':'fp-ball-3',
+      '4':'fp-ball-4',
+      '5':'fp-ball-5',
+      '6':'fp-ball-6',
+      '7':'fp-ball-7'
+     })[nomorFP]||'fp-ball-other';
+
      return '<td><span class="fp-circle '+kelasBola+'">'+aman(nomorFP)+'</span></td>';
     }
-    if(index===5){const warna=warnaKEY(nilai),kelasWarna=kelasKEY(nilai);if(warna&&kelasWarna)return '<td class="'+kelasWarna+'" style="background-color:'+warna+'!important;color:#fff!important;border:1px solid #fff!important;box-sizing:border-box;">'+aman(nilai)+'</td>';}
-    if(index===12){const warna=warnaKEY(nilai),kelasWarna=kelasBLOK(nilai);if(warna&&kelasWarna)return '<td class="'+kelasWarna+'" style="background-color:'+warna+'!important;color:#fff!important;border:1px solid #fff!important;box-sizing:border-box;">'+aman(nilai)+'</td>';}
-    if(index===8||index===9||index===10){kelasTambahan.push('pcs-cell');nilaiTampil=formatPcs(nilai);}
-    if(index===10){kelasTambahan.push('dev-pcs');if(nilaiNegatif(nilai))kelasTambahan.push('dev-negative');}
-    const atributClass=kelasTambahan.length?' class="'+kelasTambahan.join(' ')+'"':'';
+
+    if(index===5){
+     const warna=warnaKEY(nilai);
+     const kelasWarna=kelasKEY(nilai);
+
+     if(warna&&kelasWarna){
+      return '<td class="'+kelasWarna+'" style="background-color:'+warna+'!important;color:#fff!important;border:1px solid #fff!important;box-sizing:border-box;">'+aman(nilai)+'</td>';
+     }
+    }
+
+    if(index===12){
+     const warna=warnaKEY(nilai);
+     const kelasWarna=kelasBLOK(nilai);
+
+     if(warna&&kelasWarna){
+      return '<td class="'+kelasWarna+'" style="background-color:'+warna+'!important;color:#fff!important;border:1px solid #fff!important;box-sizing:border-box;">'+aman(nilai)+'</td>';
+     }
+    }
+
+    if(index===8||index===9||index===10){
+     kelasTambahan.push('pcs-cell');
+     nilaiTampil=formatPcs(nilai);
+    }
+
+    if(index===10){
+     kelasTambahan.push('dev-pcs');
+
+     if(nilaiNegatif(nilai)){
+      kelasTambahan.push('dev-negative');
+     }
+    }
+
+    const atributClass=kelasTambahan.length
+     ?' class="'+kelasTambahan.join(' ')+'"'
+     :'';
+
     return '<td'+atributClass+'>'+aman(nilaiTampil)+'</td>';
+
    }).join('');
+
    return '<tr class="'+kelas+'">'+sel+'</tr>';
+
   }).join('');
  }
+
  el('totalData').textContent=dataAktif.length.toLocaleString('id-ID');
  el('hasilData').textContent=hasil.length.toLocaleString('id-ID');
- el('infoJumlah').textContent='Menampilkan '+hasil.length.toLocaleString('id-ID')+' dari '+dataAktif.length.toLocaleString('id-ID')+' baris ber-FP';
+
+ el('infoJumlah').textContent=
+  'Menampilkan '+hasil.length.toLocaleString('id-ID')+
+  ' dari '+dataAktif.length.toLocaleString('id-ID')+
+  ' baris ber-FP';
+
  pasangFreeze();
 }
+
 el('cari').addEventListener('input',tampilkanTabel);
+
 aturTombolFreeze();
 muatData();
 </script>
