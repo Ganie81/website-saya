@@ -140,10 +140,19 @@ const leftMotif = freezePilihan.kode
 
 document.documentElement.style.setProperty('--left-motif', leftMotif);
 
+/* FREEZE KODE PRODUK */
+.freeze-kode{
+  position:sticky!important;
+  left:var(--left-kode)!important;
+  z-index:28!important;
+  background-clip:padding-box;
+}
+
 /* FREEZE MOTIF */
 .freeze-motif{
   position:sticky!important;
-  left:var(--left-motif, calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp)))!important;
+  left:var(--left-motif)!important;
+  z-index:27!important;
   background-clip:padding-box;
 }
 
