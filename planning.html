@@ -55,6 +55,42 @@ thead th:nth-child(2),tbody td:nth-child(2){min-width:var(--col-tanggal);width:v
 thead th:nth-child(3),tbody td:nth-child(3){min-width:var(--col-fp);width:var(--col-fp)}
 thead th:nth-child(4),tbody td:nth-child(4){min-width:var(--col-kode);width:var(--col-kode)}
 thead th:nth-child(5),tbody td:nth-child(5){min-width:var(--col-motif);width:var(--col-motif)}
+  /* KAIN dan BLOK: lebar mengikuti teks, rata tengah */
+thead th:nth-child(12),
+tbody td:nth-child(12){
+  width:75px;
+  min-width:75px;
+  max-width:75px;
+  text-align:center!important;
+  padding-left:3px!important;
+  padding-right:3px!important;
+}
+
+/* Kolom BLOK */
+thead th:nth-child(13),
+tbody td:nth-child(13){
+  width:75px;
+  min-width:75px;
+  max-width:75px;
+  text-align:center!important;
+  padding-left:3px!important;
+  padding-right:3px!important;
+}
+
+/* ISIAN 1, 2, 3, 4: lebar seragam dan ringkas */
+thead tr.header-level-2 th:nth-child(6),
+thead tr.header-level-3 th,
+tbody td:nth-child(14),
+tbody td:nth-child(15),
+tbody td:nth-child(16),
+tbody td:nth-child(17){
+  width:48px;
+  min-width:48px;
+  max-width:48px;
+  text-align:center!important;
+  padding-left:2px!important;
+  padding-right:2px!important;
+}
 /* Freeze dasar: HARI, TANGGAL, FP. KODE PRODUK dan MOTIF dikendalikan tombol masing-masing. */
 .freeze-base-1{position:sticky!important;left:0!important;background-clip:padding-box}
 .freeze-base-2{position:sticky!important;left:var(--col-hari)!important;background-clip:padding-box}
