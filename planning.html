@@ -132,17 +132,24 @@ const leftKode = freezePilihan.kode
   : '0px';
 
 document.documentElement.style.setProperty('--left-kode', leftKode);
-/* Posisi MOTIF: mengikuti KODE PRODUK jika dikunci */
-const leftMotif = freezePilihan.kode
-  ? (freezePilihan.tanggal
-      ? 'calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp) + var(--col-kode))'
-      : 'calc(var(--col-hari) + var(--col-fp) + var(--col-kode))')
-  : (freezePilihan.tanggal
-      ? 'calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp))'
-      : 'calc(var(--col-hari) + var(--col-fp))');
+/* POSISI MOTIF */
+const leftMotif = freezePilihan.motif
+  ? (
+      freezePilihan.kode
+        ? (
+            freezePilihan.tanggal
+              ? 'calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp) + var(--col-kode))'
+              : 'calc(var(--col-hari) + var(--col-fp) + var(--col-kode))'
+          )
+        : (
+            freezePilihan.tanggal
+              ? 'calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp))'
+              : 'calc(var(--col-hari) + var(--col-fp))'
+          )
+    )
+  : '0px';
 
 document.documentElement.style.setProperty('--left-motif', leftMotif);
-
 /* FREEZE KODE PRODUK */
 .freeze-kode{
   position:sticky!important;
