@@ -122,13 +122,16 @@ const leftFP = freezePilihan.tanggal
 
 document.documentElement.style.setProperty('--left-fp', leftFP);
 
-/* Posisi KODE PRODUK: mengikuti posisi TANGGAL dan FP */
-const leftKode = freezePilihan.tanggal
-  ? 'calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp))'
-  : 'calc(var(--col-hari) + var(--col-fp))';
+/* POSISI KODE PRODUK */
+const leftKode = freezePilihan.kode
+  ? (
+      freezePilihan.tanggal
+        ? 'calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp))'
+        : 'calc(var(--col-hari) + var(--col-fp))'
+    )
+  : '0px';
 
 document.documentElement.style.setProperty('--left-kode', leftKode);
-
 /* Posisi MOTIF: mengikuti KODE PRODUK jika dikunci */
 const leftMotif = freezePilihan.kode
   ? (freezePilihan.tanggal
