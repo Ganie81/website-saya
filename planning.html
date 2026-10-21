@@ -115,12 +115,30 @@ tbody td:nth-child(17){
   background-clip:padding-box;
 }
 
-/* FREEZE KODE PRODUK */
-.freeze-kode{
-  position:sticky!important;
-  left:calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp))!important;
-  background-clip:padding-box;
-}
+/* Posisi FP: menempel ke HARI jika TANGGAL tidak dikunci */
+const leftFP = freezePilihan.tanggal
+  ? 'calc(var(--col-hari) + var(--col-tanggal))'
+  : 'var(--col-hari)';
+
+document.documentElement.style.setProperty('--left-fp', leftFP);
+
+/* Posisi KODE PRODUK: mengikuti posisi TANGGAL dan FP */
+const leftKode = freezePilihan.tanggal
+  ? 'calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp))'
+  : 'calc(var(--col-hari) + var(--col-fp))';
+
+document.documentElement.style.setProperty('--left-kode', leftKode);
+
+/* Posisi MOTIF: mengikuti KODE PRODUK jika dikunci */
+const leftMotif = freezePilihan.kode
+  ? (freezePilihan.tanggal
+      ? 'calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp) + var(--col-kode))'
+      : 'calc(var(--col-hari) + var(--col-fp) + var(--col-kode))')
+  : (freezePilihan.tanggal
+      ? 'calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp))'
+      : 'calc(var(--col-hari) + var(--col-fp))');
+
+document.documentElement.style.setProperty('--left-motif', leftMotif);
 
 /* FREEZE MOTIF */
 .freeze-motif{
