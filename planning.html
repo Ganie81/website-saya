@@ -560,12 +560,19 @@ function pasangFreeze(){
   MOTIF bergeser ke kanan jika KODE PRODUK juga dikunci.
   Jika hanya MOTIF dikunci, posisinya tepat selepas FP.
  */
- const leftMotif=freezePilihan.kode
+ /* FP bergerak menempel ke HARI ketika TANGGAL tidak dikunci. */
+const leftFP=freezePilihan.tanggal
+  ?'calc(var(--col-hari) + var(--col-tanggal))'
+  :'var(--col-hari)';
+
+document.documentElement.style.setProperty('--left-fp',leftFP);
+
+/* Posisi MOTIF tetap mengikuti pengaturan KODE PRODUK. */
+const leftMotif=freezePilihan.kode
   ?'calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp) + var(--col-kode))'
   :'calc(var(--col-hari) + var(--col-tanggal) + var(--col-fp))';
 
- document.documentElement.style.setProperty('--left-motif',leftMotif);
-
+document.documentElement.style.setProperty('--left-motif',leftMotif);
  aturTombolFreeze();
 }
 
