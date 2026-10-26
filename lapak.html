@@ -2,169 +2,57 @@
 <html lang="id">
 
 <head>
-
 <meta charset="UTF-8">
-
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#002B1F">
 <meta name="mobile-web-app-capable" content="yes">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LAPORAN PRODUKSI HARIAN</title>
 
 <style>
-
-/* =====================================================
-   DASAR
-===================================================== */
-
-*{
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
+/* DASAR */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 
 body{
     font-family:Arial,sans-serif;
     margin:0;
     padding:20px;
     color:#1e2d36;
-
-    /* =================================================
-       GROUNDING LAPAK
-       GAMBAR Lapor.jpg MENJADI BACKGROUND SELURUH HALAMAN
-    ================================================= */
-
     background-color:#dfe8ed;
-
     background-image:
-        linear-gradient(
-            rgba(255,255,255,.18),
-            rgba(255,255,255,.18)
-        ),
+        linear-gradient(rgba(255,255,255,.18),rgba(255,255,255,.18)),
         url("Lapor.jpg");
-
-    background-size:
-        100% 100%,
-        cover;
-
-    background-position:
-        center,
-        center;
-
-    background-repeat:
-        no-repeat,
-        no-repeat;
-
-    background-attachment:
-        fixed,
-        fixed;
+    background-size:100% 100%,cover;
+    background-position:center,center;
+    background-repeat:no-repeat,no-repeat;
+    background-attachment:fixed,fixed;
 }
 
-.container{
-    width:100%;
-    max-width:1100px;
-    margin:auto;
-}
+.container{width:100%;max-width:1100px;margin:auto}
 
-
-/* =====================================================
-   HEADER
-===================================================== */
-
+/* HEADER */
 .header{
     text-align:left;
-
-    padding:
-        10px 8px 11px;
-
+    padding:10px 8px 11px;
     margin-bottom:8px;
-
     border-radius:22px;
-
     background-color:#c9e4f2;
-
     background-image:
-
-        radial-gradient(
-            ellipse 30px 18px at 0% 50%,
-            transparent 52%,
-            rgba(33,75,103,.12) 54%,
-            rgba(33,75,103,.12) 62%,
-            transparent 64%
-        ),
-
-        radial-gradient(
-            ellipse 30px 18px at 50% 0%,
-            transparent 52%,
-            rgba(33,75,103,.12) 54%,
-            rgba(33,75,103,.12) 62%,
-            transparent 64%
-        ),
-
-        radial-gradient(
-            circle 4px at 25% 25%,
-            rgba(33,75,103,.16) 0%,
-            rgba(33,75,103,.16) 45%,
-            transparent 50%
-        ),
-
-        radial-gradient(
-            circle 4px at 75% 75%,
-            rgba(33,75,103,.16) 0%,
-            rgba(33,75,103,.16) 45%,
-            transparent 50%
-        ),
-
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.42),
-            transparent 35%,
-            transparent 65%,
-            rgba(255,255,255,.18)
-        );
-
-    background-size:
-        72px 72px,
-        72px 72px,
-        72px 72px,
-        72px 72px,
-        100% 100%;
-
-    background-position:
-        0 0,
-        36px 36px,
-        0 0,
-        36px 36px,
-        0 0;
-
-    border:
-        1px solid
-        rgba(80,80,80,.55);
-
+        radial-gradient(ellipse 30px 18px at 0% 50%,transparent 52%,rgba(33,75,103,.12) 54%,rgba(33,75,103,.12) 62%,transparent 64%),
+        radial-gradient(ellipse 30px 18px at 50% 0%,transparent 52%,rgba(33,75,103,.12) 54%,rgba(33,75,103,.12) 62%,transparent 64%),
+        radial-gradient(circle 4px at 25% 25%,rgba(33,75,103,.16) 0%,rgba(33,75,103,.16) 45%,transparent 50%),
+        radial-gradient(circle 4px at 75% 75%,rgba(33,75,103,.16) 0%,rgba(33,75,103,.16) 45%,transparent 50%),
+        linear-gradient(135deg,rgba(255,255,255,.42),transparent 35%,transparent 65%,rgba(255,255,255,.18));
+    background-size:72px 72px,72px 72px,72px 72px,72px 72px,100% 100%;
+    background-position:0 0,36px 36px,0 0,36px 36px,0 0;
+    border:1px solid rgba(80,80,80,.55);
     box-shadow:
-
-box-shadow:
-
-    10px 10px 22px
-    rgba(0,0,0,.20),
-
-    -2px -2px 5px
-    rgba(255,255,255,.55),
-
-    inset 1px 1px 3px
-    rgba(255,255,255,.60),
-
-    inset -2px -2px 5px
-    rgba(0,0,0,.08);
+        10px 10px 22px rgba(0,0,0,.20),
+        -2px -2px 5px rgba(255,255,255,.55),
+        inset 1px 1px 3px rgba(255,255,255,.60),
+        inset -2px -2px 5px rgba(0,0,0,.08);
 }
-/* =====================================================
-   LOGO PT BEHAESTEX DI TEPI KIRI
-===================================================== */
 
 .header-brand{
     display:flex;
@@ -182,30 +70,338 @@ box-shadow:
     flex-shrink:0;
 }
 
-.header-text{
-    flex:1;
-    min-width:0;
-    text-align:left;
+.header-text{flex:1;min-width:0;text-align:left}
+.header-text h1{text-align:left}
+.header-text .subtitle{text-align:left}
+
+.header h1{
+    margin:0;
+    font-size:clamp(20px,6vw,40px);
+    font-weight:900;
+    letter-spacing:.6px;
+    color:#203e55;
+    cursor:pointer;
+    user-select:none;
+    text-shadow:2px 2px 0 #fff,4px 4px 0 rgba(45,78,101,.20),6px 7px 9px rgba(0,0,0,.28);
+    transition:transform .15s ease,text-shadow .15s ease;
 }
 
-.header-text h1{
-    text-align:left;
+.header h1:hover{transform:translateY(-1px)}
+
+.header h1:active{
+    transform:translateY(3px);
+    text-shadow:1px 1px 0 #fff,2px 3px 4px rgba(0,0,0,.25);
 }
 
-.header-text .subtitle{
-    text-align:left;
+.header .subtitle{
+    margin-top:6px;
+    font-size:clamp(15px,3.2vw,20px);
+    font-weight:900;
+    letter-spacing:2px;
+    color:#506d80;
+    text-shadow:1px 2px 0 #fff,2px 3px 4px rgba(0,0,0,.22);
 }
 
+/* FILTER */
+.filter-panel{
+    display:none;
+    grid-template-columns:1fr 1fr auto;
+    gap:11px;
+    padding:13px;
+    margin-bottom:17px;
+    border-radius:19px;
+    background:linear-gradient(145deg,#eaf0f4,#ccd6dc);
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:7px 7px 16px rgba(0,0,0,.18),-5px -5px 12px rgba(255,255,255,.95),inset 2px 2px 5px rgba(255,255,255,.85),inset -3px -3px 6px rgba(0,0,0,.12);
+}
+
+.filter-box{display:flex;flex-direction:column;gap:6px}
+
+.filter-box label{
+    font-size:14px;
+    font-weight:900;
+    color:#405b6b;
+    text-shadow:1px 1px 0 #fff,2px 2px 3px rgba(0,0,0,.18);
+}
+
+.filter-box input,.filter-box select{
+    width:100%;
+    min-height:48px;
+    border:none;
+    outline:none;
+    border-radius:13px;
+    padding:8px 12px;
+    background:#fff;
+    color:#263238;
+    font-size:17px;
+    font-weight:900;
+    box-shadow:inset 3px 3px 6px rgba(0,0,0,.13),inset -2px -2px 4px rgba(255,255,255,.95),3px 3px 7px rgba(0,0,0,.14);
+}
+
+.refresh-btn{
+    align-self:end;
+    min-height:48px;
+    padding:8px 17px;
+    border:none;
+    border-radius:13px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:900;
+    color:#fff;
+    background:linear-gradient(145deg,#5d94b5,#285d7e);
+    border:1px solid rgba(255,255,255,.35);
+    box-shadow:5px 5px 10px rgba(0,0,0,.28),-2px -2px 5px rgba(255,255,255,.30),inset 2px 2px 3px rgba(255,255,255,.35),inset -3px -3px 5px rgba(0,0,0,.20);
+    text-shadow:2px 2px 3px rgba(0,0,0,.45);
+}
+
+.refresh-btn:active{
+    transform:translateY(3px);
+    box-shadow:2px 2px 5px rgba(0,0,0,.25),inset 2px 2px 4px rgba(0,0,0,.20);
+}
+
+/* INFO TANGGAL + GRUP */
+.info-bar{
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    gap:0;
+    width:100%;
+    margin:0 0 16px 0;
+}
+
+.info-chip{
+    display:inline-flex;
+    align-items:center;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+    gap:7px;
+    width:fit-content;
+    max-width:100%;
+    min-height:0;
+    padding:5px 10px;
+    background:transparent;
+    border:1.5px solid #8DEBFF;
+    border-radius:9px;
+    box-shadow:none;
+    font-size:16px;
+    font-weight:900;
+    color:#fff;
+    text-shadow:1px 1px 2px #000,0 0 4px rgba(0,0,0,.65);
+}
+
+.info-chip span{
+    font-size:17px;
+    font-weight:900;
+    color:#fff;
+    text-shadow:1px 1px 2px #000,0 0 4px rgba(0,0,0,.65);
+}
+
+.info-separator{margin:0 2px;color:#8DEBFF!important;font-weight:900}
+
+/* SECTION */
+.section{
+    position:relative;
+    margin-bottom:15px;
+    border-radius:21px;
+    padding:11px;
+    background:linear-gradient(145deg,#c9e4f2,#9fc7dc);
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:10px 10px 21px rgba(0,0,0,.22),-2px -2px 5px rgba(255,255,255,.95),inset 1px 1px 3px rgba(255,255,255,.75),inset -2px -2px 5px rgba(0,0,0,.13);
+}
+
+.section.secondary{background:linear-gradient(145deg,#c9e4f2,#9fc7dc)}
+
+/* JUDUL SECTION */
+.section-title{
+    text-align:center;
+    padding:0 2px;
+    font-size:clamp(21px,5.5vw,31px);
+    font-weight:900;
+    color:#214b67;
+    letter-spacing:.5px;
+    text-shadow:2px 2px 0 #fff,4px 4px 0 rgba(42,84,108,.22),5px 6px 8px rgba(0,0,0,.27);
+}
+
+/* TABEL */
+.table-wrap{
+    width:100%;
+    overflow-x:auto;
+    border-radius:15px;
+    box-shadow:6px 7px 14px rgba(0,0,0,.25),-2px -2px 5px rgba(255,255,255,.60);
+}
+
+table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    min-width:700px;
+}
+
+thead th{
+    padding:16px 10px;
+    font-size:clamp(16px,4vw,21px);
+    font-weight:900;
+    text-align:center;
+    color:#fff;
+    background:linear-gradient(145deg,#4f86a8,#285b7b);
+    border-right:1px solid rgba(255,255,255,.35);
+    border-top:1px solid rgba(255,255,255,.45);
+    text-shadow:2px 2px 0 rgba(0,0,0,.25),1px 2px 3px rgba(0,0,0,.45);
+    box-shadow:inset 2px 2px 4px rgba(255,255,255,.40),inset -3px -4px 6px rgba(0,0,0,.22),0 3px 5px rgba(0,0,0,.12);
+}
+
+/* TABEL 1 */
+.table-flat{
+    background:#e5f4fb;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.8);
+}
+
+.table-flat tbody td{
+    padding:14px 10px;
+    text-align:center;
+    font-size:clamp(16px,4.3vw,20px);
+    font-weight:900;
+    color:#294454;
+    border-bottom:1px solid #b8d7e5;
+    border-right:1px solid #c7e1eb;
+    text-shadow:2px 2px 3px rgba(0,0,0,.17);
+}
+
+.table-flat tbody tr:nth-child(even){background:#d8edf6}
+.table-flat tbody tr:nth-child(odd){background:#edf9fd}
+
+/* ANGKA */
+.angka{
+    font-weight:900!important;
+    font-size:clamp(18px,4.7vw,22px)!important;
+    text-shadow:2px 2px 4px rgba(0,0,0,.23);
+}
+
+/* TOTAL TABEL 1 */
+.total-row td{
+    background:linear-gradient(145deg,#b8d9e8,#8ebbd1)!important;
+    font-weight:900!important;
+    color:#183c51!important;
+    border-top:3px solid #5f8da5;
+    box-shadow:inset 0 2px 4px rgba(255,255,255,.65),inset 0 -3px 5px rgba(0,0,0,.12);
+}
+
+.total-row .angka{
+    font-size:clamp(19px,4.9vw,23px)!important;
+    font-weight:900!important;
+}
+
+/* =====================================================
+   ACV: ANGKA TEBAL + WARNA BERDASARKAN PENCAPAIAN
+===================================================== */
+
+.acv{
+    font-weight:900!important;
+    font-size:clamp(19px,4.9vw,23px)!important;
+    -webkit-text-stroke:.45px currentColor;
+    text-shadow:1px 1px 0 rgba(255,255,255,.65),2px 3px 4px rgba(0,0,0,.20);
+    white-space:nowrap;
+}
+
+/* DI ATAS 100% = BIRU */
+.table-flat tbody td.acv-biru{
+    color:#005BFF!important;
+    background:#D8E8FF!important;
+    -webkit-text-stroke:.5px #005BFF;
+}
+
+/* 96% SAMPAI 100% = HIJAU TUA */
+.table-flat tbody td.acv-hijau{
+    color:#006400!important;
+    background:#D8F0D8!important;
+    -webkit-text-stroke:.5px #006400;
+}
+
+/* 50% SAMPAI KURANG DARI 96% = KUNING TUA */
+.table-flat tbody td.acv-kuning{
+    color:#805000!important;
+    background:#FFE08A!important;
+    -webkit-text-stroke:.5px #805000;
+}
+
+/* DI BAWAH 50% = MERAH DARAH */
+.table-flat tbody td.acv-merah{
+    color:#8B0000!important;
+    background:#FFD6D6!important;
+    -webkit-text-stroke:.5px #8B0000;
+}
+
+/* TOTAL TABEL 2 */
+.table-secondary{
+    background:#f1f3f4;
+    border:1px solid #9eb4c1;
+}
+
+.table-secondary tbody td{
+    padding:6px 7px;
+    text-align:center;
+    font-size:clamp(16px,4.2vw,20px);
+    font-weight:900;
+    color:#37474f;
+    background:#eef1f3;
+    border-bottom:1px solid #c7cdd1;
+    border-right:1px solid #d4dade;
+    text-shadow:2px 2px 4px rgba(0,0,0,.18);
+}
+
+.table-secondary tbody tr:nth-child(even) td{background:#e4e8ea}
+.table-secondary tbody tr:nth-child(odd) td{background:#f2f4f5}
+
+.table-secondary .total-proses{
+    font-weight:900;
+    font-size:clamp(17px,4.3vw,21px);
+    color:#183c51;
+    background:linear-gradient(145deg,#d8e7ee,#b8cfd9)!important;
+    text-shadow:2px 2px 3px rgba(0,0,0,.20);
+}
+
+/* LOADING */
+.loading{
+    display:none;
+    text-align:center;
+    padding:20px;
+    font-size:19px;
+    font-weight:900;
+    color:#fff;
+    text-shadow:2px 2px 4px rgba(0,0,0,.45);
+}
+
+.empty{
+    padding:25px!important;
+    text-align:center!important;
+    font-weight:900!important;
+    font-size:18px!important;
+    color:#708692!important;
+}
+
+.footer{
+    text-align:center;
+    padding:13px;
+    font-size:12px;
+    font-weight:800;
+    color:#718792;
+    text-shadow:1px 1px 0 #fff;
+}
+
+/* MOBILE */
 @media(max-width:650px){
+    body{padding:0}
+    .container{width:100%;max-width:none}
 
-    .header-brand{
-        gap:9px;
+    .header{
+        width:100%;
+        margin:0 0 8px;
+        padding:8px 6px 9px;
+        border-radius:0 0 18px 18px;
     }
 
-    .header-logo{
-        width:58px;
-        height:58px;
-    }
+    .header-brand{gap:9px}
+    .header-logo{width:58px;height:58px}
 
     .header-text h1{
         font-size:clamp(21px,6.2vw,34px);
@@ -218,848 +414,42 @@ box-shadow:
         margin-top:5px;
     }
 
-}
-
-/* JUDUL SEKALIGUS TOMBOL FILTER */
-
-.header h1{
-    margin:0;
-
-    font-size:
-        clamp(
-            20px,
-            6vw,
-            40px
-        );
-
-    font-weight:900;
-
-    letter-spacing:.6px;
-
-    color:#203e55;
-
-    cursor:pointer;
-
-    user-select:none;
-
-    text-shadow:
-
-        2px 2px 0
-        #ffffff,
-
-        4px 4px 0
-        rgba(45,78,101,.20),
-
-        6px 7px 9px
-        rgba(0,0,0,.28);
-
-    transition:
-        transform .15s ease,
-        text-shadow .15s ease;
-}
-
-.header h1:hover{
-    transform:
-        translateY(-1px);
-}
-
-.header h1:active{
-    transform:
-        translateY(3px);
-
-    text-shadow:
-
-        1px 1px 0
-        #ffffff,
-
-        2px 3px 4px
-        rgba(0,0,0,.25);
-}
-
-.header .subtitle{
-    margin-top:6px;
-
-    font-size:
-        clamp(
-            15px,
-            3.2vw,
-            20px
-        );
-
-    font-weight:900;
-
-    letter-spacing:2px;
-
-    color:#506d80;
-
-    text-shadow:
-
-        1px 2px 0
-        #ffffff,
-
-        2px 3px 4px
-        rgba(0,0,0,.22);
-}
-
-
-/* =====================================================
-   FILTER
-===================================================== */
-
-.filter-panel{
-    display:none;
-
-    grid-template-columns:
-        1fr 1fr auto;
-
-    gap:11px;
-
-    padding:13px;
-
-    margin-bottom:17px;
-
-    border-radius:19px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #eaf0f4,
-            #ccd6dc
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.9);
-
-    box-shadow:
-
-        7px 7px 16px
-        rgba(0,0,0,.18),
-
-        -5px -5px 12px
-        rgba(255,255,255,.95),
-
-        inset 2px 2px 5px
-        rgba(255,255,255,.85),
-
-        inset -3px -3px 6px
-        rgba(0,0,0,.12);
-}
-
-.filter-box{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-}
-
-.filter-box label{
-    font-size:14px;
-    font-weight:900;
-    color:#405b6b;
-
-    text-shadow:
-        1px 1px 0 #ffffff,
-        2px 2px 3px rgba(0,0,0,.18);
-}
-
-.filter-box input,
-.filter-box select{
-    width:100%;
-    min-height:48px;
-
-    border:none;
-    outline:none;
-
-    border-radius:13px;
-
-    padding:
-        8px 12px;
-
-    background:#ffffff;
-    color:#263238;
-
-    font-size:17px;
-    font-weight:900;
-
-    box-shadow:
-
-        inset 3px 3px 6px
-        rgba(0,0,0,.13),
-
-        inset -2px -2px 4px
-        rgba(255,255,255,.95),
-
-        3px 3px 7px
-        rgba(0,0,0,.14);
-}
-
-.refresh-btn{
-    align-self:end;
-
-    min-height:48px;
-
-    padding:
-        8px 17px;
-
-    border:none;
-
-    border-radius:13px;
-
-    cursor:pointer;
-
-    font-size:16px;
-
-    font-weight:900;
-
-    color:#ffffff;
-
-    background:
-        linear-gradient(
-            145deg,
-            #5d94b5,
-            #285d7e
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.35);
-
-    box-shadow:
-
-        5px 5px 10px
-        rgba(0,0,0,.28),
-
-        -2px -2px 5px
-        rgba(255,255,255,.30),
-
-        inset 2px 2px 3px
-        rgba(255,255,255,.35),
-
-        inset -3px -3px 5px
-        rgba(0,0,0,.20);
-
-    text-shadow:
-        2px 2px 3px
-        rgba(0,0,0,.45);
-}
-
-.refresh-btn:active{
-    transform:
-        translateY(3px);
-
-    box-shadow:
-
-        2px 2px 5px
-        rgba(0,0,0,.25),
-
-        inset 2px 2px 4px
-        rgba(0,0,0,.20);
-}
-
-
-/* =====================================================
-   INFO TANGGAL + GRUP
-   TRANSPARAN DENGAN BINGKAI BIRU MUDA
-===================================================== */
-
-.info-bar{
-    display:flex;
-    justify-content:flex-start;
-    align-items:center;
-    gap:0;
-
-    width:100%;
-    margin:0 0 16px 0;
-}
-
-.info-chip{
-    display:inline-flex;
-    align-items:center;
-    justify-content:flex-start;
-    flex-wrap:wrap;
-    gap:7px;
-
-    width:fit-content;
-    max-width:100%;
-    min-height:0;
-
-    padding:5px 10px;
-
-    background:transparent;
-
-    border:1.5px solid #8DEBFF;
-    border-radius:9px;
-
-    box-shadow:none;
-
-    font-size:16px;
-    font-weight:900;
-    color:#ffffff;
-
-    text-shadow:
-        1px 1px 2px #000000,
-        0 0 4px rgba(0,0,0,.65);
-}
-
-.info-chip span{
-    font-size:17px;
-    font-weight:900;
-    color:#ffffff;
-
-    text-shadow:
-        1px 1px 2px #000000,
-        0 0 4px rgba(0,0,0,.65);
-}
-
-.info-separator{
-    margin:0 2px;
-    color:#8DEBFF !important;
-    font-weight:900;
-}
-/* =====================================================
-   SECTION
-===================================================== */
-
-.section{
-    margin-bottom:15px;
-
-    border-radius:21px;
-
-    padding:11px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #c9e4f2,
-            #9fc7dc
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.9);
-
-    box-shadow:
-
-        10px 10px 21px
-        rgba(0,0,0,.22),
-
-        -2px -2px 5px
-        rgba(255,255,255,.95),
-
-        inset 1px 1px 3px
-        rgba(255,255,255,.75),
-
-        inset -2px -2px 5px
-        rgba(0,0,0,.13);
-}
-
-.section.secondary{
-    background:
-        linear-gradient(
-            145deg,
-            #c9e4f2,
-            #9fc7dc
-        );
-}
-
-
-/* =====================================================
-   JUDUL SECTION
-===================================================== */
-
-.section-title{
-    text-align:center;
-
-    padding:
-        0px 2px 0px;
-
-    font-size:
-        clamp(
-            21px,
-            5.5vw,
-            31px
-        );
-
-    font-weight:900;
-
-    color:#214b67;
-
-    letter-spacing:.5px;
-
-    text-shadow:
-
-        2px 2px 0
-        #ffffff,
-
-        4px 4px 0
-        rgba(42,84,108,.22),
-
-        5px 6px 8px
-        rgba(0,0,0,.27);
-}
-
-
-/* =====================================================
-   TABLE WRAP
-===================================================== */
-
-.table-wrap{
-    width:100%;
-
-    overflow-x:auto;
-
-    border-radius:15px;
-
-    box-shadow:
-
-        6px 7px 14px
-        rgba(0,0,0,.25),
-
-        -2px -2px 5px
-        rgba(255,255,255,.60);
-}
-
-table{
-    width:100%;
-
-    border-collapse:separate;
-
-    border-spacing:0;
-
-    min-width:700px;
-}
-
-
-/* =====================================================
-   HEADER SEMUA TABEL
-===================================================== */
-
-thead th{
-    padding:
-        16px 10px;
-
-    font-size:
-        clamp(
-            16px,
-            4.0vw,
-            21px
-        );
-
-    font-weight:900;
-
-    text-align:center;
-
-    color:#ffffff;
-
-    background:
-        linear-gradient(
-            145deg,
-            #4f86a8,
-            #285b7b
-        );
-
-    border-right:
-        1px solid
-        rgba(255,255,255,.35);
-
-    border-top:
-        1px solid
-        rgba(255,255,255,.45);
-
-    text-shadow:
-
-        2px 2px 0
-        rgba(0,0,0,.25),
-
-        1px 2px 3px
-        rgba(0,0,0,.45);
-
-    box-shadow:
-
-        inset 2px 2px 4px
-        rgba(255,255,255,.40),
-
-        inset -3px -4px 6px
-        rgba(0,0,0,.22),
-
-        0 3px 5px
-        rgba(0,0,0,.12);
-}
-
-
-/* =====================================================
-   TABEL 1
-===================================================== */
-
-.table-flat{
-    background:#e5f4fb;
-
-    box-shadow:
-        inset 0 0 0 1px
-        rgba(255,255,255,.8);
-}
-
-.table-flat tbody td{
-    padding:
-        14px 10px;
-
-    text-align:center;
-
-    font-size:
-        clamp(
-            16px,
-            4.3vw,
-            20px
-        );
-
-    font-weight:900;
-
-    color:#294454;
-
-    border-bottom:
-        1px solid
-        #b8d7e5;
-
-    border-right:
-        1px solid
-        #c7e1eb;
-
-    text-shadow:
-        2px 2px 3px
-        rgba(0,0,0,.17);
-}
-
-.table-flat tbody tr:nth-child(even){
-    background:#d8edf6;
-}
-
-.table-flat tbody tr:nth-child(odd){
-    background:#edf9fd;
-}
-
-
-/* =====================================================
-   ANGKA TABEL 1
-===================================================== */
-
-.angka{
-    font-weight:900 !important;
-
-    font-size:
-        clamp(
-            18px,
-            4.7vw,
-            22px
-        ) !important;
-
-    text-shadow:
-        2px 2px 4px
-        rgba(0,0,0,.23);
-}
-
-
-/* =====================================================
-   BARIS TOTAL TABEL 1
-===================================================== */
-
-.total-row td{
-    background:
-        linear-gradient(
-            145deg,
-            #b8d9e8,
-            #8ebbd1
-        ) !important;
-
-    font-weight:900 !important;
-
-    color:#183c51 !important;
-
-    border-top:
-        3px solid
-        #5f8da5;
-
-    box-shadow:
-
-        inset 0 2px 4px
-        rgba(255,255,255,.65),
-
-        inset 0 -3px 5px
-        rgba(0,0,0,.12);
-}
-
-.total-row .angka{
-    font-size:
-        clamp(
-            19px,
-            4.9vw,
-            23px
-        ) !important;
-
-    font-weight:900 !important;
-}
-
-
-/* =====================================================
-   ACV
-===================================================== */
-
-.acv{
-    font-weight:900 !important;
-
-    font-size:
-        clamp(
-            18px,
-            4.7vw,
-            22px
-        ) !important;
-
-    color:#173f59;
-
-    text-shadow:
-
-        2px 2px 0
-        #ffffff,
-
-        3px 4px 5px
-        rgba(0,0,0,.22);
-}
-
-
-/* =====================================================
-   TABEL 2
-===================================================== */
-
-.table-secondary{
-    background:#f1f3f4;
-
-    border:
-        1px solid
-        #9eb4c1;
-}
-
-.table-secondary tbody td{
-    padding:
-        6px 7px;
-
-    text-align:center;
-
-    font-size:
-        clamp(
-            16px,
-            4.2vw,
-            20px
-        );
-
-    font-weight:900;
-
-    color:#37474f;
-
-    background:#eef1f3;
-
-    border-bottom:
-        1px solid
-        #c7cdd1;
-
-    border-right:
-        1px solid
-        #d4dade;
-
-    text-shadow:
-        2px 2px 4px
-        rgba(0,0,0,.18);
-}
-
-.table-secondary tbody tr:nth-child(even) td{
-    background:#e4e8ea;
-}
-
-.table-secondary tbody tr:nth-child(odd) td{
-    background:#f2f4f5;
-}
-
-
-/* =====================================================
-   TOTAL TABEL 2
-===================================================== */
-
-.table-secondary .total-proses{
-    font-weight:900;
-
-    font-size:
-        clamp(
-            17px,
-            4.3vw,
-            21px
-        );
-
-    color:#183c51;
-
-    background:
-        linear-gradient(
-            145deg,
-            #d8e7ee,
-            #b8cfd9
-        ) !important;
-
-    text-shadow:
-
-        2px 2px 3px
-        rgba(0,0,0,.20);
-}
-
-
-/* =====================================================
-   LOADING
-===================================================== */
-
-.loading{
-    display:none;
-
-    text-align:center;
-
-    padding:20px;
-
-    font-size:19px;
-
-    font-weight:900;
-
-    color:#ffffff;
-
-    text-shadow:
-        2px 2px 4px
-        rgba(0,0,0,.45);
-}
-
-
-/* =====================================================
-   EMPTY
-===================================================== */
-
-.empty{
-    padding:
-        25px !important;
-
-    text-align:center !important;
-
-    font-weight:900 !important;
-
-    font-size:
-        18px !important;
-
-    color:#708692 !important;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-.footer{
-    text-align:center;
-
-    padding:13px;
-
-    font-size:12px;
-
-    font-weight:800;
-
-    color:#718792;
-
-    text-shadow:
-        1px 1px 0 #ffffff;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(max-width:650px){
-
-    body{
-        padding:0;
-    }
-
-    .container{
-        width:100%;
-        max-width:none;
-    }
-
-    .header{
-        width:100%;
-        margin:0 0 8px 0;
-
-        padding:
-            8px 6px 9px;
-
-        border-radius:
-            0 0 18px 18px;
-    }
-
     .filter-panel{
         margin-left:8px;
         margin-right:8px;
-
-        grid-template-columns:
-            1fr 1fr;
-
+        grid-template-columns:1fr 1fr;
         border-radius:17px;
     }
 
     .info-bar{
         width:auto;
-        margin:0 8px 16px 8px;
+        margin:0 8px 16px;
         justify-content:flex-start;
     }
 
     .section{
         margin-left:8px;
         margin-right:8px;
-
         padding:7px;
-
         border-radius:18px;
     }
 
-    .footer{
-        padding-left:8px;
-        padding-right:8px;
-    }
+    .footer{padding-left:8px;padding-right:8px}
 
-    .header h1{
-        font-size:
-            clamp(
-                20px,
-                5.5vw,
-                40px
-            );
-    }
+    .header h1{font-size:clamp(20px,5.5vw,40px)}
+    .header .subtitle{font-size:15px;letter-spacing:1px}
 
-    .header .subtitle{
-    font-size:15px;
-    letter-spacing:1px;
-}
+    .refresh-btn{grid-column:1/-1;width:100%}
 
-    .refresh-btn{
-        grid-column:
-            1 / -1;
-
-        width:100%;
-    }
-
-           
     .info-chip{
         display:inline-flex;
         width:fit-content;
         max-width:100%;
-
         gap:5px;
         padding:5px 8px;
-
         font-size:14px;
         border:1.5px solid #8DEBFF;
         border-radius:8px;
-
         background:transparent;
         box-shadow:none;
     }
@@ -1067,269 +457,109 @@ thead th{
     .info-chip span{
         font-size:14px;
         font-weight:900;
-        color:#ffffff;
+        color:#fff;
     }
 
     .section-title{
-        padding:
-            1px 3px 2px;
-
-        font-size:
-            clamp(
-                21px,
-                5.7vw,
-                28px
-            );
+        padding:1px 3px 2px;
+        font-size:clamp(21px,5.7vw,28px);
     }
 
-    table{
-        min-width:720px;
-    }
+    table{min-width:720px}
+    thead th{font-size:18px;padding:17px 10px}
+    .table-flat tbody td{font-size:18px;padding:15px 10px}
 
-    thead th{
-        font-size:18px;
-
-        padding:
-            17px 10px;
-    }
-
-    .table-flat tbody td{
-        font-size:18px;
-
-        padding:
-            15px 10px;
-    }
-
-    .table-flat .angka,
-    .table-flat .acv{
-        font-size:
-            20px !important;
-    }
+    .table-flat .angka{font-size:20px!important}
+    .table-flat .acv{font-size:21px!important}
 
     .table-secondary tbody td{
         font-size:18px;
-
-        padding:
-            11px 7px;
-
+        padding:11px 7px;
         white-space:nowrap;
     }
-
 }
-
-
-/* =====================================================
-   HP SANGAT KECIL
-===================================================== */
 
 @media(max-width:380px){
-
-    .filter-panel{
-        grid-template-columns:1fr;
-    }
-
-    .refresh-btn{
-        grid-column:auto;
-    }
-
-    .info-chip{
-        width:100%;
-
-        text-align:center;
-    }
-
+    .filter-panel{grid-template-columns:1fr}
+    .refresh-btn{grid-column:auto}
+    .info-chip{width:100%;text-align:center}
 }
 
-
-/* =====================================================
-   LOADING ICON - GRAFIK PRODUKSI ANIMASI
-===================================================== */
-
+/* LOADING ICON */
 .loading-chart{
     width:42px;
     height:42px;
-
     display:inline-flex;
     align-items:center;
     justify-content:center;
-
     margin-right:9px;
-
     vertical-align:middle;
-
-    filter:
-        drop-shadow(0 0 4px rgba(255,193,7,.75))
-        drop-shadow(0 0 10px rgba(255,193,7,.35));
-
-    animation:
-        loadingFloat 1.6s ease-in-out infinite;
+    filter:drop-shadow(0 0 4px rgba(255,193,7,.75)) drop-shadow(0 0 10px rgba(255,193,7,.35));
+    animation:loadingFloat 1.6s ease-in-out infinite;
 }
 
-
-.loading-chart svg{
-    width:100%;
-    height:100%;
-    overflow:visible;
-}
-
-
-/* BATANG GRAFIK */
+.loading-chart svg{width:100%;height:100%;overflow:visible}
 
 .loading-chart .bar{
     fill:#d99a22;
-
     stroke:#ffd86a;
     stroke-width:1;
-
     transform-box:fill-box;
     transform-origin:center bottom;
-
-    animation:
-        barGrow 1.25s ease-in-out infinite;
+    animation:barGrow 1.25s ease-in-out infinite;
 }
 
-
-.loading-chart .b1{
-    animation-delay:0s;
-}
-
-.loading-chart .b2{
-    animation-delay:.15s;
-}
-
-.loading-chart .b3{
-    animation-delay:.30s;
-}
-
-
-/* PANAH */
+.loading-chart .b1{animation-delay:0s}
+.loading-chart .b2{animation-delay:.15s}
+.loading-chart .b3{animation-delay:.30s}
 
 .loading-chart .arrow{
     fill:none;
-
     stroke:#ffe08a;
     stroke-width:4;
-
     stroke-linecap:round;
     stroke-linejoin:round;
-
     stroke-dasharray:65;
     stroke-dashoffset:65;
-
-    animation:
-        arrowMove 1.5s ease-in-out infinite;
+    animation:arrowMove 1.5s ease-in-out infinite;
 }
-
-
-/* UJUNG PANAH */
 
 .loading-chart .arrow-head{
     fill:none;
-
     stroke:#fff0ad;
     stroke-width:4;
-
     stroke-linecap:round;
     stroke-linejoin:round;
-
     stroke-dasharray:25;
     stroke-dashoffset:25;
-
-    animation:
-        arrowHeadMove 1.5s ease-in-out infinite;
+    animation:arrowHeadMove 1.5s ease-in-out infinite;
 }
-
-
-/* GERAK NAIK-TURUN HALUS */
 
 @keyframes loadingFloat{
-
-    0%,100%{
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
-    50%{
-        transform:
-            translateY(-4px)
-            scale(1.05);
-    }
+    0%,100%{transform:translateY(0) scale(1)}
+    50%{transform:translateY(-4px) scale(1.05)}
 }
-
-
-/* BATANG TUMBUH */
 
 @keyframes barGrow{
-
-    0%,100%{
-        transform:scaleY(.72);
-        opacity:.72;
-    }
-
-    50%{
-        transform:scaleY(1);
-        opacity:1;
-    }
+    0%,100%{transform:scaleY(.72);opacity:.72}
+    50%{transform:scaleY(1);opacity:1}
 }
-
-
-/* PANAH BERJALAN */
 
 @keyframes arrowMove{
-
-    0%{
-        stroke-dashoffset:65;
-        opacity:.3;
-    }
-
-    45%{
-        stroke-dashoffset:0;
-        opacity:1;
-    }
-
-    75%{
-        stroke-dashoffset:0;
-        opacity:1;
-    }
-
-    100%{
-        stroke-dashoffset:-65;
-        opacity:.3;
-    }
+    0%{stroke-dashoffset:65;opacity:.3}
+    45%{stroke-dashoffset:0;opacity:1}
+    75%{stroke-dashoffset:0;opacity:1}
+    100%{stroke-dashoffset:-65;opacity:.3}
 }
-
-
-/* UJUNG PANAH */
 
 @keyframes arrowHeadMove{
-
-    0%{
-        stroke-dashoffset:25;
-        opacity:.3;
-    }
-
-    45%{
-        stroke-dashoffset:0;
-        opacity:1;
-    }
-
-    75%{
-        stroke-dashoffset:0;
-        opacity:1;
-    }
-
-    100%{
-        stroke-dashoffset:-25;
-        opacity:.3;
-    }
+    0%{stroke-dashoffset:25;opacity:.3}
+    45%{stroke-dashoffset:0;opacity:1}
+    75%{stroke-dashoffset:0;opacity:1}
+    100%{stroke-dashoffset:-25;opacity:.3}
 }
 
-
-/* =====================================================
-   SUBTITLE + HOME
-===================================================== */
-
+/* SUBTITLE + HOME */
 .subtitle-row{
     display:flex;
     align-items:center;
@@ -1342,44 +572,23 @@ thead th{
     border:none;
     border-radius:10px;
     padding:8px 16px;
-
-    background:linear-gradient(
-        145deg,
-        #9DD2D4,
-        #70B9BD
-    );
-
-    color:#ffffff;
+    background:linear-gradient(145deg,#9DD2D4,#70B9BD);
+    color:#fff;
     font-weight:bold;
     font-size:13px;
-
     cursor:pointer;
-
-    box-shadow:
-        0 4px 0 #57999D,
-        0 6px 10px rgba(0,0,0,.20);
-
+    box-shadow:0 4px 0 #57999D,0 6px 10px rgba(0,0,0,.20);
     transition:.15s ease;
 }
 
 .home-3d:hover{
     transform:translateY(-1px);
-
-    box-shadow:
-        0 5px 0 #57999D,
-        0 8px 12px rgba(0,0,0,.23);
+    box-shadow:0 5px 0 #57999D,0 8px 12px rgba(0,0,0,.23);
 }
 
 .home-3d:active{
     transform:translateY(3px);
-
-    box-shadow:
-        0 1px 0 #5FA3A7,
-        0 3px 6px rgba(0,0,0,.16);
-}
-
-.section{
-    position:relative;
+    box-shadow:0 1px 0 #5FA3A7,0 3px 6px rgba(0,0,0,.16);
 }
 
 .section-home{
@@ -1388,24 +597,15 @@ thead th{
     top:8px;
     z-index:5;
 }
-
 </style>
-
 </head>
 
 <body>
-
 <div class="container">
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
+<!-- HEADER -->
 <div class="header">
-
     <div class="header-brand">
-
         <img
             class="header-logo"
             src="https://images.glints.com/unsafe/glints-dashboard.oss-ap-southeast-1.aliyuncs.com/company-logo/e941d780b6d2d89e5607fcab43672a3b.png"
@@ -1413,1563 +613,586 @@ thead th{
         >
 
         <div class="header-text">
-
-            <h1
-                onclick="toggleFilter()"
-                title="Ketuk untuk membuka filter"
-            >
+            <h1 onclick="toggleFilter()" title="Ketuk untuk membuka filter">
                 LAPORAN PRODUKSI HARIAN
             </h1>
-
             <div class="subtitle">
                 PT BEHAESTEX • DEPARTMENT PRINTING
             </div>
-
         </div>
+    </div>
+</div>
 
+<!-- FILTER -->
+<div class="filter-panel" id="filterPanel">
+    <div class="filter-box">
+        <label>HARI YANG DIPILIH</label>
+        <input type="date" id="tanggal">
     </div>
 
+    <div class="filter-box">
+        <label>GRUP</label>
+        <select id="grup">
+            <option value="">SEMUA GRUP</option>
+            <option value="A">GRUP A</option>
+            <option value="B">GRUP B</option>
+            <option value="C">GRUP C</option>
+        </select>
+    </div>
+
+    <button class="refresh-btn" onclick="ambilData()">
+        ↻ REFRESH DATA
+    </button>
 </div>
 
-
-<!-- =====================================================
-     FILTER
-===================================================== -->
-
-<div
-    class="filter-panel"
-    id="filterPanel"
->
-
-<div class="filter-box">
-
-    <label>
-        HARI YANG DIPILIH
-    </label>
-
-    <input
-        type="date"
-        id="tanggal"
-    >
-
-</div>
-
-
-<div class="filter-box">
-
-    <label>
-        GRUP
-    </label>
-
-    <select id="grup">
-
-        <option value="">
-            SEMUA GRUP
-        </option>
-
-        <option value="A">
-            GRUP A
-        </option>
-
-        <option value="B">
-            GRUP B
-        </option>
-
-        <option value="C">
-            GRUP C
-        </option>
-
-    </select>
-
-</div>
-
-
-<button
-    class="refresh-btn"
-    onclick="ambilData()"
->
-    ↻ REFRESH DATA
-</button>
-
-</div>
-
-
-<!-- =====================================================
-     INFO TANGGAL + GRUP DALAM SATU KOTAK
-===================================================== -->
-
+<!-- INFO TANGGAL + GRUP -->
 <div class="info-bar">
-
     <div class="info-chip">
-
         <span>TANGGAL:</span>
-
         <span id="infoTanggal">-</span>
-
         <span class="info-separator">|</span>
-
         <span id="infoGrup">GRUP A</span>
-
     </div>
-
 </div>
-<!-- =====================================================
-     LOADING
-===================================================== -->
 
-<div
-    id="loading"
-    class="loading"
->
+<!-- LOADING -->
+<div id="loading" class="loading">
     ⏳ SABAR..,biar di sayang Allah ﷻ
 </div>
 
-
-<!-- =====================================================
-     TABEL 1
-===================================================== -->
-
+<!-- TABEL 1 -->
 <div class="section">
+    <button class="home-3d section-home" onclick="window.location.href='cek.html'">
+        🏠 HOME
+    </button>
 
-<button
-    class="home-3d section-home"
-    onclick="window.location.href='cek.html'">
-    🏠 HOME
-</button>
+    <div class="section-title">PRODUKSI FLATBED PRINT</div>
 
-<div class="section-title">
-    PRODUKSI FLATBED PRINT
+    <div class="table-wrap">
+        <table class="table-flat">
+            <thead>
+                <tr>
+                    <th>MC</th>
+                    <th>KODE PRODUK</th>
+                    <th>QTY (Pcs)</th>
+                    <th>KD</th>
+                    <th>TARGET (KD)</th>
+                    <th>ACV (%)</th>
+                </tr>
+            </thead>
+
+            <tbody id="flatBody">
+                <tr>
+                    <td colspan="6" class="empty">Belum ada data</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-
-<div class="table-wrap">
-
-<table class="table-flat">
-
-<thead>
-
-<tr>
-
-<th>
-    MC
-</th>
-
-<th>
-    KODE PRODUK
-</th>
-
-<th>
-    QTY (Pcs)
-</th>
-
-<th>
-    KD
-</th>
-
-<th>
-    TARGET (KD)
-</th>
-
-<th>
-    ACV (%)
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="flatBody">
-
-<tr>
-
-<td
-    colspan="6"
-    class="empty"
->
-    Belum ada data
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     TABEL 2
-===================================================== -->
-
+<!-- TABEL 2 -->
 <div class="section secondary">
+    <div class="section-title">STEAM, CURING, WASHING &amp; DLVR</div>
 
-<div class="section-title">
-    STEAM, CURING, WASHING &amp; DLVR
+    <div class="table-wrap">
+        <table class="table-secondary">
+            <thead>
+                <tr>
+                    <th>PROSES</th>
+                    <th>KODE PRODUK</th>
+                    <th>QTY</th>
+                    <th>SATUAN</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+
+            <tbody id="formBody">
+                <tr>
+                    <td colspan="5" class="empty">Belum ada data</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-
-<div class="table-wrap">
-
-<table class="table-secondary">
-
-<thead>
-
-<tr>
-
-<th>
-    PROSES
-</th>
-
-<th>
-    KODE PRODUK
-</th>
-
-<th>
-    QTY
-</th>
-
-<th>
-    SATUAN
-</th>
-
-<th>
-    TOTAL
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="formBody">
-
-<tr>
-
-<td
-    colspan="5"
-    class="empty"
->
-    Belum ada data
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
+<!-- FOOTER -->
 <div class="footer">
-
-LAPORAN PRODUKSI HARIAN
-•
-DEPARTEMEN PRINTING
-
+    LAPORAN PRODUKSI HARIAN • DEPARTEMEN PRINTING
 </div>
 
 </div>
-
 
 <script>
-
-
-/* =====================================================
-   URL APPS SCRIPT
-===================================================== */
-
+/* URL APPS SCRIPT */
 const WEB_APP_URL =
 "https://script.google.com/macros/s/AKfycbwzhYbVJLh8X6yOveOsz1mpXVoOrGTXXOzPM-zpo6_sh31tTeeM5YFT1B2SZ2xTfAdt/exec";
 
+/* PENYIMPANAN GRUP USER */
+const STORAGE_KEY_GRUP = "LAPORAN_PRODUKSI_HARIAN_GRUP_V1";
 
-/* =====================================================
-   KEY PENYIMPANAN GRUP USER
-===================================================== */
-
-const STORAGE_KEY_GRUP =
-    "LAPORAN_PRODUKSI_HARIAN_GRUP_V1";
-
-
-/* =====================================================
-   TARGET PER MESIN
-===================================================== */
-
+/* TARGET PER MESIN */
 const TARGET_MC = {
-
     "FLAT 1":100,
-
     "FLAT 2":100,
-
     "FLAT 4":100,
-
     "FLAT 5":133,
-
     "FLAT 6":133,
-
     "FLAT 7":133
-
 };
 
+/* ELEMENT */
+const tanggalInput = document.getElementById("tanggal");
+const grupInput = document.getElementById("grup");
+const loading = document.getElementById("loading");
+const flatBody = document.getElementById("flatBody");
+const formBody = document.getElementById("formBody");
+const filterPanel = document.getElementById("filterPanel");
 
-/* =====================================================
-   ELEMENT
-===================================================== */
-
-const tanggalInput =
-    document.getElementById(
-        "tanggal"
-    );
-
-
-const grupInput =
-    document.getElementById(
-        "grup"
-    );
-
-
-const loading =
-    document.getElementById(
-        "loading"
-    );
-
-
-const flatBody =
-    document.getElementById(
-        "flatBody"
-    );
-
-
-const formBody =
-    document.getElementById(
-        "formBody"
-    );
-
-
-const filterPanel =
-    document.getElementById(
-        "filterPanel"
-    );
-
-
-/* =====================================================
-   FILTER BUKA / TUTUP
-===================================================== */
-
-let filterTerbuka =
-    false;
-
+/* FILTER BUKA / TUTUP */
+let filterTerbuka = false;
 
 function kunciFilter(){
-
-    filterTerbuka =
-        false;
-
-    filterPanel.style.display =
-        "none";
-
+    filterTerbuka = false;
+    filterPanel.style.display = "none";
 }
-
 
 function toggleFilter(){
-
-    filterTerbuka =
-        !filterTerbuka;
-
-    filterPanel.style.display =
-        filterTerbuka
-        ? "grid"
-        : "none";
-
+    filterTerbuka = !filterTerbuka;
+    filterPanel.style.display = filterTerbuka ? "grid" : "none";
 }
 
-
-/* =====================================================
-   TANGGAL HARI INI
-===================================================== */
-
+/* TANGGAL HARI INI: BERGANTI JAM 07:00 */
 function tanggalHariIni(){
+    const sekarang = new Date();
 
-    const sekarang =
-        new Date();
-
-
-    /* =============================================
-       HARI PRODUKSI BERGANTI SETIAP JAM 07:00
-
-       00:00 - 06:59 = tanggal kemarin
-       07:00 - 23:59 = tanggal hari ini
-    ============================================= */
-
-    if(
-        sekarang.getHours() < 7
-    ){
-
-        sekarang.setDate(
-            sekarang.getDate() - 1
-        );
-
+    if(sekarang.getHours() < 7){
+        sekarang.setDate(sekarang.getDate() - 1);
     }
 
+    const tahun = sekarang.getFullYear();
+    const bulan = String(sekarang.getMonth() + 1).padStart(2,"0");
+    const hari = String(sekarang.getDate()).padStart(2,"0");
 
-    const tahun =
-        sekarang.getFullYear();
-
-    const bulan =
-        String(
-            sekarang.getMonth() + 1
-        ).padStart(
-            2,
-            "0"
-        );
-
-    const hari =
-        String(
-            sekarang.getDate()
-        ).padStart(
-            2,
-            "0"
-        );
-
-    return (
-        tahun +
-        "-" +
-        bulan +
-        "-" +
-        hari
-    );
-
+    return tahun + "-" + bulan + "-" + hari;
 }
 
+/* FORMAT TANGGAL INDONESIA */
+function formatTanggalIndonesia(tanggal){
+    if(!tanggal) return "-";
 
-/* =====================================================
-   FORMAT TANGGAL INDONESIA
-===================================================== */
-
-function formatTanggalIndonesia(
-    tanggal
-){
-
-    if(!tanggal){
-        return "-";
-    }
-
-    const bagian =
-        tanggal.split("-");
-
-    if(
-        bagian.length !== 3
-    ){
-        return tanggal;
-    }
+    const bagian = tanggal.split("-");
+    if(bagian.length !== 3) return tanggal;
 
     const namaBulan = [
-
-        "JANUARI",
-        "FEBRUARI",
-        "MARET",
-        "APRIL",
-        "MEI",
-        "JUNI",
-        "JULI",
-        "AGUSTUS",
-        "SEPTEMBER",
-        "OKTOBER",
-        "NOVEMBER",
-        "DESEMBER"
-
+        "JANUARI","FEBRUARI","MARET","APRIL",
+        "MEI","JUNI","JULI","AGUSTUS",
+        "SEPTEMBER","OKTOBER","NOVEMBER","DESEMBER"
     ];
 
-    return (
-
-        bagian[2] +
-        " " +
-        namaBulan[
-            Number(
-                bagian[1]
-            ) - 1
-        ] +
-        " " +
-        bagian[0]
-
-    );
-
+    return bagian[2] + " " +
+        namaBulan[Number(bagian[1]) - 1] +
+        " " + bagian[0];
 }
 
-
-/* =====================================================
-   UPDATE INFO
-===================================================== */
-
+/* UPDATE INFO */
 function updateInfo(){
+    document.getElementById("infoTanggal").textContent =
+        formatTanggalIndonesia(tanggalInput.value);
 
-    const tanggal =
-        tanggalInput.value;
-
-    const grup =
-        grupInput.value;
-
-    document.getElementById(
-        "infoTanggal"
-    ).textContent =
-        formatTanggalIndonesia(
-            tanggal
-        );
-
-    document.getElementById(
-        "infoGrup"
-    ).textContent =
-        grup
-        ? "GRUP " + grup
-        : "SEMUA";
-
+    document.getElementById("infoGrup").textContent =
+        grupInput.value ? "GRUP " + grupInput.value : "SEMUA";
 }
 
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHTML(
-    value
-){
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-
-        return "";
-
-    }
+/* ESCAPE HTML */
+function escapeHTML(value){
+    if(value === null || value === undefined) return "";
 
     return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 }
 
-
-/* =====================================================
-   FORMAT ANGKA
-===================================================== */
-
-function formatAngka(
-    angka
-){
-
-    const number =
-        Number(angka) || 0;
-
-    return number.toLocaleString(
-        "id-ID"
-    );
-
+/* FORMAT ANGKA */
+function formatAngka(angka){
+    const number = Number(angka) || 0;
+    return number.toLocaleString("id-ID");
 }
 
+/* AMBIL TARGET MC */
+function ambilTargetMC(mc){
+    if(!mc) return 0;
 
-/* =====================================================
-   AMBIL TARGET MC
-===================================================== */
+    const nama = String(mc).trim().toUpperCase();
 
-function ambilTargetMC(
-    mc
-){
-
-    if(!mc){
-        return 0;
-    }
-
-    const nama =
-        String(mc)
-        .trim()
-        .toUpperCase();
-
-    if(
-        TARGET_MC[nama] !== undefined
-    ){
-
+    if(TARGET_MC[nama] !== undefined){
         return TARGET_MC[nama];
-
     }
 
-    const angkaMC =
-        nama.match(
-            /\d+/
-        );
+    const angkaMC = nama.match(/\d+/);
 
     if(angkaMC){
+        const key = "FLAT " + angkaMC[0];
 
-        const key =
-            "FLAT " +
-            angkaMC[0];
-
-        if(
-            TARGET_MC[key] !== undefined
-        ){
-
+        if(TARGET_MC[key] !== undefined){
             return TARGET_MC[key];
-
         }
-
     }
 
     return 0;
-
 }
 
+/* HITUNG ACV */
+function hitungACV(kd,target){
+    const nilaiKD = Number(kd) || 0;
+    const nilaiTarget = Number(target) || 0;
+
+    if(nilaiTarget <= 0) return 0;
+
+    return nilaiKD / nilaiTarget * 100;
+}
 
 /* =====================================================
-   HITUNG ACV
+   WARNA ACV OTOMATIS
+   > 100%       = BIRU
+   96% - 100%   = HIJAU TUA
+   50% - < 96%  = KUNING TUA
+   < 50%        = MERAH DARAH
 ===================================================== */
+function kelasWarnaACV(acv){
+    const nilai = Number(acv) || 0;
 
-function hitungACV(
-    kd,
-    target
-){
-
-    const nilaiKD =
-        Number(kd) || 0;
-
-    const nilaiTarget =
-        Number(target) || 0;
-
-    if(
-        nilaiTarget <= 0
-    ){
-
-        return 0;
-
+    if(nilai > 100){
+        return "acv-biru";
     }
 
-    return (
-        nilaiKD /
-        nilaiTarget *
-        100
-    );
+    if(nilai >= 96){
+        return "acv-hijau";
+    }
 
+    if(nilai >= 50){
+        return "acv-kuning";
+    }
+
+    return "acv-merah";
 }
 
-
-/* =====================================================
-   AMBIL DATA
-   STABIL + PARALEL + ANTI REQUEST BENTROK
-===================================================== */
-
+/* AMBIL DATA */
 let requestDataID = 0;
 
-
 async function ambilData(){
-
-    const tanggal =
-        tanggalInput.value;
-
-    const grup =
-        grupInput.value;
+    const tanggal = tanggalInput.value;
+    const grup = grupInput.value;
 
     updateInfo();
 
+    const requestID = ++requestDataID;
 
-    /* =================================================
-       ID REQUEST TERBARU
-       Mencegah request lama menimpa request baru
-    ================================================= */
+    loading.style.display = "block";
+    loading.textContent = "⏳ SABAR, biar di sayang Allah ﷻ";
 
-    const requestID =
-        ++requestDataID;
-
-
-    loading.style.display =
-        "block";
-
-    loading.textContent =
-        "⏳ SABAR, biar di sayang Allah ﷻ";
-
-
-    /* =================================================
-       URL FLAT
-    ================================================= */
-
-    let urlFlat =
-        WEB_APP_URL +
-        "?action=flat";
-
+    let urlFlat = WEB_APP_URL + "?action=flat";
 
     if(tanggal){
-
-        urlFlat +=
-            "&tanggal=" +
-            encodeURIComponent(
-                tanggal
-            );
-
+        urlFlat += "&tanggal=" + encodeURIComponent(tanggal);
     }
-
 
     if(grup){
-
-        urlFlat +=
-            "&grup=" +
-            encodeURIComponent(
-                grup
-            );
-
+        urlFlat += "&grup=" + encodeURIComponent(grup);
     }
 
-
-    /* =================================================
-       URL FORM
-    ================================================= */
-
-    let urlForm =
-        WEB_APP_URL +
-        "?action=form";
-
+    let urlForm = WEB_APP_URL + "?action=form";
 
     if(tanggal){
-
-        urlForm +=
-            "&tanggal=" +
-            encodeURIComponent(
-                tanggal
-            );
-
+        urlForm += "&tanggal=" + encodeURIComponent(tanggal);
     }
-
 
     if(grup){
-
-        urlForm +=
-            "&grup=" +
-            encodeURIComponent(
-                grup
-            );
-
+        urlForm += "&grup=" + encodeURIComponent(grup);
     }
-
 
     try{
+        const [responseFlat,responseForm] = await Promise.all([
+            fetch(urlFlat,{cache:"no-store"}),
+            fetch(urlForm,{cache:"no-store"})
+        ]);
 
-        /* =================================================
-           FLAT + FORM DIAMBIL BERSAMAAN
-        ================================================= */
+        if(requestID !== requestDataID) return;
 
-        const [
-            responseFlat,
-            responseForm
-        ] =
-            await Promise.all([
+        if(responseFlat.ok){
+            const hasilFlat = await responseFlat.json();
 
-                fetch(
-                    urlFlat,
-                    {
-                        cache:"no-store"
-                    }
-                ),
-
-                fetch(
-                    urlForm,
-                    {
-                        cache:"no-store"
-                    }
-                )
-
-            ]);
-
-
-        /* =================================================
-           CEK REQUEST
-           Kalau sudah ada request baru,
-           request lama langsung berhenti.
-        ================================================= */
-
-        if(
-            requestID !== requestDataID
-        ){
-
-            return;
-
-        }
-
-
-        /* =================================================
-           PROSES FLAT
-        ================================================= */
-
-        if(
-            responseFlat.ok
-        ){
-
-            const hasilFlat =
-                await responseFlat.json();
-
-
-            if(
-                hasilFlat.sukses
-            ){
-
-                tampilkanFlat(
-                    hasilFlat.data || []
-                );
-
+            if(hasilFlat.sukses){
+                tampilkanFlat(hasilFlat.data || []);
             }else{
-
-                console.error(
-                    "FLAT:",
-                    hasilFlat.pesan
-                );
-
+                console.error("FLAT:",hasilFlat.pesan);
             }
-
         }else{
-
-            console.error(
-                "Gagal mengambil data FLAT"
-            );
-
+            console.error("Gagal mengambil data FLAT");
         }
 
+        if(responseForm.ok){
+            const hasilForm = await responseForm.json();
 
-        /* =================================================
-           PROSES FORM
-        ================================================= */
-
-        if(
-            responseForm.ok
-        ){
-
-            const hasilForm =
-                await responseForm.json();
-
-
-            if(
-                hasilForm.sukses
-            ){
-
-                tampilkanForm(
-                    hasilForm.data || []
-                );
-
+            if(hasilForm.sukses){
+                tampilkanForm(hasilForm.data || []);
             }else{
-
-                console.error(
-                    "FORM:",
-                    hasilForm.pesan
-                );
-
+                console.error("FORM:",hasilForm.pesan);
             }
-
         }else{
-
-            console.error(
-                "Gagal mengambil data FORM"
-            );
-
+            console.error("Gagal mengambil data FORM");
         }
 
-
-        /* =================================================
-           SELESAI
-        ================================================= */
-
-        if(
-            requestID === requestDataID
-        ){
-
-            loading.style.display =
-                "none";
-
+        if(requestID === requestDataID){
+            loading.style.display = "none";
         }
-
 
     }catch(error){
+        console.error("Gagal mengambil data:",error);
 
-        console.error(
-            "Gagal mengambil data:",
-            error
-        );
-
-
-        /* =================================================
-           PENTING:
-           JANGAN HAPUS DATA YANG SUDAH TAMPIL
-        ================================================= */
-
-        if(
-            requestID === requestDataID
-        ){
-
-            loading.textContent =
-                "⚠️ Data belum dapat diperbarui";
-
+        if(requestID === requestDataID){
+            loading.textContent = "⚠️ Data belum dapat diperbarui";
         }
-
     }
-
 }
 
-
 /* =====================================================
-   TABEL 1
+   TABEL 1: PRODUKSI FLATBED PRINT
 ===================================================== */
+function tampilkanFlat(data){
+    flatBody.innerHTML = "";
 
-function tampilkanFlat(
-    data
-){
-
-    flatBody.innerHTML =
-        "";
-
-
-    if(
-        !data ||
-        data.length === 0
-    ){
-
-        flatBody.innerHTML =
-            `
+    if(!data || data.length === 0){
+        flatBody.innerHTML = `
             <tr>
-                <td
-                    colspan="6"
-                    class="empty"
-                >
-                    Tidak ada produksi FLAT
-                    pada hari/grup ini
+                <td colspan="6" class="empty">
+                    Tidak ada produksi FLAT pada hari/grup ini
                 </td>
             </tr>
-            `;
-
+        `;
         return;
-
     }
-
 
     const kelompok = {};
 
+    data.forEach(function(row){
+        const mc = String(row.mc || "-").trim().toUpperCase();
 
-    data.forEach(
-        function(row){
+        const kodeProduk = String(
+            row.kodeProduk || row.kode || "-"
+        ).trim().toUpperCase();
 
-            const mc =
-                String(
-                    row.mc || "-"
-                )
-                .trim()
-                .toUpperCase();
+        const key = mc + "||" + kodeProduk;
 
-
-            const kodeProduk =
-                String(
-                    row.kodeProduk ||
-                    row.kode ||
-                    "-"
-                )
-                .trim()
-                .toUpperCase();
-
-
-            const key =
-                mc +
-                "||" +
-                kodeProduk;
-
-
-            if(
-                !kelompok[key]
-            ){
-
-                kelompok[key] = {
-
-                    mc:mc,
-
-                    kodeProduk:
-                        kodeProduk,
-
-                    qty:0,
-
-                    kd:0
-
-                };
-
-            }
-
-
-            kelompok[key].qty +=
-                Number(row.qty) || 0;
-
-
-            kelompok[key].kd +=
-                Number(row.kd) || 0;
-
+        if(!kelompok[key]){
+            kelompok[key] = {
+                mc:mc,
+                kodeProduk:kodeProduk,
+                qty:0,
+                kd:0
+            };
         }
-    );
 
+        kelompok[key].qty += Number(row.qty) || 0;
+        kelompok[key].kd += Number(row.kd) || 0;
+    });
 
-    const hasil =
-        Object.values(
-            kelompok
-        );
-
-
+    const hasil = Object.values(kelompok);
     const totalMesin = {};
 
-
-    hasil.forEach(
-        function(row){
-
-            if(
-                !totalMesin[row.mc]
-            ){
-
-                totalMesin[row.mc] = {
-                    kd:0
-                };
-
-            }
-
-            totalMesin[row.mc].kd +=
-                Number(row.kd) || 0;
-
+    hasil.forEach(function(row){
+        if(!totalMesin[row.mc]){
+            totalMesin[row.mc] = {kd:0};
         }
-    );
 
+        totalMesin[row.mc].kd += Number(row.kd) || 0;
+    });
 
-    hasil.sort(
-        function(a,b){
-
-            const urutMC =
-                String(a.mc)
-                .localeCompare(
-                    String(b.mc),
-                    undefined,
-                    {
-                        numeric:true
-                    }
-                );
-
-
-            if(
-                urutMC !== 0
-            ){
-
-                return urutMC;
-
-            }
-
-
-            return String(
-                a.kodeProduk
-            ).localeCompare(
-                String(b.kodeProduk),
-                undefined,
-                {
-                    numeric:true
-                }
-            );
-
-        }
-    );
-
-
-    let totalQty =
-        0;
-
-    let totalKD =
-        0;
-
-
-    hasil.forEach(
-        function(row){
-
-            totalQty +=
-                Number(row.qty) || 0;
-
-            totalKD +=
-                Number(row.kd) || 0;
-
-        }
-    );
-
-
-    hasil.forEach(
-        function(row,index){
-
-            const tr =
-                document.createElement(
-                    "tr"
-                );
-
-
-            const mc =
-                row.mc || "-";
-
-
-            const target =
-                ambilTargetMC(
-                    mc
-                );
-
-
-            const totalKDmesin =
-                totalMesin[mc]
-                ? totalMesin[mc].kd
-                : 0;
-
-
-            const acv =
-                hitungACV(
-                    totalKDmesin,
-                    target
-                );
-
-
-            const barisBerikutnya =
-                hasil[index + 1];
-
-
-            const barisTerakhirMC =
-                !barisBerikutnya ||
-                barisBerikutnya.mc !== mc;
-
-
-            tr.innerHTML =
-                `
-
-                <td>
-                    ${escapeHTML(mc)}
-                </td>
-
-                <td>
-                    ${escapeHTML(
-                        row.kodeProduk
-                    )}
-                </td>
-
-                <td class="angka">
-                    ${formatAngka(
-                        row.qty
-                    )}
-                    Pcs
-                </td>
-
-                <td class="angka">
-                    ${formatAngka(
-                        row.kd
-                    )}
-                    KD
-                </td>
-
-                <td class="angka">
-
-                    ${
-                        barisTerakhirMC
-                        ? formatAngka(target) +
-                          " KD"
-                        : ""
-                    }
-
-                </td>
-
-                <td class="acv">
-
-                    ${
-                        barisTerakhirMC
-                        ? acv.toFixed(1) +
-                          "%"
-                        : ""
-                    }
-
-                </td>
-
-                `;
-
-
-            flatBody.appendChild(
-                tr
-            );
-
-        }
-    );
-
-
-    const totalRow =
-        document.createElement(
-            "tr"
+    hasil.sort(function(a,b){
+        const urutMC = String(a.mc).localeCompare(
+            String(b.mc),
+            undefined,
+            {numeric:true}
         );
 
+        if(urutMC !== 0) return urutMC;
 
-    totalRow.className =
-        "total-row";
+        return String(a.kodeProduk).localeCompare(
+            String(b.kodeProduk),
+            undefined,
+            {numeric:true}
+        );
+    });
 
+    let totalQty = 0;
+    let totalKD = 0;
 
-    totalRow.innerHTML =
-        `
+    hasil.forEach(function(row){
+        totalQty += Number(row.qty) || 0;
+        totalKD += Number(row.kd) || 0;
+    });
 
-        <td>
-            TOTAL
-        </td>
+    hasil.forEach(function(row,index){
+        const tr = document.createElement("tr");
+        const mc = row.mc || "-";
+        const target = ambilTargetMC(mc);
 
-        <td>
-            -
-        </td>
+        const totalKDmesin = totalMesin[mc]
+            ? totalMesin[mc].kd
+            : 0;
 
-        <td class="angka">
-            ${formatAngka(totalQty)}
-            Pcs
-        </td>
+        const acv = hitungACV(totalKDmesin,target);
 
-        <td class="angka">
-            ${formatAngka(totalKD)}
-            KD
-        </td>
+        const barisBerikutnya = hasil[index + 1];
 
-        <td>
-            -
-        </td>
+        const barisTerakhirMC =
+            !barisBerikutnya || barisBerikutnya.mc !== mc;
 
-        <td>
-            -
-        </td>
+        /* KELAS WARNA ACV DITENTUKAN DARI PERSENTASE */
+        const warnaACV = kelasWarnaACV(acv);
 
+        tr.innerHTML = `
+            <td>${escapeHTML(mc)}</td>
+
+            <td>${escapeHTML(row.kodeProduk)}</td>
+
+            <td class="angka">
+                ${formatAngka(row.qty)} Pcs
+            </td>
+
+            <td class="angka">
+                ${formatAngka(row.kd)} KD
+            </td>
+
+            <td class="angka">
+                ${
+                    barisTerakhirMC
+                    ? formatAngka(target) + " KD"
+                    : ""
+                }
+            </td>
+
+            <td class="acv ${warnaACV}">
+                ${
+                    barisTerakhirMC
+                    ? acv.toFixed(1) + "%"
+                    : ""
+                }
+            </td>
         `;
 
+        flatBody.appendChild(tr);
+    });
 
-    flatBody.appendChild(
-        totalRow
-    );
+    const totalRow = document.createElement("tr");
+    totalRow.className = "total-row";
 
+    totalRow.innerHTML = `
+        <td>TOTAL</td>
+        <td>-</td>
+        <td class="angka">${formatAngka(totalQty)} Pcs</td>
+        <td class="angka">${formatAngka(totalKD)} KD</td>
+        <td>-</td>
+        <td>-</td>
+    `;
+
+    flatBody.appendChild(totalRow);
 }
 
-
 /* =====================================================
-   TABEL 2
-   TOTAL QTY PER PROSES
-   HANYA MUNCUL 1x PER PROSES
+   TABEL 2: TOTAL QTY PER PROSES
 ===================================================== */
+function tampilkanForm(data){
+    formBody.innerHTML = "";
 
-function tampilkanForm(
-    data
-){
-
-    formBody.innerHTML =
-        "";
-
-
-    if(
-        !data ||
-        data.length === 0
-    ){
-
-        formBody.innerHTML =
-            `
+    if(!data || data.length === 0){
+        formBody.innerHTML = `
             <tr>
-
-                <td
-                    colspan="5"
-                    class="empty"
-                >
-                    Tidak ada data
-                    Steam, Curing,
-                    Washing & DLVR
+                <td colspan="5" class="empty">
+                    Tidak ada data Steam, Curing, Washing &amp; DLVR
                 </td>
-
             </tr>
-            `;
-
+        `;
         return;
-
     }
 
+    data = [...data].sort(function(a,b){
+        const prosesA = String(a.proses || "-").trim().toUpperCase();
+        const prosesB = String(b.proses || "-").trim().toUpperCase();
 
-    /* =============================================
-       URUTKAN PROSES A-Z
-       Proses yang sama otomatis berkumpul
-       ============================================= */
-
-    data = [...data].sort(
-        function(a,b){
-
-            const prosesA =
-                String(
-                    a.proses || "-"
-                )
-                .trim()
-                .toUpperCase();
-
-            const prosesB =
-                String(
-                    b.proses || "-"
-                )
-                .trim()
-                .toUpperCase();
-
-            return prosesA.localeCompare(
-                prosesB
-            );
-
-        }
-    );
-
-
-    /* =============================================
-       HITUNG TOTAL QTY PER PROSES
-    ============================================= */
+        return prosesA.localeCompare(prosesB);
+    });
 
     const totalProses = {};
 
+    data.forEach(function(row){
+        const proses = String(row.proses || "-").trim().toUpperCase();
 
-    data.forEach(
-        function(row){
-
-            const proses =
-                String(
-                    row.proses || "-"
-                )
-                .trim()
-                .toUpperCase();
-
-
-            if(
-                !totalProses[proses]
-            ){
-
-                totalProses[proses] = {
-
-                    qty:0,
-
-                    satuan:
-                        String(
-                            row.satuan || "-"
-                        )
-                        .trim()
-
-                };
-
-            }
-
-
-            totalProses[proses].qty +=
-                Number(
-                    row.qty
-                ) || 0;
-
+        if(!totalProses[proses]){
+            totalProses[proses] = {
+                qty:0,
+                satuan:String(row.satuan || "-").trim()
+            };
         }
-    );
 
-
-    /* =============================================
-       PENANDA PROSES YANG SUDAH DITAMPILKAN
-    ============================================= */
+        totalProses[proses].qty += Number(row.qty) || 0;
+    });
 
     const prosesSudahTampil = {};
 
+    data.forEach(function(row){
+        const tr = document.createElement("tr");
 
-    /* =============================================
-       TAMPILKAN DATA
-    ============================================= */
+        const proses = String(row.proses || "-").trim().toUpperCase();
+        const satuan = String(row.satuan || "-").trim();
 
-    data.forEach(
-        function(row){
+        const total = totalProses[proses]
+            ? totalProses[proses].qty
+            : 0;
 
-            const tr =
-                document.createElement(
-                    "tr"
-                );
+        let tampilTotal = "";
 
+        if(!prosesSudahTampil[proses]){
+            tampilTotal = `
+                ${formatAngka(total)}
+                ${escapeHTML(satuan)}
+            `;
 
-            const proses =
-                String(
-                    row.proses || "-"
-                )
-                .trim()
-                .toUpperCase();
-
-
-            const satuan =
-                String(
-                    row.satuan || "-"
-                )
-                .trim();
-
-
-            const total =
-                totalProses[proses]
-                ? totalProses[proses].qty
-                : 0;
-
-
-            let tampilTotal =
-                "";
-
-
-            /* TOTAL HANYA BARIS PERTAMA
-               DARI PROSES YANG SAMA */
-
-            if(
-                !prosesSudahTampil[proses]
-            ){
-
-                tampilTotal =
-                    `
-                    ${formatAngka(total)}
-                    ${escapeHTML(
-                        satuan
-                    )}
-                    `;
-
-                prosesSudahTampil[proses] =
-                    true;
-
-            }
-
-
-            tr.innerHTML =
-                `
-
-                <td>
-                    ${escapeHTML(
-                        row.proses || "-"
-                    )}
-                </td>
-
-                <td>
-                    ${escapeHTML(
-                        row.kodeProduk || "-"
-                    )}
-                </td>
-
-                <td>
-                    ${formatAngka(
-                        row.qty
-                    )}
-                </td>
-
-                <td>
-                    ${escapeHTML(
-                        row.satuan || "-"
-                    )}
-                </td>
-
-                <td class="total-proses">
-
-                    ${tampilTotal}
-
-                </td>
-
-                `;
-
-
-            formBody.appendChild(
-                tr
-            );
-
+            prosesSudahTampil[proses] = true;
         }
-    );
 
+        tr.innerHTML = `
+            <td>${escapeHTML(row.proses || "-")}</td>
+            <td>${escapeHTML(row.kodeProduk || "-")}</td>
+            <td>${formatAngka(row.qty)}</td>
+            <td>${escapeHTML(row.satuan || "-")}</td>
+            <td class="total-proses">${tampilTotal}</td>
+        `;
+
+        formBody.appendChild(tr);
+    });
 }
 
+/* EVENT TANGGAL */
+tanggalInput.addEventListener("change",function(){
+    updateInfo();
+    ambilData();
+});
 
-/* =====================================================
-   EVENT TANGGAL
-===================================================== */
+/* EVENT GRUP */
+grupInput.addEventListener("change",function(){
+    localStorage.setItem(STORAGE_KEY_GRUP,grupInput.value);
+    updateInfo();
+    ambilData();
+});
 
-tanggalInput.addEventListener(
-    "change",
-    function(){
-
-        updateInfo();
-
-        ambilData();
-
-    }
-);
-
-
-/* =====================================================
-   EVENT GRUP
-   SIMPAN PILIHAN GRUP USER
-===================================================== */
-
-grupInput.addEventListener(
-    "change",
-    function(){
-
-        localStorage.setItem(
-            STORAGE_KEY_GRUP,
-            grupInput.value
-        );
-
-        updateInfo();
-
-        ambilData();
-
-    }
-);
-
-
-/* =====================================================
-   START
-   FILTER TERTUTUP
-   TANGGAL = HARI INI
-   GRUP = TERSIMPAN
-===================================================== */
-
+/* START */
 kunciFilter();
+tanggalInput.value = tanggalHariIni();
 
-tanggalInput.value =
-    tanggalHariIni();
-
-
-/* =====================================================
-   AMBIL GRUP TERAKHIR YANG TERSIMPAN
-===================================================== */
-
-const grupTersimpan =
-    localStorage.getItem(
-        STORAGE_KEY_GRUP
-    );
-
-
-/* =====================================================
-   GRUP YANG DIIZINKAN:
-   ""  = SEMUA GRUP
-   A   = GRUP A
-   B   = GRUP B
-   C   = GRUP C
-===================================================== */
+const grupTersimpan = localStorage.getItem(STORAGE_KEY_GRUP);
 
 if(
     grupTersimpan === "" ||
@@ -2977,69 +1200,27 @@ if(
     grupTersimpan === "B" ||
     grupTersimpan === "C"
 ){
-
-    grupInput.value =
-        grupTersimpan;
-
+    grupInput.value = grupTersimpan;
 }else{
-
-    /* =============================================
-       BELUM ADA PILIHAN TERSIMPAN
-       DEFAULT = GRUP A
-    ============================================= */
-
-    grupInput.value =
-        "A";
-
+    grupInput.value = "A";
 }
 
-
 updateInfo();
-
-
 ambilData();
-
-
 </script>
 
 <script>
-
-if ("serviceWorker" in navigator) {
-
-    window.addEventListener(
-        "load",
-        function() {
-
-            navigator.serviceWorker.register(
-                "./sw.js"
-            )
-
-            .then(
-                function() {
-
-                    console.log(
-                        "PWA Service Worker LAPAK aktif"
-                    );
-
-                }
-            )
-
-            .catch(
-                function(error) {
-
-                    console.log(
-                        "PWA Service Worker LAPAK gagal:",
-                        error
-                    );
-
-                }
-            );
-
-        }
-    );
-
+if("serviceWorker" in navigator){
+    window.addEventListener("load",function(){
+        navigator.serviceWorker.register("./sw.js")
+        .then(function(){
+            console.log("PWA Service Worker LAPAK aktif");
+        })
+        .catch(function(error){
+            console.log("PWA Service Worker LAPAK gagal:",error);
+        });
+    });
 }
-
 </script>
 
 </body>
