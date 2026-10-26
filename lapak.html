@@ -292,7 +292,8 @@ thead th{
 }
 
 /* =====================================================
-   ACV: ANGKA TEBAL + WARNA BERDASARKAN PENCAPAIAN
+   ACV: ANGKA TEBAL + WARNA ANGKA SAJA
+   LATAR KOTAK TETAP MENGIKUTI WARNA BARIS
 ===================================================== */
 
 .acv{
@@ -306,28 +307,28 @@ thead th{
 /* DI ATAS 100% = BIRU */
 .table-flat tbody td.acv-biru{
     color:#005BFF!important;
-    background:#D8E8FF!important;
+    background:transparent!important;
     -webkit-text-stroke:.5px #005BFF;
 }
 
 /* 96% SAMPAI 100% = HIJAU TUA */
 .table-flat tbody td.acv-hijau{
     color:#006400!important;
-    background:#D8F0D8!important;
+    background:transparent!important;
     -webkit-text-stroke:.5px #006400;
 }
 
 /* 50% SAMPAI KURANG DARI 96% = KUNING TUA */
 .table-flat tbody td.acv-kuning{
     color:#805000!important;
-    background:#FFE08A!important;
+    background:transparent!important;
     -webkit-text-stroke:.5px #805000;
 }
 
 /* DI BAWAH 50% = MERAH DARAH */
 .table-flat tbody td.acv-merah{
     color:#8B0000!important;
-    background:#FFD6D6!important;
+    background:transparent!important;
     -webkit-text-stroke:.5px #8B0000;
 }
 
@@ -855,7 +856,7 @@ function hitungACV(kd,target){
 }
 
 /* =====================================================
-   WARNA ACV OTOMATIS
+   WARNA ANGKA ACV SAJA
    > 100%       = BIRU
    96% - 100%   = HIJAU TUA
    50% - < 96%  = KUNING TUA
@@ -1050,7 +1051,7 @@ function tampilkanFlat(data){
         const barisTerakhirMC =
             !barisBerikutnya || barisBerikutnya.mc !== mc;
 
-        /* KELAS WARNA ACV DITENTUKAN DARI PERSENTASE */
+        /* KELAS WARNA UNTUK ANGKA ACV */
         const warnaACV = kelasWarnaACV(acv);
 
         tr.innerHTML = `
