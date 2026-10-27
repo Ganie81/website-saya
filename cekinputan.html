@@ -39,50 +39,35 @@ html {
 body {
   position: relative;
   isolation: isolate;
-
   margin: 0;
   padding: 14px;
-
   min-height: 100vh;
   min-height: 100dvh;
-
   font-family: Arial, Helvetica, sans-serif;
   color: var(--text);
-
   background: transparent;
 }
-
-/* LAPISAN GAMBAR MEMENUHI LAYAR */
 
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-
   width: 100%;
   height: 100vh;
   height: 100dvh;
-
   z-index: -1;
   pointer-events: none;
-
   background-color: #071426;
-
   background-image:
     linear-gradient(
       rgba(7, 20, 38, 0.18),
       rgba(7, 20, 38, 0.18)
     ),
     url("https://raw.githubusercontent.com/Ganie81/website-saya/main/15202-25_960x960.jpg");
-
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
-
-/* ==========================================
-   RESPONSIVE HP
-========================================== */
 
 @media (max-width: 700px) {
   body {
@@ -92,11 +77,9 @@ body::before {
   body::before {
     position: fixed;
     inset: 0;
-
     width: 100%;
     height: 100vh;
     height: 100dvh;
-
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -233,43 +216,55 @@ button {
 }
 
 /* =====================================================
-TOMBOL HOME DI HEADER
+   TOMBOL HOME DI HEADER — PERUBAHAN UKURAN
 ===================================================== */
 
 .btn-header-home {
-display: inline-flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 4px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
 
-width: 68px;
-height: 68px;
-padding: 5px;
+  width: 72px;
+  height: 72px;
+  min-width: 72px;
+  padding: 4px;
 
-border-radius: 9px;
-color: white;
-font-size: 12px;
-font-weight: 800;
-text-decoration: none;
-white-space: nowrap;
+  border-radius: 9px;
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
 
-background: var(--blue);
-border: 1px solid #60a5fa;
-box-shadow: 0 3px 8px #0003;
+  background: var(--blue);
+  border: 1px solid #60a5fa;
+  box-shadow: 0 3px 8px #0003;
 
-transition: transform .2s, filter .2s;
-flex-shrink: 0;
+  transition: transform .2s, filter .2s;
+  flex-shrink: 0;
+}
+
+.btn-header-home span:first-child {
+  font-size: 38px !important;
+  line-height: 1;
+}
+
+.btn-header-home span:last-child {
+  font-size: 12px;
+  line-height: 1.2;
 }
 
 .btn-header-home:hover {
-transform: translateY(-1px);
-filter: brightness(1.12);
+  transform: translateY(-1px);
+  filter: brightness(1.12);
 }
 
 .btn-header-home:active {
-transform: scale(.98);
+  transform: scale(.98);
 }
+
 /* =====================================================
    RINGKASAN
 ===================================================== */
@@ -715,9 +710,13 @@ td.product-code {
     min-width: 0;
   }
 
+  /* HOME tetap kotak di HP */
   .btn-header-home {
-    padding: 9px 10px;
-    font-size: 11px;
+    width: 72px;
+    height: 72px;
+    min-width: 72px;
+    padding: 4px;
+    font-size: 12px;
   }
 
   .summary {
@@ -741,7 +740,8 @@ td.product-code {
   .action-buttons { width: 100%; }
   .table-wrap { max-height: 65vh; }
 }
-  /* =====================================================
+
+/* =====================================================
    WARNA KOLOM WARNA
    BINGKAI PUTIH KHUSUS KOLOM WARNA
 ===================================================== */
@@ -806,14 +806,15 @@ td.warna-code {
 
     </div>
 
-    <!-- TOMBOL HOME POJOK KANAN ATAS --><a
-class="btn-header-home"
-href="https://ganie81.github.io/website-saya/cek.html"
-aria-label="Kembali ke halaman Home"
-title="Kembali ke Home">
-<span style="font-size:25px; line-height:1;">🏠</span>
-<span>HOME</span>
-</a>
+    <!-- TOMBOL HOME POJOK KANAN ATAS -->
+    <a
+      class="btn-header-home"
+      href="https://ganie81.github.io/website-saya/cek.html"
+      aria-label="Kembali ke halaman Home"
+      title="Kembali ke Home">
+      <span style="font-size:38px; line-height:1;">🏠</span>
+      <span>HOME</span>
+    </a>
 
   </div>
 </header>
@@ -889,7 +890,6 @@ title="Kembali ke Home">
 
     <div class="action-buttons">
 
-      <!-- REFRESH PINDAH KE BAGIAN FILTER -->
       <button
         type="button"
         class="btn-refresh"
@@ -1151,6 +1151,7 @@ function renderProductCode(value) {
     '--code-text:' + color.text + ';">' +
     escapeHTML(code) + '</span>';
 }
+
 /* =====================================================
    WARNA OTOMATIS KOLOM WARNA
 ===================================================== */
@@ -1161,7 +1162,6 @@ function renderWarnaCode(value) {
   if (!warna) return '';
 
   const kode = warna.toUpperCase();
-
   let kelas = '';
 
   if (kode.startsWith('AH')) {
@@ -1183,8 +1183,9 @@ function renderWarnaCode(value) {
   return '<span class="warna-code ' + kelas + '">' +
     escapeHTML(warna) +
     '</span>';
-  }
-  function getWarnaBackground(value) {
+}
+
+function getWarnaBackground(value) {
   const kode = String(value ?? '').trim().toUpperCase();
 
   if (kode.startsWith('AH')) return '#111111';
@@ -1194,7 +1195,8 @@ function renderWarnaCode(value) {
   if (kode.startsWith('AC')) return '#4a2c20';
 
   return '#10233b';
-  }
+}
+
 /* =====================================================
    FUNGSI DASAR
 ===================================================== */
@@ -1529,15 +1531,16 @@ function renderTable() {
             renderProductCode(value) +
             '</td>';
         }
+
         if (header === 'WARNA') {
-  return '<td style="padding:5px;">' +
-    '<div style="border:1px solid #ffffff;' +
-    'border-radius:5px;padding:6px 8px;' +
-    'text-align:center;font-weight:800;' +
-    'color:#ffffff;background:' +
-    getWarnaBackground(value) + ';">' +
-    escapeHTML(value) +
-    '</div></td>';
+          return '<td style="padding:5px;">' +
+            '<div style="border:1px solid #ffffff;' +
+            'border-radius:5px;padding:6px 8px;' +
+            'text-align:center;font-weight:800;' +
+            'color:#ffffff;background:' +
+            getWarnaBackground(value) + ';">' +
+            escapeHTML(value) +
+            '</div></td>';
         }
 
         if (header === 'QTY (PCS)') {
