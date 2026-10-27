@@ -233,37 +233,43 @@ button {
 }
 
 /* =====================================================
-   TOMBOL HOME DI HEADER
+TOMBOL HOME DI HEADER
 ===================================================== */
 
 .btn-header-home {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  padding: 10px 15px;
-  border-radius: 9px;
-  color: white;
-  font-size: 12px;
-  font-weight: 800;
-  text-decoration: none;
-  white-space: nowrap;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  border: 1px solid #60a5fa;
-  box-shadow: 0 3px 8px #0003;
-  transition: transform .2s;
-  flex-shrink: 0;
+display: inline-flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 4px;
+
+width: 68px;
+height: 68px;
+padding: 5px;
+
+border-radius: 9px;
+color: white;
+font-size: 12px;
+font-weight: 800;
+text-decoration: none;
+white-space: nowrap;
+
+background: var(--blue);
+border: 1px solid #60a5fa;
+box-shadow: 0 3px 8px #0003;
+
+transition: transform .2s, filter .2s;
+flex-shrink: 0;
 }
 
 .btn-header-home:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.1);
+transform: translateY(-1px);
+filter: brightness(1.12);
 }
 
 .btn-header-home:active {
-  transform: scale(.98);
+transform: scale(.98);
 }
-
 /* =====================================================
    RINGKASAN
 ===================================================== */
