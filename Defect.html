@@ -292,6 +292,35 @@ transform:translateY(13px);
     cursor:pointer;
       }
 
+/* TOMBOL EXPORT JPG */
+.jpg-export-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:38px;
+    height:34px;
+    padding:0 10px;
+    border:1px solid rgba(255,255,255,.48);
+    border-radius:9px;
+    background:linear-gradient(145deg,#60a5fa,#1d4ed8 58%,#123b7a);
+    color:#fff;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.5px;
+    box-shadow:0 4px 9px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.45);
+    cursor:pointer;
+    transition:.15s ease;
+}
+.jpg-export-btn:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.08);
+}
+.jpg-export-btn:disabled{
+    opacity:.65;
+    cursor:wait;
+    transform:none;
+}
+
 .status{
     margin-top:15px;
 
@@ -2453,6 +2482,10 @@ tbody tr:hover{
         </button>
     </a>
 
+    <button type="button" class="jpg-export-btn" id="exportJpgBtn"
+        onclick="exportDashboardJPG()" title="Simpan halaman sebagai JPG"
+        data-html2canvas-ignore="true">JPG</button>
+
     <a href="javascript:void(0)">
         <button onclick="window.location.href='cek.html'">
             🏠 HOME
@@ -3073,7 +3106,76 @@ class="page-buttons">
 </div>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <script>
+
+/* =====================================================
+   EXPORT JPG — FULL PAGE
+===================================================== */
+
+async function exportDashboardJPG(){
+    const button = document.getElementById("exportJpgBtn");
+    const target = document.querySelector(".container");
+
+    if(!target || typeof html2canvas !== "function"){
+        alert("Fitur JPG belum siap. Periksa koneksi internet lalu coba lagi.");
+        return;
+    }
+
+    const oldText = button ? button.textContent : "JPG";
+    if(button){
+        button.disabled = true;
+        button.textContent = "...";
+    }
+
+    try{
+        // Beri waktu singkat agar grafik dan perubahan tampilan selesai dirender.
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+        const canvas = await html2canvas(target,{
+            scale: 2,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: "#eef3f8",
+            logging: false,
+            imageTimeout: 20000,
+            windowWidth: Math.max(document.documentElement.scrollWidth, window.innerWidth),
+            windowHeight: Math.max(document.documentElement.scrollHeight, window.innerHeight),
+            scrollX: 0,
+            scrollY: -window.scrollY
+        });
+
+        // Lebar hasil dibuat 1920 px; tinggi mengikuti panjang halaman agar isi tetap terbaca.
+        const outputWidth = 1920;
+        const outputHeight = Math.max(1080, Math.round(canvas.height * outputWidth / canvas.width));
+        const output = document.createElement("canvas");
+        output.width = outputWidth;
+        output.height = outputHeight;
+        const ctx = output.getContext("2d");
+        ctx.fillStyle = "#eef3f8";
+        ctx.fillRect(0,0,outputWidth,outputHeight);
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = "high";
+        ctx.drawImage(canvas,0,0,outputWidth,outputHeight);
+
+        const link = document.createElement("a");
+        const stamp = new Date().toISOString().replace(/[:.]/g,"-").slice(0,19);
+        link.download = "DEFECT-FLAT-" + stamp + ".jpg";
+        link.href = output.toDataURL("image/jpeg",0.95);
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+    }catch(error){
+        console.error("Export JPG gagal:",error);
+        alert("Gagal membuat JPG. Coba ulangi setelah halaman selesai dimuat.");
+    }finally{
+        if(button){
+            button.disabled = false;
+            button.textContent = oldText;
+        }
+    }
+}
 
 /* =====================================================
    CONFIG
