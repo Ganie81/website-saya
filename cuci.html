@@ -1463,7 +1463,36 @@ tbody tr:hover td{
     }
 }
 
+
+
+/* TOMBOL EXPORT JPG */
+.jpg-export-btn{
+    min-width:42px;
+    height:34px;
+    padding:0 11px;
+    border:1px solid rgba(255,255,255,.30);
+    border-radius:10px;
+    background:linear-gradient(145deg,#86c99a,#4f9b68);
+    color:#07351f;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:.4px;
+    cursor:pointer;
+    box-shadow:0 3px 7px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.55);
+    transition:.2s;
+}
+.jpg-export-btn:hover{
+    background:linear-gradient(145deg,#a2dfb2,#65b47e);
+    transform:translateY(-1px);
+}
+.jpg-export-btn:disabled{
+    opacity:.65;
+    cursor:wait;
+    transform:none;
+}
+
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
 <body>
@@ -1533,6 +1562,9 @@ tbody tr:hover td{
 </div>
 
 <div class="nav">
+
+<button type="button" class="jpg-export-btn" id="jpgExportBtn"
+        onclick="exportDashboardJPG()" data-html2canvas-ignore="true">JPG</button>
 
 <a href="cek.html">🏠 HOME</a>
 
@@ -1864,6 +1896,70 @@ Menunggu data...
 
 
 <script>
+
+
+/* =====================================================
+   EXPORT DASHBOARD KE JPG
+===================================================== */
+async function exportDashboardJPG(){
+    const button=document.getElementById("jpgExportBtn");
+    if(!button) return;
+
+    if(typeof html2canvas!=="function"){
+        alert("Fitur JPG belum siap. Periksa koneksi internet lalu coba lagi.");
+        return;
+    }
+
+    const originalText=button.textContent;
+    button.disabled=true;
+    button.textContent="...";
+
+    try{
+        const pageWidth=1920;
+        const pageHeight=Math.max(
+            document.documentElement.scrollHeight,
+            document.body.scrollHeight
+        );
+
+        const canvas=await html2canvas(document.body,{
+            scale:1,
+            width:pageWidth,
+            height:pageHeight,
+            windowWidth:pageWidth,
+            windowHeight:pageHeight,
+            scrollX:0,
+            scrollY:0,
+            useCORS:true,
+            allowTaint:false,
+            backgroundColor:null,
+            logging:false,
+            ignoreElements:element=>element.id==="jpgExportBtn"
+        });
+
+        const link=document.createElement("a");
+        const now=new Date();
+        const stamp=[
+            now.getFullYear(),
+            String(now.getMonth()+1).padStart(2,"0"),
+            String(now.getDate()).padStart(2,"0"),
+            "-",
+            String(now.getHours()).padStart(2,"0"),
+            String(now.getMinutes()).padStart(2,"0")
+        ].join("");
+
+        link.download="DASHBOARD-CUCI-"+stamp+".jpg";
+        link.href=canvas.toDataURL("image/jpeg",0.95);
+        link.click();
+    }catch(error){
+        console.error("Export JPG gagal:",error);
+        alert("Gagal membuat JPG. Silakan coba lagi.");
+    }finally{
+        button.disabled=false;
+        button.textContent=originalText;
+    }
+}
+
+
 
 /* =====================================================
    KONFIGURASI
