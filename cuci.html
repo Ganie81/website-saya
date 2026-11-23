@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 
 <meta charset="UTF-8">
@@ -161,14 +161,6 @@ body{
     transform:translateY(-1px);
 }
 
-.nav a.active{
-    background:#e9f7ee;
-    color:#14532d;
-    box-shadow:
-        0 5px 10px rgba(0,0,0,.25),
-        inset 0 1px 0 #fff;
-}
-
 .card{
     background:rgba(255,255,255,.97);
     border-radius:17px;
@@ -193,40 +185,15 @@ body{
     align-items:center;
     justify-content:flex-end;
     gap:10px;
-
     min-height:0;
     height:0;
     padding:0;
-
     cursor:pointer;
     user-select:none;
-}
- .filter-header .card-title{
-    display:none;
 }
 
 .filter-toggle{
     margin-left:auto;
-}   
-.summary-title{
-    margin-top:10px;
-    margin-bottom:8px;
-    font-size:14px;
-    font-weight:800;
-}
-
-.summary-tags{
-    min-height:34px;
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    gap:6px;
-}
-.filter-header .card-title{
-    margin-bottom:0;
-}
-
-.filter-toggle{
     border:none;
     background:#1e4f7a;
     color:white;
@@ -380,7 +347,7 @@ body{
 }
 
 .summary-title{
-    margin-top:0;
+    margin-top:10px;
     margin-bottom:8px;
     font-size:13px;
     font-weight:900;
@@ -388,9 +355,11 @@ body{
 }
 
 .summary-tags{
+    min-height:34px;
     display:flex;
-    gap:8px;
     flex-wrap:wrap;
+    align-items:center;
+    gap:8px;
 }
 
 .summary-tag{
@@ -416,11 +385,6 @@ body{
     padding:0 12px;
     outline:none;
 }
-
-.search-box input:focus{
-    border-color:#60a5fa;
-}
-
 
 /* =====================================================
    KPI - 3 KOTAK
@@ -585,7 +549,6 @@ body{
     font-size:21px;
     font-weight:900;
     letter-spacing:.5px;
-    color:#dff5e7;
     margin-bottom:10px;
     line-height:1.2;
     text-shadow:
@@ -687,22 +650,20 @@ body{
     gap:20px;
     margin-bottom:20px;
 }
+
 .ai-analysis-card{
     position:relative;
     margin-top:18px;
     padding:16px;
     border-radius:18px;
-
     background:
-    linear-gradient(
-        145deg,
-        #176b43 0%,
-        #0b3d27 45%,
-        #06291b 100%
-    );
-
+        linear-gradient(
+            145deg,
+            #176b43 0%,
+            #0b3d27 45%,
+            #06291b 100%
+        );
     border:2px solid #176b43;
-
     box-shadow:
         0 6px 12px rgba(0,0,0,.30),
         inset 0 2px 3px rgba(255,255,255,.18),
@@ -710,35 +671,29 @@ body{
     overflow:hidden;
 }
 
- .ai-analysis-title{
+.ai-analysis-title{
     font-size:18px;
     font-weight:800;
     letter-spacing:1px;
     text-transform:uppercase;
-
     color:#ffffff;
-
     padding-bottom:10px;
     margin-bottom:10px;
-
     border-bottom:1px solid rgba(255,255,255,.25);
-
     text-shadow:
         0 2px 3px rgba(0,0,0,.45);
- }   
-  .ai-analysis-content{
+}
+
+.ai-analysis-content{
     font-size:16px;
     line-height:1.6;
     font-weight:600;
-
     color:#ffffff;
-
     text-transform:uppercase;
-
     text-shadow:
         0 1px 2px rgba(0,0,0,.45);
-  }  
-    
+}
+
 .analysis-box{
     position:relative;
     overflow:hidden;
@@ -780,46 +735,6 @@ body{
         0 2px 3px rgba(15,23,42,.10);
 }
 
-.analysis-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:10px 0;
-    border-bottom:1px solid rgba(148,163,184,.22);
-    font-size:15px;
-}
-
-.analysis-row:last-child{
-    border-bottom:none;
-}
-
-.analysis-name{
-    color:#334155;
-    font-weight:700;
-}
-
-.analysis-value{
-    font-weight:900;
-    color:#0f172a;
-    font-size:15px;
-}
-
-.status-layak{
-    color:#4d9b6d;
-    margin-left:8px;
-    font-weight:900;
-}
-
-.status-tidak{
-    color:#c96f6f;
-    margin-left:8px;
-    font-weight:900;
-}
-
-.status-lain{
-    color:#64748b;
-}
-
 .status-analysis-row{
     display:flex;
     align-items:center;
@@ -846,30 +761,23 @@ body{
     word-break:break-word;
     margin-bottom:4px;
 }
-    /* LINGKARAN ABC 3D GLOSSY */
 
+/* LINGKARAN ABC 3D GLOSSY */
 .abc-circle{
     width:48px;
     height:48px;
     min-width:48px;
-
     border-radius:50%;
-
     display:inline-flex;
     align-items:center;
     justify-content:center;
-
     color:#000;
     font-size:24px;
     font-weight:900;
-
     position:relative;
-
     border:2px solid rgba(255,255,255,.8);
-
     text-shadow:
         0 2px 3px rgba(0,0,0,.45);
-
     box-shadow:
         0 6px 10px rgba(0,0,0,.35),
         inset 0 3px 5px rgba(255,255,255,.65),
@@ -889,8 +797,6 @@ body{
     filter:blur(1px);
 }
 
-/* A merah */
-
 .abc-a{
     background:
         radial-gradient(
@@ -902,8 +808,6 @@ body{
         );
 }
 
-/* B biru */
-
 .abc-b{
     background:
         radial-gradient(
@@ -914,8 +818,6 @@ body{
             #123c8c 100%
         );
 }
-
-/* C hijau */
 
 .abc-c{
     background:
@@ -1161,6 +1063,7 @@ body{
     border-radius:10px;
     position:relative;
     border:1px solid #dbe3ec;
+    -webkit-overflow-scrolling:touch;
 }
 
 table{
@@ -1253,218 +1156,6 @@ tbody tr:hover td{
     background:#e8f1f8;
 }
 
-@media(max-width:1100px){
-
-    .kpi-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    .filter-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
-}
-
-@media(max-width:800px){
-
-    body{
-        padding:12px;
-    }
-
-    .header{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .nav{
-        width:100%;
-    }
-
-    .nav a{
-        flex:1;
-        text-align:center;
-    }
-
-    .filter-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .analysis-grid{
-        grid-template-columns:1fr;
-    }
-
-    .analysis-title{
-        font-size:23px;
-    }
-}
-
-@media(max-width:700px){
-
-    .header-title h1{
-        font-size:31px;
-    }
-
-    .kpi-grid{
-        grid-template-columns:1fr;
-        gap:14px;
-    }
-
-    .kpi{
-        min-height:145px;
-    }
-}
-
-@media(max-width:600px){
-
-    .filter-grid{
-        grid-template-columns:1fr;
-    }
-
-    .kpi-value{
-        font-size:38px;
-    }
-
-    .kpi-label{
-        font-size:20px;
-    }
-
-    .analysis-title{
-        font-size:21px;
-    }
-
-    .analysis-row{
-        font-size:14px;
-    }
-
-    .status-pie{
-        width:76px;
-        height:76px;
-        min-width:76px;
-    }
-
-    .status-pie::after{
-        width:34px;
-        height:34px;
-    }
-
-    .status-pie-center{
-        font-size:10px;
-    }
-
-    .status-counts{
-        gap:5px;
-    }
-
-    .status-good,
-    .status-bad{
-        font-size:12px;
-        padding:5px 7px;
-    }
-
-    .status-name{
-        font-size:25px;
-    }
-
-    .result-analysis{
-        gap:15px;
-        min-height:170px;
-    }
-
-    .result-count{
-        font-size:21px;
-    }
-
-    .result-pie{
-        width:145px;
-        height:145px;
-        min-width:145px;
-    }
-
-    .result-pie::after{
-        width:68px;
-        height:68px;
-    }
-
-    .result-pie-center{
-        font-size:20px;
-    }
-
-    .result-pie-center small{
-        font-size:9px;
-    }
-}
-
-@media(max-width:500px){
-
-    .filter-header{
-        align-items:flex-start;
-    }
-
-    .filter-toggle{
-        flex-shrink:0;
-        padding:7px 10px;
-        font-size:11px;
-    }
-
-    .analysis-box{
-        padding:18px;
-    }
-
-    .status-analysis-row{
-        gap:8px;
-    }
-
-    .status-pie{
-        width:70px;
-        height:70px;
-        min-width:70px;
-    }
-
-    .status-pie::after{
-        width:30px;
-        height:30px;
-    }
-
-    .status-name{
-        font-size:23px;
-    }
-
-    .status-good,
-    .status-bad{
-        font-size:11px;
-        padding:5px 7px;
-    }
-
-    .result-analysis{
-        gap:10px;
-        min-height:150px;
-    }
-
-    .result-count{
-        font-size:18px;
-    }
-
-    .result-pie{
-        width:115px;
-        height:115px;
-        min-width:115px;
-    }
-
-    .result-pie::after{
-        width:54px;
-        height:54px;
-    }
-
-    .result-pie-center{
-        font-size:17px;
-    }
-
-    .result-pie-center small{
-        font-size:8px;
-    }
-}
-
-
-
 /* TOMBOL EXPORT JPG */
 .jpg-export-btn{
     min-width:42px;
@@ -1481,14 +1172,200 @@ tbody tr:hover td{
     box-shadow:0 3px 7px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.55);
     transition:.2s;
 }
+
 .jpg-export-btn:hover{
     background:linear-gradient(145deg,#a2dfb2,#65b47e);
     transform:translateY(-1px);
 }
+
 .jpg-export-btn:disabled{
     opacity:.65;
     cursor:wait;
     transform:none;
+}
+
+@media(max-width:1100px){
+    .kpi-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+    .filter-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:800px){
+    body{
+        padding:12px;
+    }
+    .header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+    .nav{
+        width:100%;
+    }
+    .nav a{
+        flex:1;
+        text-align:center;
+    }
+    .filter-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+    .analysis-grid{
+        grid-template-columns:1fr;
+    }
+    .analysis-title{
+        font-size:23px;
+    }
+}
+
+@media(max-width:700px){
+    .header-title h1{
+        font-size:31px;
+    }
+    .kpi-grid{
+        grid-template-columns:1fr;
+        gap:14px;
+    }
+    .kpi{
+        min-height:145px;
+    }
+}
+
+@media(max-width:600px){
+    .filter-grid{
+        grid-template-columns:1fr;
+    }
+    .kpi-value{
+        font-size:38px;
+    }
+    .kpi-label{
+        font-size:20px;
+    }
+    .analysis-title{
+        font-size:21px;
+    }
+    .status-pie{
+        width:76px;
+        height:76px;
+        min-width:76px;
+    }
+    .status-pie::after{
+        width:34px;
+        height:34px;
+    }
+    .status-pie-center{
+        font-size:10px;
+    }
+    .status-counts{
+        gap:5px;
+    }
+    .status-good,
+    .status-bad{
+        font-size:12px;
+        padding:5px 7px;
+    }
+    .status-name{
+        font-size:25px;
+    }
+    .result-analysis{
+        gap:15px;
+        min-height:170px;
+    }
+    .result-count{
+        font-size:21px;
+    }
+    .result-pie{
+        width:145px;
+        height:145px;
+        min-width:145px;
+    }
+    .result-pie::after{
+        width:68px;
+        height:68px;
+    }
+    .result-pie-center{
+        font-size:20px;
+    }
+    .result-pie-center small{
+        font-size:9px;
+    }
+}
+
+@media(max-width:500px){
+    .filter-header{
+        align-items:flex-start;
+    }
+    .filter-toggle{
+        flex-shrink:0;
+        padding:7px 10px;
+        font-size:11px;
+    }
+    .analysis-box{
+        padding:18px;
+    }
+    .status-analysis-row{
+        gap:8px;
+    }
+    .status-pie{
+        width:70px;
+        height:70px;
+        min-width:70px;
+    }
+    .status-pie::after{
+        width:30px;
+        height:30px;
+    }
+    .status-name{
+        font-size:23px;
+    }
+    .status-good,
+    .status-bad{
+        font-size:11px;
+        padding:5px 7px;
+    }
+    .result-analysis{
+        gap:10px;
+        min-height:150px;
+    }
+    .result-count{
+        font-size:18px;
+    }
+    .result-pie{
+        width:115px;
+        height:115px;
+        min-width:115px;
+    }
+    .result-pie::after{
+        width:54px;
+        height:54px;
+    }
+    .result-pie-center{
+        font-size:17px;
+    }
+    .result-pie-center small{
+        font-size:8px;
+    }
+}
+
+/* =====================================================
+   MODE CAPTURE JPG (KHUSUS SAAT EXPORT AGAR HASIL SEMPURNA)
+===================================================== */
+body.jpg-capture-mode{
+    background-color:#0a3321 !important;
+}
+
+body.jpg-capture-mode .abc-circle::before{
+    filter:none !important;
+}
+
+body.jpg-capture-mode .table-wrapper{
+    max-height:none !important;
+    overflow:visible !important;
+}
+
+body.jpg-capture-mode .table-card table thead th{
+    position:static !important;
 }
 
 </style>
@@ -1561,10 +1438,10 @@ tbody tr:hover td{
 
 </div>
 
-<div class="nav">
+<div class="nav" data-html2canvas-ignore="true">
 
 <button type="button" class="jpg-export-btn" id="jpgExportBtn"
-        onclick="exportDashboardJPG()" data-html2canvas-ignore="true">JPG</button>
+        onclick="exportDashboardJPG()">JPG</button>
 
 <a href="cek.html">🏠 HOME</a>
 
@@ -1576,11 +1453,8 @@ tbody tr:hover td{
 <div class="card">
 
 <div class="filter-header"
-     onclick="toggleFilterPanel()">
-
-<div class="card-title" style="display:none;">
-🔎 Filter Data Cuci
-</div>
+     onclick="toggleFilterPanel()"
+     data-html2canvas-ignore="true">
 
 <button type="button"
         class="filter-toggle"
@@ -1592,7 +1466,8 @@ tbody tr:hover td{
 </div>
 
 <div class="filter-content"
-     id="filterContent">
+     id="filterContent"
+     data-html2canvas-ignore="true">
 
 <div class="filter-grid">
 
@@ -1668,6 +1543,7 @@ tbody tr:hover td{
 </div>
 
 </div>
+
 <div class="card" style="display:none;">
 
 <div class="card-title">
@@ -1827,6 +1703,7 @@ Menunggu data...
 </div>
 
 </div>
+
 <div class="ai-analysis-card">
 
     <div class="ai-analysis-title">
@@ -1897,16 +1774,16 @@ Menunggu data...
 
 <script>
 
-
 /* =====================================================
-   EXPORT DASHBOARD KE JPG
+   EXPORT DASHBOARD KE JPG — MOBILE & DESKTOP ACCURATE
 ===================================================== */
 async function exportDashboardJPG() {
     const tombol = document.getElementById("jpgExportBtn");
-
     if (!tombol) return;
 
     const teksAwal = tombol.textContent;
+    const posisiScrollX = window.scrollX;
+    const posisiScrollY = window.scrollY;
 
     try {
         if (typeof html2canvas !== "function") {
@@ -1916,23 +1793,32 @@ async function exportDashboardJPG() {
         tombol.disabled = true;
         tombol.textContent = "JPG...";
 
-        // Ukuran mengikuti lebar halaman yang sedang dibuka,
-        // bukan dipaksa menjadi layout desktop 1920 x 1080.
-        const lebarHalaman = document.documentElement.clientWidth;
-        const tinggiHalaman = Math.max(
+        document.body.classList.add("jpg-capture-mode");
+        window.scrollTo(0, 0);
+
+        await new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 120)));
+
+        const lebarLayar = document.documentElement.clientWidth;
+        const lebarKonten = Math.max(
+            lebarLayar,
+            document.body.scrollWidth,
+            document.documentElement.scrollWidth
+        );
+        const tinggiKonten = Math.max(
             document.body.scrollHeight,
             document.documentElement.scrollHeight
         );
 
-        // Resolusi 2x agar tulisan dan grafik tetap tajam.
-        // Seluruh tinggi halaman disimpan, tanpa dipotong menjadi 1080px.
+        const dpr = Math.min(window.devicePixelRatio || 2, 2.5);
+        const skalaAman = (lebarKonten * tinggiKonten * dpr * dpr > 16000000) ? 1.5 : dpr;
+
         const hasilCanvas = await html2canvas(document.body, {
-            backgroundColor: null,
-            scale: 2,
-            width: lebarHalaman,
-            height: tinggiHalaman,
-            windowWidth: lebarHalaman,
-            windowHeight: window.innerHeight,
+            backgroundColor: "#0a3321",
+            scale: skalaAman,
+            width: lebarKonten,
+            height: tinggiKonten,
+            windowWidth: lebarKonten,
+            windowHeight: tinggiKonten,
             scrollX: 0,
             scrollY: 0,
             x: 0,
@@ -1940,7 +1826,7 @@ async function exportDashboardJPG() {
             useCORS: true,
             allowTaint: false,
             logging: false,
-            imageTimeout: 10000
+            imageTimeout: 15000
         });
 
         const blob = await new Promise((resolve, reject) => {
@@ -1949,7 +1835,7 @@ async function exportDashboardJPG() {
                     ? resolve(hasil)
                     : reject(new Error("Gagal membuat file JPG.")),
                 "image/jpeg",
-                0.94
+                0.95
             );
         });
 
@@ -1968,12 +1854,12 @@ async function exportDashboardJPG() {
     } catch (error) {
         alert("Export JPG gagal: " + (error && error.message ? error.message : error));
     } finally {
+        document.body.classList.remove("jpg-capture-mode");
+        window.scrollTo(posisiScrollX, posisiScrollY);
         tombol.disabled = false;
         tombol.textContent = teksAwal;
     }
 }
-
-
 
 /* =====================================================
    KONFIGURASI
@@ -1987,45 +1873,14 @@ const STORAGE_KEY="dashboardCuciFilter_v2";
 let allData=[];
 let filteredData=[];
 
-
-/* =====================================================
-   FILTER
-===================================================== */
-
 const FILTERS={
-
-    filterGrup:{
-        index:1,
-        label:"Grup Washing"
-    },
-
-    filterKode:{
-        index:3,
-        label:"Kode Produk"
-    },
-
-    filterRoll:{
-        index:4,
-        label:"No Roll"
-    },
-
-    filterMotif:{
-        index:5,
-        label:"Motif"
-    },
-
-    filterWarna:{
-        index:6,
-        label:"Warna Blok"
-    },
-
-    filterMesin:{
-        index:7,
-        label:"Mesin Washing"
-    }
-
+    filterGrup:{ index:1, label:"Grup Washing" },
+    filterKode:{ index:3, label:"Kode Produk" },
+    filterRoll:{ index:4, label:"No Roll" },
+    filterMotif:{ index:5, label:"Motif" },
+    filterWarna:{ index:6, label:"Warna Blok" },
+    filterMesin:{ index:7, label:"Mesin Washing" }
 };
-
 
 /* =====================================================
    CACHE DATA SIAP PAKAI
@@ -2035,23 +1890,11 @@ function prepareData(rows){
 
     return rows.map(row=>{
 
-        const hasil=
-            String(row[9]??"").trim();
-
-        const kebijakan=
-            String(row[10]??"").trim();
-
-        const hasilLower=
-            hasil.toLowerCase();
-
-        const kebijakanLower=
-            kebijakan.toLowerCase();
-
-        const status=
-            detectStatus(
-                hasilLower,
-                kebijakanLower
-            );
+        const hasil=String(row[9]??"").trim();
+        const kebijakan=String(row[10]??"").trim();
+        const hasilLower=hasil.toLowerCase();
+        const kebijakanLower=kebijakan.toLowerCase();
+        const status=detectStatus(hasilLower, kebijakanLower);
 
         return {
             row:row,
@@ -2072,7 +1915,6 @@ function prepareData(rows){
     });
 
 }
-
 
 function detectStatus(hasil,kebijakan){
 
@@ -2101,9 +1943,8 @@ function detectStatus(hasil,kebijakan){
     return "lain";
 }
 
-
 /* =====================================================
-   DATE
+   DATE & ESCAPE
 ===================================================== */
 
 function getDateOnly(value){
@@ -2111,146 +1952,66 @@ function getDateOnly(value){
     if(!value)return null;
 
     const str=String(value).trim();
-
     if(!str)return null;
 
-    let m=str.match(
-        /^(\d{4})-(\d{1,2})-(\d{1,2})/
-    );
-
+    let m=str.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
     if(m){
-
-        return new Date(
-            Number(m[1]),
-            Number(m[2])-1,
-            Number(m[3])
-        ).getTime();
-
+        return new Date(Number(m[1]), Number(m[2])-1, Number(m[3])).getTime();
     }
 
-    m=str.match(
-        /^(\d{1,2})\/(\d{1,2})\/(\d{4})/
-    );
-
+    m=str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
     if(m){
-
-        return new Date(
-            Number(m[3]),
-            Number(m[2])-1,
-            Number(m[1])
-        ).getTime();
-
+        return new Date(Number(m[3]), Number(m[2])-1, Number(m[1])).getTime();
     }
 
-    m=str.match(
-        /^(\d{4})\/(\d{1,2})\/(\d{1,2})/
-    );
-
+    m=str.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})/);
     if(m){
-
-        return new Date(
-            Number(m[1]),
-            Number(m[2])-1,
-            Number(m[3])
-        ).getTime();
-
+        return new Date(Number(m[1]), Number(m[2])-1, Number(m[3])).getTime();
     }
 
     const d=new Date(str);
-
     return isNaN(d.getTime())
         ?null
-        :new Date(
-            d.getFullYear(),
-            d.getMonth(),
-            d.getDate()
-        ).getTime();
+        :new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
 
 }
-
 
 function dateInputToTime(value){
-
     if(!value)return null;
-
     const p=value.split("-");
-
     if(p.length!==3)return null;
-
-    return new Date(
-        Number(p[0]),
-        Number(p[1])-1,
-        Number(p[2])
-    ).getTime();
-
+    return new Date(Number(p[0]), Number(p[1])-1, Number(p[2])).getTime();
 }
-
 
 function formatDate(value){
-
     if(!value)return "";
-
     const date=new Date(value);
-
-    if(isNaN(date.getTime()))
-        return value;
-
-    const d=
-        String(date.getDate())
-        .padStart(2,"0");
-
-    const m=
-        String(date.getMonth()+1)
-        .padStart(2,"0");
-
+    if(isNaN(date.getTime())) return value;
+    const d=String(date.getDate()).padStart(2,"0");
+    const m=String(date.getMonth()+1).padStart(2,"0");
     const y=date.getFullYear();
-
     return `${d}/${m}/${y}`;
-
 }
 
-
-/* =====================================================
-   ESCAPE
-===================================================== */
-
 function escapeHtml(value){
-
     return String(value??"")
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
-
 }
 
-
 /* =====================================================
-   FILTER PANEL
+   FILTER PANEL & MULTI SELECT
 ===================================================== */
 
 function toggleFilterPanel(){
-
-    const content=
-        document.getElementById("filterContent");
-
-    const button=
-        document.getElementById("filterToggleBtn");
-
+    const content=document.getElementById("filterContent");
+    const button=document.getElementById("filterToggleBtn");
     content.classList.toggle("show");
-
-    button.textContent=
-        content.classList.contains("show")
-        ?"🔼 Tutup Filter"
-        :"🔽 Buka Filter";
-
+    button.textContent=content.classList.contains("show") ? "🔼 Tutup Filter" : "🔽 Buka Filter";
 }
-
-
-/* =====================================================
-   BUILD FILTER
-===================================================== */
 
 function buildFilters(){
 
@@ -2264,18 +2025,16 @@ function buildFilters(){
         filterWarna:"warna",
         filterMesin:"mesin"
     };
-    const searchableFilters=[
-    "filterKode",
-    "filterRoll",
-    "filterMotif",
-    "filterWarna"
-];
 
+    const searchableFilters=[
+        "filterKode",
+        "filterRoll",
+        "filterMotif",
+        "filterWarna"
+    ];
 
     Object.keys(filterFields).forEach(id=>{
-
         const field=filterFields[id];
-
         const values=
             [...new Set(
                 allData
@@ -2283,1223 +2042,491 @@ function buildFilters(){
                 .filter(v=>v!=="")
             )]
             .sort((a,b)=>
-                a.localeCompare(
-                    b,
-                    undefined,
-                    {
-                        numeric:true,
-                        sensitivity:"base"
-                    }
-                )
+                a.localeCompare(b, undefined, { numeric:true, sensitivity:"base" })
             );
 
         fragmentData[id]=values;
-
     });
 
-
     Object.keys(fragmentData).forEach(id=>{
-
-        const container=
-            document.getElementById(id);
-
+        const container=document.getElementById(id);
         const values=fragmentData[id];
 
-const searchBox=
-    searchableFilters.includes(id)
-    ? `
-        <div class="filter-search">
-            <input
-                type="text"
-                placeholder="Telusuri..."
-                oninput="searchFilterOptions('${id}',this.value)">
-        </div>
-      `
-    : "";
+        const searchBox=searchableFilters.includes(id)
+            ? `
+                <div class="filter-search">
+                    <input
+                        type="text"
+                        placeholder="Telusuri..."
+                        oninput="searchFilterOptions('${id}',this.value)">
+                </div>
+              `
+            : "";
 
-container.innerHTML=`
-
-            <div class="multi-select-btn"
-                 onclick="toggleMenu('${id}')">
-
-                <span id="${id}Text">
-                    Semua
-                </span>
-
+        container.innerHTML=`
+            <div class="multi-select-btn" onclick="toggleMenu('${id}')">
+                <span id="${id}Text">Semua</span>
                 <span>▼</span>
-
             </div>
 
-            <div class="multi-select-menu"
-     id="${id}Menu">
-
-    ${searchBox}
-
-    <label class="multi-option">
-
-                    <input
-                        type="checkbox"
-                        value="__ALL__"
-                        checked
-                        onchange="selectAllFilter('${id}')">
-
+            <div class="multi-select-menu" id="${id}Menu">
+                ${searchBox}
+                <label class="multi-option">
+                    <input type="checkbox" value="__ALL__" checked onchange="selectAllFilter('${id}')">
                     <span>Semua</span>
-
                 </label>
 
                 ${values.map(value=>`
-
                     <label class="multi-option">
-
-                        <input
-                            type="checkbox"
-                            value="${escapeHtml(value)}"
-                            onchange="filterSelectionChanged('${id}')">
-
-                        <span>
-                            ${escapeHtml(value)}
-                        </span>
-
+                        <input type="checkbox" value="${escapeHtml(value)}" onchange="filterSelectionChanged('${id}')">
+                        <span>${escapeHtml(value)}</span>
                     </label>
-
                 `).join("")}
-
             </div>
-
         `;
-
     });
 
 }
 
-
-/* =====================================================
-   MULTI SELECT
-===================================================== */
-
 function toggleMenu(id){
-
-    const menu=
-        document.getElementById(id+"Menu");
-
+    const menu=document.getElementById(id+"Menu");
     menu.classList.toggle("show");
-
 }
-
 
 document.addEventListener("click",function(e){
-
-    if(e.target.closest(".multi-select"))
-        return;
-
-    document
-        .querySelectorAll(".multi-select-menu")
-        .forEach(menu=>
-            menu.classList.remove("show")
-        );
-
+    if(e.target.closest(".multi-select")) return;
+    document.querySelectorAll(".multi-select-menu").forEach(menu=>menu.classList.remove("show"));
 });
 
-
 function selectAllFilter(id){
-
-    const menu=
-        document.getElementById(id+"Menu");
-
-    const checks=
-        menu.querySelectorAll(
-            'input[type="checkbox"]'
-        );
-
-    checks.forEach(
-        (check,index)=>{
-            check.checked=index===0;
-        }
-    );
-
+    const menu=document.getElementById(id+"Menu");
+    const checks=menu.querySelectorAll('input[type="checkbox"]');
+    checks.forEach((check,index)=>{ check.checked=index===0; });
     updateFilterText(id);
-
 }
-
 
 function filterSelectionChanged(id){
-
-    const menu=
-        document.getElementById(id+"Menu");
-
-    const checks=[
-        ...menu.querySelectorAll(
-            'input[type="checkbox"]'
-        )
-    ];
-
+    const menu=document.getElementById(id+"Menu");
+    const checks=[...menu.querySelectorAll('input[type="checkbox"]')];
     const all=checks[0];
-
-    const selected=
-        checks.slice(1)
-        .filter(c=>c.checked);
-
-    all.checked=
-        selected.length===0;
-
+    const selected=checks.slice(1).filter(c=>c.checked);
+    all.checked=selected.length===0;
     updateFilterText(id);
-
 }
-    function searchFilterOptions(id, keyword){
 
-    const menu=
-        document.getElementById(id+"Menu");
-
+function searchFilterOptions(id, keyword){
+    const menu=document.getElementById(id+"Menu");
     if(!menu) return;
 
-    keyword=
-        String(keyword||"")
-        .toLowerCase()
-        .trim();
-
-    const options=
-        menu.querySelectorAll(
-            ".multi-option"
-        );
+    keyword=String(keyword||"").toLowerCase().trim();
+    const options=menu.querySelectorAll(".multi-option");
 
     options.forEach(option=>{
-
-        const input=
-            option.querySelector(
-                'input[type="checkbox"]'
-            );
-
+        const input=option.querySelector('input[type="checkbox"]');
         if(!input) return;
 
-        /* "Semua" tetap tampil */
         if(input.value==="__ALL__"){
             option.style.display="";
             return;
         }
 
-        const text=
-            option
-            .querySelector("span")
-            ?.textContent
-            .toLowerCase()
-            .trim() || "";
-
-        option.style.display=
-            text.includes(keyword)
-            ? ""
-            : "none";
-
+        const text=option.querySelector("span")?.textContent.toLowerCase().trim() || "";
+        option.style.display=text.includes(keyword) ? "" : "none";
     });
-
 }
-
 
 function updateFilterText(id){
-
     const selected=getSelected(id);
-
-    const text=
-        document.getElementById(id+"Text");
+    const text=document.getElementById(id+"Text");
 
     if(selected.length===0){
-
         text.textContent="Semua";
-
     }else if(selected.length===1){
-
         text.textContent=selected[0];
-
     }else{
-
-        text.textContent=
-            `${selected.length} dipilih`;
-
+        text.textContent=`${selected.length} dipilih`;
     }
-
 }
-
 
 function getSelected(id){
-
-    const menu=
-        document.getElementById(id+"Menu");
-
+    const menu=document.getElementById(id+"Menu");
     if(!menu)return[];
 
-    return[
-        ...menu.querySelectorAll(
-            'input[type="checkbox"]'
-        )
-    ]
-    .slice(1)
-    .filter(c=>c.checked)
-    .map(c=>c.value);
-
+    return[...menu.querySelectorAll('input[type="checkbox"]')]
+        .slice(1)
+        .filter(c=>c.checked)
+        .map(c=>c.value);
 }
 
-
 /* =====================================================
-   SIMPAN FILTER
+   SIMPAN & MUAT FILTER
 ===================================================== */
 
 function saveFilterState(){
-
     const state={
-        tanggalDari:
-            document.getElementById("tanggalDari").value,
-
-        tanggalSampai:
-            document.getElementById("tanggalSampai").value,
-
-        searchRoll:
-            document.getElementById("searchRoll").value,
-
+        tanggalDari:document.getElementById("tanggalDari").value,
+        tanggalSampai:document.getElementById("tanggalSampai").value,
+        searchRoll:document.getElementById("searchRoll").value,
         filters:{}
-
     };
 
     Object.keys(FILTERS).forEach(id=>{
-
         state.filters[id]=getSelected(id);
-
     });
 
     try{
-
-        localStorage.setItem(
-            STORAGE_KEY,
-            JSON.stringify(state)
-        );
-
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }catch(e){
-
-        console.warn(
-            "Filter tidak dapat disimpan",
-            e
-        );
-
+        console.warn("Filter tidak dapat disimpan", e);
     }
-
 }
-
 
 function loadFilterState(){
-
     try{
-
-        const raw=
-            localStorage.getItem(STORAGE_KEY);
-
+        const raw=localStorage.getItem(STORAGE_KEY);
         if(!raw)return;
 
-        const state=
-            JSON.parse(raw);
-
+        const state=JSON.parse(raw);
         if(!state)return;
 
-        document.getElementById(
-            "tanggalDari"
-        ).value=
-            state.tanggalDari||"";
-
-        document.getElementById(
-            "tanggalSampai"
-        ).value=
-            state.tanggalSampai||"";
-
-        document.getElementById(
-            "searchRoll"
-        ).value=
-            state.searchRoll||"";
-
+        document.getElementById("tanggalDari").value=state.tanggalDari||"";
+        document.getElementById("tanggalSampai").value=state.tanggalSampai||"";
+        document.getElementById("searchRoll").value=state.searchRoll||"";
 
         Object.keys(FILTERS).forEach(id=>{
-
-            const selected=
-                state.filters &&
-                Array.isArray(state.filters[id])
-                ?state.filters[id]
-                :[];
-
-            const menu=
-                document.getElementById(id+"Menu");
-
+            const selected=state.filters && Array.isArray(state.filters[id]) ? state.filters[id] : [];
+            const menu=document.getElementById(id+"Menu");
             if(!menu)return;
 
-            const checks=[
-                ...menu.querySelectorAll(
-                    'input[type="checkbox"]'
-                )
-            ];
-
-            checks.forEach(
-                (check,index)=>{
-
-                    if(index===0){
-
-                        check.checked=
-                            selected.length===0;
-
-                    }else{
-
-                        check.checked=
-                            selected.includes(
-                                check.value
-                            );
-
-                    }
-
-                }
-            );
+            const checks=[...menu.querySelectorAll('input[type="checkbox"]')];
+            checks.forEach((check,index)=>{
+                check.checked = index===0 ? selected.length===0 : selected.includes(check.value);
+            });
 
             updateFilterText(id);
-
         });
-
     }catch(e){
-
-        console.warn(
-            "Filter tersimpan tidak dapat dibaca",
-            e
-        );
-
+        console.warn("Filter tersimpan tidak dapat dibaca", e);
     }
-
 }
 
-
 /* =====================================================
-   FILTER DATA
+   FILTER DATA & RESET
 ===================================================== */
 
 function applyFilter(){
 
-    const dari=
-        document.getElementById(
-            "tanggalDari"
-        ).value;
+    const dari=document.getElementById("tanggalDari").value;
+    const sampai=document.getElementById("tanggalSampai").value;
+    const search=document.getElementById("searchRoll").value.trim().toLowerCase();
 
-    const sampai=
-        document.getElementById(
-            "tanggalSampai"
-        ).value;
+    const selectedGrup=new Set(getSelected("filterGrup"));
+    const selectedKode=new Set(getSelected("filterKode"));
+    const selectedRoll=new Set(getSelected("filterRoll"));
+    const selectedMotif=new Set(getSelected("filterMotif"));
+    const selectedWarna=new Set(getSelected("filterWarna"));
+    const selectedMesin=new Set(getSelected("filterMesin"));
 
-    const search=
-        document.getElementById(
-            "searchRoll"
-        ).value
-        .trim()
-        .toLowerCase();
+    const startDate=dateInputToTime(dari);
+    const endDate=dateInputToTime(sampai);
 
-
-    const selectedGrup=
-        new Set(getSelected("filterGrup"));
-
-    const selectedKode=
-        new Set(getSelected("filterKode"));
-
-    const selectedRoll=
-        new Set(getSelected("filterRoll"));
-
-    const selectedMotif=
-        new Set(getSelected("filterMotif"));
-
-    const selectedWarna=
-        new Set(getSelected("filterWarna"));
-
-    const selectedMesin=
-        new Set(getSelected("filterMesin"));
-
-
-    const startDate=
-        dateInputToTime(dari);
-
-    const endDate=
-        dateInputToTime(sampai);
-
-
-    filteredData=
-        allData.filter(item=>{
-
-            if(
-                startDate!==null &&
-                (
-                    item.date===null ||
-                    item.date<startDate
-                )
-            ){
-                return false;
-            }
-
-
-            if(
-                endDate!==null &&
-                (
-                    item.date===null ||
-                    item.date>endDate
-                )
-            ){
-                return false;
-            }
-
-
-            if(
-                selectedGrup.size &&
-                !selectedGrup.has(item.grup)
-            ){
-                return false;
-            }
-
-
-            if(
-                selectedKode.size &&
-                !selectedKode.has(item.kode)
-            ){
-                return false;
-            }
-
-
-            if(
-                selectedRoll.size &&
-                !selectedRoll.has(item.roll)
-            ){
-                return false;
-            }
-
-
-            if(
-                selectedMotif.size &&
-                !selectedMotif.has(item.motif)
-            ){
-                return false;
-            }
-
-
-            if(
-                selectedWarna.size &&
-                !selectedWarna.has(item.warna)
-            ){
-                return false;
-            }
-
-
-            if(
-                selectedMesin.size &&
-                !selectedMesin.has(item.mesin)
-            ){
-                return false;
-            }
-
-
-            if(
-                search &&
-                !item.rollLower.includes(search)
-            ){
-                return false;
-            }
-
-
-            return true;
-
-        });
-
+    filteredData=allData.filter(item=>{
+        if(startDate!==null && (item.date===null || item.date<startDate)) return false;
+        if(endDate!==null && (item.date===null || item.date>endDate)) return false;
+        if(selectedGrup.size && !selectedGrup.has(item.grup)) return false;
+        if(selectedKode.size && !selectedKode.has(item.kode)) return false;
+        if(selectedRoll.size && !selectedRoll.has(item.roll)) return false;
+        if(selectedMotif.size && !selectedMotif.has(item.motif)) return false;
+        if(selectedWarna.size && !selectedWarna.has(item.warna)) return false;
+        if(selectedMesin.size && !selectedMesin.has(item.mesin)) return false;
+        if(search && !item.rollLower.includes(search)) return false;
+        return true;
+    });
 
     saveFilterState();
-
     updateDashboard();
 
 }
-
-
-/* =====================================================
-   RESET
-===================================================== */
 
 function resetFilter(){
 
-    document.getElementById(
-        "tanggalDari"
-    ).value="";
-
-    document.getElementById(
-        "tanggalSampai"
-    ).value="";
-
-    document.getElementById(
-        "searchRoll"
-    ).value="";
-
+    document.getElementById("tanggalDari").value="";
+    document.getElementById("tanggalSampai").value="";
+    document.getElementById("searchRoll").value="";
 
     Object.keys(FILTERS).forEach(id=>{
-
-        const menu=
-            document.getElementById(
-                id+"Menu"
-            );
-
+        const menu=document.getElementById(id+"Menu");
         if(!menu)return;
 
-        const checks=
-            menu.querySelectorAll(
-                'input[type="checkbox"]'
-            );
-
-        checks.forEach(
-            (check,index)=>{
-                check.checked=index===0;
-            }
-        );
-
+        const checks=menu.querySelectorAll('input[type="checkbox"]');
+        checks.forEach((check,index)=>{ check.checked=index===0; });
         updateFilterText(id);
-
     });
 
-
     try{
-
-        localStorage.removeItem(
-            STORAGE_KEY
-        );
-
+        localStorage.removeItem(STORAGE_KEY);
     }catch(e){}
 
-
-    filteredData=
-        allData.slice();
-
+    filteredData=allData.slice();
     updateDashboard();
 
 }
 
-
 /* =====================================================
-   SUMMARY
+   SUMMARY & AI ANALYSIS
 ===================================================== */
 
 function updateSummary(){
 
     const tags=[];
+    const dari=document.getElementById("tanggalDari").value;
+    const sampai=document.getElementById("tanggalSampai").value;
 
-    const dari=
-        document.getElementById(
-            "tanggalDari"
-        ).value;
-
-    const sampai=
-        document.getElementById(
-            "tanggalSampai"
-        ).value;
-
-
-    if(dari){
-
-        tags.push(
-            "Dari: "+formatDate(
-                dateInputToTime(dari)
-            )
-        );
-
-    }
-
-
-    if(sampai){
-
-        tags.push(
-            "Sampai: "+formatDate(
-                dateInputToTime(sampai)
-            )
-        );
-
-    }
-
+    if(dari) tags.push("Dari: "+formatDate(dateInputToTime(dari)));
+    if(sampai) tags.push("Sampai: "+formatDate(dateInputToTime(sampai)));
 
     Object.keys(FILTERS).forEach(id=>{
-
-        const selected=
-            getSelected(id);
-
+        const selected=getSelected(id);
         if(selected.length){
-
-            tags.push(
-                FILTERS[id].label+
-                ": "+
-                selected.length+
-                " dipilih"
-            );
-
+            tags.push(FILTERS[id].label+": "+selected.length+" dipilih");
         }
-
     });
 
+    const search=document.getElementById("searchRoll").value.trim();
+    if(search) tags.push("Telusur Roll: "+search);
 
-    const search=
-        document.getElementById(
-            "searchRoll"
-        ).value.trim();
+    tags.push("Data Hasil: "+filteredData.length.toLocaleString("id-ID"));
 
-
-    if(search){
-
-        tags.push(
-            "Telusur Roll: "+search
-        );
-
-    }
-
-
-    tags.push(
-        "Data Hasil: "+
-        filteredData.length.toLocaleString("id-ID")
-    );
-
-
-    document.getElementById(
-        "summaryTags"
-    ).innerHTML=
-        tags.map(tag=>`
-
-            <span class="summary-tag">
-                ${escapeHtml(tag)}
-            </span>
-
-        `).join("");
+    document.getElementById("summaryTags").innerHTML=
+        tags.map(tag=>`<span class="summary-tag">${escapeHtml(tag)}</span>`).join("");
 
 }
 
-
-/* =====================================================
-   DASHBOARD
-===================================================== */
 function generateAIAnalysis(){
 
-    const box =
-        document.getElementById("aiAnalysisContent");
-
+    const box=document.getElementById("aiAnalysisContent");
     if(!box) return;
 
     if(!filteredData.length){
-
-        box.innerHTML =
-            "TIDAK ADA DATA UNTUK DIANALISA.";
-
+        box.innerHTML="TIDAK ADA DATA UNTUK DIANALISA.";
         return;
     }
 
-    const total =
-        filteredData.length;
+    const total=filteredData.length;
+    const layak=filteredData.filter(x=>x.status==="layak").length;
+    const tidakLayak=filteredData.filter(x=>x.status==="tidak").length;
+    const persenLayak=((layak/total)*100).toFixed(1);
+    const persenTidak=((tidakLayak/total)*100).toFixed(1);
 
-    const layak =
-        filteredData.filter(
-            x => x.status === "layak"
-        ).length;
+    const grupData={};
+    filteredData.forEach(row=>{
+        const grup=String(row.grup||"LAINNYA").trim().toUpperCase();
+        if(!grupData[grup]) grupData[grup]=0;
+        if(row.status==="tidak") grupData[grup]++;
+    });
 
-    const tidakLayak =
-        filteredData.filter(
-            x => x.status === "tidak"
-        ).length;
+    let fokusGrup="-";
+    let maxTidakGrup=0;
+    Object.keys(grupData).forEach(grup=>{
+        if(grupData[grup]>maxTidakGrup){
+            maxTidakGrup=grupData[grup];
+            fokusGrup=grup;
+        }
+    });
 
-    const persenLayak =
-        ((layak / total) * 100).toFixed(1);
+    const mesinData={};
+    filteredData.forEach(row=>{
+        const mesin=String(row.mesin||"LAINNYA").trim().toUpperCase();
+        if(!mesinData[mesin]) mesinData[mesin]=0;
+        if(row.status==="tidak") mesinData[mesin]++;
+    });
 
-    const persenTidak =
-        ((tidakLayak / total) * 100).toFixed(1);
-    const grupData = {};
+    let fokusMesin="-";
+    let maxTidakMesin=0;
+    Object.keys(mesinData).forEach(mesin=>{
+        if(mesinData[mesin]>maxTidakMesin){
+            maxTidakMesin=mesinData[mesin];
+            fokusMesin=mesin;
+        }
+    });
 
-filteredData.forEach(row => {
+    box.innerHTML=`
+        TOTAL SAMPEL: ${total} SAMPLE<br><br>
+        HASIL UJI: ${layak} LAYAK (${persenLayak}%) DAN ${tidakLayak} TIDAK LAYAK (${persenTidak}%).<br><br>
+        GRUP WASHING PERLU DIPERHATIKAN: ${escapeHtml(fokusGrup)} (${maxTidakGrup} TIDAK LAYAK).<br><br>
+        MESIN WASHING PERLU DIPERHATIKAN: ${escapeHtml(fokusMesin)} (${maxTidakMesin} TIDAK LAYAK).<br><br>
+        HASIL ANALISA:
+        ${tidakLayak===0
+            ? "HASIL UJI CUCI SANGAT BAIK. TIDAK DITEMUKAN SAMPEL TIDAK LAYAK."
+            : persenTidak<=5
+            ? "KONDISI PROSES CUCI RELATIF TERKENDALI, NAMUN SAMPEL TIDAK LAYAK MASIH PERLU DIPANTAU."
+            : persenTidak<=15
+            ? "PERLU PERHATIAN PADA PROSES CUCI KARENA PROPORSI SAMPEL TIDAK LAYAK MULAI MENINGKAT."
+            : "PERLU TINDAKAN PERBAIKAN PRIORITAS KARENA PROPORSI SAMPEL TIDAK LAYAK CUKUP TINGGI."
+        }
+        <br><br>
+        FOKUS PERBAIKAN:
+        ${tidakLayak===0
+            ? "TIDAK ADA TEMUAN TIDAK LAYAK. PROSES CUCI DALAM KONDISI BAIK DAN TETAP LAKUKAN MONITORING RUTIN."
+            : `PRIORITASKAN PEMERIKSAAN PADA GRUP ${escapeHtml(fokusGrup)} DAN MESIN ${escapeHtml(fokusMesin)}.`
+        }
+    `;
 
-    const grup =
-        String(row.grup || "LAINNYA")
-        .trim()
-        .toUpperCase();
-
-    if(!grupData[grup]){
-        grupData[grup] = 0;
-    }
-
-    if(row.status === "tidak"){
-        grupData[grup]++;
-    }
-
-});
-
-let fokusGrup = "-";
-let maxTidakGrup = 0;
-
-Object.keys(grupData).forEach(grup => {
-
-    if(grupData[grup] > maxTidakGrup){
-
-        maxTidakGrup =
-            grupData[grup];
-
-        fokusGrup = grup;
-    }
-
-});
- const mesinData = {};
-
-filteredData.forEach(row => {
-
-    const mesin =
-        String(row.mesin || "LAINNYA")
-        .trim()
-        .toUpperCase();
-
-    if(!mesinData[mesin]){
-        mesinData[mesin] = 0;
-    }
-
-    if(row.status === "tidak"){
-        mesinData[mesin]++;
-    }
-
-});
-
-let fokusMesin = "-";
-let maxTidakMesin = 0;
-
-Object.keys(mesinData).forEach(mesin => {
-
-    if(mesinData[mesin] > maxTidakMesin){
-
-        maxTidakMesin =
-            mesinData[mesin];
-
-        fokusMesin = mesin;
-    }
-
-});   
-
-    box.innerHTML = `
-    TOTAL SAMPEL: ${total} SAMPLE<br><br>
-
-    HASIL UJI: ${layak} LAYAK
-    (${persenLayak}%) DAN
-    ${tidakLayak} TIDAK LAYAK
-    (${persenTidak}%).<br><br>
-    GRUP WASHING PERLU DIPERHATIKAN:
-${fokusGrup}
-(${maxTidakGrup} TIDAK LAYAK).<br><br>
-MESIN WASHING PERLU DIPERHATIKAN:
-${fokusMesin}
-(${maxTidakMesin} TIDAK LAYAK).<br><br>
-
-    HASIL ANALISA:
-    ${tidakLayak === 0
-        ? "HASIL UJI CUCI SANGAT BAIK. TIDAK DITEMUKAN SAMPEL TIDAK LAYAK."
-        : persenTidak <= 5
-        ? "KONDISI PROSES CUCI RELATIF TERKENDALI, NAMUN SAMPEL TIDAK LAYAK MASIH PERLU DIPANTAU."
-        : persenTidak <= 15
-        ? "PERLU PERHATIAN PADA PROSES CUCI KARENA PROPORSI SAMPEL TIDAK LAYAK MULAI MENINGKAT."
-        : "PERLU TINDAKAN PERBAIKAN PRIORITAS KARENA PROPORSI SAMPEL TIDAK LAYAK CUKUP TINGGI."
-    }
-   <br><br>
-
-FOKUS PERBAIKAN:
-${
-    tidakLayak === 0
-    ? "TIDAK ADA TEMUAN TIDAK LAYAK. PROSES CUCI DALAM KONDISI BAIK DAN TETAP LAKUKAN MONITORING RUTIN."
-    : `PRIORITASKAN PEMERIKSAAN PADA GRUP ${fokusGrup} DAN MESIN ${fokusMesin}.`
-} 
-`;
 }
-    
+
+/* =====================================================
+   DASHBOARD & ANALISA
+===================================================== */
+
 function updateDashboard(){
 
-    const total=
-        filteredData.length;
-
+    const total=filteredData.length;
     let layak=0;
     let tidak=0;
 
-
     for(let i=0;i<filteredData.length;i++){
-
-        const status=
-            filteredData[i].status;
-
-        if(status==="layak")
-            layak++;
-
-        else if(status==="tidak")
-            tidak++;
-
+        const status=filteredData[i].status;
+        if(status==="layak") layak++;
+        else if(status==="tidak") tidak++;
     }
 
+    const persenLayak=total ? (layak/total)*100 : 0;
+    const persenTidak=total ? (tidak/total)*100 : 0;
 
-    const persenLayak=
-        total
-        ?(layak/total)*100
-        :0;
+    document.getElementById("totalData").textContent=total.toLocaleString("id-ID");
+    document.getElementById("totalLayak").textContent=layak.toLocaleString("id-ID");
+    document.getElementById("totalTidakLayak").textContent=tidak.toLocaleString("id-ID");
+    document.getElementById("persenLayak").textContent=persenLayak.toFixed(1)+"%";
+    document.getElementById("persenTidakLayak").textContent=persenTidak.toFixed(1)+"%";
 
-    const persenTidak=
-        total
-        ?(tidak/total)*100
-        :0;
-
-
-    document.getElementById(
-        "totalData"
-    ).textContent=
-        total.toLocaleString("id-ID");
-
-
-    document.getElementById(
-        "totalLayak"
-    ).textContent=
-        layak.toLocaleString("id-ID");
-
-
-    document.getElementById(
-        "totalTidakLayak"
-    ).textContent=
-        tidak.toLocaleString("id-ID");
-
-
-    document.getElementById(
-        "persenLayak"
-    ).textContent=
-        persenLayak.toFixed(1)+"%";
-
-
-    document.getElementById(
-        "persenTidakLayak"
-    ).textContent=
-        persenTidak.toFixed(1)+"%";
-
-
-updateSummary();
-renderAnalysis();
-generateAIAnalysis();
-renderTable();
+    updateSummary();
+    renderAnalysis();
+    generateAIAnalysis();
+    renderTable();
 
 }
-
-
-/* =====================================================
-   ANALISA
-===================================================== */
 
 function renderAnalysis(){
-
-    renderStatusAnalysis(
-        "analisaGrup",
-        "grup"
-    );
-
-    renderStatusAnalysis(
-        "analisaMesin",
-        "mesin"
-    );
-
-    renderResultAnalysis(
-        "analisaHasil"
-    );
-
-    renderPolicyAnalysis(
-        "analisaKebijakan"
-    );
-
+    renderStatusAnalysis("analisaGrup", "grup");
+    renderStatusAnalysis("analisaMesin", "mesin");
+    renderResultAnalysis("analisaHasil");
+    renderPolicyAnalysis("analisaKebijakan");
 }
 
+function renderStatusAnalysis(elementId, field){
 
-/* =====================================================
-   GRUP / MESIN
-===================================================== */
-
-function renderStatusAnalysis(
-    elementId,
-    field
-){
-
-    const container=
-        document.getElementById(
-            elementId
-        );
-
+    const container=document.getElementById(elementId);
 
     if(!filteredData.length){
-
-        container.innerHTML=`
-            <div class="empty">
-                Tidak ada data
-            </div>
-        `;
-
+        container.innerHTML='<div class="empty">Tidak ada data</div>';
         return;
-
     }
 
-
-    const groups=
-        Object.create(null);
-
+    const groups=Object.create(null);
 
     for(let i=0;i<filteredData.length;i++){
+        const item=filteredData[i];
+        const key=item[field]||"(Kosong)";
 
-        const item=
-            filteredData[i];
-
-        const key=
-            item[field]||"(Kosong)";
-
-
-        let group=
-            groups[key];
-
-
-        if(!group){
-
-            group={
-                total:0,
-                layak:0,
-                tidak:0,
-                lain:0
-            };
-
-            groups[key]=group;
-
+        if(!groups[key]){
+            groups[key]={ total:0, layak:0, tidak:0, lain:0 };
         }
 
-
-        group.total++;
-
-
-        if(item.status==="layak")
-            group.layak++;
-
-        else if(item.status==="tidak")
-            group.tidak++;
-
-        else
-            group.lain++;
-
+        groups[key].total++;
+        if(item.status==="layak") groups[key].layak++;
+        else if(item.status==="tidak") groups[key].tidak++;
+        else groups[key].lain++;
     }
 
-
-    const entries=
-    Object.entries(groups)
-    .sort(
-        (a,b)=>{
-            if(field==="grup"){
-                return a[0].localeCompare(
-                    b[0],
-                    undefined,
-                    {numeric:true}
-                );
-            }
-
-            return b[1].total-a[1].total;
-        }
-    );
-
+    const entries=Object.entries(groups).sort((a,b)=>{
+        if(field==="grup") return a[0].localeCompare(b[0], undefined, { numeric:true });
+        return b[1].total-a[1].total;
+    });
 
     const html=[];
 
-
     for(let i=0;i<entries.length;i++){
-
-        const name=
-            entries[i][0];
-
-        const value=
-            entries[i][1];
-
-
-        const classified=
-            value.layak+
-            value.tidak;
-
-
-        const persenLayak=
-            classified
-            ?(value.layak/classified)*100
-            :0;
-
+        const name=entries[i][0];
+        const value=entries[i][1];
+        const classified=value.layak+value.tidak;
+        const persenLayak=classified ? (value.layak/classified)*100 : 0;
 
         let pieBackground;
-
-
-        if(classified===0){
-
-            pieBackground="#cbd5e1";
-
-        }else if(value.layak===0){
-
-            pieBackground="#dc2626";
-
-        }else if(value.tidak===0){
-
-            pieBackground="#16a34a";
-
-        }else{
-
-            pieBackground=
-                `conic-gradient(
-                    #16a34a 0 ${persenLayak}%,
-                    #dc2626 ${persenLayak}% 100%
-                )`;
-
+        if(classified===0) pieBackground="#cbd5e1";
+        else if(value.layak===0) pieBackground="#dc2626";
+        else if(value.tidak===0) pieBackground="#16a34a";
+        else{
+            pieBackground=`conic-gradient(#16a34a 0 ${persenLayak}%, #dc2626 ${persenLayak}% 100%)`;
         }
 
-
         html.push(`
-
             <div class="status-analysis-row">
-
                 <div class="status-info">
-
-                    <div class="status-name ${field==="grup" ? "grup-abc" : ""}">
-    ${field==="grup"
-        ? `<span class="abc-circle abc-${name.toLowerCase()}">${escapeHtml(name)}</span>`
-        : escapeHtml(name)
-    }
-</div>
-
+                    <div class="status-name">
+                        ${field==="grup"
+                            ? `<span class="abc-circle abc-${escapeHtml(name.toLowerCase())}">${escapeHtml(name)}</span>`
+                            : escapeHtml(name)
+                        }
+                    </div>
                     <div class="status-total">
-                        Total Data:
-                        ${value.total.toLocaleString("id-ID")}
+                        Total Data: ${value.total.toLocaleString("id-ID")}
                     </div>
-
                     <div class="status-counts">
-
-                        <span class="status-good">
-                            ✓ Layak :
-                            ${value.layak.toLocaleString("id-ID")}
-                        </span>
-
-                        <span class="status-bad">
-                            ✕ Tidak Layak :
-                            ${value.tidak.toLocaleString("id-ID")}
-                        </span>
-
+                        <span class="status-good">✓ Layak : ${value.layak.toLocaleString("id-ID")}</span>
+                        <span class="status-bad">✕ Tidak Layak : ${value.tidak.toLocaleString("id-ID")}</span>
                     </div>
-
                 </div>
-
                 <div>
-
-                    <div
-                        class="status-pie"
-                        style="background:${pieBackground};"
-                        title="Layak ${persenLayak.toFixed(1)}%"
-                    >
-
+                    <div class="status-pie" style="background:${pieBackground};" title="Layak ${persenLayak.toFixed(1)}%">
                         <div class="status-pie-center">
-
                             ${persenLayak.toFixed(0)}%
-
                             <small>LAYAK</small>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         `);
-
     }
 
-
-    container.innerHTML=
-        html.join("");
+    container.innerHTML=html.join("");
 
 }
-
-
-/* =====================================================
-   HASIL UJI
-===================================================== */
 
 function renderResultAnalysis(elementId){
 
-    const container=
-        document.getElementById(
-            elementId
-        );
-
+    const container=document.getElementById(elementId);
 
     if(!filteredData.length){
-
-        container.innerHTML=`
-            <div class="empty">
-                Tidak ada data
-            </div>
-        `;
-
+        container.innerHTML='<div class="empty">Tidak ada data</div>';
         return;
-
     }
-
 
     let layak=0;
     let tidak=0;
 
-
     for(let i=0;i<filteredData.length;i++){
-
-        const status=
-            filteredData[i].status;
-
-        if(status==="layak")
-            layak++;
-
-        else if(status==="tidak")
-            tidak++;
-
+        if(filteredData[i].status==="layak") layak++;
+        else if(filteredData[i].status==="tidak") tidak++;
     }
 
-
-    renderBigPie(
-        container,
-        layak,
-        tidak,
-        filteredData.length,
-        "Hasil Uji"
-    );
+    renderBigPie(container, layak, tidak, filteredData.length);
 
 }
 
-
-/* =====================================================
-   KEBIJAKAN
-   PIE BESAR SEPERTI HASIL UJI
-===================================================== */
-
 function renderPolicyAnalysis(elementId){
 
-    const container=
-        document.getElementById(
-            elementId
-        );
-
+    const container=document.getElementById(elementId);
 
     if(!filteredData.length){
-
-        container.innerHTML=`
-            <div class="empty">
-                Tidak ada data
-            </div>
-        `;
-
+        container.innerHTML='<div class="empty">Tidak ada data</div>';
         return;
-
     }
-
 
     let layak=0;
     let tidak=0;
 
-
     for(let i=0;i<filteredData.length;i++){
-
-        const policy=
-            filteredData[i]
-            .kebijakanLower;
-
+        const policy=filteredData[i].kebijakanLower;
 
         if(
             policy.includes("tidak layak")||
@@ -3507,394 +2534,147 @@ function renderPolicyAnalysis(elementId){
             policy.includes("reject")||
             policy==="tl"
         ){
-
             tidak++;
-
         }else if(
-
             policy.includes("layak")||
             policy.includes("pass")||
             policy.includes("approve")||
             policy==="ok"
-
         ){
-
             layak++;
-
         }
-
     }
 
-
-    renderBigPie(
-        container,
-        layak,
-        tidak,
-        filteredData.length,
-        "Kebijakan"
-    );
+    renderBigPie(container, layak, tidak, filteredData.length);
 
 }
 
+function renderBigPie(container, layak, tidak, total){
 
-/* =====================================================
-   PIE BESAR
-===================================================== */
-
-function renderBigPie(
-    container,
-    layak,
-    tidak,
-    total,
-    label
-){
-
-    const classified=
-        layak+tidak;
-
-
-    const persenLayak=
-        classified
-        ?(layak/classified)*100
-        :0;
-
-
-    const persenTidak=
-        classified
-        ?(tidak/classified)*100
-        :0;
-
+    const classified=layak+tidak;
+    const persenLayak=classified ? (layak/classified)*100 : 0;
+    const persenTidak=classified ? (tidak/classified)*100 : 0;
 
     let pieBackground;
-
-
-    if(classified===0){
-
-        pieBackground="#cbd5e1";
-
-    }else if(layak===0){
-
-        pieBackground="#dc2626";
-
-    }else if(tidak===0){
-
-        pieBackground="#16a34a";
-
-    }else{
-
-        pieBackground=
-            `conic-gradient(
-                #16a34a 0 ${persenLayak}%,
-                #dc2626 ${persenLayak}% 100%
-            )`;
-
+    if(classified===0) pieBackground="#cbd5e1";
+    else if(layak===0) pieBackground="#dc2626";
+    else if(tidak===0) pieBackground="#16a34a";
+    else{
+        pieBackground=`conic-gradient(#16a34a 0 ${persenLayak}%, #dc2626 ${persenLayak}% 100%)`;
     }
 
-
     container.innerHTML=`
-
         <div class="result-analysis">
-
             <div class="result-info">
-
-                <div class="result-count layak">
-                    Layak :
-                    ${layak.toLocaleString("id-ID")}
-                </div>
-
-                <div class="result-count tidak">
-                    Tidak Layak :
-                    ${tidak.toLocaleString("id-ID")}
-                </div>
-
-                <div class="result-total">
-                    Total Data :
-                    ${total.toLocaleString("id-ID")}
-                </div>
-
+                <div class="result-count layak">Layak : ${layak.toLocaleString("id-ID")}</div>
+                <div class="result-count tidak">Tidak Layak : ${tidak.toLocaleString("id-ID")}</div>
+                <div class="result-total">Total Data : ${total.toLocaleString("id-ID")}</div>
             </div>
-
-
             <div>
-
-                <div
-                    class="result-pie"
-                    style="background:${pieBackground};"
-                    title="Layak ${persenLayak.toFixed(1)}% | Tidak Layak ${persenTidak.toFixed(1)}%"
-                >
-
+                <div class="result-pie" style="background:${pieBackground};" title="Layak ${persenLayak.toFixed(1)}% | Tidak Layak ${persenTidak.toFixed(1)}%">
                     <div class="result-pie-center">
-
                         ${persenLayak.toFixed(0)}%
-
                         <small>LAYAK</small>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     `;
 
 }
 
-
 /* =====================================================
-   TABLE
+   TABLE & LOAD DATA
 ===================================================== */
 
 function renderTable(){
 
-    const tbody=
-        document.getElementById(
-            "tableBody"
-        );
-
+    const tbody=document.getElementById("tableBody");
 
     if(!filteredData.length){
-
-        tbody.innerHTML=`
-
-            <tr>
-
-                <td
-                    colspan="11"
-                    class="empty">
-
-                    Tidak ada data yang sesuai filter.
-
-                </td>
-
-            </tr>
-
-        `;
-
+        tbody.innerHTML='<tr><td colspan="11" class="empty">Tidak ada data yang sesuai filter.</td></tr>';
         return;
-
     }
 
-
-    const html=
-        new Array(filteredData.length);
-
+    const html=new Array(filteredData.length);
 
     for(let i=0;i<filteredData.length;i++){
+        const item=filteredData[i];
+        const row=item.row;
 
-        const item=
-            filteredData[i];
+        let badgeClass="badge-lain";
+        if(item.status==="layak") badgeClass="badge-layak";
+        else if(item.status==="tidak") badgeClass="badge-tidak";
 
-        const row=
-            item.row;
-
-
-        let badgeClass=
-            "badge-lain";
-
-        if(item.status==="layak")
-            badgeClass="badge-layak";
-
-        else if(item.status==="tidak")
-            badgeClass="badge-tidak";
-
-
-        let timestamp=
-            item.date!==null
-            ?formatDate(item.date)
-            :String(row[0]??"");
-
+        const timestamp=item.date!==null ? formatDate(item.date) : String(row[0]??"");
 
         html[i]=`
-
             <tr>
-
-                <td>
-                    ${escapeHtml(timestamp)}
-                </td>
-
-                <td>
-                    ${escapeHtml(row[1])}
-                </td>
-
-                <td>
-                    ${escapeHtml(row[2])}
-                </td>
-
-                <td>
-                    ${escapeHtml(row[3])}
-                </td>
-
-                <td>
-                    ${escapeHtml(row[4])}
-                </td>
-
-                <td>
-                    ${escapeHtml(row[5])}
-                </td>
-
-                <td>
-                    ${escapeHtml(row[6])}
-                </td>
-
-                <td>
-                    ${escapeHtml(row[7])}
-                </td>
-
-                <td>
-                    ${escapeHtml(row[8])}
-                </td>
-
-                <td>
-
-                    <span class="badge ${badgeClass}">
-                        ${escapeHtml(row[9])}
-                    </span>
-
-                </td>
-
-                <td>
-                    ${escapeHtml(row[10])}
-                </td>
-
+                <td>${escapeHtml(timestamp)}</td>
+                <td>${escapeHtml(row[1])}</td>
+                <td>${escapeHtml(row[2])}</td>
+                <td>${escapeHtml(row[3])}</td>
+                <td>${escapeHtml(row[4])}</td>
+                <td>${escapeHtml(row[5])}</td>
+                <td>${escapeHtml(row[6])}</td>
+                <td>${escapeHtml(row[7])}</td>
+                <td>${escapeHtml(row[8])}</td>
+                <td><span class="badge ${badgeClass}">${escapeHtml(row[9])}</span></td>
+                <td>${escapeHtml(row[10])}</td>
             </tr>
-
         `;
-
     }
 
-
-    tbody.innerHTML=
-        html.join("");
+    tbody.innerHTML=html.join("");
 
 }
-
-
-/* =====================================================
-   LOAD DATA
-===================================================== */
 
 async function loadData(){
 
-    const tbody=
-        document.getElementById(
-            "tableBody"
-        );
-
+    const tbody=document.getElementById("tableBody");
 
     try{
+        const response=await fetch(API_URL, { cache:"no-store" });
+        if(!response.ok) throw new Error("Gagal mengambil data");
 
-        const response=
-            await fetch(
-                API_URL,
-                {
-                    cache:"no-store"
-                }
-            );
-
-
-        if(!response.ok)
-            throw new Error(
-                "Gagal mengambil data"
-            );
-
-
-        const data=
-            await response.json();
-
-
-        if(!Array.isArray(data))
-            throw new Error(
-                "Format data tidak valid"
-            );
-
+        const data=await response.json();
+        if(!Array.isArray(data)) throw new Error("Format data tidak valid");
 
         let rows=data;
-
-
         if(
             rows.length>0 &&
             Array.isArray(rows[0]) &&
-            String(rows[0][0])
-                .toLowerCase()
-                .includes("timestamp")
+            String(rows[0][0]).toLowerCase().includes("timestamp")
         ){
-
             rows=rows.slice(1);
-
         }
 
-
-        allData=
-            prepareData(rows);
-
-
+        allData=prepareData(rows);
         for(let i=0;i<allData.length;i++){
-
-            allData[i].rollLower=
-                allData[i].roll.toLowerCase();
-
+            allData[i].rollLower=allData[i].roll.toLowerCase();
         }
 
-
-        filteredData=
-            allData.slice();
-
+        filteredData=allData.slice();
 
         buildFilters();
-
         loadFilterState();
-
         applyFilter();
 
-
     }catch(error){
-
         console.error(error);
-
-
         tbody.innerHTML=`
-
             <tr>
-
-                <td
-                    colspan="11"
-                    class="empty">
-
+                <td colspan="11" class="empty">
                     ❌ Data tidak dapat dimuat.
-
                     <br><br>
-
-                    Periksa Apps Script
-                    dan parameter
-                    <b>?action=cuci</b>.
-
+                    Periksa Apps Script dan parameter <b>?action=cuci</b>.
                 </td>
-
             </tr>
-
         `;
-
-
-        document.getElementById(
-            "summaryTags"
-        ).innerHTML=`
-
-            <span class="summary-tag">
-                ❌ Gagal memuat data
-            </span>
-
-        `;
-
+        document.getElementById("summaryTags").innerHTML='<span class="summary-tag">❌ Gagal memuat data</span>';
     }
 
 }
-
-
-/* =====================================================
-   MULAI
-===================================================== */
 
 loadData();
 
