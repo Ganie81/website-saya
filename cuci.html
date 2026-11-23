@@ -1775,7 +1775,7 @@ Menunggu data...
 <script>
 
 /* =====================================================
-   EXPORT DASHBOARD KE JPG — MOBILE & DESKTOP ACCURATE
+   EXPORT DASHBOARD KE JPG — PERSIS TAMPILAN HP & WARNA ASLI
 ===================================================== */
 async function exportDashboardJPG() {
     const tombol = document.getElementById("jpgExportBtn");
@@ -1784,6 +1784,7 @@ async function exportDashboardJPG() {
     const teksAwal = tombol.textContent;
     const posisiScrollX = window.scrollX;
     const posisiScrollY = window.scrollY;
+    let iframe = null;
 
     try {
         if (typeof html2canvas !== "function") {
@@ -1793,31 +1794,105 @@ async function exportDashboardJPG() {
         tombol.disabled = true;
         tombol.textContent = "JPG...";
 
-        document.body.classList.add("jpg-capture-mode");
-        window.scrollTo(0, 0);
+        const lebarHP = 390;
 
-        await new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 120)));
+        // Buat iframe selebar layar HP (390px) agar media query HP & warna asli berjalan persis seperti di HP
+        iframe = document.createElement("iframe");
+        iframe.style.cssText = [
+            "position:fixed",
+            "top:0",
+            "left:-99999px",
+            "width:" + lebarHP + "px",
+            "height:900px",
+            "border:0",
+            "visibility:hidden",
+            "pointer-events:none"
+        ].join(";");
+        document.body.appendChild(iframe);
 
-        const lebarLayar = document.documentElement.clientWidth;
-        const lebarKonten = Math.max(
-            lebarLayar,
-            document.body.scrollWidth,
-            document.documentElement.scrollWidth
-        );
+        const iDoc = iframe.contentDocument || iframe.contentWindow.document;
+        const iWin = iframe.contentWindow;
+
+        // Salin <head> (style & font/script) agar desain dan warna persis sama
+        const headClone = document.head.cloneNode(true);
+        const bodyClone = document.body.cloneNode(true);
+
+        // Hapus elemen yang diabaikan saat capture & script duplikat di body
+        bodyClone.querySelectorAll("[data-html2canvas-ignore='true']").forEach(el => el.remove());
+        bodyClone.querySelectorAll("script").forEach(sc => sc.remove());
+
+        // Batasi jumlah baris di tabel terbawah pada hasil JPG agar ukuran file tetap ringan
+        const maxRowsJpg = 15;
+        const tbodyClone = bodyClone.querySelector("#tableBody");
+        if (tbodyClone) {
+            const trList = Array.from(tbodyClone.querySelectorAll("tr"));
+            if (trList.length > maxRowsJpg) {
+                const sisa = trList.length - maxRowsJpg;
+                trList.slice(maxRowsJpg).forEach(tr => tr.remove());
+                const infoTr = iDoc.createElement("tr");
+                infoTr.innerHTML = `<td colspan="11" class="empty">+ ${sisa.toLocaleString("id-ID")} baris lainnya tidak ditampilkan agar ukuran JPG ringkas</td>`;
+                tbodyClone.appendChild(infoTr);
+            }
+        }
+
+        // Sinkronkan nilai input/teks dinamis dari dokumen utama ke clone
+        const origInputs = document.querySelectorAll("input, select, textarea");
+        const cloneInputs = bodyClone.querySelectorAll("input, select, textarea");
+        origInputs.forEach((inp, idx) => {
+            if (!cloneInputs[idx]) return;
+            if (inp.type === "checkbox" || inp.type === "radio") {
+                cloneInputs[idx].checked = inp.checked;
+            } else {
+                cloneInputs[idx].value = inp.value;
+            }
+        });
+
+        iDoc.open();
+        iDoc.write("<!DOCTYPE html><html lang='id'></html>");
+        iDoc.close();
+        iDoc.documentElement.appendChild(headClone);
+        iDoc.body.replaceWith(bodyClone);
+
+        // Pastikan table-wrapper tetap ringkas (tidak meledak ke ribuan baris)
+        const styleCompact = iDoc.createElement("style");
+        styleCompact.textContent = `
+            html, body {
+                width: ${lebarHP}px !important;
+                min-width: ${lebarHP}px !important;
+                max-width: ${lebarHP}px !important;
+                overflow-x: hidden !important;
+            }
+            .abc-circle::before {
+                filter: none !important;
+            }
+            .table-wrapper {
+                max-height: 460px !important;
+                overflow: hidden !important;
+            }
+            .table-card table thead th {
+                position: static !important;
+            }
+        `;
+        iDoc.head.appendChild(styleCompact);
+
+        await new Promise(resolve => iWin.requestAnimationFrame(() => setTimeout(resolve, 180)));
+
         const tinggiKonten = Math.max(
-            document.body.scrollHeight,
-            document.documentElement.scrollHeight
+            iDoc.body.scrollHeight,
+            iDoc.documentElement.scrollHeight
         );
+        iframe.style.height = tinggiKonten + "px";
 
-        const dpr = Math.min(window.devicePixelRatio || 2, 2.5);
-        const skalaAman = (lebarKonten * tinggiKonten * dpr * dpr > 16000000) ? 1.5 : dpr;
+        await new Promise(resolve => iWin.requestAnimationFrame(() => setTimeout(resolve, 80)));
 
-        const hasilCanvas = await html2canvas(document.body, {
+        const dpr = Math.min(window.devicePixelRatio || 2, 2);
+
+        const hasilCanvas = await html2canvas(iDoc.body, {
             backgroundColor: "#0a3321",
-            scale: skalaAman,
-            width: lebarKonten,
+            scale: dpr,
+            width: lebarHP,
             height: tinggiKonten,
-            windowWidth: lebarKonten,
+            windowWidth: lebarHP,
             windowHeight: tinggiKonten,
             scrollX: 0,
             scrollY: 0,
@@ -1835,7 +1910,7 @@ async function exportDashboardJPG() {
                     ? resolve(hasil)
                     : reject(new Error("Gagal membuat file JPG.")),
                 "image/jpeg",
-                0.95
+                0.85
             );
         });
 
@@ -1854,7 +1929,9 @@ async function exportDashboardJPG() {
     } catch (error) {
         alert("Export JPG gagal: " + (error && error.message ? error.message : error));
     } finally {
-        document.body.classList.remove("jpg-capture-mode");
+        if (iframe && iframe.parentNode) {
+            iframe.parentNode.removeChild(iframe);
+        }
         window.scrollTo(posisiScrollX, posisiScrollY);
         tombol.disabled = false;
         tombol.textContent = teksAwal;
@@ -2587,6 +2664,8 @@ function renderBigPie(container, layak, tidak, total){
    TABLE & LOAD DATA
 ===================================================== */
 
+const MAX_DISPLAY_ROWS = 20;
+
 function renderTable(){
 
     const tbody=document.getElementById("tableBody");
@@ -2596,9 +2675,10 @@ function renderTable(){
         return;
     }
 
-    const html=new Array(filteredData.length);
+    const limit=Math.min(filteredData.length, MAX_DISPLAY_ROWS);
+    const html=[];
 
-    for(let i=0;i<filteredData.length;i++){
+    for(let i=0;i<limit;i++){
         const item=filteredData[i];
         const row=item.row;
 
@@ -2608,7 +2688,7 @@ function renderTable(){
 
         const timestamp=item.date!==null ? formatDate(item.date) : String(row[0]??"");
 
-        html[i]=`
+        html.push(`
             <tr>
                 <td>${escapeHtml(timestamp)}</td>
                 <td>${escapeHtml(row[1])}</td>
@@ -2622,7 +2702,18 @@ function renderTable(){
                 <td><span class="badge ${badgeClass}">${escapeHtml(row[9])}</span></td>
                 <td>${escapeHtml(row[10])}</td>
             </tr>
-        `;
+        `);
+    }
+
+    if(filteredData.length > MAX_DISPLAY_ROWS){
+        const sisa = filteredData.length - MAX_DISPLAY_ROWS;
+        html.push(`
+            <tr>
+                <td colspan="11" class="empty">
+                    Menampilkan ${MAX_DISPLAY_ROWS} dari ${filteredData.length.toLocaleString("id-ID")} data (${sisa.toLocaleString("id-ID")} baris lainnya disembunyikan agar ukuran file tetap ringkas).
+                </td>
+            </tr>
+        `);
     }
 
     tbody.innerHTML=html.join("");
