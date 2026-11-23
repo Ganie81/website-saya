@@ -130,6 +130,11 @@ button:active {
     background: linear-gradient(145deg, #20b978, #198754);
 }
 
+/* TOMBOL EXPORT JPG */
+.btn-jpg {
+    background: linear-gradient(145deg, #555b63, #343a40);
+}
+
 
 /* =========================
    TOMBOL TERAPKAN FILTER
@@ -2788,6 +2793,13 @@ padding:0;
     </button>
 
     <button
+        class="btn-jpg"
+        id="btnExportJpg"
+        onclick="exportDashboardJPG()">
+        JPG
+    </button>
+
+    <button
         class="btn-defect"
         onclick="window.location.href='cek.html'">
         🏠 HOME
@@ -3171,6 +3183,8 @@ padding:0;
     ⏳ SABAR..,biar di sayang Allah ﷻ
 </div>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script>
 
@@ -6434,6 +6448,93 @@ function toggleScreenshotMode() {
     document.body.classList.toggle(
         "screenshot-mode"
     );
+
+}
+
+
+/* =====================================================
+   EXPORT DASHBOARD KE JPG FULL HD
+===================================================== */
+
+async function exportDashboardJPG() {
+
+    const tombol = document.getElementById("btnExportJpg");
+    const teksAwal = tombol.textContent;
+    const modeSebelumnya = document.body.classList.contains("screenshot-mode");
+
+    try {
+
+        if (typeof html2canvas !== "function") {
+            throw new Error("Library export JPG belum berhasil dimuat. Periksa koneksi internet.");
+        }
+
+        tombol.disabled = true;
+        tombol.textContent = "MEMBUAT JPG...";
+
+        // Sembunyikan tombol dan panel filter seperti mode presentasi.
+        document.body.classList.add("screenshot-mode");
+
+        // Beri waktu browser menyelesaikan perubahan tampilan.
+        await new Promise(resolve => setTimeout(resolve, 300));
+
+        const hasilCanvas = await html2canvas(document.body, {
+            backgroundColor: null,
+            scale: 1,
+            width: 1920,
+            height: 1080,
+            windowWidth: 1920,
+            windowHeight: 1080,
+            x: 0,
+            y: window.scrollY,
+            useCORS: true,
+            logging: false
+        });
+
+        // Pastikan file akhir berukuran tepat 1920 x 1080.
+        const canvasFinal = document.createElement("canvas");
+        canvasFinal.width = 1920;
+        canvasFinal.height = 1080;
+
+        const ctx = canvasFinal.getContext("2d");
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, 1920, 1080);
+
+        const rasio = Math.min(
+            1920 / hasilCanvas.width,
+            1080 / hasilCanvas.height
+        );
+
+        const lebar = hasilCanvas.width * rasio;
+        const tinggi = hasilCanvas.height * rasio;
+
+        ctx.drawImage(
+            hasilCanvas,
+            (1920 - lebar) / 2,
+            (1080 - tinggi) / 2,
+            lebar,
+            tinggi
+        );
+
+        const link = document.createElement("a");
+        const tanggal = new Date().toISOString().slice(0, 10);
+        link.download = "DASHBOARD-PRODUKSI-" + tanggal + ".jpg";
+        link.href = canvasFinal.toDataURL("image/jpeg", 0.95);
+        link.click();
+
+    } catch (error) {
+
+        alert("Export JPG gagal: " + error.message);
+
+    } finally {
+
+        if (!modeSebelumnya) {
+            document.body.classList.remove("screenshot-mode");
+        }
+
+        tombol.disabled = false;
+        tombol.textContent = teksAwal;
+
+    }
 
 }
 
