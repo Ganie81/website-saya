@@ -1606,20 +1606,19 @@ tbody tr:nth-child(even) {
 }
 
 /* =====================================================
-   MODE CAPTURE JPG (KHUSUS SAAT EXPORT AGAR HASIL SEMPURNA)
+   MODE CAPTURE JPG (SCREENSHOT PERSIS TAMPILAN LAYAR)
 ===================================================== */
 body.jpg-capture-mode {
     background-color: #142230 !important;
     background-attachment: scroll !important;
 }
 
-body.jpg-capture-mode .data-wrapper {
-    max-height: none !important;
-    overflow: visible !important;
-}
-
-body.jpg-capture-mode .data-wrapper thead th {
-    position: static !important;
+body.jpg-capture-mode .judul-3d {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: #ffe58a !important;
+    color: #ffe58a !important;
 }
 
 body.jpg-capture-mode .modal-produksi-harian {
@@ -1992,7 +1991,7 @@ body.jpg-capture-mode .modal-produksi-harian {
     ⏳ SABAR..,biar di sayang Allah ﷻ
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
 
 <script>
 
@@ -4671,8 +4670,21 @@ async function resetFilter() {
 }
 
 /* =====================================================
-   EXPORT DASHBOARD KE JPG — MOBILE & DESKTOP ACCURATE
+   EXPORT DASHBOARD KE JPG — SCREENSHOT-LIKE HD & CEPAT
 ===================================================== */
+function siapkanLibraryJpg() {
+    if (typeof window.html2canvas === "function") {
+        return Promise.resolve();
+    }
+    return new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error("Gagal memuat modul JPG. Periksa koneksi internet."));
+        document.head.appendChild(script);
+    });
+}
+
 async function exportDashboardJPG() {
     const tombol = document.getElementById("btnExportJpg");
     if (!tombol) return;
@@ -4681,61 +4693,93 @@ async function exportDashboardJPG() {
     const posisiScrollX = window.scrollX;
     const posisiScrollY = window.scrollY;
 
-    try {
-        if (typeof html2canvas !== "function") {
-            throw new Error("Library JPG belum termuat. Periksa koneksi internet.");
-        }
+    // Simpan posisi scroll setiap wadah horizontal/vertikal yang sedang tampil
+    const wadahScroll = Array.from(document.querySelectorAll(".chart-wrapper, .table-wrapper, .data-wrapper"))
+        .map(el => ({
+            el,
+            left: el.scrollLeft,
+            top: el.scrollTop
+        }));
 
+    // Cek apakah modal detail harian sedang terbuka
+    const modalHarian = document.getElementById("modalProduksiHarian");
+    const modalTerbuka = modalHarian && modalHarian.classList.contains("show");
+
+    try {
         tombol.disabled = true;
         tombol.textContent = "JPG...";
 
+        await siapkanLibraryJpg();
+
         document.body.classList.add("jpg-capture-mode");
-        window.scrollTo(0, 0);
 
-        await new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 120)));
+        // Tunggu 1 frame agar style capture mode teraplikasi bersih
+        await new Promise(resolve => requestAnimationFrame(resolve));
 
-        const lebarLayar = document.documentElement.clientWidth;
-        const lebarKonten = Math.max(
-            lebarLayar,
-            document.body.scrollWidth,
-            document.documentElement.scrollWidth
-        );
-        const tinggiKonten = Math.max(
-            document.body.scrollHeight,
-            document.documentElement.scrollHeight
-        );
+        // Jika modal popup sedang terbuka, tangkap popup-nya persis seperti layar; jika tidak, tangkap halaman dashboard sesuai viewport & tinggi halaman yang tampil
+        const targetElemen = modalTerbuka ? modalHarian : document.body;
+        const lebarTarget = modalTerbuka
+            ? window.innerWidth
+            : document.documentElement.clientWidth;
+        const tinggiTarget = modalTerbuka
+            ? window.innerHeight
+            : Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
 
-        const dpr = Math.min(window.devicePixelRatio || 2, 2.5);
-        const skalaAman = (lebarKonten * tinggiKonten * dpr * dpr > 16000000) ? 1.5 : dpr;
+        // Resolusi tinggi (HD tajam) tapi aman dari limit memori browser HP
+        const dpr = Math.max(window.devicePixelRatio || 2, 2);
+        const totalPiksel = lebarTarget * tinggiTarget * dpr * dpr;
+        const skalaHD = totalPiksel > 24000000 ? 1.75 : Math.min(dpr, 3);
 
-        const hasilCanvas = await html2canvas(document.body, {
+        const hasilCanvas = await window.html2canvas(targetElemen, {
             backgroundColor: "#142230",
-            scale: skalaAman,
-            width: lebarKonten,
-            height: tinggiKonten,
-            windowWidth: lebarKonten,
-            windowHeight: tinggiKonten,
+            scale: skalaHD,
+            width: lebarTarget,
+            height: tinggiTarget,
+            windowWidth: lebarTarget,
+            windowHeight: modalTerbuka ? window.innerHeight : tinggiTarget,
             scrollX: 0,
-            scrollY: 0,
+            scrollY: modalTerbuka ? -posisiScrollY : 0,
             x: 0,
             y: 0,
             useCORS: true,
             allowTaint: false,
             logging: false,
-            imageTimeout: 15000
+            imageTimeout: 5000,
+            ignoreElements: (el) => {
+                // Jangan export tombol navigasi, panel filter tertutup, loading tersembunyi, atau elemen display:none
+                if (el.hasAttribute && el.hasAttribute("data-html2canvas-ignore")) return true;
+                if (el.id === "loading" && el.style.display === "none") return true;
+                return false;
+            },
+            onclone: (docClone) => {
+                // Pertahankan persis posisi scroll tabel & grafik seperti yang sedang dilihat di layar
+                const cloneWadah = docClone.querySelectorAll(".chart-wrapper, .table-wrapper, .data-wrapper");
+                cloneWadah.forEach((elClone, idx) => {
+                    if (wadahScroll[idx]) {
+                        elClone.scrollLeft = wadahScroll[idx].left;
+                        elClone.scrollTop = wadahScroll[idx].top;
+                    }
+                });
+
+                // Hapus background-image eksternal pada clone jika berpotensi gagal load/CORS, ganti warna solid tema yang identik
+                docClone.body.style.backgroundImage = "none";
+                docClone.body.style.backgroundColor = "#142230";
+            }
         });
 
         const blob = await new Promise((resolve, reject) => {
             hasilCanvas.toBlob(
                 hasil => hasil
                     ? resolve(hasil)
-                    : reject(new Error("Gagal membuat file JPG.")),
+                    : reject(new Error("Gagal mengonversi gambar ke JPG.")),
                 "image/jpeg",
-                0.95
+                0.96
             );
         });
 
-        const urlGambar = URL.createObjectURL(blob);
+        // Gunakan window.URL (bukan variabel const URL milik Apps Script)
+        const urlObj = window.URL || window.webkitURL;
+        const urlGambar = urlObj.createObjectURL(blob);
         const link = document.createElement("a");
         const tanggal = new Date().toISOString().slice(0, 10);
 
@@ -4745,7 +4789,7 @@ async function exportDashboardJPG() {
         link.click();
         link.remove();
 
-        setTimeout(() => URL.revokeObjectURL(urlGambar), 30000);
+        setTimeout(() => urlObj.revokeObjectURL(urlGambar), 15000);
 
     } catch (error) {
         alert("Export JPG gagal: " + (error && error.message ? error.message : error));
