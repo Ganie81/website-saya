@@ -1803,56 +1803,6 @@ tbody tr:nth-child(even) {
     background: #edf6fc;
 }
 
-body.screenshot-mode {
-
-    background: white;
-
-    padding: 20px;
-}
-
-body.screenshot-mode .mode-buttons {
-
-    display: none;
-}
-
-body.screenshot-mode .filter-panel {
-
-    display: none !important;
-}
-
-body.screenshot-mode .card,
-body.screenshot-mode .group-card,
-body.screenshot-mode .table-card,
-body.screenshot-mode .filter-summary {
-
-    box-shadow:
-        0 5px 14px rgba(0,0,0,.22);
-
-    border: 2px solid #333;
-}
-
-body.screenshot-mode table {
-
-    font-size: 15px;
-}
-
-body.screenshot-mode th,
-body.screenshot-mode td {
-
-    padding: 11px;
-
-    font-weight: bold;
-
-    border: 2px solid #333;
-}
-
-body.screenshot-mode .card-value,
-body.screenshot-mode .group-production,
-body.screenshot-mode .group-percent {
-
-    font-weight: bold;
-}
-
 @media (max-width: 900px) {
 
     .group-cards {
@@ -5552,8 +5502,12 @@ async function resetFilter() {
 
 async function exportDashboardJPG() {
     const tombol = document.getElementById("btnExportJpg");
+    if (!tombol) {
+        alert("Tombol JPG tidak ditemukan.");
+        return;
+    }
+
     const teksAwal = tombol.textContent;
-    const modeSebelumnya = document.body.classList.contains("screenshot-mode");
 
     try {
         if (typeof html2canvas !== "function") {
@@ -5562,27 +5516,29 @@ async function exportDashboardJPG() {
 
         tombol.disabled = true;
         tombol.textContent = "MEMBUAT JPG...";
-        document.body.classList.add("screenshot-mode");
 
-        await new Promise(resolve => setTimeout(resolve, 300));
+        // Ambil dashboard langsung tanpa mengubah tampilan atau class halaman.
+        await new Promise(resolve => setTimeout(resolve, 250));
 
+        const lebarHalaman = 1920;
         const tinggiHalaman = Math.max(
             document.body.scrollHeight,
             document.documentElement.scrollHeight
         );
 
         const hasilCanvas = await html2canvas(document.body, {
-            backgroundColor: "#ffffff",
+            backgroundColor: null,
             scale: 1,
-            width: 1920,
+            width: lebarHalaman,
             height: tinggiHalaman,
-            windowWidth: 1920,
+            windowWidth: lebarHalaman,
             windowHeight: Math.max(1080, tinggiHalaman),
             scrollX: 0,
             scrollY: 0,
             x: 0,
             y: 0,
             useCORS: true,
+            allowTaint: false,
             logging: false
         });
 
@@ -5591,36 +5547,52 @@ async function exportDashboardJPG() {
         canvasFinal.height = 1080;
 
         const ctx = canvasFinal.getContext("2d");
+        if (!ctx) {
+            throw new Error("Tidak bisa membuat gambar JPG.");
+        }
+
         ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, 1920, 1080);
+        ctx.fillRect(0, 0, canvasFinal.width, canvasFinal.height);
 
         const rasio = Math.min(
-            1920 / hasilCanvas.width,
-            1080 / hasilCanvas.height
+            canvasFinal.width / hasilCanvas.width,
+            canvasFinal.height / hasilCanvas.height
         );
         const lebar = hasilCanvas.width * rasio;
         const tinggi = hasilCanvas.height * rasio;
 
         ctx.drawImage(
             hasilCanvas,
-            (1920 - lebar) / 2,
-            (1080 - tinggi) / 2,
+            (canvasFinal.width - lebar) / 2,
+            (canvasFinal.height - tinggi) / 2,
             lebar,
             tinggi
         );
 
+        const blob = await new Promise((resolve, reject) => {
+            canvasFinal.toBlob(
+                hasil => hasil ? resolve(hasil) : reject(new Error("Gagal membuat file JPG.")),
+                "image/jpeg",
+                0.95
+            );
+        });
+
+        const urlGambar = URL.createObjectURL(blob);
         const link = document.createElement("a");
         const tanggal = new Date().toISOString().slice(0, 10);
+
+        link.href = urlGambar;
         link.download = "DASHBOARD-PRODUKSI-" + tanggal + ".jpg";
-        link.href = canvasFinal.toDataURL("image/jpeg", 0.95);
+        link.style.display = "none";
+        document.body.appendChild(link);
         link.click();
+        link.remove();
+
+        setTimeout(() => URL.revokeObjectURL(urlGambar), 30000);
 
     } catch (error) {
-        alert("Export JPG gagal: " + error.message);
+        alert("Export JPG gagal: " + (error && error.message ? error.message : error));
     } finally {
-        if (!modeSebelumnya) {
-            document.body.classList.remove("screenshot-mode");
-        }
         tombol.disabled = false;
         tombol.textContent = teksAwal;
     }
