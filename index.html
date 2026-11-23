@@ -5502,78 +5502,53 @@ async function resetFilter() {
 
 async function exportDashboardJPG() {
     const tombol = document.getElementById("btnExportJpg");
-    if (!tombol) {
-        alert("Tombol JPG tidak ditemukan.");
-        return;
-    }
+
+    if (!tombol) return;
 
     const teksAwal = tombol.textContent;
 
     try {
         if (typeof html2canvas !== "function") {
-            throw new Error("Library export JPG belum berhasil dimuat. Periksa koneksi internet.");
+            throw new Error("Library JPG belum termuat. Periksa koneksi internet.");
         }
 
         tombol.disabled = true;
-        tombol.textContent = "MEMBUAT JPG...";
+        tombol.textContent = "JPG...";
 
-        // Ambil dashboard langsung tanpa mengubah tampilan atau class halaman.
-        await new Promise(resolve => setTimeout(resolve, 250));
-
-        const lebarHalaman = 1920;
+        // Ukuran mengikuti lebar halaman yang sedang dibuka,
+        // bukan dipaksa menjadi layout desktop 1920 x 1080.
+        const lebarHalaman = document.documentElement.clientWidth;
         const tinggiHalaman = Math.max(
             document.body.scrollHeight,
             document.documentElement.scrollHeight
         );
 
+        // Resolusi 2x agar tulisan dan grafik tetap tajam.
+        // Seluruh tinggi halaman disimpan, tanpa dipotong menjadi 1080px.
         const hasilCanvas = await html2canvas(document.body, {
             backgroundColor: null,
-            scale: 1,
+            scale: 2,
             width: lebarHalaman,
             height: tinggiHalaman,
             windowWidth: lebarHalaman,
-            windowHeight: Math.max(1080, tinggiHalaman),
+            windowHeight: window.innerHeight,
             scrollX: 0,
             scrollY: 0,
             x: 0,
             y: 0,
             useCORS: true,
             allowTaint: false,
-            logging: false
+            logging: false,
+            imageTimeout: 10000
         });
 
-        const canvasFinal = document.createElement("canvas");
-        canvasFinal.width = 1920;
-        canvasFinal.height = 1080;
-
-        const ctx = canvasFinal.getContext("2d");
-        if (!ctx) {
-            throw new Error("Tidak bisa membuat gambar JPG.");
-        }
-
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, canvasFinal.width, canvasFinal.height);
-
-        const rasio = Math.min(
-            canvasFinal.width / hasilCanvas.width,
-            canvasFinal.height / hasilCanvas.height
-        );
-        const lebar = hasilCanvas.width * rasio;
-        const tinggi = hasilCanvas.height * rasio;
-
-        ctx.drawImage(
-            hasilCanvas,
-            (canvasFinal.width - lebar) / 2,
-            (canvasFinal.height - tinggi) / 2,
-            lebar,
-            tinggi
-        );
-
         const blob = await new Promise((resolve, reject) => {
-            canvasFinal.toBlob(
-                hasil => hasil ? resolve(hasil) : reject(new Error("Gagal membuat file JPG.")),
+            hasilCanvas.toBlob(
+                hasil => hasil
+                    ? resolve(hasil)
+                    : reject(new Error("Gagal membuat file JPG.")),
                 "image/jpeg",
-                0.95
+                0.94
             );
         });
 
@@ -5583,7 +5558,6 @@ async function exportDashboardJPG() {
 
         link.href = urlGambar;
         link.download = "DASHBOARD-PRODUKSI-" + tanggal + ".jpg";
-        link.style.display = "none";
         document.body.appendChild(link);
         link.click();
         link.remove();
