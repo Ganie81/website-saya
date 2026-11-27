@@ -15,14 +15,6 @@
    BACKGROUND DEFECT
 ===================================================== */
 
-body{
-    background-image: url("DEFECT.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-}
-
 /* =====================================================
    GLOBAL
 ===================================================== */
@@ -2508,6 +2500,12 @@ tbody tr:hover{
 
 <div class="nav">
 
+    <a href="javascript:void(0)" onclick="exportJPG(); return false;">
+        <button type="button">
+            🖼 JPG
+        </button>
+    </a>
+
     <a href="javascript:void(0)">
         <button onclick="toggleFilter()">
             ☰ Filter
@@ -3134,7 +3132,65 @@ class="page-buttons">
 </div>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous"></script>
+
 <script>
+
+/* =====================================================
+   EXPORT DASHBOARD KE JPG
+===================================================== */
+
+async function exportJPG(){
+
+    if(typeof html2canvas !== "function"){
+        alert("Fitur JPG belum termuat. Periksa koneksi internet lalu coba lagi.");
+        return;
+    }
+
+    const target = document.querySelector(".container");
+    const nav = document.querySelector(".nav");
+    const filter = document.querySelector(".filter-card");
+    const status = document.getElementById("status");
+
+    const oldNavDisplay = nav ? nav.style.display : "";
+    const oldFilterDisplay = filter ? filter.style.display : "";
+    const oldStatusText = status ? status.textContent : "";
+
+    try{
+        if(nav) nav.style.display = "none";
+        if(filter) filter.style.display = "none";
+
+        if(status) status.textContent = "⏳ Menyiapkan gambar JPG...";
+
+        await new Promise(resolve => setTimeout(resolve, 250));
+
+        const canvas = await html2canvas(target, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: "#eef3f8",
+            logging: false,
+            scrollX: 0,
+            scrollY: -window.scrollY,
+            windowWidth: Math.max(document.documentElement.scrollWidth, window.innerWidth)
+        });
+
+        const link = document.createElement("a");
+        const tanggal = new Date().toISOString().slice(0,10);
+        link.download = "DASHBOARD_DEFECT_FLAT_" + tanggal + ".jpg";
+        link.href = canvas.toDataURL("image/jpeg", 0.95);
+        link.click();
+
+    }catch(error){
+        console.error("Export JPG gagal:", error);
+        alert("Export JPG gagal. Silakan coba kembali.");
+    }finally{
+        if(nav) nav.style.display = oldNavDisplay;
+        if(filter) filter.style.display = oldFilterDisplay;
+        if(status) status.textContent = oldStatusText;
+    }
+}
+
 
 /* =====================================================
    CONFIG
