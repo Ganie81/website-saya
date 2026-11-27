@@ -7986,3 +7986,23 @@ value == null
 </body>
 
 </html>
+
+<style>
+/* PENYAMAAN WARNA KOLOM TOTAL PADA MATRIX */
+.matrix-table thead th:last-child{
+    background:linear-gradient(180deg,#9a7025 0%,#704b0d 45%,#4d3107 100%) !important;
+    color:#fffdf2 !important;
+}
+
+/* Seluruh kolom TOTAL mengikuti warna kolom JENIS DEFECT */
+.matrix-table tbody td:last-child{
+    background:linear-gradient(180deg,#ffe98f 0%,#f5cf54 100%) !important;
+    color:#513500 !important;
+}
+
+/* Sel TOTAL paling kanan pada baris TOTAL mengikuti warna baris TOTAL */
+.matrix-table tbody tr.matrix-total-row td:last-child{
+    background:linear-gradient(145deg,#9b6b32,#70451f) !important;
+    color:#ffffff !important;
+}
+</style>
