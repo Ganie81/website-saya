@@ -292,35 +292,6 @@ transform:translateY(13px);
     cursor:pointer;
       }
 
-/* TOMBOL EXPORT JPG */
-.jpg-export-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-width:38px;
-    height:34px;
-    padding:0 10px;
-    border:1px solid rgba(255,255,255,.48);
-    border-radius:9px;
-    background:linear-gradient(145deg,#60a5fa,#1d4ed8 58%,#123b7a);
-    color:#fff;
-    font-size:11px;
-    font-weight:900;
-    letter-spacing:.5px;
-    box-shadow:0 4px 9px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.45);
-    cursor:pointer;
-    transition:.15s ease;
-}
-.jpg-export-btn:hover{
-    transform:translateY(-1px);
-    filter:brightness(1.08);
-}
-.jpg-export-btn:disabled{
-    opacity:.65;
-    cursor:wait;
-    transform:none;
-}
-
 .status{
     margin-top:15px;
 
@@ -1996,6 +1967,24 @@ text-transform:uppercase;
         0 4px 8px rgba(70,45,5,.30);
 }
 
+
+.matrix-table th:last-child,
+.matrix-table td:last-child{
+    background:linear-gradient(180deg,#fff9dc 0%,#f5e6ad 100%);
+    color:#654916;
+    font-weight:1000;
+}
+.matrix-table thead th:last-child{
+    background:linear-gradient(180deg,#a87822 0%,#805710 100%);
+    color:#fffbea;
+}
+.matrix-grand-total .matrix-value{
+    background:linear-gradient(145deg,#fffdf0 0%,#f1df9b 100%);
+    border-color:#b28a32;
+    color:#654916;
+    font-weight:1000;
+}
+
 .matrix-empty{
     padding:18px !important;
 
@@ -2032,17 +2021,55 @@ text-transform:uppercase;
 }
 
 .matrix-table th{
-    font-size:30px !important;
+    font-size:17px !important;
+    line-height:1.2;
+    padding:11px 8px;
 }
 
 .matrix-table thead th{
-    font-size:40px !important;
+    font-size:17px !important;
     transform:none !important;
 }
 
-    .matrix-table th:first-child{
-    min-width:160px;
-    font-size:24px;
+.matrix-table th:first-child{
+    min-width:105px;
+    max-width:125px;
+    font-size:17px !important;
+    white-space:normal;
+    overflow-wrap:anywhere;
+}
+
+.matrix-table td{
+    font-size:16px !important;
+    padding:9px 7px;
+}
+
+.matrix-table td:first-child{
+    min-width:105px;
+    max-width:125px;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    line-height:1.2;
+    font-size:16px !important;
+}
+
+.matrix-value{
+    font-size:16px !important;
+    font-weight:900;
+    min-width:44px;
+    min-height:31px;
+    padding:5px 7px;
+}
+
+.matrix-table th:last-child,
+.matrix-table td:last-child{
+    background:linear-gradient(180deg,#fff9dc 0%,#f5e6ad 100%);
+    color:#654916;
+    font-weight:1000;
+}
+.matrix-table thead th:last-child{
+    background:linear-gradient(180deg,#a87822 0%,#805710 100%);
+    color:#fffbea;
 }
 
 }
@@ -2448,13 +2475,12 @@ tbody tr:hover{
         2px solid
         rgba(70,40,15,.55) !important;
 }
-      
-.matrix-table th.matrix-total,
-.matrix-table td.matrix-total{
-    background:linear-gradient(145deg,#9b6b32,#70451f) !important;
-    color:#fff !important;
-    font-weight:950 !important;
+
+.matrix-table .matrix-total-row td:last-child{
+    background:linear-gradient(180deg,#fff4c7 0%,#ead48b 100%) !important;
+    color:#654916 !important;
 }
+      
 </style>
 
 </head>
@@ -2481,18 +2507,12 @@ tbody tr:hover{
     </div>
 
 <div class="nav">
-      
-          <a>
-
-    <button type="button" class="jpg-export-btn" id="exportJpgBtn"
-        onclick="exportDashboardJPG()" title="Simpan halaman sebagai JPG"
-        data-html2canvas-ignore="true">JPG</button>
 
     <a href="javascript:void(0)">
         <button onclick="toggleFilter()">
             ☰ Filter
         </button>
-
+    </a>
 
     <a href="javascript:void(0)">
         <button onclick="window.location.href='cek.html'">
@@ -3114,85 +3134,7 @@ class="page-buttons">
 </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
 <script>
-
-/* =====================================================
-   EXPORT JPG — FULL PAGE
-===================================================== */
-
-async function exportDashboardJPG() {
-    const tombol = document.getElementById("exportJpgBtn");
-
-    if (!tombol) return;
-
-    const teksAwal = tombol.textContent;
-
-    try {
-        if (typeof html2canvas !== "function") {
-            throw new Error("Library JPG belum termuat. Periksa koneksi internet.");
-        }
-
-        tombol.disabled = true;
-        tombol.textContent = "JPG...";
-
-        // Ukuran mengikuti lebar halaman yang sedang dibuka,
-        // bukan dipaksa menjadi layout desktop 1920 x 1080.
-        const lebarHalaman = document.documentElement.clientWidth;
-        const tinggiHalaman = Math.max(
-            document.body.scrollHeight,
-            document.documentElement.scrollHeight
-        );
-
-        // Resolusi 2x agar tulisan dan grafik tetap tajam.
-        // Seluruh tinggi halaman disimpan, tanpa dipotong menjadi 1080px.
-        const hasilCanvas = await html2canvas(document.body, {
-            backgroundColor: null,
-            scale: 2,
-            width: lebarHalaman,
-            height: tinggiHalaman,
-            windowWidth: lebarHalaman,
-            windowHeight: window.innerHeight,
-            scrollX: 0,
-            scrollY: 0,
-            x: 0,
-            y: 0,
-            useCORS: true,
-            allowTaint: false,
-            logging: false,
-            imageTimeout: 10000
-        });
-
-        const blob = await new Promise((resolve, reject) => {
-            hasilCanvas.toBlob(
-                hasil => hasil
-                    ? resolve(hasil)
-                    : reject(new Error("Gagal membuat file JPG.")),
-                "image/jpeg",
-                0.94
-            );
-        });
-
-        const urlGambar = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        const tanggal = new Date().toISOString().slice(0, 10);
-
-        link.href = urlGambar;
-        link.download = "DEFECT-FLAT-" + tanggal + ".jpg";
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-
-        setTimeout(() => URL.revokeObjectURL(urlGambar), 30000);
-
-    } catch (error) {
-        alert("Export JPG gagal: " + (error && error.message ? error.message : error));
-    } finally {
-        tombol.disabled = false;
-        tombol.textContent = teksAwal;
-    }
-}
 
 /* =====================================================
    CONFIG
@@ -3880,12 +3822,6 @@ i++
 const row =
 rows[i];
 
-// Abaikan seluruh baris yang mengandung N/A pada salah satu kolom.
-const containsNA = row.some(value =>
-    /N\/A/i.test(String(value == null ? "" : value).trim())
-);
-if(containsNA) continue;
-
 let hasValue = false;
 
 for(
@@ -3952,11 +3888,10 @@ String(
 getCell(row,idx.blok)
 ).trim();
 
-const grupRaw =
-String(getCell(row,idx.grup)).trim();
-
 const grup =
-grupRaw ? grupRaw.toUpperCase() : "";
+String(
+getCell(row,idx.grup)
+).trim();
 
 const operator =
 String(
@@ -6244,8 +6179,7 @@ function generateAIAnalysis(){
           
       const grup =
     String(row.grup || "(Kosong)")
-    .trim()
-    .toUpperCase() ||
+    .trim() ||
     "(Kosong)";
 
 
@@ -6401,7 +6335,9 @@ row.mesin || "(Kosong)"
 
 
 const grup =
-String(row.grup || "(Kosong)").trim().toUpperCase() ||
+String(
+row.grup || "(Kosong)"
+).trim() ||
 "(Kosong)";
 
 
@@ -6854,89 +6790,482 @@ fragment
 
 function renderDefectMachineMatrix(){
 
-    const header = document.getElementById("matrixHeader");
-    const body = document.getElementById("matrixBody");
-    if(!header || !body) return;
+    const header =
+        document.getElementById("matrixHeader");
 
-    const machineSet = new Set();
-    const matrix = new Map();
-    const totalByMachine = new Map();
-    let grandTotal = 0;
+    const body =
+        document.getElementById("matrixBody");
 
-    filteredData.forEach(row => {
-        const machine = normalizeMachineName(row.mesin);
 
-        // FLAT PRINT bukan mesin Flat individual, jadi tidak menjadi kolom mesin.
-        if(!machine || /^FLAT\s*PRINT$/i.test(machine)) return;
+    if(!header || !body){
 
-        const defectRaw = String(row.defect || "").trim();
-        if(!defectRaw || /N\/A/i.test(defectRaw)) return;
-
-        const defect = defectRaw;
-        const qty = Number(row.qty) || 0;
-
-        machineSet.add(machine);
-        if(!matrix.has(defect)) matrix.set(defect, new Map());
-
-        const values = matrix.get(defect);
-        values.set(machine, (Number(values.get(machine)) || 0) + qty);
-    });
-
-    const machineOrder = Array.from(machineSet).sort((a,b) => {
-        const na = Number((a.match(/\d+/) || [999])[0]);
-        const nb = Number((b.match(/\d+/) || [999])[0]);
-        return na !== nb ? na - nb : a.localeCompare(b,"id",{sensitivity:"base"});
-    });
-
-    machineOrder.forEach(machine => totalByMachine.set(machine,0));
-
-    const entries = Array.from(matrix.entries()).sort((a,b) =>
-        a[0].localeCompare(b[0],"id",{numeric:true,sensitivity:"base"})
-    );
-
-    header.innerHTML = `
-        <th>JENIS DEFECT</th>
-        ${machineOrder.map(machine => `<th>${escapeHtml(machine)}</th>`).join("")}
-        <th class="matrix-total">TOTAL</th>
-    `;
-
-    if(!entries.length){
-        body.innerHTML = `<tr><td colspan="${machineOrder.length + 2}" class="matrix-empty">Tidak ada data sesuai filter</td></tr>`;
         return;
+
     }
 
-    const maxByMachine = new Map();
-    entries.forEach(([, values]) => {
-        machineOrder.forEach(machine => {
-            const value = Number(values.get(machine) || 0);
-            if(value > (maxByMachine.get(machine) || 0)) maxByMachine.set(machine,value);
-        });
-    });
+
+    /* =================================================
+       AMBIL MESIN AKTIF DARI DATA HASIL FILTER
+       MESIN TIDAK DI-HARDCODE
+    ================================================= */
+
+    const machineSet =
+        new Set();
+
+
+    for(
+        let i = 0;
+        i < filteredData.length;
+        i++
+    ){
+
+        const machine =
+            normalizeMachineName(
+                filteredData[i].mesin
+            );
+
+
+        if(machine){
+
+            machineSet.add(
+                machine
+            );
+
+        }
+
+    }
+
+
+    /* =================================================
+       URUTKAN MESIN
+       FLAT 1
+       FLAT 2
+       FLAT 3
+       ...
+       FLAT 10
+    ================================================= */
+
+    const machineOrder =
+        Array.from(machineSet)
+            .sort(
+                function(a,b){
+
+                    const na =
+                        Number(
+                            (a.match(/\d+/) || [999])[0]
+                        );
+
+
+                    const nb =
+                        Number(
+                            (b.match(/\d+/) || [999])[0]
+                        );
+
+
+                    if(na !== nb){
+
+                        return na - nb;
+
+                    }
+
+
+                    return a.localeCompare(
+                        b,
+                        "id",
+                        {
+                            sensitivity:"base"
+                        }
+                    );
+
+                }
+            );
+
+
+    /* =================================================
+       MATRIX
+       DEFECT
+         └── MESIN
+               └── TOTAL PCS
+    ================================================= */
+
+    const matrix =
+        new Map();
+
+
+    for(
+        let i = 0;
+        i < filteredData.length;
+        i++
+    ){
+
+        const row =
+            filteredData[i];
+
+
+        const defect =
+            String(
+                row.defect || "(Kosong)"
+            )
+            .trim() ||
+            "(Kosong)";
+
+
+        const machine =
+            normalizeMachineName(
+                row.mesin
+            );
+
+
+        if(!machine){
+
+            continue;
+
+        }
+
+
+        if(!matrix.has(defect)){
+
+            matrix.set(
+                defect,
+                new Map()
+            );
+
+        }
+
+
+        const defectMap =
+            matrix.get(defect);
+
+
+        const oldValue =
+            Number(
+                defectMap.get(machine) || 0
+            );
+
+
+        const qty =
+            Number(
+                row.qty || 0
+            );
+
+
+        defectMap.set(
+            machine,
+            oldValue + qty
+        );
+
+    }
+          /* =================================================
+       HEADER MATRIX
+    ================================================= */
+
+    header.innerHTML = `
+    <th style="font-size:20px !important;">JENIS DEFECT</th>
+        ${machineOrder
+            .map(
+                function(machine){
+
+                    return `
+    <th style="font-size:20px !important;">
+        ${escapeHtml(machine)}
+    </th>
+`;
+
+                }
+            )
+            .join("")
+        }
+        <th style="font-size:20px !important;">TOTAL</th>
+    `;
+
+
+    /* =================================================
+       HEADER
+    ================================================= */
+
+    header.innerHTML = `
+    <th style="font-size:20px !important;">JENIS DEFECT</th>
+        ${machineOrder
+            .map(
+                function(machine){
+
+ return `
+    <th style="font-size:20px !important;">
+        ${escapeHtml(machine)}
+    </th>
+`;
+
+                }
+            )
+            .join("")
+        }
+        <th style="font-size:20px !important;">TOTAL</th>
+    `;
+
+
+    /* =================================================
+       TIDAK ADA DATA
+    ================================================= */
+
+    const entries =
+        Array.from(
+            matrix.entries()
+        )
+        .sort(
+            function(a,b){
+
+                return a[0].localeCompare(
+                    b[0],
+                    "id",
+                    {
+                        numeric:true,
+                        sensitivity:"base"
+                    }
+                );
+
+            }
+        );
+
+
+    if(!entries.length){
+
+        body.innerHTML = `
+            <tr>
+                <td
+                    colspan="${machineOrder.length + 2}"
+                    class="matrix-empty"
+                >
+                    Tidak ada data sesuai filter
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    /* =================================================
+   CARI NILAI TERTINGGI PER FLAT
+================================================= */
+
+const maxByMachine = new Map();
+
+
+for(
+    let i = 0;
+    i < entries.length;
+    i++
+){
+
+    const machineMap =
+        entries[i][1];
+
+
+    for(
+        let j = 0;
+        j < machineOrder.length;
+        j++
+    ){
+
+        const machine =
+            machineOrder[j];
+
+
+        const value =
+            Number(
+                machineMap.get(machine) || 0
+            );
+
+
+        const oldMax =
+            Number(
+                maxByMachine.get(machine) || 0
+            );
+
+
+        if(value > oldMax){
+
+            maxByMachine.set(
+                machine,
+                value
+            );
+
+        }
+
+    }
+
+}
+
+    /* =================================================
+       RENDER BARIS
+    ================================================= */
 
     const html = [];
-    entries.forEach(([defect, values]) => {
-        let rowTotal = 0;
-        const cells = machineOrder.map(machine => {
-            const value = Number(values.get(machine) || 0);
-            rowTotal += value;
-            totalByMachine.set(machine,(totalByMachine.get(machine) || 0) + value);
-            return `<td><span class="matrix-value ${value === 0 ? "zero" : ""} ${value > 0 && value === maxByMachine.get(machine) ? "top" : ""}">${formatNumber(value)} Pcs</span></td>`;
-        }).join("");
+      /* =================================================
+   TOTAL PER MESIN
+   HANYA UNTUK BARIS TOTAL DI BAWAH
+================================================= */
 
-        grandTotal += rowTotal;
-        html.push(`<tr><td>${escapeHtml(defect)}</td>${cells}<td class="matrix-total"><span class="matrix-value">${formatNumber(rowTotal)} Pcs</span></td></tr>`);
-    });
+const totalByMachine = new Map();
 
-    html.push(`
-        <tr class="matrix-total-row">
-            <td>TOTAL</td>
-            ${machineOrder.map(machine => `<td><span class="matrix-value">${formatNumber(totalByMachine.get(machine) || 0)} Pcs</span></td>`).join("")}
-            <td class="matrix-total"><span class="matrix-value">${formatNumber(grandTotal)} Pcs</span></td>
-        </tr>
-    `);
+for(
+    let j = 0;
+    j < machineOrder.length;
+    j++
+){
 
-    body.innerHTML = html.join("");
+    totalByMachine.set(
+        machineOrder[j],
+        0
+    );
+
 }
+
+
+    for(
+        let i = 0;
+        i < entries.length;
+        i++
+    ){
+
+        const defect =
+            entries[i][0];
+
+
+        const machineMap =
+            entries[i][1];
+
+        let defectTotal = 0;
+
+        html.push(`
+            <tr>
+<td style="font-size:17px !important;">
+    ${escapeHtml(defect)}
+</td>
+
+                ${machineOrder
+                    .map(
+                        function(machine){
+
+                            const value =
+                                Number(
+                                    machineMap.get(machine) || 0
+                                );
+                              totalByMachine.set(
+    machine,
+    Number(
+        totalByMachine.get(machine) || 0
+    ) + value
+);
+                            defectTotal += value;
+
+
+                            const zeroClass =
+                                value === 0
+                                    ? "zero"
+                                    : "";
+
+
+                            const topClass =
+    value > 0 &&
+    value === maxByMachine.get(machine)
+        ? "top"
+        : "";
+
+
+                            return `
+                                <td style="text-align:right;">
+
+                                    <span
+                                        class="
+                                            matrix-value
+                                            ${zeroClass}
+                                            ${topClass}
+                                        "
+                                    >
+                                        ${formatNumber(value)} Pcs
+                                    </span>
+
+                                </td>
+                            `;
+
+                        }
+                    )
+                    .join("")
+                }
+                <td class="matrix-grand-total">
+                    <span class="matrix-value">${formatNumber(defectTotal)} Pcs</span>
+                </td>
+
+            </tr>
+        `);
+
+    }
+/* =================================================
+   TOTAL PER MESIN — BARIS PALING BAWAH
+================================================= */
+
+const grandTotal = Array.from(totalByMachine.values())
+    .reduce((sum, value) => sum + Number(value || 0), 0);
+
+html.push(`
+    <tr
+    class="matrix-total-row"
+    style="
+        background:rgba(0,0,0,.16);
+    "
+>
+
+        <td
+            style="
+                font-size:17px !important;
+                font-weight:900;
+                text-align:left;
+            "
+        >
+            TOTAL
+        </td>
+
+        ${machineOrder
+            .map(
+                function(machine){
+
+                    const total =
+                        Number(
+                            totalByMachine.get(machine) || 0
+                        );
+
+
+                    return `
+                        <td style="text-align:right;">
+
+                            <span
+                                class="matrix-value"
+                                style="font-weight:900;"
+                            >
+                                ${formatNumber(total)} Pcs
+                            </span>
+
+                        </td>
+                    `;
+
+                }
+            )
+            .join("")
+        }
+        <td class="matrix-grand-total">
+            <span class="matrix-value" style="font-weight:1000;">${formatNumber(grandTotal)} Pcs</span>
+        </td>
+
+    </tr>
+`);
+
+    body.innerHTML =
+        html.join("");
+
+}
+
 
 /* =====================================================
    NORMALIZE NAMA MESIN
