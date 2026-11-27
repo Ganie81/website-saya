@@ -2449,6 +2449,12 @@ tbody tr:hover{
         rgba(70,40,15,.55) !important;
 }
       
+.matrix-table th.matrix-total,
+.matrix-table td.matrix-total{
+    background:linear-gradient(145deg,#9b6b32,#70451f) !important;
+    color:#fff !important;
+    font-weight:950 !important;
+}
 </style>
 
 </head>
@@ -3874,6 +3880,12 @@ i++
 const row =
 rows[i];
 
+// Abaikan seluruh baris yang mengandung N/A pada salah satu kolom.
+const containsNA = row.some(value =>
+    /N\/A/i.test(String(value == null ? "" : value).trim())
+);
+if(containsNA) continue;
+
 let hasValue = false;
 
 for(
@@ -3940,10 +3952,11 @@ String(
 getCell(row,idx.blok)
 ).trim();
 
+const grupRaw =
+String(getCell(row,idx.grup)).trim();
+
 const grup =
-String(
-getCell(row,idx.grup)
-).trim();
+grupRaw ? grupRaw.toUpperCase() : "";
 
 const operator =
 String(
@@ -6231,7 +6244,8 @@ function generateAIAnalysis(){
           
       const grup =
     String(row.grup || "(Kosong)")
-    .trim() ||
+    .trim()
+    .toUpperCase() ||
     "(Kosong)";
 
 
@@ -6387,9 +6401,7 @@ row.mesin || "(Kosong)"
 
 
 const grup =
-String(
-row.grup || "(Kosong)"
-).trim() ||
+String(row.grup || "(Kosong)").trim().toUpperCase() ||
 "(Kosong)";
 
 
@@ -6842,469 +6854,89 @@ fragment
 
 function renderDefectMachineMatrix(){
 
-    const header =
-        document.getElementById("matrixHeader");
+    const header = document.getElementById("matrixHeader");
+    const body = document.getElementById("matrixBody");
+    if(!header || !body) return;
 
-    const body =
-        document.getElementById("matrixBody");
+    const machineSet = new Set();
+    const matrix = new Map();
+    const totalByMachine = new Map();
+    let grandTotal = 0;
 
+    filteredData.forEach(row => {
+        const machine = normalizeMachineName(row.mesin);
 
-    if(!header || !body){
+        // FLAT PRINT bukan mesin Flat individual, jadi tidak menjadi kolom mesin.
+        if(!machine || /^FLAT\s*PRINT$/i.test(machine)) return;
 
-        return;
+        const defectRaw = String(row.defect || "").trim();
+        if(!defectRaw || /N\/A/i.test(defectRaw)) return;
 
-    }
+        const defect = defectRaw;
+        const qty = Number(row.qty) || 0;
 
+        machineSet.add(machine);
+        if(!matrix.has(defect)) matrix.set(defect, new Map());
 
-    /* =================================================
-       AMBIL MESIN AKTIF DARI DATA HASIL FILTER
-       MESIN TIDAK DI-HARDCODE
-    ================================================= */
+        const values = matrix.get(defect);
+        values.set(machine, (Number(values.get(machine)) || 0) + qty);
+    });
 
-    const machineSet =
-        new Set();
+    const machineOrder = Array.from(machineSet).sort((a,b) => {
+        const na = Number((a.match(/\d+/) || [999])[0]);
+        const nb = Number((b.match(/\d+/) || [999])[0]);
+        return na !== nb ? na - nb : a.localeCompare(b,"id",{sensitivity:"base"});
+    });
 
+    machineOrder.forEach(machine => totalByMachine.set(machine,0));
 
-    for(
-        let i = 0;
-        i < filteredData.length;
-        i++
-    ){
-
-        const machine =
-            normalizeMachineName(
-                filteredData[i].mesin
-            );
-
-
-        if(machine){
-
-            machineSet.add(
-                machine
-            );
-
-        }
-
-    }
-
-
-    /* =================================================
-       URUTKAN MESIN
-       FLAT 1
-       FLAT 2
-       FLAT 3
-       ...
-       FLAT 10
-    ================================================= */
-
-    const machineOrder =
-        Array.from(machineSet)
-            .sort(
-                function(a,b){
-
-                    const na =
-                        Number(
-                            (a.match(/\d+/) || [999])[0]
-                        );
-
-
-                    const nb =
-                        Number(
-                            (b.match(/\d+/) || [999])[0]
-                        );
-
-
-                    if(na !== nb){
-
-                        return na - nb;
-
-                    }
-
-
-                    return a.localeCompare(
-                        b,
-                        "id",
-                        {
-                            sensitivity:"base"
-                        }
-                    );
-
-                }
-            );
-
-
-    /* =================================================
-       MATRIX
-       DEFECT
-         └── MESIN
-               └── TOTAL PCS
-    ================================================= */
-
-    const matrix =
-        new Map();
-
-
-    for(
-        let i = 0;
-        i < filteredData.length;
-        i++
-    ){
-
-        const row =
-            filteredData[i];
-
-
-        const defect =
-            String(
-                row.defect || "(Kosong)"
-            )
-            .trim() ||
-            "(Kosong)";
-
-
-        const machine =
-            normalizeMachineName(
-                row.mesin
-            );
-
-
-        if(!machine){
-
-            continue;
-
-        }
-
-
-        if(!matrix.has(defect)){
-
-            matrix.set(
-                defect,
-                new Map()
-            );
-
-        }
-
-
-        const defectMap =
-            matrix.get(defect);
-
-
-        const oldValue =
-            Number(
-                defectMap.get(machine) || 0
-            );
-
-
-        const qty =
-            Number(
-                row.qty || 0
-            );
-
-
-        defectMap.set(
-            machine,
-            oldValue + qty
-        );
-
-    }
-          /* =================================================
-       HEADER MATRIX
-    ================================================= */
-
-    header.innerHTML = `
-    <th style="font-size:18px !important;">JENIS DEFECT</th>
-        ${machineOrder
-            .map(
-                function(machine){
-
-                    return `
-    <th style="font-size:18px !important;">
-        ${escapeHtml(machine)}
-    </th>
-`;
-
-                }
-            )
-            .join("")
-        }
-    `;
-
-
-    /* =================================================
-       HEADER
-    ================================================= */
-
-    header.innerHTML = `
-    <th style="font-size:18px !important;">JENIS DEFECT</th>
-        ${machineOrder
-            .map(
-                function(machine){
-
- return `
-    <th style="font-size:18px !important;">
-        ${escapeHtml(machine)}
-    </th>
-`;
-
-                }
-            )
-            .join("")
-        }
-    `;
-
-
-    /* =================================================
-       TIDAK ADA DATA
-    ================================================= */
-
-    const entries =
-        Array.from(
-            matrix.entries()
-        )
-        .sort(
-            function(a,b){
-
-                return a[0].localeCompare(
-                    b[0],
-                    "id",
-                    {
-                        numeric:true,
-                        sensitivity:"base"
-                    }
-                );
-
-            }
-        );
-
-
-    if(!entries.length){
-
-        body.innerHTML = `
-            <tr>
-                <td
-                    colspan="${machineOrder.length + 1}"
-                    class="matrix-empty"
-                >
-                    Tidak ada data sesuai filter
-                </td>
-            </tr>
-        `;
-
-        return;
-
-    }
-
-
-    /* =================================================
-   CARI NILAI TERTINGGI PER FLAT
-================================================= */
-
-const maxByMachine = new Map();
-
-
-for(
-    let i = 0;
-    i < entries.length;
-    i++
-){
-
-    const machineMap =
-        entries[i][1];
-
-
-    for(
-        let j = 0;
-        j < machineOrder.length;
-        j++
-    ){
-
-        const machine =
-            machineOrder[j];
-
-
-        const value =
-            Number(
-                machineMap.get(machine) || 0
-            );
-
-
-        const oldMax =
-            Number(
-                maxByMachine.get(machine) || 0
-            );
-
-
-        if(value > oldMax){
-
-            maxByMachine.set(
-                machine,
-                value
-            );
-
-        }
-
-    }
-
-}
-
-    /* =================================================
-       RENDER BARIS
-    ================================================= */
-
-    const html = [];
-      /* =================================================
-   TOTAL PER MESIN
-   HANYA UNTUK BARIS TOTAL DI BAWAH
-================================================= */
-
-const totalByMachine = new Map();
-
-for(
-    let j = 0;
-    j < machineOrder.length;
-    j++
-){
-
-    totalByMachine.set(
-        machineOrder[j],
-        0
+    const entries = Array.from(matrix.entries()).sort((a,b) =>
+        a[0].localeCompare(b[0],"id",{numeric:true,sensitivity:"base"})
     );
 
-}
+    header.innerHTML = `
+        <th>JENIS DEFECT</th>
+        ${machineOrder.map(machine => `<th>${escapeHtml(machine)}</th>`).join("")}
+        <th class="matrix-total">TOTAL</th>
+    `;
 
-
-    for(
-        let i = 0;
-        i < entries.length;
-        i++
-    ){
-
-        const defect =
-            entries[i][0];
-
-
-        const machineMap =
-            entries[i][1];
-
-
-        html.push(`
-            <tr>
-<td style="font-size:17px !important;">
-    ${escapeHtml(defect)}
-</td>
-
-                ${machineOrder
-                    .map(
-                        function(machine){
-
-                            const value =
-                                Number(
-                                    machineMap.get(machine) || 0
-                                );
-                              totalByMachine.set(
-    machine,
-    Number(
-        totalByMachine.get(machine) || 0
-    ) + value
-);
-
-
-                            const zeroClass =
-                                value === 0
-                                    ? "zero"
-                                    : "";
-
-
-                            const topClass =
-    value > 0 &&
-    value === maxByMachine.get(machine)
-        ? "top"
-        : "";
-
-
-                            return `
-                                <td style="text-align:right;">
-
-                                    <span
-                                        class="
-                                            matrix-value
-                                            ${zeroClass}
-                                            ${topClass}
-                                        "
-                                    >
-                                        ${formatNumber(value)} Pcs
-                                    </span>
-
-                                </td>
-                            `;
-
-                        }
-                    )
-                    .join("")
-                }
-
-            </tr>
-        `);
-
+    if(!entries.length){
+        body.innerHTML = `<tr><td colspan="${machineOrder.length + 2}" class="matrix-empty">Tidak ada data sesuai filter</td></tr>`;
+        return;
     }
-/* =================================================
-   TOTAL PER MESIN — BARIS PALING BAWAH
-================================================= */
 
-html.push(`
-    <tr
-    class="matrix-total-row"
-    style="
-        background:rgba(0,0,0,.16);
-    "
->
+    const maxByMachine = new Map();
+    entries.forEach(([, values]) => {
+        machineOrder.forEach(machine => {
+            const value = Number(values.get(machine) || 0);
+            if(value > (maxByMachine.get(machine) || 0)) maxByMachine.set(machine,value);
+        });
+    });
 
-        <td
-            style="
-                font-size:17px !important;
-                font-weight:900;
-                text-align:left;
-            "
-        >
-            TOTAL
-        </td>
+    const html = [];
+    entries.forEach(([defect, values]) => {
+        let rowTotal = 0;
+        const cells = machineOrder.map(machine => {
+            const value = Number(values.get(machine) || 0);
+            rowTotal += value;
+            totalByMachine.set(machine,(totalByMachine.get(machine) || 0) + value);
+            return `<td><span class="matrix-value ${value === 0 ? "zero" : ""} ${value > 0 && value === maxByMachine.get(machine) ? "top" : ""}">${formatNumber(value)} Pcs</span></td>`;
+        }).join("");
 
-        ${machineOrder
-            .map(
-                function(machine){
+        grandTotal += rowTotal;
+        html.push(`<tr><td>${escapeHtml(defect)}</td>${cells}<td class="matrix-total"><span class="matrix-value">${formatNumber(rowTotal)} Pcs</span></td></tr>`);
+    });
 
-                    const total =
-                        Number(
-                            totalByMachine.get(machine) || 0
-                        );
+    html.push(`
+        <tr class="matrix-total-row">
+            <td>TOTAL</td>
+            ${machineOrder.map(machine => `<td><span class="matrix-value">${formatNumber(totalByMachine.get(machine) || 0)} Pcs</span></td>`).join("")}
+            <td class="matrix-total"><span class="matrix-value">${formatNumber(grandTotal)} Pcs</span></td>
+        </tr>
+    `);
 
-
-                    return `
-                        <td style="text-align:right;">
-
-                            <span
-                                class="matrix-value"
-                                style="font-weight:900;"
-                            >
-                                ${formatNumber(total)} Pcs
-                            </span>
-
-                        </td>
-                    `;
-
-                }
-            )
-            .join("")
-        }
-
-    </tr>
-`);
-
-    body.innerHTML =
-        html.join("");
-
+    body.innerHTML = html.join("");
 }
-
 
 /* =====================================================
    NORMALIZE NAMA MESIN
