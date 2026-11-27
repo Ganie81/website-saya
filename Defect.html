@@ -6328,9 +6328,7 @@ row.defect || "(Kosong)"
 
 
 const mesin =
-String(
-row.mesin || "(Kosong)"
-).trim() ||
+normalizeMachineName(row.mesin) ||
 "(Kosong)";
 
 
@@ -7290,6 +7288,12 @@ function normalizeMachineName(value){
             " "
         );
 
+
+    // FLAT PRINT 7 adalah nama lain dari FLAT 7,
+    // sehingga seluruh nilainya digabung ke satu kategori.
+    if(/^FLAT\s*PRINT\s*7$/.test(text)){
+        return "FLAT 7";
+    }
 
     const match =
         text.match(
