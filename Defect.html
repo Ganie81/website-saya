@@ -3151,97 +3151,74 @@ async function exportJPG(){
     const nav = document.querySelector(".nav");
     const filter = document.querySelector(".filter-card");
     const status = document.getElementById("status");
-    if(!target) return;
 
     const oldNavDisplay = nav ? nav.style.display : "";
     const oldFilterDisplay = filter ? filter.style.display : "";
     const oldStatusText = status ? status.textContent : "";
-    const oldTargetStyle = target.getAttribute("style");
-    const exportStyle = document.createElement("style");
-    const bodyStyle = getComputedStyle(document.body);
+
+    /* Simpan tampilan asli container sebelum export */
+    const oldBackgroundImage = target.style.backgroundImage;
+    const oldBackgroundSize = target.style.backgroundSize;
+    const oldBackgroundPosition = target.style.backgroundPosition;
+    const oldBackgroundRepeat = target.style.backgroundRepeat;
+    const oldBackgroundColor = target.style.backgroundColor;
 
     try{
         if(nav) nav.style.display = "none";
         if(filter) filter.style.display = "none";
+
         if(status) status.textContent = "⏳ Menyiapkan gambar JPG...";
 
-        /* Samakan latar ekspor dengan latar halaman asli (termasuk foto sarung DEFECT.jpg). */
-        target.style.backgroundImage = bodyStyle.backgroundImage;
-        target.style.backgroundSize = bodyStyle.backgroundSize || "cover";
-        target.style.backgroundPosition = bodyStyle.backgroundPosition || "center";
-        target.style.backgroundRepeat = bodyStyle.backgroundRepeat || "no-repeat";
-        target.style.backgroundAttachment = "scroll";
-        target.style.backgroundColor = bodyStyle.backgroundColor || "#eef3f8";
+        /*
+           Gambar DEFECT.jpg berada pada background BODY.
+           Karena yang di-capture adalah .container, background BODY
+           tidak ikut tertangkap. Salin sementara background tersebut
+           ke container agar gambar sarung/grounding ikut masuk JPG.
+        */
+        const pageBackground = getComputedStyle(document.body).backgroundImage;
+        if(pageBackground && pageBackground !== "none"){
+            target.style.backgroundImage = pageBackground;
+            target.style.backgroundSize = "cover";
+            target.style.backgroundPosition = "center";
+            target.style.backgroundRepeat = "no-repeat";
+            target.style.backgroundColor = "transparent";
+        }
 
-        /* Hilangkan garis putih/efek kilau yang muncul sebagai bingkai saat dirender JPG.
-           Warna, gradasi, bayangan, ukuran, dan susunan kartu tetap dipertahankan. */
-        exportStyle.id = "jpg-export-clean-style";
-        exportStyle.textContent = `
-            .card { border-color: transparent !important; }
-            .card::before { display:none !important; }
-            .table-wrap { border-color: transparent !important; }
-            .table-wrap th { border-color: rgba(18,59,99,.35) !important; }
-            .matrix-table, .matrix-table th, .matrix-table td {
-                outline: none !important;
-            }
-            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-        `;
-        document.head.appendChild(exportStyle);
-
-        /* Tunggu font dan gambar selesai agar JPG tidak menangkap elemen setengah termuat. */
-        if(document.fonts && document.fonts.ready) await document.fonts.ready;
-        const images = Array.from(document.images);
-        await Promise.all(images.map(img => {
-            if(img.complete) return Promise.resolve();
-            return new Promise(resolve => {
-                img.addEventListener("load", resolve, {once:true});
-                img.addEventListener("error", resolve, {once:true});
-            });
-        }));
-        await new Promise(resolve => requestAnimationFrame(() =>
-            requestAnimationFrame(resolve)
-        ));
-
-        const fullWidth = Math.max(target.scrollWidth, target.offsetWidth);
-        const fullHeight = Math.max(target.scrollHeight, target.offsetHeight);
+        await new Promise(resolve => setTimeout(resolve, 250));
 
         const canvas = await html2canvas(target, {
-            scale: Math.max(3, Math.min(4, (window.devicePixelRatio || 1) * 2)),
+            scale: 2,
             useCORS: true,
             allowTaint: false,
-            backgroundColor: "#eef3f8",
+            backgroundColor: null,
             logging: false,
             scrollX: 0,
-            scrollY: 0,
-            width: fullWidth,
-            height: fullHeight,
-            windowWidth: fullWidth,
-            windowHeight: fullHeight,
-            imageTimeout: 20000,
-            removeContainer: true
+            scrollY: -window.scrollY,
+            windowWidth: window.innerWidth
         });
 
         const link = document.createElement("a");
         const tanggal = new Date().toISOString().slice(0,10);
         link.download = "DASHBOARD_DEFECT_FLAT_" + tanggal + ".jpg";
-        link.href = canvas.toDataURL("image/jpeg", 1.0);
-        document.body.appendChild(link);
+        link.href = canvas.toDataURL("image/jpeg", 0.95);
         link.click();
-        link.remove();
 
     }catch(error){
         console.error("Export JPG gagal:", error);
         alert("Export JPG gagal. Silakan coba kembali.");
     }finally{
-        if(exportStyle.parentNode) exportStyle.remove();
-        if(oldTargetStyle === null) target.removeAttribute("style");
-        else target.setAttribute("style", oldTargetStyle);
         if(nav) nav.style.display = oldNavDisplay;
         if(filter) filter.style.display = oldFilterDisplay;
         if(status) status.textContent = oldStatusText;
+
+        /* Kembalikan tampilan dashboard persis seperti semula */
+        target.style.backgroundImage = oldBackgroundImage;
+        target.style.backgroundSize = oldBackgroundSize;
+        target.style.backgroundPosition = oldBackgroundPosition;
+        target.style.backgroundRepeat = oldBackgroundRepeat;
+        target.style.backgroundColor = oldBackgroundColor;
     }
 }
-
 
 /* =====================================================
    CONFIG
