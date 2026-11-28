@@ -11,7 +11,13 @@
 
 *{box-sizing:border-box}
 
+html{
+    min-height:100%;
+    background:#062719;
+}
+
 body{
+    min-height:100vh;
     font-family:Arial,sans-serif;
     margin:0;
     padding:20px;
@@ -137,6 +143,7 @@ body{
     display:flex;
     gap:8px;
     flex-wrap:wrap;
+    align-items:center;
     position:relative;
     z-index:2;
 }
@@ -460,7 +467,6 @@ body{
         inset 0 -5px 10px rgba(0,0,0,.12);
 }
 
-/* efek kilap atas */
 .kpi::before{
     content:"";
     position:absolute;
@@ -480,7 +486,6 @@ body{
     z-index:1;
 }
 
-/* aksen 3D bawah */
 .kpi::after{
     content:"";
     position:absolute;
@@ -504,7 +509,6 @@ body{
     pointer-events:none;
 }
 
-/* TOTAL SAMPEL */
 .kpi.total{
     background:
         linear-gradient(
@@ -529,7 +533,6 @@ body{
         );
 }
 
-/* LAYAK */
 .kpi.layak{
     background:
         linear-gradient(
@@ -554,7 +557,6 @@ body{
         );
 }
 
-/* TIDAK LAYAK */
 .kpi.tidak{
     background:
         linear-gradient(
@@ -846,7 +848,6 @@ body{
     word-break:break-word;
     margin-bottom:4px;
 }
-    /* LINGKARAN ABC 3D GLOSSY */
 
 .abc-circle{
     width:48px;
@@ -889,8 +890,6 @@ body{
     filter:blur(1px);
 }
 
-/* A merah */
-
 .abc-a{
     background:
         radial-gradient(
@@ -902,8 +901,6 @@ body{
         );
 }
 
-/* B biru */
-
 .abc-b{
     background:
         radial-gradient(
@@ -914,8 +911,6 @@ body{
             #123c8c 100%
         );
 }
-
-/* C hijau */
 
 .abc-c{
     background:
@@ -1279,7 +1274,8 @@ tbody tr:hover td{
         width:100%;
     }
 
-    .nav a{
+    .nav a,
+    .nav .jpg-export-btn{
         flex:1;
         text-align:center;
     }
@@ -1464,25 +1460,24 @@ tbody tr:hover td{
 }
 
 
-
-/* TOMBOL EXPORT JPG */
+/* TOMBOL EXPORT JPG - DISAMAKAN DENGAN TOMBOL HOME */
 .jpg-export-btn{
-    min-width:42px;
-    height:34px;
-    padding:0 11px;
-    border:1px solid rgba(255,255,255,.30);
+    text-decoration:none;
+    color:#d9f2e2;
+    padding:9px 15px;
     border-radius:10px;
-    background:linear-gradient(145deg,#86c99a,#4f9b68);
-    color:#07351f;
-    font-size:12px;
-    font-weight:900;
-    letter-spacing:.4px;
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.20);
+    font-size:13px;
+    font-weight:bold;
     cursor:pointer;
-    box-shadow:0 3px 7px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.55);
     transition:.2s;
+    box-shadow:
+        0 3px 7px rgba(0,0,0,.15),
+        inset 0 1px 0 rgba(255,255,255,.20);
 }
 .jpg-export-btn:hover{
-    background:linear-gradient(145deg,#a2dfb2,#65b47e);
+    background:rgba(255,255,255,.20);
     transform:translateY(-1px);
 }
 .jpg-export-btn:disabled{
@@ -1507,19 +1502,16 @@ tbody tr:hover td{
      fill="none"
      xmlns="http://www.w3.org/2000/svg">
 
-    <!-- BODY MESIN CUCI -->
     <rect x="8" y="5" width="48" height="54" rx="7"
           fill="#ffffff"
           stroke="#000000"
           stroke-width="3"/>
 
-    <!-- PANEL ATAS -->
     <rect x="14" y="12" width="36" height="8" rx="2"
           fill="#ffffff"
           stroke="#000000"
           stroke-width="2"/>
 
-    <!-- TOMBOL -->
     <circle cx="20" cy="16" r="2"
             fill="#000000"/>
 
@@ -1528,7 +1520,6 @@ tbody tr:hover td{
             stroke="#000000"
             stroke-width="1.5"/>
 
-    <!-- PINTU MESIN CUCI -->
     <circle cx="32" cy="39" r="14"
             fill="#ffffff"
             stroke="#000000"
@@ -1539,7 +1530,6 @@ tbody tr:hover td{
             stroke="#000000"
             stroke-width="2"/>
 
-    <!-- DETAIL PUTARAN -->
     <path d="M25 39
              C26 34 30 32 34 33
              C38 34 40 38 39 42"
@@ -1564,7 +1554,7 @@ tbody tr:hover td{
 <div class="nav">
 
 <button type="button" class="jpg-export-btn" id="jpgExportBtn"
-        onclick="exportDashboardJPG()" data-html2canvas-ignore="true">JPG</button>
+        onclick="exportDashboardJPG()" data-html2canvas-ignore="true">📷 JPG</button>
 
 <a href="cek.html">🏠 HOME</a>
 
@@ -1897,11 +1887,8 @@ Menunggu data...
 
 <script>
 
-
-
-
 /* =====================================================
-   EXPORT JPG MODE B - FIX PIE COLOR & KPI BORDER
+   EXPORT JPG - RESOLUSI TINGGI & SESUAI LAYAR HP
 ===================================================== */
 
 async function exportDashboardJPG() {
@@ -1919,7 +1906,7 @@ async function exportDashboardJPG() {
         }
 
         tombol.disabled = true;
-        tombol.textContent = "JPG...";
+        tombol.textContent = "⏳ JPG...";
 
         if (document.fonts && document.fonts.ready) {
             await document.fonts.ready;
@@ -1931,11 +1918,36 @@ async function exportDashboardJPG() {
             });
         });
 
-        const lebar = document.documentElement.clientWidth;
-        const tinggi = window.innerHeight;
+        const lebar = Math.max(
+            document.documentElement.clientWidth || 0,
+            window.innerWidth || 0
+        );
+        const tinggi = Math.max(
+            document.documentElement.clientHeight || 0,
+            window.innerHeight || 0
+        );
 
-        const scrollX = window.scrollX;
-        const scrollY = window.scrollY;
+        const scrollX = window.scrollX || window.pageXOffset || 0;
+        const scrollY = window.scrollY || window.pageYOffset || 0;
+
+        const darkBg = `
+            radial-gradient(
+                circle at top left,
+                rgba(91,160,116,.32),
+                transparent 34%
+            ),
+            radial-gradient(
+                circle at bottom right,
+                rgba(20,83,45,.45),
+                transparent 38%
+            ),
+            linear-gradient(
+                145deg,
+                #0b3d26 0%,
+                #0a3321 45%,
+                #062719 100%
+            )
+        `;
 
         const canvas = await html2canvas(document.body, {
 
@@ -1951,9 +1963,9 @@ async function exportDashboardJPG() {
             scrollX: -scrollX,
             scrollY: -scrollY,
 
-            scale: 2,
+            scale: 3,
 
-            backgroundColor: null,
+            backgroundColor: "#062719",
 
             useCORS: true,
             allowTaint: false,
@@ -1978,22 +1990,28 @@ async function exportDashboardJPG() {
                     }
 
                     html, body {
+                        margin: 0 !important;
+                        padding: ${lebar <= 800 ? "12px" : "20px"} !important;
+                        width: ${lebar}px !important;
+                        min-height: ${tinggi}px !important;
+                        background: ${darkBg} !important;
+                        background-color: #062719 !important;
+                        box-shadow: none !important;
+                        border: none !important;
+                        outline: none !important;
                         overflow: hidden !important;
                     }
 
-                    /* HILANGKAN BINGKAI KPI */
                     .kpi {
                         border: none !important;
                         outline: none !important;
                     }
 
-                    /* JAGA EFEK KARTU KPI */
                     .kpi::before,
                     .kpi::after {
                         display: block !important;
                     }
 
-                    /* JAGA PUSAT DIAGRAM */
                     .status-pie,
                     .result-pie {
                         overflow: hidden;
@@ -2003,10 +2021,10 @@ async function exportDashboardJPG() {
 
                 clonedDoc.head.appendChild(style);
 
-                /*
-                  PERBAIKAN PIE DIAGRAM
-                  Ganti conic-gradient dengan SVG
-                */
+                clonedDoc.documentElement.style.background = darkBg;
+                clonedDoc.documentElement.style.backgroundColor = "#062719";
+                clonedDoc.body.style.background = darkBg;
+                clonedDoc.body.style.backgroundColor = "#062719";
 
                 function fixPie(selector) {
 
@@ -2014,7 +2032,6 @@ async function exportDashboardJPG() {
 
                         const bg = pie.style.background || "";
 
-                        // Hanya proses diagram dengan conic-gradient
                         if (!bg.includes("conic-gradient")) return;
 
                         const match = bg.match(
@@ -2088,10 +2105,8 @@ async function exportDashboardJPG() {
 
                         }
 
-                        // Hapus conic-gradient yang tidak didukung
                         pie.style.background = "none";
 
-                        // Masukkan SVG diagram
                         pie.insertBefore(svg, pie.firstChild);
 
                     });
@@ -2115,7 +2130,7 @@ async function exportDashboardJPG() {
                     reject(new Error("Gagal membuat JPG."));
                 }
 
-            }, "image/jpeg", 0.95);
+            }, "image/jpeg", 1.0);
 
         });
 
@@ -2207,48 +2222,63 @@ const FILTERS={
 
 
 /* =====================================================
+   CEK KOSONG ATAU NA
+===================================================== */
+
+function isEmptyOrNA(value){
+
+    const clean = String(value ?? "").trim().toLowerCase();
+
+    return clean === "" || clean === "na";
+
+}
+
+
+/* =====================================================
    CACHE DATA SIAP PAKAI
 ===================================================== */
 
 function prepareData(rows){
 
-    return rows.map(row=>{
+    return rows
+        .map(row=>{
 
-        const hasil=
-            String(row[9]??"").trim();
+            const grup = String(row[1] ?? "").trim();
+            const mesin = String(row[7] ?? "").trim();
 
-        const kebijakan=
-            String(row[10]??"").trim();
+            if (isEmptyOrNA(grup) || isEmptyOrNA(mesin)) {
+                return null;
+            }
 
-        const hasilLower=
-            hasil.toLowerCase();
+            const hasil = String(row[9] ?? "").trim();
+            const kebijakan = String(row[10] ?? "").trim();
 
-        const kebijakanLower=
-            kebijakan.toLowerCase();
+            const hasilLower = hasil.toLowerCase();
+            const kebijakanLower = kebijakan.toLowerCase();
 
-        const status=
-            detectStatus(
+            const status = detectStatus(
                 hasilLower,
                 kebijakanLower
             );
 
-        return {
-            row:row,
-            date:getDateOnly(row[0]),
-            grup:String(row[1]??"").trim(),
-            kode:String(row[3]??"").trim(),
-            roll:String(row[4]??"").trim(),
-            motif:String(row[5]??"").trim(),
-            warna:String(row[6]??"").trim(),
-            mesin:String(row[7]??"").trim(),
-            hasil:hasil,
-            kebijakan:kebijakan,
-            hasilLower:hasilLower,
-            kebijakanLower:kebijakanLower,
-            status:status
-        };
+            return {
+                row:row,
+                date:getDateOnly(row[0]),
+                grup:grup,
+                kode:String(row[3] ?? "").trim(),
+                roll:String(row[4] ?? "").trim(),
+                motif:String(row[5] ?? "").trim(),
+                warna:String(row[6] ?? "").trim(),
+                mesin:mesin,
+                hasil:hasil,
+                kebijakan:kebijakan,
+                hasilLower:hasilLower,
+                kebijakanLower:kebijakanLower,
+                status:status
+            };
 
-    });
+        })
+        .filter(Boolean);
 
 }
 
@@ -2459,7 +2489,7 @@ function buildFilters(){
             [...new Set(
                 allData
                 .map(item=>item[field])
-                .filter(v=>v!=="")
+                .filter(v=>!isEmptyOrNA(v))
             )]
             .sort((a,b)=>
                 a.localeCompare(
@@ -2650,7 +2680,6 @@ function filterSelectionChanged(id){
 
         if(!input) return;
 
-        /* "Semua" tetap tampil */
         if(input.value==="__ALL__"){
             option.style.display="";
             return;
@@ -2899,6 +2928,10 @@ function applyFilter(){
 
     filteredData=
         allData.filter(item=>{
+
+            if(isEmptyOrNA(item.grup) || isEmptyOrNA(item.mesin)){
+                return false;
+            }
 
             if(
                 startDate!==null &&
@@ -3186,8 +3219,10 @@ function generateAIAnalysis(){
 
 filteredData.forEach(row => {
 
+    if(isEmptyOrNA(row.grup) || isEmptyOrNA(row.mesin)) return;
+
     const grup =
-        String(row.grup || "LAINNYA")
+        String(row.grup)
         .trim()
         .toUpperCase();
 
@@ -3219,8 +3254,10 @@ Object.keys(grupData).forEach(grup => {
 
 filteredData.forEach(row => {
 
+    if(isEmptyOrNA(row.grup) || isEmptyOrNA(row.mesin)) return;
+
     const mesin =
-        String(row.mesin || "LAINNYA")
+        String(row.mesin)
         .trim()
         .toUpperCase();
 
@@ -3419,8 +3456,10 @@ function renderStatusAnalysis(
         const item=
             filteredData[i];
 
+        if(isEmptyOrNA(item.grup) || isEmptyOrNA(item.mesin)) continue;
+
         const key=
-            item[field]||"(Kosong)";
+            item[field];
 
 
         let group=
@@ -3645,7 +3684,6 @@ function renderResultAnalysis(elementId){
 
 /* =====================================================
    KEBIJAKAN
-   PIE BESAR SEPERTI HASIL UJI
 ===================================================== */
 
 function renderPolicyAnalysis(elementId){
